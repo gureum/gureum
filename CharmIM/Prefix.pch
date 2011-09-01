@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'CharmIM' target in the 'CharmIM' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import <IdealCocoa/ICUtility.h>
+#endif

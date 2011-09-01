@@ -1,0 +1,20 @@
+# Backup files from text editors
+*~
+*.DS_Store
+.*.swp
+.hg
+.hgignore
+.svn
+.svnignore
+
+# Xcode crap
+*mode1v3
+*pbxuser
+*perspectivev3
+*xcuserdata*
+
+# Junk files on Mac OS X
+*.DS_Store
+
+build
+
