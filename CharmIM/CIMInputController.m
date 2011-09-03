@@ -84,7 +84,6 @@
     NSString *commitString = [CIMManager.currentComposer endComposing];
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-    [commitString release];
 }
 
 // Getting Input Strings and Candidates

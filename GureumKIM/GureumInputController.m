@@ -36,6 +36,12 @@
     return handled;
 }
 
+- (void)updateComposition {
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
+    [super updateComposition];
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
+}
+
 @end
 
 /*
@@ -75,7 +81,6 @@
     NSString *commitString = [GureumManager.currentComposer endComposing];
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-    [commitString release];
 }
 
 // Getting Input Strings and Candidates

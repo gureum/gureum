@@ -16,12 +16,12 @@
     self = [super init];
     if (self) {
         self->data = hangul_keyboard_new();
+        if (self->data == NULL) {
+            [self release];
+            return nil;
+        }
+        self->flags.freeWhenDone = NO;
     }
-    if (self->data == NULL) {
-        [self release];
-        return nil;
-    }
-    self->flags.freeWhenDone = NO;
     return self;
 }
 
@@ -63,10 +63,10 @@
     self = [super init];
     if (self) {
         self->context = hangul_ic_new([code UTF8String]);
-    }
-    if (self->context == NULL) {
-        [self release];
-        self = nil;
+        if (self->context == NULL) {
+            [self release];
+            self = nil;
+        }
     }
     return self;
 }
@@ -164,7 +164,8 @@ inline NSString *HGKeyboardNameAtIndex(NSUInteger index) {
 - (id)initWithHGUCSString:(const HGUCSChar *)ucsString {
     NSInteger length = wcslen((const wchar_t *)ucsString)*sizeof(HGUCSChar); // XXX: 길이 알아내는 or 길이 없이 NSString 만드는 방법이 있을까?
     // initWithCString + UTF32LE 로는 안된다. null 문자가 보이면 무조건 종료하는 듯
-    return [self initWithBytes:ucsString length:length encoding:NSUTF32LittleEndianStringEncoding];
+    return [self initWithBytesNoCopy:(void *)ucsString length:length encoding:NSUTF32LittleEndianStringEncoding freeWhenDone:NO];
+    return [self initWithBytes:ucsString length:length encoding:NSUTF32LittleEndianStringEncoding ];
 }
 
 + (id)stringWithHGUCSString:(const HGUCSChar *)ucsString {

@@ -14,18 +14,17 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
 
 - (id)init {
     // 두벌식을 기본 값으로 갖는다.
-    return self = [self initWithKeyboardIdentifier:@"2"];
+    return  [self initWithKeyboardIdentifier:@"2"];
 }
 
 - (id)initWithKeyboardIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
         self->inputContext = [[HGInputContext alloc] initWithKeyboardIdentifier:identifier];
-    }
-    
-    if (self->inputContext == nil) {
-        [self release];
-        return nil;   
+        if (self->inputContext == nil) {
+            [self release];
+            return nil;   
+        }
     }
     
     return self;
