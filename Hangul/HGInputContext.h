@@ -14,7 +14,7 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "HGCharacter.h"
+#import <Hangul/HGCharacter.h>
 
 @class HGHangulCombination;
 
@@ -97,9 +97,9 @@
 //! @brief  @ref hangul_ic_set_keyboard
 - (void)setKeyboard:(HGKeyboard *)aKeyboard;
 //! @brief  @ref hangul_ic_set_keyboard
-- (void)setKeyboardForData:(HangulKeyboard *)keyboardData;
+- (void)setKeyboardWithData:(HangulKeyboard *)keyboardData;
 //! @brief  @ref hangul_ic_select_keyboard
-- (void)setKeyboardForIdentifier:(NSString *)identifier;
+- (void)setKeyboardWithIdentifier:(NSString *)identifier;
 //! @brief  @ref hangul_ic_set_combination
 - (void)setCombination:(HangulCombination *)aCombination;
 

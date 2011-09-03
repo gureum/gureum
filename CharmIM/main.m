@@ -6,16 +6,20 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import "CIMInputManager.h"
-
 int main(int argc, char *argv[])
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    [NSBundle loadNibNamed:@"MainMenu" owner:[NSApplication sharedApplication]];
+ 
+    ICLog(TRUE, @"******* CharmIM initialized! *******");
+    NSString *mainNibName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NSMainNibFile"];
+    if ([NSBundle loadNibNamed:mainNibName owner:[NSApplication sharedApplication]] == NO) {
+        NSLog(@"!! CharmIM fails to load Main Nib File !!");
+    }
+    ICLog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName);
     
     [[NSApplication sharedApplication] run];
     
+    ICLog(TRUE, @"******* CharmIM finalized! *******");
     [pool release];
     return 0;
 }

@@ -24,3 +24,11 @@
 @optional
 
 @end
+
+
+@interface CIMBaseComposer : NSObject<CIMComposer> {
+    NSString *originalString;
+}
+@property(nonatomic, retain) NSString *originalString;
+
+@end

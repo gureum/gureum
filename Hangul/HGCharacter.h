@@ -13,7 +13,7 @@
     libhangul의 ctype 함수를 Apple Coding Guideline에 따라 재명명. 연관된 함수를 확인하려면 hangul/hangul.h 와 hangul/hangulctype.c 를 확인한다.
 */
 
-#include "libhangul/hangul/hangul.h"
+#include <hangul.h>
 
 //! @brief  libhangul 의 글자 단위인 ucschar의 alias
 typedef ucschar HGUCSChar;

@@ -19,6 +19,15 @@
 
 @implementation CIMInputController
 
+- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+    self = [super initWithServer:server delegate:delegate client:inputClient];
+    if (self != nil) {
+        ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -initWithServer:delegate:client:");
+        // 초기 키보드 값 전달
+    }
+    return self;
+}
+
 @end
 
 #pragma - IMKServerInput Protocol
@@ -69,7 +78,7 @@
 @implementation CIMInputController (IMKServerInput)
 
 // Committing a Composition
-
+// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
     // 한글 합성기 의존적인 구현
     NSString *commitString = [CIMManager.currentComposer endComposing];
@@ -79,6 +88,7 @@
 }
 
 // Getting Input Strings and Candidates
+// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
     NSString *string = CIMManager.currentComposer.composedString;
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: %@", sender, string);

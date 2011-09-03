@@ -135,11 +135,11 @@
     hangul_ic_set_keyboard(self->context, aKeyboard.data);
 }
 
-- (void)setKeyboardForData:(HangulKeyboard *)keyboardData {
+- (void)setKeyboardWithData:(HangulKeyboard *)keyboardData {
     hangul_ic_set_keyboard(self->context, keyboardData);
 }
 
-- (void)setKeyboardForIdentifier:(NSString *)identifier {
+- (void)setKeyboardWithIdentifier:(NSString *)identifier {
     hangul_ic_select_keyboard(self->context, [identifier UTF8String]);
 }
 

@@ -1,0 +1,14 @@
+/* Localized versions of Info.plist keys */
+
+org.youknowone.inputmethod.GureumKIM.qwerty = "Roman QWERTY";
+org.youknowone.inputmethod.GureumKIM.dvorak = "Roman Dvorak";
+org.youknowone.inputmethod.GureumKIM.dvorakq = "Roman Dvorak - QWERTY ⌘";
+org.youknowone.inputmethod.GureumKIM.han2 = "Hangeul 2set (KS X 5002)";
+org.youknowone.inputmethod.GureumKIM.han3final = "Hangeul 3set Final";
+org.youknowone.inputmethod.GureumKIM.han390 = "Hangeul 3set 390";
+org.youknowone.inputmethod.GureumKIM.han3noshift = "Hangeul 3set No shift";
+org.youknowone.inputmethod.GureumKIM.han3classic = "Hangeul 3set Classic";
+org.youknowone.inputmethod.GureumKIM.hanroman = "Hangeul Roman";
+
+CFBundleName = "Gureum";
+CFBundleDisplayName = "Gureum Input Method";

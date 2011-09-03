@@ -10,7 +10,6 @@
     @header
     @brief   입출력 환경을 다룬다.
 */
-@class CIMInputManager;
 
 /*!
     @brief  OS에서 입력을 받아 처리기로 전달하고 결과를 클라이언트에 반영한다.

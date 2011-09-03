@@ -6,6 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+#include <hangul.h>
 #import "HGCharacter.h"
 
 inline BOOL HGCharacterIsChoseong(HGUCSChar character) {
@@ -88,5 +89,5 @@ inline void HGGetJamoFromSyllable(HGUCSChar syllable, HGUCSChar *choseong,
 
 inline NSInteger HGGetSyllablesFromJamos(const HGUCSChar* jamos, NSInteger jamosLength,
                                          HGUCSChar* syllables, NSInteger syllablesLength) {
-    return hangul_jamos_to_syllables(syllables, syllablesLength, jamos, jamosLength);
+    return (NSInteger)hangul_jamos_to_syllables(syllables, (int)syllablesLength, jamos, (int)jamosLength);
 }

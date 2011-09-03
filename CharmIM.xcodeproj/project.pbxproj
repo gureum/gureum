@@ -9,14 +9,50 @@
 /* Begin PBXBuildFile section */
 		38162D7C140F64B70077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
 		38162D7D140F64BE0077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
-		38162D80140FBD640077AA2D /* HGInputContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7F140FBD640077AA2D /* HGInputContext.m */; };
-		38162D81140FBD640077AA2D /* HGInputContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7F140FBD640077AA2D /* HGInputContext.m */; };
-		38162D85141066560077AA2D /* HGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D84141066560077AA2D /* HGCharacter.m */; };
-		38162D86141066560077AA2D /* HGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D84141066560077AA2D /* HGCharacter.m */; };
+		38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
+		38162DDD141230710077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DDB141230710077AA2D /* InfoPlist.strings */; };
+		38162DE6141230B40077AA2D /* HGCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 38162DE2141230B40077AA2D /* HGCharacter.h */; };
+		38162DE7141230B40077AA2D /* HGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162DE3141230B40077AA2D /* HGCharacter.m */; };
+		38162DE8141230B40077AA2D /* HGInputContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 38162DE4141230B40077AA2D /* HGInputContext.h */; };
+		38162DE9141230B40077AA2D /* HGInputContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162DE5141230B40077AA2D /* HGInputContext.m */; };
+		38162DEA1412313B0077AA2D /* libhangul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863D49140F54AD00A8ED76 /* libhangul.a */; };
+		38162DEB141231560077AA2D /* ICUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D12140F1A7300A8ED76 /* ICUtility.m */; };
+		38162DEC141231EB0077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
+		38162DED141231EC0077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
+		38162DEE141261B60077AA2D /* hangul.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D76140F559100A8ED76 /* hangul.h */; };
+		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
+		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
+		38162E04141263280077AA2D /* GureumKIMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumKIMAppDelegate.m */; };
+		38162E0B141264990077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
+		38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
+		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
+		38162E0F141264EB0077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
+		38162E12141269490077AA2D /* GureumInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E11141269480077AA2D /* GureumInputManager.m */; };
+		38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		38162E1A141271920077AA2D /* GureumInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E181412718A0077AA2D /* GureumInputController.m */; };
+		38162E1D1412745E0077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
+		38162E40141280A00077AA2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
+		38162E41141281B40077AA2D /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D2D140F23CD00A8ED76 /* CIMInputManager.m */; };
+		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		38162E44141285050077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
+		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
+		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
+		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
+		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
+		38475AF71412BC050062100D /* han3.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEF1412BC050062100D /* han3.png */; };
+		38475AF81412BC050062100D /* han3classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF01412BC050062100D /* han3classic.png */; };
+		38475AF91412BC050062100D /* han3final.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF11412BC050062100D /* han3final.png */; };
+		38475AFA1412BC050062100D /* han390.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF21412BC050062100D /* han390.png */; };
+		38475AFB1412BC050062100D /* han390s.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF31412BC050062100D /* han390s.png */; };
+		38475AFC1412BC050062100D /* hanroman.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF41412BC050062100D /* hanroman.png */; };
+		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
+		38475AFF1412BC700062100D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AFE1412BC6F0062100D /* icon.png */; };
+		38475B011412C0640062100D /* Gureum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38475B001412C0640062100D /* Gureum.icns */; };
+		38475B031412C3AA0062100D /* han3noshift.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475B021412C3A90062100D /* han3noshift.png */; };
 		38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38863C6E140E64EB00A8ED76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C6C140E64EB00A8ED76 /* InfoPlist.strings */; };
 		38863C71140E64EB00A8ED76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
-		38863C7A140E64EB00A8ED76 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38863C78140E64EB00A8ED76 /* MainMenu.xib */; };
 		38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38863C89140E64EC00A8ED76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C87140E64EC00A8ED76 /* InfoPlist.strings */; };
 		38863C8C140E64EC00A8ED76 /* CharmIMTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38863C8B140E64EC00A8ED76 /* CharmIMTests.h */; };
@@ -24,14 +60,12 @@
 		38863C97140E669000A8ED76 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 		38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		38863D13140F1A7300A8ED76 /* ICUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D12140F1A7300A8ED76 /* ICUtility.m */; };
-		38863D2E140F23CD00A8ED76 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D2D140F23CD00A8ED76 /* CIMInputManager.m */; };
 		38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38863D36140F421900A8ED76 /* CIMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D35140F421800A8ED76 /* CIMAppDelegate.m */; };
 		38863D37140F486100A8ED76 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D2D140F23CD00A8ED76 /* CIMInputManager.m */; };
 		38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
-		38863DB2140F559100A8ED76 /* ko.po in Resources */ = {isa = PBXBuildFile; fileRef = 38863D82140F559100A8ED76 /* ko.po */; };
 		38863DBA140F562900A8ED76 /* hangul-gettext.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D75140F559100A8ED76 /* hangul-gettext.h */; };
 		38863DBB140F562900A8ED76 /* hangul.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D76140F559100A8ED76 /* hangul.h */; };
 		38863DBC140F562900A8ED76 /* hangulctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D77140F559100A8ED76 /* hangulctype.c */; };
@@ -40,8 +74,6 @@
 		38863DBF140F562900A8ED76 /* hangulkeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7A140F559100A8ED76 /* hangulkeyboard.h */; };
 		38863DC0140F562900A8ED76 /* hanja.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D7B140F559100A8ED76 /* hanja.c */; };
 		38863DC1140F562900A8ED76 /* hanjacompatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7C140F559100A8ED76 /* hanjacompatible.h */; };
-		38863DCA140F57B100A8ED76 /* libhangul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863D49140F54AD00A8ED76 /* libhangul.a */; };
-		38863DCB140F57B100A8ED76 /* libhangul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863D49140F54AD00A8ED76 /* libhangul.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,25 +100,77 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		38162E1C141274530077AA2D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				38162E1D1412745E0077AA2D /* Hangul.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38162E43141284FD0077AA2D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				38162E44141285050077AA2D /* Hangul.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		38162D7A140F64B70077AA2D /* CIMHangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMHangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* CIMHangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMHangulComposer.m; sourceTree = "<group>"; };
-		38162D7E140FBD640077AA2D /* HGInputContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInputContext.h; sourceTree = "<group>"; };
-		38162D7F140FBD640077AA2D /* HGInputContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInputContext.m; sourceTree = "<group>"; };
-		38162D83141066550077AA2D /* HGCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGCharacter.h; sourceTree = "<group>"; };
-		38162D84141066560077AA2D /* HGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGCharacter.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
+		38162DD6141230700077AA2D /* Hangul.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hangul.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DDA141230710077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38162DDC141230710077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38162DDE141230710077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		38162DE2141230B40077AA2D /* HGCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGCharacter.h; sourceTree = "<group>"; };
+		38162DE3141230B40077AA2D /* HGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGCharacter.m; sourceTree = "<group>"; };
+		38162DE4141230B40077AA2D /* HGInputContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInputContext.h; sourceTree = "<group>"; };
+		38162DE5141230B40077AA2D /* HGInputContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInputContext.m; sourceTree = "<group>"; };
+		38162DF3141263270077AA2D /* GureumKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GureumKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		38162E02141263280077AA2D /* GureumKIMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GureumKIMAppDelegate.h; sourceTree = "<group>"; };
+		38162E03141263280077AA2D /* GureumKIMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumKIMAppDelegate.m; sourceTree = "<group>"; };
+		38162E10141269480077AA2D /* GureumInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumInputManager.h; sourceTree = "<group>"; };
+		38162E11141269480077AA2D /* GureumInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumInputManager.m; sourceTree = "<group>"; };
+		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
+		38162E171412718A0077AA2D /* GureumInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumInputController.h; sourceTree = "<group>"; };
+		38162E181412718A0077AA2D /* GureumInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumInputController.m; sourceTree = "<group>"; };
+		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		38475AEC14129BC10062100D /* Gureum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gureum.png; path = Icons/Gureum.png; sourceTree = "<group>"; };
+		38475AEE1412BC050062100D /* han2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2.png; path = Icons/han2.png; sourceTree = "<group>"; };
+		38475AEF1412BC050062100D /* han3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3.png; path = Icons/han3.png; sourceTree = "<group>"; };
+		38475AF01412BC050062100D /* han3classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3classic.png; path = Icons/han3classic.png; sourceTree = "<group>"; };
+		38475AF11412BC050062100D /* han3final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3final.png; path = Icons/han3final.png; sourceTree = "<group>"; };
+		38475AF21412BC050062100D /* han390.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han390.png; path = Icons/han390.png; sourceTree = "<group>"; };
+		38475AF31412BC050062100D /* han390s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han390s.png; path = Icons/han390s.png; sourceTree = "<group>"; };
+		38475AF41412BC050062100D /* hanroman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hanroman.png; path = Icons/hanroman.png; sourceTree = "<group>"; };
+		38475AF51412BC050062100D /* qwerty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qwerty.png; path = Icons/qwerty.png; sourceTree = "<group>"; };
+		38475AFE1412BC6F0062100D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Icons/icon.png; sourceTree = "<group>"; };
+		38475B001412C0640062100D /* Gureum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Gureum.icns; path = Icons/Gureum.icns; sourceTree = "<group>"; };
+		38475B021412C3A90062100D /* han3noshift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3noshift.png; path = Icons/han3noshift.png; sourceTree = "<group>"; };
 		38863C5F140E64EB00A8ED76 /* CharmIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharmIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38863C6B140E64EB00A8ED76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38863C6D140E64EB00A8ED76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38863C6D140E64EB00A8ED76 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38863C6F140E64EB00A8ED76 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		38863C70140E64EB00A8ED76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		38863C79140E64EB00A8ED76 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		38863C80140E64EB00A8ED76 /* CharmIMTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharmIMTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38863C86140E64EC00A8ED76 /* CharmIMTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CharmIMTests-Info.plist"; sourceTree = "<group>"; };
 		38863C88140E64EC00A8ED76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -112,8 +196,6 @@
 		38863D6B140F559100A8ED76 /* freq-hanja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "freq-hanja.txt"; sourceTree = "<group>"; };
 		38863D6C140F559100A8ED76 /* freq-hanjaeo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "freq-hanjaeo.txt"; sourceTree = "<group>"; };
 		38863D6D140F559100A8ED76 /* hanja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanja.txt; sourceTree = "<group>"; };
-		38863D70140F559100A8ED76 /* Doxyfile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile.in; sourceTree = "<group>"; };
-		38863D71140F559100A8ED76 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		38863D72140F559100A8ED76 /* mainpage.dox */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainpage.dox; sourceTree = "<group>"; };
 		38863D75140F559100A8ED76 /* hangul-gettext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hangul-gettext.h"; sourceTree = "<group>"; };
 		38863D76140F559100A8ED76 /* hangul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangul.h; sourceTree = "<group>"; };
@@ -123,20 +205,35 @@
 		38863D7A140F559100A8ED76 /* hangulkeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangulkeyboard.h; sourceTree = "<group>"; };
 		38863D7B140F559100A8ED76 /* hanja.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hanja.c; sourceTree = "<group>"; };
 		38863D7C140F559100A8ED76 /* hanjacompatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hanjacompatible.h; sourceTree = "<group>"; };
-		38863D7F140F559100A8ED76 /* LINGUAS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LINGUAS; sourceTree = "<group>"; };
-		38863D80140F559100A8ED76 /* Makevars */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makevars; sourceTree = "<group>"; };
-		38863D81140F559100A8ED76 /* POTFILES.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = POTFILES.in; sourceTree = "<group>"; };
-		38863D82140F559100A8ED76 /* ko.po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ko.po; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38162DD2141230700077AA2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */,
+				38162DEA1412313B0077AA2D /* libhangul.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38162DF0141263270077AA2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
+				38162E0B141264990077AA2D /* Hangul.framework in Frameworks */,
+				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38863C5C140E64EB00A8ED76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */,
 				38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */,
-				38863DCA140F57B100A8ED76 /* libhangul.a in Frameworks */,
+				38162DEC141231EB0077AA2D /* Hangul.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +243,7 @@
 			files = (
 				38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */,
 				38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */,
-				38863DCB140F57B100A8ED76 /* libhangul.a in Frameworks */,
+				38162DED141231EC0077AA2D /* Hangul.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,34 +257,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		38162D82140FC49F0077AA2D /* libhangul */ = {
-			isa = PBXGroup;
-			children = (
-				38162D83141066550077AA2D /* HGCharacter.h */,
-				38162D84141066560077AA2D /* HGCharacter.m */,
-				38162D7E140FBD640077AA2D /* HGInputContext.h */,
-				38162D7F140FBD640077AA2D /* HGInputContext.m */,
-			);
-			name = libhangul;
-			sourceTree = "<group>";
-		};
 		38162DD0141124DF0077AA2D /* Composers */ = {
 			isa = PBXGroup;
 			children = (
 				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
+				38162E1314126ACE0077AA2D /* CIMComposer.m */,
 				38162D7A140F64B70077AA2D /* CIMHangulComposer.h */,
 				38162D7B140F64B70077AA2D /* CIMHangulComposer.m */,
 			);
 			name = Composers;
 			sourceTree = "<group>";
 		};
+		38162DD8141230710077AA2D /* Hangul */ = {
+			isa = PBXGroup;
+			children = (
+				38162DE2141230B40077AA2D /* HGCharacter.h */,
+				38162DE3141230B40077AA2D /* HGCharacter.m */,
+				38162DE4141230B40077AA2D /* HGInputContext.h */,
+				38162DE5141230B40077AA2D /* HGInputContext.m */,
+				38162DD9141230710077AA2D /* Supporting Files */,
+			);
+			path = Hangul;
+			sourceTree = "<group>";
+		};
+		38162DD9141230710077AA2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38162DDA141230710077AA2D /* Info.plist */,
+				38162DDB141230710077AA2D /* InfoPlist.strings */,
+				38162DDE141230710077AA2D /* Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38162DF6141263270077AA2D /* GureumKIM */ = {
+			isa = PBXGroup;
+			children = (
+				38162E02141263280077AA2D /* GureumKIMAppDelegate.h */,
+				38162E03141263280077AA2D /* GureumKIMAppDelegate.m */,
+				38162E171412718A0077AA2D /* GureumInputController.h */,
+				38162E181412718A0077AA2D /* GureumInputController.m */,
+				38162E10141269480077AA2D /* GureumInputManager.h */,
+				38162E11141269480077AA2D /* GureumInputManager.m */,
+				38475AEB14129BAA0062100D /* Icons */,
+				38162DF7141263280077AA2D /* Supporting Files */,
+			);
+			path = GureumKIM;
+			sourceTree = "<group>";
+		};
+		38162DF7141263280077AA2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38162DF8141263280077AA2D /* Info.plist */,
+				38162DF9141263280077AA2D /* InfoPlist.strings */,
+				38162DFC141263280077AA2D /* Prefix.pch */,
+				38162E4914128A740077AA2D /* MainMenu.xib */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38475AEB14129BAA0062100D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				38475AEC14129BC10062100D /* Gureum.png */,
+				38475B001412C0640062100D /* Gureum.icns */,
+				38475AFE1412BC6F0062100D /* icon.png */,
+				38475AEE1412BC050062100D /* han2.png */,
+				38475AEF1412BC050062100D /* han3.png */,
+				38475AF01412BC050062100D /* han3classic.png */,
+				38475AF11412BC050062100D /* han3final.png */,
+				38475B021412C3A90062100D /* han3noshift.png */,
+				38475AF21412BC050062100D /* han390.png */,
+				38475AF31412BC050062100D /* han390s.png */,
+				38475AF41412BC050062100D /* hanroman.png */,
+				38475AF51412BC050062100D /* qwerty.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
 				38863D10140F1A7300A8ED76 /* IdealCocoa */,
-				38863D4D140F559000A8ED76 /* libhangul */,
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
+				38162DD8141230710077AA2D /* Hangul */,
+				38863D4D140F559000A8ED76 /* libhangul */,
+				38162DF6141263270077AA2D /* GureumKIM */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
 			);
@@ -199,6 +355,8 @@
 				38863C5F140E64EB00A8ED76 /* CharmIM.app */,
 				38863C80140E64EB00A8ED76 /* CharmIMTests.octest */,
 				38863D49140F54AD00A8ED76 /* libhangul.a */,
+				38162DD6141230700077AA2D /* Hangul.framework */,
+				38162DF3141263270077AA2D /* GureumKIM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,7 +398,7 @@
 				38863C6C140E64EB00A8ED76 /* InfoPlist.strings */,
 				38863C6F140E64EB00A8ED76 /* Prefix.pch */,
 				38863C70140E64EB00A8ED76 /* main.m */,
-				38863C78140E64EB00A8ED76 /* MainMenu.xib */,
+				38162E4714128A2C0077AA2D /* MainMenu.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -285,7 +443,6 @@
 				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
 				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
 				38162DD0141124DF0077AA2D /* Composers */,
-				38162D82140FC49F0077AA2D /* libhangul */,
 			);
 			name = "Input Method";
 			sourceTree = "<group>";
@@ -307,7 +464,6 @@
 				38863D66140F559100A8ED76 /* data */,
 				38863D6F140F559100A8ED76 /* doc */,
 				38863D73140F559100A8ED76 /* hangul */,
-				38863D7E140F559100A8ED76 /* po */,
 			);
 			path = libhangul;
 			sourceTree = "<group>";
@@ -334,8 +490,6 @@
 		38863D6F140F559100A8ED76 /* doc */ = {
 			isa = PBXGroup;
 			children = (
-				38863D70140F559100A8ED76 /* Doxyfile.in */,
-				38863D71140F559100A8ED76 /* Makefile */,
 				38863D72140F559100A8ED76 /* mainpage.dox */,
 			);
 			path = doc;
@@ -356,20 +510,19 @@
 			path = hangul;
 			sourceTree = "<group>";
 		};
-		38863D7E140F559100A8ED76 /* po */ = {
-			isa = PBXGroup;
-			children = (
-				38863D7F140F559100A8ED76 /* LINGUAS */,
-				38863D80140F559100A8ED76 /* Makevars */,
-				38863D81140F559100A8ED76 /* POTFILES.in */,
-				38863D82140F559100A8ED76 /* ko.po */,
-			);
-			path = po;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		38162DD3141230700077AA2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DE6141230B40077AA2D /* HGCharacter.h in Headers */,
+				38162DE8141230B40077AA2D /* HGInputContext.h in Headers */,
+				38162DEE141261B60077AA2D /* hangul.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38863D47140F54AD00A8ED76 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,6 +538,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		38162DD5141230700077AA2D /* Hangul */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38162DDF141230710077AA2D /* Build configuration list for PBXNativeTarget "Hangul" */;
+			buildPhases = (
+				38162DD1141230700077AA2D /* Sources */,
+				38162DD2141230700077AA2D /* Frameworks */,
+				38162DD3141230700077AA2D /* Headers */,
+				38162DD4141230700077AA2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hangul;
+			productName = Hangul;
+			productReference = 38162DD6141230700077AA2D /* Hangul.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		38162DF2141263270077AA2D /* GureumKIM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumKIM" */;
+			buildPhases = (
+				38162DEF141263270077AA2D /* Sources */,
+				38162DF0141263270077AA2D /* Frameworks */,
+				38162DF1141263270077AA2D /* Resources */,
+				38162E1C141274530077AA2D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GureumKIM;
+			productName = GureumKIM;
+			productReference = 38162DF3141263270077AA2D /* GureumKIM.app */;
+			productType = "com.apple.product-type.application";
+		};
 		38863C5E140E64EB00A8ED76 /* CharmIM */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "CharmIM" */;
@@ -392,6 +581,7 @@
 				38863C5B140E64EB00A8ED76 /* Sources */,
 				38863C5C140E64EB00A8ED76 /* Frameworks */,
 				38863C5D140E64EB00A8ED76 /* Resources */,
+				38162E43141284FD0077AA2D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -463,19 +653,49 @@
 			targets = (
 				38863C5E140E64EB00A8ED76 /* CharmIM */,
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
+				38162DD5141230700077AA2D /* Hangul */,
 				38863D48140F54AD00A8ED76 /* hangul */,
+				38162DF2141263270077AA2D /* GureumKIM */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		38162DD4141230700077AA2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DDD141230710077AA2D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38162DF1141263270077AA2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DFB141263280077AA2D /* InfoPlist.strings in Resources */,
+				38162E4814128A740077AA2D /* MainMenu.xib in Resources */,
+				38475AED14129BC10062100D /* Gureum.png in Resources */,
+				38475AF61412BC050062100D /* han2.png in Resources */,
+				38475AF71412BC050062100D /* han3.png in Resources */,
+				38475AF81412BC050062100D /* han3classic.png in Resources */,
+				38475AF91412BC050062100D /* han3final.png in Resources */,
+				38475AFA1412BC050062100D /* han390.png in Resources */,
+				38475AFB1412BC050062100D /* han390s.png in Resources */,
+				38475AFC1412BC050062100D /* hanroman.png in Resources */,
+				38475AFD1412BC050062100D /* qwerty.png in Resources */,
+				38475AFF1412BC700062100D /* icon.png in Resources */,
+				38475B011412C0640062100D /* Gureum.icns in Resources */,
+				38475B031412C3AA0062100D /* han3noshift.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38863C5D140E64EB00A8ED76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				38863C6E140E64EB00A8ED76 /* InfoPlist.strings in Resources */,
-				38863C7A140E64EB00A8ED76 /* MainMenu.xib in Resources */,
-				38863DB2140F559100A8ED76 /* ko.po in Resources */,
+				38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +727,30 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		38162DD1141230700077AA2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DE7141230B40077AA2D /* HGCharacter.m in Sources */,
+				38162DE9141230B40077AA2D /* HGInputContext.m in Sources */,
+				38162DEB141231560077AA2D /* ICUtility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38162DEF141263270077AA2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162E04141263280077AA2D /* GureumKIMAppDelegate.m in Sources */,
+				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
+				38162E0F141264EB0077AA2D /* CIMHangulComposer.m in Sources */,
+				38162E12141269490077AA2D /* GureumInputManager.m in Sources */,
+				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
+				38162E1A141271920077AA2D /* GureumInputController.m in Sources */,
+				38162E40141280A00077AA2D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38863C5B140E64EB00A8ED76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,12 +758,11 @@
 				38863C71140E64EB00A8ED76 /* main.m in Sources */,
 				38863C97140E669000A8ED76 /* CIMInputController.m in Sources */,
 				38863D13140F1A7300A8ED76 /* ICUtility.m in Sources */,
-				38863D2E140F23CD00A8ED76 /* CIMInputManager.m in Sources */,
 				38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */,
 				38863D36140F421900A8ED76 /* CIMAppDelegate.m in Sources */,
 				38162D7C140F64B70077AA2D /* CIMHangulComposer.m in Sources */,
-				38162D80140FBD640077AA2D /* HGInputContext.m in Sources */,
-				38162D85141066560077AA2D /* HGCharacter.m in Sources */,
+				38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */,
+				38162E41141281B40077AA2D /* CIMInputManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,8 +775,7 @@
 				38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */,
 				38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */,
 				38162D7D140F64BE0077AA2D /* CIMHangulComposer.m in Sources */,
-				38162D81140FBD640077AA2D /* HGInputContext.m in Sources */,
-				38162D86141066560077AA2D /* HGCharacter.m in Sources */,
+				38162E42141281C70077AA2D /* CIMComposer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +810,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		38162DDB141230710077AA2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38162DDC141230710077AA2D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		38162DF9141263280077AA2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38162DFA141263280077AA2D /* en */,
+				38162E451412866F0077AA2D /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		38863C6C140E64EB00A8ED76 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -575,14 +834,6 @@
 				38863CDB140E801200A8ED76 /* ko */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38863C78140E64EB00A8ED76 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38863C79140E64EB00A8ED76 /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		38863C87140E64EC00A8ED76 /* InfoPlist.strings */ = {
@@ -596,15 +847,133 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		38162DE0141230710077AA2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Hangul/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Hangul/Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		38162DE1141230710077AA2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Hangul/Prefix.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Hangul/Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		38162E09141263280077AA2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GureumKIM/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GureumKIM/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		38162E0A141263280077AA2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GureumKIM/Prefix.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GureumKIM/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		38863C55140E62D100A8ED76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					libhangul/hangul,
+				);
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Debug;
 		};
 		38863C56140E62D100A8ED76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					libhangul/hangul,
+				);
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
 		};
@@ -622,17 +991,14 @@
 				GCC_PREFIX_HEADER = CharmIM/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = CharmIM/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -648,16 +1014,13 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CharmIM/Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = CharmIM/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -678,11 +1041,9 @@
 				GCC_PREFIX_HEADER = "CharmIMTests/CharmIMTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = .;
 				INFOPLIST_FILE = "CharmIMTests/CharmIMTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
@@ -710,11 +1071,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CharmIMTests/CharmIMTests-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = .;
 				INFOPLIST_FILE = "CharmIMTests/CharmIMTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
@@ -741,8 +1100,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "LIBHANGUL_DEFAULT_HANJA_DIC=\\\"$(datadir)/libhangul/hanja/hanja.txt\\\"";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
@@ -763,8 +1120,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "LIBHANGUL_DEFAULT_HANJA_DIC=\\\"$(datadir)/libhangul/hanja/hanja.txt\\\"";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
@@ -776,6 +1131,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38162DDF141230710077AA2D /* Build configuration list for PBXNativeTarget "Hangul" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38162DE0141230710077AA2D /* Debug */,
+				38162DE1141230710077AA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumKIM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38162E09141263280077AA2D /* Debug */,
+				38162E0A141263280077AA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

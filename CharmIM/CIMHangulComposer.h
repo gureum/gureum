@@ -23,9 +23,13 @@
 
 /*!
     @brief  libhangul의 input context를 사용하는 합성기를 초기화한다.
-    
     @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
 */
 - (id)initWithKeyboardIdentifier:(NSString *)identifier;
+/*!
+    @brief  현재 context의 배열을 바꾼다.
+    @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
+*/
+- (void)setKeyboardWithIdentifier:(NSString *)identifier;
 
 @end

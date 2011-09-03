@@ -1,0 +1,15 @@
+/* Localized versions of Info.plist keys */
+
+org.youknowone.inputmethod.GureumKIM.qwerty = "로마자 쿼티";
+org.youknowone.inputmethod.GureumKIM.dvorak = "로마자 드보락";
+org.youknowone.inputmethod.GureumKIM.dvorakq = "로마자 드보락 - 쿼티 ⌘";
+org.youknowone.inputmethod.GureumKIM.han2 = "한글 두벌식 (KS X 5002)";
+org.youknowone.inputmethod.GureumKIM.han3final = "한글 세벌식 최종";
+org.youknowone.inputmethod.GureumKIM.han390 = "한글 세벌식 390";
+org.youknowone.inputmethod.GureumKIM.han3noshift = "한글 세벌식 순아래";
+org.youknowone.inputmethod.GureumKIM.han3classic = "한글 세벌식 옛글";
+org.youknowone.inputmethod.GureumKIM.hanroman = "한글 로마자";
+
+CFBundleName = "구름";
+CFBundleDisplayName = "구름 입력기";
+

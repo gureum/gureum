@@ -6,7 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import "HGInputContext.h"
+#import <Hangul/HGInputContext.h>
 #import "CIMHangulComposer.h"
 
 bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucschar* buf, id data);
@@ -36,6 +36,10 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
     [super dealloc];
 }
 
+- (void)setKeyboardWithIdentifier:(NSString *)identifier {
+    [self->inputContext setKeyboardWithIdentifier:identifier];
+}
+
 #pragma - IMKInputServerTextData
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
@@ -43,6 +47,7 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
     if (keyCode == 51) {
         return [self->inputContext backspace];
     }
+    string = [string lowercaseString]; // 한글 입력에서 캡스락 무시
     return [self->inputContext process:[string characterAtIndex:0]];
 }
 

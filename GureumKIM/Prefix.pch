@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'GureumKIM' target in the 'CharmIM' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import <InputMethodKit/InputMethodKit.h>
+    #import <IdealCocoa/ICUtility.h>
+#endif
