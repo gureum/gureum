@@ -8,7 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-
 @interface CharmIMTests : SenTestCase {
 @private
     

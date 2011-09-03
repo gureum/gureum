@@ -4,5 +4,6 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <InputMethodKit/InputMethodKit.h>
     #import <IdealCocoa/ICUtility.h>
 #endif

@@ -1,0 +1,42 @@
+/**
+
+@mainpage
+
+@section introduction libhangul 소개
+libhangul은 기본적인 한글 관련 루틴들을 구현한 라이브러리입니다.
+주로 한글 입력기능을 구현한 것으로 이 라이브러리를 사용하면 비교적 손쉽게
+한글 입력기를 구현할 수 있습니다. 현재 많은 linux의 입력기들이 이 라이브러리로
+구현되어 있습니다.
+
+@section documentation 개발 문서
+libhangul에서 제공하는 기능들은 다음 레퍼런스에서 찾아볼 수 있습니다.
+@li @ref hangulctype : 유니코드에서 한글 글자를 구분하고 조작하는 함수들입니다.
+이 함수들을 이용하면 자모 코드를 음절로 조합할 수 있고 또 음절을 자모 코드로 분리할 수 있습니다.
+@li @ref hangulicusage : 한글 입력 기능을 제공합니다. 이 함수들을 이용하여 키 입력에 따른 한글 조합 기능을 손쉽게 구현할 수 있습니다.
+@li @ref hanjadictionaryusage : 한자 사전 파일 관련 기능을 제공합니다. 이 함수들을 이용하여 libhangul에서 제공하는 한자 사전 파일을 찾아볼 수 있습니다.
+
+@section download 다운로드
+최근 릴리스들은 libhangul의 프로젝트 페이지에서 받을 수 있습니다.
+@li http://kldp.net/frs/?group_id=362
+
+개발버젼의 소스는 <a href="http://kldp.net/">KLDP.net</a>의 subversion 
+repository에서 받을 수 있습니다.
+@li subversion: http://kldp.net/scm/?group_id=362
+
+@section bug 버그리포트
+libhangul의 버그는 <a href="http://kldp.net/">KLDP.net</a>의 버그트래커로
+관리하고 있습니다.
+
+@li 버그트래커: http://kldp.net/tracker/?group_id=362
+
+@section mailinglist 메일링 리스트
+@li 메일링리스트: http://lists.kldp.net/mailman/listinfo/hangul-hackers
+@li 메일링리스트 아카이브: http://lists.kldp.net/pipermail/hangul-hackers/
+
+@section website 웹주소
+libhangul은 <a href="http://kldp.net/">KLDP.net</a>에서 호스팅되고 있습니다.
+ @li Home page: http://hangul.kldp.net/
+ @li Project page: http://kldp.net/projects/hangul/
+ @li Wiki page: http://wiki.kldp.org/wiki.php/libhangul
+
+ */

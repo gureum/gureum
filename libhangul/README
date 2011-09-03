@@ -1,0 +1,20 @@
+libhangul
+A library to support hangul input method logic, hanja dictionary and small
+hangul character classification.
+
+How to build
+ $ ./autogen.sh
+ $ ./configure
+ # make
+
+Download:
+ * http://kldp.net/projects/hangul/download
+
+Bug report:
+ * bug tracker: http://kldp.net/projects/hangul/bugs
+
+Forum:
+ * http://kldp.net/projects/hangul/forum
+
+Web sites
+ * Project page: http://kldp.net/projects/hangul/
