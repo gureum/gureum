@@ -19,6 +19,8 @@
 @property(nonatomic, readonly) NSString *composedString;
 //! @property
 @property(nonatomic, readonly) NSString *commitString;
+//! @property
+@property(nonatomic, readonly) NSString *originalString;
 //! @method
 - (NSString *)endComposing;
 @optional
@@ -26,9 +28,6 @@
 @end
 
 
-@interface CIMBaseComposer : NSObject<CIMComposer> {
-    NSString *originalString;
-}
-@property(nonatomic, retain) NSString *originalString;
+@interface CIMBaseComposer : NSObject<CIMComposer> 
 
 @end

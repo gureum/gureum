@@ -39,6 +39,10 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
     [self->inputContext setKeyboardWithIdentifier:identifier];
 }
 
+- (HGInputContext *)inputContext {
+    return self->inputContext;
+}
+
 #pragma - IMKInputServerTextData
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
@@ -46,7 +50,7 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
         // 특정 애플리케이션에서 커맨드 키 입력을 점유하지 못하는 문제를 회피한다.
         return NO;
     }
-    // libhangul은 backspace를 키 대신 별도로 처리한다.
+    // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
     if (keyCode == 51) {
         return [self->inputContext backspace];
     }
@@ -61,8 +65,12 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
 
 #pragma - CIMComposer
 
-- (NSString *)composedString {
+- (NSString *)originalString {
     return [self->inputContext preeditString];
+}
+
+- (NSString *)composedString {
+    return [self originalString];
 }
 
 - (NSString *)commitString {
@@ -71,6 +79,10 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
 
 - (NSString *)endComposing {
     return [self->inputContext flushString];
+}
+
+- (void)clearContext {
+    [self->inputContext reset];
 }
 
 @end

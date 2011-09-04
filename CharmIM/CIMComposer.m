@@ -9,24 +9,13 @@
 #include "CIMComposer.h"
 
 @implementation CIMBaseComposer
-@synthesize originalString;
 
-- (id)init {
-    self = [super init];
-    if (self != nil) {
-        self.originalString = @"";
-    }
-    return self;
-}
-
-- (void)dealloc {
-    self.originalString = nil;
-    [super dealloc];
+- (NSString *)originalString {
+    return @"";
 }
 
 - (NSString *)commitString {
     return @"";
-    return originalString;
 }
 
 - (NSString *)composedString {
@@ -37,8 +26,11 @@
     return @"";
 }
 
+- (void)clearContext { }
+
+#pragma - 
+
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    self.originalString = string;
     return NO;
 }
 

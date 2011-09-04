@@ -25,10 +25,13 @@ NSString *kGureumInputSourceIdentifierDvorakQwertyCommand = @"org.youknowone.inp
 NSString *kGureumInputSourceIdentifierColemak = @"org.youknowone.inputmethod.GureumKIM.colemak";
 NSString *kGureumInputSourceIdentifierColemakQwertyCommand = @"org.youknowone.inputmethod.GureumKIM.colemakq";
 NSString *kGureumInputSourceIdentifierHan2 = @"org.youknowone.inputmethod.GureumKIM.han2";
+NSString *kGureumInputSourceIdentifierHan2Classic = @"org.youknowone.inputmethod.GureumKIM.han2classic";
 NSString *kGureumInputSourceIdentifierHan3Final = @"org.youknowone.inputmethod.GureumKIM.han3final";
 NSString *kGureumInputSourceIdentifierHan390 = @"org.youknowone.inputmethod.GureumKIM.han390";
 NSString *kGureumInputSourceIdentifierHan3NoShift = @"org.youknowone.inputmethod.GureumKIM.han3noshift";
 NSString *kGureumInputSourceIdentifierHan3Classic = @"org.youknowone.inputmethod.GureumKIM.han3classic";
+NSString *kGureumInputSourceIdentifierHan3Layout2 = @"org.youknowone.inputmethod.GureumKIM.han3layout2";
+NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod.GureumKIM.han3ahnmatae";
 NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
 
 @implementation GureumInputManager
@@ -69,11 +72,14 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     GureumInputSourceToHangulKeyboardIdentifierTable = [[NSDictionary alloc] initWithObjectsAndKeys:
                                                         @"", kGureumInputSourceIdentifierQwerty,
                                                         @"2", kGureumInputSourceIdentifierHan2,
+                                                        @"2y", kGureumInputSourceIdentifierHan2Classic,
                                                         @"3f", kGureumInputSourceIdentifierHan3Final,
                                                         @"39", kGureumInputSourceIdentifierHan390,
                                                         @"3s", kGureumInputSourceIdentifierHan3NoShift,
                                                         @"3y", kGureumInputSourceIdentifierHan3Classic,
+                                                        @"32", kGureumInputSourceIdentifierHan3Layout2,
                                                         @"ro", kGureumInputSourceIdentifierHanRoman,
+                                                        @"ahn", kGureumInputSourceIdentifierHanAhnmatae,
                                                         nil];
 }
 
@@ -113,7 +119,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         self->currentComposer = self->romanComposer;
     } else {
         self->currentComposer = self->hangulComposer;
-        [(CIMHangulComposer *)self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
+        [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
         [[NSUserDefaults standardUserDefaults] setValue:newInputMode forKey:@"DefaultHangulInputMode"];
     }
     

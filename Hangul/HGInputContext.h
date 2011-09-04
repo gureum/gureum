@@ -49,6 +49,14 @@
 @end
 
 /*!
+    @brief  출력 형태에 관한 상수
+*/
+typedef enum {
+    HGOutputModeSyllable = HANGUL_OUTPUT_SYLLABLE,
+    HGOutputModeJamo = HANGUL_OUTPUT_JAMO,
+}   HGOutputMode;
+
+/*!
     @brief  @ref HangulInputContext 를 감싼다.
  
     @ref HangulInputContext 의 기능에 대한 Objective-C의 객체 모델을 제공한다. 객체 모델이 지원하지 않는 기능에 대해서는 -context 로 libhangul의 컨텍스트에 직접 접근하여 사용할 수 있다.
@@ -93,7 +101,7 @@
 - (NSString *)flushString; // unclear naming...
 
 //! @brief  @ref hangul_ic_set_output_mode 
-- (void)setOutputMode:(int)mode;
+- (void)setOutputMode:(HGOutputMode)mode;
 //! @brief  @ref hangul_ic_set_keyboard
 - (void)setKeyboard:(HGKeyboard *)aKeyboard;
 //! @brief  @ref hangul_ic_set_keyboard

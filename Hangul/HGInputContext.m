@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         self->data = hangul_keyboard_new();
+        // 생성 실패 처리
         if (self->data == NULL) {
             [self release];
             return nil;
@@ -63,6 +64,7 @@
     self = [super init];
     if (self) {
         self->context = hangul_ic_new([code UTF8String]);
+        // 생성 실패 처리
         if (self->context == NULL) {
             [self release];
             self = nil;
@@ -127,7 +129,7 @@
     return string;
 }
 
-- (void)setOutputMode:(int)mode {
+- (void)setOutputMode:(HGOutputMode)mode {
     hangul_ic_set_output_mode(self->context, mode);
 }
 

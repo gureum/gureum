@@ -49,7 +49,7 @@
 */
 - (void)cancelComposition {
     [super cancelComposition];
-    [GureumManager.currentComposer endComposing];
+    //[GureumManager.currentComposer clearContext];
 }
 
 @end
@@ -108,7 +108,7 @@
 
 - (NSAttributedString *)originalString:(id)sender {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
-    return [[[NSAttributedString alloc] initWithString:@""] autorelease];
+    return [[[NSAttributedString alloc] initWithString:[GureumManager.currentComposer endComposing]] autorelease];
 }
 
 @end
@@ -119,7 +119,7 @@
 - (NSUInteger)recognizedEvents:(id)sender
 {
     // does NSFlagsChangedMask work?
-    return NSKeyDownMask | NSFlagsChangedMask | NSLeftMouseDownMask | NSRightMouseDownMask | NSLeftMouseDraggedMask |    NSRightMouseDraggedMask;
+    return NSKeyDownMask | NSFlagsChangedMask | NSLeftMouseDownMask | NSRightMouseDownMask | NSLeftMouseDraggedMask | NSRightMouseDraggedMask;
 }
 
 //! @brief  자판 전환을 감지한다.

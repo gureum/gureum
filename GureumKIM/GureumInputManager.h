@@ -17,13 +17,17 @@ ICEXTERN NSString *kGureumInputSourceIdentifierDvorakQwertyCommand;
 ICEXTERN NSString *kGureumInputSourceIdentifierColemak;
 ICEXTERN NSString *kGureumInputSourceIdentifierColemakQwertyCommand;
 ICEXTERN NSString *kGureumInputSourceIdentifierHan2;
+ICEXTERN NSString *kGureumInputSourceIdentifierHan2Classic;
 ICEXTERN NSString *kGureumInputSourceIdentifierHan3Final;
 ICEXTERN NSString *kGureumInputSourceIdentifierHan390;
 ICEXTERN NSString *kGureumInputSourceIdentifierHan3NoShift;
 ICEXTERN NSString *kGureumInputSourceIdentifierHan3Classic;
+ICEXTERN NSString *kGureumInputSourceIdentifierHan3Layout2;
+ICEXTERN NSString *kGureumInputSourceIdentifierHanAhnmatae;
 ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 
 @class CIMInputHandler;
+@class CIMHangulComposer;
 
 #define GureumManager [GureumInputManager sharedManager]
 @interface GureumInputManager : NSObject<IMKServerInputTextData> {
@@ -33,7 +37,9 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
     CIMInputHandler *handler;
     
     NSString *inputMode;
-    NSObject<CIMComposer> *romanComposer, *hangulComposer, *currentComposer;
+    CIMBaseComposer *romanComposer;
+    CIMHangulComposer *hangulComposer;
+    NSObject<CIMComposer> *currentComposer;
 }
 
 @property(nonatomic, readonly) IMKServer *server;

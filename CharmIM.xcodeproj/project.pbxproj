@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3802E45E141380BF00256B54 /* han2classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3802E45D141380BF00256B54 /* han2classic.png */; };
 		38162D7C140F64B70077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
 		38162D7D140F64BE0077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
 		38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
@@ -124,6 +125,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3802E45D141380BF00256B54 /* han2classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2classic.png; path = Icons/han2classic.png; sourceTree = "<group>"; };
 		38162D7A140F64B70077AA2D /* CIMHangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMHangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* CIMHangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMHangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				38475B001412C0640062100D /* Gureum.icns */,
 				38475AFE1412BC6F0062100D /* icon.png */,
 				38475AEE1412BC050062100D /* han2.png */,
+				3802E45D141380BF00256B54 /* han2classic.png */,
 				38475AEF1412BC050062100D /* han3.png */,
 				38475AF01412BC050062100D /* han3classic.png */,
 				38475AF11412BC050062100D /* han3final.png */,
@@ -687,6 +690,7 @@
 				38475AFF1412BC700062100D /* icon.png in Resources */,
 				38475B011412C0640062100D /* Gureum.icns in Resources */,
 				38475B031412C3AA0062100D /* han3noshift.png in Resources */,
+				3802E45E141380BF00256B54 /* han2classic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,7 +928,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -948,7 +952,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
