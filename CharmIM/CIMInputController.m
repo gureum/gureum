@@ -122,7 +122,7 @@
 */
 - (BOOL)mouseDownOnCharacterIndex:(NSUInteger)index coordinate:(NSPoint)point withModifier:(NSUInteger)flags continueTracking:(BOOL *)keepTracking client:(id)sender
 {
-    [self commitComposition:sender];
+    [self cancelComposition];
     return NO;
 }
 

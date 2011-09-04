@@ -32,11 +32,12 @@
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
     
     BOOL handled = [GureumManager inputText:string key:keyCode modifiers:flags client:self.client]; // 쓸모없는 sender 대신 self.client 전달
-    [self updateComposition];
     if (!handled) {
         // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
         [self cancelComposition];
     }
+    [self commitComposition:sender]; // 조합 된 문자 반영
+    [self updateComposition]; // 조합 중인 문자 반영 
     return handled;
 }
 
@@ -48,8 +49,8 @@
 }
 */
 - (void)cancelComposition {
+    [GureumManager.currentComposer cancelComposition];
     [super cancelComposition];
-    //[GureumManager.currentComposer clearContext];
 }
 
 @end
@@ -87,13 +88,11 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    // 한글 합성기 의존적인 구현
-    NSString *commitString = [GureumManager.currentComposer commitString];
-    if ([commitString length] == 0) {
-        // 왠지는 모르겠지만 프로그램마다 동작이 다르다. 
-        // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 commitString이 항상 @""이고 보통은 존재
-        commitString = [GureumManager.currentComposer endComposing];
-    }
+    // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐줘야한다
+    // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
+    NSString *commitString = [GureumManager.currentComposer dequeueCommitString];
+    if ([commitString length] == 0) return;
+    
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
 }
@@ -108,7 +107,7 @@
 
 - (NSAttributedString *)originalString:(id)sender {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
-    return [[[NSAttributedString alloc] initWithString:[GureumManager.currentComposer endComposing]] autorelease];
+    return [[[NSAttributedString alloc] initWithString:[GureumManager.currentComposer originalString]] autorelease];
 }
 
 @end
@@ -147,8 +146,8 @@
  */
 - (BOOL)mouseDownOnCharacterIndex:(NSUInteger)index coordinate:(NSPoint)point withModifier:(NSUInteger)flags continueTracking:(BOOL *)keepTracking client:(id)sender
 {
-    [self commitComposition:sender];
     [self cancelComposition];
+    [self commitComposition:sender];
     return NO;
 }
 

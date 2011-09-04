@@ -19,6 +19,8 @@
 @interface CIMHangulComposer : NSObject<CIMComposer> {
 @private
     HGInputContext *inputContext;
+    NSString *composedString;
+    NSMutableString *commitString;
 }
 @property(nonatomic, readonly) HGInputContext *inputContext;
 

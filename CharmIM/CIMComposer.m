@@ -10,6 +10,10 @@
 
 @implementation CIMBaseComposer
 
+- (NSString *)composedString {
+    return @"";
+}
+
 - (NSString *)originalString {
     return @"";
 }
@@ -18,17 +22,15 @@
     return @"";
 }
 
-- (NSString *)composedString {
+- (NSString *)dequeueCommitString {
     return @"";
 }
 
-- (NSString *)endComposing {
-    return @"";
-}
+- (void)cancelComposition { }
 
 - (void)clearContext { }
 
-#pragma - 
+#pragma -
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     return NO;

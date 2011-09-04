@@ -91,6 +91,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|NSShiftKeyMask) && keyCode == 49) {
         ICLog(TRUE, @"-- Keyboard Change!!");
         // 한영전환
+        [self.currentComposer cancelComposition];
         if (self.currentComposer == self->romanComposer) {
             NSString *hangulInputMode = [[NSUserDefaults standardUserDefaults] stringForKey: @"DefaultHangulInputMode"];
             if (hangulInputMode == nil) hangulInputMode = kGureumInputSourceIdentifierHan2;
