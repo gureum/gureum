@@ -82,7 +82,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 //  받은 입력은 모두 핸들러로 넘겨준다.
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // hardcoded shortcut handling
-    if ((flags == 0x20000 || flags == 0x30000) && keyCode == 49) {
+    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|NSShiftKeyMask) && keyCode == 49) {
         ICLog(TRUE, @"-- Keyboard Change!!");
         // 한영전환
         if (self.currentComposer == self->romanComposer) {

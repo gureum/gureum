@@ -42,6 +42,10 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
 #pragma - IMKInputServerTextData
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    if (flags & NSCommandKeyMask) {
+        // 특정 애플리케이션에서 커맨드 키 입력을 점유하지 못하는 문제를 회피한다.
+        return NO;
+    }
     // libhangul은 backspace를 키 대신 별도로 처리한다.
     if (keyCode == 51) {
         return [self->inputContext backspace];
