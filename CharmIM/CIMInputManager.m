@@ -8,13 +8,14 @@
 
 #import "CIMInputManager.h"
 
+#import "CIMConfiguration.h"
 #import "CIMInputHandler.h"
 #import "CIMHangulComposer.h"
 
 #define DEBUG_INPUTMANAGER TRUE
 
 @implementation CIMInputManager
-@synthesize server, candidates, handler, currentComposer;
+@synthesize server, candidates, configuration, handler, currentComposer;
 
 - (id)init
 {

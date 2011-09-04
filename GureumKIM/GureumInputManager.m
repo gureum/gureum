@@ -35,7 +35,7 @@ NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod
 NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
 
 @implementation GureumInputManager
-@synthesize server, candidates, handler;
+@synthesize server, candidates, configuration, handler;
 @synthesize inputMode, currentComposer;
 
 - (id)init
@@ -47,6 +47,7 @@ NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.Gu
         NSString *connectionName = [[mainBundle infoDictionary] objectForKey:@"InputMethodConnectionName"];
         self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:[mainBundle bundleIdentifier]];
         self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
+        self->configuration = [[CIMConfiguration alloc] init];
         self->handler = [[CIMInputHandler alloc] initWithManager:(id)self];
 
         self->romanComposer = [[CIMBaseComposer alloc] init];
@@ -93,9 +94,9 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         // 한영전환
         [self.currentComposer cancelComposition];
         if (self.currentComposer == self->romanComposer) {
-            NSString *hangulInputMode = [[NSUserDefaults standardUserDefaults] stringForKey: @"DefaultHangulInputMode"];
-            if (hangulInputMode == nil) hangulInputMode = kGureumInputSourceIdentifierHan2;
-            [sender selectInputMode:hangulInputMode];
+            NSString *lastHangulInputMode = self->configuration->lastHangulInputMode;
+            if (lastHangulInputMode == nil) lastHangulInputMode = kGureumInputSourceIdentifierHan2;
+            [sender selectInputMode:lastHangulInputMode];
         } else {
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
         }
@@ -121,7 +122,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     } else {
         self->currentComposer = self->hangulComposer;
         [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
-        [[NSUserDefaults standardUserDefaults] setValue:newInputMode forKey:@"DefaultHangulInputMode"];
+        CIMConfigurationSetObjectForField(self->configuration, newInputMode, lastHangulInputMode);
+        [self->configuration saveConfigurationForStringField:&self->configuration->lastHangulInputMode];
     }
     
     [self->inputMode release];

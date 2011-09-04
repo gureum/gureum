@@ -10,6 +10,7 @@
 #import <InputMethodKit/InputMethodKit.h>
 
 #import "CIMComposer.h"
+#import "CIMConfiguration.h"
 
 ICEXTERN NSString *kGureumInputSourceIdentifierQwerty;
 ICEXTERN NSString *kGureumInputSourceIdentifierDvorak;
@@ -34,6 +35,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 @private
     IMKServer *server;
     IMKCandidates *candidates;
+    CIMConfiguration *configuration;
     CIMInputHandler *handler;
     
     NSString *inputMode;
@@ -44,6 +46,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 
 @property(nonatomic, readonly) IMKServer *server;
 @property(nonatomic, readonly) IMKCandidates *candidates;
+@property(nonatomic, readonly) CIMConfiguration *configuration;
 @property(nonatomic, readonly) CIMInputHandler *handler;
 @property(nonatomic, retain) NSString *inputMode;
 @property(nonatomic, readonly) NSObject<CIMComposer> *currentComposer;

@@ -16,6 +16,7 @@
 
 #import "CIMComposer.h"
 
+@class CIMConfiguration;
 @class CIMInputHandler;
 
 /*!
@@ -38,6 +39,7 @@
 @private
     IMKServer *server;
     IMKCandidates *candidates;
+    CIMConfiguration *configuration;
     CIMInputHandler *handler;
     NSMutableDictionary *composers;
     
@@ -48,6 +50,8 @@
 @property(nonatomic, readonly) IMKServer *server;
 //! @property
 @property(nonatomic, readonly) IMKCandidates *candidates;
+//! @property
+@property(nonatomic, readonly) CIMConfiguration *configuration;
 //! @brief  공용 입력 핸들러
 @property(nonatomic, readonly) CIMInputHandler *handler;
 //! @brief  입력기가 현재 선택한 합성기
