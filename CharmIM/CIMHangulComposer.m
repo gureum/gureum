@@ -46,7 +46,12 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
     if (keyCode == 51) {
         return [self->inputContext backspace];
     }
-    string = [string lowercaseString]; // 한글 입력에서 캡스락 무시
+    // 한글 입력에서 캡스락 무시
+    if (flags & NSAlphaShiftKeyMask) {
+        if (!(flags & NSShiftKeyMask)) {
+            string = [string lowercaseString];
+        }
+    }
     return [self->inputContext process:[string characterAtIndex:0]];
 }
 

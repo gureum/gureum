@@ -33,13 +33,23 @@
     
     BOOL handled = [GureumManager inputText:string key:keyCode modifiers:flags client:self.client]; // 쓸모없는 sender 대신 self.client 전달
     [self updateComposition];
+    if (!handled) {
+        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
+        [self cancelComposition];
+    }
     return handled;
 }
 
+/*
 - (void)updateComposition {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
     [super updateComposition];
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
+}
+*/
+- (void)cancelComposition {
+    [super cancelComposition];
+    [GureumManager.currentComposer endComposing];
 }
 
 @end
@@ -78,7 +88,12 @@
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
     // 한글 합성기 의존적인 구현
-    NSString *commitString = [GureumManager.currentComposer endComposing];
+    NSString *commitString = [GureumManager.currentComposer commitString];
+    if ([commitString length] == 0) {
+        // 왠지는 모르겠지만 프로그램마다 동작이 다르다. 
+        // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 commitString이 항상 @""이고 보통은 존재
+        commitString = [GureumManager.currentComposer endComposing];
+    }
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
 }
@@ -91,13 +106,10 @@
     return string;
 }
 
-/*
- // libhangul 입력에서 쓸데가 없다
- - (NSAttributedString *)originalString:(id)sender {
- ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
- return [[[NSAttributedString alloc] initWithString:@""] autorelease];
- }
- */
+- (NSAttributedString *)originalString:(id)sender {
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
+    return [[[NSAttributedString alloc] initWithString:@""] autorelease];
+}
 
 @end
 
@@ -108,11 +120,6 @@
 {
     // does NSFlagsChangedMask work?
     return NSKeyDownMask | NSFlagsChangedMask | NSLeftMouseDownMask | NSRightMouseDownMask | NSLeftMouseDraggedMask |    NSRightMouseDraggedMask;
-}
-
-- (id)valueForTag:(long)tag client:(id)sender {
-    return [super valueForTag:tag client:sender];
-    
 }
 
 //! @brief  자판 전환을 감지한다.
