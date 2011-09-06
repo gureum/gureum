@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CIMCommon.h"
 
-
-@interface GureumInputController : IMKInputController {
+@interface GureumInputController : IMKInputController<CIMInputTextDelegate> {
 @private
-    BOOL isInputting;
 }
 
 @end

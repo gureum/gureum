@@ -48,8 +48,8 @@
 #pragma - IMKServerInputTextData
 
 //  받은 입력은 모두 핸들러로 넘겨준다.
-- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    return [self->handler inputText:string key:keyCode modifiers:flags client:sender];
+- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    return [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 @end

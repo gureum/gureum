@@ -30,13 +30,13 @@
 
 #pragma - IMKServerInputTextData
 
-- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {   
+- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {   
     if (flags & NSCommandKeyMask) {
         // 특정 애플리케이션에서 커맨드 키 입력을 선점하지 못하는 문제를 회피한다.
         ICLog(TRUE, @"-- CIMInputHandler -inputText: Command key input / returned NO");
         return NO;
     }
-    return [self->manager.currentComposer inputText:string key:keyCode modifiers:flags client:sender];
+    return [self->manager.currentComposer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 @end

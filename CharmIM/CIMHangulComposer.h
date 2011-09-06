@@ -11,9 +11,9 @@
 
 /*!
     @brief  libhangul을 사용하는 합성기
- 
+    
     libhangul의 input context를 사용하는 합성기이다. -init 로는 두벌식 합성기가 설정된다.
- 
+    
     @coclass HGInputContext
 */
 @interface CIMHangulComposer : NSObject<CIMComposer> {

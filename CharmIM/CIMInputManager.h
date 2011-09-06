@@ -35,7 +35,7 @@
  
     @coclass    IMKServer CIMInputHandler CIMComposer
 */
-@interface CIMInputManager : NSObject<IMKServerInputTextData> {
+@interface CIMInputManager : NSObject<CIMInputTextDelegate> {
 @private
     IMKServer *server;
     IMKCandidates *candidates;

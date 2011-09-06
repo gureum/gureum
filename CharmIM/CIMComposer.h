@@ -13,7 +13,7 @@
     @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
 */
 
-@protocol CIMComposer<IMKServerInputTextData>
+@protocol CIMComposer<CIMInputTextDelegate>
 //! @brief  합성 중인 문자로 보여줄 문자열
 @property(nonatomic, readonly) NSString *composedString;
 //! @brief  합성을 취소하면 사용할 문자열

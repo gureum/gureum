@@ -16,7 +16,7 @@
     입력기에서 외부입력을 처리하여 우선순위에 따라 입력을 순서대로 전달한다.
     아직 합성기로 전달하는 역할만 하고 있다.
 */
-@interface CIMInputHandler : NSObject<IMKServerInputTextData> {
+@interface CIMInputHandler : NSObject<CIMInputTextDelegate> {
 @private
     CIMInputManager *manager;
 }

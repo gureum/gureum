@@ -31,7 +31,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 @class CIMHangulComposer;
 
 #define GureumManager [GureumInputManager sharedManager]
-@interface GureumInputManager : NSObject<IMKServerInputTextData> {
+@interface GureumInputManager : NSObject<CIMInputTextDelegate> {
 @private
     IMKServer *server;
     IMKCandidates *candidates;
@@ -42,6 +42,8 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
     CIMBaseComposer *romanComposer;
     CIMHangulComposer *hangulComposer;
     NSObject<CIMComposer> *currentComposer;
+    
+    BOOL inputting;
 }
 
 @property(nonatomic, readonly) IMKServer *server;
@@ -50,6 +52,8 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 @property(nonatomic, readonly) CIMInputHandler *handler;
 @property(nonatomic, retain) NSString *inputMode;
 @property(nonatomic, readonly) NSObject<CIMComposer> *currentComposer;
+
+@property(nonatomic, assign, getter=isInputting) BOOL inputting;
 
 @end
 

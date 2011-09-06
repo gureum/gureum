@@ -19,32 +19,39 @@
 
 @implementation GureumInputController
 
+// IMKServerInput 프로토콜에 대한 공용 핸들러
+- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    BOOL handled = [GureumManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    if (!handled) {
+        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
+        [self cancelComposition];
+    }
+    GureumManager.inputting = YES;
+    [self commitComposition:sender]; // 조합 된 문자 반영
+    [self updateComposition]; // 조합 중인 문자 반영 
+    ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handle ***");
+    GureumManager.inputting = NO;
+    return handled; 
+}
+
 @end
 
 #pragma - IMKServerInput Protocol
 
 // IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
 
-/*
 @implementation GureumInputController (IMKServerInputTextData)
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender
 {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
     
-    BOOL handled = [GureumManager inputText:string key:keyCode modifiers:flags client:self.client]; // 쓸모없는 sender 대신 self.client 전달
-    if (!handled) {
-        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
-        [self cancelComposition];
-    }
-    [self commitComposition:sender]; // 조합 된 문자 반영
-    [self updateComposition]; // 조합 중인 문자 반영 
-    return handled;
+    return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 @end
-*/
 
+/*
 @implementation GureumInputController (IMKServerInputHandleEvent)
  
 // Receiving Events Directly from the Text Services Manager
@@ -54,21 +61,11 @@
         return NO;
     }
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-    BOOL handled = [GureumManager inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:[self client]];
-    if (!handled) {
-        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
-        [self cancelComposition];
-    }
-    self->isInputting = YES;
-    [self commitComposition:sender]; // 조합 된 문자 반영
-    [self updateComposition]; // 조합 중인 문자 반영 
-    ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handle ***");
-    self->isInputting = NO;
-    return handled;
+    return [self inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender];
 }
  
 @end
- 
+*/
 /*
  @implementation CIMInputController (IMKServerInputKeyBinding)
  
@@ -91,7 +88,7 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    if (!self->isInputting) {
+    if (!GureumManager.inputting) {
         // 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
         ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
         [self cancelComposition];

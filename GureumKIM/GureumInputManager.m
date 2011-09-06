@@ -37,6 +37,7 @@ NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.Gu
 @implementation GureumInputManager
 @synthesize server, candidates, configuration, handler;
 @synthesize inputMode, currentComposer;
+@synthesize inputting;
 
 - (id)init
 {
@@ -87,7 +88,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 #pragma - IMKServerInputTextData
 
 //  받은 입력은 모두 핸들러로 넘겨준다.
-- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // hardcoded shortcut handling
     if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|NSShiftKeyMask) && keyCode == 49) {
         ICLog(TRUE, @"-- Keyboard Change!!");
@@ -103,7 +104,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         return YES;
     }
     // general composer
-    return [self->handler inputText:string key:keyCode modifiers:flags client:sender];
+    return [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 #pragma - Private methods
