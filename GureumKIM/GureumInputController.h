@@ -11,7 +11,7 @@
 
 @interface GureumInputController : IMKInputController {
 @private
-    
+    BOOL isInputting;
 }
 
 @end

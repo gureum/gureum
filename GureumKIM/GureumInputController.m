@@ -25,6 +25,7 @@
 
 // IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
 
+/*
 @implementation GureumInputController (IMKServerInputTextData)
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender
@@ -41,31 +42,33 @@
     return handled;
 }
 
-/*
-- (void)updateComposition {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
-    [super updateComposition];
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
-}
-*/
-- (void)cancelComposition {
-    [GureumManager.currentComposer cancelComposition];
-    [super cancelComposition];
-}
-
 @end
+*/
 
-/*
- @implementation CIMInputController (IMKServerInputHandleEvent)
+@implementation GureumInputController (IMKServerInputHandleEvent)
  
- // Receiving Events Directly from the Text Services Manager
- - (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
- ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
- return NO;
- }
+// Receiving Events Directly from the Text Services Manager
+- (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
+    if ([event type] != NSKeyDown) {
+        ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
+        return NO;
+    }
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
+    BOOL handled = [GureumManager inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:[self client]];
+    if (!handled) {
+        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
+        [self cancelComposition];
+    }
+    self->isInputting = YES;
+    [self commitComposition:sender]; // 조합 된 문자 반영
+    [self updateComposition]; // 조합 중인 문자 반영 
+    ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handle ***");
+    self->isInputting = NO;
+    return handled;
+}
  
- @end
- */
+@end
+ 
 /*
  @implementation CIMInputController (IMKServerInputKeyBinding)
  
@@ -88,13 +91,30 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐줘야한다
+    if (!self->isInputting) {
+        // 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
+        ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
+        [self cancelComposition];
+    }
+    // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
     // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
     NSString *commitString = [GureumManager.currentComposer dequeueCommitString];
     if ([commitString length] == 0) return;
     
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+}
+
+/*
+ - (void)updateComposition {
+ ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
+ [super updateComposition];
+ ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
+ }
+ */
+- (void)cancelComposition {
+    [GureumManager.currentComposer cancelComposition];
+    [super cancelComposition];
 }
 
 // Getting Input Strings and Candidates
