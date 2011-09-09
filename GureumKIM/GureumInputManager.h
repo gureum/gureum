@@ -30,7 +30,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 @class CIMInputHandler;
 @class CIMHangulComposer;
 
-#define GureumManager [GureumInputManager sharedManager]
+#define InputManager [GureumInputManager sharedManager]
 @interface GureumInputManager : NSObject<CIMInputTextDelegate> {
 @private
     IMKServer *server;

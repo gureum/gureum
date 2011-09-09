@@ -25,7 +25,7 @@
     
     대부분 CIMInputManager는 하나의 객체만 사용될 것이므로 공용 객체를 싱글턴으로 보고 접근할 수 있는 인터페이스를 단축으로 제공한다.
 */
-#define CIMManager [CIMInputManager sharedManager]
+#define InputManager [CIMInputManager sharedManager]
 /*!
     @brief  OS 입출력 환경에 독립적인 입력기
     
@@ -44,6 +44,8 @@
     NSMutableDictionary *composers;
     
     NSObject<CIMComposer> *currentComposer;
+    
+    BOOL inputting;
 }
 
 //! @brief  현재 입력중인 서버
@@ -56,6 +58,8 @@
 @property(nonatomic, readonly) CIMInputHandler *handler;
 //! @brief  입력기가 현재 선택한 합성기
 @property(nonatomic, readonly) NSObject<CIMComposer> *currentComposer;
+//! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
+@property(nonatomic, assign, getter = isInputting) BOOL inputting;
 
 @end
 

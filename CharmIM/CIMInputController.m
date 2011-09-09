@@ -19,13 +19,22 @@
 
 @implementation CIMInputController
 
-- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
-    self = [super initWithServer:server delegate:delegate client:inputClient];
-    if (self != nil) {
-        ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -initWithServer:delegate:client:");
-        // 초기 키보드 값 전달
+#pragma - CIMInputControllerDelegate
+
+// IMKServerInput 프로토콜에 대한 공용 핸들러
+- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    BOOL handled = [InputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    if (!handled) {
+        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
+        [self cancelComposition];
     }
-    return self;
+    
+    InputManager.inputting = YES;
+    [self commitComposition:sender]; // 조합 된 문자 반영
+    [self updateComposition]; // 조합 중인 문자 반영 
+    InputManager.inputting = NO;
+    ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handle ***");
+    return handled; 
 }
 
 @end
@@ -39,10 +48,8 @@
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender
 {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-
-    BOOL handled = [CIMManager inputText:string key:keyCode modifiers:flags client:self.client]; // 쓸모없는 sender 대신 self.client 전달
-    [self updateComposition];
-    return handled;
+    
+    return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 @end
@@ -52,8 +59,12 @@
 
 // Receiving Events Directly from the Text Services Manager
 - (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
+    if ([event type] != NSKeyDown) {
+        ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
+        return NO;
+    }
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-    return NO;
+    return [self inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender];
 }
 
 @end
@@ -80,28 +91,44 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    // 한글 합성기 의존적인 구현
-    NSString *commitString = [CIMManager.currentComposer endComposing];
+    if (!InputManager.inputting) {
+        // 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
+        ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
+        [self cancelComposition];
+    }
+    // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
+    // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
+    NSString *commitString = [InputManager.currentComposer dequeueCommitString];
+    if ([commitString length] == 0) return;
+    
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+}
+
+/*
+ - (void)updateComposition {
+ ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
+ [super updateComposition];
+ ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
+ }
+ */
+- (void)cancelComposition {
+    [InputManager.currentComposer cancelComposition];
+    [super cancelComposition];
 }
 
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
-    NSString *string = CIMManager.currentComposer.composedString;
+    NSString *string = InputManager.currentComposer.composedString;
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: %@", sender, string);
     return string;
 }
 
-/*
-// libhangul 입력에서 쓸데가 없다
 - (NSAttributedString *)originalString:(id)sender {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
-    return [[[NSAttributedString alloc] initWithString:@""] autorelease];
+    return [[[NSAttributedString alloc] initWithString:[InputManager.currentComposer originalString]] autorelease];
 }
-*/
-
 @end
 
 @implementation CIMInputController (IMKStateSetting)
@@ -122,7 +149,7 @@
 */
 - (BOOL)mouseDownOnCharacterIndex:(NSUInteger)index coordinate:(NSPoint)point withModifier:(NSUInteger)flags continueTracking:(BOOL *)keepTracking client:(id)sender
 {
-    [self cancelComposition];
+    [self commitComposition:sender];
     return NO;
 }
 

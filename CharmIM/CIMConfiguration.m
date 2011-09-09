@@ -9,7 +9,8 @@
 #import "CIMConfiguration.h"
 
 NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
-
+NSString * kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
+NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
 
 @implementation CIMConfiguration
 @synthesize  userDefaults;
@@ -31,13 +32,15 @@ NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
             self->stringItems[i] = tempStringItems[i];
             [self->pFieldKeys setObject:item->name forKey:[NSNumber numberWithUnsignedLong:(unsigned long)item->pConfiguration]];
         }
-        /*
+
         struct CIMConfigurationIntegerItem tempIntegerItems[CIMConfigurationIntegerItemCount] = {
-            
+            { kCIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, 0x20000 },
+            { kCIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
         };
         for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
             self->integerItems[i] = tempIntegerItems[i];
         }
+        /*
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
 
         };
@@ -66,6 +69,7 @@ NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
 }
 
 - (void)loadAllConfigurations {
+    if (self->userDefaults == nil) return;
     for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         id object = [self->userDefaults objectForKey:item.name];
@@ -82,14 +86,12 @@ NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
     for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
         struct CIMConfigurationIntegerItem item = self->integerItems[i];
         id object = [self->userDefaults objectForKey:item.name];
-        [self->originConfigurations setObject:object forKey:item.name];
         *item.pConfiguration = object != nil ? [object integerValue] : item.defaultValue;
         [self->originConfigurations setObject:[NSNumber numberWithInteger:*item.pConfiguration] forKey:item.name];
     }
     for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
         struct CIMConfigurationBoolItem item = self->boolItems[i];
         id object = [self->userDefaults objectForKey:item.name];
-        [self->originConfigurations setObject:object forKey:item.name];
         *item.pConfiguration = object != nil ? [object boolValue] : item.defaultValue;
         [self->originConfigurations setObject:[NSNumber numberWithBool:*item.pConfiguration] forKey:item.name];
     }
@@ -100,7 +102,7 @@ NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
     for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         NSString *value = *item.pConfiguration;
-        if (value != nil && ![value isEqualToString:[self->originConfigurations objectForKey:item.name]]) {
+        if (value != nil && ![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
             [self->userDefaults setObject:value forKey:item.name];
             [self->originConfigurations setObject:value forKey:item.name];
         } else if (value == nil) {

@@ -16,6 +16,7 @@
 
 @implementation CIMInputManager
 @synthesize server, candidates, configuration, handler, currentComposer;
+@synthesize inputting;
 
 - (id)init
 {

@@ -90,7 +90,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 //  받은 입력은 모두 핸들러로 넘겨준다.
 - (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // hardcoded shortcut handling
-    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|NSShiftKeyMask) && keyCode == 49) {
+    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|self->configuration->inputModeExchangeKeyModifier) && keyCode == self->configuration->inputModeExchangeKeyCode) {
         ICLog(TRUE, @"-- Keyboard Change!!");
         // 한영전환
         [self.currentComposer cancelComposition];

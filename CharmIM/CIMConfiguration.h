@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 ICEXTERN NSString *kCIMLastHangulInputMode;
+ICEXTERN NSString *kCIMInputModeExchangeKeyModifier;
+ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
 
 #define CIMConfigurationStringItemCount 1
 
-#define CIMConfigurationIntegerItemCount 0
+#define CIMConfigurationIntegerItemCount 2
 
 #define CIMConfigurationBoolItemCount 0
 
@@ -39,6 +41,7 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
     NSUserDefaults *userDefaults;
 @public
     NSString *lastHangulInputMode;
+    NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;
 

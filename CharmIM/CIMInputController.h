@@ -19,6 +19,9 @@
     @coclass    CIMInputManager
     @warning    이 클래스에는 IMKServer, 클라이언트와 독립적인 코드는 **절대로** 쓰지 않는다. 디버그하기 화난다.
 */
+
+#import "CIMCommon.h"
+
 @interface CIMInputController : IMKInputController
 
 @end
