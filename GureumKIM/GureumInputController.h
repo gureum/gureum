@@ -11,6 +11,8 @@
 
 @interface GureumInputController : IMKInputController<CIMInputTextDelegate> {
 @private
+    GureumInputManager *manager;
 }
+@property(nonatomic, readonly) GureumInputManager *manager;
 
 @end

@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#define CIMConfigurationStringItemCount 1
 ICEXTERN NSString *kCIMLastHangulInputMode;
+
+#define CIMConfigurationIntegerItemCount 2
 ICEXTERN NSString *kCIMInputModeExchangeKeyModifier;
 ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
 
-#define CIMConfigurationStringItemCount 1
+#define CIMConfigurationBoolItemCount 1
+ICEXTERN NSString *kCIMSharedInputManager;
 
-#define CIMConfigurationIntegerItemCount 2
-
-#define CIMConfigurationBoolItemCount 0
 
 #define defCIMConfigurationItem(NAME, TYPE) struct NAME { NSString *name; TYPE *pConfiguration; TYPE defaultValue; }
 
@@ -42,6 +43,7 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
 @public
     NSString *lastHangulInputMode;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
+    BOOL sharedInputManager;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;
 

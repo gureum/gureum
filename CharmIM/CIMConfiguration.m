@@ -9,8 +9,11 @@
 #import "CIMConfiguration.h"
 
 NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
+
 NSString * kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
 NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
+
+NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
 
 @implementation CIMConfiguration
 @synthesize  userDefaults;
@@ -40,14 +43,12 @@ NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
         for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
             self->integerItems[i] = tempIntegerItems[i];
         }
-        /*
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
-
+            { kCIMSharedInputManager, &self->sharedInputManager, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
             self->boolItems[i] = tempBoolItems[i];
         }
-        */
         self->originConfigurations = [[NSMutableDictionary alloc] init];
         self.userDefaults = aUserDefaults;
     }
@@ -110,6 +111,7 @@ NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
             [self->originConfigurations removeObjectForKey:item.name];
         }
     }
+    // TODO: save integer, bool config
     [self->userDefaults synchronize];
 }
 

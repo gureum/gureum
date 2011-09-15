@@ -19,20 +19,34 @@
 
 @implementation GureumInputController
 
+- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+    self = [super initWithServer:server delegate:delegate client:inputClient];
+    if (self != nil) {
+        if (!InputManager.configuration->sharedInputManager) {
+            self->manager = [[GureumInputManager alloc] init];
+        }
+    }
+    return self;
+}
+
+- (GureumInputManager *)manager {
+    return self->manager ? self->manager : InputManager;
+}
+
 #pragma - CIMInputControllerDelegate
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러
 - (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    BOOL handled = [InputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    BOOL handled = [self.manager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     if (!handled) {
         // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
         [self cancelComposition];
     }
     
-    InputManager.inputting = YES;
+    self.manager.inputting = YES;
     [self commitComposition:sender]; // 조합 된 문자 반영
     [self updateComposition]; // 조합 중인 문자 반영 
-    InputManager.inputting = NO;
+    self.manager.inputting = NO;
     ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handle ***");
     return handled; 
 }
@@ -47,8 +61,7 @@
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender
 {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-    
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / sender: %@ / client: %@(%@)", string, keyCode, flags, sender, [[self client] bundleIdentifier], [[self client] class]);
     return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender];
 }
 
@@ -91,14 +104,14 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    if (!InputManager.inputting) {
+    if (!self.manager.inputting) {
         // 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
         ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
         [self cancelComposition];
     }
     // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
     // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
-    NSString *commitString = [InputManager.currentComposer dequeueCommitString];
+    NSString *commitString = [self.manager.currentComposer dequeueCommitString];
     if ([commitString length] == 0) return;
     
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
@@ -113,21 +126,21 @@
  }
  */
 - (void)cancelComposition {
-    [InputManager.currentComposer cancelComposition];
+    [self.manager.currentComposer cancelComposition];
     [super cancelComposition];
 }
 
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
-    NSString *string = InputManager.currentComposer.composedString;
+    NSString *string = self.manager.currentComposer.composedString;
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: %@", sender, string);
     return string;
 }
 
 - (NSAttributedString *)originalString:(id)sender {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
-    return [[[NSAttributedString alloc] initWithString:[InputManager.currentComposer originalString]] autorelease];
+    return [[[NSAttributedString alloc] initWithString:[self.manager.currentComposer originalString]] autorelease];
 }
 
 @end
@@ -146,13 +159,16 @@
     ICLog(DEBUG_INPUTCONTROLLER, @"** GureumInputController -setValue:forTag:client: with value: %@ / tag: %x / sender: %@ / client: %@", value, tag, sender, self.client);
     switch (tag) {
         case kTextServiceInputModePropertyTag:
-            if (![value isEqualToString:InputManager.inputMode]) {
-                [self commitComposition:sender];
-                InputManager.inputMode = value;
+            if (![value isEqualToString:self.manager.inputMode]) {
+                if (sender != nil) {
+                    [self commitComposition:sender];
+                }
+                self.manager.inputMode = value;
             }
             break;
         default:
-            return;
+            ICLog(DEBUG_INPUTCONTROLLER, @"**** UNKNOWN TAG %d !!! ****", tag);
+            break;
     }
 }
 
