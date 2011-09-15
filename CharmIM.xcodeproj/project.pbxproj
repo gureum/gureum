@@ -565,9 +565,9 @@
 			productReference = 38162DD6141230700077AA2D /* Hangul.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		38162DF2141263270077AA2D /* GureumKIM */ = {
+		38162DF2141263270077AA2D /* Gureum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumKIM" */;
+			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */;
 			buildPhases = (
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
@@ -578,7 +578,7 @@
 			);
 			dependencies = (
 			);
-			name = GureumKIM;
+			name = Gureum;
 			productName = GureumKIM;
 			productReference = 38162DF3141263270077AA2D /* GureumKIM.app */;
 			productType = "com.apple.product-type.application";
@@ -664,7 +664,7 @@
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
 				38162DD5141230700077AA2D /* Hangul */,
 				38863D48140F54AD00A8ED76 /* hangul */,
-				38162DF2141263270077AA2D /* GureumKIM */,
+				38162DF2141263270077AA2D /* Gureum */,
 			);
 		};
 /* End PBXProject section */
@@ -1156,7 +1156,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumKIM" */ = {
+		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38162E09141263280077AA2D /* Debug */,
