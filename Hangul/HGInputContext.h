@@ -90,12 +90,15 @@ typedef enum {
 @property(nonatomic, readonly, getter=isTransliteration) BOOL transliteration;
 /*!
     @brief  @ref hangul_ic_preedit_string
+ 
     @ref IMKInputController 의 -composedString 과 대응한다.
 */
 @property(nonatomic, readonly) NSString *preeditString;
 //! @brief  @ref hangul_ic_commit_string
 @property(nonatomic, readonly) NSString *commitString;
-/*! @brief  @ref hangul_ic_flush
+/*!
+    @brief  @ref hangul_ic_flush
+ 
     @discussion     현재 조합 중인 글자의 조합을 완료하고 @ref preeditString 을 결과로 돌려준다.
 */
 - (NSString *)flushString; // unclear naming...

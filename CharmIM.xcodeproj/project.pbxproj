@@ -10,8 +10,7 @@
 		3802E45E141380BF00256B54 /* han2classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3802E45D141380BF00256B54 /* han2classic.png */; };
 		3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
-		38162D7C140F64B70077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
-		38162D7D140F64BE0077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
+		38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DDD141230710077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DDB141230710077AA2D /* InfoPlist.strings */; };
 		38162DE6141230B40077AA2D /* HGCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 38162DE2141230B40077AA2D /* HGCharacter.h */; };
@@ -25,18 +24,15 @@
 		38162DEE141261B60077AA2D /* hangul.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D76140F559100A8ED76 /* hangul.h */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		38162E04141263280077AA2D /* GureumKIMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumKIMAppDelegate.m */; };
+		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; };
 		38162E0B141264990077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38162E0F141264EB0077AA2D /* CIMHangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* CIMHangulComposer.m */; };
-		38162E12141269490077AA2D /* GureumInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E11141269480077AA2D /* GureumInputManager.m */; };
+		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
-		38162E1A141271920077AA2D /* GureumInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E181412718A0077AA2D /* GureumInputController.m */; };
 		38162E1D1412745E0077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E40141280A00077AA2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
-		38162E41141281B40077AA2D /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D2D140F23CD00A8ED76 /* CIMInputManager.m */; };
 		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E44141285050077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
@@ -53,6 +49,8 @@
 		38475AFF1412BC700062100D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AFE1412BC6F0062100D /* icon.png */; };
 		38475B011412C0640062100D /* Gureum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38475B001412C0640062100D /* Gureum.icns */; };
 		38475B031412C3AA0062100D /* han3noshift.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475B021412C3A90062100D /* han3noshift.png */; };
+		387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00021421F72600DAE6F4 /* CharmAppDelegate.m */; };
+		387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38863C6E140E64EB00A8ED76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C6C140E64EB00A8ED76 /* InfoPlist.strings */; };
 		38863C71140E64EB00A8ED76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
@@ -64,8 +62,6 @@
 		38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		38863D13140F1A7300A8ED76 /* ICUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D12140F1A7300A8ED76 /* ICUtility.m */; };
 		38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38863D36140F421900A8ED76 /* CIMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D35140F421800A8ED76 /* CIMAppDelegate.m */; };
-		38863D37140F486100A8ED76 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D2D140F23CD00A8ED76 /* CIMInputManager.m */; };
 		38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
@@ -77,6 +73,11 @@
 		38863DBF140F562900A8ED76 /* hangulkeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7A140F559100A8ED76 /* hangulkeyboard.h */; };
 		38863DC0140F562900A8ED76 /* hanja.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D7B140F559100A8ED76 /* hanja.c */; };
 		38863DC1140F562900A8ED76 /* hanjacompatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7C140F559100A8ED76 /* hanjacompatible.h */; };
+		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
+		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
+		38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
+		38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
+		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +131,8 @@
 		3802E45D141380BF00256B54 /* han2classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2classic.png; path = Icons/han2classic.png; sourceTree = "<group>"; };
 		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
 		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
-		38162D7A140F64B70077AA2D /* CIMHangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMHangulComposer.h; sourceTree = "<group>"; };
-		38162D7B140F64B70077AA2D /* CIMHangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMHangulComposer.m; sourceTree = "<group>"; };
+		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
+		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
 		38162DD6141230700077AA2D /* Hangul.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hangul.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,17 +143,13 @@
 		38162DE3141230B40077AA2D /* HGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGCharacter.m; sourceTree = "<group>"; };
 		38162DE4141230B40077AA2D /* HGInputContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInputContext.h; sourceTree = "<group>"; };
 		38162DE5141230B40077AA2D /* HGInputContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInputContext.m; sourceTree = "<group>"; };
-		38162DF3141263270077AA2D /* GureumKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GureumKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF3141263270077AA2D /* GureumKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GureumKIM.app; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		38162E02141263280077AA2D /* GureumKIMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GureumKIMAppDelegate.h; sourceTree = "<group>"; };
-		38162E03141263280077AA2D /* GureumKIMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumKIMAppDelegate.m; sourceTree = "<group>"; };
-		38162E10141269480077AA2D /* GureumInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumInputManager.h; sourceTree = "<group>"; };
-		38162E11141269480077AA2D /* GureumInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumInputManager.m; sourceTree = "<group>"; };
+		38162E02141263280077AA2D /* GureumAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GureumAppDelegate.h; sourceTree = "<group>"; };
+		38162E03141263280077AA2D /* GureumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumAppDelegate.m; sourceTree = "<group>"; };
 		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
-		38162E171412718A0077AA2D /* GureumInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumInputController.h; sourceTree = "<group>"; };
-		38162E181412718A0077AA2D /* GureumInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumInputController.m; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -168,6 +165,10 @@
 		38475AFE1412BC6F0062100D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Icons/icon.png; sourceTree = "<group>"; };
 		38475B001412C0640062100D /* Gureum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Gureum.icns; path = Icons/Gureum.icns; sourceTree = "<group>"; };
 		38475B021412C3A90062100D /* han3noshift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3noshift.png; path = Icons/han3noshift.png; sourceTree = "<group>"; };
+		387D00011421F72600DAE6F4 /* CharmAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharmAppDelegate.h; sourceTree = "<group>"; };
+		387D00021421F72600DAE6F4 /* CharmAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmAppDelegate.m; sourceTree = "<group>"; };
+		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
+		387D00051421FB6E00DAE6F4 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
 		38863C5F140E64EB00A8ED76 /* CharmIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharmIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -189,12 +190,9 @@
 		38863CDB140E801200A8ED76 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38863D11140F1A7300A8ED76 /* ICUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUtility.h; sourceTree = "<group>"; };
 		38863D12140F1A7300A8ED76 /* ICUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUtility.m; sourceTree = "<group>"; };
-		38863D2C140F23CD00A8ED76 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
-		38863D2D140F23CD00A8ED76 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
 		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
 		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
-		38863D34140F421800A8ED76 /* CIMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMAppDelegate.h; sourceTree = "<group>"; };
-		38863D35140F421800A8ED76 /* CIMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMAppDelegate.m; sourceTree = "<group>"; };
+		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
 		38863D49140F54AD00A8ED76 /* libhangul.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhangul.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +209,8 @@
 		38863D7A140F559100A8ED76 /* hangulkeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangulkeyboard.h; sourceTree = "<group>"; };
 		38863D7B140F559100A8ED76 /* hanja.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hanja.c; sourceTree = "<group>"; };
 		38863D7C140F559100A8ED76 /* hanjacompatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hanjacompatible.h; sourceTree = "<group>"; };
+		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
+		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,10 +266,6 @@
 		38162DD0141124DF0077AA2D /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
-				38162E1314126ACE0077AA2D /* CIMComposer.m */,
-				38162D7A140F64B70077AA2D /* CIMHangulComposer.h */,
-				38162D7B140F64B70077AA2D /* CIMHangulComposer.m */,
 			);
 			name = Composers;
 			sourceTree = "<group>";
@@ -299,12 +295,9 @@
 		38162DF6141263270077AA2D /* GureumKIM */ = {
 			isa = PBXGroup;
 			children = (
-				38162E02141263280077AA2D /* GureumKIMAppDelegate.h */,
-				38162E03141263280077AA2D /* GureumKIMAppDelegate.m */,
-				38162E171412718A0077AA2D /* GureumInputController.h */,
-				38162E181412718A0077AA2D /* GureumInputController.m */,
-				38162E10141269480077AA2D /* GureumInputManager.h */,
-				38162E11141269480077AA2D /* GureumInputManager.m */,
+				38162E02141263280077AA2D /* GureumAppDelegate.h */,
+				38162E03141263280077AA2D /* GureumAppDelegate.m */,
+				38FA21DF14231BCC00444D67 /* Composers */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 			);
@@ -342,10 +335,31 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		387DFFFE1421F1E000DAE6F4 /* Common Input Method */ = {
+			isa = PBXGroup;
+			children = (
+				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
+				38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */,
+				38863C95140E669000A8ED76 /* CIMInputController.h */,
+				38863C96140E669000A8ED76 /* CIMInputController.m */,
+				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
+				38162E1314126ACE0077AA2D /* CIMComposer.m */,
+				387D00041421FB6D00DAE6F4 /* CIMInputManager.h */,
+				387D00051421FB6E00DAE6F4 /* CIMInputManager.m */,
+				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
+				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
+				3802E4631413A9FF00256B54 /* CIMConfiguration.h */,
+				3802E4641413A9FF00256B54 /* CIMConfiguration.m */,
+			);
+			name = "Common Input Method";
+			path = CommonInputMethod;
+			sourceTree = "<group>";
+		};
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
 				38863D10140F1A7300A8ED76 /* IdealCocoa */,
+				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
 				38162DD8141230710077AA2D /* Hangul */,
@@ -444,13 +458,6 @@
 		38863D32140F41B100A8ED76 /* Input Method */ = {
 			isa = PBXGroup;
 			children = (
-				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
-				38863D2C140F23CD00A8ED76 /* CIMInputManager.h */,
-				38863D2D140F23CD00A8ED76 /* CIMInputManager.m */,
-				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
-				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
-				3802E4631413A9FF00256B54 /* CIMConfiguration.h */,
-				3802E4641413A9FF00256B54 /* CIMConfiguration.m */,
 				38162DD0141124DF0077AA2D /* Composers */,
 			);
 			name = "Input Method";
@@ -459,10 +466,8 @@
 		38863D33140F41CF00A8ED76 /* OS part */ = {
 			isa = PBXGroup;
 			children = (
-				38863D34140F421800A8ED76 /* CIMAppDelegate.h */,
-				38863D35140F421800A8ED76 /* CIMAppDelegate.m */,
-				38863C95140E669000A8ED76 /* CIMInputController.h */,
-				38863C96140E669000A8ED76 /* CIMInputController.m */,
+				387D00011421F72600DAE6F4 /* CharmAppDelegate.h */,
+				387D00021421F72600DAE6F4 /* CharmAppDelegate.m */,
 			);
 			name = "OS part";
 			sourceTree = "<group>";
@@ -517,6 +522,17 @@
 				38863D7C140F559100A8ED76 /* hanjacompatible.h */,
 			);
 			path = hangul;
+			sourceTree = "<group>";
+		};
+		38FA21DF14231BCC00444D67 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				38FA21D814230E1000444D67 /* GureumComposer.h */,
+				38FA21D914230E1000444D67 /* GureumComposer.m */,
+				38162D7A140F64B70077AA2D /* HangulComposer.h */,
+				38162D7B140F64B70077AA2D /* HangulComposer.m */,
+			);
+			name = Composers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,9 +599,9 @@
 			productReference = 38162DF3141263270077AA2D /* GureumKIM.app */;
 			productType = "com.apple.product-type.application";
 		};
-		38863C5E140E64EB00A8ED76 /* CharmIM */ = {
+		38863C5E140E64EB00A8ED76 /* Charm */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "CharmIM" */;
+			buildConfigurationList = 38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "Charm" */;
 			buildPhases = (
 				38863C5B140E64EB00A8ED76 /* Sources */,
 				38863C5C140E64EB00A8ED76 /* Frameworks */,
@@ -597,7 +613,7 @@
 			dependencies = (
 				38863DC7140F57A100A8ED76 /* PBXTargetDependency */,
 			);
-			name = CharmIM;
+			name = Charm;
 			productName = CharmIM;
 			productReference = 38863C5F140E64EB00A8ED76 /* CharmIM.app */;
 			productType = "com.apple.product-type.application";
@@ -660,7 +676,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				38863C5E140E64EB00A8ED76 /* CharmIM */,
+				38863C5E140E64EB00A8ED76 /* Charm */,
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
 				38162DD5141230700077AA2D /* Hangul */,
 				38863D48140F54AD00A8ED76 /* hangul */,
@@ -751,14 +767,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38162E04141263280077AA2D /* GureumKIMAppDelegate.m in Sources */,
+				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
-				38162E0F141264EB0077AA2D /* CIMHangulComposer.m in Sources */,
-				38162E12141269490077AA2D /* GureumInputManager.m in Sources */,
+				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
-				38162E1A141271920077AA2D /* GureumInputController.m in Sources */,
 				38162E40141280A00077AA2D /* main.m in Sources */,
 				3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */,
+				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
+				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
+				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,11 +787,10 @@
 				38863C97140E669000A8ED76 /* CIMInputController.m in Sources */,
 				38863D13140F1A7300A8ED76 /* ICUtility.m in Sources */,
 				38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */,
-				38863D36140F421900A8ED76 /* CIMAppDelegate.m in Sources */,
-				38162D7C140F64B70077AA2D /* CIMHangulComposer.m in Sources */,
 				38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */,
-				38162E41141281B40077AA2D /* CIMInputManager.m in Sources */,
 				3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */,
+				387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */,
+				387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,11 +799,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				38863C8E140E64EC00A8ED76 /* CharmIMTests.m in Sources */,
-				38863D37140F486100A8ED76 /* CIMInputManager.m in Sources */,
 				38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */,
 				38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */,
-				38162D7D140F64BE0077AA2D /* CIMHangulComposer.m in Sources */,
+				38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */,
 				38162E42141281C70077AA2D /* CIMComposer.m in Sources */,
+				38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */,
+				38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,7 +823,7 @@
 /* Begin PBXTargetDependency section */
 		38863C83140E64EC00A8ED76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 38863C5E140E64EB00A8ED76 /* CharmIM */;
+			target = 38863C5E140E64EB00A8ED76 /* Charm */;
 			targetProxy = 38863C82140E64EC00A8ED76 /* PBXContainerItemProxy */;
 		};
 		38863DC7140F57A100A8ED76 /* PBXTargetDependency */ = {
@@ -1174,7 +1191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "CharmIM" */ = {
+		38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "Charm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38863C90140E64EC00A8ED76 /* Debug */,

@@ -1,5 +1,5 @@
 //
-//  CIMHangulComposer.h
+//  HangulComposer.h
 //  CharmIM
 //
 //  Created by youknowone on 11. 9. 1..
@@ -16,7 +16,7 @@
     
     @coclass HGInputContext
 */
-@interface CIMHangulComposer : NSObject<CIMComposer> {
+@interface HangulComposer : NSObject<CIMComposerDelegate> {
 @private
     HGInputContext *inputContext;
     NSString *composedString;

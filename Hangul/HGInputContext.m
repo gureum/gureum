@@ -8,6 +8,8 @@
 
 #import "HGInputContext.h"
 
+#define DEBUG_HANGUL FALSE
+
 @implementation HGKeyboard 
 @synthesize data;
 
@@ -113,19 +115,19 @@
 
 - (NSString *)preeditString {
     NSString *string = [NSString stringWithHGUCSString:hangul_ic_get_preedit_string(self->context)];
-    ICLog(TRUE, @"** HGInputContext -preeditString : %@", string);
+    ICLog(DEBUG_HANGUL, @"** HGInputContext -preeditString : %@", string);
     return string;
 }
 
 - (NSString *)commitString {
     NSString *string = [NSString stringWithHGUCSString:hangul_ic_get_commit_string(self->context)];
-    ICLog(TRUE, @"** HGInputContext -commitString : %@", string);
+    ICLog(DEBUG_HANGUL, @"** HGInputContext -commitString : %@", string);
     return string;
 }
 
 - (NSString *)flushString {
     NSString *string = [NSString stringWithHGUCSString:hangul_ic_flush(self->context)];
-    ICLog(TRUE, @"** HGInputContext -flushString : %@", string);
+    ICLog(DEBUG_HANGUL, @"** HGInputContext -flushString : %@", string);
     return string;
 }
 

@@ -13,6 +13,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class CIMInputController;
 /*!
     @protocol
     @brief  입력을 처리하는 클래스의 관한 공통 형식
@@ -30,5 +31,6 @@
     @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
     @see    IMKServerInput
 */
-- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender;
+- (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender;
 @end
+

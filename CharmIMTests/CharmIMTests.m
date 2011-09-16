@@ -8,7 +8,7 @@
 
 #import "CharmIMTests.h"
 
-#import "CIMInputManager.h"
+#import "CharmInputManager.h"
 #import "HGInputContext.h"
 
 @implementation CharmIMTests
@@ -29,7 +29,7 @@
 
 - (void)testTestEnvironment
 {
-    CIMInputManager *inputManager = [CIMInputManager sharedManager];
+    CharmInputManager *inputManager = [CharmInputManager sharedManager];
     STAssertNotNil(inputManager, @"InputManager shared object is not working");
 }
 

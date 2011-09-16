@@ -1,23 +1,15 @@
 //
-//  GureumInputManager.m
+//  GureumComposer.m
 //  CharmIM
 //
-//  Created by youknowone on 11. 9. 3..
+//  Created by youknowone on 11. 9. 16..
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import "GureumInputManager.h"
+#import "GureumComposer.h"
 
-#import "CIMInputHandler.h"
-#import "CIMHangulComposer.h"
-
-#define DEBUG_INPUTMANAGER TRUE
-
-@interface GureumInputManager ()
-
-- (void)setCurrentComposer:(NSObject<CIMComposer> *)composer;
-
-@end
+#import "CIMApplicationDelegate.h"
+#import "CIMConfiguration.h"
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.GureumKIM.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.GureumKIM.dvorak";
@@ -34,27 +26,19 @@ NSString *kGureumInputSourceIdentifierHan3Layout2 = @"org.youknowone.inputmethod
 NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod.GureumKIM.han3ahnmatae";
 NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
 
-@implementation GureumInputManager
-@synthesize server, candidates, configuration, handler;
-@synthesize inputMode, currentComposer;
-@synthesize inputting;
+#import "HangulComposer.h"
+
+#define CIMSharedConfiguration CIMAppDelegate.sharedInputManager.configuration
+
+@implementation GureumComposer
 
 - (id)init
 {
     self = [super init];
-    ICLog(DEBUG_INPUTMANAGER, @"** GureumInputManager Init: %@", self);
     if (self) {
-        NSBundle *mainBundle = [NSBundle mainBundle];
-        NSString *connectionName = [[mainBundle infoDictionary] objectForKey:@"InputMethodConnectionName"];
-        self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:[mainBundle bundleIdentifier]];
-        self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
-        self->configuration = [[CIMConfiguration alloc] init];
-        self->handler = [[CIMInputHandler alloc] initWithManager:(id)self];
-
         self->romanComposer = [[CIMBaseComposer alloc] init];
-        self->hangulComposer = [[CIMHangulComposer alloc] init];
-
-        self->currentComposer = self->romanComposer;
+        self->hangulComposer = [[HangulComposer alloc] init];
+        self.delegate = self->romanComposer;
     }
     return self;
 }
@@ -63,9 +47,6 @@ NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.Gu
 {
     [self->romanComposer release];
     [self->hangulComposer release];
-    [self->handler release];
-    [self->candidates release];
-    [self->server release];
     [super dealloc];
 }
 
@@ -85,17 +66,33 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
                                                         nil];
 }
 
-#pragma - IMKServerInputTextData
+- (void)setInputMode:(NSString *)newInputMode {
+    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: with input mode: %@", newInputMode);
+    if ([self->inputMode isEqualToString:newInputMode]) return;
+    
+    NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
+    if ([keyboardIdentifier length] == 0) {
+        self.delegate = self->romanComposer;
+    } else {
+        self.delegate = self->hangulComposer;
+        [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
+        CIMConfigurationSetObjectForField(CIMSharedConfiguration, newInputMode, lastHangulInputMode);
+        [CIMSharedConfiguration saveConfigurationForStringField:&CIMSharedConfiguration->lastHangulInputMode];
+    }
+    
+    [self->inputMode release];
+    self->inputMode = [newInputMode  retain];
+}
 
-//  받은 입력은 모두 핸들러로 넘겨준다.
-- (BOOL)inputController:(IMKInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    // hardcoded shortcut handling
-    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|self->configuration->inputModeExchangeKeyModifier) && keyCode == self->configuration->inputModeExchangeKeyCode) {
-        ICLog(TRUE, @"-- Keyboard Change!!");
-        // 한영전환
-        [self.currentComposer cancelComposition];
-        if (self.currentComposer == self->romanComposer) {
-            NSString *lastHangulInputMode = self->configuration->lastHangulInputMode;
+
+-(BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    // TODO: hardcoded shortcut handling -> input handler로 옮기자!
+    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|CIMSharedConfiguration->inputModeExchangeKeyModifier) && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
+        ICLog(TRUE, @"***** Keyboard Changed %@ *****");
+        // 한영전환을 위해 현재 입력 중인 문자 합성 취소
+        [self->delegate cancelComposition];
+        if (self->delegate == self->romanComposer) {
+            NSString *lastHangulInputMode = CIMSharedConfiguration->lastHangulInputMode;
             if (lastHangulInputMode == nil) lastHangulInputMode = kGureumInputSourceIdentifierHan2;
             [sender selectInputMode:lastHangulInputMode];
         } else {
@@ -104,31 +101,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         return YES;
     }
     // general composer
-    return [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    return [self->delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
-#pragma - Private methods
-
-- (void)setCurrentComposer:(NSObject<CIMComposer> *)composer; {
-    self->currentComposer = composer;
-}
-
-- (void)setInputMode:(NSString *)newInputMode {
-    ICLog(TRUE, @"** GureumInputManager -setLayoutIdentifier: with input mode: %@", newInputMode);
-    if ([self->inputMode isEqualToString:newInputMode]) return;
-    
-    NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
-    if ([keyboardIdentifier length] == 0) {
-        self->currentComposer = self->romanComposer;
-    } else {
-        self->currentComposer = self->hangulComposer;
-        [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
-        CIMConfigurationSetObjectForField(self->configuration, newInputMode, lastHangulInputMode);
-        [self->configuration saveConfigurationForStringField:&self->configuration->lastHangulInputMode];
-    }
-    
-    [self->inputMode release];
-    self->inputMode = [newInputMode  retain];
-}
 
 @end

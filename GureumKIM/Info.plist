@@ -252,9 +252,9 @@
 	<key>InputMethodConnectionName</key>
 	<string>GureumInputMethod_1_Connection</string>
 	<key>InputMethodServerControllerClass</key>
-	<string>GureumInputController</string>
+	<string>CIMInputController</string>
 	<key>InputMethodServerDelegateClass</key>
-	<string>GureumInputController</string>
+	<string>CIMInputController</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>

@@ -1,5 +1,5 @@
 //
-//  CIMHangulComposer.m
+//  HangulComposer.m
 //  CharmIM
 //
 //  Created by youknowone on 11. 9. 1..
@@ -7,10 +7,13 @@
 //
 
 #import <Hangul/HGInputContext.h>
-#import "CIMHangulComposer.h"
+#import "HangulComposer.h"
 
-bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucschar* buf, id data);
-@implementation CIMHangulComposer
+#define DEBUG_HANGULCOMPOSER FALSE
+
+@class CIMInputController;
+
+@implementation HangulComposer
 @synthesize inputContext;
 
 - (id)init {
@@ -44,7 +47,7 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
 
 #pragma - IMKInputServerTextData
 
-- (BOOL)inputController:(IMKInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (BOOL)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
     if (keyCode == 51) {
         return [self->inputContext backspace];
@@ -58,7 +61,7 @@ bool cb_libhangul_transition(HangulInputContext *context, ucschar c, const ucsch
     BOOL handled = [self->inputContext process:[string characterAtIndex:0]];
     NSString *recentCommitString = [self->inputContext commitString];
     [self->commitString appendString:recentCommitString];
-    ICLog(TRUE, @"CIMHangulComposer -inputText: string %@ (%@ added)", self->commitString, recentCommitString);
+    ICLog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->commitString, recentCommitString);
     return handled;
 }
 
