@@ -11,30 +11,16 @@
 		3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
-		38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
-		38162DDD141230710077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DDB141230710077AA2D /* InfoPlist.strings */; };
-		38162DE6141230B40077AA2D /* HGCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 38162DE2141230B40077AA2D /* HGCharacter.h */; };
-		38162DE7141230B40077AA2D /* HGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162DE3141230B40077AA2D /* HGCharacter.m */; };
-		38162DE8141230B40077AA2D /* HGInputContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 38162DE4141230B40077AA2D /* HGInputContext.h */; };
-		38162DE9141230B40077AA2D /* HGInputContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162DE5141230B40077AA2D /* HGInputContext.m */; };
-		38162DEA1412313B0077AA2D /* libhangul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863D49140F54AD00A8ED76 /* libhangul.a */; };
-		38162DEB141231560077AA2D /* ICUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D12140F1A7300A8ED76 /* ICUtility.m */; };
-		38162DEC141231EB0077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
-		38162DED141231EC0077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
-		38162DEE141261B60077AA2D /* hangul.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D76140F559100A8ED76 /* hangul.h */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; };
-		38162E0B141264990077AA2D /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
-		38162E1D1412745E0077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E40141280A00077AA2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
 		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
-		38162E44141285050077AA2D /* Hangul.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38162DD6141230700077AA2D /* Hangul.framework */; };
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
@@ -65,64 +51,50 @@
 		38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
-		38863DBA140F562900A8ED76 /* hangul-gettext.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D75140F559100A8ED76 /* hangul-gettext.h */; };
-		38863DBB140F562900A8ED76 /* hangul.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D76140F559100A8ED76 /* hangul.h */; };
-		38863DBC140F562900A8ED76 /* hangulctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D77140F559100A8ED76 /* hangulctype.c */; };
-		38863DBD140F562900A8ED76 /* hangulinputcontext.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D78140F559100A8ED76 /* hangulinputcontext.c */; };
-		38863DBE140F562900A8ED76 /* hangulinternals.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D79140F559100A8ED76 /* hangulinternals.h */; };
-		38863DBF140F562900A8ED76 /* hangulkeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7A140F559100A8ED76 /* hangulkeyboard.h */; };
-		38863DC0140F562900A8ED76 /* hanja.c in Sources */ = {isa = PBXBuildFile; fileRef = 38863D7B140F559100A8ED76 /* hanja.c */; };
-		38863DC1140F562900A8ED76 /* hanjacompatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 38863D7C140F559100A8ED76 /* hanjacompatible.h */; };
+		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
 		38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+		38FA22131423458900444D67 /* ICUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D12140F1A7300A8ED76 /* ICUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		38863C82140E64EC00A8ED76 /* PBXContainerItemProxy */ = {
+		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38863C5E140E64EB00A8ED76;
-			remoteInfo = CharmIM;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 38FA21EC1423219E00444D67;
+			remoteInfo = Hangul;
 		};
-		38863DC6140F57A100A8ED76 /* PBXContainerItemProxy */ = {
+		389A387E1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38863D48140F54AD00A8ED76;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3890A8BE1423245500067337;
 			remoteInfo = hangul;
 		};
-		38863DC8140F57A800A8ED76 /* PBXContainerItemProxy */ = {
+		389A398314234B5600A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 38863D48140F54AD00A8ED76;
-			remoteInfo = hangul;
+			remoteGlobalIDString = 38FA21EB1423219E00444D67;
+			remoteInfo = Hangul;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		38162E1C141274530077AA2D /* CopyFiles */ = {
+		387736EB1423561F00DE50D6 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				38162E1D1412745E0077AA2D /* Hangul.framework in CopyFiles */,
+				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38162E43141284FD0077AA2D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				38162E44141285050077AA2D /* Hangul.framework in CopyFiles */,
-			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -135,15 +107,7 @@
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
-		38162DD6141230700077AA2D /* Hangul.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hangul.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38162DDA141230710077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38162DDC141230710077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38162DDE141230710077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		38162DE2141230B40077AA2D /* HGCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGCharacter.h; sourceTree = "<group>"; };
-		38162DE3141230B40077AA2D /* HGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGCharacter.m; sourceTree = "<group>"; };
-		38162DE4141230B40077AA2D /* HGInputContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInputContext.h; sourceTree = "<group>"; };
-		38162DE5141230B40077AA2D /* HGInputContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInputContext.m; sourceTree = "<group>"; };
-		38162DF3141263270077AA2D /* GureumKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GureumKIM.app; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -169,7 +133,7 @@
 		387D00021421F72600DAE6F4 /* CharmAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmAppDelegate.m; sourceTree = "<group>"; };
 		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
 		387D00051421FB6E00DAE6F4 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
-		38863C5F140E64EB00A8ED76 /* CharmIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharmIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38863C5F140E64EB00A8ED76 /* Charm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -195,41 +159,19 @@
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
-		38863D49140F54AD00A8ED76 /* libhangul.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhangul.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		38863D6A140F559100A8ED76 /* compat-table.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "compat-table.txt"; sourceTree = "<group>"; };
-		38863D6B140F559100A8ED76 /* freq-hanja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "freq-hanja.txt"; sourceTree = "<group>"; };
-		38863D6C140F559100A8ED76 /* freq-hanjaeo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "freq-hanjaeo.txt"; sourceTree = "<group>"; };
-		38863D6D140F559100A8ED76 /* hanja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanja.txt; sourceTree = "<group>"; };
-		38863D72140F559100A8ED76 /* mainpage.dox */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainpage.dox; sourceTree = "<group>"; };
-		38863D75140F559100A8ED76 /* hangul-gettext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hangul-gettext.h"; sourceTree = "<group>"; };
-		38863D76140F559100A8ED76 /* hangul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangul.h; sourceTree = "<group>"; };
-		38863D77140F559100A8ED76 /* hangulctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hangulctype.c; sourceTree = "<group>"; };
-		38863D78140F559100A8ED76 /* hangulinputcontext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hangulinputcontext.c; sourceTree = "<group>"; };
-		38863D79140F559100A8ED76 /* hangulinternals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangulinternals.h; sourceTree = "<group>"; };
-		38863D7A140F559100A8ED76 /* hangulkeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hangulkeyboard.h; sourceTree = "<group>"; };
-		38863D7B140F559100A8ED76 /* hanja.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hanja.c; sourceTree = "<group>"; };
-		38863D7C140F559100A8ED76 /* hanjacompatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hanjacompatible.h; sourceTree = "<group>"; };
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
+		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		38162DD2141230700077AA2D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38162DD7141230710077AA2D /* Cocoa.framework in Frameworks */,
-				38162DEA1412313B0077AA2D /* libhangul.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		38162DF0141263270077AA2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
-				38162E0B141264990077AA2D /* Hangul.framework in Frameworks */,
 				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
+				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +181,6 @@
 			files = (
 				38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */,
 				38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */,
-				38162DEC141231EB0077AA2D /* Hangul.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,14 +190,6 @@
 			files = (
 				38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */,
 				38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */,
-				38162DED141231EC0077AA2D /* Hangul.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863D46140F54AD00A8ED76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,31 +203,10 @@
 			name = Composers;
 			sourceTree = "<group>";
 		};
-		38162DD8141230710077AA2D /* Hangul */ = {
-			isa = PBXGroup;
-			children = (
-				38162DE2141230B40077AA2D /* HGCharacter.h */,
-				38162DE3141230B40077AA2D /* HGCharacter.m */,
-				38162DE4141230B40077AA2D /* HGInputContext.h */,
-				38162DE5141230B40077AA2D /* HGInputContext.m */,
-				38162DD9141230710077AA2D /* Supporting Files */,
-			);
-			path = Hangul;
-			sourceTree = "<group>";
-		};
-		38162DD9141230710077AA2D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38162DDA141230710077AA2D /* Info.plist */,
-				38162DDB141230710077AA2D /* InfoPlist.strings */,
-				38162DDE141230710077AA2D /* Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		38162DF6141263270077AA2D /* GureumKIM */ = {
 			isa = PBXGroup;
 			children = (
+				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
 				38162E03141263280077AA2D /* GureumAppDelegate.m */,
 				38FA21DF14231BCC00444D67 /* Composers */,
@@ -362,8 +274,6 @@
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
-				38162DD8141230710077AA2D /* Hangul */,
-				38863D4D140F559000A8ED76 /* libhangul */,
 				38162DF6141263270077AA2D /* GureumKIM */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
@@ -373,11 +283,9 @@
 		38863C60140E64EB00A8ED76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38863C5F140E64EB00A8ED76 /* CharmIM.app */,
+				38863C5F140E64EB00A8ED76 /* Charm.app */,
 				38863C80140E64EB00A8ED76 /* CharmIMTests.octest */,
-				38863D49140F54AD00A8ED76 /* libhangul.a */,
-				38162DD6141230700077AA2D /* Hangul.framework */,
-				38162DF3141263270077AA2D /* GureumKIM.app */,
+				38162DF3141263270077AA2D /* Gureum.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -472,56 +380,13 @@
 			name = "OS part";
 			sourceTree = "<group>";
 		};
-		38863D4D140F559000A8ED76 /* libhangul */ = {
+		389A38781423477F00A2ED88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38863D66140F559100A8ED76 /* data */,
-				38863D6F140F559100A8ED76 /* doc */,
-				38863D73140F559100A8ED76 /* hangul */,
+				389A387D1423477F00A2ED88 /* Hangul.framework */,
+				389A387F1423477F00A2ED88 /* libhangul.a */,
 			);
-			path = libhangul;
-			sourceTree = "<group>";
-		};
-		38863D66140F559100A8ED76 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				38863D68140F559100A8ED76 /* hanja */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		38863D68140F559100A8ED76 /* hanja */ = {
-			isa = PBXGroup;
-			children = (
-				38863D6A140F559100A8ED76 /* compat-table.txt */,
-				38863D6B140F559100A8ED76 /* freq-hanja.txt */,
-				38863D6C140F559100A8ED76 /* freq-hanjaeo.txt */,
-				38863D6D140F559100A8ED76 /* hanja.txt */,
-			);
-			path = hanja;
-			sourceTree = "<group>";
-		};
-		38863D6F140F559100A8ED76 /* doc */ = {
-			isa = PBXGroup;
-			children = (
-				38863D72140F559100A8ED76 /* mainpage.dox */,
-			);
-			path = doc;
-			sourceTree = "<group>";
-		};
-		38863D73140F559100A8ED76 /* hangul */ = {
-			isa = PBXGroup;
-			children = (
-				38863D75140F559100A8ED76 /* hangul-gettext.h */,
-				38863D76140F559100A8ED76 /* hangul.h */,
-				38863D77140F559100A8ED76 /* hangulctype.c */,
-				38863D78140F559100A8ED76 /* hangulinputcontext.c */,
-				38863D79140F559100A8ED76 /* hangulinternals.h */,
-				38863D7A140F559100A8ED76 /* hangulkeyboard.h */,
-				38863D7B140F559100A8ED76 /* hanja.c */,
-				38863D7C140F559100A8ED76 /* hanjacompatible.h */,
-			);
-			path = hangul;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		38FA21DF14231BCC00444D67 /* Composers */ = {
@@ -537,50 +402,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		38162DD3141230700077AA2D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38162DE6141230B40077AA2D /* HGCharacter.h in Headers */,
-				38162DE8141230B40077AA2D /* HGInputContext.h in Headers */,
-				38162DEE141261B60077AA2D /* hangul.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863D47140F54AD00A8ED76 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863DBA140F562900A8ED76 /* hangul-gettext.h in Headers */,
-				38863DBB140F562900A8ED76 /* hangul.h in Headers */,
-				38863DBE140F562900A8ED76 /* hangulinternals.h in Headers */,
-				38863DBF140F562900A8ED76 /* hangulkeyboard.h in Headers */,
-				38863DC1140F562900A8ED76 /* hanjacompatible.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		38162DD5141230700077AA2D /* Hangul */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38162DDF141230710077AA2D /* Build configuration list for PBXNativeTarget "Hangul" */;
-			buildPhases = (
-				38162DD1141230700077AA2D /* Sources */,
-				38162DD2141230700077AA2D /* Frameworks */,
-				38162DD3141230700077AA2D /* Headers */,
-				38162DD4141230700077AA2D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Hangul;
-			productName = Hangul;
-			productReference = 38162DD6141230700077AA2D /* Hangul.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		38162DF2141263270077AA2D /* Gureum */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */;
@@ -588,15 +410,16 @@
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
-				38162E1C141274530077AA2D /* CopyFiles */,
+				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 			);
 			name = Gureum;
 			productName = GureumKIM;
-			productReference = 38162DF3141263270077AA2D /* GureumKIM.app */;
+			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
 			productType = "com.apple.product-type.application";
 		};
 		38863C5E140E64EB00A8ED76 /* Charm */ = {
@@ -606,16 +429,14 @@
 				38863C5B140E64EB00A8ED76 /* Sources */,
 				38863C5C140E64EB00A8ED76 /* Frameworks */,
 				38863C5D140E64EB00A8ED76 /* Resources */,
-				38162E43141284FD0077AA2D /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				38863DC7140F57A100A8ED76 /* PBXTargetDependency */,
 			);
 			name = Charm;
 			productName = CharmIM;
-			productReference = 38863C5F140E64EB00A8ED76 /* CharmIM.app */;
+			productReference = 38863C5F140E64EB00A8ED76 /* Charm.app */;
 			productType = "com.apple.product-type.application";
 		};
 		38863C7F140E64EB00A8ED76 /* CharmIMTests */ = {
@@ -630,30 +451,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				38863DC9140F57A800A8ED76 /* PBXTargetDependency */,
-				38863C83140E64EC00A8ED76 /* PBXTargetDependency */,
 			);
 			name = CharmIMTests;
 			productName = CharmIMTests;
 			productReference = 38863C80140E64EB00A8ED76 /* CharmIMTests.octest */;
 			productType = "com.apple.product-type.bundle";
-		};
-		38863D48140F54AD00A8ED76 /* hangul */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38863D4A140F54AD00A8ED76 /* Build configuration list for PBXNativeTarget "hangul" */;
-			buildPhases = (
-				38863D45140F54AD00A8ED76 /* Sources */,
-				38863D46140F54AD00A8ED76 /* Frameworks */,
-				38863D47140F54AD00A8ED76 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = hangul;
-			productName = hangul;
-			productReference = 38863D49140F54AD00A8ED76 /* libhangul.a */;
-			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -674,26 +476,39 @@
 			mainGroup = 38863C4E140E62D100A8ED76;
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 389A38781423477F00A2ED88 /* Products */;
+					ProjectRef = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				38863C5E140E64EB00A8ED76 /* Charm */,
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
-				38162DD5141230700077AA2D /* Hangul */,
-				38863D48140F54AD00A8ED76 /* hangul */,
 				38162DF2141263270077AA2D /* Gureum */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		38162DD4141230700077AA2D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38162DDD141230710077AA2D /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
+/* Begin PBXReferenceProxy section */
+		389A387D1423477F00A2ED88 /* Hangul.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Hangul.framework;
+			remoteRef = 389A387C1423477F00A2ED88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		389A387F1423477F00A2ED88 /* libhangul.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libhangul.a;
+			remoteRef = 389A387E1423477F00A2ED88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
 		38162DF1141263270077AA2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -753,16 +568,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		38162DD1141230700077AA2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38162DE7141230B40077AA2D /* HGCharacter.m in Sources */,
-				38162DE9141230B40077AA2D /* HGInputContext.m in Sources */,
-				38162DEB141231560077AA2D /* ICUtility.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		38162DEF141263270077AA2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -776,6 +581,7 @@
 				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
+				38FA22131423458900444D67 /* ICUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,45 +614,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38863D45140F54AD00A8ED76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863DBC140F562900A8ED76 /* hangulctype.c in Sources */,
-				38863DBD140F562900A8ED76 /* hangulinputcontext.c in Sources */,
-				38863DC0140F562900A8ED76 /* hanja.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		38863C83140E64EC00A8ED76 /* PBXTargetDependency */ = {
+		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 38863C5E140E64EB00A8ED76 /* Charm */;
-			targetProxy = 38863C82140E64EC00A8ED76 /* PBXContainerItemProxy */;
-		};
-		38863DC7140F57A100A8ED76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38863D48140F54AD00A8ED76 /* hangul */;
-			targetProxy = 38863DC6140F57A100A8ED76 /* PBXContainerItemProxy */;
-		};
-		38863DC9140F57A800A8ED76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38863D48140F54AD00A8ED76 /* hangul */;
-			targetProxy = 38863DC8140F57A800A8ED76 /* PBXContainerItemProxy */;
+			name = Hangul;
+			targetProxy = 389A398314234B5600A2ED88 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		38162DDB141230710077AA2D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38162DDC141230710077AA2D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		38162DF9141263280077AA2D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -876,70 +654,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		38162DE0141230710077AA2D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Hangul/Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Hangul/Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		38162DE1141230710077AA2D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Hangul/Prefix.pch;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Hangul/Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
 		38162E09141263280077AA2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/libhangul-objc/build/$(CONFIGURATION)\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -968,6 +689,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/libhangul-objc/build/$(CONFIGURATION)\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -988,10 +710,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					libhangul/hangul,
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Debug;
@@ -1000,10 +719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					libhangul/hangul,
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
@@ -1014,6 +730,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1041,6 +758,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1118,61 +836,9 @@
 			};
 			name = Release;
 		};
-		38863D4B140F54AD00A8ED76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				EXECUTABLE_PREFIX = lib;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "LIBHANGUL_DEFAULT_HANJA_DIC=\\\"$(datadir)/libhangul/hanja/hanja.txt\\\"";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		38863D4C140F54AD00A8ED76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EXECUTABLE_PREFIX = lib;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "LIBHANGUL_DEFAULT_HANJA_DIC=\\\"$(datadir)/libhangul/hanja/hanja.txt\\\"";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		38162DDF141230710077AA2D /* Build configuration list for PBXNativeTarget "Hangul" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38162DE0141230710077AA2D /* Debug */,
-				38162DE1141230710077AA2D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1205,15 +871,6 @@
 			buildConfigurations = (
 				38863C93140E64EC00A8ED76 /* Debug */,
 				38863C94140E64EC00A8ED76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38863D4A140F54AD00A8ED76 /* Build configuration list for PBXNativeTarget "hangul" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38863D4B140F54AD00A8ED76 /* Debug */,
-				38863D4C140F54AD00A8ED76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

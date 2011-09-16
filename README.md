@@ -11,7 +11,7 @@
 또 입력기 전환을 막기 위하여 쿼티 자판을 추가로 내장하고 있어 한글-쿼티 전환을 어떤 입력기보다 빠르게 할 수 있습니다.
 
 #설치
-1. [다운로드 페이지] (https://github.com/youknowone/CharmIM/downloads)에서 가장 높은 버전의 GureumKIM1.x.pkg를 다운받아 실행하고 지시대로 설치합니다. 설치 할 디스크는 바꾸시면 안됩니다.
+1. [다운로드 페이지] (https://github.com/gureum/gureum/downloads)에서 가장 높은 버전의 GureumKIM1.x.pkg를 다운받아 실행하고 지시대로 설치합니다. 설치 할 디스크는 바꾸시면 안됩니다.
 1. 시스템 환경설정 -> 언어 & 텍스트 -> 입력 소스 에 들어가 구름 입력기를 선택합니다.
  * 여기서 입력기가 나타나지 않으면 설치 패키지가 입력기를 올바르게 설치하지 못한 것입니다. 다음 방법으로 수동으로 설치합니다.
    1. 위 다운로드 페이지에서 가장 높은 버전의 GureumKIM1.x.zip을 다운받아 압축을 해제합니다.
@@ -21,4 +21,13 @@
 1. 주 한글 자판을 선택하기 위해 사용할 한글 자판을 수동으로 한번 선택해 줍니다. 다음부터는 Shift+Space 로 자동으로 선택한 자판으로 이동합니다.
 
 #버그 신고
-입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 버그가 재현되는지 확인해 주시고 [이슈 페이지] (https://github.com/youknowone/CharmIM/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
+입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 버그가 재현되는지 확인해 주시고 [이슈 페이지] (https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
+
+# 개발환경 설정
+git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
+
+	git clone git://github.com/gureum/libhangul-objc.git # 클론
+	cd libhangul-objc
+	git submodule init
+	git submodule update
+
