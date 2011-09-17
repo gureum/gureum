@@ -3,7 +3,7 @@
 org.youknowone.inputmethod.GureumKIM.qwerty = "로마자 쿼티";
 org.youknowone.inputmethod.GureumKIM.dvorak = "로마자 드보락";
 org.youknowone.inputmethod.GureumKIM.dvorakq = "로마자 드보락 - 쿼티 ⌘";
-org.youknowone.inputmethod.GureumKIM.han2 = "한글 두벌식 (KS X 5002)";
+org.youknowone.inputmethod.GureumKIM.han2 = "한글 두벌식";
 org.youknowone.inputmethod.GureumKIM.han2classic = "한글 두벌식 옛글";
 org.youknowone.inputmethod.GureumKIM.han3final = "한글 세벌식 최종";
 org.youknowone.inputmethod.GureumKIM.han390 = "한글 세벌식 390";
