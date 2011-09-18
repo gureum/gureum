@@ -23,11 +23,3 @@
 #버그 신고
 입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 버그가 재현되는지 확인해 주시고 [이슈 페이지] (https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
 
-# 개발환경 설정
-git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
-
-	git clone git://github.com/gureum/gureum.git # 클론
-	cd gureum
-	git submodule init # submodule 설정
-	git submodule update # submodule 받아오기
-
