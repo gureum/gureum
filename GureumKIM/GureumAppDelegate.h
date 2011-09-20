@@ -15,3 +15,5 @@
 }
 
 @end
+
+#define CIMSharedConfiguration CIMAppDelegate.sharedInputManager.configuration

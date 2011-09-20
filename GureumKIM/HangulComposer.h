@@ -6,6 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+#import <Hangul/HGCharacter.h>
 #import "CIMComposer.h"
 @class HGInputContext;
 
@@ -21,6 +22,8 @@
     HGInputContext *inputContext;
     NSString *composedString;
     NSMutableString *commitString;
+    
+    HGUCSChar buffer[64]; // hangulinputcontext.c 
 }
 @property(nonatomic, readonly) HGInputContext *inputContext;
 

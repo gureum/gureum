@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #define CIMConfigurationStringItemCount 1
+/* Gureum */
 ICEXTERN NSString *kCIMLastHangulInputMode;
 
-#define CIMConfigurationIntegerItemCount 2
+#define CIMConfigurationIntegerItemCount 4
+/* Gureum */
 ICEXTERN NSString *kCIMInputModeExchangeKeyModifier;
 ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
+/* Hangul */
+ICEXTERN NSString *kCIMHangulCombinationModeComposing;
+ICEXTERN NSString *kCIMHangulCombinationModeCommiting;
 
 #define CIMConfigurationBoolItemCount 1
+/* Common */
 ICEXTERN NSString *kCIMSharedInputManager;
 
 
@@ -43,6 +49,7 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
 @public
     NSString *lastHangulInputMode;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
+    NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;

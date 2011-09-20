@@ -8,8 +8,8 @@
 
 #import "GureumComposer.h"
 
-#import "CIMApplicationDelegate.h"
 #import "CIMConfiguration.h"
+#import "GureumAppDelegate.h"
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.GureumKIM.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.GureumKIM.dvorak";
@@ -27,8 +27,6 @@ NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod
 NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
 
 #import "HangulComposer.h"
-
-#define CIMSharedConfiguration CIMAppDelegate.sharedInputManager.configuration
 
 @implementation GureumComposer
 
@@ -75,6 +73,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         self.delegate = self->romanComposer;
     } else {
         self.delegate = self->hangulComposer;
+        // 단축키 지원을 위해 마지막 자판을 기억
         [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
         CIMConfigurationSetObjectForField(CIMSharedConfiguration, newInputMode, lastHangulInputMode);
         [CIMSharedConfiguration saveConfigurationForStringField:&CIMSharedConfiguration->lastHangulInputMode];
