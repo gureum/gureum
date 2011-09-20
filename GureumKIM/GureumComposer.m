@@ -88,7 +88,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 -(BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // TODO: hardcoded shortcut handling -> input handler로 옮기자!
     if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|CIMSharedConfiguration->inputModeExchangeKeyModifier) && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-        ICLog(TRUE, @"***** Keyboard Changed %@ *****");
+        ICLog(TRUE, @"***** Keyboard Changed *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self->delegate cancelComposition];
         if (self->delegate == self->romanComposer) {
