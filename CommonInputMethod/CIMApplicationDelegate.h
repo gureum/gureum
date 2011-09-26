@@ -23,6 +23,8 @@
     입력 소스 별로 사용할 합성기를 만들어 반환한다.
 */
 - (CIMComposer *)composerWithServer:(IMKServer *)server client:(id)client;
+//! @brief  언어 설정에 추가될 메뉴
+@property(nonatomic, readonly) NSMenu *menu;
 
 @end
 

@@ -11,7 +11,10 @@
 #import "CIMInputManager.h"
 #import "GureumComposer.h"
 
+#import "GureumPreferencesWindowController.h"
+
 @implementation GureumAppDelegate
+@synthesize menu;
 
 - (void)awakeFromNib {
     self->sharedInputManager = [[CIMInputManager alloc] init];
@@ -31,4 +34,5 @@
     CIMComposer *composer = [[GureumComposer alloc] init];
     return [composer autorelease];                         
 }
+
 @end

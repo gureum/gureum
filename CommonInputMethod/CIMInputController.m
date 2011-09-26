@@ -191,3 +191,11 @@
 }
 
 @end
+
+@implementation CIMInputController (IMKCustomCommands)
+
+- (NSMenu *)menu {
+    return [CIMAppDelegate menu];
+}
+
+@end

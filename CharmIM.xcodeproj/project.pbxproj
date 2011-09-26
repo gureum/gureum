@@ -23,6 +23,7 @@
 		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
+		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
 		38475AF71412BC050062100D /* han3.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEF1412BC050062100D /* han3.png */; };
@@ -53,6 +54,9 @@
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; };
+		38AAA84714303A480061DFDD /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
+		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
 		38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
@@ -62,6 +66,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		380B909414303838001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 939837800DA42965007F53F3;
+			remoteInfo = "ShortcutRecorder.framework - with embedded ibplugin";
+		};
+		380B909614303838001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 939838A50DA4300F007F53F3;
+			remoteInfo = "ShortcutRecorder.ibplugin - for embedding in framework";
+		};
+		380B909814303838001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
+			remoteInfo = ShortcutRecorderFramework_Tester;
+		};
+		380B909A14303838001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 342E00CF109CCBF5009AD8CA;
+			remoteInfo = "ShortcutRecorder.ibplugin - standalone";
+		};
+		380B909C14303838001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 342E0104109CCC36009AD8CA;
+			remoteInfo = "ShortcutRecorder.framework - for embedding in ibplugin";
+		};
+		380B909E143038AB001D7550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
+			remoteInfo = "ShortcutRecorder.framework - with embedded ibplugin";
+		};
 		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
@@ -103,6 +149,7 @@
 		3802E45D141380BF00256B54 /* han2classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2classic.png; path = Icons/han2classic.png; sourceTree = "<group>"; };
 		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
 		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
+		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
@@ -117,6 +164,9 @@
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
+		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
+		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
 		38475AEC14129BC10062100D /* Gureum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gureum.png; path = Icons/Gureum.png; sourceTree = "<group>"; };
 		38475AEE1412BC050062100D /* han2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2.png; path = Icons/han2.png; sourceTree = "<group>"; };
 		38475AEF1412BC050062100D /* han3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3.png; path = Icons/han3.png; sourceTree = "<group>"; };
@@ -159,6 +209,7 @@
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
+		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
@@ -172,6 +223,7 @@
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
+				38AAA84714303A480061DFDD /* ShortcutRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +248,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		380B908814303836001D7550 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				380B909514303838001D7550 /* ShortcutRecorder.framework */,
+				380B909714303838001D7550 /* ShortcutRecorder.ibplugin */,
+				380B909914303838001D7550 /* ShortcutRecorder.app */,
+				380B909B14303838001D7550 /* ShortcutRecorder.ibplugin */,
+				380B909D14303838001D7550 /* ShortcutRecorder.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		38162DD0141124DF0077AA2D /* Composers */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +274,7 @@
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
 				38162E03141263280077AA2D /* GureumAppDelegate.m */,
 				38FA21DF14231BCC00444D67 /* Composers */,
+				383EF60B142B287F00013C0B /* Graphic Interface */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 			);
@@ -225,6 +290,17 @@
 				38162E4914128A740077AA2D /* MainMenu.xib */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		383EF60B142B287F00013C0B /* Graphic Interface */ = {
+			isa = PBXGroup;
+			children = (
+				383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */,
+				383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */,
+				383EF60C142B28B600013C0B /* preferences.xib */,
+				380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */,
+			);
+			name = "Graphic Interface";
 			sourceTree = "<group>";
 		};
 		38475AEB14129BAA0062100D /* Icons */ = {
@@ -243,6 +319,7 @@
 				38475AF31412BC050062100D /* han390s.png */,
 				38475AF41412BC050062100D /* hanroman.png */,
 				38475AF51412BC050062100D /* qwerty.png */,
+				38F220A3142C79710064FAC3 /* libhangul_logo.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -415,6 +492,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				380B909F143038AB001D7550 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 			);
 			name = Gureum;
@@ -481,6 +559,10 @@
 					ProductGroup = 389A38781423477F00A2ED88 /* Products */;
 					ProjectRef = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
 				},
+				{
+					ProductGroup = 380B908814303836001D7550 /* Products */;
+					ProjectRef = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -492,6 +574,41 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		380B909514303838001D7550 /* ShortcutRecorder.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShortcutRecorder.framework;
+			remoteRef = 380B909414303838001D7550 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		380B909714303838001D7550 /* ShortcutRecorder.ibplugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ShortcutRecorder.ibplugin;
+			remoteRef = 380B909614303838001D7550 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		380B909914303838001D7550 /* ShortcutRecorder.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ShortcutRecorder.app;
+			remoteRef = 380B909814303838001D7550 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		380B909B14303838001D7550 /* ShortcutRecorder.ibplugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ShortcutRecorder.ibplugin;
+			remoteRef = 380B909A14303838001D7550 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		380B909D14303838001D7550 /* ShortcutRecorder.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShortcutRecorder.framework;
+			remoteRef = 380B909C14303838001D7550 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		389A387D1423477F00A2ED88 /* Hangul.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -528,6 +645,8 @@
 				38475B011412C0640062100D /* Gureum.icns in Resources */,
 				38475B031412C3AA0062100D /* han3noshift.png in Resources */,
 				3802E45E141380BF00256B54 /* han2classic.png in Resources */,
+				383EF60D142B28B600013C0B /* preferences.xib in Resources */,
+				38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +701,7 @@
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				38FA22131423458900444D67 /* ICUtility.m in Sources */,
+				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +737,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		380B909F143038AB001D7550 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShortcutRecorder.framework - with embedded ibplugin";
+			targetProxy = 380B909E143038AB001D7550 /* PBXContainerItemProxy */;
+		};
 		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Hangul;

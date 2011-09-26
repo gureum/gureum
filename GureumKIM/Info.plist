@@ -20,8 +20,6 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.1</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2011 Jeong YunWon</string>
 	<key>ComponentInputModeDict</key>
 	<dict>
 		<key>tsInputModeListKey</key>
@@ -255,16 +253,18 @@
 	<string>CIMInputController</string>
 	<key>InputMethodServerDelegateClass</key>
 	<string>CIMInputController</string>
+	<key>InputMethodServerPreferencesWindowControllerClass</key>
+	<string>GureumPreferencesWindowController</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2011 Jeong YunWon</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2011 Jeong YunWon</string>
 	<key>TISIntendedLanguage</key>
 	<string>ko</string>
 	<key>tsInputMethodCharacterRepertoireKey</key>
