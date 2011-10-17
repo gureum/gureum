@@ -40,8 +40,22 @@
 
 #pragma - CIMInputControllerDelegate
 
+enum {
+    KeyCodeLeftArrow = 123,
+    KeyCodeRightArrow = 124,
+    KeyCodeDownArrow = 125,
+    KeyCodeUpArrow = 126
+};
+
 // IMKServerInput 프로토콜에 대한 공용 핸들러
 - (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    // 화살표 키가 입력으로 들어오면 강제 커밋
+    if (KeyCodeLeftArrow <= keyCode && keyCode <= KeyCodeUpArrow) {
+        [self commitComposition:sender];
+        ICLog(DEBUG_INPUTCONTROLLER, @"!! Commit composition on arrow keys");
+        return NO;
+    }
+    
     BOOL handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     if (!handled) {
         // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
