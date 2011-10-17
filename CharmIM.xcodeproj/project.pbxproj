@@ -23,6 +23,7 @@
 		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
+		3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
 		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
@@ -139,6 +140,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
+				3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +543,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = youknowone.org;
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */;
@@ -797,6 +800,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_PLUGIN_SEARCH_PATHS = "shortcutrecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
@@ -822,6 +826,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_PLUGIN_SEARCH_PATHS = "shortcutrecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;

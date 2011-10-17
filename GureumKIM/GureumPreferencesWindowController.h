@@ -8,12 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SRRecorderCell;
 
-@interface GureumPreferencesWindowController : NSWindowController<NSToolbarDelegate> {
+@interface GureumPreferencesWindowController : NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSComboBoxDataSource> {
 @private
-    IBOutlet NSTabView *contentTabView;
+    IBOutlet NSView *preferenceContainerView;
+    IBOutlet NSView *commonButtonsView;
+    IBOutlet NSView *gureumPreferenceView, *hangulPreferenceView;
+    NSDictionary *preferenceViews;
+    BOOL cancel;
+    
+    /* Gureum Preferences */
+    IBOutlet SRRecorderCell *inputModeExchangeKeyRecorderCell;
+    IBOutlet NSButton *autosaveDefaultInputModeCheckbox;
+    IBOutlet NSComboBox *defaultHangulInputModeComboBox;
+ 
+    /* Hangul Preferences */
+    IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
+    IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
 }
 
-- (IBAction)selectTab:(id)sender;
+- (IBAction)saveToConfiguration:(id)sender;
+- (IBAction)selectPreferenceItem:(id)sender;
+- (IBAction)cancelAndClose:(id)sender;
 
 @end

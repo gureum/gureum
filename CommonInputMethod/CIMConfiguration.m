@@ -16,9 +16,17 @@ NSString * kCIMHangulCombinationModeComposing = @"CIMHangulCombinationModeCompos
 NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommiting";
 
 NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
+NSString * kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
+
+CIMConfiguration *CIMDefaultUserConfiguration;
 
 @implementation CIMConfiguration
 @synthesize  userDefaults;
+
++ (void)initialize {
+    [super initialize];
+    CIMDefaultUserConfiguration = [[self alloc] initWithUserDefaults:[NSUserDefaults standardUserDefaults]];
+}
 
 - (id)init {
     return [self initWithUserDefaults:[NSUserDefaults standardUserDefaults]];
@@ -49,6 +57,7 @@ NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
         }
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
             { kCIMSharedInputManager, &self->sharedInputManager, NO },
+            { kCIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
             self->boolItems[i] = tempBoolItems[i];
@@ -75,6 +84,7 @@ NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
 
 - (void)loadAllConfigurations {
     if (self->userDefaults == nil) return;
+    [self->userDefaults synchronize];
     for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         id object = [self->userDefaults objectForKey:item.name];
@@ -125,6 +135,10 @@ NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
         [self->userDefaults setObject:*pField forKey:configurationKey];
         [self->originConfigurations setObject:*pField forKey:configurationKey];
     }
+}
+
++ (CIMConfiguration *)userDefaultConfiguration {
+    return CIMDefaultUserConfiguration;
 }
 
 @end
