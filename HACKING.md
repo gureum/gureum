@@ -7,7 +7,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 	git submodule init # submodule 설정
 	git submodule update # submodule 받아오기
 
-	cd gureum/libhangul-objc
+	cd libhangul-objc
 	git submodule init
 	git submodule update
 
@@ -24,6 +24,7 @@ Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 �
 
 # 커밋하기 전에
 입력기의 동작을 고치셨다면, 최소한 다음의 프로그램에서 입력기가 정상적으로 동작하는지 확인해 주면 좋습니다.
+
 * TextEdit.app : 아주 일반적인 맥의 입력환경입니다.
 * Terminal.app : 한글 조합에 관한 이벤트 발생이 다른 프로그램과 조금 다릅니다. 예를 들어 한글 입력 중에는 리턴 키를 입력하더라도 조합만 해제됩니다.
 * 네이트온 대화창 : 리턴 키 입력 시 키코드 이벤트를 발생시키지 않습니다. 대신 -cancelComposition: 이벤트를 발생시킵니다.
