@@ -28,7 +28,7 @@
         self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:[mainBundle bundleIdentifier]];
         self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
         self->handler = [[CIMInputHandler alloc] initWithManager:self];
-        self->configuration = [[CIMConfiguration alloc] init];
+        self->configuration = [CIMConfiguration userDefaultConfiguration];
         self->sharedComposer = [CIMAppDelegate composerWithServer:nil client:nil];
         ICLog(DEBUG_INPUTMANAGER, @"\tserver: %@ / candidates: %@ / handler: %@", self->server, self->candidates, self->handler);
        

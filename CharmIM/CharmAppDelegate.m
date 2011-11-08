@@ -12,6 +12,7 @@
 #import "CIMComposer.h"
 
 @implementation CharmAppDelegate
+@synthesize menu;
 
 - (CIMInputManager *)sharedInputManager {
     return self->sharedInputManager;

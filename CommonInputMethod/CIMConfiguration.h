@@ -20,9 +20,11 @@ ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
 ICEXTERN NSString *kCIMHangulCombinationModeComposing;
 ICEXTERN NSString *kCIMHangulCombinationModeCommiting;
 
-#define CIMConfigurationBoolItemCount 1
+#define CIMConfigurationBoolItemCount 2
 /* Common */
 ICEXTERN NSString *kCIMSharedInputManager;
+/* Gureum */
+ICEXTERN NSString *kCIMAutosaveDefaultInputMode;
 
 
 #define defCIMConfigurationItem(NAME, TYPE) struct NAME { NSString *name; TYPE *pConfiguration; TYPE defaultValue; }
@@ -34,6 +36,10 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
 #undef defCIMConfigurationItem
 
 #define CIMConfigurationSetObjectForField(CONF, OBJ, FIELD)   { [CONF->FIELD autorelease]; CONF->FIELD = [OBJ retain]; }
+
+@class CIMConfiguration;
+
+extern CIMConfiguration *CIMDefaultUserConfiguration;
 
 /*!
     @brief  NSUserDefaults 에 설정을 저장하고 가져온다.
@@ -51,6 +57,7 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
     NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;
+    BOOL autosaveDefaultInputMode;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;
 
@@ -59,5 +66,7 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
 - (void)saveAllConfigurations;
 - (void)loadAllConfigurations;
 - (void)saveConfigurationForStringField:(NSString **)pField;
+
++ (CIMConfiguration *)userDefaultConfiguration;
 
 @end
