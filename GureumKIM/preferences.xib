@@ -325,7 +325,6 @@
 						<string key="NSFrame">{{183, 16}, {163, 26}}</string>
 						<reference key="NSSuperview" ref="906330275"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSComboBoxCell" key="NSCell" id="187262214">
 							<int key="NSCellFlags">343014976</int>
@@ -551,7 +550,6 @@
 						<string key="NSFrame">{{127, 16}, {163, 26}}</string>
 						<reference key="NSSuperview" ref="518127350"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSComboBoxCell" key="NSCell" id="85519857">
 							<int key="NSCellFlags">343014976</int>
@@ -575,7 +573,7 @@
 							<object class="NSComboTableView" key="NSTableView" id="73346548">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{13, 21}</string>
+								<string key="NSFrameSize">{13, 105}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
 								<bool key="NSEnabled">YES</bool>
@@ -676,7 +674,7 @@
 							<object class="NSComboTableView" key="NSTableView" id="351645119">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{13, 21}</string>
+								<string key="NSFrameSize">{13, 105}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
 								<bool key="NSEnabled">YES</bool>
