@@ -1,0 +1,5 @@
+"HangulPresentationRemoveFilters" = "필터 문자 제거";
+"HangulPresentationAllFilters" = "필터 문자 보임";
+"HangulPresentationRemoveNonJungseongFilter" = "중성 필터만 보임";
+"HangulPresentationHideFromFilter" = "필터부터 숨김";
+"HangulPresentationHideFromJungseongFilter" = "중성 필터부터 숨김";
