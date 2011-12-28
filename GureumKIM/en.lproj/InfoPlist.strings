@@ -10,6 +10,7 @@ org.youknowone.inputmethod.GureumKIM.han390 = "Hangeul 3set 390";
 org.youknowone.inputmethod.GureumKIM.han3noshift = "Hangeul 3set No shift";
 org.youknowone.inputmethod.GureumKIM.han3classic = "Hangeul 3set Classic";
 org.youknowone.inputmethod.GureumKIM.han3layout2 = "Hangeul 3set Layout 2set (For Testing)";
+org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "Hangeul 3set Final No shift (Compatible)";
 org.youknowone.inputmethod.GureumKIM.hanroman = "Hangeul Roman";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "Hangeul Ahnmatae";
 

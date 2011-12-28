@@ -10,6 +10,7 @@ org.youknowone.inputmethod.GureumKIM.han390 = "한글 세벌식 390";
 org.youknowone.inputmethod.GureumKIM.han3noshift = "한글 세벌식 순아래";
 org.youknowone.inputmethod.GureumKIM.han3classic = "한글 세벌식 옛글";
 org.youknowone.inputmethod.GureumKIM.han3layout2 = "한글 세벌식 두벌식 배치 (시험용)";
+org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "한글 세벌식 최종 순아래 (호환)";
 org.youknowone.inputmethod.GureumKIM.hanroman = "한글 로마자";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "한글 안마태";
 
