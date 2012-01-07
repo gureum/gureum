@@ -38,7 +38,7 @@
 			<object class="NSCustomObject" id="976324537">
 				<string key="NSClassName">GureumAppDelegate</string>
 			</object>
-			<object class="NSCustomObject" id="865139680">
+			<object class="NSCustomObject" id="1057767415">
 				<string key="NSClassName">CIMInputController</string>
 			</object>
 			<object class="NSMenu" id="1016542318">
@@ -61,21 +61,21 @@
 					</object>
 					<object class="NSMenuItem" id="882102354">
 						<reference key="NSMenu" ref="1016542318"/>
-						<string key="NSTitle">구름 입력기 환경설정...</string>
+						<string key="NSTitle">환경설정...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="498274201">
+					<object class="NSMenuItem" id="46152371">
 						<reference key="NSMenu" ref="1016542318"/>
-						<string key="NSTitle">구름 입력기 업데이트 확인</string>
+						<string key="NSTitle">업데이트 확인</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="241200045">
+					<object class="NSMenuItem" id="1070457865">
 						<reference key="NSMenu" ref="1016542318"/>
 						<bool key="NSIsDisabled">YES</bool>
 						<bool key="NSIsSeparator">YES</bool>
@@ -85,15 +85,15 @@
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="692609036">
+					<object class="NSMenuItem" id="674549313">
 						<reference key="NSMenu" ref="1016542318"/>
-						<string key="NSTitle">구름 입력기 웹사이트...</string>
+						<string key="NSTitle">웹사이트...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="900636697">
+					<object class="NSMenuItem" id="620920069">
 						<reference key="NSMenu" ref="1016542318"/>
 						<string key="NSTitle">  도움말...</string>
 						<string key="NSKeyEquiv"/>
@@ -101,7 +101,7 @@
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="998727344">
+					<object class="NSMenuItem" id="1022256877">
 						<reference key="NSMenu" ref="1016542318"/>
 						<string key="NSTitle">  버그 알리기...</string>
 						<string key="NSKeyEquiv"/>
@@ -109,7 +109,7 @@
 						<reference key="NSOnImage" ref="374891954"/>
 						<reference key="NSMixedImage" ref="989578955"/>
 					</object>
-					<object class="NSMenuItem" id="589305681">
+					<object class="NSMenuItem" id="520540144">
 						<reference key="NSMenu" ref="1016542318"/>
 						<string key="NSTitle">  소스 코드...</string>
 						<string key="NSKeyEquiv"/>
@@ -142,7 +142,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
-						<reference key="source" ref="865139680"/>
+						<reference key="source" ref="1057767415"/>
 						<reference key="destination" ref="882102354"/>
 					</object>
 					<int key="connectionID">551</int>
@@ -150,7 +150,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showStandardAboutPanel:</string>
-						<reference key="source" ref="865139680"/>
+						<reference key="source" ref="1057767415"/>
 						<reference key="destination" ref="1062660304"/>
 					</object>
 					<int key="connectionID">552</int>
@@ -158,40 +158,40 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">checkRecentVersion:</string>
-						<reference key="source" ref="865139680"/>
-						<reference key="destination" ref="498274201"/>
+						<reference key="source" ref="1057767415"/>
+						<reference key="destination" ref="46152371"/>
 					</object>
 					<int key="connectionID">566</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openWebsite:</string>
-						<reference key="source" ref="865139680"/>
-						<reference key="destination" ref="692609036"/>
+						<reference key="source" ref="1057767415"/>
+						<reference key="destination" ref="674549313"/>
 					</object>
 					<int key="connectionID">567</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openWebsiteHelp:</string>
-						<reference key="source" ref="865139680"/>
-						<reference key="destination" ref="900636697"/>
+						<reference key="source" ref="1057767415"/>
+						<reference key="destination" ref="620920069"/>
 					</object>
 					<int key="connectionID">568</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openWebsiteIssues:</string>
-						<reference key="source" ref="865139680"/>
-						<reference key="destination" ref="998727344"/>
+						<reference key="source" ref="1057767415"/>
+						<reference key="destination" ref="1022256877"/>
 					</object>
 					<int key="connectionID">569</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openWebsiteSource:</string>
-						<reference key="source" ref="865139680"/>
-						<reference key="destination" ref="589305681"/>
+						<reference key="source" ref="1057767415"/>
+						<reference key="destination" ref="520540144"/>
 					</object>
 					<int key="connectionID">570</int>
 				</object>
@@ -237,12 +237,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1062660304"/>
 							<reference ref="882102354"/>
-							<reference ref="692609036"/>
-							<reference ref="900636697"/>
-							<reference ref="498274201"/>
-							<reference ref="241200045"/>
-							<reference ref="589305681"/>
-							<reference ref="998727344"/>
+							<reference ref="674549313"/>
+							<reference ref="620920069"/>
+							<reference ref="46152371"/>
+							<reference ref="1070457865"/>
+							<reference ref="520540144"/>
+							<reference ref="1022256877"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -258,37 +258,37 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">550</int>
-						<reference key="object" ref="865139680"/>
+						<reference key="object" ref="1057767415"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">553</int>
-						<reference key="object" ref="900636697"/>
+						<reference key="object" ref="620920069"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">555</int>
-						<reference key="object" ref="692609036"/>
+						<reference key="object" ref="674549313"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">557</int>
-						<reference key="object" ref="498274201"/>
+						<reference key="object" ref="46152371"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">561</int>
-						<reference key="object" ref="241200045"/>
+						<reference key="object" ref="1070457865"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">562</int>
-						<reference key="object" ref="589305681"/>
+						<reference key="object" ref="520540144"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">564</int>
-						<reference key="object" ref="998727344"/>
+						<reference key="object" ref="1022256877"/>
 						<reference key="parent" ref="1016542318"/>
 					</object>
 				</object>
