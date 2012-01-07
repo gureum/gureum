@@ -10,6 +10,7 @@
 		3802E45E141380BF00256B54 /* han2classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3802E45D141380BF00256B54 /* han2classic.png */; };
 		3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
+		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; };
 		38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
@@ -153,6 +154,8 @@
 		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
 		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
 		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
+		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
+		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
 		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
+				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
+				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
 				38162E03141263280077AA2D /* GureumAppDelegate.m */,
 				38FA21DF14231BCC00444D67 /* Composers */,
@@ -709,6 +714,7 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				38FA22131423458900444D67 /* ICUtility.m in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
+				380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
