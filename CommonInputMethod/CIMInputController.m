@@ -22,44 +22,43 @@
 #define CIMSharedInputManager CIMAppDelegate.sharedInputManager
 
 @implementation CIMInputController
+@synthesize composer=_composer, inputClient=_inputClient;
 
 - (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
     self = [super initWithServer:server delegate:delegate client:inputClient];
     if (self != nil) {
         ICLog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
         if (!CIMSharedInputManager.configuration->sharedInputManager) {
-            self->composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
+            self->_composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
         }
+        _inputClient = inputClient;
     }
     return self;
 }
 
 - (CIMComposer *)composer {
-    return self->composer ? self->composer : CIMSharedInputManager.sharedComposer;
+    return self->_composer ? self->_composer : CIMSharedInputManager.sharedComposer;
 }
 
 #pragma - CIMInputControllerDelegate
 
-enum {
-    KeyCodeLeftArrow = 123,
-    KeyCodeRightArrow = 124,
-    KeyCodeDownArrow = 125,
-    KeyCodeUpArrow = 126
-};
-
 // IMKServerInput 프로토콜에 대한 공용 핸들러
-- (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    // 화살표 키가 입력으로 들어오면 강제 커밋
-    if (KeyCodeLeftArrow <= keyCode && keyCode <= KeyCodeUpArrow) {
-        [self commitComposition:sender];
-        ICLog(DEBUG_INPUTCONTROLLER, @"!! Commit composition on arrow keys");
-        return NO;
-    }
-    
-    BOOL handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
-    if (!handled) {
-        // 한글 입력기가 처리하지 않는 문자는 한글 조합을 종료
-        [self cancelComposition];
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {  
+    CIMInputTextProcessResult handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    switch (handled) {
+        case CIMInputTextProcessResultNotProcessed:
+        case CIMInputTextProcessResultProcessed:
+            break;
+        case CIMInputTextProcessResultNotProcessedAndNeedsCancel:
+            [self cancelComposition];
+            break;
+        case CIMInputTextProcessResultNotProcessedAndNeedsCommit:
+            [self commitComposition:sender];
+            return handled;
+        default:
+            ICLog(TRUE, @"WRONG RESULT: %d", handled);
+            ICAssert(NO);
+            break;
     }
     
     CIMSharedInputManager.inputting = YES;
@@ -67,7 +66,7 @@ enum {
     [self updateComposition]; // 조합 중인 문자 반영 
     CIMSharedInputManager.inputting = NO;
     ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handling ***");
-    return handled; 
+    return handled;
 }
 
 @end
@@ -82,7 +81,7 @@ enum {
 {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
     
-    return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender];
+    return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
 }
 
 @end
@@ -97,7 +96,7 @@ enum {
         return NO;
     }
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-    return [self inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender];
+    return [self inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
 }
 
 @end
@@ -125,7 +124,7 @@ enum {
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
     if (!CIMSharedInputManager.inputting) {
-        // 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
+        // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
         ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
         [self cancelComposition];
     }
@@ -155,7 +154,7 @@ enum {
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
     NSString *string = self.composer.composedString;
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: %@", sender, string);
+    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
     return string;
 }
 
@@ -163,6 +162,23 @@ enum {
     ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
     return [[[NSAttributedString alloc] initWithString:[self.composer originalString]] autorelease];
 }
+
+- (NSArray *)candidates:(id)sender {
+    return self.composer.candidates;
+}
+
+- (void)candidateSelected:(NSAttributedString *)candidateString {
+    CIMSharedInputManager.inputting = YES;
+    [self.composer candidateSelected:candidateString];
+    [self commitComposition:self.inputClient];
+    CIMSharedInputManager.inputting = NO;
+}
+
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
+    [self.composer candidateSelectionChanged:candidateString];
+    [self updateComposition];
+}
+
 @end
 
 @implementation CIMInputController (IMKStateSetting)
@@ -210,6 +226,18 @@ enum {
 
 - (NSMenu *)menu {
     return [CIMAppDelegate menu];
+}
+
+@end
+
+@implementation CIMInputController (CIMMenu)
+
+- (void)showStandardAboutPanel:(id)sender {
+    [NSApp orderFrontStandardAboutPanel:sender];
+}
+
+- (void)showPreferences:(id)sender {
+    [super showPreferences:sender];
 }
 
 @end

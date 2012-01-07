@@ -14,6 +14,12 @@
 
 
 @protocol CIMComposerDelegate<CIMInputTextDelegate>
+
+@optional
+//! @brief  입력기가 선택 됨
+- (void)composerSelected:(id)sender;
+
+@required
 //! @brief  합성 중인 문자로 보여줄 문자열
 @property(nonatomic, readonly) NSString *composedString;
 //! @brief  합성을 취소하면 사용할 문자열
@@ -26,7 +32,17 @@
 - (void)cancelComposition;
 //! @brief  조합 문맥 초기화
 - (void)clearContext;
+
+//! @brief  변환 후보 문자열 존재 여부
+@property(nonatomic, readonly) BOOL hasCandidates;
+
 @optional
+//! @brief  변환 후보 문자열 리스트
+@property(nonatomic, readonly) NSArray *candidates;
+//! @brief  변환 후보 문자열 선택
+- (void)candidateSelected:(NSAttributedString *)candidateString;
+//! @brief  변환 후보 문자열 변경
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString;
 
 @end
 
@@ -38,9 +54,6 @@
 @interface CIMComposer : NSObject<CIMComposerDelegate> {
 @protected
     CIMInputManager *manager;
-    id<CIMComposerDelegate> delegate;
-    
-    NSString *inputMode;
 }
 @property(nonatomic, retain) id<CIMComposerDelegate> delegate;
 @property(nonatomic, retain) NSString *inputMode;

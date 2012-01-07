@@ -32,13 +32,31 @@
 
 #pragma - IMKServerInputTextData
 
-- (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {   
-    if (flags & NSCommandKeyMask) {
-        // 특정 애플리케이션에서 커맨드 키 입력을 선점하지 못하는 문제를 회피한다.
-        ICLog(TRUE, @"-- CIMInputHandler -inputText: Command key input / returned NO");
-        return NO;
+enum {
+    KeyCodeLeftArrow = 123,
+    KeyCodeRightArrow = 124,
+    KeyCodeDownArrow = 125,
+    KeyCodeUpArrow = 126
+};
+
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    // 화살표 키가 입력으로 들어오면 강제 커밋
+    if (KeyCodeLeftArrow <= keyCode && keyCode <= KeyCodeUpArrow) {
+        ICLog(DEBUG_INPUTHANDLER, @"!! Commit composition on arrow keys");
+        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
-    return [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    // 특정 애플리케이션에서 커맨드 키 입력을 선점하지 못하는 문제를 회피한다.
+    if (flags & NSCommandKeyMask) {
+        ICLog(TRUE, @"-- CIMInputHandler -inputText: Command key input / returned NO");
+        return CIMInputTextProcessResultNotProcessed;
+    }
+    CIMInputTextProcessResult result = [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    if (controller.composer.hasCandidates) {
+        IMKCandidates *candidates = self.manager.candidates;
+        [candidates updateCandidates];
+        [candidates show:kIMKLocateCandidatesLeftHint];
+    }
+    return result;
 }
 
 @end
