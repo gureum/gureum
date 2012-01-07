@@ -6,7 +6,8 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import <Hangul/Hangul.h>
+#import <Hangul/HGCharacter.h>
+#import <Hangul/HGHanja.h>
 #import "CIMComposer.h"
 @class HGInputContext;
 
@@ -18,9 +19,8 @@
     @coclass HGInputContext
 */
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
-@private
-    NSString *composedString;
-    NSMutableString *commitString;
+    HGInputContext *_inputContext;
+    NSMutableString *_commitString;
 
     HGUCSChar buffer[64]; // hangulinputcontext.c 
 }
@@ -40,10 +40,12 @@
 @end
 
 @interface HanjaComposer : CIMComposer {
-@private
+    HGHanjaList *_hanjaCandidates;
     NSMutableString *bufferedString;
     NSString *composedString;
     NSString *commitString;
+    
+    BOOL _mode;
 }
 
 - (void)updateHanjaCandidates;

@@ -45,6 +45,7 @@ NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.Gu
 
 - (void)dealloc
 {
+    self.inputMode = nil;
     [self->romanComposer release];
     [self->hangulComposer release];
     [self->hanjaComposer release];
@@ -68,8 +69,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (void)setInputMode:(NSString *)newInputMode {
-    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: with input mode: %@", newInputMode);
-    if ([self.inputMode isEqualToString:newInputMode]) return;
+    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
+    if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
     
     NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
     if ([keyboardIdentifier length] == 0) {

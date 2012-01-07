@@ -52,6 +52,8 @@
     @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
 */
 @interface CIMComposer : NSObject<CIMComposerDelegate> {
+    id<CIMComposerDelegate> _delegate;
+    NSString *_inputMode;
 @protected
     CIMInputManager *manager;
 }

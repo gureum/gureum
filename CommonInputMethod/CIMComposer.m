@@ -12,6 +12,12 @@
 @synthesize delegate=_delegate;
 @synthesize inputMode=_inputMode;
 
+- (void)dealloc {
+    self.delegate = nil;
+    self.inputMode = nil;
+    [super dealloc];
+}
+
 #pragma - delegate
 
 - (NSString *)composedString {

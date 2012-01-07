@@ -40,6 +40,11 @@
     return self->_composer ? self->_composer : CIMSharedInputManager.sharedComposer;
 }
 
+- (void)dealloc {
+    [self->_composer release];
+    [super dealloc];
+}
+
 #pragma - CIMInputControllerDelegate
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러

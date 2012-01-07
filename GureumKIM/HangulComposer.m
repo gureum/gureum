@@ -63,8 +63,7 @@ typedef enum {
             [self release];
             return nil;   
         }
-        self->composedString = [[NSString alloc] init];
-        self->commitString = [[NSMutableString alloc] init];
+        self->_commitString = [[NSMutableString alloc] init];
     }
     return self;
 }
@@ -74,6 +73,7 @@ typedef enum {
 }
 
 - (void)dealloc {
+    [self->_commitString release];
     [self->_inputContext release];
     [super dealloc];
 }
@@ -97,8 +97,8 @@ typedef enum {
     }
     BOOL handled = [self->_inputContext process:[string characterAtIndex:0]];
     NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:[self->_inputContext commitUCSString]];
-    [self->commitString appendString:recentCommitString];
-    ICLog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->commitString, recentCommitString);
+    [self->_commitString appendString:recentCommitString];
+    ICLog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
     return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
 }
 
@@ -115,23 +115,23 @@ typedef enum {
 }
 
 - (NSString *)commitString {
-    return self->commitString;
+    return self->_commitString;
 }
 
 - (NSString *)dequeueCommitString {
-    NSString *queuedCommitString = [NSString stringWithString:self->commitString];
-    [self->commitString setString:@""];
+    NSString *queuedCommitString = [NSString stringWithString:self->_commitString];
+    [self->_commitString setString:@""];
     return queuedCommitString;
 }
 
 - (void)cancelComposition {
     NSString *flushedString = [[self class] commitStringByCombinationModeWithUCSString:[self->_inputContext flushUCSString]];
-    [self->commitString appendString:flushedString];
+    [self->_commitString appendString:flushedString];
 }
 
 - (void)clearContext {
     [self->_inputContext reset];
-    [self->commitString setString:@""];
+    [self->_commitString setString:@""];
 }
 
 @end

@@ -24,7 +24,10 @@
 
 @class CIMComposer;
 
-@interface CIMInputController : IMKInputController<CIMInputTextDelegate>
+@interface CIMInputController : IMKInputController<CIMInputTextDelegate> {
+    id _inputClient;
+    CIMComposer *_composer;
+}
 
 @property(nonatomic, readonly) id inputClient;
 @property(nonatomic, readonly) CIMComposer *composer;
