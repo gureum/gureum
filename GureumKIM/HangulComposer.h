@@ -6,7 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import <Hangul/HGCharacter.h>
+#import <Hangul/Hangul.h>
 #import "CIMComposer.h"
 @class HGInputContext;
 
@@ -19,10 +19,9 @@
 */
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
 @private
-    HGInputContext *inputContext;
     NSString *composedString;
     NSMutableString *commitString;
-    
+
     HGUCSChar buffer[64]; // hangulinputcontext.c 
 }
 @property(nonatomic, readonly) HGInputContext *inputContext;
@@ -37,5 +36,21 @@
     @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
 */
 - (void)setKeyboardWithIdentifier:(NSString *)identifier;
+
+@end
+
+@interface HanjaComposer : CIMComposer {
+@private
+    NSMutableString *bufferedString;
+    NSString *composedString;
+    NSString *commitString;
+}
+
+- (void)updateHanjaCandidates;
+
+@property(nonatomic, readonly) HangulComposer *hangulComposer;
+@property(nonatomic, readonly) HGHanjaTable *hanjaTable;
+@property(nonatomic, readonly) HGHanjaList *hanjaCandidates;
+@property(nonatomic, assign) BOOL mode;
 
 @end

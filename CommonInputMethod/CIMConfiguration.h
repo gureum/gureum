@@ -12,10 +12,12 @@
 /* Gureum */
 ICEXTERN NSString *kCIMLastHangulInputMode;
 
-#define CIMConfigurationIntegerItemCount 4
+#define CIMConfigurationIntegerItemCount 6
 /* Gureum */
 ICEXTERN NSString *kCIMInputModeExchangeKeyModifier;
 ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
+ICEXTERN NSString *kCIMInputModeHanjaKeyModifier;
+ICEXTERN NSString *kCIMInputModeHanjaKeyCode;
 /* Hangul */
 ICEXTERN NSString *kCIMHangulCombinationModeComposing;
 ICEXTERN NSString *kCIMHangulCombinationModeCommiting;
@@ -55,6 +57,7 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
 @public
     NSString *lastHangulInputMode;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
+    NSInteger inputModeHanjaKeyModifier, inputModeHanjaKeyCode;
     NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;
     BOOL autosaveDefaultInputMode;
