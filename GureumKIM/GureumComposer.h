@@ -24,7 +24,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanAhnmatae;
 ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 
 @class HangulComposer;
-
+@class HanjaComposer;
 /*!
     @brief  구름 입력기의 합성기
  
@@ -34,6 +34,7 @@ ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 @private
     CIMBaseComposer *romanComposer;
     HangulComposer *hangulComposer;
+    HanjaComposer *hanjaComposer;
 }
 
 @end

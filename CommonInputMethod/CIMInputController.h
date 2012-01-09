@@ -25,9 +25,18 @@
 @class CIMComposer;
 
 @interface CIMInputController : IMKInputController<CIMInputTextDelegate> {
-@private
-    CIMComposer *composer;
+    id _inputClient;
+    CIMComposer *_composer;
 }
+
+@property(nonatomic, readonly) id inputClient;
 @property(nonatomic, readonly) CIMComposer *composer;
+
+@end
+
+@interface CIMInputController (CIMMenu)
+
+- (IBAction)showPreferences:(id)sender;
+- (IBAction)showStandardAboutPanel:(id)sender;
 
 @end

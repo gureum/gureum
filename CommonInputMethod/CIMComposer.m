@@ -9,37 +9,59 @@
 #include "CIMComposer.h"
 
 @implementation CIMComposer
-@synthesize delegate;
-@synthesize inputMode;
+@synthesize delegate=_delegate;
+@synthesize inputMode=_inputMode;
+
+- (void)dealloc {
+    self.delegate = nil;
+    self.inputMode = nil;
+    [super dealloc];
+}
 
 #pragma - delegate
 
 - (NSString *)composedString {
-    return [delegate composedString];
+    return [_delegate composedString];
 }
 
 - (NSString *)originalString {
-    return [delegate originalString];
+    return [_delegate originalString];
 }
 
 - (NSString *)commitString {
-    return [delegate commitString];
+    return [_delegate commitString];
 }
 
 - (NSString *)dequeueCommitString {
-    return [delegate dequeueCommitString];
+    return [_delegate dequeueCommitString];
 }
 
 - (void)cancelComposition {
-    [delegate cancelComposition];
+    [_delegate cancelComposition];
 }
 
 - (void)clearContext {
-    [delegate clearContext];
+    [_delegate clearContext];
+}
+
+- (BOOL)hasCandidates {
+    return [_delegate hasCandidates];
+}
+
+- (NSArray *)candidates {
+    return [_delegate candidates];
+}
+
+- (void)candidateSelected:(NSAttributedString *)candidateString {
+    [_delegate candidateSelected:candidateString];
+}
+
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
+    [_delegate candidateSelectionChanged:candidateString];
 }
 
 - (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    return [delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    return [_delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 @end
@@ -65,6 +87,10 @@
 - (void)cancelComposition { }
 
 - (void)clearContext { }
+
+- (BOOL)hasCandidates { return NO; }
+
+- (NSArray *)candidates { return nil; }
 
 #pragma -
 

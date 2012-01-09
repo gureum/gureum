@@ -12,6 +12,8 @@ NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
 
 NSString * kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
 NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
+NSString * kCIMInputModeHanjaKeyModifier = @"CIMInputModeHanjaKeyModifier";
+NSString * kCIMInputModeHanjaKeyCode = @"CIMInputModeHanjaKeyCode";
 NSString * kCIMHangulCombinationModeComposing = @"CIMHangulCombinationModeComposing";
 NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommiting";
 
@@ -47,8 +49,10 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         }
 
         struct CIMConfigurationIntegerItem tempIntegerItems[CIMConfigurationIntegerItemCount] = {
-            { kCIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, 0x20000 },
+            { kCIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, NSShiftKeyMask },
             { kCIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
+            { kCIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
+            { kCIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
             { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing, 0 },
             { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting, 0 },
         };

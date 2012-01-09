@@ -37,6 +37,8 @@ NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputm
     if (self) {
         self->romanComposer = [[CIMBaseComposer alloc] init];
         self->hangulComposer = [[HangulComposer alloc] init];
+        self->hanjaComposer = [[HanjaComposer alloc] init];
+        self->hanjaComposer.delegate = self->hangulComposer;
         self.delegate = self->romanComposer;
     }
     return self;
@@ -44,8 +46,10 @@ NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputm
 
 - (void)dealloc
 {
+    self.inputMode = nil;
     [self->romanComposer release];
     [self->hangulComposer release];
+    [self->hanjaComposer release];
     [super dealloc];
 }
 
@@ -67,8 +71,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (void)setInputMode:(NSString *)newInputMode {
-    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: with input mode: %@", newInputMode);
-    if ([self->inputMode isEqualToString:newInputMode]) return;
+    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
+    if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
     
     NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
     if ([keyboardIdentifier length] == 0) {
@@ -81,29 +85,44 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         [CIMSharedConfiguration saveConfigurationForStringField:&CIMSharedConfiguration->lastHangulInputMode];
     }
     
-    [self->inputMode release];
-    self->inputMode = [newInputMode  retain];
+    [super setInputMode:newInputMode];
 }
 
 
--(BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+-(CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     // TODO: hardcoded shortcut handling -> input handler로 옮기자!
-    if ((flags|NSAlphaShiftKeyMask) == (NSAlphaShiftKeyMask|CIMSharedConfiguration->inputModeExchangeKeyModifier) && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
+    if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
         ICLog(TRUE, @"***** Keyboard Changed *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
-        [self->delegate cancelComposition];
-        if (self->delegate == self->romanComposer) {
+        [self.delegate cancelComposition];
+        if (self.delegate == self->romanComposer) {
             NSString *lastHangulInputMode = CIMSharedConfiguration->lastHangulInputMode;
             if (lastHangulInputMode == nil) lastHangulInputMode = kGureumInputSourceIdentifierHan2;
             [sender selectInputMode:lastHangulInputMode];
         } else {
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
         }
-        return YES;
+        return CIMInputTextProcessResultProcessed;
+    }
+    if (self.delegate == self->hanjaComposer) {
+        if (!self->hanjaComposer.mode && self->hanjaComposer.composedString.length == 0 && self->hanjaComposer.commitString.length == 0) {
+            // 한자 입력이 완료되었고 한자 모드도 아님
+            self.delegate = self->hangulComposer;
+        }
+    }
+    if (self.delegate == self->hangulComposer) {
+        if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
+            // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
+            self->hanjaComposer.mode = self->hangulComposer.composedString.length == 0;
+            self.delegate = self->hanjaComposer;
+            [self.delegate composerSelected:self];
+            return CIMInputTextProcessResultProcessed;
+        }
     }
     // general composer
-    return [self->delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    CIMInputTextProcessResult result = [self.delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    return result;
 }
-
 
 @end
