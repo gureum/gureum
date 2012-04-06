@@ -4,12 +4,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 
 	git clone git://github.com/gureum/gureum.git # 클론
 	cd gureum
-	git submodule init # submodule 설정
-	git submodule update # submodule 받아오기
-
-	cd libhangul-objc
-	git submodule init
-	git submodule update
+	git submodule update --init --recursive
 
 # 빌드
 GureumKIM 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
