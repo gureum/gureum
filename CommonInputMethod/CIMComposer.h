@@ -44,6 +44,9 @@
 //! @brief  변환 후보 문자열 변경
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString;
 
+@required
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender;
+
 @end
 
 /*!

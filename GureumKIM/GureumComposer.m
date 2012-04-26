@@ -86,10 +86,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     [super setInputMode:newInputMode];
 }
 
-
--(CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
-    // TODO: hardcoded shortcut handling -> input handler로 옮기자!
     if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
         ICLog(TRUE, @"***** Keyboard Changed *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
@@ -112,15 +110,13 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     if (self.delegate == self->hangulComposer) {
         if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
             // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
-            self->hanjaComposer.mode = self->hangulComposer.composedString.length == 0;
+            self->hanjaComposer.mode = self->hangulComposer.composedString.length == 0; // 조합 중이 아니면 1회만 사전을 띄운다
             self.delegate = self->hanjaComposer;
             [self.delegate composerSelected:self];
             return CIMInputTextProcessResultProcessed;
         }
     }
-    // general composer
-    CIMInputTextProcessResult result = [self.delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
-    return result;
+    return CIMInputTextProcessResultNotProcessed;
 }
 
 @end
