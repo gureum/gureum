@@ -551,7 +551,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = youknowone.org;
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */;
