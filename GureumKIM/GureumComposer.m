@@ -11,6 +11,8 @@
 #import "CIMConfiguration.h"
 #import "GureumAppDelegate.h"
 
+#define DEBUG_GUREUM TRUE
+
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.GureumKIM.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.GureumKIM.dvorak";
 NSString *kGureumInputSourceIdentifierDvorakQwertyCommand = @"org.youknowone.inputmethod.GureumKIM.dvorakq";
@@ -69,7 +71,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (void)setInputMode:(NSString *)newInputMode {
-    ICLog(TRUE, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
+    ICLog(DEBUG_GUREUM, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
     if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
     
     NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
@@ -89,7 +91,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-        ICLog(TRUE, @"***** Keyboard Changed *****");
+        ICLog(DEBUG_GUREUM, @"***** Keyboard Changed *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self.delegate cancelComposition];
         if (self.delegate == self->romanComposer) {
@@ -114,6 +116,13 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             self.delegate = self->hanjaComposer;
             [self.delegate composerSelected:self];
             return CIMInputTextProcessResultProcessed;
+        }
+        // Vi-mode: esc로 로마자 키보드로 전환
+        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == 0x35) {
+            ICLog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
+            [self.delegate cancelComposition];
+            [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
+            return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
         }
     }
     return CIMInputTextProcessResultNotProcessed;

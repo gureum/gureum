@@ -22,11 +22,12 @@ ICEXTERN NSString *kCIMInputModeHanjaKeyCode;
 ICEXTERN NSString *kCIMHangulCombinationModeComposing;
 ICEXTERN NSString *kCIMHangulCombinationModeCommiting;
 
-#define CIMConfigurationBoolItemCount 2
+#define CIMConfigurationBoolItemCount 3
 /* Common */
 ICEXTERN NSString *kCIMSharedInputManager;
 /* Gureum */
 ICEXTERN NSString *kCIMAutosaveDefaultInputMode;
+ICEXTERN NSString *kCIMRomanModeByEscapeKey;
 
 
 #define defCIMConfigurationItem(NAME, TYPE) struct NAME { NSString *name; TYPE *pConfiguration; TYPE defaultValue; }
@@ -61,6 +62,7 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;
     BOOL autosaveDefaultInputMode;
+    BOOL romanModeByEscapeKey;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;
 

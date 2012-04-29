@@ -132,22 +132,29 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)loadFromConfiguration {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    
     NSLog(@"default input mode: %d", configuration->autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
     NSLog(@"last hangul input mode: %@", configuration->lastHangulInputMode);
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = [GureumPreferencesHangulLayoutLocalizedNames objectAtIndex:index];
+    self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
+    
     self->hangulCombinationModeComposingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeComposing];
     self->hangulCombinationModeCommitingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeCommiting];
 }
 
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = [GureumPreferencesHangulLayouts objectAtIndex:index];
+    configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
+    
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
+    
     [configuration saveAllConfigurations];
 }
 

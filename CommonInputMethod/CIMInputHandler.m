@@ -42,6 +42,9 @@ enum {
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // 입력기용 특수 커맨드 우선 처리
     CIMInputTextProcessResult result = [controller.composer inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
+    if (result == CIMInputTextProcessResultNotProcessedAndNeedsCommit) {
+        return result;
+    }
     if (result == CIMInputTextProcessResultProcessed) {
         goto finalize;
     }
@@ -61,6 +64,7 @@ enum {
     result = [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     
 finalize:
+    ICLog(FALSE, @"******* FINAL STATE: %d", result);
     // 합성 후보가 있다면 보여준다
     if (controller.composer.hasCandidates) {
         IMKCandidates *candidates = self.manager.candidates;
