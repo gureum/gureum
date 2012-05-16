@@ -4,22 +4,25 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 
 	git clone git://github.com/gureum/gureum.git # 클론
 	cd gureum
-	git submodule init # submodule 설정
-	git submodule update # submodule 받아오기
-
-	cd libhangul-objc
-	git submodule init
-	git submodule update
+	git submodule update --init --recursive
 
 # 빌드
 GureumKIM 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
 Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
 
 # 테스트
-1. 빌드 된 입력기를 '/Library/Input Methods' 또는 '~/Library/Input Methods' 에 설치합니다.
-1. Activity Monitor.app 에서 구름 입력기를 강제로 종료하여 줍니다.
-1. 입력기를 구름 입력기로 선택하고 하나 이상의 입력을 시작하면 새로 로드됩니다.
-1. Debug로 빌드하였다면 Console.app 에서 로그를 확인할 수 있습니다.
+디버그 모드로 빌드한 입력기를 설치합니다.
+
+	cd GureumKIM/tools
+	./installtest.sh
+
+설치 후에는 구름 입력기가 사라질 수 있습니다.
+언어 및 입력기 설정을 다시 열고 입력기를 설정해 줍니다.
+
+Console.app 에서 로그를 확인할 수 있습니다.
+
+XCode에서 Attach to process 기능을 이용하여 디버거를 동작시킬 수는 있지만, 브레이크 포인트를 만들면 디버거 조작 입력이 처리가 되지 않아 디버그하기가 어렵습니다.
+
 더 좋은 방법이 있으면 알려주세요.
 
 # 커밋하기 전에

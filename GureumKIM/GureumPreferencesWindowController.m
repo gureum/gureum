@@ -9,6 +9,7 @@
 #import "GureumPreferencesWindowController.h"
 
 #import "CIMConfiguration.h"
+#import <ShortcutRecorder/ShortcutRecorder.h>
 
 #define DEBUG_PREFERENCE TRUE
 
@@ -133,28 +134,45 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)loadFromConfiguration {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    
+    self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
     NSLog(@"default input mode: %d", configuration->autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
     NSLog(@"last hangul input mode: %@", configuration->lastHangulInputMode);
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = [GureumPreferencesHangulLayoutLocalizedNames objectAtIndex:index];
+    self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
+  
+    self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
     self->hangulCombinationModeComposingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeComposing];
     self->hangulCombinationModeCommitingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeCommiting];
 }
 
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    
+//    configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = [GureumPreferencesHangulLayouts objectAtIndex:index];
+    configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
+    
+//    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
+    
     [configuration saveAllConfigurations];
 }
 
 - (void)cancelAndClose:(id)sender {
     self->cancel = YES;
     [self.window close];
+}
+
+- (void)helpChangeShortcut:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.org"]];
 }
 
 #pragma NSWindow delegate

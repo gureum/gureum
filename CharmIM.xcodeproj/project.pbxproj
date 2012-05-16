@@ -76,13 +76,6 @@
 			remoteGlobalIDString = 939837800DA42965007F53F3;
 			remoteInfo = "ShortcutRecorder.framework - with embedded ibplugin";
 		};
-		380B909614303838001D7550 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 939838A50DA4300F007F53F3;
-			remoteInfo = "ShortcutRecorder.ibplugin - for embedding in framework";
-		};
 		380B909814303838001D7550 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
@@ -90,26 +83,26 @@
 			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
 			remoteInfo = ShortcutRecorderFramework_Tester;
 		};
-		380B909A14303838001D7550 /* PBXContainerItemProxy */ = {
+		388C5D72154D88FD00B4F3E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 342E00CF109CCBF5009AD8CA;
-			remoteInfo = "ShortcutRecorder.ibplugin - standalone";
+			remoteGlobalIDString = 939837800DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
 		};
-		380B909C14303838001D7550 /* PBXContainerItemProxy */ = {
+		388C5D74154D88FD00B4F3E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
+			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 342E0104109CCC36009AD8CA;
-			remoteInfo = "ShortcutRecorder.framework - for embedding in ibplugin";
+			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
+			remoteInfo = ShortcutRecorder_Tester;
 		};
-		380B909E143038AB001D7550 /* PBXContainerItemProxy */ = {
+		388C5D76154D891E00B4F3E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9398377F0DA42965007F53F3;
-			remoteInfo = "ShortcutRecorder.framework - with embedded ibplugin";
+			remoteInfo = ShortcutRecorder.framework;
 		};
 		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -153,7 +146,7 @@
 		3802E45D141380BF00256B54 /* han2classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2classic.png; path = Icons/han2classic.png; sourceTree = "<group>"; };
 		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
 		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
-		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
+		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
 		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
 		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
@@ -215,6 +208,7 @@
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
+		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
@@ -259,10 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				380B909514303838001D7550 /* ShortcutRecorder.framework */,
-				380B909714303838001D7550 /* ShortcutRecorder.ibplugin */,
 				380B909914303838001D7550 /* ShortcutRecorder.app */,
-				380B909B14303838001D7550 /* ShortcutRecorder.ibplugin */,
-				380B909D14303838001D7550 /* ShortcutRecorder.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
+				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
 				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
 				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
@@ -467,6 +459,15 @@
 			name = "OS part";
 			sourceTree = "<group>";
 		};
+		388C5D6E154D88FC00B4F3E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				388C5D73154D88FD00B4F3E1 /* ShortcutRecorder.framework */,
+				388C5D75154D88FD00B4F3E1 /* ShortcutRecorder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		389A38781423477F00A2ED88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,8 +503,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				380B909F143038AB001D7550 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
+				388C5D77154D891E00B4F3E1 /* PBXTargetDependency */,
 			);
 			name = Gureum;
 			productName = GureumKIM;
@@ -551,7 +552,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = youknowone.org;
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */;
@@ -574,6 +575,10 @@
 					ProductGroup = 380B908814303836001D7550 /* Products */;
 					ProjectRef = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
 				},
+				{
+					ProductGroup = 388C5D6E154D88FC00B4F3E1 /* Products */;
+					ProjectRef = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -592,13 +597,6 @@
 			remoteRef = 380B909414303838001D7550 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		380B909714303838001D7550 /* ShortcutRecorder.ibplugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ShortcutRecorder.ibplugin;
-			remoteRef = 380B909614303838001D7550 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		380B909914303838001D7550 /* ShortcutRecorder.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -606,18 +604,18 @@
 			remoteRef = 380B909814303838001D7550 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		380B909B14303838001D7550 /* ShortcutRecorder.ibplugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ShortcutRecorder.ibplugin;
-			remoteRef = 380B909A14303838001D7550 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		380B909D14303838001D7550 /* ShortcutRecorder.framework */ = {
+		388C5D73154D88FD00B4F3E1 /* ShortcutRecorder.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ShortcutRecorder.framework;
-			remoteRef = 380B909C14303838001D7550 /* PBXContainerItemProxy */;
+			remoteRef = 388C5D72154D88FD00B4F3E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		388C5D75154D88FD00B4F3E1 /* ShortcutRecorder.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ShortcutRecorder.app;
+			remoteRef = 388C5D74154D88FD00B4F3E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		389A387D1423477F00A2ED88 /* Hangul.framework */ = {
@@ -750,10 +748,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		380B909F143038AB001D7550 /* PBXTargetDependency */ = {
+		388C5D77154D891E00B4F3E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "ShortcutRecorder.framework - with embedded ibplugin";
-			targetProxy = 380B909E143038AB001D7550 /* PBXContainerItemProxy */;
+			name = ShortcutRecorder.framework;
+			targetProxy = 388C5D76154D891E00B4F3E1 /* PBXContainerItemProxy */;
 		};
 		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -798,7 +796,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/libhangul-objc/build/$(CONFIGURATION)\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/ShortcutRecorder/build/$(CONFIGURATION)\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -810,7 +811,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_PLUGIN_SEARCH_PATHS = "shortcutrecorder/build/$(CONFIGURATION)";
+				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
@@ -828,7 +829,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/libhangul-objc/build/$(CONFIGURATION)\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/ShortcutRecorder/build/$(CONFIGURATION)\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -836,7 +840,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_PLUGIN_SEARCH_PATHS = "shortcutrecorder/build/$(CONFIGURATION)";
+				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;

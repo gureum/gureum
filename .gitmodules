@@ -1,6 +1,6 @@
 [submodule "libhangul-objc"]
 	path = libhangul-objc
 	url = git://github.com/gureum/libhangul-objc.git
-[submodule "shortcutrecorder"]
-	path = shortcutrecorder
+[submodule "ShortcutRecorder"]
+	path = ShortcutRecorder
 	url = git://github.com/gureum/shortcutrecorder.git

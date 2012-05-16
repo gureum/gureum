@@ -19,6 +19,7 @@ NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommit
 
 NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
 NSString * kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
+NSString * kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
 
 CIMConfiguration *CIMDefaultUserConfiguration;
 
@@ -62,6 +63,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
             { kCIMSharedInputManager, &self->sharedInputManager, NO },
             { kCIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
+            { kCIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
             self->boolItems[i] = tempBoolItems[i];

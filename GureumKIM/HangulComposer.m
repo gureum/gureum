@@ -13,6 +13,7 @@
 #import "GureumAppDelegate.h"
 
 #define DEBUG_HANGULCOMPOSER FALSE
+#define DEBUG_HANJACOMPOSER FALSE
 
 typedef enum {
     // filter 문자는 모두 지우고 결합해 표현한다.
@@ -84,7 +85,7 @@ typedef enum {
 
 #pragma - IMKInputServerTextData
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {    
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
     if (keyCode == 51) {
         return [self->_inputContext backspace];
@@ -100,6 +101,11 @@ typedef enum {
     [self->_commitString appendString:recentCommitString];
     ICLog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
     return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
+}
+
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    ICAssert(NO); // 한글입력 상태로 념겨져서 처리하는 명령은 없다
+    return CIMInputTextProcessResultNotProcessed;
 }
 
 #pragma - CIMComposer
@@ -222,6 +228,7 @@ typedef enum {
             self.hanjaCandidates = nil;
         }
     }
+    ICLog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
 }
 
 - (BOOL)hasCandidates {
@@ -234,6 +241,7 @@ typedef enum {
     for (HGHanja *hanja in hanjas) {
         [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
     }
+    ICLog(DEBUG_HANJACOMPOSER, @"HanjaComposer -candidates returning: %@", candidates);
     return candidates;
 }
 

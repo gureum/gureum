@@ -22,8 +22,11 @@
     IBOutlet SRRecorderCell *inputModeExchangeKeyRecorderCell;
     IBOutlet NSButton *autosaveDefaultInputModeCheckbox;
     IBOutlet NSComboBox *defaultHangulInputModeComboBox;
+    
+    IBOutlet NSButton *romanModeByEscapeKeyCheckbox;
  
     /* Hangul Preferences */
+    IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
     IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
 }
@@ -31,5 +34,7 @@
 - (IBAction)saveToConfiguration:(id)sender;
 - (IBAction)selectPreferenceItem:(id)sender;
 - (IBAction)cancelAndClose:(id)sender;
+
+- (IBAction)helpChangeShortcut:(id)sender;
 
 @end
