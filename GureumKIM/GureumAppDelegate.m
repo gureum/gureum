@@ -30,7 +30,7 @@
 }
 
 - (CIMComposer *)composerWithServer:(IMKServer *)server client:(id)client {
-    ICLog(TRUE, @"**** New blank composer generated ****");
+    dlog(TRUE, @"**** New blank composer generated ****");
     CIMComposer *composer = [[GureumComposer alloc] init];
     return [composer autorelease];                         
 }

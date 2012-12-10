@@ -88,7 +88,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)selectPreferenceItem:(NSToolbarItem *)sender {
     NSString *identifier = [sender itemIdentifier];
-    ICLog(DEBUG_PREFERENCE, @"preference identifier: %@", identifier);
+    dlog(DEBUG_PREFERENCE, @"preference identifier: %@", identifier);
     [self showPreferenceViewWithIdentifier:identifier animate:YES];
 }
 

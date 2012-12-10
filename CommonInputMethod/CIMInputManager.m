@@ -21,7 +21,7 @@
 - (id)init
 {
     self = [super init];
-    ICLog(DEBUG_INPUTMANAGER, @"** CharmInputManager Init: %@", self);
+    dlog(DEBUG_INPUTMANAGER, @"** CharmInputManager Init: %@", self);
     if (self) {
         NSBundle *mainBundle = [NSBundle mainBundle];
         NSString *connectionName = [[mainBundle infoDictionary] objectForKey:@"InputMethodConnectionName"];
@@ -30,7 +30,7 @@
         self->handler = [[CIMInputHandler alloc] initWithManager:self];
         self->configuration = [CIMConfiguration userDefaultConfiguration];
         self->sharedComposer = [CIMAppDelegate composerWithServer:nil client:nil];
-        ICLog(DEBUG_INPUTMANAGER, @"\tserver: %@ / candidates: %@ / handler: %@", self->server, self->candidates, self->handler);
+        dlog(DEBUG_INPUTMANAGER, @"\tserver: %@ / candidates: %@ / handler: %@", self->server, self->candidates, self->handler);
        
     }
     return self;

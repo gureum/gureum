@@ -27,7 +27,7 @@
 - (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
     self = [super initWithServer:server delegate:delegate client:inputClient];
     if (self != nil) {
-        ICLog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
+        dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
         if (!CIMSharedInputManager.configuration->sharedInputManager) {
             self->_composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
         }
@@ -61,8 +61,8 @@
             [self commitComposition:sender];
             return handled;
         default:
-            ICLog(TRUE, @"WRONG RESULT: %d", handled);
-            ICAssert(NO);
+            dlog(TRUE, @"WRONG RESULT: %d", handled);
+            dassert(NO);
             break;
     }
     
@@ -70,7 +70,7 @@
     [self commitComposition:sender]; // 조합 된 문자 반영
     [self updateComposition]; // 조합 중인 문자 반영 
     CIMSharedInputManager.inputting = NO;
-    ICLog(DEBUG_INPUTCONTROLLER, @"*** End of Input handling ***");
+    dlog(DEBUG_INPUTCONTROLLER, @"*** End of Input handling ***");
     return handled;
 }
 
@@ -84,7 +84,7 @@
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender
 {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %d / modifier flags: %u / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
     
     return [self inputController:self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
 }
@@ -97,10 +97,10 @@
 // Receiving Events Directly from the Text Services Manager
 - (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
     if ([event type] != NSKeyDown) {
-        ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
+        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
         return NO;
     }
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %d / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
     return [self inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
 }
 
@@ -110,12 +110,12 @@
 @implementation CIMInputController (IMKServerInputKeyBinding)
 
 - (BOOL)inputText:(NSString *)string client:(id)sender {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender);
     return NO;
 }
 
 - (BOOL)didCommandBySelector:(SEL)aSelector client:(id)sender {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -didCommandBySelector: with selector: %@", aSelector);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -didCommandBySelector: with selector: %@", aSelector);
     
     return NO;
 }
@@ -130,7 +130,7 @@
 - (void)commitComposition:(id)sender {
     if (!CIMSharedInputManager.inputting) {
         // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
-        ICLog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
+        dlog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
         [self cancelComposition];
     }
     // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
@@ -138,15 +138,15 @@
     NSString *commitString = [self.composer dequeueCommitString];
     if ([commitString length] == 0) return; // 커밋할 문자가 없으면 중단
     
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
     [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
 }
 
 #if IC_DEBUG
 - (void)updateComposition {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
     [super updateComposition];
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
 }
 #endif
 
@@ -159,12 +159,12 @@
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
     NSString *string = self.composer.composedString;
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
     return string;
 }
 
 - (NSAttributedString *)originalString:(id)sender {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
     return [[[NSAttributedString alloc] initWithString:[self.composer originalString]] autorelease];
 }
 
@@ -197,17 +197,17 @@
 
 //! @brief 자판 전환을 감지한다.
 - (void)setValue:(id)value forTag:(long)tag client:(id)sender {
-    ICLog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %x / sender: %@ / client: %@", value, tag, sender, self.client);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / sender: %@ / client: %@", value, tag, sender, self.client);
     switch (tag) {
         case kTextServiceInputModePropertyTag:
             if (![value isEqualToString:self.composer.inputMode]) {
-                ICAssert(sender != nil);
+                dassert(sender != nil);
                 [self commitComposition:sender];
                 self.composer.inputMode = value;
             }
             break;
         default:
-            ICLog(DEBUG_INPUTCONTROLLER, @"**** UNKNOWN TAG %d !!! ****", tag);
+            dlog(DEBUG_INPUTCONTROLLER, @"**** UNKNOWN TAG %ld !!! ****", tag);
             break;
     }
 }
