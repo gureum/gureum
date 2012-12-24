@@ -29,6 +29,7 @@ typedef enum {
 }   HangulCharacterCombinationMode;
 #define HangulCharacterCombinationModeCount 5
 
+
 @class CIMInputController;
 
 @interface HangulComposer (HangulCharacterCombinationMode)
@@ -87,9 +88,15 @@ typedef enum {
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
-    if (keyCode == 51) {
+    if (keyCode == kVK_Delete) {
         return [self->_inputContext backspace];
     }
+
+    if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
+        dlog(DEBUG_HANGULCOMPOSER, @" ** ESCAPE from outbound keyCode: %lu", keyCode);
+        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+    }
+
     // 한글 입력에서 캡스락 무시
     if (flags & NSAlphaShiftKeyMask) {
         if (!(flags & NSShiftKeyMask)) {
@@ -99,12 +106,12 @@ typedef enum {
     BOOL handled = [self->_inputContext process:[string characterAtIndex:0]];
     NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:[self->_inputContext commitUCSString]];
     [self->_commitString appendString:recentCommitString];
-    ICLog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
+    dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
     return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    ICAssert(NO); // 한글입력 상태로 념겨져서 처리하는 명령은 없다
+    dassert(NO); // 한글입력 상태로 념겨져서 처리하는 명령은 없다
     return CIMInputTextProcessResultNotProcessed;
 }
 
@@ -228,7 +235,7 @@ typedef enum {
             self.hanjaCandidates = nil;
         }
     }
-    ICLog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
 }
 
 - (BOOL)hasCandidates {
@@ -241,7 +248,7 @@ typedef enum {
     for (HGHanja *hanja in hanjas) {
         [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
     }
-    ICLog(DEBUG_HANJACOMPOSER, @"HanjaComposer -candidates returning: %@", candidates);
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -candidates returning: %@", candidates);
     return candidates;
 }
 

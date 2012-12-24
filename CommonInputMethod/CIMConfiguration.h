@@ -10,24 +10,25 @@
 
 #define CIMConfigurationStringItemCount 1
 /* Gureum */
-ICEXTERN NSString *kCIMLastHangulInputMode;
+FOUNDATION_EXTERN NSString *kCIMLastHangulInputMode;
 
-#define CIMConfigurationIntegerItemCount 6
+#define CIMConfigurationIntegerItemCount 7
 /* Gureum */
-ICEXTERN NSString *kCIMInputModeExchangeKeyModifier;
-ICEXTERN NSString *kCIMInputModeExchangeKeyCode;
-ICEXTERN NSString *kCIMInputModeHanjaKeyModifier;
-ICEXTERN NSString *kCIMInputModeHanjaKeyCode;
+FOUNDATION_EXTERN NSString *kCIMInputModeExchangeKeyModifier;
+FOUNDATION_EXTERN NSString *kCIMInputModeExchangeKeyCode;
+FOUNDATION_EXTERN NSString *kCIMInputModeHanjaKeyModifier;
+FOUNDATION_EXTERN NSString *kCIMInputModeHanjaKeyCode;
+FOUNDATION_EXTERN NSString *kCIMOptionKeyBehavior;
 /* Hangul */
-ICEXTERN NSString *kCIMHangulCombinationModeComposing;
-ICEXTERN NSString *kCIMHangulCombinationModeCommiting;
+FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeComposing;
+FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeCommiting;
 
 #define CIMConfigurationBoolItemCount 3
 /* Common */
-ICEXTERN NSString *kCIMSharedInputManager;
+FOUNDATION_EXTERN NSString *kCIMSharedInputManager;
 /* Gureum */
-ICEXTERN NSString *kCIMAutosaveDefaultInputMode;
-ICEXTERN NSString *kCIMRomanModeByEscapeKey;
+FOUNDATION_EXTERN NSString *kCIMAutosaveDefaultInputMode;
+FOUNDATION_EXTERN NSString *kCIMRomanModeByEscapeKey;
 
 
 #define defCIMConfigurationItem(NAME, TYPE) struct NAME { NSString *name; TYPE *pConfiguration; TYPE defaultValue; }
@@ -59,6 +60,7 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     NSString *lastHangulInputMode;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
     NSInteger inputModeHanjaKeyModifier, inputModeHanjaKeyCode;
+    NSInteger optionKeyBehavior;
     NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;
     BOOL autosaveDefaultInputMode;

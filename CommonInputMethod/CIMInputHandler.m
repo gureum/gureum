@@ -11,6 +11,7 @@
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
 #import "CIMComposer.h"
+#import "CIMConfiguration.h"
 
 #define DEBUG_INPUTHANDLER TRUE
 
@@ -19,7 +20,7 @@
 
 - (id)initWithManager:(CIMInputManager *)aManager {
     self = [super init];
-    ICLog(DEBUG_INPUTHANDLER, @"** CIMInputHandler inited: %@ / with manage: %@", self, aManager);
+    dlog(DEBUG_INPUTHANDLER, @"** CIMInputHandler inited: %@ / with manage: %@", self, aManager);
     if (self) {
         self->manager = aManager;
     }
@@ -32,13 +33,6 @@
 
 #pragma - IMKServerInputTextData
 
-enum {
-    KeyCodeLeftArrow = 123,
-    KeyCodeRightArrow = 124,
-    KeyCodeDownArrow = 125,
-    KeyCodeUpArrow = 126
-};
-
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // 입력기용 특수 커맨드 우선 처리
     CIMInputTextProcessResult result = [controller.composer inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
@@ -48,23 +42,36 @@ enum {
     if (result == CIMInputTextProcessResultProcessed) {
         goto finalize;
     }
-    
-    // 화살표 키가 입력으로 들어오면 강제 커밋
-    if (KeyCodeLeftArrow <= keyCode && keyCode <= KeyCodeUpArrow) {
-        ICLog(DEBUG_INPUTHANDLER, @"!! Commit composition on arrow keys");
-        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+
+    // 옵션 키 변환 처리
+    if (flags & NSAlternateKeyMask) {
+        switch (self.manager.configuration->optionKeyBehavior) {
+            case 0: {
+                // default
+                dlog(DEBUG_INPUTHANDLER, @" ** ESCAPE from option-key default behavior");
+                return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+            }   break;
+            case 1: {
+                // ignore
+                if (keyCode < 0x33) {
+                    char key[2] = {0, 0};
+                    key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMKeyMapUpper[keyCode] : CIMKeyMapLower[keyCode];
+                    string = [NSString stringWithUTF8String:key];
+                }
+            }   break;
+        }
     }
-    
+
     // 특정 애플리케이션에서 커맨드/옵션 키 입력을 선점하지 못하는 문제를 회피한다
     if (flags & (NSCommandKeyMask|NSAlternateKeyMask)) {
-        ICLog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
-        return CIMInputTextProcessResultNotProcessed;
+        dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
+        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
     
     result = [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     
 finalize:
-    ICLog(FALSE, @"******* FINAL STATE: %d", result);
+    dlog(FALSE, @"******* FINAL STATE: %d", result);
     // 합성 후보가 있다면 보여준다
     if (controller.composer.hasCandidates) {
         IMKCandidates *candidates = self.manager.candidates;

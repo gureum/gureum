@@ -8,20 +8,20 @@
 
 #import "CIMComposer.h"
 
-ICEXTERN NSString *kGureumInputSourceIdentifierQwerty;
-ICEXTERN NSString *kGureumInputSourceIdentifierDvorak;
-ICEXTERN NSString *kGureumInputSourceIdentifierDvorakQwertyCommand;
-ICEXTERN NSString *kGureumInputSourceIdentifierColemak;
-ICEXTERN NSString *kGureumInputSourceIdentifierColemakQwertyCommand;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan2;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan2Classic;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan3Final;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan390;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan3NoShift;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan3Classic;
-ICEXTERN NSString *kGureumInputSourceIdentifierHan3Layout2;
-ICEXTERN NSString *kGureumInputSourceIdentifierHanAhnmatae;
-ICEXTERN NSString *kGureumInputSourceIdentifierHanRoman;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierQwerty;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierDvorak;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierDvorakQwertyCommand;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierColemak;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierColemakQwertyCommand;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan2;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan2Classic;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3Final;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan390;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3NoShift;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3Classic;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3Layout2;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHanAhnmatae;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHanRoman;
 
 @class HangulComposer;
 @class HanjaComposer;

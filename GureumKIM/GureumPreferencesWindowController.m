@@ -89,7 +89,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)selectPreferenceItem:(NSToolbarItem *)sender {
     NSString *identifier = [sender itemIdentifier];
-    ICLog(DEBUG_PREFERENCE, @"preference identifier: %@", identifier);
+    dlog(DEBUG_PREFERENCE, @"preference identifier: %@", identifier);
     [self showPreferenceViewWithIdentifier:identifier animate:YES];
 }
 
@@ -144,6 +144,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
   
     self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
+    [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
     self->hangulCombinationModeComposingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeComposing];
     self->hangulCombinationModeCommitingComboBox.stringValue = [GureumPreferencesHangulSyllablePresentations objectAtIndex:configuration->hangulCombinationModeCommiting];
 }
@@ -160,6 +161,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     
 //    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
 //    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
+    configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
     

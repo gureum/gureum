@@ -22,6 +22,7 @@
     IBOutlet SRRecorderCell *inputModeExchangeKeyRecorderCell;
     IBOutlet NSButton *autosaveDefaultInputModeCheckbox;
     IBOutlet NSComboBox *defaultHangulInputModeComboBox;
+    IBOutlet NSComboBox *optionKeyBehaviorComboBox;
     
     IBOutlet NSButton *romanModeByEscapeKeyCheckbox;
  

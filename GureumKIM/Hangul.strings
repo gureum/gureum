@@ -3,3 +3,7 @@
 "HangulPresentationRemoveNonJungseongFilter" = "중성 필터만 보임";
 "HangulPresentationHideFromFilter" = "필터부터 숨김";
 "HangulPresentationHideFromJungseongFilter" = "중성 필터부터 숨김";
+
+"OptionKeyDefault" = "기본 특수 문자";
+"OptionKeyIgnore" = "Option 키 무시";
+"OptionKeyQwerty" = "Qwerty 입력";

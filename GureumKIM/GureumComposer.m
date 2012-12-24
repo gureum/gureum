@@ -73,7 +73,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (void)setInputMode:(NSString *)newInputMode {
-    ICLog(DEBUG_GUREUM, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
+    dlog(DEBUG_GUREUM, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
     if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
     
     NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
@@ -93,7 +93,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-        ICLog(DEBUG_GUREUM, @"***** Keyboard Changed *****");
+        dlog(DEBUG_GUREUM, @"***** Keyboard Changed *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self.delegate cancelComposition];
         if (self.delegate == self->romanComposer) {
@@ -120,8 +120,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
-        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == 0x35) {
-            ICLog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
+        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == kVK_Escape) {
+            dlog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
             [self.delegate cancelComposition];
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
             return CIMInputTextProcessResultNotProcessedAndNeedsCommit;

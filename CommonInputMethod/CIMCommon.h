@@ -13,6 +13,10 @@
 
 #import <Foundation/Foundation.h>
 
+static const int CIMKeyMapSize = 0x33;
+FOUNDATION_EXTERN const char CIMKeyMapLower[CIMKeyMapSize];
+FOUNDATION_EXTERN const char CIMKeyMapUpper[CIMKeyMapSize];
+
 @class CIMInputController;
 
 /*!

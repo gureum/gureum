@@ -5,6 +5,6 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
     #import <InputMethodKit/InputMethodKit.h>
-    #import <IdealCocoa/ICUtility.h>
+    #import <cdebug/debug.h>
     #import "CIMCommon.h"
 #endif
