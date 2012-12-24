@@ -32,13 +32,6 @@
 
 #pragma - IMKServerInputTextData
 
-enum {
-    KeyCodeLeftArrow = 123,
-    KeyCodeRightArrow = 124,
-    KeyCodeDownArrow = 125,
-    KeyCodeUpArrow = 126
-};
-
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // 입력기용 특수 커맨드 우선 처리
     CIMInputTextProcessResult result = [controller.composer inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
