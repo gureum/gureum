@@ -38,6 +38,8 @@
 		38475AFF1412BC700062100D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AFE1412BC6F0062100D /* icon.png */; };
 		38475B011412C0640062100D /* Gureum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38475B001412C0640062100D /* Gureum.icns */; };
 		38475B031412C3AA0062100D /* han3noshift.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475B021412C3A90062100D /* han3noshift.png */; };
+		387A47451688415500EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
+		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00021421F72600DAE6F4 /* CharmAppDelegate.m */; };
 		387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
@@ -177,6 +179,7 @@
 		38475B001412C0640062100D /* Gureum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Gureum.icns; path = Icons/Gureum.icns; sourceTree = "<group>"; };
 		38475B021412C3A90062100D /* han3noshift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3noshift.png; path = Icons/han3noshift.png; sourceTree = "<group>"; };
 		3871DF3416756F74006835D4 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		387D00011421F72600DAE6F4 /* CharmAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharmAppDelegate.h; sourceTree = "<group>"; };
 		387D00021421F72600DAE6F4 /* CharmAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmAppDelegate.m; sourceTree = "<group>"; };
 		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
+				387A47441688415500EB5943 /* CIMCommon.m */,
 				38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */,
 				38863C95140E669000A8ED76 /* CIMInputController.h */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
@@ -708,6 +712,7 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 				380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */,
+				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +727,7 @@
 				3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */,
 				387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */,
 				387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */,
+				387A47451688415500EB5943 /* CIMCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

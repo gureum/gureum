@@ -11,6 +11,7 @@
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
 #import "CIMComposer.h"
+#import "CIMConfiguration.h"
 
 #define DEBUG_INPUTHANDLER TRUE
 
@@ -41,7 +42,26 @@
     if (result == CIMInputTextProcessResultProcessed) {
         goto finalize;
     }
-    
+
+    // 옵션 키 변환 처리
+    if (flags & NSAlternateKeyMask) {
+        switch (self.manager.configuration->optionKeyBehavior) {
+            case 0: {
+                // default
+                dlog(DEBUG_INPUTHANDLER, @" ** ESCAPE from option-key default behavior");
+                return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+            }   break;
+            case 1: {
+                // ignore
+                if (keyCode < 0x33) {
+                    char key[2] = {0, 0};
+                    key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMKeyMapUpper[keyCode] : CIMKeyMapLower[keyCode];
+                    string = [NSString stringWithUTF8String:key];
+                }
+            }   break;
+        }
+    }
+
     // 특정 애플리케이션에서 커맨드/옵션 키 입력을 선점하지 못하는 문제를 회피한다
     if (flags & (NSCommandKeyMask|NSAlternateKeyMask)) {
         dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
