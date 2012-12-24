@@ -14,6 +14,9 @@
     IBOutlet NSMenu *menu;
 }
 
+- (NSDictionary *)getRecentVersion;
++ (GureumAppDelegate *)sharedAppDelegate;
+
 @end
 
 #define CIMSharedConfiguration CIMAppDelegate.sharedInputManager.configuration
