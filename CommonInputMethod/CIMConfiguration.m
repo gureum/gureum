@@ -122,7 +122,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
 
 - (void)saveAllConfigurations {
     if (self->userDefaults == nil) return;
-    for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
+    for (int i = 0; i < CIMConfigurationStringItemCount; i++) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         NSString *value = *item.pConfiguration;
         if (value != nil && ![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
@@ -133,7 +133,24 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             [self->originConfigurations removeObjectForKey:item.name];
         }
     }
-    // TODO: save integer, bool config
+    for (int i = 0; i < CIMConfigurationIntegerItemCount; i++) {
+        struct CIMConfigurationIntegerItem item = self->integerItems[i];
+        NSInteger rawValue = *item.pConfiguration;
+        NSNumber *value = [NSNumber numberWithInteger:rawValue];
+        if (![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
+            [self->userDefaults setObject:value forKey:item.name];
+            [self->originConfigurations setObject:value forKey:item.name];
+        }
+    }
+    for (int i = 0; i < CIMConfigurationBoolItemCount; i++) {
+        struct CIMConfigurationBoolItem item = self->boolItems[i];
+        BOOL rawValue = *item.pConfiguration;
+        NSNumber *value = [NSNumber numberWithBool:rawValue];
+        if (![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
+            [self->userDefaults setObject:value forKey:item.name];
+            [self->originConfigurations setObject:value forKey:item.name];
+        }
+    }
     [self->userDefaults synchronize];
 }
 
