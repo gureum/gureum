@@ -29,6 +29,7 @@ typedef enum {
 }   HangulCharacterCombinationMode;
 #define HangulCharacterCombinationModeCount 5
 
+
 @class CIMInputController;
 
 @interface HangulComposer (HangulCharacterCombinationMode)
@@ -90,6 +91,12 @@ typedef enum {
     if (keyCode == 51) {
         return [self->_inputContext backspace];
     }
+
+    if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
+        dlog(DEBUG_HANGULCOMPOSER, @" ** ESCAPE from outbound keyCode: %lu", keyCode);
+        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+    }
+
     // 한글 입력에서 캡스락 무시
     if (flags & NSAlphaShiftKeyMask) {
         if (!(flags & NSShiftKeyMask)) {

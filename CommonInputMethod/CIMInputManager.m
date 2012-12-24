@@ -12,6 +12,25 @@
 #import "CIMInputHandler.h"
 #import "CIMConfiguration.h"
 
+const char CIMInputManagerKeyMapLower[0x33] = {
+    'a', 's', 'd', 'f', 'h', 'g', 'z', 'x',
+    'c', 'v', 'b',   0, 'q', 'w', 'e', 'r',
+    'y', 't', '1', '2', '3', '4', '6', '5',
+    '=', '9', '7', '-', '8', '0', ']', 'o',
+    'u', '[', 'i', 'p',   0, 'l', 'j','\'',
+    'k', ';','\\', ',', '/', 'n', 'm', '.',
+    0,   0, '`',
+};
+const char CIMInputManagerKeyMapUpper[0x33] = {
+    'A', 'S', 'D', 'F', 'H', 'G', 'Z', 'X',
+    'C', 'V', 'B',   0, 'Q', 'W', 'E', 'R',
+    'Y', 'T', '!', '@', '#', '$', '^', '%',
+    '+', '(', '&', '_', '*', ')', '}', 'O',
+    'U', '{', 'I', 'P',   0, 'L', 'J', '"',
+    'K', ':', '|', '<', '?', 'N', 'M', '>',
+    0,   0, '~',
+};
+
 @implementation CIMInputManager
 @synthesize server, candidates, configuration, handler, sharedComposer;
 @synthesize inputting;
@@ -54,6 +73,23 @@
 
 //  일단 받은 입력은 모두 핸들러로 넘겨준다.
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    if (flags & NSAlternateKeyMask) {
+        switch (self.configuration->optionKeyBehavior) {
+            case 0: {
+                // default
+                dlog(DEBUG_INPUTMANAGER, @" ** ESCAPE from option-key default behavior");
+                return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
+            }   break;
+            case 1: {
+                // ignore
+                if (keyCode < 0x33) {
+                char key[2] = {0, 0};
+                    key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMInputManagerKeyMapUpper[keyCode] : CIMInputManagerKeyMapLower[keyCode];
+                    string = [NSString stringWithUTF8String:key];
+                }
+            }   break;
+        }
+    }
     return [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 

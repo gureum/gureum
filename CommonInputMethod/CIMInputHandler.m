@@ -49,12 +49,6 @@ enum {
         goto finalize;
     }
     
-    // 화살표 키가 입력으로 들어오면 강제 커밋
-    if (KeyCodeLeftArrow <= keyCode && keyCode <= KeyCodeUpArrow) {
-        dlog(DEBUG_INPUTHANDLER, @"!! Commit composition on arrow keys");
-        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
-    }
-    
     // 특정 애플리케이션에서 커맨드/옵션 키 입력을 선점하지 못하는 문제를 회피한다
     if (flags & (NSCommandKeyMask|NSAlternateKeyMask)) {
         dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
