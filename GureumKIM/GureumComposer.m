@@ -118,7 +118,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
-        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == 0x35) {
+        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == kVK_Escape) {
             dlog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
             [self.delegate cancelComposition];
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
