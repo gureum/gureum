@@ -52,7 +52,7 @@ enum {
     // 특정 애플리케이션에서 커맨드/옵션 키 입력을 선점하지 못하는 문제를 회피한다
     if (flags & (NSCommandKeyMask|NSAlternateKeyMask)) {
         dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
-        return CIMInputTextProcessResultNotProcessed;
+        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
     
     result = [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
