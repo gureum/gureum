@@ -6,4 +6,4 @@
 	url = git://github.com/gureum/shortcutrecorder.git
 [submodule "cdebug"]
 	path = cdebug
-	url = git@github.com:youknowone/cdebug.git
+	url = git://github.com/youknowone/cdebug.git
