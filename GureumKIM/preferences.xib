@@ -825,11 +825,11 @@
 							<int key="NSVisibleItemCount">5</int>
 							<bool key="NSHasVerticalScroller">YES</bool>
 							<array class="NSMutableArray" key="NSPopUpListData">
-								<string>필터 문자 제거</string>
-								<string>필터 문자 보임</string>
-								<string>중성 필터만 보임</string>
-								<string>필터부터 숨김</string>
-								<string>중성 필터부터 숨김</string>
+								<string>채움 문자 제거</string>
+								<string>채움 문자 보임</string>
+								<string>중성 채움 문자만 보임</string>
+								<string>채움 문자부터 숨김</string>
+								<string>중성 채움 문자부터 숨김</string>
 							</array>
 							<reference key="NSDelegate" ref="78980024"/>
 							<object class="NSComboTableView" key="NSTableView" id="73346548">
@@ -930,11 +930,11 @@
 							<int key="NSVisibleItemCount">5</int>
 							<bool key="NSHasVerticalScroller">YES</bool>
 							<array class="NSMutableArray" key="NSPopUpListData">
-								<string>필터 문자 제거</string>
-								<string>필터 문자 보임</string>
-								<string>중성 필터만 보임</string>
-								<string>필터부터 숨김</string>
-								<string>중성 필터부터 숨김</string>
+								<string>채움 문자 제거</string>
+								<string>채움 문자 보임</string>
+								<string>중성 채움 문자만 보임</string>
+								<string>채움 문자부터 숨김</string>
+								<string>중성 채움 문자부터 숨김</string>
 							</array>
 							<reference key="NSDelegate" ref="933312515"/>
 							<object class="NSComboTableView" key="NSTableView" id="351645119">
@@ -1643,22 +1643,22 @@
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="110.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<array key="111.IBComboBoxObjectValuesKey.objectValues">
-					<string>필터 문자 제거</string>
-					<string>필터 문자 보임</string>
-					<string>중성 필터만 보임</string>
-					<string>필터부터 숨김</string>
-					<string>중성 필터부터 숨김</string>
+					<string>채움 문자 제거</string>
+					<string>채움 문자 보임</string>
+					<string>중성 채움 문자만 보임</string>
+					<string>채움 문자부터 숨김</string>
+					<string>중성 채움 문자부터 숨김</string>
 				</array>
 				<string key="111.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<array key="116.IBComboBoxObjectValuesKey.objectValues">
-					<string>필터 문자 제거</string>
-					<string>필터 문자 보임</string>
-					<string>중성 필터만 보임</string>
-					<string>필터부터 숨김</string>
-					<string>중성 필터부터 숨김</string>
+					<string>채움 문자 제거</string>
+					<string>채움 문자 보임</string>
+					<string>중성 채움 문자만 보임</string>
+					<string>채움 문자부터 숨김</string>
+					<string>중성 채움 문자부터 숨김</string>
 				</array>
 				<string key="116.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="117.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

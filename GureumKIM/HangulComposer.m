@@ -16,16 +16,16 @@
 #define DEBUG_HANJACOMPOSER FALSE
 
 typedef enum {
-    // filter 문자는 모두 지우고 결합해 표현한다.
-    HangulCharacterCombinationWithoutFilter = 0,
-    // 없는 자소가 있더라도 모두 filter 문자와 결합해 표현한다.
-    HangulCharacterCombinationWithFilter = 1,
-    // 중성이 빠졌을 경우만 filter 문자를 이용한다.
-    HangulCharacterCombinationWithOnlyJungseongFilter = 2,
-    // filter 문자 뒤는 숨긴다.
-    HangulCharacterCombinationHiddenOnFilter = 3,
-    // 중성 filter 문자 뒤는 숨긴다.
-    HangulCharacterCombinationHiddenOnJungseongFilter = 4,
+    // 채움 문자는 모두 지우고 결합해 표현한다.
+    HangulCharacterCombinationWithoutFiller = 0,
+    // 없는 자소가 있더라도 모두 채움 문자와 결합해 표현한다.
+    HangulCharacterCombinationWithFiller = 1,
+    // 중성이 빠졌을 경우만 채움 문자를 이용한다.
+    HangulCharacterCombinationWithOnlyJungseongFiller = 2,
+    // 채움 문자 뒤는 숨긴다.
+    HangulCharacterCombinationHiddenOnFiller = 3,
+    // 중성 채움 문자 뒤는 숨긴다.
+    HangulCharacterCombinationHiddenOnJungseongFiller = 4,
 }   HangulCharacterCombinationMode;
 #define HangulCharacterCombinationModeCount 5
 
@@ -41,10 +41,10 @@ typedef enum {
 
 @interface NSString (HangulCharacterCombinationMode)
 
-+ (NSString *)stringByRemovingFilterWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)stringByHidingFilterFollowersWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)stringByHidingJungseongFilterFollowersWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)stringByRemovingNonJungseongFilterWithUCSString:(const HGUCSChar *)UCSString;
++ (NSString *)stringByRemovingFillerWithUCSString:(const HGUCSChar *)UCSString;
++ (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
++ (NSString *)stringByHidingJungseongFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
++ (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString;
 
 @end
 
@@ -336,36 +336,36 @@ typedef enum {
 
 @implementation HangulComposer (HangulCharacterCombinationMode)
 
-static NSString *HangulCombinationModefilters[HangulCharacterCombinationModeCount] = {
-    @"stringByRemovingFilterWithUCSString:",
+static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCount] = {
+    @"stringByRemovingFillerWithUCSString:",
     @"stringWithUCSString:",
-    @"stringByRemovingNonJungseongFilterWithUCSString:",
-    @"stringByHidingFilterFollowersWithUCSString:",
-    @"stringByHidingJungseongFilterFollowersWithUCSString:",
+    @"stringByRemovingNonJungseongFillerWithUCSString:",
+    @"stringByHidingFillerFollowersWithUCSString:",
+    @"stringByHidingJungseongFillerFollowersWithUCSString:",
 };
 
 /*!
     @brief  설정에 따라 조합 완료할 문자 최종처리
 */
 + (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    SEL filter = NSSelectorFromString(HangulCombinationModefilters[CIMSharedConfiguration->hangulCombinationModeCommiting]);
-    return [NSString performSelector:filter withObject:(id)UCSString];
+    SEL filler = NSSelectorFromString(HangulCombinationModefillers[CIMSharedConfiguration->hangulCombinationModeCommiting]);
+    return [NSString performSelector:filler withObject:(id)UCSString];
 }
 
 /*!
     @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
 */
 + (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    SEL filter = NSSelectorFromString(HangulCombinationModefilters[CIMSharedConfiguration->hangulCombinationModeComposing]);
-    return [NSString performSelector:filter withObject:(id)UCSString];
+    SEL filler = NSSelectorFromString(HangulCombinationModefillers[CIMSharedConfiguration->hangulCombinationModeComposing]);
+    return [NSString performSelector:filler withObject:(id)UCSString];
 }
 
 @end
 
 @implementation NSString (HangulCharacterCombinationMode)
 
-+ (NSString *)stringByRemovingFilterWithUCSString:(const HGUCSChar *)UCSString {
-    // 조합중인지 판별하는 magic
++ (NSString *)stringByRemovingFillerWithUCSString:(const HGUCSChar *)UCSString {
+    // 채움문자로 조합 중 판별
     if (!HGCharacterIsChoseong(UCSString[0])) {
         return [NSString stringWithUCSString:UCSString];
     }
@@ -373,14 +373,14 @@ static NSString *HangulCombinationModefilters[HangulCharacterCombinationModeCoun
         return [NSString stringWithUCSString:UCSString + 1];
     }
     /* if (UCSString[1] == 0x1160) */ {
-        NSMutableString *filtered = [[NSMutableString alloc] initWithUCSString:UCSString length:1];
-        [filtered appendString:[NSString stringWithUCSString:UCSString + 2 length:1]];
-        return [filtered autorelease];
+        NSMutableString *fill = [[NSMutableString alloc] initWithUCSString:UCSString length:1];
+        [fill appendString:[NSString stringWithUCSString:UCSString + 2 length:1]];
+        return [fill autorelease];
     }
 }
 
-+ (NSString *)stringByHidingFilterFollowersWithUCSString:(const HGUCSChar *)UCSString {
-    // 조합중인지 판별하는 magic
++ (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString {
+    // 채움문자로 조합 중 판별
     if (!HGCharacterIsChoseong(UCSString[0])) {
         return [NSString stringWithUCSString:UCSString];
     }
@@ -390,8 +390,8 @@ static NSString *HangulCombinationModefilters[HangulCharacterCombinationModeCoun
     return [NSString stringWithUCSString:UCSString length:1];
 }
 
-+ (NSString *)stringByHidingJungseongFilterFollowersWithUCSString:(const HGUCSChar *)UCSString {
-    // 조합중인지 판별하는 magic
++ (NSString *)stringByHidingJungseongFillerFollowersWithUCSString:(const HGUCSChar *)UCSString {
+    // 채움문자로 조합 중 판별
     if (!HGCharacterIsChoseong(UCSString[0])) {
         return [NSString stringWithUCSString:UCSString];
     }
@@ -403,8 +403,8 @@ static NSString *HangulCombinationModefilters[HangulCharacterCombinationModeCoun
     return [NSString stringWithUCSString:UCSString length:1];
 }
 
-+ (NSString *)stringByRemovingNonJungseongFilterWithUCSString:(const HGUCSChar *)UCSString {
-    // 초성이 필터문자일 때를 제외하면 항상 
++ (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString {
+    // 초성이 채움문자일 때를 제외하면 항상 
     if (UCSString[0] == 0x115f) {
         return [NSString stringWithUCSString:UCSString + 1];
     }

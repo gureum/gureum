@@ -1,8 +1,8 @@
-"HangulPresentationRemoveFilters" = "필터 문자 제거";
-"HangulPresentationAllFilters" = "필터 문자 보임";
-"HangulPresentationRemoveNonJungseongFilter" = "중성 필터만 보임";
-"HangulPresentationHideFromFilter" = "필터부터 숨김";
-"HangulPresentationHideFromJungseongFilter" = "중성 필터부터 숨김";
+"HangulPresentationRemoveFillers" = "채움 문자 제거";
+"HangulPresentationAllFillers" = "채움 문자 보임";
+"HangulPresentationRemoveNonJungseongFiller" = "중성 채움 문자만 보임";
+"HangulPresentationHideFromFiller" = "채움 문자부터 숨김";
+"HangulPresentationHideFromJungseongFiller" = "중성 채움문자부터 숨김";
 
 "OptionKeyDefault" = "기본 특수 문자";
 "OptionKeyIgnore" = "Option 키 무시";

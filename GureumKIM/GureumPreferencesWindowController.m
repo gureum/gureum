@@ -48,11 +48,11 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     GureumPreferencesHangulLayoutLocalizedNames = [[NSArray alloc] initWithArray:names];
     
     GureumPreferencesHangulSyllablePresentations = [[NSArray alloc] initWithObjects:
-                                                    NSLocalizedStringFromTable(@"HangulPresentationRemoveFilters", @"Hangul", @""),
-                                                    NSLocalizedStringFromTable(@"HangulPresentationAllFilters", @"Hangul", @""),
-                                                    NSLocalizedStringFromTable(@"HangulPresentationRemoveNonJungseongFilter", @"Hangul", @""),
-                                                    NSLocalizedStringFromTable(@"HangulPresentationHideFromFilter", @"Hangul", @""),
-                                                    NSLocalizedStringFromTable(@"HangulPresentationHideFromJungseongFilter", @"Hangul", @""),
+                                                    NSLocalizedStringFromTable(@"HangulPresentationRemoveFillers", @"Hangul", @""),
+                                                    NSLocalizedStringFromTable(@"HangulPresentationAllFillers", @"Hangul", @""),
+                                                    NSLocalizedStringFromTable(@"HangulPresentationRemoveNonJungseongFiller", @"Hangul", @""),
+                                                    NSLocalizedStringFromTable(@"HangulPresentationHideFromFiller", @"Hangul", @""),
+                                                    NSLocalizedStringFromTable(@"HangulPresentationHideFromJungseongFiller", @"Hangul", @""),
                                                     nil];
 }
 
