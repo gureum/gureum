@@ -2,9 +2,10 @@
 libhangul의 라이선스 전파성을 피하기 위해 프로젝트를 분리하여 준비가 조금 복잡합니다.
 git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
 
-	git clone git://github.com/gureum/gureum.git # 클론
-	cd gureum
-	git submodule update --init --recursive
+    git clone git://github.com/gureum/gureum.git # 클론
+    cd gureum
+    git submodule update --init --recursive
+    pod install # cocoapod을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
 
 # 빌드
 GureumKIM 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
@@ -13,8 +14,8 @@ Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 �
 # 테스트
 디버그 모드로 빌드한 입력기를 설치합니다.
 
-	cd GureumKIM/tools
-	./installtest.sh
+    cd GureumKIM/tools
+    ./installtest.sh
 
 설치 후에는 구름 입력기가 사라질 수 있습니다.
 언어 및 입력기 설정을 다시 열고 입력기를 설정해 줍니다.

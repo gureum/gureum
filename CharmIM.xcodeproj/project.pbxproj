@@ -25,6 +25,7 @@
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
+		3838D73F16ECF1D500E2A649 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3838D73E16ECF1D400E2A649 /* libPods.a */; };
 		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
@@ -66,6 +67,7 @@
 		38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+		D2917F585C754C099EC4DDD2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96531747FFE34C269FBF9A41 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,7 @@
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		3838D73E16ECF1D400E2A649 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
 		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
 		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
@@ -178,7 +181,6 @@
 		38475AFE1412BC6F0062100D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Icons/icon.png; sourceTree = "<group>"; };
 		38475B001412C0640062100D /* Gureum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Gureum.icns; path = Icons/Gureum.icns; sourceTree = "<group>"; };
 		38475B021412C3A90062100D /* han3noshift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3noshift.png; path = Icons/han3noshift.png; sourceTree = "<group>"; };
-		3871DF3416756F74006835D4 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		387D00011421F72600DAE6F4 /* CharmAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharmAppDelegate.h; sourceTree = "<group>"; };
 		387D00021421F72600DAE6F4 /* CharmAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmAppDelegate.m; sourceTree = "<group>"; };
@@ -214,6 +216,8 @@
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
+		96531747FFE34C269FBF9A41 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3838D73F16ECF1D500E2A649 /* libPods.a in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
@@ -234,6 +239,7 @@
 			files = (
 				38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */,
 				38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */,
+				D2917F585C754C099EC4DDD2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,14 +332,6 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		3871DF3016756F74006835D4 /* cdebug */ = {
-			isa = PBXGroup;
-			children = (
-				3871DF3416756F74006835D4 /* debug.h */,
-			);
-			path = cdebug;
-			sourceTree = "<group>";
-		};
 		387DFFFE1421F1E000DAE6F4 /* Common Input Method */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,13 +356,14 @@
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
-				3871DF3016756F74006835D4 /* cdebug */,
+				3838D73E16ECF1D400E2A649 /* libPods.a */,
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
 				38162DF6141263270077AA2D /* GureumKIM */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
+				B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -384,6 +383,7 @@
 				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
 				38863C98140E677900A8ED76 /* InputMethodKit.framework */,
 				38863C65140E64EB00A8ED76 /* Other Frameworks */,
+				96531747FFE34C269FBF9A41 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -518,6 +518,7 @@
 				38863C5B140E64EB00A8ED76 /* Sources */,
 				38863C5C140E64EB00A8ED76 /* Frameworks */,
 				38863C5D140E64EB00A8ED76 /* Resources */,
+				F71F89C02E3C4339A8BA4F01 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -694,6 +695,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		F71F89C02E3C4339A8BA4F01 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -792,6 +807,7 @@
 /* Begin XCBuildConfiguration section */
 		38162E09141263280077AA2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -815,6 +831,10 @@
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -825,9 +845,11 @@
 		};
 		38162E0A141263280077AA2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -845,8 +867,13 @@
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = GureumKIM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -872,6 +899,7 @@
 		};
 		38863C90140E64EC00A8ED76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -900,6 +928,7 @@
 		};
 		38863C91140E64EC00A8ED76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";

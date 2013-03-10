@@ -7,6 +7,10 @@
 .svn
 .svnignore
 
+# cocospod
+Pods
+Podfile.lock
+
 # Xcode crap
 *mode1v3
 *pbxuser
