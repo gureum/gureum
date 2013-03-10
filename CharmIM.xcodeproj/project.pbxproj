@@ -11,6 +11,7 @@
 		3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; };
+		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
 		38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
@@ -37,7 +38,6 @@
 		38475AFC1412BC050062100D /* hanroman.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF41412BC050062100D /* hanroman.png */; };
 		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
 		38475AFF1412BC700062100D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AFE1412BC6F0062100D /* icon.png */; };
-		38475B011412C0640062100D /* Gureum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38475B001412C0640062100D /* Gureum.icns */; };
 		38475B031412C3AA0062100D /* han3noshift.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475B021412C3A90062100D /* han3noshift.png */; };
 		387A47451688415500EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
@@ -151,6 +151,7 @@
 		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
 		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
+		380ECC8216ECF49F0063B881 /* Gureum.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Gureum.iconset; path = Icons/Gureum.iconset; sourceTree = "<group>"; };
 		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
@@ -179,7 +180,6 @@
 		38475AF41412BC050062100D /* hanroman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hanroman.png; path = Icons/hanroman.png; sourceTree = "<group>"; };
 		38475AF51412BC050062100D /* qwerty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qwerty.png; path = Icons/qwerty.png; sourceTree = "<group>"; };
 		38475AFE1412BC6F0062100D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Icons/icon.png; sourceTree = "<group>"; };
-		38475B001412C0640062100D /* Gureum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Gureum.icns; path = Icons/Gureum.icns; sourceTree = "<group>"; };
 		38475B021412C3A90062100D /* han3noshift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3noshift.png; path = Icons/han3noshift.png; sourceTree = "<group>"; };
 		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		387D00011421F72600DAE6F4 /* CharmAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharmAppDelegate.h; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				38475AEC14129BC10062100D /* Gureum.png */,
-				38475B001412C0640062100D /* Gureum.icns */,
+				380ECC8216ECF49F0063B881 /* Gureum.iconset */,
 				38475AFE1412BC6F0062100D /* icon.png */,
 				38475AEE1412BC050062100D /* han2.png */,
 				3802E45D141380BF00256B54 /* han2classic.png */,
@@ -652,12 +652,12 @@
 				38475AFC1412BC050062100D /* hanroman.png in Resources */,
 				38475AFD1412BC050062100D /* qwerty.png in Resources */,
 				38475AFF1412BC700062100D /* icon.png in Resources */,
-				38475B011412C0640062100D /* Gureum.icns in Resources */,
 				38475B031412C3AA0062100D /* han3noshift.png in Resources */,
 				3802E45E141380BF00256B54 /* han2classic.png in Resources */,
 				383EF60D142B28B600013C0B /* preferences.xib in Resources */,
 				38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */,
 				388E2A611469249700ADBDA5 /* Hangul.strings in Resources */,
+				380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
