@@ -72,6 +72,13 @@
     }
     NSString *currentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 
+    if (!recentVersion || !currentVersion || !recentDownload) {
+        NSLog(@"- Recent Version: %@", recentVersion);
+        NSLog(@"- Current Version: %@", currentVersion);
+        NSLog(@"- Recent Download: %@", recentDownload);
+        return nil;
+    }
+
     if (releaseNote) {
         return @{@"recent": recentVersion, @"current": currentVersion, @"download": recentDownload, @"note": releaseNote};
     }
