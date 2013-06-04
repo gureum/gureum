@@ -66,6 +66,48 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smKorean</string>
 			</dict>
+			<key>org.youknowone.inputmethod.GureumKIM.han3-2011</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.GureumKIM.han3-2011</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han3-2012.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
+			<key>org.youknowone.inputmethod.GureumKIM.han3-2012</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.GureumKIM.han3-2012</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han3-2012.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
 			<key>org.youknowone.inputmethod.GureumKIM.han390</key>
 			<dict>
 				<key>TISInputSourceID</key>
@@ -245,6 +287,8 @@
 			<string>org.youknowone.inputmethod.GureumKIM.han3noshift</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han3classic</string>
 			<string>org.youknowone.inputmethod.GureumKIM.hanroman</string>
+			<string>org.youknowone.inputmethod.GureumKIM.han3-2011</string>
+			<string>org.youknowone.inputmethod.GureumKIM.han3-2012</string>
 		</array>
 	</dict>
 	<key>InputMethodConnectionName</key>

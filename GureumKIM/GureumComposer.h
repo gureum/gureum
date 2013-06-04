@@ -22,6 +22,8 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3Classic;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3Layout2;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHanAhnmatae;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHanRoman;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2011;
+FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012;
 
 @class HangulComposer;
 @class HanjaComposer;
