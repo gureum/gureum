@@ -12,6 +12,8 @@ org.youknowone.inputmethod.GureumKIM.han3classic = "Hangeul 3set Classic";
 org.youknowone.inputmethod.GureumKIM.han3layout2 = "Hangeul 3set Layout 2set (For Testing)";
 org.youknowone.inputmethod.GureumKIM.hanroman = "Hangeul Roman";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "Hangeul Ahnmatae";
+org.youknowone.inputmethod.GureumKIM.han3-2011 = "Hangeul 3set 2011";
+org.youknowone.inputmethod.GureumKIM.han3-2012 = "Hangeul 3set 2012";
 
 CFBundleName = "Gureum";
 CFBundleDisplayName = "Gureum Input Method";
