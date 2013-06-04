@@ -14,6 +14,7 @@ org.youknowone.inputmethod.GureumKIM.hanroman = "한글 로마자";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "한글 안마태";
 org.youknowone.inputmethod.GureumKIM.han3-2011 = "한글 세벌식 2011";
 org.youknowone.inputmethod.GureumKIM.han3-2012 = "한글 세벌식 2012";
+org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "한글 세벌식 최종 순아래 (호환)";
 
 CFBundleName = "구름";
 CFBundleDisplayName = "구름 입력기";

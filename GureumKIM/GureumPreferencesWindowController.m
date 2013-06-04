@@ -40,8 +40,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
                      @"org.youknowone.inputmethod.GureumKIM.hanahnmatae",
                      @"org.youknowone.inputmethod.GureumKIM.han3-2011",
                      @"org.youknowone.inputmethod.GureumKIM.han3-2012",
+                     @"org.youknowone.inputmethod.GureumKIM.han3finalnoshift",
                      nil];
-    
+
     NSDictionary *info = [[NSBundle mainBundle] localizedInfoDictionary];
     NSMutableArray *names = [NSMutableArray array];
     for (NSString *layout in GureumPreferencesHangulLayouts) {

@@ -14,6 +14,7 @@ org.youknowone.inputmethod.GureumKIM.hanroman = "Hangeul Roman";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "Hangeul Ahnmatae";
 org.youknowone.inputmethod.GureumKIM.han3-2011 = "Hangeul 3set 2011";
 org.youknowone.inputmethod.GureumKIM.han3-2012 = "Hangeul 3set 2012";
+org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "Hangeul 3set Final No shift (Compatible)";
 
 CFBundleName = "Gureum";
 CFBundleDisplayName = "Gureum Input Method";

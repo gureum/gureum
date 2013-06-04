@@ -29,6 +29,7 @@ NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod
 NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
 NSString *kGureumInputSourceIdentifierHan3_2011 = @"org.youknowone.inputmethod.GureumKIM.han3-2011";
 NSString *kGureumInputSourceIdentifierHan3_2012 = @"org.youknowone.inputmethod.GureumKIM.han3-2012";
+NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputmethod.GureumKIM.han3finalnoshift";
 
 #import "HangulComposer.h"
 
@@ -71,13 +72,14 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
                                                         @"ahn", kGureumInputSourceIdentifierHanAhnmatae,
                                                         @"3-2011", kGureumInputSourceIdentifierHan3_2011,
                                                         @"3-2012", kGureumInputSourceIdentifierHan3_2012,
+                                                        @"3fs", kGureumInputSourceIdentifierHan3FinalNoShift,
                                                         nil];
 }
 
 - (void)setInputMode:(NSString *)newInputMode {
     dlog(DEBUG_GUREUM, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
     if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
-    
+
     NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
     if ([keyboardIdentifier length] == 0) {
         self.delegate = self->romanComposer;
@@ -88,7 +90,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         CIMConfigurationSetObjectForField(CIMSharedConfiguration, newInputMode, lastHangulInputMode);
         [CIMSharedConfiguration saveConfigurationForStringField:&CIMSharedConfiguration->lastHangulInputMode];
     }
-    
+
     [super setInputMode:newInputMode];
 }
 
