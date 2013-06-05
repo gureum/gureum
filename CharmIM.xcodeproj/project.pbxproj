@@ -56,6 +56,7 @@
 		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
+		388FD02B175EDB5500469B76 /* Version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 388FD02A175EDB5500469B76 /* Version.xcconfig */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; };
@@ -220,6 +221,7 @@
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
 		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
+		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		38F1524516ECF87E00FE1B4A /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
 		38F1524616ECF87E00FE1B4A /* han2classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2classic@2x.png"; path = "Icons/han2classic@2x.png"; sourceTree = "<group>"; };
 		38F1524716ECF87E00FE1B4A /* han3classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3classic@2x.png"; path = "Icons/han3classic@2x.png"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
+				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
 				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
@@ -522,6 +525,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */;
 			buildPhases = (
+				388FD025175ED98E00469B76 /* Version */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
@@ -694,6 +698,7 @@
 				38F1525416ECF87E00FE1B4A /* han390s@2x.png in Resources */,
 				38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */,
 				38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */,
+				388FD02B175EDB5500469B76 /* Version.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +735,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		388FD025175ED98E00469B76 /* Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Version;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cd $PROJECT_DIR/GureumKIM\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
 		F71F89C02E3C4339A8BA4F01 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -917,6 +936,7 @@
 		};
 		38863C55140E62D100A8ED76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -926,6 +946,7 @@
 		};
 		38863C56140E62D100A8ED76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";

@@ -1,7 +1,8 @@
 #!/bin/bash
 . ready.sh
 
-rm "$pkgname.pkg" "$pkgname.app.tar.gz"
+rm "build/$CONFIGURATION/$pkgname.pkg" "build/$CONFIGURATION/$pkgname.app.tar.gz"
+rm "build/$CONFIGURATION/*.app/Contents/Info.plist"
 
 xcodebuild -project 'CharmIM.xcodeproj' -target 'Gureum' -configuration "$CONFIGURATION" && \
 cd "build/$CONFIGURATION" && \
