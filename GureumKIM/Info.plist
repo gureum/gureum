@@ -111,6 +111,27 @@
 			<key>org.youknowone.inputmethod.GureumKIM.han390</key>
 			<dict>
 				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.GureumKIM.han390loose</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han390.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
+			<key>org.youknowone.inputmethod.GureumKIM.han390loose</key>
+			<dict>
+				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.GureumKIM.han390</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
@@ -151,6 +172,27 @@
 				<string>smKorean</string>
 			</dict>
 			<key>org.youknowone.inputmethod.GureumKIM.han3final</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.GureumKIM.han3finalloose</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han3final.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
+			<key>org.youknowone.inputmethod.GureumKIM.han3finalloose</key>
 			<dict>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.GureumKIM.han3final</string>
@@ -304,7 +346,9 @@
 			<string>org.youknowone.inputmethod.GureumKIM.han2</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han2classic</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han3final</string>
+			<string>org.youknowone.inputmethod.GureumKIM.han3finalloose</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han390</string>
+			<string>org.youknowone.inputmethod.GureumKIM.han390loose</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han3noshift</string>
 			<string>org.youknowone.inputmethod.GureumKIM.han3classic</string>
 			<string>org.youknowone.inputmethod.GureumKIM.hanroman</string>

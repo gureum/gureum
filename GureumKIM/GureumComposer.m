@@ -21,7 +21,9 @@ NSString *kGureumInputSourceIdentifierColemakQwertyCommand = @"org.youknowone.in
 NSString *kGureumInputSourceIdentifierHan2 = @"org.youknowone.inputmethod.GureumKIM.han2";
 NSString *kGureumInputSourceIdentifierHan2Classic = @"org.youknowone.inputmethod.GureumKIM.han2classic";
 NSString *kGureumInputSourceIdentifierHan3Final = @"org.youknowone.inputmethod.GureumKIM.han3final";
+NSString *kGureumInputSourceIdentifierHan3FinalLoose = @"org.youknowone.inputmethod.GureumKIM.han3finalloose";
 NSString *kGureumInputSourceIdentifierHan390 = @"org.youknowone.inputmethod.GureumKIM.han390";
+NSString *kGureumInputSourceIdentifierHan390Loose = @"org.youknowone.inputmethod.GureumKIM.han390loose";
 NSString *kGureumInputSourceIdentifierHan3NoShift = @"org.youknowone.inputmethod.GureumKIM.han3noshift";
 NSString *kGureumInputSourceIdentifierHan3Classic = @"org.youknowone.inputmethod.GureumKIM.han3classic";
 NSString *kGureumInputSourceIdentifierHan3Layout2 = @"org.youknowone.inputmethod.GureumKIM.han3layout2";
@@ -64,7 +66,9 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
                                                         @"2", kGureumInputSourceIdentifierHan2,
                                                         @"2y", kGureumInputSourceIdentifierHan2Classic,
                                                         @"3f", kGureumInputSourceIdentifierHan3Final,
+                                                        @"3fl", kGureumInputSourceIdentifierHan3FinalLoose,
                                                         @"39", kGureumInputSourceIdentifierHan390,
+                                                        @"39l", kGureumInputSourceIdentifierHan390Loose,
                                                         @"3s", kGureumInputSourceIdentifierHan3NoShift,
                                                         @"3y", kGureumInputSourceIdentifierHan3Classic,
                                                         @"32", kGureumInputSourceIdentifierHan3Layout2,
