@@ -63,6 +63,9 @@
 - (NSDictionary *)getRecentVersion {
     NSError *error = nil;
     NSString *verstring = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gureum.org/version.txt"] encoding:NSUTF8StringEncoding error:&error];
+    if (verstring == nil || error) {
+        return nil;
+    }
     NSArray *components = [verstring componentsSeparatedByString:@"::"];
     NSString *recentVersion = [components objectAtIndex:0];
     NSString *recentDownload = [components objectAtIndex:1];

@@ -14,6 +14,9 @@
 
 - (IBAction)checkRecentVersion:(id)sender {
     NSDictionary *versionInfo = [[GureumAppDelegate sharedAppDelegate] getRecentVersion];
+    if (versionInfo == nil) {
+        return;
+    }
 
     NSString *recent = [versionInfo objectForKey:@"recent"];
     NSString *current = [versionInfo objectForKey:@"current"];
@@ -38,7 +41,6 @@
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:download]];
         }
     }
-    
 }
 
 - (IBAction)openWebsite:(id)sender {
