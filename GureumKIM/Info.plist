@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>Gureum.icns</string>
+	<key>CFBundleGetInfoString</key>
+	<string>${VERSION}, ${NSHumanReadableCopyright}, Some Rights Reserved</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.youknowone.inputmethod.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -17,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>${VERSION}</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>yno1</string>
 	<key>CFBundleVersion</key>
 	<string>${VERSION}</string>
 	<key>ComponentInputModeDict</key>
@@ -41,7 +43,7 @@
 				<key>tsInputModePaletteIconFileKey</key>
 				<string>han2.png</string>
 				<key>tsInputModePrimaryInScriptKey</key>
-				<false/>
+				<true/>
 				<key>tsInputModeScriptKey</key>
 				<string>smKorean</string>
 			</dict>
@@ -357,6 +359,17 @@
 			<string>org.youknowone.inputmethod.GureumKIM.han3finalnoshift</string>
 		</array>
 	</dict>
+	<key>HIMHanjaWindowSettings</key>
+	<dict>
+		<key>fontName</key>
+		<string>AppleMyungjo</string>
+		<key>fontSize</key>
+		<integer>18</integer>
+		<key>inputFormat</key>
+		<string>HanjaOnly</string>
+	</dict>
+	<key>HIMHelpAppleTitle</key>
+	<string>한글 입력기 도움말</string>
 	<key>InputMethodConnectionName</key>
 	<string>GureumInputMethod_1_Connection</string>
 	<key>InputMethodServerControllerClass</key>
@@ -365,8 +378,8 @@
 	<string>CIMInputController</string>
 	<key>InputMethodServerPreferencesWindowControllerClass</key>
 	<string>GureumPreferencesWindowController</string>
-	<key>LSBackgroundOnly</key>
-	<true/>
+	<key>LSUIElement</key>
+	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
@@ -375,12 +388,15 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>TISInputSourceID</key>
+	<string>org.youknowone.inputmethod.Korean</string>
 	<key>TISIntendedLanguage</key>
 	<string>ko</string>
 	<key>tsInputMethodCharacterRepertoireKey</key>
 	<array>
 		<string>Latn</string>
 		<string>Kore</string>
+		<string>Hang</string>
 	</array>
 	<key>tsInputMethodIconFileKey</key>
 	<string>icon.png</string>

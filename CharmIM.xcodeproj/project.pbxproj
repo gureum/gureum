@@ -26,7 +26,6 @@
 		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
-		3838D73F16ECF1D500E2A649 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3838D73E16ECF1D400E2A649 /* libPods.a */; };
 		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AED14129BC10062100D /* Gureum.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEC14129BC10062100D /* Gureum.png */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
@@ -176,7 +175,6 @@
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		3838D73E16ECF1D400E2A649 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
 		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
 		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3838D73F16ECF1D500E2A649 /* libPods.a in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
@@ -386,7 +383,6 @@
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
-				3838D73E16ECF1D400E2A649 /* libPods.a */,
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
@@ -586,6 +582,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = youknowone.org;
+				TargetAttributes = {
+					38162DF2141263270077AA2D = {
+						DevelopmentTeam = 3BUWX63W7M;
+					};
+				};
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -865,7 +866,6 @@
 			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -903,8 +903,7 @@
 			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -928,7 +927,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
