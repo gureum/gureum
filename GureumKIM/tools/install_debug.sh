@@ -5,4 +5,4 @@ xcodebuild -workspace 'CharmIM.xcworkspace' -scheme 'GureumKIM' -configuration '
 cd 'build/Debug' && \
 sudo rm -rf "$INSTDIR/$appname" && \
 sudo cp -R "$appname" "$INSTDIR/"
-sudo killall Gureum
+#sudo killall Gureum

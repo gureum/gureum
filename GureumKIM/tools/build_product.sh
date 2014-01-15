@@ -6,6 +6,6 @@ rm "build/$CONFIGURATION/*.app/Contents/Info.plist"
 
 xcodebuild -project 'CharmIM.xcodeproj' -target 'Gureum' -configuration "$CONFIGURATION" && \
 cd "build/$CONFIGURATION" && \
-productbuild --component "$appname" '/Library/Input Methods' "$pkgname.pkg" && \
+productbuild --product "../../GureumKIM/tools/preinst.plist" --component "$appname" '/Library/Input Methods' --sign "3rd Party Mac Developer Installer: 3rddev Inc." "$pkgname.pkg" && \
 tar -zcf "$pkgname.app.tar.gz" "$appname"
 
