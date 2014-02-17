@@ -50,3 +50,28 @@
 - (IBAction)showStandardAboutPanel:(id)sender;
 
 @end
+
+
+#if DEBUG
+
+@interface CIMMockInputController : NSObject {
+    CIMInputReceiver *_receiver;
+}
+
+@property(readonly) CIMComposer *composer; // temp bridge
+
+- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient;
+- (void)repoduceTextLog:(NSString *)text;
+
+@end
+
+
+@interface CIMMockClient : NSObject<NSTextInputClient> {
+    NSMutableString *_buffer;
+}
+
+@property(nonatomic,readonly) NSString *buffer;
+
+@end
+
+#endif

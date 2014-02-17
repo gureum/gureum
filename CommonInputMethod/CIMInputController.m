@@ -49,6 +49,7 @@
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    dlog(DEBUG_LOGGING, @"LOGGING::KEY::(%@)(%ld)(%lu)", [string stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"], keyCode, flags);
     CIMInputTextProcessResult handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     dlog(DEBUG_INPUTCONTROLLER, @"*** End of Input handling ***");
     return handled;
@@ -61,15 +62,18 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender controller:(CIMInputController *)controller {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::COMMIT-INTERNAL");
     [self commitCompositionEvent:sender controller:controller];
 }
 
 - (void)updateComposition:(CIMInputController *)controller  {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::UPDATE-INTERNAL");
     [self updateCompositionEvent:controller];
     [controller updateComposition];
 }
 
 - (void)cancelComposition:(CIMInputController *)controller  {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CANCEL-INTERNAL");
     [self cancelCompositionEvent:controller];
     [controller cancelComposition];
 }
@@ -77,9 +81,11 @@
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::COMMIT");
     if (!CIMSharedInputManager.inputting) {
         // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
         dlog(DEBUG_INPUTCONTROLLER, @"-- CANCEL composition because of external commit request from %@", sender);
+        dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CANCEL-INTERNAL");
         [self cancelComposition:controller];
     }
     // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
@@ -92,10 +98,12 @@
 }
 
 - (void)updateCompositionEvent:(CIMInputController *)controller  {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::UPDATE");
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
 }
 
 - (void)cancelCompositionEvent:(CIMInputController *)controller  {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CANCEL");
     [self.composer cancelComposition];
 }
 
@@ -142,6 +150,7 @@
 
 //! @brief 자판 전환을 감지한다.
 - (void)setValue:(id)value forTag:(long)tag client:(id)sender controller:(CIMInputController *)controller {
+    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CHANGE-%lu-%@", tag, value);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / sender: %@ / client: %@", value, tag, sender, controller.client);
     switch (tag) {
         case kTextServiceInputModePropertyTag:
@@ -235,12 +244,14 @@
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
     [self->_receiver commitCompositionEvent:sender controller:self];
+    //[super commitComposition:sender];
 }
 
-#if IC_DEBUG
+#if DEBUG
 - (void)updateComposition {
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
-    [super->_receiver updateCompositionEvent];
+    [self->_receiver updateCompositionEvent:self];
+    [super updateComposition];
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
 }
 #endif
@@ -295,7 +306,7 @@
 */
 - (BOOL)mouseDownOnCharacterIndex:(NSUInteger)index coordinate:(NSPoint)point withModifier:(NSUInteger)flags continueTracking:(BOOL *)keepTracking client:(id)sender
 {
-    [self commitComposition:sender];
+    [self->_receiver commitComposition:sender controller:self];
     return NO;
 }
 
@@ -320,3 +331,140 @@
 }
 
 @end
+
+
+#if DEBUG
+
+@implementation CIMMockInputController
+
+- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+    self = [super init];
+    if (self != nil) {
+        self->_receiver = [[CIMInputReceiver alloc] initWithServer:server delegate:delegate client:inputClient];
+    }
+    return self;
+}
+
+- (void)repoduceTextLog:(NSString *)text {
+    for (NSString *row in [text componentsSeparatedByString:@"\n"]) {
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"LOGGING::([A-Z]+)::(.*)" options:0 error:&error];
+        if (error) {
+            @throw [NSException exceptionWithName:@"CIMMockInputControllerLogParserError" reason:@"Log is not readable format" userInfo:nil];
+        }
+        NSArray *matches = [regex matchesInString:row options:0 range:NSRangeFromString(row)];
+        NSString *type = matches[1];
+        NSString *data = matches[2];
+        NSLog(@"test: %@ %@", type, data);
+    }
+}
+
+- (id)client {
+    return self->_receiver.inputClient;
+}
+
+- (CIMComposer *)composer {
+    return self->_receiver.composer;
+}
+
+@end
+
+
+@implementation CIMMockInputController (IMKServerInputTextData)
+
+- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
+
+    return [self->_receiver inputController:(id)self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
+}
+
+@end
+
+@implementation CIMMockInputController (IMKServerInput)
+
+// Committing a Composition
+// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+- (void)commitComposition:(id)sender {
+    [self->_receiver commitCompositionEvent:sender controller:(id)self];
+    // COMMIT triggered
+}
+
+- (void)updateComposition {
+    [self->_receiver updateCompositionEvent:(id)self];
+    // UPDATE triggered
+}
+
+- (void)cancelComposition {
+    [self->_receiver cancelCompositionEvent:(id)self];
+    // CANCEL triggered
+}
+
+// Getting Input Strings and Candidates
+// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
+- (id)composedString:(id)sender {
+    return [self->_receiver composedString:sender controller:(id)self];
+}
+
+- (NSAttributedString *)originalString:(id)sender {
+    return [self->_receiver originalString:sender controller:(id)self];
+}
+
+- (NSArray *)candidates:(id)sender {
+    return [self->_receiver candidates:sender controller:(id)self];
+}
+
+- (void)candidateSelected:(NSAttributedString *)candidateString {
+    return [self->_receiver candidateSelected:candidateString controller:(id)self];
+}
+
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
+    return [self->_receiver candidateSelectionChanged:candidateString controller:(id)self];
+}
+
+@end
+
+@implementation CIMMockInputController (IMKStateSetting)
+
+//! @brief  마우스 이벤트를 잡을 수 있게 한다.
+- (NSUInteger)recognizedEvents:(id)sender {
+    return [self->_receiver recognizedEvents:sender];
+}
+
+//! @brief 자판 전환을 감지한다.
+- (void)setValue:(id)value forTag:(long)tag client:(id)sender {
+    [self->_receiver setValue:value forTag:tag client:sender controller:(id)self];
+}
+
+@end
+
+
+@implementation CIMMockClient
+
+- (id)init {
+    self = [super init];
+    if (self != nil) {
+        self->_buffer = [[NSMutableString alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [self->_buffer release];
+    [super dealloc];
+}
+
+- (NSString *)buffer {
+    return [[self->_buffer copy] autorelease];
+}
+
+- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange {
+    [self->_buffer appendString:aString];
+}
+
+- (void)doCommandBySelector:(SEL)aSelector {
+
+}
+
+@end
+
+#endif

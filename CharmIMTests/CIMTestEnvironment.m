@@ -6,18 +6,18 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import "CharmInputManager.h"
+#import "CIMInputManager.h"
 
-@implementation CharmInputManager (SharedObject)
+@implementation CIMInputManager (SharedObject)
  
-CharmInputManager *CharmInputManagerSharedObject;
+CIMInputManager *CIMInputManagerSharedObject;
  
 + (void)initialize {
-    CharmInputManagerSharedObject = [[self alloc] init];
+    CIMInputManagerSharedObject = [[self alloc] init];
 }
  
-+ (CharmInputManager *)sharedManager {
-    return CharmInputManagerSharedObject;
++ (CIMInputManager *)sharedManager {
+    return CIMInputManagerSharedObject;
 }
  
 @end

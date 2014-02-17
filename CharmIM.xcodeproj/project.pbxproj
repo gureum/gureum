@@ -54,6 +54,20 @@
 		38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
 		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
+		3888CF7218B28EAB0005568E /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
+		3888CF7318B28EAB0005568E /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
+		3888CF7418B28EAB0005568E /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
+		3888CF7518B28EAB0005568E /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		3888CF7618B28EAB0005568E /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
+		3888CF7718B28EAB0005568E /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
+		3888CF7918B28EAB0005568E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
+		3888CF7A18B28EAB0005568E /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
+		3888CF7C18B28EAB0005568E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C87140E64EC00A8ED76 /* InfoPlist.strings */; };
+		3888CF7D18B28EAB0005568E /* CharmIMTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38863C8B140E64EC00A8ED76 /* CharmIMTests.h */; };
+		3888CF8B18B28FEB0005568E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3888CF8818B28FEB0005568E /* InfoPlist.strings */; };
+		3888CF8E18B291D00005568E /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		3888CF9018B292600005568E /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		3888CF9118B292A10005568E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3888CF8718B28FEB0005568E /* GureumTests.m */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
@@ -92,6 +106,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
 			remoteInfo = ShortcutRecorderFramework_Tester;
+		};
+		3888CF8C18B291AC0005568E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 38FA21EB1423219E00444D67;
+			remoteInfo = Hangul;
 		};
 		388C5D72154D88FD00B4F3E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -146,6 +167,17 @@
 			files = (
 				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
 				3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3888CF8F18B2924D0005568E /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3888CF9018B292600005568E /* Hangul.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +248,12 @@
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
 		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
+		3888CF8218B28EAB0005568E /* GureumTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GureumTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3888CF8318B28EAC0005568E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GureumTests-Info.plist"; path = "/Volumes/Userspace/Projects/CharmIM/GureumTests-Info.plist"; sourceTree = "<absolute>"; };
+		3888CF8518B28FEB0005568E /* GureumTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GureumTests-Prefix.pch"; sourceTree = "<group>"; };
+		3888CF8618B28FEB0005568E /* GureumTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumTests.h; sourceTree = "<group>"; };
+		3888CF8718B28FEB0005568E /* GureumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumTests.m; sourceTree = "<group>"; };
+		3888CF8918B28FEB0005568E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
@@ -265,6 +303,16 @@
 			files = (
 				38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */,
 				38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3888CF7818B28EAB0005568E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3888CF8E18B291D00005568E /* Hangul.framework in Frameworks */,
+				3888CF7918B28EAB0005568E /* Cocoa.framework in Frameworks */,
+				3888CF7A18B28EAB0005568E /* InputMethodKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,9 +434,11 @@
 				38863C69140E64EB00A8ED76 /* CharmIM */,
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
 				38162DF6141263270077AA2D /* GureumKIM */,
+				3888CF8418B28FEB0005568E /* GureumTests */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
 				B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */,
+				3888CF8318B28EAC0005568E /* GureumTests-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,6 +448,7 @@
 				38863C5F140E64EB00A8ED76 /* Charm.app */,
 				38863C80140E64EB00A8ED76 /* CharmIMTests.octest */,
 				38162DF3141263270077AA2D /* Gureum.app */,
+				3888CF8218B28EAB0005568E /* GureumTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -482,6 +533,17 @@
 				387D00021421F72600DAE6F4 /* CharmAppDelegate.m */,
 			);
 			name = "OS part";
+			sourceTree = "<group>";
+		};
+		3888CF8418B28FEB0005568E /* GureumTests */ = {
+			isa = PBXGroup;
+			children = (
+				3888CF8518B28FEB0005568E /* GureumTests-Prefix.pch */,
+				3888CF8618B28FEB0005568E /* GureumTests.h */,
+				3888CF8718B28FEB0005568E /* GureumTests.m */,
+				3888CF8818B28FEB0005568E /* InfoPlist.strings */,
+			);
+			path = GureumTests;
 			sourceTree = "<group>";
 		};
 		388C5D6E154D88FC00B4F3E1 /* Products */ = {
@@ -573,6 +635,26 @@
 			productReference = 38863C80140E64EB00A8ED76 /* CharmIMTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		3888CF6F18B28EAB0005568E /* GureumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3888CF7F18B28EAB0005568E /* Build configuration list for PBXNativeTarget "GureumTests" */;
+			buildPhases = (
+				3888CF7018B28EAB0005568E /* Sources */,
+				3888CF7818B28EAB0005568E /* Frameworks */,
+				3888CF7B18B28EAB0005568E /* Resources */,
+				3888CF7E18B28EAB0005568E /* ShellScript */,
+				3888CF8F18B2924D0005568E /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3888CF8D18B291AC0005568E /* PBXTargetDependency */,
+			);
+			name = GureumTests;
+			productName = CharmIMTests;
+			productReference = 3888CF8218B28EAB0005568E /* GureumTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -617,6 +699,7 @@
 				38863C5E140E64EB00A8ED76 /* Charm */,
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
 				38162DF2141263270077AA2D /* Gureum */,
+				3888CF6F18B28EAB0005568E /* GureumTests */,
 			);
 		};
 /* End PBXProject section */
@@ -719,10 +802,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3888CF7B18B28EAB0005568E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3888CF7C18B28EAB0005568E /* InfoPlist.strings in Resources */,
+				3888CF8B18B28FEB0005568E /* InfoPlist.strings in Resources */,
+				3888CF7D18B28EAB0005568E /* CharmIMTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		38863C7E140E64EB00A8ED76 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		3888CF7E18B28EAB0005568E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -814,9 +920,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3888CF7018B28EAB0005568E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3888CF9118B292A10005568E /* GureumTests.m in Sources */,
+				3888CF7218B28EAB0005568E /* CIMInputHandler.m in Sources */,
+				3888CF7318B28EAB0005568E /* CIMTestEnvironment.m in Sources */,
+				3888CF7418B28EAB0005568E /* HangulComposer.m in Sources */,
+				3888CF7518B28EAB0005568E /* CIMComposer.m in Sources */,
+				3888CF7618B28EAB0005568E /* CIMConfiguration.m in Sources */,
+				3888CF7718B28EAB0005568E /* CIMInputManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3888CF8D18B291AC0005568E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Hangul;
+			targetProxy = 3888CF8C18B291AC0005568E /* PBXContainerItemProxy */;
+		};
 		388C5D77154D891E00B4F3E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ShortcutRecorder.framework;
@@ -852,6 +977,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				38863C88140E64EC00A8ED76 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3888CF8818B28FEB0005568E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3888CF8918B28FEB0005568E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1029,6 +1162,7 @@
 		};
 		38863C93140E64EC00A8ED76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CharmIM.app/Contents/MacOS/CharmIM";
@@ -1062,6 +1196,7 @@
 		};
 		38863C94140E64EC00A8ED76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CharmIM.app/Contents/MacOS/CharmIM";
@@ -1083,6 +1218,78 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		3888CF8018B28EAB0005568E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"/**",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "GureumTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = GureumTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3888CF8118B28EAB0005568E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"/**",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "GureumTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = GureumTests;
 				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1124,6 +1331,15 @@
 			buildConfigurations = (
 				38863C93140E64EC00A8ED76 /* Debug */,
 				38863C94140E64EC00A8ED76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3888CF7F18B28EAB0005568E /* Build configuration list for PBXNativeTarget "GureumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3888CF8018B28EAB0005568E /* Debug */,
+				3888CF8118B28EAB0005568E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
