@@ -24,13 +24,23 @@
 
 @class CIMComposer;
 
-@interface CIMInputController : IMKInputController<CIMInputTextDelegate> {
+@interface CIMInputReceiver : NSObject<CIMInputTextDelegate> {
     id _inputClient;
     CIMComposer *_composer;
+    CIMInputController *_controller;
 }
 
 @property(nonatomic, readonly) id inputClient;
 @property(nonatomic, readonly) CIMComposer *composer;
+
+@end
+
+
+@interface CIMInputController : IMKInputController {
+    CIMInputReceiver *_receiver;
+}
+
+@property(readonly) CIMComposer *composer; // temp bridge
 
 @end
 

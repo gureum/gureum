@@ -54,7 +54,29 @@
 
 //  일단 받은 입력은 모두 핸들러로 넘겨준다.
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    return [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+    CIMInputTextProcessResult handled = [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
+
+    switch (handled) {
+        case CIMInputTextProcessResultNotProcessed:
+        case CIMInputTextProcessResultProcessed:
+            break;
+        case CIMInputTextProcessResultNotProcessedAndNeedsCancel:
+            [controller cancelComposition];
+            break;
+        case CIMInputTextProcessResultNotProcessedAndNeedsCommit:
+            [controller commitComposition:sender];
+            return handled;
+        default:
+            dlog(TRUE, @"WRONG RESULT: %d", handled);
+            dassert(NO);
+            break;
+    }
+
+    self.inputting = YES;
+    [controller commitComposition:sender]; // 조합 된 문자 반영
+    [controller updateComposition]; // 조합 중인 문자 반영
+    self.inputting = NO;
+    return handled;
 }
 
 @end
