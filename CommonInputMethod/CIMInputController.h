@@ -66,11 +66,13 @@
 @end
 
 
-@interface CIMMockClient : NSObject<NSTextInputClient> {
+@interface CIMMockClient : NSObject<IMKTextInput> {
     NSMutableString *_buffer;
 }
 
 @property(nonatomic,readonly) NSString *buffer;
+- (void)appendStringToBuffer:(NSString *)string;
+- (void)clearBuffer;
 
 @end
 

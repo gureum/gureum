@@ -36,8 +36,7 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self->sharedComposer release];
     [self->configuration release];
     [self->handler release];
@@ -57,26 +56,6 @@
     assert([[controller className] hasSuffix:@"InputController"]);
     CIMInputTextProcessResult handled = [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 
-    switch (handled) {
-        case CIMInputTextProcessResultNotProcessed:
-        case CIMInputTextProcessResultProcessed:
-            break;
-        case CIMInputTextProcessResultNotProcessedAndNeedsCancel:
-            [controller cancelComposition];
-            break;
-        case CIMInputTextProcessResultNotProcessedAndNeedsCommit:
-            [controller commitComposition:sender];
-            return handled;
-        default:
-            dlog(TRUE, @"WRONG RESULT: %d", handled);
-            dassert(NO);
-            break;
-    }
-
-    self.inputting = YES;
-    [controller commitComposition:sender]; // 조합 된 문자 반영
-    [controller updateComposition]; // 조합 중인 문자 반영
-    self.inputting = NO;
     return handled;
 }
 

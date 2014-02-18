@@ -28,6 +28,18 @@
 }
 
 - (void)testEvent {
+    [client clearBuffer];
+    [self->controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:client];
+    [self->controller inputText:@"m" key:46 modifiers:0 client:client];
+    [self->controller inputText:@"f" key:3 modifiers:0 client:client];
+    [self->controller inputText:@"s" key:1 modifiers:0 client:client];
+    [self->controller inputText:@"k" key:40 modifiers:0 client:client];
+    [self->controller inputText:@"g" key:5 modifiers:0 client:client];
+    [self->controller inputText:@"w" key:13 modifiers:0 client:client];
+    [self->controller inputText:@" " key:36 modifiers:0 client:client];
+    STAssertEqualObjects(@"한글 ", client.buffer, @"buffer: %@", client.buffer);
+
+    [client clearBuffer];
     [self->controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:client];
     [self->controller inputText:@"m" key:46 modifiers:0 client:client];
     [self->controller inputText:@"f" key:3 modifiers:0 client:client];
@@ -36,7 +48,7 @@
     [self->controller inputText:@"g" key:5 modifiers:0 client:client];
     [self->controller inputText:@"w" key:13 modifiers:0 client:client];
     [self->controller inputText:@"\n" key:36 modifiers:0 client:client];
-    STAssertEqualObjects(@"한글", client.buffer, @"buffer: %@", client.buffer);
+    STAssertEqualObjects(@"한글\n", client.buffer, @"buffer: %@", client.buffer);
 }
 
 @end
