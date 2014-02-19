@@ -153,7 +153,7 @@
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
     NSString *string = self.composer.composedString;
     if (CIMSharedInputManager.needsFakeComposedString) {
-        string = [string stringByAppendingString:@"\0"];
+        string = [string stringByAppendingString:@"\u200b"];
     }
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);

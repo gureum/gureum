@@ -88,7 +88,7 @@
     for (VirtualApp *app in self.apps) {
         [app inputText:@" " key:49 modifiers:131072];
         [app inputText:@" " key:49 modifiers:131072];
-        XCTAssertEqualObjects(@"\0", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"\u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
     }
 }
 
