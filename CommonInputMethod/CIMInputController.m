@@ -25,10 +25,10 @@
 
 @interface CIMInputReceiver(IMKServerInput)
 
-- (void)commitComposition:(id)sender controller:(CIMInputController *)controller;
+- (BOOL)commitComposition:(id)sender controller:(CIMInputController *)controller;
 - (void)updateComposition:(CIMInputController *)controller;
 - (void)cancelComposition:(CIMInputController *)controller;
-- (void)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
+- (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
 - (void)updateCompositionEvent:(CIMInputController *)controller;
 - (void)cancelCompositionEvent:(CIMInputController *)controller;
 - (NSString *)_internalComposedString;
@@ -85,9 +85,8 @@
             break;
     }
 
-    [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
-//    [(id<NSTextInputClient>)sender setMarkedText:@"blah" selectedRange:NSMakeRange(0, 10) replacementRange:NSMakeRange(0, 4)];
-    if ([sender markedRange].length > 0 || self._internalComposedString.length > 0) {
+    BOOL commited = [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
+    if (commited || [sender markedRange].length > 0 || self._internalComposedString.length > 0) {
         [self updateComposition:controller]; // 조합 중인 문자 반영
     }
 
@@ -103,9 +102,9 @@
 
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-- (void)commitComposition:(id)sender controller:(CIMInputController *)controller {
+- (BOOL)commitComposition:(id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_LOGGING, @"LOGGING::EVENT::COMMIT-INTERNAL");
-    [self commitCompositionEvent:sender controller:controller];
+    return [self commitCompositionEvent:sender controller:controller];
 }
 
 - (void)updateComposition:(CIMInputController *)controller  {
@@ -120,7 +119,7 @@
 
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-- (void)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller {
+- (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_LOGGING, @"LOGGING::EVENT::COMMIT");
     if (!CIMSharedInputManager.inputting) {
         // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
@@ -142,7 +141,9 @@
         } else {
             [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
         }
+        return YES;
     }
+    return NO;
 }
 
 - (void)updateCompositionEvent:(CIMInputController *)controller  {
@@ -158,7 +159,7 @@
 - (NSString *)_internalComposedString {
     NSString *string = self.composer.composedString;
     if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString) {
-        string = [string stringByAppendingString:@"\u200b"];
+        string = @"\u200b";
     }
     return string;
 }
@@ -167,6 +168,9 @@
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
     NSString *string = [self _internalComposedString];
+    if ([string isEqualToString:@"\u200b"] && [sender selectedRange].length > 0 && [sender markedRange].length == 0) {
+        string = @""; // 선택된 영역이 있을 경우 삭제되지 않도록 보호한다.
+    }
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
     return string;
@@ -473,7 +477,7 @@
             BOOL hasMarked1 = client.hasMarkedText;
             [client setSelectedRange:newMarkedRange];
             BOOL hasMarked2 = client.hasMarkedText;
-            assert(hasMarked1 == hasMarked2);
+            //assert(hasMarked1 == hasMarked2);
         }
     }
 }

@@ -21,10 +21,10 @@
 
     NSDictionary *versionInfo = [[GureumAppDelegate sharedAppDelegate] getRecentVersion];
 
-    NSString *recent = [versionInfo objectForKey:@"recent"];
-    NSString *current = [versionInfo objectForKey:@"current"];
-    NSString *download = [versionInfo objectForKey:@"download"];
-    NSString *note = [versionInfo objectForKey:@"note"];
+    NSString *recent = versionInfo[@"recent"];
+    NSString *current = versionInfo[@"current"];
+    NSString *download = versionInfo[@"download"];
+    NSString *note = versionInfo[@"note"];
 
     if (![recent isEqualToString:current] && download.length > 0) {
         NSString *fmt = @"현재 사용하고 있는 구름 입력기는 %@ 이고 최신 버전은 %@ 입니다. 업데이트는 로그아웃하거나 재부팅해야 적용됩니다.";
@@ -67,11 +67,11 @@
         return nil;
     }
     NSArray *components = [verstring componentsSeparatedByString:@"::"];
-    NSString *recentVersion = [components objectAtIndex:0];
-    NSString *recentDownload = [components objectAtIndex:1];
+    NSString *recentVersion = components[0];
+    NSString *recentDownload = components[1];
     NSString *releaseNote = nil;
     if (components.count >= 3) {
-        releaseNote = [components objectAtIndex:2];
+        releaseNote = components[2];
     }
     NSString *currentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 

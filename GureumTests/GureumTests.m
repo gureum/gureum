@@ -35,7 +35,7 @@
     self.apps = @[
         self.moderate,
         self.terminal,
-        //self.greedy,
+        self.greedy,
     ];
 }
 
@@ -61,8 +61,8 @@
         XCTAssertEqualObjects(@"한글", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
         XCTAssertEqualObjects(@"글", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
         [app inputText:@" " key:49 modifiers:0];
-        XCTAssertEqualObjects(@"한글 ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"한글 \u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"\u200b", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
 
         [app inputText:@"m" key:46 modifiers:0];
         XCTAssertEqualObjects(@"한글 ㅎ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
@@ -105,12 +105,14 @@
         [app inputText:@"" key:123 modifiers:10616832];
         [app inputText:@"" key:123 modifiers:10616832];
         [app inputText:@"" key:123 modifiers:10616832];
-        XCTAssertEqualObjects(@"fskgw ", app.client.selectedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        //XCTAssertEqualObjects(@"fskgw ", app.client.selectedString, @"app: %@ buffer: (%@)", app, app.client.string);
     }
 }
 
 - (void)testLayoutChange {
     for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@" " key:49 modifiers:131072];
         [app inputText:@" " key:49 modifiers:131072];
         XCTAssertEqualObjects(@"\u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
@@ -126,6 +128,16 @@
         SEL selector = method_getName(methods[i]);
         NSString *name = NSStringFromSelector(selector);
         NSLog(@"IPMDServerClientWrapper selector: %@", name);
+    }
+}
+
+- (void)testNumber {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"K" key:40 modifiers:131072];
+        XCTAssertEqualObjects(@"2\u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"\u200b", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
     }
 }
 

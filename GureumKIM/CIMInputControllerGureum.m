@@ -18,10 +18,10 @@
         return;
     }
 
-    NSString *recent = [versionInfo objectForKey:@"recent"];
-    NSString *current = [versionInfo objectForKey:@"current"];
-    NSString *download = [versionInfo objectForKey:@"download"];
-    NSString *note = [versionInfo objectForKey:@"note"];
+    NSString *recent = versionInfo[@"recent"];
+    NSString *current = versionInfo[@"current"];
+    NSString *download = versionInfo[@"download"];
+    NSString *note = versionInfo[@"note"];
 
     if ([recent isEqualToString:current]) {
         NSString *fmt = @"현재 사용하고 있는 구름 입력기 %@ 는 최신 버전입니다.";

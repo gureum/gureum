@@ -84,7 +84,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     dlog(DEBUG_GUREUM, @"** GureumComposer -setLayoutIdentifier: from input mode %@ to %@", self.inputMode, newInputMode);
     if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
 
-    NSString *keyboardIdentifier = [GureumInputSourceToHangulKeyboardIdentifierTable objectForKey:newInputMode];
+    NSString *keyboardIdentifier = GureumInputSourceToHangulKeyboardIdentifierTable[newInputMode];
     if ([keyboardIdentifier length] == 0) {
         self.delegate = self->romanComposer;
     } else {

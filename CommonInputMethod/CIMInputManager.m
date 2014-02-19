@@ -24,7 +24,7 @@
     dlog(DEBUG_INPUTMANAGER, @"** CharmInputManager Init: %@", self);
     if (self) {
         NSBundle *mainBundle = [NSBundle mainBundle];
-        NSString *connectionName = [[mainBundle infoDictionary] objectForKey:@"InputMethodConnectionName"];
+        NSString *connectionName = [mainBundle infoDictionary][@"InputMethodConnectionName"];
         self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:[mainBundle bundleIdentifier]];
         self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
         self->handler = [[CIMInputHandler alloc] initWithManager:self];

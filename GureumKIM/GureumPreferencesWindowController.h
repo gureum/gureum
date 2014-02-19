@@ -24,12 +24,13 @@
     IBOutlet NSComboBox *defaultHangulInputModeComboBox;
     IBOutlet NSComboBox *optionKeyBehaviorComboBox;
     
-    IBOutlet NSButton *romanModeByEscapeKeyCheckbox;
- 
     /* Hangul Preferences */
     IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
     IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
+
+    IBOutlet NSButton *romanModeByEscapeKeyCheckbox;
+    IBOutlet NSButton *zeroWidthSpaceForBlankComposedStringCheckbox;
 }
 
 - (IBAction)saveToConfiguration:(id)sender;

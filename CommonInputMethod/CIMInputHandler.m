@@ -56,7 +56,7 @@
                 if (keyCode < 0x33) {
                     char key[2] = {0, 0};
                     key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMKeyMapUpper[keyCode] : CIMKeyMapLower[keyCode];
-                    string = [NSString stringWithUTF8String:key];
+                    string = @(key);
                 }
             }   break;
         }

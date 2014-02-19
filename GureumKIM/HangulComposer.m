@@ -124,7 +124,11 @@ typedef enum {
 
 - (NSString *)composedString {
     const HGUCSChar *preedit = [self->_inputContext preeditUCSString];
-    return [[self class] composedStringByCombinationModeWithUCSString:preedit];
+    NSString *string = [[self class] composedStringByCombinationModeWithUCSString:preedit];
+    if (string.length == 0 && CIMSharedConfiguration->zeroWidthSpaceForBlankComposedString) {
+        string = @"\u200b";
+    }
+    return string;
 }
 
 - (NSString *)commitString {
@@ -253,7 +257,7 @@ typedef enum {
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
-    NSString *value = [[[candidateString string] componentsSeparatedByString:@":"] objectAtIndex:0];
+    NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
     self.composedString = @"";
     self.commitString = value;
     [self.hangulComposer cancelComposition];
@@ -264,7 +268,7 @@ typedef enum {
     if (candidateString.length == 0) {
         self.composedString = self.originalString;   
     } else {
-        NSString *value = [[[candidateString string] componentsSeparatedByString:@":"] objectAtIndex:0];
+        NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
         self.composedString = value;
     }
 }

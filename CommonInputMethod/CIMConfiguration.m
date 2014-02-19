@@ -21,6 +21,8 @@ NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommit
 NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
 NSString * kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
 NSString * kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
+NSString * kCIMZeroWidthSpaceForBlankComposedString = @"CIMZeroWidthSpaceForBlankComposedString";
+
 
 CIMConfiguration *CIMDefaultUserConfiguration;
 
@@ -47,7 +49,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
             struct CIMConfigurationStringItem *item = &tempStringItems[i];
             self->stringItems[i] = tempStringItems[i];
-            [self->pFieldKeys setObject:item->name forKey:[NSNumber numberWithUnsignedLong:(unsigned long)item->pConfiguration]];
+            self->pFieldKeys[@((unsigned long)item->pConfiguration)] = item->name;
         }
 
         struct CIMConfigurationIntegerItem tempIntegerItems[CIMConfigurationIntegerItemCount] = {
@@ -66,6 +68,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { kCIMSharedInputManager, &self->sharedInputManager, NO },
             { kCIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
             { kCIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
+            { kCIMZeroWidthSpaceForBlankComposedString, &self->zeroWidthSpaceForBlankComposedString, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
             self->boolItems[i] = tempBoolItems[i];
@@ -101,7 +104,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         [*item.pConfiguration autorelease];
         *item.pConfiguration = [object retain];
         if (object != nil) {
-            [self->originConfigurations setObject:object forKey:item.name];
+            self->originConfigurations[item.name] = object;
         } else {
             [self->originConfigurations removeObjectForKey:item.name];
         }
@@ -110,13 +113,13 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         struct CIMConfigurationIntegerItem item = self->integerItems[i];
         id object = [self->userDefaults objectForKey:item.name];
         *item.pConfiguration = object != nil ? [object integerValue] : item.defaultValue;
-        [self->originConfigurations setObject:[NSNumber numberWithInteger:*item.pConfiguration] forKey:item.name];
+        self->originConfigurations[item.name] = @(*item.pConfiguration);
     }
     for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
         struct CIMConfigurationBoolItem item = self->boolItems[i];
         id object = [self->userDefaults objectForKey:item.name];
         *item.pConfiguration = object != nil ? [object boolValue] : item.defaultValue;
-        [self->originConfigurations setObject:[NSNumber numberWithBool:*item.pConfiguration] forKey:item.name];
+        self->originConfigurations[item.name] = @(*item.pConfiguration);
     }
 }
 
@@ -125,9 +128,9 @@ CIMConfiguration *CIMDefaultUserConfiguration;
     for (int i = 0; i < CIMConfigurationStringItemCount; i++) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         NSString *value = *item.pConfiguration;
-        if (value != nil && ![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
+        if (value != nil && ![value isEqual:self->originConfigurations[item.name]]) {
             [self->userDefaults setObject:value forKey:item.name];
-            [self->originConfigurations setObject:value forKey:item.name];
+            self->originConfigurations[item.name] = value;
         } else if (value == nil) {
             [self->userDefaults removeObjectForKey:item.name];
             [self->originConfigurations removeObjectForKey:item.name];
@@ -136,29 +139,29 @@ CIMConfiguration *CIMDefaultUserConfiguration;
     for (int i = 0; i < CIMConfigurationIntegerItemCount; i++) {
         struct CIMConfigurationIntegerItem item = self->integerItems[i];
         NSInteger rawValue = *item.pConfiguration;
-        NSNumber *value = [NSNumber numberWithInteger:rawValue];
-        if (![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
+        NSNumber *value = @(rawValue);
+        if (![value isEqual:self->originConfigurations[item.name]]) {
             [self->userDefaults setObject:value forKey:item.name];
-            [self->originConfigurations setObject:value forKey:item.name];
+            self->originConfigurations[item.name] = value;
         }
     }
     for (int i = 0; i < CIMConfigurationBoolItemCount; i++) {
         struct CIMConfigurationBoolItem item = self->boolItems[i];
         BOOL rawValue = *item.pConfiguration;
-        NSNumber *value = [NSNumber numberWithBool:rawValue];
-        if (![value isEqual:[self->originConfigurations objectForKey:item.name]]) {
+        NSNumber *value = @(rawValue);
+        if (![value isEqual:self->originConfigurations[item.name]]) {
             [self->userDefaults setObject:value forKey:item.name];
-            [self->originConfigurations setObject:value forKey:item.name];
+            self->originConfigurations[item.name] = value;
         }
     }
     [self->userDefaults synchronize];
 }
 
 - (void)saveConfigurationForStringField:(NSString **)pField {
-    NSString *configurationKey = [self->pFieldKeys objectForKey:[NSNumber numberWithUnsignedLong:(unsigned long)pField]];
-    if (![*pField isEqualToString:[self->originConfigurations objectForKey:configurationKey]]) {
+    NSString *configurationKey = self->pFieldKeys[@((unsigned long)pField)];
+    if (![*pField isEqualToString:self->originConfigurations[configurationKey]]) {
         [self->userDefaults setObject:*pField forKey:configurationKey];
-        [self->originConfigurations setObject:*pField forKey:configurationKey];
+        self->originConfigurations[configurationKey] = *pField;
     }
 }
 

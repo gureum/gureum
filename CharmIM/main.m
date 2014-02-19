@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
  
     dlog(TRUE, @"******* CharmIM initialized! *******");
-    NSString *mainNibName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NSMainNibFile"];
+    NSString *mainNibName = [[NSBundle mainBundle] infoDictionary][@"NSMainNibFile"];
     if ([NSBundle loadNibNamed:mainNibName owner:[NSApplication sharedApplication]] == NO) {
         NSLog(@"!! CharmIM fails to load Main Nib File !!");
     }

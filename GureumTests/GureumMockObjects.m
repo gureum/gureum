@@ -106,7 +106,8 @@
     }
     else {
         processed = [super inputText:text key:keyCode modifiers:flags];
-        if (!processed) {
+        if (self.client.markedRange.length == 0 || !processed) {
+            // FIXME: Commited string should be removed too.
             [self.client insertText:text replacementRange:self.client.markedRange];
         }
     }
