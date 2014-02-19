@@ -31,6 +31,7 @@
 - (void)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
 - (void)updateCompositionEvent:(CIMInputController *)controller;
 - (void)cancelCompositionEvent:(CIMInputController *)controller;
+- (NSString *)_internalComposedString;
 
 @end
 
@@ -86,7 +87,7 @@
 
     [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
 //    [(id<NSTextInputClient>)sender setMarkedText:@"blah" selectedRange:NSMakeRange(0, 10) replacementRange:NSMakeRange(0, 4)];
-    if ([sender markedRange].length > 0 || self.composer.composedString.length > 0) {
+    if ([sender markedRange].length > 0 || self._internalComposedString.length > 0) {
         [self updateComposition:controller]; // 조합 중인 문자 반영
     }
 
@@ -150,13 +151,18 @@
     [self.composer cancelComposition];
 }
 
+- (NSString *)_internalComposedString {
+    NSString *string = self.composer.composedString;
+    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString) {
+        string = [string stringByAppendingString:@"\u200b"];
+    }
+    return string;
+}
+
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
-    NSString *string = self.composer.composedString;
-    if (CIMSharedInputManager.needsFakeComposedString) {
-        string = [string stringByAppendingString:@"\u200b"];
-    }
+    NSString *string = [self _internalComposedString];
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
     return string;
