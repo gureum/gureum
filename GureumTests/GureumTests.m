@@ -51,4 +51,11 @@
     STAssertEqualObjects(@"한글\n", client.buffer, @"buffer: %@", client.buffer);
 }
 
+- (void)testLayoutChange {
+    [client clearBuffer];
+    [self->controller inputText:@" " key:49 modifiers:131072 client:client];
+    [self->controller inputText:@" " key:49 modifiers:131072 client:client];
+    STAssertEqualObjects(@"", client.buffer, @"buffer: %@", client.buffer);
+}
+
 @end

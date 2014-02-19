@@ -44,6 +44,7 @@
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
         if (!CIMSharedInputManager.configuration->sharedInputManager) {
             self->_composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
+            self->_composer->manager = CIMSharedInputManager;
         }
         _inputClient = inputClient;
     }
@@ -149,7 +150,10 @@
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
     NSString *string = self.composer.composedString;
-    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::%@", string);
+    if (CIMSharedInputManager.needsFakeComposedString) {
+        string = [string stringByAppendingString:@"\0"];
+    }
+    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
     return string;
 }
@@ -262,7 +266,8 @@
         return NO;
     }
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-    BOOL processed = [self->_receiver inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender];
+    BOOL processed = [self->_receiver inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
+    dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
     return processed;
 }
 
@@ -531,6 +536,10 @@
 
 - (NSRange)selectedRange {
     return NSMakeRange(NSNotFound, NSNotFound);
+}
+
+- (void)selectInputMode:(NSString *)modeIdentifier {
+    NSLog(@"select input mode: %@", modeIdentifier);
 }
 
 @end

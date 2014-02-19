@@ -57,7 +57,7 @@
 @interface CIMComposer : NSObject<CIMComposerDelegate> {
     id<CIMComposerDelegate> _delegate;
     NSString *_inputMode;
-@protected
+@public
     CIMInputManager *manager;
 }
 @property(nonatomic, retain) id<CIMComposerDelegate> delegate;

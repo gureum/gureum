@@ -111,6 +111,8 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         } else {
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];
         }
+        dassert(manager);
+        manager.needsFakeComposedString = YES;
         return CIMInputTextProcessResultProcessed;
     }
     if (self.delegate == self->hanjaComposer) {
