@@ -137,7 +137,11 @@
         dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
         NSRange range = [sender markedRange];
         dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
-        [sender insertText:commitString replacementRange:range];
+        if (range.length) {
+            [sender insertText:commitString replacementRange:range];
+        } else {
+            [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        }
     }
 }
 
