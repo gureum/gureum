@@ -6,6 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
+#import <objc/runtime.h>
 #import <XCTest/XCTest.h>
 #import "CIMCommon.h"
 #import "GureumComposer.h"
@@ -84,11 +85,47 @@
     }
 }
 
+- (void)testBlock {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"f" key:3 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        [app inputText:@"k" key:40 modifiers:0];
+        [app inputText:@"g" key:5 modifiers:0];
+        [app inputText:@"w" key:13 modifiers:0];
+        XCTAssertEqualObjects(@"mfskgw", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@" " key:49 modifiers:0];
+
+        [app inputText:@"" key:123 modifiers:10616832];
+        [app inputText:@"" key:123 modifiers:10616832];
+        [app inputText:@"" key:123 modifiers:10616832];
+        [app inputText:@"" key:123 modifiers:10616832];
+        [app inputText:@"" key:123 modifiers:10616832];
+        [app inputText:@"" key:123 modifiers:10616832];
+        XCTAssertEqualObjects(@"fskgw ", app.client.selectedString, @"app: %@ buffer: (%@)", app, app.client.string);
+    }
+}
+
 - (void)testLayoutChange {
     for (VirtualApp *app in self.apps) {
         [app inputText:@" " key:49 modifiers:131072];
         [app inputText:@" " key:49 modifiers:131072];
         XCTAssertEqualObjects(@"\u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+    }
+}
+
+- (void)testIPMDServerClientWrapper {
+    Class IPMDServerClientWrapper = NSClassFromString(@"IPMDServerClientWrapper");
+    dassert(IPMDServerClientWrapper != Nil);
+    unsigned count = 0;
+    Method *methods = class_copyMethodList(IPMDServerClientWrapper, &count);
+    for (int i = 0; i < count; i++) {
+        SEL selector = method_getName(methods[i]);
+        NSString *name = NSStringFromSelector(selector);
+        NSLog(@"IPMDServerClientWrapper selector: %@", name);
     }
 }
 

@@ -86,7 +86,9 @@
 
     [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
 //    [(id<NSTextInputClient>)sender setMarkedText:@"blah" selectedRange:NSMakeRange(0, 10) replacementRange:NSMakeRange(0, 4)];
-    [self updateComposition:controller]; // 조합 중인 문자 반영
+    if ([sender markedRange].length > 0 || self.composer.composedString.length > 0) {
+        [self updateComposition:controller]; // 조합 중인 문자 반영
+    }
 
     CIMSharedInputManager.inputting = NO;
 
@@ -456,11 +458,13 @@
         NSString *composed = [self composedString:client];
         NSRange markedRange = [client markedRange];
         NSRange newMarkedRange = NSMakeRange(markedRange.location, composed.length);
-        [client setMarkedText:composed selectedRange:markedRange replacementRange:newMarkedRange]; // to show
-        BOOL hasMarked1 = client.hasMarkedText;
-        [client setSelectedRange:newMarkedRange];
-        BOOL hasMarked2 = client.hasMarkedText;
-        assert(hasMarked1 == hasMarked2);
+        if (markedRange.length > 0 || newMarkedRange.length > 0) {
+            [client setMarkedText:composed selectedRange:markedRange replacementRange:newMarkedRange]; // to show
+            BOOL hasMarked1 = client.hasMarkedText;
+            [client setSelectedRange:newMarkedRange];
+            BOOL hasMarked2 = client.hasMarkedText;
+            assert(hasMarked1 == hasMarked2);
+        }
     }
 }
 

@@ -13,6 +13,7 @@
 @interface CIMMockClient : NSTextView 
 
 - (NSString *)markedString;
+- (NSString *)selectedString;
 
 @end
 

@@ -30,6 +30,10 @@
     return [self.string substringWithRange:self.markedRange];
 }
 
+- (NSString *)selectedString {
+    return [self.string substringWithRange:self.selectedRange];
+}
+
 @end
 
 
