@@ -132,7 +132,7 @@
     // 커밋할 문자가 없으면 중단
     if ([commitString length] > 0) {
         dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
-        NSRange range = [sender selectedRange];
+        NSRange range = [sender markedRange];
         dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
         [sender insertText:commitString replacementRange:range];
     }
@@ -468,7 +468,8 @@
     [self->_receiver cancelCompositionEvent:(id)self];
     { // CANCEL triggered
         id client = self->_receiver.inputClient;
-        [client setMarkedText:@"" selectedRange:[client markedRange] replacementRange:NSMakeRange(0, 0)];
+        NSRange markedRange = [client markedRange];
+        [client setMarkedText:@"" selectedRange:NSMakeRange(markedRange.location, 0) replacementRange:markedRange];
     }
 }
 
