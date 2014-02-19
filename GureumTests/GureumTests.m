@@ -10,11 +10,13 @@
 #import "CIMCommon.h"
 #import "GureumComposer.h"
 #import "CIMInputController.h"
+#import "GureumMockObjects.h"
+
 
 @interface GureumTests : XCTestCase
 
-@property(nonatomic,retain) CIMInputController *controller;
-@property(nonatomic,retain) CIMMockClient *client;
+@property(nonatomic,strong) NSArray *apps;
+@property(nonatomic,strong) VirtualApp *moderate, *terminal, *greedy;
 
 @end
 
@@ -23,8 +25,17 @@
 
 - (void)setUp {
     [super setUp];
-    self.controller = (id)[[CIMMockInputController alloc] initWithServer:nil delegate:nil client:nil];
-    self.client = [[CIMMockClient alloc] init];
+
+    self.moderate = [[ModerateApp alloc] init];
+    self.terminal = [[TerminalApp alloc] init];
+    self.greedy = [[GreedyApp alloc] init];
+
+
+    self.apps = @[
+        self.moderate,
+        self.terminal,
+        //self.greedy,
+    ];
 }
 
 - (void)tearDown {
@@ -33,35 +44,52 @@
 }
 
 - (void)testEvent {
-    CIMMockClient *client = self.client;
-    [client clearBuffer];
-    [self.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:client];
-    [self.controller inputText:@"m" key:46 modifiers:0 client:client];
-    [self.controller inputText:@"f" key:3 modifiers:0 client:client];
-    [self.controller inputText:@"s" key:1 modifiers:0 client:client];
-    [self.controller inputText:@"k" key:40 modifiers:0 client:client];
-    [self.controller inputText:@"g" key:5 modifiers:0 client:client];
-    [self.controller inputText:@"w" key:13 modifiers:0 client:client];
-    [self.controller inputText:@" " key:36 modifiers:0 client:client];
-    XCTAssertEqualObjects(@"한글 ", self.client.buffer, @"buffer: %@", self.client.buffer);
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"f" key:3 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"한", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"k" key:40 modifiers:0];
+        XCTAssertEqualObjects(@"한ㄱ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"g" key:5 modifiers:0];
+        [app inputText:@"w" key:13 modifiers:0];
+        XCTAssertEqualObjects(@"한글", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"글", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@" " key:49 modifiers:0];
+        XCTAssertEqualObjects(@"한글 ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
 
-    [client clearBuffer];
-    [self.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:client];
-    [self.controller inputText:@"m" key:46 modifiers:0 client:client];
-    [self.controller inputText:@"f" key:3 modifiers:0 client:client];
-    [self.controller inputText:@"s" key:1 modifiers:0 client:client];
-    [self.controller inputText:@"k" key:40 modifiers:0 client:client];
-    [self.controller inputText:@"g" key:5 modifiers:0 client:client];
-    [self.controller inputText:@"w" key:13 modifiers:0 client:client];
-    [self.controller inputText:@"\n" key:36 modifiers:0 client:client];
-    XCTAssertEqualObjects(@"한글\n", client.buffer, @"buffer: %@", client.buffer);
+        [app inputText:@"m" key:46 modifiers:0];
+        XCTAssertEqualObjects(@"한글 ㅎ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"ㅎ", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"f" key:3 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"k" key:40 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한ㄱ", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"g" key:5 modifiers:0];
+        [app inputText:@"w" key:13 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한글", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"글", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"\n" key:36 modifiers:0];
+        if (app != self.terminal) {
+            XCTAssertEqualObjects(@"한글 한글\n", app.client.string,@"app: %@ buffer: (%@)", app, app.client.string);
+        }
+    }
 }
 
 - (void)testLayoutChange {
-    [self.client clearBuffer];
-    [self.controller inputText:@" " key:49 modifiers:131072 client:self.client];
-    [self.controller inputText:@" " key:49 modifiers:131072 client:self.client];
-    XCTAssertEqualObjects(@"", self.client.buffer, @"buffer: %@", self.client.buffer);
+    for (VirtualApp *app in self.apps) {
+        [app inputText:@" " key:49 modifiers:131072];
+        [app inputText:@" " key:49 modifiers:131072];
+        XCTAssertEqualObjects(@"\0", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+    }
 }
 
 @end

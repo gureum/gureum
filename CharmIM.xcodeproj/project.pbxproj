@@ -62,9 +62,7 @@
 		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
-		38BFE81018B4F181004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
-		38BFE81618B4F181004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE81418B4F181004B2B2E /* InfoPlist.strings */; };
-		38BFE81818B4F181004B2B2E /* Charm_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE81718B4F181004B2B2E /* Charm_Tests.m */; };
+		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
 		38F1524E16ECF87E00FE1B4A /* han2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524516ECF87E00FE1B4A /* han2@2x.png */; };
 		38F1524F16ECF87E00FE1B4A /* han2classic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524616ECF87E00FE1B4A /* han2classic@2x.png */; };
 		38F1525016ECF87E00FE1B4A /* han3classic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524716ECF87E00FE1B4A /* han3classic@2x.png */; };
@@ -147,13 +145,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 38162DF2141263270077AA2D;
 			remoteInfo = Gureum;
-		};
-		38BFE81A18B4F181004B2B2E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38863C5E140E64EB00A8ED76;
-			remoteInfo = Charm;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -246,11 +237,8 @@
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38BFE80318B45419004B2B2E /* GureumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumTests.m; sourceTree = "<group>"; };
 		38BFE80518B45419004B2B2E /* GureumTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GureumTests-Prefix.pch"; sourceTree = "<group>"; };
-		38BFE80F18B4F181004B2B2E /* Charm Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Charm Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		38BFE81318B4F181004B2B2E /* Charm Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Charm Tests-Info.plist"; sourceTree = "<group>"; };
-		38BFE81518B4F181004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38BFE81718B4F181004B2B2E /* Charm_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Charm_Tests.m; sourceTree = "<group>"; };
-		38BFE81918B4F181004B2B2E /* Charm Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Charm Tests-Prefix.pch"; sourceTree = "<group>"; };
+		38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumMockObjects.h; sourceTree = "<group>"; };
+		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
 		38F1524516ECF87E00FE1B4A /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
 		38F1524616ECF87E00FE1B4A /* han2classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2classic@2x.png"; path = "Icons/han2classic@2x.png"; sourceTree = "<group>"; };
 		38F1524716ECF87E00FE1B4A /* han3classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3classic@2x.png"; path = "Icons/han3classic@2x.png"; sourceTree = "<group>"; };
@@ -305,14 +293,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38BFE80C18B4F181004B2B2E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38BFE81018B4F181004B2B2E /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,7 +415,6 @@
 				38863C84140E64EC00A8ED76 /* CharmIMTests */,
 				38162DF6141263270077AA2D /* GureumKIM */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
-				38BFE81118B4F181004B2B2E /* Charm Tests */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
 				B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */,
@@ -450,7 +429,6 @@
 				38863C80140E64EB00A8ED76 /* CharmIMTests.octest */,
 				38162DF3141263270077AA2D /* Gureum.app */,
 				38BFE7FA18B45419004B2B2E /* GureumTests.xctest */,
-				38BFE80F18B4F181004B2B2E /* Charm Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -559,6 +537,8 @@
 		38BFE7FD18B45419004B2B2E /* GureumTests */ = {
 			isa = PBXGroup;
 			children = (
+				38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */,
+				38BFE82018B4F181004B2B2E /* GureumMockObjects.m */,
 				38BFE80318B45419004B2B2E /* GureumTests.m */,
 				38BFE7FE18B45419004B2B2E /* Supporting Files */,
 			);
@@ -571,25 +551,6 @@
 				38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */,
 				38BFE80018B45419004B2B2E /* InfoPlist.strings */,
 				38BFE80518B45419004B2B2E /* GureumTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		38BFE81118B4F181004B2B2E /* Charm Tests */ = {
-			isa = PBXGroup;
-			children = (
-				38BFE81718B4F181004B2B2E /* Charm_Tests.m */,
-				38BFE81218B4F181004B2B2E /* Supporting Files */,
-			);
-			path = "Charm Tests";
-			sourceTree = "<group>";
-		};
-		38BFE81218B4F181004B2B2E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38BFE81318B4F181004B2B2E /* Charm Tests-Info.plist */,
-				38BFE81418B4F181004B2B2E /* InfoPlist.strings */,
-				38BFE81918B4F181004B2B2E /* Charm Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -683,24 +644,6 @@
 			productReference = 38BFE7FA18B45419004B2B2E /* GureumTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		38BFE80E18B4F181004B2B2E /* Charm Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38BFE81C18B4F181004B2B2E /* Build configuration list for PBXNativeTarget "Charm Tests" */;
-			buildPhases = (
-				38BFE80B18B4F181004B2B2E /* Sources */,
-				38BFE80C18B4F181004B2B2E /* Frameworks */,
-				38BFE80D18B4F181004B2B2E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				38BFE81B18B4F181004B2B2E /* PBXTargetDependency */,
-			);
-			name = "Charm Tests";
-			productName = "Charm Tests";
-			productReference = 38BFE80F18B4F181004B2B2E /* Charm Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -715,9 +658,6 @@
 					};
 					38BFE7F918B45419004B2B2E = {
 						TestTargetID = 38162DF2141263270077AA2D;
-					};
-					38BFE80E18B4F181004B2B2E = {
-						TestTargetID = 38863C5E140E64EB00A8ED76;
 					};
 				};
 			};
@@ -752,7 +692,6 @@
 				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
 				38162DF2141263270077AA2D /* Gureum */,
 				38BFE7F918B45419004B2B2E /* GureumTests */,
-				38BFE80E18B4F181004B2B2E /* Charm Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -863,14 +802,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38BFE80D18B4F181004B2B2E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38BFE81618B4F181004B2B2E /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -971,14 +902,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38BFE80418B45419004B2B2E /* GureumTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38BFE80B18B4F181004B2B2E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38BFE81818B4F181004B2B2E /* Charm_Tests.m in Sources */,
+				38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,11 +923,6 @@
 			isa = PBXTargetDependency;
 			target = 38162DF2141263270077AA2D /* Gureum */;
 			targetProxy = 38BFE80618B45419004B2B2E /* PBXContainerItemProxy */;
-		};
-		38BFE81B18B4F181004B2B2E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38863C5E140E64EB00A8ED76 /* Charm */;
-			targetProxy = 38BFE81A18B4F181004B2B2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1038,14 +957,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				38BFE80118B45419004B2B2E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38BFE81418B4F181004B2B2E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38BFE81518B4F181004B2B2E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1287,6 +1198,7 @@
 		};
 		38BFE80918B45419004B2B2E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1323,6 +1235,7 @@
 		};
 		38BFE80A18B45419004B2B2E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1344,73 +1257,6 @@
 				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		38BFE81D18B4F181004B2B2E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Charm.app/Contents/MacOS/Charm";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Charm Tests/Charm Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				INFOPLIST_FILE = "Charm Tests/Charm Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		38BFE81E18B4F181004B2B2E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Charm.app/Contents/MacOS/Charm";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Charm Tests/Charm Tests-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				INFOPLIST_FILE = "Charm Tests/Charm Tests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1465,14 +1311,7 @@
 				38BFE80A18B45419004B2B2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		38BFE81C18B4F181004B2B2E /* Build configuration list for PBXNativeTarget "Charm Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38BFE81D18B4F181004B2B2E /* Debug */,
-				38BFE81E18B4F181004B2B2E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

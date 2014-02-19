@@ -128,12 +128,14 @@
     // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
     // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
     NSString *commitString = [self.composer dequeueCommitString];
-    if ([commitString length] == 0) return; // 커밋할 문자가 없으면 중단
 
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
-    NSRange range = [sender selectedRange];
-    dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
-    [sender insertText:commitString replacementRange:range];
+    // 커밋할 문자가 없으면 중단
+    if ([commitString length] > 0) {
+        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
+        NSRange range = [sender selectedRange];
+        dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
+        [sender insertText:commitString replacementRange:range];
+    }
 }
 
 - (void)updateCompositionEvent:(CIMInputController *)controller  {
@@ -331,11 +333,11 @@
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
-    return [self->_receiver candidateSelected:candidateString controller:self];
+    [self->_receiver candidateSelected:candidateString controller:self];
 }
 
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    return [self->_receiver candidateSelectionChanged:candidateString controller:self];
+    [self->_receiver candidateSelectionChanged:candidateString controller:self];
 }
 
 @end
@@ -432,32 +434,42 @@
 
     BOOL processed = [self->_receiver inputController:(id)self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
     if (!processed) {
-        [(CIMMockClient *)sender appendStringToBuffer:string];
+        //[self cancelComposition];
     }
     return processed;
 }
-
-@end
-
-@implementation CIMMockInputController (IMKServerInput)
 
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
     [self->_receiver commitCompositionEvent:sender controller:(id)self];
-    // COMMIT triggered
+    { // COMMIT triggered
+
+    }
 }
 
 - (void)updateComposition {
     [self->_receiver updateCompositionEvent:(id)self];
     { // super
-        [self composedString:self->_receiver.inputClient]; // to show
+        NSTextView *client = self->_receiver.inputClient;
+        dassert(client);
+        NSString *composed = [self composedString:client];
+        NSRange markedRange = [client markedRange];
+        NSRange newMarkedRange = NSMakeRange(markedRange.location, composed.length);
+        [client setMarkedText:composed selectedRange:markedRange replacementRange:newMarkedRange]; // to show
+        BOOL hasMarked1 = client.hasMarkedText;
+        [client setSelectedRange:newMarkedRange];
+        BOOL hasMarked2 = client.hasMarkedText;
+        assert(hasMarked1 == hasMarked2);
     }
 }
 
 - (void)cancelComposition {
     [self->_receiver cancelCompositionEvent:(id)self];
-    // CANCEL triggered
+    { // CANCEL triggered
+        id client = self->_receiver.inputClient;
+        [client setMarkedText:@"" selectedRange:[client markedRange] replacementRange:NSMakeRange(0, 0)];
+    }
 }
 
 // Getting Input Strings and Candidates
@@ -475,14 +487,15 @@
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
-    return [self->_receiver candidateSelected:candidateString controller:(id)self];
+    [self->_receiver candidateSelected:candidateString controller:(id)self];
 }
 
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    return [self->_receiver candidateSelectionChanged:candidateString controller:(id)self];
+    [self->_receiver candidateSelectionChanged:candidateString controller:(id)self];
 }
 
 @end
+
 
 @implementation CIMMockInputController (IMKStateSetting)
 
@@ -494,52 +507,6 @@
 //! @brief 자판 전환을 감지한다.
 - (void)setValue:(id)value forTag:(long)tag client:(id)sender {
     [self->_receiver setValue:value forTag:tag client:sender controller:(id)self];
-}
-
-@end
-
-
-@implementation CIMMockClient
-
-- (id)init {
-    self = [super init];
-    if (self != nil) {
-        self->_buffer = [[NSMutableString alloc] init];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [self->_buffer release];
-    [super dealloc];
-}
-
-- (NSString *)buffer {
-    return [[self->_buffer copy] autorelease];
-}
-
-- (void)appendStringToBuffer:(NSString *)string {
-    [self->_buffer appendString:string];
-}
-
-- (void)clearBuffer {
-    [self->_buffer setString:@""];
-}
-
-- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange {
-    [self->_buffer appendString:aString];
-}
-
-- (void)doCommandBySelector:(SEL)aSelector {
-
-}
-
-- (NSRange)selectedRange {
-    return NSMakeRange(NSNotFound, NSNotFound);
-}
-
-- (void)selectInputMode:(NSString *)modeIdentifier {
-    NSLog(@"select input mode: %@", modeIdentifier);
 }
 
 @end
