@@ -15,7 +15,9 @@ org.youknowone.inputmethod.GureumKIM.han3layout2 = "Han 3set Layout 2set (For Te
 org.youknowone.inputmethod.GureumKIM.hanroman = "Han Roman";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "Han Ahnmatae";
 org.youknowone.inputmethod.GureumKIM.han3-2011 = "Han 3set 2011";
+org.youknowone.inputmethod.GureumKIM.han3-2011loose = "Han 3set 2011 (Loose Combination)";
 org.youknowone.inputmethod.GureumKIM.han3-2012 = "Han 3set 2012";
+org.youknowone.inputmethod.GureumKIM.han3-2012loose = "Han 3set 2012 (Loose Combination)";
 org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "Han 3set Final No shift (Compatible)";
 
 CFBundleName = "Gureum";
