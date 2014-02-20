@@ -41,7 +41,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
                      @"org.youknowone.inputmethod.GureumKIM.hanroman",
                      @"org.youknowone.inputmethod.GureumKIM.hanahnmatae",
                      @"org.youknowone.inputmethod.GureumKIM.han3-2011",
+                     @"org.youknowone.inputmethod.GureumKIM.han3-2011loose",
                      @"org.youknowone.inputmethod.GureumKIM.han3-2012",
+                     @"org.youknowone.inputmethod.GureumKIM.han3-2012loose",
                      @"org.youknowone.inputmethod.GureumKIM.han3finalnoshift",
                      nil];
 

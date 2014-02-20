@@ -15,7 +15,9 @@ org.youknowone.inputmethod.GureumKIM.han3layout2 = "세벌식 두벌식 배치 (
 org.youknowone.inputmethod.GureumKIM.hanroman = "한글 로마자";
 org.youknowone.inputmethod.GureumKIM.hanahnmatae = "안마태";
 org.youknowone.inputmethod.GureumKIM.han3-2011 = "세벌식 2011";
+org.youknowone.inputmethod.GureumKIM.han3-2011loose = "세벌식 2011 (종성결합허용)";
 org.youknowone.inputmethod.GureumKIM.han3-2012 = "세벌식 2012";
+org.youknowone.inputmethod.GureumKIM.han3-2012loose = "세벌식 2012 (종성결합허용)";
 org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "세벌식 최종 순아래 (호환)";
 
 CFBundleName = "구름";
