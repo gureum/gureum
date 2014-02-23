@@ -158,14 +158,14 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
     
-//    configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
-//    configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
+    configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
+    configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = GureumPreferencesHangulLayouts[index];
 
-//    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
-//    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
+    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
+    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
     configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
