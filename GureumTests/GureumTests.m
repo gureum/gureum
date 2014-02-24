@@ -136,8 +136,29 @@
         app.client.string = @"";
         [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"K" key:40 modifiers:131072];
-        XCTAssertEqualObjects(@"2\u200b", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
-        XCTAssertEqualObjects(@"\u200b", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"2", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+    }
+}
+
+- (void)testHanjaSyllable {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"f" key:3 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"한", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app inputText:@"\n" key:36 modifiers:524288];
+        XCTAssertEqualObjects(@"한", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"韓: 나라 이름 한"]];
+        XCTAssertEqualObjects(@"韓", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"韓", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
+        [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"韓: 나라 이름 한"]];
+        XCTAssertEqualObjects(@"韓", app.client.string, @"app: %@ buffer: (%@)", app, app.client.string);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"app: %@ buffer: (%@)", app, app.client.string);
     }
 }
 

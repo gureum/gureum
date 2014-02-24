@@ -189,7 +189,7 @@
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString controller:(CIMInputController *)controller {
-    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::CANDIDATESELECTED");
+    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::CANDIDATESELECTED::%@", candidateString);
     CIMSharedInputManager.inputting = YES;
     [self.composer candidateSelected:candidateString];
     [self commitComposition:self.inputClient controller:controller];
@@ -197,7 +197,7 @@
 }
 
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString controller:(CIMInputController *)controller {
-    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::CANDIDATESELECTIONCHANGED");
+    dlog(DEBUG_LOGGING, @"LOGGING::CHECK::CANDIDATESELECTIONCHANGED::%@", candidateString);
     [self.composer candidateSelectionChanged:candidateString];
     [self updateComposition:controller];
 }
