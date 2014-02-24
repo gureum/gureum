@@ -18,7 +18,7 @@
 #import "CIMConfiguration.h"
 
 #define DEBUG_INPUTCONTROLLER FALSE
-#define DEBUG_LOGGING TRUE
+#define DEBUG_LOGGING FALSE
 
 #define CIMSharedInputManager CIMAppDelegate.sharedInputManager
 

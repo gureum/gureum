@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-
-@interface CIMMockClient : NSTextView 
+@interface CIMMockClient : NSTextView<IMKTextInput>
 
 - (NSString *)markedString;
 - (NSString *)selectedString;

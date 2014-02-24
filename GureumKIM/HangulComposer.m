@@ -234,7 +234,6 @@ typedef enum {
 - (void)composerSelected:(id)sender {
     [self->bufferedString setString:@""];
     self.commitString = @"";
-    [self updateHanjaCandidates];
 }
 
 - (void)updateHanjaCandidates {
@@ -252,6 +251,22 @@ typedef enum {
         }
     }
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
+}
+
+- (void)updateFromClientSelectedRange:(id)client {
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: marked: %@ selected: %@", NSStringFromRange([client markedRange]), NSStringFromRange([client selectedRange]));
+    NSRange markedRange = [client markedRange];
+    NSRange selectedRange = [client selectedRange];
+    if ((markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0) {
+        NSString *selectedString = [[client attributedSubstringFromRange:selectedRange] string];
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: selected string: %@", selectedString);
+        [client setMarkedText:selectedString selectionRange:selectedRange replacementRange:selectedRange];
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: try marking: %@ / selected: %@", NSStringFromRange([client markedRange]), NSStringFromRange([client selectedRange]));
+        self->bufferedString.string = selectedString;
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: so buffer is: %@", self->bufferedString);
+        self.mode = NO;
+    }
+    [self updateHanjaCandidates];
 }
 
 - (BOOL)hasCandidates {

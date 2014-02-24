@@ -13,7 +13,7 @@
 #import "CIMComposer.h"
 #import "CIMConfiguration.h"
 
-#define DEBUG_INPUTHANDLER TRUE
+#define DEBUG_INPUTHANDLER FALSE
 
 @implementation CIMInputHandler
 @synthesize manager;

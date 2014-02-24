@@ -11,7 +11,7 @@
 #import "CIMConfiguration.h"
 #import "GureumAppDelegate.h"
 
-#define DEBUG_GUREUM TRUE
+#define DEBUG_GUREUM FALSE
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.GureumKIM.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.GureumKIM.dvorak";
@@ -124,9 +124,11 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     if (self.delegate == self->hangulComposer) {
         if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
             // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
-            self->hanjaComposer.mode = self->hangulComposer.composedString.length == 0; // 조합 중이 아니면 1회만 사전을 띄운다
+            BOOL isComposing = self->hangulComposer.composedString.length > 0;
+            self->hanjaComposer.mode = !isComposing; // 조합 중이 아니면 1회만 사전을 띄운다
             self.delegate = self->hanjaComposer;
             [self.delegate composerSelected:self];
+            [self->hanjaComposer updateFromClientSelectedRange:sender];
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환

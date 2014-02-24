@@ -34,6 +34,10 @@
     return [self.string substringWithRange:self.selectedRange];
 }
 
+- (void)setMarkedText:(id)string selectionRange:(NSRange)selectionRange replacementRange:(NSRange)replacementRange {
+    [self setMarkedText:string selectedRange:selectionRange replacementRange:replacementRange];
+}
+
 @end
 
 

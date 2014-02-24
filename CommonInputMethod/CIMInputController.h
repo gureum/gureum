@@ -54,6 +54,37 @@
 
 #if DEBUG
 
+// no impleentation for this class here
+@interface CIMMockInputClient: NSObject<IMKTextInput, IMKUnicodeTextInput>
+
+- (id)initWithRealClient:(id)client;
+@property(readonly) id _realClient;
+//_clientTryRespondsToSelector:
+//clientException
+//inserting
+//markedCharacterCount
+- (void)setKeyboardType:(id)type;
+- (NSRect)firstRectForCharacterRange:(NSRange)range;
+//resetState
+- (void)commit;
+//isDictationHiliteCapableInputContext
+//isBottomLineInputContext
+//hidePalettesAtInsertionPoint
+//insertText:replacementRange:validFlags:
+//attributesForCharacterIndex:
+//currentInputSourceBundleID
+//deadKeyState
+//keyboardType
+//terminatePalette:
+//isPaletteTerminated:
+//inputSessionDoneSleep
+//commitPendingInlineSession
+- (NSString *)markedRangeValue; // string representation of marked text
+//isTextPlaceholderAwareInputContext
+
+@end
+
+
 @interface CIMMockInputController : NSObject {
     CIMInputReceiver *_receiver;
 }

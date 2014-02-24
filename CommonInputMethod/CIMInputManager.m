@@ -16,7 +16,7 @@
 @synthesize server, candidates, configuration, handler, sharedComposer;
 @synthesize inputting;
 
-#define DEBUG_INPUTMANAGER TRUE
+#define DEBUG_INPUTMANAGER FALSE
 
 - (id)init
 {

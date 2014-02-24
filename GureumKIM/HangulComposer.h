@@ -49,6 +49,7 @@
 }
 
 - (void)updateHanjaCandidates;
+- (void)updateFromClientSelectedRange:(id)client;
 
 @property(nonatomic, readonly) HangulComposer *hangulComposer;
 @property(nonatomic, readonly) HGHanjaTable *hanjaTable;
