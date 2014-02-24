@@ -473,11 +473,11 @@
         NSRange markedRange = [client markedRange];
         NSRange newMarkedRange = NSMakeRange(markedRange.location, composed.length);
         if (markedRange.length > 0 || newMarkedRange.length > 0) {
-            [client setMarkedText:composed selectedRange:markedRange replacementRange:newMarkedRange]; // to show
+            [client setMarkedText:composed selectedRange:newMarkedRange replacementRange:markedRange]; // to show
             BOOL hasMarked1 = client.hasMarkedText;
             [client setSelectedRange:newMarkedRange];
             BOOL hasMarked2 = client.hasMarkedText;
-            //assert(hasMarked1 == hasMarked2);
+            dassert(hasMarked1 == hasMarked2);
         }
     }
 }

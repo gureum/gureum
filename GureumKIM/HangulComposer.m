@@ -151,6 +151,18 @@ typedef enum {
     [self->_commitString setString:@""];
 }
 
+#ifdef DEBUG
+
+- (void)candidateSelected:(NSAttributedString *)candidateString {
+    dassert(NO);
+}
+
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
+    dassert(NO);
+}
+
+#endif
+
 @end
 
 @implementation HanjaComposer
@@ -298,13 +310,13 @@ typedef enum {
         }   break;
         // space
         case 49: {
+            [self.hangulComposer cancelComposition]; // 강제로 조합중인 문자 추출
             [self->bufferedString appendString:self.hangulComposer.dequeueCommitString];
             // 단어 뜻 검색을 위해 공백 문자도 후보 검색에 포함한다.
             if (self->bufferedString.length > 0) {
                 [self->bufferedString appendString:@" "];
                 result = CIMInputTextProcessResultProcessed;
             } else {
-                self.commitString = @" ";
                 result = CIMInputTextProcessResultNotProcessedAndNeedsCommit;
             }
         }   break;
