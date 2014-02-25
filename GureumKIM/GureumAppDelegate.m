@@ -67,6 +67,9 @@
         return nil;
     }
     NSArray *components = [verstring componentsSeparatedByString:@"::"];
+    if (components.count < 2) {
+        return nil;
+    }
     NSString *recentVersion = components[0];
     NSString *recentDownload = components[1];
     NSString *releaseNote = nil;
