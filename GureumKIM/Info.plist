@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Gureum.icns</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${VERSION}, ${NSHumanReadableCopyright}, Some Rights Reserved</string>
+	<string>${VERSION}, Copyright 2011-2014 Jeong YunWon</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.youknowone.inputmethod.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
