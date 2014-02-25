@@ -102,7 +102,7 @@
 				<key>tsInputModeIsVisibleKey</key>
 				<true/>
 				<key>tsInputModeMenuIconFileKey</key>
-				<string>han3-2012.png</string>
+				<string>han3.png</string>
 				<key>tsInputModePaletteIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModePrimaryInScriptKey</key>
@@ -144,7 +144,7 @@
 				<key>tsInputModeIsVisibleKey</key>
 				<true/>
 				<key>tsInputModeMenuIconFileKey</key>
-				<string>han3-2012.png</string>
+				<string>han3.png</string>
 				<key>tsInputModePaletteIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModePrimaryInScriptKey</key>
