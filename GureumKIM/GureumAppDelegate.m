@@ -62,7 +62,7 @@
 
 - (NSDictionary *)getRecentVersion {
     NSError *error = nil;
-    NSString *verstring = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gureum.org/version.txt"] encoding:NSUTF8StringEncoding error:&error];
+    NSString *verstring = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gureum.io/version.txt"] encoding:NSUTF8StringEncoding error:&error];
     if (verstring == nil || error) {
         return nil;
     }

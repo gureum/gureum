@@ -184,7 +184,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 }
 
 - (void)helpChangeShortcut:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.org"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.io"]];
 }
 
 #pragma NSWindow delegate

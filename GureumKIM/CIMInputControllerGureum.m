@@ -44,19 +44,19 @@
 }
 
 - (IBAction)openWebsite:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://gureum.org"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://gureum.io"]];
 }
 
 - (IBAction)openWebsiteHelp:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.org"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.io"]];
 }
 
 - (IBAction)openWebsiteSource:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ssi.gureum.org"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ssi.gureum.io"]];
 }
 
 - (IBAction)openWebsiteIssues:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://meok.gureum.org"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://meok.gureum.io"]];
 }
 
 @end
