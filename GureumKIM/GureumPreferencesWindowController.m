@@ -6,10 +6,12 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+#import <ShortcutRecorder/ShortcutRecorder.h>
+
 #import "GureumPreferencesWindowController.h"
 
 #import "CIMConfiguration.h"
-#import <ShortcutRecorder/ShortcutRecorder.h>
+#import "HangulComposer.h"
 
 #define DEBUG_PREFERENCE TRUE
 
@@ -150,7 +152,13 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
     self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
     [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
+    if (!(0 <= configuration->hangulCombinationModeComposing && configuration->hangulCombinationModeComposing < HangulCharacterCombinationModeCount)) {
+        configuration->hangulCombinationModeComposing = 0;
+    }
     self->hangulCombinationModeComposingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeComposing];
+    if (!(0 <= configuration->hangulCombinationModeCommiting && configuration->hangulCombinationModeCommiting < HangulCharacterCombinationModeCount)) {
+        configuration->hangulCombinationModeCommiting = 0;
+    }
     self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
 
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;

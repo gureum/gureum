@@ -7,6 +7,7 @@
 //
 
 #import "CIMConfiguration.h"
+#import "HangulComposer.h"
 
 NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
 
@@ -58,8 +59,8 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { kCIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
             { kCIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
             { kCIMOptionKeyBehavior, &self->optionKeyBehavior, 0 },
-            { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing, 0 },
-            { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting, 0 },
+            { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing, (NSInteger)HangulCharacterCombinationWithoutFiller },
+            { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting, (NSInteger)HangulCharacterCombinationWithoutFiller },
         };
         for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
             self->integerItems[i] = tempIntegerItems[i];

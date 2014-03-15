@@ -15,20 +15,6 @@
 #define DEBUG_HANGULCOMPOSER FALSE
 #define DEBUG_HANJACOMPOSER FALSE
 
-typedef enum {
-    // 채움 문자는 모두 지우고 결합해 표현한다.
-    HangulCharacterCombinationWithoutFiller = 0,
-    // 없는 자소가 있더라도 모두 채움 문자와 결합해 표현한다.
-    HangulCharacterCombinationWithFiller = 1,
-    // 중성이 빠졌을 경우만 채움 문자를 이용한다.
-    HangulCharacterCombinationWithOnlyJungseongFiller = 2,
-    // 채움 문자 뒤는 숨긴다.
-    HangulCharacterCombinationHiddenOnFiller = 3,
-    // 중성 채움 문자 뒤는 숨긴다.
-    HangulCharacterCombinationHiddenOnJungseongFiller = 4,
-}   HangulCharacterCombinationMode;
-#define HangulCharacterCombinationModeCount 5
-
 
 @class CIMInputController;
 
@@ -104,7 +90,9 @@ typedef enum {
         }
     }
     BOOL handled = [self->_inputContext process:[string characterAtIndex:0]];
-    NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:[self->_inputContext commitUCSString]];
+    const HGUCSChar *UCSString = [self->_inputContext commitUCSString];
+    dassert(UCSString);
+    NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:UCSString];
     [self->_commitString appendString:recentCommitString];
     dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
     return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
@@ -379,16 +367,28 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     @brief  설정에 따라 조합 완료할 문자 최종처리
 */
 + (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    SEL filler = NSSelectorFromString(HangulCombinationModefillers[CIMSharedConfiguration->hangulCombinationModeCommiting]);
-    return [NSString performSelector:filler withObject:(id)UCSString];
+    NSInteger index = CIMSharedConfiguration->hangulCombinationModeCommiting;
+    dassert(0 <= index);
+    dassert(index < HangulCharacterCombinationModeCount);
+    NSString *name = HangulCombinationModefillers[index];
+    dassert(name);
+    dassert(name.length);
+    SEL selector = NSSelectorFromString(name);
+    return [NSString performSelector:selector withObject:(id)UCSString];
 }
 
 /*!
     @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
 */
 + (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    SEL filler = NSSelectorFromString(HangulCombinationModefillers[CIMSharedConfiguration->hangulCombinationModeComposing]);
-    return [NSString performSelector:filler withObject:(id)UCSString];
+    NSInteger index = CIMSharedConfiguration->hangulCombinationModeComposing;
+    dassert(0 <= index);
+    dassert(index < HangulCharacterCombinationModeCount);
+    NSString *name = HangulCombinationModefillers[index];
+    dassert(name);
+    dassert(name.length);
+    SEL selector = NSSelectorFromString(name);
+    return [NSString performSelector:selector withObject:(id)UCSString];
 }
 
 @end
