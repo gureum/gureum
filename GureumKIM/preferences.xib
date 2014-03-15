@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencesWindowController">
@@ -25,7 +25,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="환경설정" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
+        <window title="환경설정" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="1280" y="835" width="300" height="40"/>
@@ -216,7 +216,7 @@
             </subviews>
         </customView>
         <customView id="93">
-            <rect key="frame" x="0.0" y="0.0" width="307" height="162"/>
+            <rect key="frame" x="0.0" y="0.0" width="307" height="188"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" id="109">
@@ -276,7 +276,7 @@
                     </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="122" customClass="SRRecorderControl">
-                    <rect key="frame" x="127" y="120" width="126" height="22"/>
+                    <rect key="frame" x="127" y="146" width="126" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="125" customClass="SRRecorderCell">
                         <font key="font" metaFont="system"/>
@@ -296,7 +296,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="123">
-                    <rect key="frame" x="17" y="122" width="105" height="20"/>
+                    <rect key="frame" x="17" y="148" width="105" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한자 단축키:" id="124">
                         <font key="font" size="13" name="AppleGothic"/>
@@ -304,8 +304,17 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField verticalHuggingPriority="750" id="eUM-9q-JXv">
+                    <rect key="frame" x="17" y="120" width="105" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="rtS-ux-wdY">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="137">
-                    <rect key="frame" x="255" y="109" width="39" height="38"/>
+                    <rect key="frame" x="255" y="135" width="39" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="round" title="?" bezelStyle="circular" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" id="138">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
