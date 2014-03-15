@@ -184,7 +184,8 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 }
 
 - (void)helpChangeShortcut:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://dan.gureum.io"]];
+    NSAlert *alert = [NSAlert alertWithMessageText:@"도움말" defaultButton:@"확인" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Space 또는 ⇧Space 로 초기화하고 새로 설정할 수 있습니다."];
+    [alert beginSheetModalForWindow:nil modalDelegate:nil didEndSelector:nil contextInfo:NULL];
 }
 
 #pragma NSWindow delegate
