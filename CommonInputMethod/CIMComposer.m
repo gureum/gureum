@@ -9,8 +9,8 @@
 #include "CIMComposer.h"
 
 @implementation CIMComposer
-@synthesize delegate=_delegate;
-@synthesize inputMode=_inputMode;
+@synthesize delegate = _delegate;
+@synthesize inputMode = _inputMode;
 
 - (void)dealloc {
     self.delegate = nil;

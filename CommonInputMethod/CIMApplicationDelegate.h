@@ -19,7 +19,7 @@
 @property(nonatomic, readonly) CIMInputManager *sharedInputManager;
 /*!
     @brief  합성기 생성
- 
+
     입력 소스 별로 사용할 합성기를 만들어 반환한다.
 */
 - (CIMComposer *)composerWithServer:(IMKServer *)server client:(id)client;

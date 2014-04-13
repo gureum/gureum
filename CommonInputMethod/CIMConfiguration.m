@@ -9,27 +9,26 @@
 #import "CIMConfiguration.h"
 #import "HangulComposer.h"
 
-NSString * kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
+NSString *kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
 
-NSString * kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
-NSString * kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
-NSString * kCIMInputModeHanjaKeyModifier = @"CIMInputModeHanjaKeyModifier";
-NSString * kCIMInputModeHanjaKeyCode = @"CIMInputModeHanjaKeyCode";
-NSString * kCIMOptionKeyBehavior = @"CIMHangulOptionKeyBehavior";
-NSString * kCIMHangulCombinationModeComposing = @"CIMHangulCombinationModeComposing";
-NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommiting";
+NSString *kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
+NSString *kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
+NSString *kCIMInputModeHanjaKeyModifier = @"CIMInputModeHanjaKeyModifier";
+NSString *kCIMInputModeHanjaKeyCode = @"CIMInputModeHanjaKeyCode";
+NSString *kCIMOptionKeyBehavior = @"CIMHangulOptionKeyBehavior";
+NSString *kCIMHangulCombinationModeComposing = @"CIMHangulCombinationModeComposing";
+NSString *kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommiting";
 
-NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
-NSString * kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
-NSString * kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
-NSString * kCIMZeroWidthSpaceForLayoutExchange = @"CIMZeroWidthSpaceForLayoutExchange";
-NSString * kCIMZeroWidthSpaceForBlankComposedString = @"CIMZeroWidthSpaceForBlankComposedString";
-
+NSString *kCIMSharedInputManager = @"CIMSharedInputManager";
+NSString *kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
+NSString *kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
+NSString *kCIMZeroWidthSpaceForLayoutExchange = @"CIMZeroWidthSpaceForLayoutExchange";
+NSString *kCIMZeroWidthSpaceForBlankComposedString = @"CIMZeroWidthSpaceForBlankComposedString";
 
 CIMConfiguration *CIMDefaultUserConfiguration;
 
 @implementation CIMConfiguration
-@synthesize  userDefaults;
+@synthesize userDefaults;
 
 + (void)initialize {
     [super initialize];
@@ -44,11 +43,11 @@ CIMConfiguration *CIMDefaultUserConfiguration;
     self = [super init];
     if (self != nil) {
         self->pFieldKeys = [[NSMutableDictionary alloc] init];
-        
+
         struct CIMConfigurationStringItem tempStringItems[CIMConfigurationStringItemCount] = {
             { kCIMLastHangulInputMode, &self->lastHangulInputMode, nil },
         };
-        for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++ ) {
+        for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++) {
             struct CIMConfigurationStringItem *item = &tempStringItems[i];
             self->stringItems[i] = tempStringItems[i];
             self->pFieldKeys[@((unsigned long)item->pConfiguration)] = item->name;
@@ -60,10 +59,12 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { kCIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
             { kCIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
             { kCIMOptionKeyBehavior, &self->optionKeyBehavior, 0 },
-            { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing, (NSInteger)HangulCharacterCombinationWithoutFiller },
-            { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting, (NSInteger)HangulCharacterCombinationWithoutFiller },
+            { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing,
+              (NSInteger)HangulCharacterCombinationWithoutFiller },
+            { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting,
+              (NSInteger)HangulCharacterCombinationWithoutFiller },
         };
-        for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
+        for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++) {
             self->integerItems[i] = tempIntegerItems[i];
         }
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
@@ -73,7 +74,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { kCIMZeroWidthSpaceForBlankComposedString, &self->zeroWidthSpaceForBlankComposedString, NO },
             { kCIMZeroWidthSpaceForLayoutExchange, &self->zeroWidthSpaceForLayoutExchange, NO },
         };
-        for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
+        for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++) {
             self->boolItems[i] = tempBoolItems[i];
         }
         self->originConfigurations = [[NSMutableDictionary alloc] init];
@@ -97,13 +98,16 @@ CIMConfiguration *CIMDefaultUserConfiguration;
 }
 
 - (void)loadAllConfigurations {
-    if (self->userDefaults == nil) return;
+    if (self->userDefaults == nil)
+        return;
     [self->userDefaults synchronize];
-    for (int i = 0; i < CIMConfigurationStringItemCount; i++ ) {
+    for (int i = 0; i < CIMConfigurationStringItemCount; i++) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         id object = [self->userDefaults objectForKey:item.name];
         dlog(TRUE, @"** CIMConfiguration -loadAllConfigurations count: %d / object: %@", i, object);
-        if (object == nil) { object = item.defaultValue; }
+        if (object == nil) {
+            object = item.defaultValue;
+        }
         [*item.pConfiguration autorelease];
         *item.pConfiguration = [object retain];
         if (object != nil) {
@@ -112,13 +116,13 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             [self->originConfigurations removeObjectForKey:item.name];
         }
     }
-    for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++ ) {
+    for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++) {
         struct CIMConfigurationIntegerItem item = self->integerItems[i];
         id object = [self->userDefaults objectForKey:item.name];
         *item.pConfiguration = object != nil ? [object integerValue] : item.defaultValue;
         self->originConfigurations[item.name] = @(*item.pConfiguration);
     }
-    for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
+    for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++) {
         struct CIMConfigurationBoolItem item = self->boolItems[i];
         id object = [self->userDefaults objectForKey:item.name];
         *item.pConfiguration = object != nil ? [object boolValue] : item.defaultValue;
@@ -127,7 +131,8 @@ CIMConfiguration *CIMDefaultUserConfiguration;
 }
 
 - (void)saveAllConfigurations {
-    if (self->userDefaults == nil) return;
+    if (self->userDefaults == nil)
+        return;
     for (int i = 0; i < CIMConfigurationStringItemCount; i++) {
         struct CIMConfigurationStringItem item = self->stringItems[i];
         NSString *value = *item.pConfiguration;

@@ -28,7 +28,7 @@ typedef enum {
     CIMInputTextProcessResultNotProcessedAndNeedsCancel = -1,
     CIMInputTextProcessResultNotProcessed = 0,
     CIMInputTextProcessResultProcessed = 1,
-}   CIMInputTextProcessResult;
+} CIMInputTextProcessResult;
 
 /*!
     @protocol

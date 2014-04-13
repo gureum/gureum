@@ -32,8 +32,12 @@ FOUNDATION_EXTERN NSString *kCIMRomanModeByEscapeKey;
 FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForLayoutExchange;
 FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForBlankComposedString;
 
-
-#define defCIMConfigurationItem(NAME, TYPE) struct NAME { NSString *name; TYPE *pConfiguration; TYPE defaultValue; }
+#define defCIMConfigurationItem(NAME, TYPE)                                                                            \
+    struct NAME {                                                                                                      \
+        NSString *name;                                                                                                \
+        TYPE *pConfiguration;                                                                                          \
+        TYPE defaultValue;                                                                                             \
+    }
 
 defCIMConfigurationItem(CIMConfigurationStringItem, NSString *);
 defCIMConfigurationItem(CIMConfigurationIntegerItem, NSInteger);
@@ -41,7 +45,11 @@ defCIMConfigurationItem(CIMConfigurationBoolItem, BOOL);
 
 #undef defCIMConfigurationItem
 
-#define CIMConfigurationSetObjectForField(CONF, OBJ, FIELD)   { [CONF->FIELD autorelease]; CONF->FIELD = [OBJ retain]; }
+#define CIMConfigurationSetObjectForField(CONF, OBJ, FIELD)                                                            \
+    {                                                                                                                  \
+        [CONF->FIELD autorelease];                                                                                     \
+        CONF->FIELD = [OBJ retain];                                                                                    \
+    }
 
 @class CIMConfiguration;
 
@@ -51,14 +59,14 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     @brief  NSUserDefaults 에 설정을 저장하고 가져온다.
 */
 @interface CIMConfiguration : NSObject {
-@private
+  @private
     NSMutableDictionary *pFieldKeys;
     struct CIMConfigurationStringItem stringItems[CIMConfigurationStringItemCount];
     struct CIMConfigurationIntegerItem integerItems[CIMConfigurationIntegerItemCount];
     struct CIMConfigurationBoolItem boolItems[CIMConfigurationBoolItemCount];
     NSMutableDictionary *originConfigurations;
     NSUserDefaults *userDefaults;
-@public
+  @public
     NSString *lastHangulInputMode;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
     NSInteger inputModeHanjaKeyModifier, inputModeHanjaKeyCode;

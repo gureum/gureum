@@ -33,11 +33,11 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012Loose;
 @class HanjaComposer;
 /*!
     @brief  구름 입력기의 합성기
- 
+
     입력 모드에 따라 libhangul을 이용하여 문자를 합성해 준다.
 */
 @interface GureumComposer : CIMComposer {
-@private
+  @private
     CIMBaseComposer *romanComposer;
     HangulComposer *hangulComposer;
     HanjaComposer *hanjaComposer;

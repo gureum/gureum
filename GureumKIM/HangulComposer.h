@@ -10,7 +10,6 @@
 #import <Hangul/HGHanja.h>
 #import "CIMComposer.h"
 
-
 typedef enum {
     // 채움 문자는 모두 지우고 결합해 표현한다.
     HangulCharacterCombinationWithoutFiller = 0,
@@ -24,7 +23,6 @@ typedef enum {
     HangulCharacterCombinationHiddenOnJungseongFiller = 4,
 } HangulCharacterCombinationMode;
 #define HangulCharacterCombinationModeCount 5
-
 
 @class HGInputContext;
 
@@ -55,7 +53,6 @@ typedef enum {
 - (void)setKeyboardWithIdentifier:(NSString *)identifier;
 
 @end
-
 
 @interface HanjaComposer : CIMComposer {
     HGHanjaList *_hanjaCandidates;

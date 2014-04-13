@@ -8,8 +8,8 @@
 
 #import "CIMApplicationDelegate.h"
 
-@interface GureumAppDelegate : NSObject <NSApplicationDelegate, CIMApplicationDelegate> {
-@private
+@interface GureumAppDelegate : NSObject<NSApplicationDelegate, CIMApplicationDelegate> {
+  @private
     CIMInputManager *sharedInputManager;
     IBOutlet NSMenu *menu;
 }
