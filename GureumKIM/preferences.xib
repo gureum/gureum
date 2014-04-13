@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencesWindowController">
@@ -21,6 +21,7 @@
                 <outlet property="romanModeByEscapeKeyCheckbox" destination="128" id="131"/>
                 <outlet property="window" destination="1" id="108"/>
                 <outlet property="zeroWidthSpaceForBlankComposedStringCheckbox" destination="qS6-9b-zpa" id="ctU-hT-dri"/>
+                <outlet property="zeroWidthSpaceForLayoutExchangeCheckbox" destination="ofO-Xf-tQi" id="VYd-af-BHG"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -100,11 +101,11 @@
             </connections>
         </window>
         <customView id="82">
-            <rect key="frame" x="0.0" y="0.0" width="363" height="166"/>
+            <rect key="frame" x="0.0" y="0.0" width="363" height="215"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" id="100" customClass="SRRecorderControl">
-                    <rect key="frame" x="183" y="125" width="127" height="22"/>
+                    <rect key="frame" x="183" y="174" width="127" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="101" customClass="SRRecorderCell">
                         <font key="font" metaFont="system"/>
@@ -124,7 +125,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="83">
-                    <rect key="frame" x="17" y="126" width="126" height="20"/>
+                    <rect key="frame" x="17" y="175" width="126" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="언어 바꾸기 단축키:" id="92">
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -132,7 +133,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="86">
-                    <rect key="frame" x="29" y="74" width="149" height="20"/>
+                    <rect key="frame" x="29" y="123" width="149" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기본 한글 자판:" id="89">
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -140,14 +141,14 @@
                     </textFieldCell>
                 </textField>
                 <button id="85">
-                    <rect key="frame" x="18" y="100" width="328" height="20"/>
+                    <rect key="frame" x="18" y="149" width="328" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="자판을 선택하면 기본 자판으로 자동으로 지정하기" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="90">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                     </buttonCell>
                 </button>
                 <comboBox verticalHuggingPriority="750" id="87">
-                    <rect key="frame" x="183" y="70" width="163" height="26"/>
+                    <rect key="frame" x="183" y="119" width="163" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="88">
                         <font key="font" metaFont="system"/>
@@ -159,22 +160,30 @@
                     </connections>
                 </comboBox>
                 <button id="128">
-                    <rect key="frame" x="19" y="18" width="327" height="19"/>
+                    <rect key="frame" x="17" y="39" width="327" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="129">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <button id="ofO-Xf-tQi">
+                    <rect key="frame" x="17" y="18" width="327" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="자판 전환 시 스페이스 입력 방지 (IntelliJ 등)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="pBf-dh-gwk">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="130">
-                    <rect key="frame" x="13" y="41" width="331" height="5"/>
+                    <rect key="frame" x="13" y="90" width="331" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="135">
-                    <rect key="frame" x="312" y="114" width="39" height="38"/>
+                    <rect key="frame" x="312" y="163" width="39" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="round" title="?" bezelStyle="circular" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" id="136">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -185,7 +194,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="148">
-                    <rect key="frame" x="29" y="52" width="149" height="20"/>
+                    <rect key="frame" x="29" y="101" width="149" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Option 키 동작:" id="151">
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -193,7 +202,7 @@
                     </textFieldCell>
                 </textField>
                 <comboBox verticalHuggingPriority="750" id="149">
-                    <rect key="frame" x="183" y="48" width="163" height="26"/>
+                    <rect key="frame" x="183" y="97" width="163" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="150">
                         <font key="font" metaFont="system"/>
@@ -208,6 +217,15 @@
                         <outlet property="dataSource" destination="-2" id="152"/>
                     </connections>
                 </comboBox>
+                <textField verticalHuggingPriority="750" id="Ifn-ec-Gzf">
+                    <rect key="frame" x="17" y="64" width="105" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="JuL-3P-Okt">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
         </customView>
         <customView id="93">

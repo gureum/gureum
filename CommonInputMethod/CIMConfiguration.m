@@ -22,6 +22,7 @@ NSString * kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommit
 NSString * kCIMSharedInputManager = @"CIMSharedInputManager";
 NSString * kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
 NSString * kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
+NSString * kCIMZeroWidthSpaceForLayoutExchange = @"CIMZeroWidthSpaceForLayoutExchange";
 NSString * kCIMZeroWidthSpaceForBlankComposedString = @"CIMZeroWidthSpaceForBlankComposedString";
 
 
@@ -70,6 +71,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { kCIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
             { kCIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
             { kCIMZeroWidthSpaceForBlankComposedString, &self->zeroWidthSpaceForBlankComposedString, NO },
+            { kCIMZeroWidthSpaceForLayoutExchange, &self->zeroWidthSpaceForLayoutExchange, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++ ) {
             self->boolItems[i] = tempBoolItems[i];

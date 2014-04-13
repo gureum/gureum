@@ -25,7 +25,8 @@
     IBOutlet NSComboBox *optionKeyBehaviorComboBox;
 
     IBOutlet NSButton *romanModeByEscapeKeyCheckbox;
-    
+    IBOutlet NSButton *zeroWidthSpaceForLayoutExchangeCheckbox;
+
     /* Hangul Preferences */
     IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;

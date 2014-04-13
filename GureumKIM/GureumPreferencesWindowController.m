@@ -162,6 +162,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
 
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
+    self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue = configuration->zeroWidthSpaceForLayoutExchange;
     self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue = configuration->zeroWidthSpaceForBlankComposedString;
 }
 
@@ -181,6 +182,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
 
     configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
+    configuration->zeroWidthSpaceForLayoutExchange = self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue;
     configuration->zeroWidthSpaceForBlankComposedString = self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue;
 
     [configuration saveAllConfigurations];

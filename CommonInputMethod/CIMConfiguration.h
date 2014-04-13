@@ -23,12 +23,13 @@ FOUNDATION_EXTERN NSString *kCIMOptionKeyBehavior;
 FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeComposing;
 FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeCommiting;
 
-#define CIMConfigurationBoolItemCount 4
+#define CIMConfigurationBoolItemCount 5
 /* Common */
 FOUNDATION_EXTERN NSString *kCIMSharedInputManager;
 /* Gureum */
 FOUNDATION_EXTERN NSString *kCIMAutosaveDefaultInputMode;
 FOUNDATION_EXTERN NSString *kCIMRomanModeByEscapeKey;
+FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForLayoutExchange;
 FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForBlankComposedString;
 
 
@@ -66,6 +67,7 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     BOOL sharedInputManager;
     BOOL autosaveDefaultInputMode;
     BOOL romanModeByEscapeKey;
+    BOOL zeroWidthSpaceForLayoutExchange;
     BOOL zeroWidthSpaceForBlankComposedString;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;

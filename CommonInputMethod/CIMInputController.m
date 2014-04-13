@@ -158,7 +158,7 @@
 
 - (NSString *)_internalComposedString {
     NSString *string = self.composer.composedString;
-    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString) {
+    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString && CIMSharedInputManager.configuration->zeroWidthSpaceForLayoutExchange) {
         string = @"\u200b";
     }
     return string;
