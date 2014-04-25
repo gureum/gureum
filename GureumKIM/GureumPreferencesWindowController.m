@@ -142,47 +142,54 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)loadFromConfiguration {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
-    
+
+    // common
     self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
     NSLog(@"default input mode: %d", configuration->autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
     NSLog(@"last hangul input mode: %@", configuration->lastHangulInputMode);
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = GureumPreferencesHangulLayoutLocalizedNames[index];
+    self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
+    self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue = configuration->zeroWidthSpaceForLayoutExchange;
 
+    // hangul
     self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
     [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
     if (!(0 <= configuration->hangulCombinationModeComposing && configuration->hangulCombinationModeComposing < HangulCharacterCombinationModeCount)) {
         configuration->hangulCombinationModeComposing = 0;
     }
+    self->showsInputForHanjaCandidatesCheckbox.integerValue = configuration->showsInputForHanjaCandidates;
+
     self->hangulCombinationModeComposingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeComposing];
     if (!(0 <= configuration->hangulCombinationModeCommiting && configuration->hangulCombinationModeCommiting < HangulCharacterCombinationModeCount)) {
         configuration->hangulCombinationModeCommiting = 0;
     }
     self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
 
-    self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
-    self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue = configuration->zeroWidthSpaceForLayoutExchange;
     self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue = configuration->zeroWidthSpaceForBlankComposedString;
 }
 
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
-    
+
+    // common
     configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
     configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = GureumPreferencesHangulLayouts[index];
+    configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
+    configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
+    configuration->zeroWidthSpaceForLayoutExchange = self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue;
 
+    // hangeul
     configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
     configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
-    configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
+    configuration->showsInputForHanjaCandidates = self->showsInputForHanjaCandidatesCheckbox.integerValue;
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
 
-    configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
-    configuration->zeroWidthSpaceForLayoutExchange = self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue;
     configuration->zeroWidthSpaceForBlankComposedString = self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue;
 
     [configuration saveAllConfigurations];

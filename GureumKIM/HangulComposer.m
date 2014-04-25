@@ -263,7 +263,10 @@
 
 - (NSArray *)candidates {
     HGHanjaList *hanjas = self.hanjaCandidates;
-    NSMutableArray *candidates = [NSMutableArray arrayWithObject:hanjas.key];
+    NSMutableArray *candidates = [NSMutableArray array];
+    if (CIMSharedConfiguration->showsInputForHanjaCandidates) {
+        [candidates addObject:hanjas.key];
+    }
     for (HGHanja *hanja in hanjas) {
         [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
     }

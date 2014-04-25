@@ -29,9 +29,10 @@
 
     /* Hangul Preferences */
     IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
+    IBOutlet NSButton *showsInputForHanjaCandidatesCheckbox;
+
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
     IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
-
     IBOutlet NSButton *zeroWidthSpaceForBlankComposedStringCheckbox;
 }
 

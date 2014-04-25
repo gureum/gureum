@@ -10,27 +10,28 @@
 
 #define CIMConfigurationStringItemCount 1
 /* Gureum */
-FOUNDATION_EXTERN NSString *kCIMLastHangulInputMode;
+FOUNDATION_EXTERN NSString *CIMLastHangulInputMode;
 
 #define CIMConfigurationIntegerItemCount 7
 /* Gureum */
-FOUNDATION_EXTERN NSString *kCIMInputModeExchangeKeyModifier;
-FOUNDATION_EXTERN NSString *kCIMInputModeExchangeKeyCode;
-FOUNDATION_EXTERN NSString *kCIMInputModeHanjaKeyModifier;
-FOUNDATION_EXTERN NSString *kCIMInputModeHanjaKeyCode;
-FOUNDATION_EXTERN NSString *kCIMOptionKeyBehavior;
+FOUNDATION_EXTERN NSString *CIMInputModeExchangeKeyModifier;
+FOUNDATION_EXTERN NSString *CIMInputModeExchangeKeyCode;
+FOUNDATION_EXTERN NSString *CIMInputModeHanjaKeyModifier;
+FOUNDATION_EXTERN NSString *CIMInputModeHanjaKeyCode;
+FOUNDATION_EXTERN NSString *CIMOptionKeyBehavior;
 /* Hangul */
-FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeComposing;
-FOUNDATION_EXTERN NSString *kCIMHangulCombinationModeCommiting;
+FOUNDATION_EXTERN NSString *CIMHangulCombinationModeComposing;
+FOUNDATION_EXTERN NSString *CIMHangulCombinationModeCommiting;
 
-#define CIMConfigurationBoolItemCount 5
+#define CIMConfigurationBoolItemCount 6
 /* Common */
-FOUNDATION_EXTERN NSString *kCIMSharedInputManager;
+FOUNDATION_EXTERN NSString *CIMSharedInputManager;
 /* Gureum */
-FOUNDATION_EXTERN NSString *kCIMAutosaveDefaultInputMode;
-FOUNDATION_EXTERN NSString *kCIMRomanModeByEscapeKey;
-FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForLayoutExchange;
-FOUNDATION_EXTERN NSString *kCIMZeroWidthSpaceForBlankComposedString;
+FOUNDATION_EXTERN NSString *CIMAutosaveDefaultInputMode;
+FOUNDATION_EXTERN NSString *CIMRomanModeByEscapeKey;
+FOUNDATION_EXTERN NSString *CIMZeroWidthSpaceForLayoutExchange;
+FOUNDATION_EXTERN NSString *CIMZeroWidthSpaceForBlankComposedString;
+FOUNDATION_EXTERN NSString *CIMShowsInputForHanjaCandidates;
 
 #define defCIMConfigurationItem(NAME, TYPE)                                                                            \
     struct NAME {                                                                                                      \
@@ -77,6 +78,7 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     BOOL romanModeByEscapeKey;
     BOOL zeroWidthSpaceForLayoutExchange;
     BOOL zeroWidthSpaceForBlankComposedString;
+    BOOL showsInputForHanjaCandidates;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;
 

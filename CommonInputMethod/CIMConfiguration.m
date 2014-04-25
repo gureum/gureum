@@ -9,21 +9,24 @@
 #import "CIMConfiguration.h"
 #import "HangulComposer.h"
 
-NSString *kCIMLastHangulInputMode = @"CIMLastHangulInputMode";
+#define define_preference_key(NAME) NSString *NAME = @ #NAME
 
-NSString *kCIMInputModeExchangeKeyModifier = @"CIMInputModeExchangeKeyModifier";
-NSString *kCIMInputModeExchangeKeyCode = @"CIMInputModeExchangeKeyCode";
-NSString *kCIMInputModeHanjaKeyModifier = @"CIMInputModeHanjaKeyModifier";
-NSString *kCIMInputModeHanjaKeyCode = @"CIMInputModeHanjaKeyCode";
-NSString *kCIMOptionKeyBehavior = @"CIMHangulOptionKeyBehavior";
-NSString *kCIMHangulCombinationModeComposing = @"CIMHangulCombinationModeComposing";
-NSString *kCIMHangulCombinationModeCommiting = @"CIMHangulCombinationModeCommiting";
+define_preference_key(CIMLastHangulInputMode);
 
-NSString *kCIMSharedInputManager = @"CIMSharedInputManager";
-NSString *kCIMAutosaveDefaultInputMode = @"CIMAutosaveDefaultInputMode";
-NSString *kCIMRomanModeByEscapeKey = @"CIMRomanModeByEscapeKey";
-NSString *kCIMZeroWidthSpaceForLayoutExchange = @"CIMZeroWidthSpaceForLayoutExchange";
-NSString *kCIMZeroWidthSpaceForBlankComposedString = @"CIMZeroWidthSpaceForBlankComposedString";
+define_preference_key(CIMInputModeExchangeKeyModifier);
+define_preference_key(CIMInputModeExchangeKeyCode);
+define_preference_key(CIMInputModeHanjaKeyModifier);
+define_preference_key(CIMInputModeHanjaKeyCode);
+define_preference_key(CIMOptionKeyBehavior);
+define_preference_key(CIMHangulCombinationModeComposing);
+define_preference_key(CIMHangulCombinationModeCommiting);
+
+define_preference_key(CIMSharedInputManager);
+define_preference_key(CIMAutosaveDefaultInputMode);
+define_preference_key(CIMRomanModeByEscapeKey);
+define_preference_key(CIMZeroWidthSpaceForLayoutExchange);
+define_preference_key(CIMZeroWidthSpaceForBlankComposedString);
+define_preference_key(CIMShowsInputForHanjaCandidates);
 
 CIMConfiguration *CIMDefaultUserConfiguration;
 
@@ -45,7 +48,7 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         self->pFieldKeys = [[NSMutableDictionary alloc] init];
 
         struct CIMConfigurationStringItem tempStringItems[CIMConfigurationStringItemCount] = {
-            { kCIMLastHangulInputMode, &self->lastHangulInputMode, nil },
+            { CIMLastHangulInputMode, &self->lastHangulInputMode, nil },
         };
         for (NSInteger i = 0; i < CIMConfigurationStringItemCount; i++) {
             struct CIMConfigurationStringItem *item = &tempStringItems[i];
@@ -54,25 +57,26 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         }
 
         struct CIMConfigurationIntegerItem tempIntegerItems[CIMConfigurationIntegerItemCount] = {
-            { kCIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, NSShiftKeyMask },
-            { kCIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
-            { kCIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
-            { kCIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
-            { kCIMOptionKeyBehavior, &self->optionKeyBehavior, 0 },
-            { kCIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing,
+            { CIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, NSShiftKeyMask },
+            { CIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
+            { CIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
+            { CIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
+            { CIMOptionKeyBehavior, &self->optionKeyBehavior, 0 },
+            { CIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing,
               (NSInteger)HangulCharacterCombinationWithoutFiller },
-            { kCIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting,
+            { CIMHangulCombinationModeCommiting, &self->hangulCombinationModeCommiting,
               (NSInteger)HangulCharacterCombinationWithoutFiller },
         };
         for (NSInteger i = 0; i < CIMConfigurationIntegerItemCount; i++) {
             self->integerItems[i] = tempIntegerItems[i];
         }
         struct CIMConfigurationBoolItem tempBoolItems[CIMConfigurationBoolItemCount] = {
-            { kCIMSharedInputManager, &self->sharedInputManager, NO },
-            { kCIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
-            { kCIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
-            { kCIMZeroWidthSpaceForBlankComposedString, &self->zeroWidthSpaceForBlankComposedString, NO },
-            { kCIMZeroWidthSpaceForLayoutExchange, &self->zeroWidthSpaceForLayoutExchange, NO },
+            { CIMSharedInputManager, &self->sharedInputManager, NO },
+            { CIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
+            { CIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
+            { CIMZeroWidthSpaceForBlankComposedString, &self->zeroWidthSpaceForBlankComposedString, NO },
+            { CIMZeroWidthSpaceForLayoutExchange, &self->zeroWidthSpaceForLayoutExchange, NO },
+            { CIMShowsInputForHanjaCandidates, &self->showsInputForHanjaCandidates, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++) {
             self->boolItems[i] = tempBoolItems[i];
