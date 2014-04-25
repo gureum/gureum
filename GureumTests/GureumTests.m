@@ -61,8 +61,8 @@
         XCTAssertEqualObjects(@"한글", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@" " key:49 modifiers:0];
-        XCTAssertEqualObjects(@"한글 \u200b", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"\u200b", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"한글 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
 
         [app inputText:@"m" key:46 modifiers:0];
         XCTAssertEqualObjects(@"한글 ㅎ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -115,7 +115,7 @@
         [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@" " key:49 modifiers:131072];
         [app inputText:@" " key:49 modifiers:131072];
-        XCTAssertEqualObjects(@"\u200b", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
 
