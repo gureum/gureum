@@ -234,9 +234,6 @@
         self.hanjaCandidates = nil;
     } else {
         self.hanjaCandidates = [self.hanjaTable hanjasByPrefixMatching:self.composedString];
-        if (![self.composedString isEqualToString:self.hanjaCandidates.key]) {
-            self.hanjaCandidates = nil;
-        }
     }
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
 }
@@ -283,12 +280,13 @@
 }
 
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    if (candidateString.length == 0) {
-        self.composedString = self.originalString;   
-    } else {
-        NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
-        self.composedString = value;
-    }
+    // TODO: 설정 추가
+//    if (candidateString.length == 0) {
+//        self.composedString = self.originalString;   
+//    } else {
+//        NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
+//        self.composedString = value;
+//    }
 }
 
 - (HGHanjaTable *)hanjaTable {
