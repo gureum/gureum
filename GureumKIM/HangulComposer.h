@@ -55,7 +55,7 @@ typedef enum {
 @end
 
 @interface HanjaComposer : CIMComposer {
-    HGHanjaList *_hanjaCandidates;
+    NSMutableArray *_candidates;
     NSMutableString *bufferedString;
     NSString *composedString;
     NSString *commitString;
@@ -67,8 +67,8 @@ typedef enum {
 - (void)updateFromClientSelectedRange:(id)client;
 
 @property(nonatomic, readonly) HangulComposer *hangulComposer;
-@property(nonatomic, readonly) HGHanjaTable *hanjaTable;
-@property(nonatomic, readonly) HGHanjaList *hanjaCandidates;
+@property(nonatomic, readonly) HGHanjaTable *characterTable, *wordTable, *reversedTable, *MSSymbolTable, *emoticonTable, *emoticonReversedTable;
+@property(nonatomic, retain) NSArray *candidates;
 @property(nonatomic, assign) BOOL mode;
 
 @end

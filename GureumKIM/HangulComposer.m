@@ -154,7 +154,7 @@
 @end
 
 @implementation HanjaComposer
-@synthesize hanjaCandidates=_hanjaCandidates, mode=_mode;
+@synthesize mode=_mode;
 
 - (id)init {
     self = [super init];
@@ -214,11 +214,6 @@
     self.composedString = @"";
 }
 
-- (void)setHanjaCandidates:(HGHanjaList *)hanjaCandidates {
-    [self->_hanjaCandidates release];
-    self->_hanjaCandidates = [hanjaCandidates retain];
-}
-
 - (void)composerSelected:(id)sender {
     [self->bufferedString setString:@""];
     self.commitString = @"";
@@ -230,12 +225,23 @@
     // step 2: 일단 화면에 한글이 표시되도록 조정
     self.composedString = self.originalString;
     // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
-    if (self.originalString.length == 0) {
-        self.hanjaCandidates = nil;
+    NSString *keyword = self.originalString;
+    if (keyword.length == 0) {
+        self.candidates = nil;
     } else {
-        self.hanjaCandidates = [self.hanjaTable hanjasByPrefixMatching:self.composedString];
+        NSMutableArray *candidates = [NSMutableArray array];
+        for (HGHanjaTable *table in @[self.emoticonTable, self.MSSymbolTable, self.wordTable, self.reversedTable, self.emoticonReversedTable, self.characterTable]) {
+            HGHanjaList *list = [table hanjasByPrefixSearching:keyword];
+            for (HGHanja *hanja in list) {
+                [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
+            }
+        }
+        if (candidates.count > 0 && CIMSharedConfiguration->showsInputForHanjaCandidates) {
+            [candidates insertObject:keyword atIndex:0];
+        }
+        self.candidates = candidates;
     }
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.hanjaCandidates != nil);
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.candidates != nil);
 }
 
 - (void)updateFromClientSelectedRange:(id)client {
@@ -255,20 +261,17 @@
 }
 
 - (BOOL)hasCandidates {
-    return self.hanjaCandidates.count > 0;
+    return self.candidates.count > 0;
+}
+
+- (void)setCandidates:(NSMutableArray *)candidates {
+    [candidates retain];
+    [self->_candidates release];
+    self->_candidates = candidates;
 }
 
 - (NSArray *)candidates {
-    HGHanjaList *hanjas = self.hanjaCandidates;
-    NSMutableArray *candidates = [NSMutableArray array];
-    if (CIMSharedConfiguration->showsInputForHanjaCandidates) {
-        [candidates addObject:hanjas.key];
-    }
-    for (HGHanja *hanja in hanjas) {
-        [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
-    }
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -candidates returning: %@", candidates);
-    return candidates;
+    return self->_candidates;
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
@@ -289,10 +292,62 @@
 //    }
 }
 
-- (HGHanjaTable *)hanjaTable {
+- (HGHanjaTable *)characterTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        sharedHanjaTable = [[HGHanjaTable alloc] init];
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"hanjac" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
+    }
+    return sharedHanjaTable;
+}
+
+- (HGHanjaTable *)wordTable {
+    static HGHanjaTable *sharedHanjaTable = nil;
+    if (sharedHanjaTable == nil) {
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"hanjaw" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
+    }
+    return sharedHanjaTable;
+}
+
+- (HGHanjaTable *)reversedTable {
+    static HGHanjaTable *sharedHanjaTable = nil;
+    if (sharedHanjaTable == nil) {
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"hanjar" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
+    }
+    return sharedHanjaTable;
+}
+
+- (HGHanjaTable *)MSSymbolTable {
+    static HGHanjaTable *sharedHanjaTable = nil;
+    if (sharedHanjaTable == nil) {
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"mssymbol" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
+    }
+    return sharedHanjaTable;
+}
+
+- (HGHanjaTable *)emoticonTable {
+    static HGHanjaTable *sharedHanjaTable = nil;
+    if (sharedHanjaTable == nil) {
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"emoticon" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
+    }
+    return sharedHanjaTable;
+}
+
+- (HGHanjaTable *)emoticonReversedTable {
+    static HGHanjaTable *sharedHanjaTable = nil;
+    if (sharedHanjaTable == nil) {
+        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
+        NSString *path = [bundle pathForResource:@"emoticonr" ofType:@"txt"];
+        sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
 }
@@ -334,7 +389,7 @@
             self.composedString = self.originalString;
             [self cancelComposition];
             // step 3: 한자 후보 취소
-            self.hanjaCandidates = nil; // 후보 취소
+            self.candidates = nil; // 후보 취소
             return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
         }   break;
         default:
