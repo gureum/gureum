@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'CharmIMTests' target in the 'CharmIMTests' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import <InputMethodKit/InputMethodKit.h>
-#endif

@@ -1,9 +1,0 @@
-/* Localized versions of Info.plist keys */
-
-/* Include your mode strings here.  See TN2128 for details. */
-
-org.youknowone.inputmethod.CharmIM.test = "Test";
-
-CFBundleName = "CharmIM";
-CFBundleDisplayName = "CharmInputMethod";
-

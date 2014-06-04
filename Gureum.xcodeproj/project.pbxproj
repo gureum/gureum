@@ -7,24 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
 		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; };
 		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
-		38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; };
 		38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
-		38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
-		38162E40141280A00077AA2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
-		38162E42141281C70077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
-		38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4714128A2C0077AA2D /* MainMenu.xib */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
-		3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
+		3816A5A214306A4000F5A785 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562EB18B9F2D900F8B8B9 /* han2@2x.png */; };
 		383562F218B9F2DF00F8B8B9 /* han3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F118B9F2DF00F8B8B9 /* han3@2x.png */; };
 		383562F618B9F30D00F8B8B9 /* han@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F518B9F30D00F8B8B9 /* han@2x.png */; };
@@ -38,26 +32,11 @@
 		38475AFA1412BC050062100D /* han390.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF21412BC050062100D /* han390.png */; };
 		38475AFC1412BC050062100D /* hanroman.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF41412BC050062100D /* hanroman.png */; };
 		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
-		387A47451688415500EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
+		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
-		387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00021421F72600DAE6F4 /* CharmAppDelegate.m */; };
-		387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
-		38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
-		38863C6E140E64EB00A8ED76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C6C140E64EB00A8ED76 /* InfoPlist.strings */; };
-		38863C71140E64EB00A8ED76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C70140E64EB00A8ED76 /* main.m */; };
-		38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
-		38863C89140E64EC00A8ED76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38863C87140E64EC00A8ED76 /* InfoPlist.strings */; };
-		38863C8C140E64EC00A8ED76 /* CharmIMTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38863C8B140E64EC00A8ED76 /* CharmIMTests.h */; };
-		38863C8E140E64EC00A8ED76 /* CharmIMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C8D140E64EC00A8ED76 /* CharmIMTests.m */; };
-		38863C97140E669000A8ED76 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
-		38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
-		38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */; };
-		38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
-		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; };
 		38AAA84714303A480061DFDD /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380B909514303838001D7550 /* ShortcutRecorder.framework */; };
 		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
@@ -71,10 +50,7 @@
 		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
-		38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
-		38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
-		D2917F585C754C099EC4DDD2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96531747FFE34C269FBF9A41 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +145,7 @@
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
-		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF3141263270077AA2D /* GureumOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GureumOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -177,7 +153,6 @@
 		38162E03141263280077AA2D /* GureumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumAppDelegate.m; sourceTree = "<group>"; };
 		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38162E4714128A2C0077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		383562EB18B9F2D900F8B8B9 /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
 		383562F118B9F2DF00F8B8B9 /* han3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3@2x.png"; path = "Icons/han3@2x.png"; sourceTree = "<group>"; };
@@ -194,40 +169,25 @@
 		38475AF21412BC050062100D /* han390.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han390.png; path = Icons/han390.png; sourceTree = "<group>"; };
 		38475AF41412BC050062100D /* hanroman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hanroman.png; path = Icons/hanroman.png; sourceTree = "<group>"; };
 		38475AF51412BC050062100D /* qwerty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qwerty.png; path = Icons/qwerty.png; sourceTree = "<group>"; };
+		385ABBF5193F825500478DA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
-		387D00011421F72600DAE6F4 /* CharmAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharmAppDelegate.h; sourceTree = "<group>"; };
-		387D00021421F72600DAE6F4 /* CharmAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmAppDelegate.m; sourceTree = "<group>"; };
 		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
 		387D00051421FB6E00DAE6F4 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
-		38863C5F140E64EB00A8ED76 /* Charm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		38863C6B140E64EB00A8ED76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38863C6D140E64EB00A8ED76 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38863C6F140E64EB00A8ED76 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		38863C70140E64EB00A8ED76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		38863C80140E64EB00A8ED76 /* CharmIMTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharmIMTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38863C86140E64EC00A8ED76 /* CharmIMTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CharmIMTests-Info.plist"; sourceTree = "<group>"; };
-		38863C88140E64EC00A8ED76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38863C8A140E64EC00A8ED76 /* CharmIMTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CharmIMTests-Prefix.pch"; sourceTree = "<group>"; };
-		38863C8B140E64EC00A8ED76 /* CharmIMTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharmIMTests.h; sourceTree = "<group>"; };
-		38863C8D140E64EC00A8ED76 /* CharmIMTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharmIMTests.m; sourceTree = "<group>"; };
 		38863C95140E669000A8ED76 /* CIMInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputController.h; sourceTree = "<group>"; };
 		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
 		38863C98140E677900A8ED76 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = SDKs/MacOSX10.6.sdk/System/Library/Frameworks/InputMethodKit.framework; sourceTree = DEVELOPER_DIR; };
-		38863CDB140E801200A8ED76 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
 		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
-		38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMTestEnvironment.h; sourceTree = "<group>"; };
-		38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMTestEnvironment.m; sourceTree = "<group>"; };
 		3888CF8318B28EAC0005568E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GureumTests-Info.plist"; path = "/Volumes/Userspace/Projects/CharmIM/GureumTests-Info.plist"; sourceTree = "<absolute>"; };
 		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		38BFE7FA18B45419004B2B2E /* GureumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GureumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GureumOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BFE7FB18B45419004B2B2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -259,25 +219,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38863C5C140E64EB00A8ED76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C99140E677900A8ED76 /* InputMethodKit.framework in Frameworks */,
-				38863C64140E64EB00A8ED76 /* Cocoa.framework in Frameworks */,
-				D2917F585C754C099EC4DDD2 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863C7C140E64EB00A8ED76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C81140E64EC00A8ED76 /* Cocoa.framework in Frameworks */,
-				38863D3C140F4F0F00A8ED76 /* InputMethodKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		38BFE7F718B45419004B2B2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,14 +239,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		38162DD0141124DF0077AA2D /* Composers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Composers;
-			sourceTree = "<group>";
-		};
-		38162DF6141263270077AA2D /* GureumKIM */ = {
+		38162DF6141263270077AA2D /* GureumOSX */ = {
 			isa = PBXGroup;
 			children = (
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
@@ -320,7 +254,7 @@
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 			);
-			path = GureumKIM;
+			path = GureumOSX;
 			sourceTree = "<group>";
 		};
 		38162DF7141263280077AA2D /* Supporting Files */ = {
@@ -331,6 +265,7 @@
 				38162DFC141263280077AA2D /* Prefix.pch */,
 				38162E4914128A740077AA2D /* MainMenu.xib */,
 				388E2A601469249700ADBDA5 /* Hangul.strings */,
+				385ABBF5193F825500478DA8 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -396,9 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
-				38863C69140E64EB00A8ED76 /* CharmIM */,
-				38863C84140E64EC00A8ED76 /* CharmIMTests */,
-				38162DF6141263270077AA2D /* GureumKIM */,
+				38162DF6141263270077AA2D /* GureumOSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
@@ -410,10 +343,8 @@
 		38863C60140E64EB00A8ED76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38863C5F140E64EB00A8ED76 /* Charm.app */,
-				38863C80140E64EB00A8ED76 /* CharmIMTests.octest */,
-				38162DF3141263270077AA2D /* Gureum.app */,
-				38BFE7FA18B45419004B2B2E /* GureumTests.xctest */,
+				38162DF3141263270077AA2D /* GureumOSX.app */,
+				38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,67 +369,6 @@
 				38863C68140E64EB00A8ED76 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		38863C69140E64EB00A8ED76 /* CharmIM */ = {
-			isa = PBXGroup;
-			children = (
-				38863D33140F41CF00A8ED76 /* OS part */,
-				38863D32140F41B100A8ED76 /* Input Method */,
-				38863C6A140E64EB00A8ED76 /* Supporting Files */,
-			);
-			path = CharmIM;
-			sourceTree = "<group>";
-		};
-		38863C6A140E64EB00A8ED76 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38863C6B140E64EB00A8ED76 /* Info.plist */,
-				38863C6C140E64EB00A8ED76 /* InfoPlist.strings */,
-				38863C6F140E64EB00A8ED76 /* Prefix.pch */,
-				38863C70140E64EB00A8ED76 /* main.m */,
-				38162E4714128A2C0077AA2D /* MainMenu.xib */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		38863C84140E64EC00A8ED76 /* CharmIMTests */ = {
-			isa = PBXGroup;
-			children = (
-				38863D39140F48AA00A8ED76 /* CIMTestEnvironment.h */,
-				38863D3A140F48AA00A8ED76 /* CIMTestEnvironment.m */,
-				38863C8B140E64EC00A8ED76 /* CharmIMTests.h */,
-				38863C8D140E64EC00A8ED76 /* CharmIMTests.m */,
-				38863C85140E64EC00A8ED76 /* Supporting Files */,
-			);
-			path = CharmIMTests;
-			sourceTree = "<group>";
-		};
-		38863C85140E64EC00A8ED76 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38863C86140E64EC00A8ED76 /* CharmIMTests-Info.plist */,
-				38863C87140E64EC00A8ED76 /* InfoPlist.strings */,
-				38863C8A140E64EC00A8ED76 /* CharmIMTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		38863D32140F41B100A8ED76 /* Input Method */ = {
-			isa = PBXGroup;
-			children = (
-				38162DD0141124DF0077AA2D /* Composers */,
-			);
-			name = "Input Method";
-			sourceTree = "<group>";
-		};
-		38863D33140F41CF00A8ED76 /* OS part */ = {
-			isa = PBXGroup;
-			children = (
-				387D00011421F72600DAE6F4 /* CharmAppDelegate.h */,
-				387D00021421F72600DAE6F4 /* CharmAppDelegate.m */,
-			);
-			name = "OS part";
 			sourceTree = "<group>";
 		};
 		388C5D6E154D88FC00B4F3E1 /* Products */ = {
@@ -554,9 +424,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		38162DF2141263270077AA2D /* Gureum */ = {
+		38162DF2141263270077AA2D /* GureumOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */;
+			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumOSX" */;
 			buildPhases = (
 				388FD025175ED98E00469B76 /* Version */,
 				38162DEF141263270077AA2D /* Sources */,
@@ -570,50 +440,14 @@
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 				388C5D77154D891E00B4F3E1 /* PBXTargetDependency */,
 			);
-			name = Gureum;
-			productName = GureumKIM;
-			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
+			name = GureumOSX;
+			productName = GureumOSX;
+			productReference = 38162DF3141263270077AA2D /* GureumOSX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		38863C5E140E64EB00A8ED76 /* Charm */ = {
+		38BFE7F918B45419004B2B2E /* GureumOSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "Charm" */;
-			buildPhases = (
-				38863C5B140E64EB00A8ED76 /* Sources */,
-				38863C5C140E64EB00A8ED76 /* Frameworks */,
-				38863C5D140E64EB00A8ED76 /* Resources */,
-				F71F89C02E3C4339A8BA4F01 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Charm;
-			productName = CharmIM;
-			productReference = 38863C5F140E64EB00A8ED76 /* Charm.app */;
-			productType = "com.apple.product-type.application";
-		};
-		38863C7F140E64EB00A8ED76 /* CharmIMTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38863C92140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "CharmIMTests" */;
-			buildPhases = (
-				38863C7B140E64EB00A8ED76 /* Sources */,
-				38863C7C140E64EB00A8ED76 /* Frameworks */,
-				38863C7D140E64EB00A8ED76 /* Resources */,
-				38863C7E140E64EB00A8ED76 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CharmIMTests;
-			productName = CharmIMTests;
-			productReference = 38863C80140E64EB00A8ED76 /* CharmIMTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		38BFE7F918B45419004B2B2E /* GureumTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumTests" */;
+			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumOSXTests" */;
 			buildPhases = (
 				38BFE7F618B45419004B2B2E /* Sources */,
 				38BFE7F718B45419004B2B2E /* Frameworks */,
@@ -624,9 +458,9 @@
 			dependencies = (
 				38BFE80718B45419004B2B2E /* PBXTargetDependency */,
 			);
-			name = GureumTests;
+			name = GureumOSXTests;
 			productName = GureumTests;
-			productReference = 38BFE7FA18B45419004B2B2E /* GureumTests.xctest */;
+			productReference = 38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -635,7 +469,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
@@ -646,7 +480,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */;
+			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -673,10 +507,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				38863C5E140E64EB00A8ED76 /* Charm */,
-				38863C7F140E64EB00A8ED76 /* CharmIMTests */,
-				38162DF2141263270077AA2D /* Gureum */,
-				38BFE7F918B45419004B2B2E /* GureumTests */,
+				38162DF2141263270077AA2D /* GureumOSX */,
+				38BFE7F918B45419004B2B2E /* GureumOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -756,24 +588,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38863C5D140E64EB00A8ED76 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C6E140E64EB00A8ED76 /* InfoPlist.strings in Resources */,
-				38162E4614128A2C0077AA2D /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863C7D140E64EB00A8ED76 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C89140E64EC00A8ED76 /* InfoPlist.strings in Resources */,
-				38863C8C140E64EC00A8ED76 /* CharmIMTests.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		38BFE7F818B45419004B2B2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -785,19 +599,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38863C7E140E64EB00A8ED76 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		388FD025175ED98E00469B76 /* Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -810,21 +611,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/GureumKIM\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
-		};
-		F71F89C02E3C4339A8BA4F01 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "cd $PROJECT_DIR/GureumOSX\ntag=`git describe --tags`\ntag=${tag#GureumOSX-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -837,43 +624,14 @@
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
-				38162E40141280A00077AA2D /* main.m in Sources */,
 				3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */,
 				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 				380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */,
+				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863C5B140E64EB00A8ED76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C71140E64EB00A8ED76 /* main.m in Sources */,
-				38863C97140E669000A8ED76 /* CIMInputController.m in Sources */,
-				38863D31140F282100A8ED76 /* CIMInputHandler.m in Sources */,
-				38162E1414126ACE0077AA2D /* CIMComposer.m in Sources */,
-				3802E4651413AA0000256B54 /* CIMConfiguration.m in Sources */,
-				387D00031421F72600DAE6F4 /* CharmAppDelegate.m in Sources */,
-				387D00061421FB6E00DAE6F4 /* CIMInputManager.m in Sources */,
-				387A47451688415500EB5943 /* CIMCommon.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38863C7B140E64EB00A8ED76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38863C8E140E64EC00A8ED76 /* CharmIMTests.m in Sources */,
-				38863D38140F486100A8ED76 /* CIMInputHandler.m in Sources */,
-				38863D3B140F48AA00A8ED76 /* CIMTestEnvironment.m in Sources */,
-				38162D7D140F64BE0077AA2D /* HangulComposer.m in Sources */,
-				38162E42141281C70077AA2D /* CIMComposer.m in Sources */,
-				38FA21DB14230E2300444D67 /* CIMConfiguration.m in Sources */,
-				38FA21DC14230E2800444D67 /* CIMInputManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,7 +659,7 @@
 		};
 		38BFE80718B45419004B2B2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 38162DF2141263270077AA2D /* Gureum */;
+			target = 38162DF2141263270077AA2D /* GureumOSX */;
 			targetProxy = 38BFE80618B45419004B2B2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -912,23 +670,6 @@
 			children = (
 				38162DFA141263280077AA2D /* en */,
 				38162E451412866F0077AA2D /* ko */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38863C6C140E64EB00A8ED76 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38863C6D140E64EB00A8ED76 /* en */,
-				38863CDB140E801200A8ED76 /* ko */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38863C87140E64EC00A8ED76 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38863C88140E64EC00A8ED76 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -960,14 +701,14 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = GureumKIM/Prefix.pch;
+				GCC_PREFIX_HEADER = GureumOSX/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
-				INFOPLIST_FILE = GureumKIM/Info.plist;
+				INFOPLIST_FILE = GureumOSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -996,12 +737,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = GureumKIM/Prefix.pch;
+				GCC_PREFIX_HEADER = GureumOSX/Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
-				INFOPLIST_FILE = GureumKIM/Info.plist;
+				INFOPLIST_FILE = GureumOSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1023,7 +764,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1046,8 +789,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: YunWon Jeong (RT8F3G27W8)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1057,122 +802,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-			};
-			name = Release;
-		};
-		38863C90140E64EC00A8ED76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CharmIM/Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CharmIM/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		38863C91140E64EC00A8ED76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CharmIM/Prefix.pch;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CharmIM/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		38863C93140E64EC00A8ED76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CharmIM.app/Contents/MacOS/CharmIM";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CharmIMTests/CharmIMTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "CharmIMTests/CharmIMTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		38863C94140E64EC00A8ED76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D3EE74BDB7462784F25BBE /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CharmIM.app/Contents/MacOS/CharmIM";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CharmIMTests/CharmIMTests-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "CharmIMTests/CharmIMTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1250,7 +879,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "Gureum" */ = {
+		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38162E09141263280077AA2D /* Debug */,
@@ -1259,7 +888,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "CharmIM" */ = {
+		38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38863C55140E62D100A8ED76 /* Debug */,
@@ -1268,25 +897,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38863C8F140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "Charm" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38863C90140E64EC00A8ED76 /* Debug */,
-				38863C91140E64EC00A8ED76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38863C92140E64EC00A8ED76 /* Build configuration list for PBXNativeTarget "CharmIMTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38863C93140E64EC00A8ED76 /* Debug */,
-				38863C94140E64EC00A8ED76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumTests" */ = {
+		38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumOSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38BFE80918B45419004B2B2E /* Debug */,
