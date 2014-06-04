@@ -6,7 +6,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
     cd gureum
     git submodule update --init --recursive
     pod install # cocoapod을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
-    open CharmIM.xcworkspace
+    open Gureum.xcworkspace
 
 # 빌드
 GureumOSX 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.

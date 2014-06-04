@@ -1,7 +1,7 @@
 #!/bin/bash
 . ready.sh
 
-xcodebuild -workspace 'CharmIM.xcworkspace' -scheme 'GureumKIM' -configuration 'Debug' && \
+xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'GureumOSX' -configuration 'Debug' && \
 cd 'build/Debug' && \
 sudo rm -rf "$INSTDIR/$appname" && \
 sudo cp -R "$appname" "$INSTDIR/"

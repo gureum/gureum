@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CharmIM.xcodeproj">
+      location = "self:Gureum.xcodeproj">
    </FileRef>
 </Workspace>

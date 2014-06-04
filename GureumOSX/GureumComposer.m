@@ -13,27 +13,27 @@
 
 #define DEBUG_GUREUM FALSE
 
-NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.GureumKIM.qwerty";
-NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.GureumKIM.dvorak";
-NSString *kGureumInputSourceIdentifierDvorakQwertyCommand = @"org.youknowone.inputmethod.GureumKIM.dvorakq";
-NSString *kGureumInputSourceIdentifierColemak = @"org.youknowone.inputmethod.GureumKIM.colemak";
-NSString *kGureumInputSourceIdentifierColemakQwertyCommand = @"org.youknowone.inputmethod.GureumKIM.colemakq";
-NSString *kGureumInputSourceIdentifierHan2 = @"org.youknowone.inputmethod.GureumKIM.han2";
-NSString *kGureumInputSourceIdentifierHan2Classic = @"org.youknowone.inputmethod.GureumKIM.han2classic";
-NSString *kGureumInputSourceIdentifierHan3Final = @"org.youknowone.inputmethod.GureumKIM.han3final";
-NSString *kGureumInputSourceIdentifierHan3FinalLoose = @"org.youknowone.inputmethod.GureumKIM.han3finalloose";
-NSString *kGureumInputSourceIdentifierHan390 = @"org.youknowone.inputmethod.GureumKIM.han390";
-NSString *kGureumInputSourceIdentifierHan390Loose = @"org.youknowone.inputmethod.GureumKIM.han390loose";
-NSString *kGureumInputSourceIdentifierHan3NoShift = @"org.youknowone.inputmethod.GureumKIM.han3noshift";
-NSString *kGureumInputSourceIdentifierHan3Classic = @"org.youknowone.inputmethod.GureumKIM.han3classic";
-NSString *kGureumInputSourceIdentifierHan3Layout2 = @"org.youknowone.inputmethod.GureumKIM.han3layout2";
-NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod.GureumKIM.han3ahnmatae";
-NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.GureumKIM.hanroman";
-NSString *kGureumInputSourceIdentifierHan3_2011 = @"org.youknowone.inputmethod.GureumKIM.han3-2011";
-NSString *kGureumInputSourceIdentifierHan3_2011Loose = @"org.youknowone.inputmethod.GureumKIM.han3-2011loose";
-NSString *kGureumInputSourceIdentifierHan3_2012 = @"org.youknowone.inputmethod.GureumKIM.han3-2012";
-NSString *kGureumInputSourceIdentifierHan3_2012Loose = @"org.youknowone.inputmethod.GureumKIM.han3-2012loose";
-NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputmethod.GureumKIM.han3finalnoshift";
+NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.Gureum.qwerty";
+NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.Gureum.dvorak";
+NSString *kGureumInputSourceIdentifierDvorakQwertyCommand = @"org.youknowone.inputmethod.Gureum.dvorakq";
+NSString *kGureumInputSourceIdentifierColemak = @"org.youknowone.inputmethod.Gureum.colemak";
+NSString *kGureumInputSourceIdentifierColemakQwertyCommand = @"org.youknowone.inputmethod.Gureum.colemakq";
+NSString *kGureumInputSourceIdentifierHan2 = @"org.youknowone.inputmethod.Gureum.han2";
+NSString *kGureumInputSourceIdentifierHan2Classic = @"org.youknowone.inputmethod.Gureum.han2classic";
+NSString *kGureumInputSourceIdentifierHan3Final = @"org.youknowone.inputmethod.Gureum.han3final";
+NSString *kGureumInputSourceIdentifierHan3FinalLoose = @"org.youknowone.inputmethod.Gureum.han3finalloose";
+NSString *kGureumInputSourceIdentifierHan390 = @"org.youknowone.inputmethod.Gureum.han390";
+NSString *kGureumInputSourceIdentifierHan390Loose = @"org.youknowone.inputmethod.Gureum.han390loose";
+NSString *kGureumInputSourceIdentifierHan3NoShift = @"org.youknowone.inputmethod.Gureum.han3noshift";
+NSString *kGureumInputSourceIdentifierHan3Classic = @"org.youknowone.inputmethod.Gureum.han3classic";
+NSString *kGureumInputSourceIdentifierHan3Layout2 = @"org.youknowone.inputmethod.Gureum.han3layout2";
+NSString *kGureumInputSourceIdentifierHanAhnmatae = @"org.youknowone.inputmethod.Gureum.han3ahnmatae";
+NSString *kGureumInputSourceIdentifierHanRoman = @"org.youknowone.inputmethod.Gureum.hanroman";
+NSString *kGureumInputSourceIdentifierHan3_2011 = @"org.youknowone.inputmethod.Gureum.han3-2011";
+NSString *kGureumInputSourceIdentifierHan3_2011Loose = @"org.youknowone.inputmethod.Gureum.han3-2011loose";
+NSString *kGureumInputSourceIdentifierHan3_2012 = @"org.youknowone.inputmethod.Gureum.han3-2012";
+NSString *kGureumInputSourceIdentifierHan3_2012Loose = @"org.youknowone.inputmethod.Gureum.han3-2012loose";
+NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputmethod.Gureum.han3finalnoshift";
 
 #import "HangulComposer.h"
 

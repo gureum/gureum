@@ -1,24 +1,24 @@
 /* Localized versions of Info.plist keys */
 
-org.youknowone.inputmethod.GureumKIM.qwerty = "QWERTY";
-org.youknowone.inputmethod.GureumKIM.dvorak = "Dvorak";
-org.youknowone.inputmethod.GureumKIM.dvorakq = "Dvorak - QWERTY ⌘";
-org.youknowone.inputmethod.GureumKIM.han2 = "Han 2set";
-org.youknowone.inputmethod.GureumKIM.han2classic = "Han 2set Classic";
-org.youknowone.inputmethod.GureumKIM.han3final = "Han 3set Final";
-org.youknowone.inputmethod.GureumKIM.han3finalloose = "Han 3set Final (Loose Combination)";
-org.youknowone.inputmethod.GureumKIM.han390 = "Han 3set 390";
-org.youknowone.inputmethod.GureumKIM.han390loose = "Han 3set 390 (Loose Combination)";
-org.youknowone.inputmethod.GureumKIM.han3noshift = "Han 3set No shift";
-org.youknowone.inputmethod.GureumKIM.han3classic = "Han 3set Classic";
-org.youknowone.inputmethod.GureumKIM.han3layout2 = "Han 3set Layout 2set (For Testing)";
-org.youknowone.inputmethod.GureumKIM.hanroman = "Han Roman";
-org.youknowone.inputmethod.GureumKIM.hanahnmatae = "Han Ahnmatae";
-org.youknowone.inputmethod.GureumKIM.han3-2011 = "Han 3set 2011";
-org.youknowone.inputmethod.GureumKIM.han3-2011loose = "Han 3set 2011 (Loose Combination)";
-org.youknowone.inputmethod.GureumKIM.han3-2012 = "Han 3set 2012";
-org.youknowone.inputmethod.GureumKIM.han3-2012loose = "Han 3set 2012 (Loose Combination)";
-org.youknowone.inputmethod.GureumKIM.han3finalnoshift = "Han 3set Final No shift (Compatible)";
+org.youknowone.inputmethod.Gureum.qwerty = "QWERTY";
+org.youknowone.inputmethod.Gureum.dvorak = "Dvorak";
+org.youknowone.inputmethod.Gureum.dvorakq = "Dvorak - QWERTY ⌘";
+org.youknowone.inputmethod.Gureum.han2 = "Han 2set";
+org.youknowone.inputmethod.Gureum.han2classic = "Han 2set Classic";
+org.youknowone.inputmethod.Gureum.han3final = "Han 3set Final";
+org.youknowone.inputmethod.Gureum.han3finalloose = "Han 3set Final (Loose Combination)";
+org.youknowone.inputmethod.Gureum.han390 = "Han 3set 390";
+org.youknowone.inputmethod.Gureum.han390loose = "Han 3set 390 (Loose Combination)";
+org.youknowone.inputmethod.Gureum.han3noshift = "Han 3set No shift";
+org.youknowone.inputmethod.Gureum.han3classic = "Han 3set Classic";
+org.youknowone.inputmethod.Gureum.han3layout2 = "Han 3set Layout 2set (For Testing)";
+org.youknowone.inputmethod.Gureum.hanroman = "Han Roman";
+org.youknowone.inputmethod.Gureum.hanahnmatae = "Han Ahnmatae";
+org.youknowone.inputmethod.Gureum.han3-2011 = "Han 3set 2011";
+org.youknowone.inputmethod.Gureum.han3-2011loose = "Han 3set 2011 (Loose Combination)";
+org.youknowone.inputmethod.Gureum.han3-2012 = "Han 3set 2012";
+org.youknowone.inputmethod.Gureum.han3-2012loose = "Han 3set 2012 (Loose Combination)";
+org.youknowone.inputmethod.Gureum.han3finalnoshift = "Han 3set Final No shift (Compatible)";
 
 CFBundleName = "Gureum";
 CFBundleDisplayName = "Gureum Input Method";

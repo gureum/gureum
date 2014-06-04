@@ -31,22 +31,22 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 + (void)initialize {
     [super initialize];
     GureumPreferencesHangulLayouts = [[NSArray alloc] initWithObjects:
-                     @"org.youknowone.inputmethod.GureumKIM.han2",
-                     @"org.youknowone.inputmethod.GureumKIM.han2classic",
-                     @"org.youknowone.inputmethod.GureumKIM.han3final",
-                     @"org.youknowone.inputmethod.GureumKIM.han3finalloose",
-                     @"org.youknowone.inputmethod.GureumKIM.han390",
-                     @"org.youknowone.inputmethod.GureumKIM.han390loose",
-                     @"org.youknowone.inputmethod.GureumKIM.han3noshift",
-                     @"org.youknowone.inputmethod.GureumKIM.han3classic",
-                     //@"org.youknowone.inputmethod.GureumKIM.han3layout2",
-                     @"org.youknowone.inputmethod.GureumKIM.hanroman",
-                     @"org.youknowone.inputmethod.GureumKIM.hanahnmatae",
-                     @"org.youknowone.inputmethod.GureumKIM.han3-2011",
-                     @"org.youknowone.inputmethod.GureumKIM.han3-2011loose",
-                     @"org.youknowone.inputmethod.GureumKIM.han3-2012",
-                     @"org.youknowone.inputmethod.GureumKIM.han3-2012loose",
-                     @"org.youknowone.inputmethod.GureumKIM.han3finalnoshift",
+                     @"org.youknowone.inputmethod.Gureum.han2",
+                     @"org.youknowone.inputmethod.Gureum.han2classic",
+                     @"org.youknowone.inputmethod.Gureum.han3final",
+                     @"org.youknowone.inputmethod.Gureum.han3finalloose",
+                     @"org.youknowone.inputmethod.Gureum.han390",
+                     @"org.youknowone.inputmethod.Gureum.han390loose",
+                     @"org.youknowone.inputmethod.Gureum.han3noshift",
+                     @"org.youknowone.inputmethod.Gureum.han3classic",
+                     //@"org.youknowone.inputmethod.Gureum.han3layout2",
+                     @"org.youknowone.inputmethod.Gureum.hanroman",
+                     @"org.youknowone.inputmethod.Gureum.hanahnmatae",
+                     @"org.youknowone.inputmethod.Gureum.han3-2011",
+                     @"org.youknowone.inputmethod.Gureum.han3-2011loose",
+                     @"org.youknowone.inputmethod.Gureum.han3-2012",
+                     @"org.youknowone.inputmethod.Gureum.han3-2012loose",
+                     @"org.youknowone.inputmethod.Gureum.han3finalnoshift",
                      nil];
 
     NSDictionary *info = [[NSBundle mainBundle] localizedInfoDictionary];
