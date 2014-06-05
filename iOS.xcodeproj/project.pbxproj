@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38497A7E1940FA6C00DCB033 /* QwertyKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */; };
+		38497A7F1940FAF800DCB033 /* QwertyKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */; };
+		38497A80194104B400DCB033 /* Container.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BB7022193FA27400605583 /* Container.xib */; };
+		3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
+		3882B9FE193F9E6600076C26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* ViewController.swift */; };
+		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
+		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
+		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
+		38BB7014193FA11000605583 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* KeyboardViewController.swift */; };
+		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
+		38BB7020193FA26D00605583 /* GRInputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701E193FA26D00605583 /* GRInputButton.swift */; };
+		38BB7021193FA26D00605583 /* GRKeyboardLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */; };
+		38BB7023193FA27400605583 /* Container.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BB7022193FA27400605583 /* Container.xib */; };
+		38BB7025193FA2B400605583 /* GRKeyboardLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */; };
+		38BB7026193FA2B700605583 /* GRInputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701E193FA26D00605583 /* GRInputButton.swift */; };
+		38BB7028193FA32D00605583 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* KeyboardViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3882BA09193F9E6600076C26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3882B9F5193F9E6600076C26;
+			remoteInfo = Gureum;
+		};
+		38BB7015193FA11000605583 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38BB700E193FA11000605583;
+			remoteInfo = iOS;
+		};
+		38BB7018193FA11000605583 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38BB700E193FA11000605583;
+			remoteInfo = iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		38BB701D193FA11000605583 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QwertyKeyboard.swift; sourceTree = "<group>"; };
+		3882B9F6193F9E6600076C26 /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3882B9FA193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3882B9FB193F9E6600076C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3882B9FD193F9E6600076C26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3882BA00193F9E6600076C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3882BA02193F9E6600076C26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3882BA08193F9E6600076C26 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
+		38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = org.youknowone.Gureum.inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38BB7013193FA11000605583 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		38BB701E193FA26D00605583 /* GRInputButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRInputButton.swift; sourceTree = "<group>"; };
+		38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRKeyboardLayoutHelper.swift; sourceTree = "<group>"; };
+		38BB7022193FA27400605583 /* Container.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Container.xib; sourceTree = "<group>"; };
+		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3882B9F3193F9E6600076C26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3882BA05193F9E6600076C26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BB700C193FA11000605583 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3882B9ED193F9E6600076C26 = {
+			isa = PBXGroup;
+			children = (
+				38BB7024193FA29100605583 /* Playground.playground */,
+				3882B9F8193F9E6600076C26 /* App */,
+				3882BA0B193F9E6600076C26 /* Tests */,
+				38BB7010193FA11000605583 /* iOS */,
+				3882B9F7193F9E6600076C26 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3882B9F7193F9E6600076C26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3882B9F6193F9E6600076C26 /* Gureum.app */,
+				3882BA08193F9E6600076C26 /* iOSTests.xctest */,
+				38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3882B9F8193F9E6600076C26 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
+				3882B9FD193F9E6600076C26 /* ViewController.swift */,
+				3882B9FF193F9E6600076C26 /* Main.storyboard */,
+				3882BA02193F9E6600076C26 /* Images.xcassets */,
+				3882B9F9193F9E6600076C26 /* Supporting Files */,
+			);
+			name = App;
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		3882B9F9193F9E6600076C26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3882B9FA193F9E6600076C26 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3882BA0B193F9E6600076C26 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3882BA0E193F9E6600076C26 /* GureumTests.swift */,
+				3882BA0C193F9E6600076C26 /* Supporting Files */,
+			);
+			name = Tests;
+			path = iOSTests;
+			sourceTree = "<group>";
+		};
+		3882BA0C193F9E6600076C26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3882BA0D193F9E6600076C26 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38BB7010193FA11000605583 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				38BB7013193FA11000605583 /* KeyboardViewController.swift */,
+				38BB701E193FA26D00605583 /* GRInputButton.swift */,
+				38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */,
+				38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */,
+				38BB7022193FA27400605583 /* Container.xib */,
+				38BB7011193FA11000605583 /* Supporting Files */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		38BB7011193FA11000605583 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38BB7012193FA11000605583 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3882B9F5193F9E6600076C26 /* App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3882BA12193F9E6600076C26 /* Build configuration list for PBXNativeTarget "App" */;
+			buildPhases = (
+				3882B9F2193F9E6600076C26 /* Sources */,
+				3882B9F3193F9E6600076C26 /* Frameworks */,
+				3882B9F4193F9E6600076C26 /* Resources */,
+				38BB701D193FA11000605583 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38BB7016193FA11000605583 /* PBXTargetDependency */,
+				38BB7019193FA11000605583 /* PBXTargetDependency */,
+			);
+			name = App;
+			productName = Gureum;
+			productReference = 3882B9F6193F9E6600076C26 /* Gureum.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3882BA07193F9E6600076C26 /* iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3882BA15193F9E6600076C26 /* Build configuration list for PBXNativeTarget "iOSTests" */;
+			buildPhases = (
+				3882BA04193F9E6600076C26 /* Sources */,
+				3882BA05193F9E6600076C26 /* Frameworks */,
+				3882BA06193F9E6600076C26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3882BA0A193F9E6600076C26 /* PBXTargetDependency */,
+			);
+			name = iOSTests;
+			productName = GureumTests;
+			productReference = 3882BA08193F9E6600076C26 /* iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		38BB700E193FA11000605583 /* iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38BB701C193FA11000605583 /* Build configuration list for PBXNativeTarget "iOS" */;
+			buildPhases = (
+				38BB700B193FA11000605583 /* Sources */,
+				38BB700C193FA11000605583 /* Frameworks */,
+				38BB700D193FA11000605583 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS;
+			productName = iOS;
+			productReference = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3882B9EE193F9E6600076C26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = youknowone.org;
+				TargetAttributes = {
+					3882B9F5193F9E6600076C26 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					3882BA07193F9E6600076C26 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 3882B9F5193F9E6600076C26;
+					};
+					38BB700E193FA11000605583 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 3882B9F1193F9E6600076C26 /* Build configuration list for PBXProject "iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3882B9ED193F9E6600076C26;
+			productRefGroup = 3882B9F7193F9E6600076C26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3882B9F5193F9E6600076C26 /* App */,
+				3882BA07193F9E6600076C26 /* iOSTests */,
+				38BB700E193FA11000605583 /* iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3882B9F4193F9E6600076C26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38497A80194104B400DCB033 /* Container.xib in Resources */,
+				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
+				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3882BA06193F9E6600076C26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BB700D193FA11000605583 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38BB7023193FA27400605583 /* Container.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3882B9F2193F9E6600076C26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3882B9FE193F9E6600076C26 /* ViewController.swift in Sources */,
+				38BB7028193FA32D00605583 /* KeyboardViewController.swift in Sources */,
+				38497A7F1940FAF800DCB033 /* QwertyKeyboard.swift in Sources */,
+				38BB7025193FA2B400605583 /* GRKeyboardLayoutHelper.swift in Sources */,
+				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
+				38BB7026193FA2B700605583 /* GRInputButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3882BA04193F9E6600076C26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BB700B193FA11000605583 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38497A7E1940FA6C00DCB033 /* QwertyKeyboard.swift in Sources */,
+				38BB7014193FA11000605583 /* KeyboardViewController.swift in Sources */,
+				38BB7021193FA26D00605583 /* GRKeyboardLayoutHelper.swift in Sources */,
+				38BB7020193FA26D00605583 /* GRInputButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3882BA0A193F9E6600076C26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3882B9F5193F9E6600076C26 /* App */;
+			targetProxy = 3882BA09193F9E6600076C26 /* PBXContainerItemProxy */;
+		};
+		38BB7016193FA11000605583 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38BB700E193FA11000605583 /* iOS */;
+			targetProxy = 38BB7015193FA11000605583 /* PBXContainerItemProxy */;
+		};
+		38BB7019193FA11000605583 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38BB700E193FA11000605583 /* iOS */;
+			targetProxy = 38BB7018193FA11000605583 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3882B9FF193F9E6600076C26 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3882BA00193F9E6600076C26 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3882BA10193F9E6600076C26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3882BA11193F9E6600076C26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3882BA13193F9E6600076C26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = iOSApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Gureum;
+			};
+			name = Debug;
+		};
+		3882BA14193F9E6600076C26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = iOSApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Gureum;
+			};
+			name = Release;
+		};
+		3882BA16193F9E6600076C26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		3882BA17193F9E6600076C26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+		38BB701A193FA11000605583 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		38BB701B193FA11000605583 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3882B9F1193F9E6600076C26 /* Build configuration list for PBXProject "iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3882BA10193F9E6600076C26 /* Debug */,
+				3882BA11193F9E6600076C26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3882BA12193F9E6600076C26 /* Build configuration list for PBXNativeTarget "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3882BA13193F9E6600076C26 /* Debug */,
+				3882BA14193F9E6600076C26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3882BA15193F9E6600076C26 /* Build configuration list for PBXNativeTarget "iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3882BA16193F9E6600076C26 /* Debug */,
+				3882BA17193F9E6600076C26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38BB701C193FA11000605583 /* Build configuration list for PBXNativeTarget "iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38BB701A193FA11000605583 /* Debug */,
+				38BB701B193FA11000605583 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3882B9EE193F9E6600076C26 /* Project object */;
+}
