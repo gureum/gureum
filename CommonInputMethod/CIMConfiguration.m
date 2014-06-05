@@ -13,10 +13,20 @@
 
 define_preference_key(CIMLastHangulInputMode);
 
+define_preference_key(CIMLeftCommandKeyShortcutBehavior);
+define_preference_key(CIMLeftOptionKeyShortcutBehavior);
+define_preference_key(CIMLeftControlKeyShortcutBehavior);
+define_preference_key(CIMRightCommandKeyShortcutBehavior);
+define_preference_key(CIMRightOptionKeyShortcutBehavior);
+define_preference_key(CIMRightControlKeyShortcutBehavior);
 define_preference_key(CIMInputModeExchangeKeyModifier);
 define_preference_key(CIMInputModeExchangeKeyCode);
 define_preference_key(CIMInputModeHanjaKeyModifier);
 define_preference_key(CIMInputModeHanjaKeyCode);
+define_preference_key(CIMInputModeEnglishKeyModifier);
+define_preference_key(CIMInputModeEnglishKeyCode);
+define_preference_key(CIMInputModeKoreanKeyModifier);
+define_preference_key(CIMInputModeKoreanKeyCode);
 define_preference_key(CIMOptionKeyBehavior);
 define_preference_key(CIMHangulCombinationModeComposing);
 define_preference_key(CIMHangulCombinationModeCommiting);
@@ -57,10 +67,20 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         }
 
         struct CIMConfigurationIntegerItem tempIntegerItems[CIMConfigurationIntegerItemCount] = {
+            { CIMLeftCommandKeyShortcutBehavior, &self->leftCommandKeyShortcutBehavior, 0 },
+            { CIMLeftOptionKeyShortcutBehavior, &self->leftOptionKeyShortcutBehavior, 0 },
+            { CIMLeftControlKeyShortcutBehavior, &self->leftControlKeyShortcutBehavior, 0 },
+            { CIMRightCommandKeyShortcutBehavior, &self->rightCommandKeyShortcutBehavior, 1 },
+            { CIMRightOptionKeyShortcutBehavior, &self->rightOptionKeyShortcutBehavior, 2 },
+            { CIMRightControlKeyShortcutBehavior, &self->rightControlKeyShortcutBehavior, 0 },
             { CIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, NSShiftKeyMask },
             { CIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
             { CIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
             { CIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
+            { CIMInputModeEnglishKeyModifier, &self->inputModeEnglishKeyModifier, 0 },
+            { CIMInputModeEnglishKeyCode, &self->inputModeEnglishKeyCode, -1 },
+            { CIMInputModeKoreanKeyModifier, &self->inputModeKoreanKeyModifier, 0 },
+            { CIMInputModeKoreanKeyCode, &self->inputModeKoreanKeyCode, -1 },
             { CIMOptionKeyBehavior, &self->optionKeyBehavior, 0 },
             { CIMHangulCombinationModeComposing, &self->hangulCombinationModeComposing,
               (NSInteger)HangulCharacterCombinationWithoutFiller },

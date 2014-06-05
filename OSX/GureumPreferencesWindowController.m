@@ -22,6 +22,7 @@
 
 @end
 
+static NSArray *GureumPreferencesShortcutBehaviors = nil;
 static NSArray *GureumPreferencesHangulLayouts = nil;
 static NSArray *GureumPreferencesHangulLayoutLocalizedNames = nil;
 static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
@@ -30,6 +31,13 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 + (void)initialize {
     [super initialize];
+    GureumPreferencesShortcutBehaviors = [[NSArray alloc] initWithObjects:
+                                          NSLocalizedStringFromTable(@"ShortcutBehaviorNone", @"Hangul", @""),
+                                          NSLocalizedStringFromTable(@"ShortcutBehaviorExchangeLanguage", @"Hangul", @""),
+                                          NSLocalizedStringFromTable(@"ShortcutBehaviorHanjaMode", @"Hangul", @""),
+                                          NSLocalizedStringFromTable(@"ShortcutBehaviorChangeToEnglish", @"Hangul", @""),
+                                          NSLocalizedStringFromTable(@"ShortcutBehaviorChangeToKorean", @"Hangul", @""),
+                                          nil];
     GureumPreferencesHangulLayouts = [[NSArray alloc] initWithObjects:
                      @"org.youknowone.inputmethod.Gureum.han2",
                      @"org.youknowone.inputmethod.Gureum.han2classic",
@@ -74,21 +82,20 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     return self;
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
     [super windowDidLoad];
     
     self->preferenceViews = [[NSDictionary alloc] initWithObjectsAndKeys:
-                       gureumPreferenceView, @"Gureum",
-                       hangulPreferenceView, @"Hangul",
-                       nil];
+                             shortcutPreferenceView, @"Shortcut",
+                             gureumPreferenceView, @"Gureum",
+                             hangulPreferenceView, @"Hangul",
+                             nil];
 
     [self loadFromConfiguration];
-    [self showPreferenceViewWithIdentifier:@"Gureum" animate:YES];
+    [self showPreferenceViewWithIdentifier:@"Shortcut" animate:YES];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self->preferenceViews release];
     [super dealloc];
 }
@@ -143,8 +150,19 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 - (void)loadFromConfiguration {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
 
-    // common
+    // shortcut
+    self->leftCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftCommandKeyShortcutBehavior];
+    self->leftOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftOptionKeyShortcutBehavior];
+    self->leftControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftControlKeyShortcutBehavior];
+    self->rightCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightCommandKeyShortcutBehavior];
+    self->rightOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightOptionKeyShortcutBehavior];
+    self->rightControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightControlKeyShortcutBehavior];
     self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
+    self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
+    self->inputModeEnglishKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeEnglishKeyCode, configuration->inputModeEnglishKeyModifier);
+    self->inputModeKoreanKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeKoreanKeyCode, configuration->inputModeKoreanKeyModifier);
+
+    // common
     NSLog(@"default input mode: %d", configuration->autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
     NSLog(@"last hangul input mode: %@", configuration->lastHangulInputMode);
@@ -154,7 +172,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue = configuration->zeroWidthSpaceForLayoutExchange;
 
     // hangul
-    self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
     [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
     if (!(0 <= configuration->hangulCombinationModeComposing && configuration->hangulCombinationModeComposing < HangulCharacterCombinationModeCount)) {
         configuration->hangulCombinationModeComposing = 0;
@@ -173,9 +190,21 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
 
-    // common
+    // shortcut
+    configuration->leftCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftCommandBehaviorComboBox.stringValue];
+    configuration->leftOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftOptionBehaviorComboBox.stringValue];
+    configuration->leftControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftControlBehaviorComboBox.stringValue];
+    configuration->rightCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightCommandBehaviorComboBox.stringValue];
+    configuration->rightOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightOptionBehaviorComboBox.stringValue];
+    configuration->rightControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightControlBehaviorComboBox.stringValue];
     configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
     configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
+    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
+    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
+    configuration->inputModeEnglishKeyCode = self->inputModeEnglishKeyRecorderCell.keyCombo.code;
+    configuration->inputModeKoreanKeyModifier = self->inputModeKoreanKeyRecorderCell.keyCombo.flags;
+
+    // common
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = GureumPreferencesHangulLayouts[index];
@@ -184,8 +213,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->zeroWidthSpaceForLayoutExchange = self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue;
 
     // hangeul
-    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
-    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
     configuration->showsInputForHanjaCandidates = self->showsInputForHanjaCandidatesCheckbox.integerValue;
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];

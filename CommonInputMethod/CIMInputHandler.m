@@ -67,7 +67,11 @@
         dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
         return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
-    
+
+    if (string == nil) {
+        return CIMInputTextProcessResultNotProcessed;
+    }
+
     result = [controller.composer inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     
 finalize:

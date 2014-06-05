@@ -9,13 +9,13 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
     open Gureum.xcworkspace
 
 # 빌드
-GureumOSX 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
+OSX 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
 Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
 
 # 테스트
 디버그 모드로 빌드한 입력기를 설치합니다.
 
-    cd GureumOSX/tools
+    cd OSX/tools
     ./installtest.sh
 
 설치 후에는 구름 입력기가 사라질 수 있습니다.

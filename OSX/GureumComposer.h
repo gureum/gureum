@@ -41,6 +41,8 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012Loose;
     CIMBaseComposer *romanComposer;
     HangulComposer *hangulComposer;
     HanjaComposer *hanjaComposer;
+
+    NSUInteger lastModifier;
 }
 
 @end

@@ -43,6 +43,7 @@
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
+		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
 		38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524816ECF87E00FE1B4A /* han3final@2x.png */; };
 		38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524A16ECF87E00FE1B4A /* han390@2x.png */; };
 		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
@@ -54,20 +55,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		380B909414303838001D7550 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 939837800DA42965007F53F3;
-			remoteInfo = "ShortcutRecorder.framework - with embedded ibplugin";
-		};
-		380B909814303838001D7550 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
-			remoteInfo = ShortcutRecorderFramework_Tester;
-		};
 		384FDE63193F898500114F48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
@@ -88,13 +75,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
 			remoteInfo = ShortcutRecorder_Tester;
-		};
-		388C5D76154D891E00B4F3E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9398377F0DA42965007F53F3;
-			remoteInfo = ShortcutRecorder.framework;
 		};
 		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -144,7 +124,6 @@
 /* Begin PBXFileReference section */
 		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
 		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
-		380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
 		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
 		380ECC8216ECF49F0063B881 /* Gureum.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Gureum.iconset; path = Icons/Gureum.iconset; sourceTree = "<group>"; };
@@ -152,7 +131,7 @@
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
-		38162DF3141263270077AA2D /* GureumOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GureumOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -190,10 +169,10 @@
 		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
 		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
-		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = GureumOSX/ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
+		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = OSX/ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GureumOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BFE7FB18B45419004B2B2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -201,6 +180,7 @@
 		38BFE80518B45419004B2B2E /* GureumTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GureumTests-Prefix.pch"; sourceTree = "<group>"; };
 		38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumMockObjects.h; sourceTree = "<group>"; };
 		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
+		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38F1524816ECF87E00FE1B4A /* han3final@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3final@2x.png"; path = "Icons/han3final@2x.png"; sourceTree = "<group>"; };
 		38F1524A16ECF87E00FE1B4A /* han390@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han390@2x.png"; path = "Icons/han390@2x.png"; sourceTree = "<group>"; };
 		38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hanroman@2x.png"; path = "Icons/hanroman@2x.png"; sourceTree = "<group>"; };
@@ -236,16 +216,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		380B908814303836001D7550 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				380B909514303838001D7550 /* ShortcutRecorder.framework */,
-				380B909914303838001D7550 /* ShortcutRecorder.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		38162DF6141263270077AA2D /* GureumOSX */ = {
+		38162DF6141263270077AA2D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
@@ -260,7 +231,7 @@
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 			);
-			path = GureumOSX;
+			path = OSX;
 			sourceTree = "<group>";
 		};
 		38162DF7141263280077AA2D /* Supporting Files */ = {
@@ -282,7 +253,6 @@
 				383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */,
 				383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */,
 				383EF60C142B28B600013C0B /* preferences.xib */,
-				380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */,
 			);
 			name = "Graphic Interface";
 			sourceTree = "<group>";
@@ -308,6 +278,7 @@
 				38475AF51412BC050062100D /* qwerty.png */,
 				38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */,
 				38F220A3142C79710064FAC3 /* libhangul_logo.png */,
+				38D6F1CB194003C7003F25EE /* command.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -346,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
-				38162DF6141263270077AA2D /* GureumOSX */,
+				38162DF6141263270077AA2D /* OSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
@@ -357,8 +328,8 @@
 		38863C60140E64EB00A8ED76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38162DF3141263270077AA2D /* GureumOSX.app */,
-				38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */,
+				38162DF3141263270077AA2D /* Gureum.app */,
+				38BFE7FA18B45419004B2B2E /* OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,9 +400,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		38162DF2141263270077AA2D /* GureumOSX */ = {
+		38162DF2141263270077AA2D /* OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumOSX" */;
+			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
 				388FD025175ED98E00469B76 /* Version */,
 				38162DEF141263270077AA2D /* Sources */,
@@ -444,16 +415,15 @@
 			dependencies = (
 				384FDE64193F898500114F48 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
-				388C5D77154D891E00B4F3E1 /* PBXTargetDependency */,
 			);
-			name = GureumOSX;
-			productName = GureumOSX;
-			productReference = 38162DF3141263270077AA2D /* GureumOSX.app */;
+			name = OSX;
+			productName = OSX;
+			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
 			productType = "com.apple.product-type.application";
 		};
-		38BFE7F918B45419004B2B2E /* GureumOSXTests */ = {
+		38BFE7F918B45419004B2B2E /* OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumOSXTests" */;
+			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */;
 			buildPhases = (
 				38BFE7F618B45419004B2B2E /* Sources */,
 				38BFE7F718B45419004B2B2E /* Frameworks */,
@@ -464,9 +434,9 @@
 			dependencies = (
 				38BFE80718B45419004B2B2E /* PBXTargetDependency */,
 			);
-			name = GureumOSXTests;
+			name = OSXTests;
 			productName = GureumTests;
-			productReference = 38BFE7FA18B45419004B2B2E /* GureumOSXTests.xctest */;
+			productReference = 38BFE7FA18B45419004B2B2E /* OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -503,37 +473,19 @@
 					ProjectRef = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
 				},
 				{
-					ProductGroup = 380B908814303836001D7550 /* Products */;
-					ProjectRef = 380B908714303836001D7550 /* ShortcutRecorder.xcodeproj */;
-				},
-				{
 					ProductGroup = 38615D69193F8868007F7686 /* Products */;
 					ProjectRef = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				38162DF2141263270077AA2D /* GureumOSX */,
-				38BFE7F918B45419004B2B2E /* GureumOSXTests */,
+				38162DF2141263270077AA2D /* OSX */,
+				38BFE7F918B45419004B2B2E /* OSXTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		380B909514303838001D7550 /* ShortcutRecorder.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ShortcutRecorder.framework;
-			remoteRef = 380B909414303838001D7550 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		380B909914303838001D7550 /* ShortcutRecorder.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ShortcutRecorder.app;
-			remoteRef = 380B909814303838001D7550 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		38615D6E193F8868007F7686 /* ShortcutRecorder.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -587,6 +539,7 @@
 				383562FC18B9F34500F8B8B9 /* eng@2x.png in Resources */,
 				383562FB18B9F34500F8B8B9 /* eng.png in Resources */,
 				380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */,
+				38D6F1CC194003C7003F25EE /* command.png in Resources */,
 				38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */,
 				38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */,
 				38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */,
@@ -617,7 +570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/GureumOSX\ntag=`git describe --tags`\ntag=${tag#GureumOSX-}\necho \"VERSION = $tag\" > Version.xcconfig";
+			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#OSX-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -658,11 +611,6 @@
 			name = ShortcutRecorder.framework;
 			targetProxy = 384FDE63193F898500114F48 /* PBXContainerItemProxy */;
 		};
-		388C5D77154D891E00B4F3E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ShortcutRecorder.framework;
-			targetProxy = 388C5D76154D891E00B4F3E1 /* PBXContainerItemProxy */;
-		};
 		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Hangul;
@@ -670,7 +618,7 @@
 		};
 		38BFE80718B45419004B2B2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 38162DF2141263270077AA2D /* GureumOSX */;
+			target = 38162DF2141263270077AA2D /* OSX */;
 			targetProxy = 38BFE80618B45419004B2B2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -705,21 +653,21 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
-					"\"$(PROJECT_DIR)/GureumOSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = GureumOSX/Prefix.pch;
+				GCC_PREFIX_HEADER = OSX/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
-				INFOPLIST_FILE = GureumOSX/Info.plist;
+				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -727,7 +675,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -743,24 +691,24 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
-					"\"$(PROJECT_DIR)/GureumOSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = GureumOSX/Prefix.pch;
+				GCC_PREFIX_HEADER = OSX/Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
-				INFOPLIST_FILE = GureumOSX/Info.plist;
+				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -888,7 +836,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "GureumOSX" */ = {
+		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38162E09141263280077AA2D /* Debug */,
@@ -906,7 +854,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "GureumOSXTests" */ = {
+		38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38BFE80918B45419004B2B2E /* Debug */,

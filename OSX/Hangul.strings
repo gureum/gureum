@@ -1,3 +1,9 @@
+"ShortcutBehaviorNone" = "동작 없음";
+"ShortcutBehaviorExchangeLanguage" = "언어 전환";
+"ShortcutBehaviorHanjaMode" = "한자 입력";
+"ShortcutBehaviorChangeToEnglish" = "영어로 전환";
+"ShortcutBehaviorChangeToKorean" = "한국어로 전환";
+
 "HangulPresentationRemoveFillers" = "채움 문자 제거";
 "HangulPresentationAllFillers" = "채움 문자 보임";
 "HangulPresentationRemoveNonJungseongFiller" = "중성 채움 문자만 보임";

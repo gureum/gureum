@@ -64,7 +64,7 @@
     return [_delegate inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
 }
 
-- (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     return [_delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 
@@ -98,8 +98,8 @@
 
 #pragma -
 
-- (BOOL)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    return NO;
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+    return CIMInputTextProcessResultNotProcessed;
 }
 
 @end

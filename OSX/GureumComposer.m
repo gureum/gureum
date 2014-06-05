@@ -11,7 +11,8 @@
 #import "CIMConfiguration.h"
 #import "GureumAppDelegate.h"
 
-#define DEBUG_GUREUM FALSE
+#define DEBUG_GUREUM TRUE
+#define DEBUG_SHORTCUT TRUE
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.Gureum.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.Gureum.dvorak";
@@ -104,8 +105,76 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
-    if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-        dlog(DEBUG_GUREUM, @"***** Keyboard Changed *****");
+    BOOL need_exchange = NO;
+    BOOL need_hanjamode = NO;
+    if (string == nil) {
+        NSUInteger modifierKey = flags & 0xff;
+        if (self->lastModifier != 0 && modifierKey == 0) {
+            dlog(DEBUG_SHORTCUT, @"**** Trigger modifier: %lx ****", self->lastModifier);
+            NSDictionary *correspondedConfigurations = @{
+                                                         @(0x01): @(CIMSharedConfiguration->leftControlKeyShortcutBehavior),
+                                                         @(0x20): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+                                                         @(0x08): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+                                                         @(0x10): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+                                                         @(0x40): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+                                                         };
+            for (NSNumber *marker in @[@(0x01), @(0x20), @(0x08), @(0x10), @(0x40)]) {
+                if (self->lastModifier == marker.unsignedIntegerValue ) {
+                    NSInteger configuration = [correspondedConfigurations[marker] integerValue];
+                    switch (configuration) {
+                        case 0:
+                            break;
+                        case 1: {
+                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange modifier ****");
+                            need_exchange = YES;
+                        }   break;
+                        case 2: {
+                            dlog(DEBUG_SHORTCUT, @"**** Hanja mode by hanja modifier ****");
+                            need_hanjamode = YES;
+                        }   break;
+                        case 3: if (self.delegate == self->hangulComposer) {
+                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english modifier ****");
+                            need_exchange = YES;
+                        }   break;
+                        case 4: if (self.delegate == self->romanComposer) {
+                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean modifier ****");
+                            need_exchange = YES;
+                        }   break;
+                        default:
+                            dassert(NO);
+                            break;
+                    }
+                }
+            }
+        } else {
+            self->lastModifier = modifierKey;
+            dlog(DEBUG_SHORTCUT, @"**** Save modifier: %lx ****", self->lastModifier);
+        }
+    } else {
+        dlog(DEBUG_SHORTCUT, @"**** Reset modifier ****");
+        self->lastModifier = 0;
+
+        if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
+            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
+            need_exchange = YES;
+        }
+        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
+            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
+            need_exchange = YES;
+        }
+        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
+            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
+            need_exchange = YES;
+        }
+
+        if (CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
+            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");
+            need_hanjamode = YES;
+        }
+    }
+
+    if (need_exchange) {
+        dlog(DEBUG_GUREUM, @"***** Try to change layout *****");
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self.delegate cancelComposition];
         if (self.delegate == self->romanComposer) {
@@ -119,14 +188,16 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         manager.needsFakeComposedString = YES;
         return CIMInputTextProcessResultProcessed;
     }
+
     if (self.delegate == self->hanjaComposer) {
         if (!self->hanjaComposer.mode && self->hanjaComposer.composedString.length == 0 && self->hanjaComposer.commitString.length == 0) {
             // 한자 입력이 완료되었고 한자 모드도 아님
             self.delegate = self->hangulComposer;
         }
     }
+
     if (self.delegate == self->hangulComposer) {
-        if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
+        if (need_hanjamode) {
             // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
             BOOL isComposing = self->hangulComposer.composedString.length > 0;
             self->hanjaComposer.mode = !isComposing; // 조합 중이 아니면 1회만 사전을 띄운다
@@ -136,7 +207,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
-        if (CIMSharedConfiguration->romanModeByEscapeKey && keyCode == kVK_Escape) {
+        if (CIMSharedConfiguration->romanModeByEscapeKey && (keyCode == kVK_Escape || (0))) {
             dlog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
             [self.delegate cancelComposition];
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];

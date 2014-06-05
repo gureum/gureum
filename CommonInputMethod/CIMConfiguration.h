@@ -12,12 +12,23 @@
 /* Gureum */
 FOUNDATION_EXTERN NSString *CIMLastHangulInputMode;
 
-#define CIMConfigurationIntegerItemCount 7
-/* Gureum */
+#define CIMConfigurationIntegerItemCount 17
+/* Shortcut */
+FOUNDATION_EXTERN NSString *CIMLeftCommandKeyShortcutBehavior;
+FOUNDATION_EXTERN NSString *CIMLeftOptionKeyShortcutBehavior;
+FOUNDATION_EXTERN NSString *CIMLeftControlKeyShortcutBehavior;
+FOUNDATION_EXTERN NSString *CIMRightCommandKeyShortcutBehavior;
+FOUNDATION_EXTERN NSString *CIMRightOptionKeyShortcutBehavior;
+FOUNDATION_EXTERN NSString *CIMRightControlKeyShortcutBehavior;
 FOUNDATION_EXTERN NSString *CIMInputModeExchangeKeyModifier;
 FOUNDATION_EXTERN NSString *CIMInputModeExchangeKeyCode;
 FOUNDATION_EXTERN NSString *CIMInputModeHanjaKeyModifier;
 FOUNDATION_EXTERN NSString *CIMInputModeHanjaKeyCode;
+FOUNDATION_EXTERN NSString *CIMInputModeEnglishKeyModifier;
+FOUNDATION_EXTERN NSString *CIMInputModeEnglishKeyCode;
+FOUNDATION_EXTERN NSString *CIMInputModeKoreanKeyModifier;
+FOUNDATION_EXTERN NSString *CIMInputModeKoreanKeyCode;
+/* Gureum */
 FOUNDATION_EXTERN NSString *CIMOptionKeyBehavior;
 /* Hangul */
 FOUNDATION_EXTERN NSString *CIMHangulCombinationModeComposing;
@@ -69,8 +80,16 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     NSUserDefaults *userDefaults;
   @public
     NSString *lastHangulInputMode;
+    NSInteger leftCommandKeyShortcutBehavior;
+    NSInteger leftOptionKeyShortcutBehavior;
+    NSInteger leftControlKeyShortcutBehavior;
+    NSInteger rightCommandKeyShortcutBehavior;
+    NSInteger rightOptionKeyShortcutBehavior;
+    NSInteger rightControlKeyShortcutBehavior;
     NSInteger inputModeExchangeKeyModifier, inputModeExchangeKeyCode;
     NSInteger inputModeHanjaKeyModifier, inputModeHanjaKeyCode;
+    NSInteger inputModeEnglishKeyModifier, inputModeEnglishKeyCode;
+    NSInteger inputModeKoreanKeyModifier, inputModeKoreanKeyCode;
     NSInteger optionKeyBehavior;
     NSInteger hangulCombinationModeComposing, hangulCombinationModeCommiting;
     BOOL sharedInputManager;

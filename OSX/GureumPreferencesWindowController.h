@@ -14,12 +14,23 @@
 @private
     IBOutlet NSView *preferenceContainerView;
     IBOutlet NSView *commonButtonsView;
-    IBOutlet NSView *gureumPreferenceView, *hangulPreferenceView;
+    IBOutlet NSView *shortcutPreferenceView, *gureumPreferenceView, *hangulPreferenceView;
     NSDictionary *preferenceViews;
     BOOL cancel;
-    
-    /* Gureum Preferences */
+
+    /* Shortcut Preferences */
+    IBOutlet NSComboBox *leftCommandBehaviorComboBox;
+    IBOutlet NSComboBox *leftOptionBehaviorComboBox;
+    IBOutlet NSComboBox *leftControlBehaviorComboBox;
+    IBOutlet NSComboBox *rightCommandBehaviorComboBox;
+    IBOutlet NSComboBox *rightOptionBehaviorComboBox;
+    IBOutlet NSComboBox *rightControlBehaviorComboBox;
     IBOutlet SRRecorderCell *inputModeExchangeKeyRecorderCell;
+    IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
+    IBOutlet SRRecorderCell *inputModeEnglishKeyRecorderCell;
+    IBOutlet SRRecorderCell *inputModeKoreanKeyRecorderCell;
+
+    /* Gureum Preferences */
     IBOutlet NSButton *autosaveDefaultInputModeCheckbox;
     IBOutlet NSComboBox *defaultHangulInputModeComboBox;
     IBOutlet NSComboBox *optionKeyBehaviorComboBox;
@@ -28,7 +39,6 @@
     IBOutlet NSButton *zeroWidthSpaceForLayoutExchangeCheckbox;
 
     /* Hangul Preferences */
-    IBOutlet SRRecorderCell *inputModeHanjaKeyRecorderCell;
     IBOutlet NSButton *showsInputForHanjaCandidatesCheckbox;
 
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;

@@ -278,15 +278,22 @@
 
 // Receiving Events Directly from the Text Services Manager
 - (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
-    if ([event type] != NSKeyDown) {
-        dlog(DEBUG_LOGGING, @"LOGGING::NONKEYDOWN::%@/%@", event, sender);
-        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
-        return NO;
+    if (event.type == NSKeyDown) {
+        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
+        BOOL processed = [self->_receiver inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
+        dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
+        return processed;
     }
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-    BOOL processed = [self->_receiver inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
-    dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
-    return processed;
+    else if (event.type == NSFlagsChanged) {
+//        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, [NSEvent modifierFlags], nil, nil, [[self client] bundleIdentifier]);
+//        BOOL processed = [self->_receiver inputController:self inputText:nil key:-1 modifiers:[NSEvent modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
+//        dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
+//        return processed;
+    }
+
+    dlog(DEBUG_LOGGING, @"LOGGING::UNHANDLED::%@/%@", event, sender);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender);
+    return NO;
 }
 
 @end
