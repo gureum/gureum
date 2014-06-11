@@ -62,7 +62,7 @@ class GRKeyboardLayoutHelper {
         self.buttons.removeAll()
 
         if let delegate = self.delegate {
-            var rowHeightSum = 0.0
+            var rowHeightSum: CGFloat = 0.0
             var columnWidthSums = Array<CGFloat>()
 
             let insets = delegate.insetsForHelper(self)
@@ -83,7 +83,7 @@ class GRKeyboardLayoutHelper {
                 }
 
                 var columnWidthSum = CGFloat(columnCount) * columnWidth
-                var columnLeftSum = 0.0
+                var columnLeftSum: CGFloat = 0.0
                 for button in leftButtons {
                     let width = button.frame.size.width
                     columnWidthSum += width

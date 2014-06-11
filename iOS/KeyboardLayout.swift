@@ -9,26 +9,20 @@
 import UIKit
 
 class KeyboardView: UIView {
+    @IBOutlet var logTextView: UITextView
     @IBOutlet var nextKeyboardButton: UIButton
     @IBOutlet var toggleKeyboardButton: UIButton
-    @IBOutlet var spaceButton: UIButton
     @IBOutlet var doneButton: UIButton
     @IBOutlet var shiftButton: UIButton
     @IBOutlet var deleteButton: UIButton
-
-    func test(sender: UIView) {
-//        let view = sender.superview
-  //      sender.removeFromSuperview()
-        sender.frame.origin = CGPointMake(50, 50)
-    //    view.addSubview(sender)
-    }
 }
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     let view: KeyboardView
-    var inputViewController: UIInputViewController? = nil {
+    var inputViewController: KeyboardViewController? = nil {
         didSet {
             self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+            self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
         }
     }
 
@@ -92,13 +86,15 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
         case 0:
-            return 10;
+            return 10
         case 1:
-            return 9;
+            return 9
         case 2:
-            return 7;
+            return 7
+        case 3:
+            return 1
         default:
-            return 0;
+            return 0
         }
     }
 
@@ -106,8 +102,12 @@ class QwertyKeyboardLayout: KeyboardLayout {
         return 40
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int) -> CGFloat {
-        return 28
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int) -> CGFloat {
+        if row == 3 {
+            return 176
+        } else {
+            return 28
+        }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
@@ -117,7 +117,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         case 2:
             return [self.view.shiftButton]
         case 3:
-            return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton, self.view.spaceButton, self.view.doneButton]
+            return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton]
         default:
             return []
         }
@@ -129,13 +129,15 @@ class QwertyKeyboardLayout: KeyboardLayout {
             return [UIButton(frame: CGRectMake(0, 0, 10, 10))]
         case 2:
             return [self.view.deleteButton]
+        case 3:
+            return [self.view.doneButton]
         default:
             return []
         }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
-        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
         let keyline = keylines[position.row].unicodeScalars
         var idx = keyline.startIndex
         for _ in 0..position.column {
@@ -145,10 +147,15 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
         let button = GRInputButton.buttonWithType(.System) as UIButton
         button.tag = Int(key.value)
-        button.setTitle("\(Character(key))", forState: .Normal)
+        if position.row == 3 {
+            button.setTitle("간격", forState: .Normal)
+        } else {
+            button.setTitle("\(Character(key))", forState: .Normal)
+        }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+        button.alpha = 0.1
         return button
     }
 

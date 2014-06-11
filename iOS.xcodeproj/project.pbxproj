@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38497A7E1940FA6C00DCB033 /* QwertyKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */; };
-		38497A7F1940FAF800DCB033 /* QwertyKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */; };
+		38497A7E1940FA6C00DCB033 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* KeyboardLayout.swift */; };
+		38497A7F1940FAF800DCB033 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38497A7D1940FA6C00DCB033 /* KeyboardLayout.swift */; };
 		38497A80194104B400DCB033 /* Container.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BB7022193FA27400605583 /* Container.xib */; };
 		3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		3882B9FE193F9E6600076C26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* ViewController.swift */; };
@@ -23,6 +23,10 @@
 		38BB7025193FA2B400605583 /* GRKeyboardLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */; };
 		38BB7026193FA2B700605583 /* GRInputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB701E193FA26D00605583 /* GRInputButton.swift */; };
 		38BB7028193FA32D00605583 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* KeyboardViewController.swift */; };
+		38C6A0EF194508530061CC7C /* libhangeul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38904F851944F71400858B09 /* libhangeul.a */; };
+		38C6A10619450E3A0061CC7C /* hangul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38C6A10519450E3A0061CC7C /* hangul.cpp */; };
+		38C6A10B19450EA80061CC7C /* libhangeul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38904F851944F71400858B09 /* libhangeul.a */; };
+		38C6A10E1945175C0061CC7C /* hangul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38C6A10519450E3A0061CC7C /* hangul.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3882B9F5193F9E6600076C26;
 			remoteInfo = Gureum;
+		};
+		38904F841944F71400858B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38904F7F1944F71400858B09 /* hangeul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 38904F4B1942C02200858B09;
+			remoteInfo = hangeul;
+		};
+		38904F861944F71400858B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38904F7F1944F71400858B09 /* hangeul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 38904F5B1942C02200858B09;
+			remoteInfo = hangeulTests;
 		};
 		38BB7015193FA11000605583 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -46,6 +64,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 38BB700E193FA11000605583;
 			remoteInfo = iOS;
+		};
+		38C6A10919450EA40061CC7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38904F7F1944F71400858B09 /* hangeul.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 38904F4A1942C02200858B09;
+			remoteInfo = hangeul;
+		};
+		38C6A10C19450EB80061CC7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38904F7F1944F71400858B09 /* hangeul.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 38904F4A1942C02200858B09;
+			remoteInfo = hangeul;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,7 +96,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QwertyKeyboard.swift; sourceTree = "<group>"; };
+		38497A7D1940FA6C00DCB033 /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
 		3882B9F6193F9E6600076C26 /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3882B9FA193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882B9FB193F9E6600076C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +106,7 @@
 		3882BA08193F9E6600076C26 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
+		38904F7F1944F71400858B09 /* hangeul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hangeul.xcodeproj; path = hangeul/hangeul.xcodeproj; sourceTree = "<group>"; };
 		38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = org.youknowone.Gureum.inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +114,8 @@
 		38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRKeyboardLayoutHelper.swift; sourceTree = "<group>"; };
 		38BB7022193FA27400605583 /* Container.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Container.xib; sourceTree = "<group>"; };
 		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		38C6A10519450E3A0061CC7C /* hangul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hangul.cpp; path = hangeul/hangeul/hangul.cpp; sourceTree = SOURCE_ROOT; };
+		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C6A0EF194508530061CC7C /* libhangeul.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C6A10B19450EA80061CC7C /* libhangeul.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				38BB7024193FA29100605583 /* Playground.playground */,
+				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
 				3882BA0B193F9E6600076C26 /* Tests */,
 				38BB7010193FA11000605583 /* iOS */,
@@ -168,15 +206,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		38904F801944F71400858B09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38904F851944F71400858B09 /* libhangeul.a */,
+				38904F871944F71400858B09 /* hangeulTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		38BB7010193FA11000605583 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				38C6A10519450E3A0061CC7C /* hangul.cpp */,
 				38BB7013193FA11000605583 /* KeyboardViewController.swift */,
 				38BB701E193FA26D00605583 /* GRInputButton.swift */,
 				38BB701F193FA26D00605583 /* GRKeyboardLayoutHelper.swift */,
-				38497A7D1940FA6C00DCB033 /* QwertyKeyboard.swift */,
+				38497A7D1940FA6C00DCB033 /* KeyboardLayout.swift */,
 				38BB7022193FA27400605583 /* Container.xib */,
 				38BB7011193FA11000605583 /* Supporting Files */,
+				38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -204,6 +253,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				38C6A10D19450EB80061CC7C /* PBXTargetDependency */,
 				38BB7016193FA11000605583 /* PBXTargetDependency */,
 				38BB7019193FA11000605583 /* PBXTargetDependency */,
 			);
@@ -241,6 +291,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				38C6A10A19450EA40061CC7C /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = iOS;
@@ -279,6 +330,12 @@
 			mainGroup = 3882B9ED193F9E6600076C26;
 			productRefGroup = 3882B9F7193F9E6600076C26 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 38904F801944F71400858B09 /* Products */;
+					ProjectRef = 38904F7F1944F71400858B09 /* hangeul.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3882B9F5193F9E6600076C26 /* App */,
@@ -287,6 +344,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		38904F851944F71400858B09 /* libhangeul.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libhangeul.a;
+			remoteRef = 38904F841944F71400858B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38904F871944F71400858B09 /* hangeulTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = hangeulTests.xctest;
+			remoteRef = 38904F861944F71400858B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3882B9F4193F9E6600076C26 /* Resources */ = {
@@ -323,9 +397,10 @@
 			files = (
 				3882B9FE193F9E6600076C26 /* ViewController.swift in Sources */,
 				38BB7028193FA32D00605583 /* KeyboardViewController.swift in Sources */,
-				38497A7F1940FAF800DCB033 /* QwertyKeyboard.swift in Sources */,
+				38497A7F1940FAF800DCB033 /* KeyboardLayout.swift in Sources */,
 				38BB7025193FA2B400605583 /* GRKeyboardLayoutHelper.swift in Sources */,
 				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
+				38C6A10E1945175C0061CC7C /* hangul.cpp in Sources */,
 				38BB7026193FA2B700605583 /* GRInputButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,8 +417,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38497A7E1940FA6C00DCB033 /* QwertyKeyboard.swift in Sources */,
+				38497A7E1940FA6C00DCB033 /* KeyboardLayout.swift in Sources */,
 				38BB7014193FA11000605583 /* KeyboardViewController.swift in Sources */,
+				38C6A10619450E3A0061CC7C /* hangul.cpp in Sources */,
 				38BB7021193FA26D00605583 /* GRKeyboardLayoutHelper.swift in Sources */,
 				38BB7020193FA26D00605583 /* GRInputButton.swift in Sources */,
 			);
@@ -366,6 +442,16 @@
 			isa = PBXTargetDependency;
 			target = 38BB700E193FA11000605583 /* iOS */;
 			targetProxy = 38BB7018193FA11000605583 /* PBXContainerItemProxy */;
+		};
+		38C6A10A19450EA40061CC7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = hangeul;
+			targetProxy = 38C6A10919450EA40061CC7C /* PBXContainerItemProxy */;
+		};
+		38C6A10D19450EB80061CC7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = hangeul;
+			targetProxy = 38C6A10C19450EB80061CC7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -415,6 +501,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					hangeul,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -452,6 +543,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					hangeul,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -468,6 +564,7 @@
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -479,6 +576,7 @@
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -521,6 +619,7 @@
 		38BB701A193FA11000605583 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -530,17 +629,21 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		38BB701B193FA11000605583 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -26,21 +26,10 @@
                     </connections>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="38" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TQq-IV-U2o" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="54" y="75" width="42" height="40"/>
+                    <rect key="frame" x="4" y="120" width="42" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="shift">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="test:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gbe-ZQ-Zyj"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g0X-LV-ugc" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="242" y="36" width="42" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="del">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -68,16 +57,13 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZsU-BK-GM1" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="86" y="168" width="174" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g0X-LV-ugc" customClass="GRInputButton" customModule="Gureum">
+                    <rect key="frame" x="267" y="120" width="42" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="간격">
+                    <state key="normal" title="del">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="test:" destination="iN0-l3-epB" eventType="touchUpInside" id="veg-jF-5iT"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.93290389521089212" green="1" blue="0.30695314822234521" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -86,9 +72,9 @@
             <connections>
                 <outlet property="deleteButton" destination="g0X-LV-ugc" id="qK5-a2-QUQ"/>
                 <outlet property="doneButton" destination="ZYd-Nn-XeZ" id="NOK-Kj-On3"/>
+                <outlet property="logTextView" destination="fuv-1d-gLS" id="fu2-VM-OBd"/>
                 <outlet property="nextKeyboardButton" destination="0pk-7q-hxg" id="RRx-ju-P4L"/>
                 <outlet property="shiftButton" destination="TQq-IV-U2o" id="NFD-JS-8wc"/>
-                <outlet property="spaceButton" destination="ZsU-BK-GM1" id="Ulc-cP-njJ"/>
                 <outlet property="toggleKeyboardButton" destination="b4H-df-F68" id="qNR-oH-F0z"/>
             </connections>
             <point key="canvasLocation" x="348" y="239"/>

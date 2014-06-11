@@ -8,36 +8,15 @@
 
 import UIKit
 
-class TestViewController: UIInputViewController {
+class TestViewController: KeyboardViewController {
     @IBOutlet var keyboardView: UIView
-    let keyboard: KeyboardLayout
-    var helper: GRKeyboardLayoutHelper
-
-    func _init() {
-        self.keyboard.inputViewController = self
-        self.helper.delegate = keyboard
-    }
-
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.helper = GRKeyboardLayoutHelper(delegate: nil)
-        self.keyboard = QwertyKeyboardLayout(nibName: "Container", bundle: nil)
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        _init()
-    }
-
-    init(coder: NSCoder?) {
-        self.helper = GRKeyboardLayoutHelper(delegate: nil)
-        self.keyboard = QwertyKeyboardLayout(nibName: "Container", bundle: nil)
-        super.init(coder: coder)
-        _init()
-    }
 
     @IBAction func layout() {
         self.helper.layoutIn(self.keyboard.view);
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
 
         let frame = self.keyboardView.frame
         self.keyboardView.removeFromSuperview()
@@ -55,7 +34,6 @@ class TestViewController: UIInputViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
     /*
     // #pragma mark - Navigation
