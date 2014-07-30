@@ -11,7 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
     var helper: GRKeyboardLayoutHelper
     var keyboard: KeyboardLayout
-    var context: COpaquePointer
+    var context: UnsafePointer<()>
 
     func _postinit() {
         self.keyboard.inputViewController = self
@@ -49,7 +49,6 @@ class KeyboardViewController: UIInputViewController {
         if let logView = self.keyboard.view.subviews[0] as? UITextView {
             logView.text = "\(self.keyboard.view)"
         }
-
         // Perform custom UI setup here
 
 //    
@@ -111,10 +110,10 @@ class KeyboardViewController: UIInputViewController {
 
     func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-        self.keyboard.view.logTextView.text = ""
-        log(proxy.documentContextBeforeInput);
-        log(proxy.documentContextAfterInput);
-        println("\(self.context) \(sender.tag)")
+//        self.keyboard.view.logTextView.text = ""
+//        log(proxy.documentContextBeforeInput);
+//        log(proxy.documentContextAfterInput);
+//        println("\(self.context) \(sender.tag)")
 
         let had_state = _state(self.context)
         if had_state > 0 {

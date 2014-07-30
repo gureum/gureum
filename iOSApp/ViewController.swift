@@ -9,9 +9,13 @@
 import UIKit
 
 class TestViewController: KeyboardViewController {
-    @IBOutlet var keyboardView: UIView
+    @IBOutlet var keyboardView: UIView!
+    @IBOutlet var valueField: UITextField!
 
     @IBAction func layout() {
+        let defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
+        defaults.setObject(self.valueField.text, forKey: "test")
+        defaults.synchronize()
         self.helper.layoutIn(self.keyboard.view);
     }
 
@@ -24,6 +28,8 @@ class TestViewController: KeyboardViewController {
         self.keyboardView = self.keyboard.view
         self.keyboard.view.frame = frame
         self.view.addSubview(self.keyboardView)
+
+        self.valueField.text = NSUserDefaults.standardUserDefaults().objectForKey("test") as String!
 
         self.layout()
         // Do any additional setup after loading the view.

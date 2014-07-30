@@ -48,7 +48,7 @@ class GRKeyboardLayoutHelper {
     }
 
     func buttonAt(position: Position) -> UIButton? {
-        if self.delegate == nil {
+        if !self.delegate {
             return nil
         }
 
@@ -68,14 +68,14 @@ class GRKeyboardLayoutHelper {
             let insets = delegate.insetsForHelper(self)
             let insetFrame = UIEdgeInsetsInsetRect(view.frame, insets)
             let rowCount = delegate.numberOfRowsForHelper(self)
-            for row in 0..rowCount {
+            for row in 0..<rowCount {
                 let rowHeight = delegate.helper(self, heightOfRow: row)
                 let columnWidth: CGFloat = delegate.helper(self, columnWidthInRow: row)
                 let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
                 let leftButtons = delegate.helper(self, leftButtonsForRow: row)
                 let rightButtons = delegate.helper(self, rightButtonsForRow: row)
 
-                for column in 0..columnCount {
+                for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = delegate.helper(self, generatedButtonForPosition: position)
                     button.frame = CGRectMake(0, 0, columnWidth, rowHeight)
@@ -100,7 +100,7 @@ class GRKeyboardLayoutHelper {
 
             let rowSpace = (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1)
 
-            for row in 0..rowCount {
+            for row in 0..<rowCount {
                 let rowHeight = delegate.helper(self, heightOfRow: row)
                 let columnWidth = delegate.helper(self, columnWidthInRow: row)
                 let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
@@ -118,7 +118,7 @@ class GRKeyboardLayoutHelper {
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     left += width + columnSpace
                 }
-                for column in 0..columnCount {
+                for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)

@@ -96,6 +96,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
+		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		38497A7D1940FA6C00DCB033 /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
 		3882B9F6193F9E6600076C26 /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3882B9FA193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		3882B9F8193F9E6600076C26 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3844B239198930BF007A2287 /* Gureum.entitlements */,
 				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
 				3882B9FD193F9E6600076C26 /* ViewController.swift */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
@@ -218,6 +221,7 @@
 		38BB7010193FA11000605583 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */,
 				38C6A10519450E3A0061CC7C /* hangul.cpp */,
 				38BB7013193FA11000605583 /* KeyboardViewController.swift */,
 				38BB701E193FA26D00605583 /* GRInputButton.swift */,
@@ -309,6 +313,12 @@
 				TargetAttributes = {
 					3882B9F5193F9E6600076C26 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = RT8F3G27W8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3882BA07193F9E6600076C26 = {
 						CreatedOnToolsVersion = 6.0;
@@ -316,6 +326,12 @@
 					};
 					38BB700E193FA11000605583 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = RT8F3G27W8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -484,7 +500,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Youknowone Jeong (34H26YK9J8)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -532,7 +548,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Youknowone Jeong (34H26YK9J8)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -561,9 +577,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};
 			name = Debug;
@@ -573,9 +591,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};
 			name = Release;
@@ -620,6 +640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iOS/org.youknowone.Gureum.inputmethod.entitlements;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -628,6 +649,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -638,10 +660,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iOS/org.youknowone.Gureum.inputmethod.entitlements;
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
 			};

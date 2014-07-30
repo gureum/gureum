@@ -9,12 +9,12 @@
 import UIKit
 
 class KeyboardView: UIView {
-    @IBOutlet var logTextView: UITextView
-    @IBOutlet var nextKeyboardButton: UIButton
-    @IBOutlet var toggleKeyboardButton: UIButton
-    @IBOutlet var doneButton: UIButton
-    @IBOutlet var shiftButton: UIButton
-    @IBOutlet var deleteButton: UIButton
+    @IBOutlet var logTextView: UITextView!
+    @IBOutlet var nextKeyboardButton: UIButton!
+    @IBOutlet var toggleKeyboardButton: UIButton!
+    @IBOutlet var doneButton: UIButton!
+    @IBOutlet var shiftButton: UIButton!
+    @IBOutlet var deleteButton: UIButton!
 }
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
@@ -140,8 +140,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
         let keyline = keylines[position.row].unicodeScalars
         var idx = keyline.startIndex
-        for _ in 0..position.column {
-            idx = idx.succ()
+        for _ in 0..<position.column {
+            idx = idx.successor()
         }
         let key = keyline[idx]
 
@@ -155,7 +155,18 @@ class QwertyKeyboardLayout: KeyboardLayout {
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
-        button.alpha = 0.1
+        button.alpha = 0.5
+
+
+        let defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
+        let data: String? = defaults.objectForKey("test") as String!
+        var title: String
+        if data {
+            title = data!
+        } else {
+            title = "X"
+        }
+        button.setTitle(title, forState: .Normal)
         return button
     }
 
