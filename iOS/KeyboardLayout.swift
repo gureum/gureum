@@ -8,13 +8,43 @@
 
 import UIKit
 
-class KeyboardView: UIView {
+class KeyboardView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet var logTextView: UITextView!
     @IBOutlet var nextKeyboardButton: UIButton!
     @IBOutlet var toggleKeyboardButton: UIButton!
     @IBOutlet var doneButton: UIButton!
     @IBOutlet var shiftButton: UIButton!
     @IBOutlet var deleteButton: UIButton!
+
+    @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
+
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
+        return true; // 'false' if there is no candidate
+    }
+
+    @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
+        let originalFrame = self.frame
+        UIView.animateWithDuration(0.36, animations: {
+                var frame = originalFrame
+                frame.origin.x -= frame.size.width
+                self.frame = frame
+            }, completion: {
+                (value: Bool) in
+                self.frame = originalFrame
+            })
+    }
+
+    @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
+        let originalFrame = self.frame
+        UIView.animateWithDuration(0.36, animations: {
+                var frame = self.frame
+                frame.origin.x += frame.size.width
+                self.frame = frame
+            }, completion: {
+                (value: Bool) in
+                self.frame = originalFrame
+            })
+    }
 }
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
@@ -150,23 +180,14 @@ class QwertyKeyboardLayout: KeyboardLayout {
         if position.row == 3 {
             button.setTitle("간격", forState: .Normal)
         } else {
-            button.setTitle("\(Character(key))", forState: .Normal)
+            let label = _label(Int8(key.value))
+            button.setTitle("\(Character(UnicodeScalar(label)))", forState: .Normal)
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
         button.alpha = 0.5
 
-
-        let defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
-        let data: String? = defaults.objectForKey("test") as String!
-        var title: String
-        if data {
-            title = data!
-        } else {
-            title = "X"
-        }
-        button.setTitle(title, forState: .Normal)
         return button
     }
 

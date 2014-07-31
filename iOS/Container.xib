@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
@@ -21,9 +21,6 @@
                     <gestureRecognizers/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="bFy-II-AOM" appends="YES" id="Dt7-d4-fVr"/>
-                    </connections>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="38" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TQq-IV-U2o" customClass="GRInputButton" customModule="Gureum">
                     <rect key="frame" x="4" y="120" width="42" height="40"/>
@@ -67,18 +64,39 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.93290389521089212" green="1" blue="0.30695314822234521" alpha="0.0" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="deleteButton" destination="g0X-LV-ugc" id="qK5-a2-QUQ"/>
                 <outlet property="doneButton" destination="ZYd-Nn-XeZ" id="NOK-Kj-On3"/>
+                <outlet property="leftSwipeRecognizer" destination="bFy-II-AOM" id="tLs-GU-DRA"/>
                 <outlet property="logTextView" destination="fuv-1d-gLS" id="fu2-VM-OBd"/>
                 <outlet property="nextKeyboardButton" destination="0pk-7q-hxg" id="RRx-ju-P4L"/>
                 <outlet property="shiftButton" destination="TQq-IV-U2o" id="NFD-JS-8wc"/>
                 <outlet property="toggleKeyboardButton" destination="b4H-df-F68" id="qNR-oH-F0z"/>
+                <outletCollection property="gestureRecognizers" destination="bFy-II-AOM" appends="YES" id="9nX-dl-v5x"/>
+                <outletCollection property="gestureRecognizers" destination="Sgl-7M-Cuw" appends="YES" id="EB1-Yf-gsU"/>
             </connections>
             <point key="canvasLocation" x="348" y="239"/>
         </view>
-        <swipeGestureRecognizer direction="right" id="bFy-II-AOM"/>
+        <swipeGestureRecognizer direction="left" id="bFy-II-AOM">
+            <connections>
+                <action selector="leftForSwipeRecognizer:" destination="iN0-l3-epB" id="bYv-8w-5Z4"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="5PT-Aw-2Yd"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="right" id="Sgl-7M-Cuw">
+            <connections>
+                <action selector="rightForSwipeRecognizer:" destination="iN0-l3-epB" id="EPs-c3-Kbh"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="2yq-vZ-5rJ"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
+    </simulatedMetricsContainer>
 </document>
