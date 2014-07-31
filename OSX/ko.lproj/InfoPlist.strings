@@ -19,6 +19,7 @@ org.youknowone.inputmethod.Gureum.han3-2011loose = "세벌식 2011 (종성결합
 org.youknowone.inputmethod.Gureum.han3-2012 = "세벌식 2012";
 org.youknowone.inputmethod.Gureum.han3-2012loose = "세벌식 2012 (종성결합허용)";
 org.youknowone.inputmethod.Gureum.han3finalnoshift = "세벌식 최종 순아래 (호환)";
+org.youknowone.inputmethod.Gureum.han3-2014 = "세벌식 2014 통합";
 
 CFBundleName = "구름";
 CFBundleDisplayName = "구름 입력기";
