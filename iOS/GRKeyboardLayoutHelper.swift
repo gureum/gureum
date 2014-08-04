@@ -98,7 +98,7 @@ class GRKeyboardLayoutHelper {
                 columnWidthSums += columnWidthSum
             }
 
-            let rowSpace = (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1)
+            let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
 
             for row in 0..<rowCount {
                 let rowHeight = delegate.helper(self, heightOfRow: row)

@@ -1,5 +1,5 @@
 //
-//  KeyboardViewController.swift
+//  InputViewController.swift
 //  inputmethod
 //
 //  Created by Jeong YunWon on 2014. 6. 3..
@@ -8,30 +8,19 @@
 
 import UIKit
 
-class KeyboardViewController: UIInputViewController {
-    var helper: GRKeyboardLayoutHelper
-    var keyboard: KeyboardLayout
+class InputViewController: UIInputViewController {
+    var keyboards: [KeyboardLayout] = []
     var context: UnsafePointer<()>
-
-    func _postinit() {
-        self.keyboard.inputViewController = self
-        self.helper.delegate = keyboard
-    }
+    var inputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.helper = GRKeyboardLayoutHelper(delegate: nil)
-        self.keyboard = QwertyKeyboardLayout(nibName: "Container", bundle: nil)
         self.context = _context()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        _postinit()
     }
 
     init(coder: NSCoder) {
-        self.helper = GRKeyboardLayoutHelper(delegate: nil)
-        self.keyboard = QwertyKeyboardLayout(nibName: "Container", bundle: nil)
         self.context = _context()
         super.init(coder: coder)
-        _postinit()
     }
 
     override func updateViewConstraints() {
@@ -43,20 +32,8 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.bounds = self.keyboard.view.bounds
-        self.view.addSubview(self.keyboard.view)
-
-        if let logView = self.keyboard.view.subviews[0] as? UITextView {
-            logView.text = "\(self.keyboard.view)"
-        }
-        // Perform custom UI setup here
-
-//    
-//        var nextKeyboardButtonLeftSideConstraint = NSLayoutConstraint(item: self.nextKeyboardButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0)
-//        var nextKeyboardButtonBottomConstraint = NSLayoutConstraint(item: self.nextKeyboardButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-//        self.view.addConstraints([nextKeyboardButtonLeftSideConstraint, nextKeyboardButtonBottomConstraint])
-
-        self.helper.layoutIn(self.keyboard.view)
+        self.view.bounds = self.inputMethodViewController.view.bounds
+        self.view.addSubview(self.inputMethodViewController.view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +63,7 @@ class KeyboardViewController: UIInputViewController {
         } else {
             textColor = UIColor.blackColor()
         }
-        self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
+        //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
     override func selectionDidChange(textInput: UITextInput!)  {
@@ -102,15 +79,14 @@ class KeyboardViewController: UIInputViewController {
     func log(text: String?) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         if text == nil {
-            self.keyboard.view.logTextView.text = self.keyboard.view.logTextView.text + proxy.documentContextBeforeInput + "\n"
+            self.inputMethodViewController.logTextView.text = "(null)\n" + self.inputMethodViewController.logTextView.text
         } else {
-            self.keyboard.view.logTextView.text = self.keyboard.view.logTextView.text + "(null)\n"
+            self.inputMethodViewController.logTextView.text = text! + "\n" + self.inputMethodViewController.logTextView.text
         }
     }
 
     func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-//        self.keyboard.view.logTextView.text = ""
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);
 //        println("\(self.context) \(sender.tag)")
@@ -128,21 +104,21 @@ class KeyboardViewController: UIInputViewController {
             proxy.insertText("\(UnicodeScalar(s))")
         }
 
-        log(proxy.documentContextBeforeInput);
-        log(proxy.documentContextAfterInput);
+//        log(proxy.documentContextBeforeInput);
+//        log(proxy.documentContextAfterInput);
     }
 
     func delete() {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-        self.keyboard.view.logTextView.text = ""
-        log(proxy.documentContextBeforeInput);
-        log(proxy.documentContextAfterInput);
+        //self.keyboard.view.logTextView.text = ""
+//        log(proxy.documentContextBeforeInput);
+//        log(proxy.documentContextAfterInput);
         let s = _state(self.context)
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
         if s > 0 {
             self.context = _context()
         }
-        log(proxy.documentContextBeforeInput);
-        log(proxy.documentContextAfterInput);
+//        log(proxy.documentContextBeforeInput);
+//        log(proxy.documentContextAfterInput);
     }
 }

@@ -10,18 +10,10 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardView" customModule="Gureum" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QwertyKeyboardView" customModule="Gureum" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="logging view for debug" selectable="NO" id="fuv-1d-gLS">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="38" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TQq-IV-U2o" customClass="GRInputButton" customModule="Gureum">
                     <rect key="frame" x="4" y="120" width="42" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -68,28 +60,12 @@
             <connections>
                 <outlet property="deleteButton" destination="g0X-LV-ugc" id="qK5-a2-QUQ"/>
                 <outlet property="doneButton" destination="ZYd-Nn-XeZ" id="NOK-Kj-On3"/>
-                <outlet property="leftSwipeRecognizer" destination="bFy-II-AOM" id="tLs-GU-DRA"/>
-                <outlet property="logTextView" destination="fuv-1d-gLS" id="fu2-VM-OBd"/>
                 <outlet property="nextKeyboardButton" destination="0pk-7q-hxg" id="RRx-ju-P4L"/>
                 <outlet property="shiftButton" destination="TQq-IV-U2o" id="NFD-JS-8wc"/>
                 <outlet property="toggleKeyboardButton" destination="b4H-df-F68" id="qNR-oH-F0z"/>
-                <outletCollection property="gestureRecognizers" destination="bFy-II-AOM" appends="YES" id="9nX-dl-v5x"/>
-                <outletCollection property="gestureRecognizers" destination="Sgl-7M-Cuw" appends="YES" id="EB1-Yf-gsU"/>
             </connections>
             <point key="canvasLocation" x="348" y="239"/>
         </view>
-        <swipeGestureRecognizer direction="left" id="bFy-II-AOM">
-            <connections>
-                <action selector="leftForSwipeRecognizer:" destination="iN0-l3-epB" id="bYv-8w-5Z4"/>
-                <outlet property="delegate" destination="iN0-l3-epB" id="5PT-Aw-2Yd"/>
-            </connections>
-        </swipeGestureRecognizer>
-        <swipeGestureRecognizer direction="right" id="Sgl-7M-Cuw">
-            <connections>
-                <action selector="rightForSwipeRecognizer:" destination="iN0-l3-epB" id="EPs-c3-Kbh"/>
-                <outlet property="delegate" destination="iN0-l3-epB" id="2yq-vZ-5rJ"/>
-            </connections>
-        </swipeGestureRecognizer>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

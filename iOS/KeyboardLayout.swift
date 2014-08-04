@@ -8,60 +8,64 @@
 
 import UIKit
 
-class KeyboardView: UIView, UIGestureRecognizerDelegate {
-    @IBOutlet var logTextView: UITextView!
-    @IBOutlet var nextKeyboardButton: UIButton!
-    @IBOutlet var toggleKeyboardButton: UIButton!
-    @IBOutlet var doneButton: UIButton!
-    @IBOutlet var shiftButton: UIButton!
-    @IBOutlet var deleteButton: UIButton!
+class KeyboardView: UIView {
+    @IBOutlet var nextKeyboardButton: UIButton! = nil
+    @IBOutlet var toggleKeyboardButton: UIButton! = nil
+    @IBOutlet var deleteButton: UIButton! = nil
+    @IBOutlet var doneButton: UIButton! = nil
 
-    @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
+}
 
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
-        return true; // 'false' if there is no candidate
-    }
-
-    @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let originalFrame = self.frame
-        UIView.animateWithDuration(0.36, animations: {
-                var frame = originalFrame
-                frame.origin.x -= frame.size.width
-                self.frame = frame
-            }, completion: {
-                (value: Bool) in
-                self.frame = originalFrame
-            })
-    }
-
-    @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let originalFrame = self.frame
-        UIView.animateWithDuration(0.36, animations: {
-                var frame = self.frame
-                frame.origin.x += frame.size.width
-                self.frame = frame
-            }, completion: {
-                (value: Bool) in
-                self.frame = originalFrame
-            })
+class NoKeyboardView: KeyboardView {
+    init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.redColor()
     }
 }
 
+class QwertyKeyboardView: KeyboardView {
+
+    @IBOutlet var shiftButton: UIButton!
+
+    init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
+}
+
+
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
-    let view: KeyboardView
-    var inputViewController: KeyboardViewController? = nil {
-        didSet {
-            self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-            self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
-        }
+    var view: KeyboardView!
+    var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: nil)
+
+    class var containerName: String {
+    get {
+        assert(false)
+        return ""
+    }
     }
 
     init(nibName: String, bundle: NSBundle?) {
-        let vc = UIViewController(nibName: nibName, bundle: nil)
+        let vc = UIViewController(nibName: nibName, bundle: bundle)
         self.view = vc.view as KeyboardView
+        self.helper.delegate = self
+        self.helper.layoutIn(self.view)
     }
 
-    // --
+    init() {
+        self.view = nil // mad limitation
+        let name = self.dynamicType.containerName
+        let vc = UIViewController(nibName: name, bundle: nil)
+        self.view = vc.view as KeyboardView
+        self.helper.delegate = self
+        self.helper.layoutIn(self.view)
+    }
+
+    var inputViewController: InputViewController? = nil {
+    didSet {
+        self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
+    }
+    }
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         assert(false)
@@ -104,7 +108,70 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 }
 
+class NoKeyboardLayout: KeyboardLayout {
+    init() {
+        super.init()
+        self.view = NoKeyboardView(frame: CGRectMake(0, 0, 320, 208))
+    }
+
+    override class var containerName: String {
+    get {
+        return "NoLayout"
+    }
+    }
+
+    override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+
+    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+        return 1
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+        return 1
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
+        return 208
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int) -> CGFloat {
+        return 320
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+        return []
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+        return []
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+        let button = GRInputButton.buttonWithType(.System) as UIButton
+        button.tag = Int(UnicodeScalar(" ").value)
+        button.setTitle("ERROR: This is a bug.", forState: .Normal)
+        button.sizeToFit()
+        button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
+        return button
+    }    
+}
+
+
 class QwertyKeyboardLayout: KeyboardLayout {
+    var qwertyView: QwertyKeyboardView {
+    get {
+        return self.view as QwertyKeyboardView
+    }
+    }
+
+    override class var containerName: String {
+    get {
+        return "QwertyLayout"
+    }
+    }
+
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         return UIEdgeInsetsMake(12, 4, 4, 4)
     }
@@ -129,14 +196,14 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
-        return 40
+        return 52
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int) -> CGFloat {
         if row == 3 {
             return 176
         } else {
-            return 28
+            return 34
         }
     }
 
@@ -145,7 +212,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         case 1:
             return [UIButton(frame: CGRectMake(0, 0, 10, 10))]
         case 2:
-            return [self.view.shiftButton]
+            return [self.qwertyView.shiftButton]
         case 3:
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton]
         default:
