@@ -9,17 +9,13 @@
 import UIKit
 
 class InputViewController: UIInputViewController {
-    var keyboards: [KeyboardLayout] = []
-    var context: UnsafePointer<()>
     var inputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.context = _context()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     init(coder: NSCoder) {
-        self.context = _context()
         super.init(coder: coder)
     }
 
@@ -46,14 +42,14 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.text = ""
 //        self.log("text will change:")
         // The app is about to change the document's contents. Perform any preparation here.
-        self.context = _context()
+        self.inputMethodViewController.resetContext()
     }
 
     override func textDidChange(textInput: UITextInput!) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
 //        self.log("text did change:")
-        self.context = _context()
+        self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
@@ -67,12 +63,12 @@ class InputViewController: UIInputViewController {
     }
 
     override func selectionDidChange(textInput: UITextInput!)  {
-        self.context = _context()
+        self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
     override func selectionWillChange(textInput: UITextInput!)  {
-        self.context = _context()
+        self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
@@ -91,19 +87,21 @@ class InputViewController: UIInputViewController {
 //        log(proxy.documentContextAfterInput);
 //        println("\(self.context) \(sender.tag)")
 
-        let had_state = _state(self.context)
-        if had_state > 0 {
+        let context = self.inputMethodViewController.selectedLayoutContext
+        let precomposed = context_get_composed_unicode(context)
+        let processed = context_put(context, UInt32(sender.tag))
+        if processed && precomposed > 0 {
             proxy.deleteBackward()
         }
-        let r = _put(self.context, UInt32(sender.tag))
-        if r > 0 {
-            proxy.insertText("\(UnicodeScalar(r))")
-        }
-        let s = _state(self.context)
-        if s > 0 {
-            proxy.insertText("\(UnicodeScalar(s))")
-        }
 
+        let commited = context_get_commited_unicode(context)
+        if commited > 0 {
+            proxy.insertText("\(UnicodeScalar(commited))")
+        }
+        let composed = context_get_composed_unicode(context)
+        if composed > 0 {
+            proxy.insertText("\(UnicodeScalar(composed))")
+        }
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);
     }
@@ -113,10 +111,16 @@ class InputViewController: UIInputViewController {
         //self.keyboard.view.logTextView.text = ""
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);
-        let s = _state(self.context)
+        let context = self.inputMethodViewController.selectedLayoutContext
+        let precomposed = context_get_composed_unicode(context)
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
-        if s > 0 {
-            self.context = _context()
+        if precomposed > 0 {
+            let processed = context_put(context, 0x7f)
+            assert(processed)
+            let composed = context_get_composed_unicode(context)
+            if composed > 0 {
+                proxy.insertText("\(UnicodeScalar(composed))")
+            }
         }
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);

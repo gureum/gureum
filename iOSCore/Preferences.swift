@@ -15,7 +15,7 @@ class Preferences {
     get {
         let layouts = self.defaults.arrayForKey("layouts") as Array<String>?
         if !layouts || layouts?.count == 0 {
-            return ["qwerty", "2set", "emoticon"]
+            return ["qwerty", "ksx5002", "emoticon"]
         }
         return layouts!
     }

@@ -25,10 +25,24 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     }
 
+    var selectedLayoutContext: UnsafePointer<()> {
+    get {
+        let context = self.layouts[self.selectedLayoutIndex].context
+        assert(context)
+        return context
+    }
+    }
+
+    func resetContext() {
+        context_flush(self.selectedLayoutContext)
+    }
+
     func keyboardLayoutForLayoutName(name: String, frame: CGRect) -> KeyboardLayout {
         switch name {
         case "qwerty":
             return QwertyKeyboardLayout()
+        case "ksx5002":
+            return KSX5002KeyboardLayout()
         default:
             return NoKeyboardLayout()
         }
@@ -76,9 +90,13 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     func selectLayoutByIndex(index: Int, animated: Bool) {
         assert(self.inputMethodView.pageControl)
         assert(self.inputMethodView.layoutsView)
+
         self.inputMethodView.pageControl.currentPage = index
         let offset = CGPointMake(CGFloat(index) * self.inputMethodView.layoutsView.frame.width, 0)
         self.inputMethodView.layoutsView.setContentOffset(offset, animated: animated)
+
+        self.inputMethodView.pageControl.alpha = 1.0
+        UIView.animateWithDuration(0.72, animations: { self.inputMethodView.pageControl.alpha = 0.0 })
     }
 
     @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
@@ -102,15 +120,9 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     func scrollViewDidScroll(scrollView: UIScrollView!) {
         self.inputMethodView.pageControl.currentPage = self.selectedLayoutIndex
     }
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
-        UIView.animateWithDuration(0.36, animations: { self.inputMethodView.pageControl.alpha = 0.0 })
-    }
-
 }
 
 class InputMethodView: UIView {
     @IBOutlet var layoutsView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
-
 }

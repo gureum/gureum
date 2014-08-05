@@ -7,20 +7,16 @@
 //
 
 import UIKit
+import GureumCore
 
 class KeyboardView: UIView {
     @IBOutlet var nextKeyboardButton: UIButton! = nil
     @IBOutlet var toggleKeyboardButton: UIButton! = nil
     @IBOutlet var deleteButton: UIButton! = nil
     @IBOutlet var doneButton: UIButton! = nil
-
 }
 
 class NoKeyboardView: KeyboardView {
-    init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.redColor()
-    }
 }
 
 class QwertyKeyboardView: KeyboardView {
@@ -36,35 +32,47 @@ class QwertyKeyboardView: KeyboardView {
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var view: KeyboardView!
     var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: nil)
-
-    class var containerName: String {
-    get {
-        assert(false)
-        return ""
-    }
-    }
-
-    init(nibName: String, bundle: NSBundle?) {
-        let vc = UIViewController(nibName: nibName, bundle: bundle)
-        self.view = vc.view as KeyboardView
-        self.helper.delegate = self
-        self.helper.layoutIn(self.view)
-    }
-
-    init() {
-        self.view = nil // mad limitation
-        let name = self.dynamicType.containerName
-        let vc = UIViewController(nibName: name, bundle: nil)
-        self.view = vc.view as KeyboardView
-        self.helper.delegate = self
-        self.helper.layoutIn(self.view)
-    }
+    var context: UnsafePointer<()> = nil
 
     var inputViewController: InputViewController? = nil {
     didSet {
         self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
     }
+    }
+
+    class func containerName() -> String {
+        assert(false)
+        return ""
+    }
+
+    class func loadContext() -> UnsafePointer<()> {
+        assert(false)
+        return nil
+    }
+
+    func _postinit() {
+        self.helper.delegate = self
+        self.helper.layoutIn(self.view)
+
+        self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
+        self.context = self.dynamicType.loadContext()
+    }
+
+    init(nibName: String, bundle: NSBundle?) {
+        let vc = UIViewController(nibName: nibName, bundle: bundle)
+        self.view = vc.view as KeyboardView
+        _postinit()
+    }
+
+    init() {
+        self.view = nil // mad limitation
+        let name = self.dynamicType.containerName()
+        let vc = UIViewController(nibName: name, bundle: nil)
+        self.view = vc.view as KeyboardView
+        _postinit()
+
     }
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
@@ -109,15 +117,13 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 }
 
 class NoKeyboardLayout: KeyboardLayout {
-    init() {
-        super.init()
-        self.view = NoKeyboardView(frame: CGRectMake(0, 0, 320, 208))
-    }
 
-    override class var containerName: String {
-    get {
+    override class func containerName() -> String {
         return "NoLayout"
     }
+
+    override class func loadContext() -> UnsafePointer<()> {
+        return nil
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
@@ -166,10 +172,12 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
     }
 
-    override class var containerName: String {
-    get {
+    override class func containerName() -> String {
         return "QwertyLayout"
     }
+
+    override class func loadContext() -> UnsafePointer<()> {
+        return context_create(bypass_phase(), bypass_decoder())
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
@@ -247,15 +255,45 @@ class QwertyKeyboardLayout: KeyboardLayout {
         if position.row == 3 {
             button.setTitle("간격", forState: .Normal)
         } else {
-            let label = _label(Int8(key.value))
+            button.setTitle("\(Character(UnicodeScalar(key)))", forState: .Normal)
+        }
+        button.sizeToFit()
+        button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
+        button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+
+        return button
+    }
+
+}
+
+class KSX5002KeyboardLayout: QwertyKeyboardLayout {
+
+    override class func loadContext() -> UnsafePointer<()> {
+        return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
+        let keyline = keylines[position.row].unicodeScalars
+        var idx = keyline.startIndex
+        for _ in 0..<position.column {
+            idx = idx.successor()
+        }
+        let key = keyline[idx]
+
+        let button = GRInputButton.buttonWithType(.System) as UIButton
+        button.tag = Int(key.value)
+        if position.row == 3 {
+            button.setTitle("간격", forState: .Normal)
+        } else {
+            let label = ksx5002_label(Int8(key.value))
             button.setTitle("\(Character(UnicodeScalar(label)))", forState: .Normal)
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
-        button.alpha = 0.5
-
+        
         return button
     }
-
+    
 }

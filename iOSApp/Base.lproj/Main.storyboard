@@ -85,6 +85,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="RY6-Vo-U5z" style="IBUITableViewCellStyleDefault" id="L8C-vN-6iO">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L8C-vN-6iO" id="7y1-l5-10a">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="현재 설정 시험하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RY6-Vo-U5z">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Ron-CG-Qzw" kind="push" id="q5G-P6-afr"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="고급 설정" id="O9b-4q-G0c">
@@ -220,7 +237,7 @@
                     </connections>
                 </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="471" y="697"/>
+            <point key="canvasLocation" x="471" y="695"/>
         </scene>
         <!--자판 추가-->
         <scene sceneID="xaO-Wl-3eF">
@@ -315,18 +332,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
-                                <rect key="frame" x="47" y="45" width="232" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-tO-xu6">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <color key="backgroundColor" red="1" green="0.79346689865937869" blue="0.59494798472168475" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
+                                <rect key="frame" x="44" y="90" width="232" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.79487941576086962" green="0.79487941576086962" blue="0.79487941576086962" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="92e-tN-RM7"/>
                     <connections>
                         <outlet property="compositionField" destination="8IH-T4-ofw" id="pL6-hr-UMO"/>
                         <outlet property="preview" destination="v6a-tO-xu6" id="pJ9-i5-Nx6"/>
@@ -334,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5M-b8-40U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="49"/>
+            <point key="canvasLocation" x="471" y="49"/>
         </scene>
     </scenes>
     <resources>
