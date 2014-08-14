@@ -4,6 +4,34 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
+        <!--처음 설치하기-->
+        <scene sceneID="3Sx-fS-S6P">
+            <objects>
+                <viewController id="u8y-ei-8FF" customClass="InstallHelpViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R6w-qr-v0P"/>
+                        <viewControllerLayoutGuide type="bottom" id="cv1-xe-T3T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pnm-x9-x1b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ml-Ta-FqV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="처음 설치하기" id="BUE-1q-Dti"/>
+                    <connections>
+                        <outlet property="webView" destination="8Ml-Ta-FqV" id="T4c-el-Pln"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5d-af-6YM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="-177"/>
+        </scene>
         <!--구름 입력기-->
         <scene sceneID="vRg-Te-jGg">
             <objects>
@@ -13,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ijO-qf-kbM">
-                            <rect key="frame" x="0.0" y="64" width="320" height="185"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="168"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_512x512.png" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-3P-GHi">
@@ -25,7 +53,7 @@
                         <sections>
                             <tableViewSection headerTitle="도움말" id="dl2-C0-do0">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="8kv-f5-cXP" style="IBUITableViewCellStyleDefault" id="ihd-XQ-Ske">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8kv-f5-cXP" style="IBUITableViewCellStyleDefault" id="ihd-XQ-Ske">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ihd-XQ-Ske" id="Np6-b2-8Pe">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -38,6 +66,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="u8y-ei-8FF" kind="push" id="7kN-cF-A3t"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="JMw-We-j9y" style="IBUITableViewCellStyleDefault" id="1Wf-yc-SYo">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -57,6 +88,23 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="빠른 설정" id="MFq-Nj-UTZ">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="m3z-Og-CsD" style="IBUITableViewCellStyleDefault" id="dBq-3l-CRM">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBq-3l-CRM" id="4q9-jI-nEi">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="테마 고르기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m3z-Og-CsD">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vWb-Sm-Sh2" kind="push" id="436-8A-qBI"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Zih-dB-dvG" style="IBUITableViewCellStyleDefault" id="oYg-a9-bGH">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oYg-a9-bGH" id="m1j-8U-vHW">
@@ -151,7 +199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd5-Z3-yer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="527"/>
+            <point key="canvasLocation" x="35" y="511"/>
         </scene>
         <!--자판 설정-->
         <scene sceneID="3Ai-uY-gbp">
@@ -243,6 +291,43 @@
                 </barButtonItem>
             </objects>
             <point key="canvasLocation" x="471" y="695"/>
+        </scene>
+        <!--테마-->
+        <scene sceneID="bIZ-cK-HCA">
+            <objects>
+                <viewController id="vWb-Sm-Sh2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C7t-TR-WK1"/>
+                        <viewControllerLayoutGuide type="bottom" id="P0D-JL-0e5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="66H-xj-mRZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04B-H6-NSO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="KWh-rX-HxH">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="288"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZBZ-D3-Nuf" customClass="InputMethodView" customModule="Gureum" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="352" width="320" height="216"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="테마" id="Jr1-0l-XcV">
+                        <barButtonItem key="rightBarButtonItem" title="구매 복원" id="Q6T-La-nLe"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ln7-GB-Fc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="1359"/>
         </scene>
         <!--자판 추가-->
         <scene sceneID="xaO-Wl-3eF">
@@ -371,7 +456,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Kw-Qy-kby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="1357"/>
+            <point key="canvasLocation" x="857" y="695"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jzb-xh-l8m">
@@ -387,7 +472,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CC2-Jl-U5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="527"/>
+            <point key="canvasLocation" x="-442" y="511"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="e0k-zV-AvS">
