@@ -14,9 +14,24 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 
     @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
     @IBOutlet var rightSwipeRecognizer: UIGestureRecognizer!
+    @IBOutlet var upSwipeRecognizer: UIGestureRecognizer!
+    @IBOutlet var downSwipeRecognizer: UIGestureRecognizer!
 
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)  {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)  {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+        assert(self.inputMethodView != nil)
+        assert(self.inputMethodView.backgroundImageView != nil)
+
+        let image = preferences.theme.backgroundImage
+        if image != nil {
+            self.inputMethodView.backgroundImageView.image = image
+        }
+    }
+
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+        assert(false) // are you kidding, swift
     }
 
     var inputMethodView: InputMethodView! {
@@ -25,10 +40,10 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     }
 
-    var selectedLayoutContext: UnsafePointer<()> {
+    var selectedLayoutContext: UnsafeMutablePointer<()> {
     get {
         let context = self.layouts[self.selectedLayoutIndex].context
-        assert(context)
+        assert(context != nil)
         return context
     }
     }
@@ -59,13 +74,26 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
             view.removeFromSuperview()
         }
 
+        let backgroundImage = preferences.theme.backgroundImage
+        let foregroundImage = preferences.theme.foregroundImage
         self.layouts.removeAll(keepCapacity: true)
         let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
             let layout = self.keyboardLayoutForLayoutName(name, frame: self.view.bounds)
             self.layouts.append(layout)
             layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
+            if backgroundImage != nil {
+                let imageView = UIImageView(image: backgroundImage)
+                imageView.frame = layout.view.frame
+                layoutsView.addSubview(imageView)
+            }
             layoutsView.addSubview(layout.view)
+            if foregroundImage != nil {
+                let imageView = UIImageView(image: foregroundImage)
+                imageView.frame = layout.view.frame
+                layoutsView.addSubview(imageView)
+            }
+
         }
 
         layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.layouts.count), 0)
@@ -125,4 +153,5 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 class InputMethodView: UIView {
     @IBOutlet var layoutsView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet var backgroundImageView: UIImageView!
 }

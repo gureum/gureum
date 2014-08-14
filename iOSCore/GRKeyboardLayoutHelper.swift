@@ -9,6 +9,9 @@
 import UIKit
 
 protocol GRKeyboardLayoutHelperDelegate {
+    func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper)
+    func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper)
+
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int
     func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow: Int) -> Int
@@ -41,14 +44,14 @@ class GRKeyboardLayoutHelper {
 
 
     var delegate: GRKeyboardLayoutHelperDelegate?
-    var buttons: Dictionary<Position, UIButton> = [:];
+    var buttons: Dictionary<Position, UIButton> = [:]
 
     init(delegate: GRKeyboardLayoutHelperDelegate?) {
         self.delegate = delegate;
     }
 
     func buttonAt(position: Position) -> UIButton? {
-        if !self.delegate {
+        if self.delegate == nil {
             return nil
         }
 
@@ -62,6 +65,7 @@ class GRKeyboardLayoutHelper {
         self.buttons.removeAll()
 
         if let delegate = self.delegate {
+            delegate.layoutWillLoadForHelper(self)
             var rowHeightSum: CGFloat = 0.0
             var columnWidthSums = Array<CGFloat>()
 
@@ -95,7 +99,7 @@ class GRKeyboardLayoutHelper {
                 }
 
                 rowHeightSum += rowHeight
-                columnWidthSums += columnWidthSum
+                columnWidthSums.append(columnWidthSum)
             }
 
             let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
@@ -118,11 +122,18 @@ class GRKeyboardLayoutHelper {
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     left += width + columnSpace
                 }
+                let captionTheme = preferences.theme.qwertyKeyCaption
+                let (image1, image2, image3) = captionTheme.images
+                assert(image1 != nil)
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    button.setBackgroundImage(image1, forState: .Normal)
+                    button.setBackgroundImage(image2, forState: .Highlighted)
+                    button.setBackgroundImage(image3, forState: .Selected)
+                    button.titleLabel.font = captionTheme.font
                     view.addSubview(button)
                     left += columnWidth + columnSpace
                 }
@@ -135,6 +146,7 @@ class GRKeyboardLayoutHelper {
                     left += width + columnSpace
                 }
             }
+            delegate.layoutDidLoadForHelper(self)
         }
     }
 }

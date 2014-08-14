@@ -8,6 +8,8 @@
 
 import UIKit
 
+var selectedLayoutInAddLayoutView: String? = nil
+
 class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     @IBOutlet var preview: UIView!
     @IBOutlet var tableView: UITableView!
@@ -37,11 +39,11 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        if self.navigationItem.rightBarButtonItem == self.doneBarButtonItem {
+        //if self.navigationItem.rightBarButtonItem == self.doneBarButtonItem {
             return 2
-        } else {
-            return 1
-        }
+        //} else {
+        //    return 1
+        //}
     }
 
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
@@ -81,15 +83,8 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
         if indexPath.section == 0 {
             preferences.defaultLayoutIndex = indexPath.row
             tableView.reloadData()
-        } else {
-            var layouts = preferences.layouts
-            layouts.append("unplemented")
-            preferences.layouts = layouts
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: layouts.count - 1, inSection: 0)] as [AnyObject], withRowAnimation: .Bottom)
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            self.inputMethodViewController.loadFromPreferences()
         }
-
-        self.inputMethodViewController.loadFromPreferences()
     }
 
     func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
@@ -118,7 +113,7 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
             tableView.deleteRowsAtIndexPaths([indexPath] as [AnyObject], withRowAnimation: .Top)
         case .Insert:
             assert(indexPath.section == 1)
-            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            self.performSegueWithIdentifier("add", sender: self)
         case .None:
             assert(false)
         }
@@ -144,4 +139,13 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
         self.inputMethodViewController.loadFromPreferences()
     }
 
+}
+
+
+class AddLayoutTableViewController: UITableViewController {
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        selectedLayoutInAddLayoutView = cell.detailTextLabel.text
+        self.navigationController.popViewControllerAnimated(true)
+    }
 }

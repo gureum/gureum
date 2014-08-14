@@ -11,16 +11,17 @@ import UIKit
 class GRInputButton: UIButton {
 
     func _init() {
-        self.layer.cornerRadius = 5.0
-        self.layer.masksToBounds = true;
+//        self.layer.cornerRadius = 5.0
+//        self.layer.masksToBounds = true;
+
     }
 
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self._init()
     }
 
-    init(coder: NSCoder) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
         self._init()
     }

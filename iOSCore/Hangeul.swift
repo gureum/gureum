@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 youknowone.org. All rights reserved.
 //
 
-func context_get_composed_unicode(context: UnsafePointer<()>) -> UInt32 {
+func context_get_composed_unicode(context: UnsafeMutablePointer<()>) -> UInt32 {
     let buffer = unicodevector_create()
     context_get_composed(context, buffer)
     let size = unicodevector_size(buffer)
@@ -15,7 +15,7 @@ func context_get_composed_unicode(context: UnsafePointer<()>) -> UInt32 {
     return result
 }
 
-func context_get_commited_unicode(context: UnsafePointer<()>) -> UInt32 {
+func context_get_commited_unicode(context: UnsafeMutablePointer<()>) -> UInt32 {
     let buffer = unicodevector_create()
     context_get_commited(context, buffer)
     let size = unicodevector_size(buffer)

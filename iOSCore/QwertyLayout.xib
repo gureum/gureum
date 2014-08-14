@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
@@ -15,42 +15,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="38" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TQq-IV-U2o" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="4" y="120" width="42" height="40"/>
+                    <rect key="frame" x="5" y="114" width="48" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="shift">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0pk-7q-hxg" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="42" y="168" width="36" height="40"/>
+                    <rect key="frame" x="43" y="162" width="40" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="🌐">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZYd-Nn-XeZ" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="261" y="168" width="54" height="40"/>
+                    <rect key="frame" x="233" y="162" width="80" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="입력">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b4H-df-F68" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="4" y="168" width="36" height="40"/>
+                    <rect key="frame" x="5" y="162" width="40" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="123">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g0X-LV-ugc" customClass="GRInputButton" customModule="Gureum">
-                    <rect key="frame" x="267" y="120" width="42" height="40"/>
+                    <rect key="frame" x="268" y="114" width="48" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="del">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="38" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IRp-Ff-sUq" customClass="GRInputButton" customModule="Gureum">
+                    <rect key="frame" x="80" y="162" width="160" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.40000000000000002" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="space">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -62,6 +70,7 @@
                 <outlet property="doneButton" destination="ZYd-Nn-XeZ" id="NOK-Kj-On3"/>
                 <outlet property="nextKeyboardButton" destination="0pk-7q-hxg" id="RRx-ju-P4L"/>
                 <outlet property="shiftButton" destination="TQq-IV-U2o" id="NFD-JS-8wc"/>
+                <outlet property="spaceButton" destination="IRp-Ff-sUq" id="wfH-VV-W1U"/>
                 <outlet property="toggleKeyboardButton" destination="b4H-df-F68" id="qNR-oH-F0z"/>
             </connections>
             <point key="canvasLocation" x="348" y="239"/>

@@ -11,11 +11,11 @@ import UIKit
 class InputViewController: UIInputViewController {
     var inputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    init(coder: NSCoder) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
     }
 

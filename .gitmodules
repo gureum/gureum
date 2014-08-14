@@ -4,3 +4,9 @@
 [submodule "ShortcutRecorder"]
 	path = OSX/ShortcutRecorder
 	url = git://github.com/gureum/shortcutrecorder.git
+[submodule "hangeul"]
+	path = hangeul
+	url = https://github.com/youknowone/hangeul.git
+[submodule "iOSTheme"]
+	path = iOSTheme
+	url = https://bitbucket.org/youknowone/gureum-theme.git

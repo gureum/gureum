@@ -11,35 +11,67 @@ import Foundation
 class Preferences {
     var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
 
+    func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
+        let object = self.defaults.arrayForKey(key)
+        if !object {
+            return defaultValue
+        }
+        return object
+    }
+
+    func getArrayForKey(key: String, defaultValue: AnyObject) -> AnyObject {
+        let object = self.defaults.arrayForKey(key) as Array!
+        if !object || object.count == 0 {
+            return defaultValue
+        }
+        return object
+    }
+
+    func setObjectForKey(key: String, value: AnyObject) {
+        self.defaults.setValue(value, forKey: key)
+        self.defaults.synchronize()
+    }
+
     var layouts: Array<String> {
     get {
-        let layouts = self.defaults.arrayForKey("layouts") as Array<String>?
-        if !layouts || layouts?.count == 0 {
-            return ["qwerty", "ksx5002", "emoticon"]
-        }
-        return layouts!
+        return getArrayForKey("layouts", defaultValue: ["qwerty", "ksx5002", "emoticon"]) as Array<String>
     }
 
     set {
-        self.defaults.setValue(newValue, forKey: "layouts")
-        self.defaults.synchronize()
+        setObjectForKey("layouts", value: newValue)
     }
     }
 
     var defaultLayoutIndex: Int {
     get {
-        let saved = self.defaults.objectForKey("layoutindex") as NSNumber!
-        let index: Int = saved ? saved.integerValue : 1
+        let index = getArrayForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
         if index >= self.layouts.count {
-            return self.layouts.count - 1
+        return self.layouts.count - 1
         } else {
-            return index
+        return index
         }
     }
 
     set {
-        self.defaults.setInteger(newValue, forKey: "layoutindex")
-        self.defaults.synchronize()
+        setObjectForKey("layoutindex", value: newValue)
+    }
+    }
+
+    var themeName: String {
+    get {
+        return getArrayForKey("themename", defaultValue: "default") as String
+    }
+
+    set {
+        setObjectForKey("themename", value: newValue)
+    }
+    }
+
+    var theme: Theme {
+    get {
+        let name = self.themeName
+        let theme = Theme(name: name)
+        return theme
     }
     }
 }

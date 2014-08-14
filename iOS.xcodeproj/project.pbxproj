@@ -35,12 +35,20 @@
 		386308FD1991438B0039369C /* libhangeul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38904F851944F71400858B09 /* libhangeul.a */; };
 		386308FE199143A80039369C /* capi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38303668199059D500C1EE0C /* capi.cpp */; };
 		386308FF199143A90039369C /* capi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38303668199059D500C1EE0C /* capi.cpp */; };
+		38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630900199148C50039369C /* QwertyKeyboardLayout.swift */; };
+		38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
+		38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630900199148C50039369C /* QwertyKeyboardLayout.swift */; };
+		38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
 		3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
 		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
+		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
+		38D9A396199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
+		38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +147,8 @@
 		386308C3199133140039369C /* QwertyLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QwertyLayout.xib; sourceTree = "<group>"; };
 		386308CC199133C50039369C /* GRInputButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRInputButton.swift; sourceTree = "<group>"; };
 		386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRKeyboardLayoutHelper.swift; sourceTree = "<group>"; };
+		38630900199148C50039369C /* QwertyKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QwertyKeyboardLayout.swift; sourceTree = "<group>"; };
+		38630902199148D20039369C /* NumpadKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpadKeyboardLayout.swift; sourceTree = "<group>"; };
 		3882B9F6193F9E6600076C26 /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3882B9FA193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882B9FB193F9E6600076C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +164,8 @@
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; name = default; path = iOSTheme/default; sourceTree = "<group>"; };
+		38E37EF8199A44EB00BA7F0C /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +195,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		38630898199132210039369C /* GureumCore */ = {
+		38630898199132210039369C /* iOSCore */ = {
 			isa = PBXGroup;
 			children = (
 				3830366B199059DE00C1EE0C /* capi.h */,
@@ -191,17 +203,19 @@
 				386308BD199133140039369C /* Hangeul.swift */,
 				386308BF199133140039369C /* InputMethodView.swift */,
 				386308C0199133140039369C /* KeyboardLayout.swift */,
+				38630900199148C50039369C /* QwertyKeyboardLayout.swift */,
+				38630902199148D20039369C /* NumpadKeyboardLayout.swift */,
 				386308CC199133C50039369C /* GRInputButton.swift */,
 				386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */,
 				38BB7013193FA11000605583 /* InputViewController.swift */,
 				38303654198A1F1E00C1EE0C /* Preferences.swift */,
+				38E37EF8199A44EB00BA7F0C /* Theme.swift */,
 				386308BE199133140039369C /* InputMethod.xib */,
 				386308C1199133140039369C /* NoLayout.xib */,
 				386308C2199133140039369C /* NumpadLayout.xib */,
 				386308C3199133140039369C /* QwertyLayout.xib */,
 				38630899199132210039369C /* Supporting Files */,
 			);
-			name = GureumCore;
 			path = iOSCore;
 			sourceTree = "<group>";
 		};
@@ -238,7 +252,8 @@
 				3882B9F8193F9E6600076C26 /* App */,
 				3882BA0B193F9E6600076C26 /* Tests */,
 				38BB7010193FA11000605583 /* iOS */,
-				38630898199132210039369C /* GureumCore */,
+				38630898199132210039369C /* iOSCore */,
+				38D9A398199B7F8E0087A965 /* iOSTheme */,
 				386308A5199132210039369C /* GureumCoreTests */,
 				3882B9F7193F9E6600076C26 /* Products */,
 			);
@@ -321,6 +336,14 @@
 				38BB7012193FA11000605583 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38D9A398199B7F8E0087A965 /* iOSTheme */ = {
+			isa = PBXGroup;
+			children = (
+				38D9A394199B7F8A0087A965 /* default */,
+			);
+			name = iOSTheme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +492,7 @@
 				386308F6199143520039369C /* InputMethod.xib in Resources */,
 				386308F8199143520039369C /* NumpadLayout.xib in Resources */,
 				386308F9199143520039369C /* QwertyLayout.xib in Resources */,
+				38D9A395199B7F8A0087A965 /* default in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
 				386308F7199143520039369C /* NoLayout.xib in Resources */,
@@ -486,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D9A396199B7F8A0087A965 /* default in Resources */,
 				386308F2199143520039369C /* NoLayout.xib in Resources */,
 				386308F1199143520039369C /* InputMethod.xib in Resources */,
 				386308F3199143520039369C /* NumpadLayout.xib in Resources */,
@@ -506,11 +531,14 @@
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */,
 				386308E3199143330039369C /* InputMethodView.swift in Sources */,
+				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
 				386308E5199143330039369C /* GRInputButton.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
+				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
 				38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */,
+				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,11 +557,14 @@
 				386308DA199143320039369C /* GRInputButton.swift in Sources */,
 				386308F0199143520039369C /* Preferences.swift in Sources */,
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
+				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,
+				38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */,
 				386308DC199143320039369C /* InputViewController.swift in Sources */,
 				386308D5199143320039369C /* Hangeul.swift in Sources */,
 				386308D9199143320039369C /* KeyboardLayout.swift in Sources */,
 				386308FE199143A80039369C /* capi.cpp in Sources */,
 				386308D8199143320039369C /* InputMethodView.swift in Sources */,
+				38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
