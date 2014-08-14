@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AA199C651A00355D69 /* StaticWebViewController.swift */; };
+		380136AE199C67F200355D69 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 380136AD199C67F200355D69 /* help */; };
+		380136B0199C68BC00355D69 /* GlobalActivicyIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */; };
+		380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
+		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
+		380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		386308D5199143320039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
@@ -128,6 +134,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		380136AA199C651A00355D69 /* StaticWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticWebViewController.swift; path = ../iOSCore/StaticWebViewController.swift; sourceTree = "<group>"; };
+		380136AD199C67F200355D69 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
+		380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalActivicyIndicatorView.swift; sourceTree = "<group>"; };
+		380136B1199CAE1F00355D69 /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
+		380136B3199CAFC000355D69 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		380136B4199CAFC000355D69 /* shop.json */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.json; path = shop.json; sourceTree = "<group>"; tabWidth = 2; };
+		380136B6199CB4A700355D69 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		38303654198A1F1E00C1EE0C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		38303656198D9FA000C1EE0C /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_512x512@2x.png"; path = "OSX/Icons/Gureum.iconset/icon_512x512@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -164,7 +177,7 @@
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; name = default; path = iOSTheme/default; sourceTree = "<group>"; };
+		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = default; sourceTree = "<group>"; };
 		38E37EF8199A44EB00BA7F0C /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,9 +289,14 @@
 				38303656198D9FA000C1EE0C /* icon_512x512@2x.png */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
 				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
+				380136B6199CB4A700355D69 /* PreviewViewController.swift */,
 				3882B9FD193F9E6600076C26 /* TestViewController.swift */,
 				38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */,
+				380136AA199C651A00355D69 /* StaticWebViewController.swift */,
+				380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */,
+				380136B1199CAE1F00355D69 /* ThemeViewController.swift */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
+				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
 			);
 			name = App;
@@ -341,9 +359,11 @@
 		38D9A398199B7F8E0087A965 /* iOSTheme */ = {
 			isa = PBXGroup;
 			children = (
+				380136B3199CAFC000355D69 /* README.md */,
+				380136B4199CAFC000355D69 /* shop.json */,
 				38D9A394199B7F8A0087A965 /* default */,
 			);
-			name = iOSTheme;
+			path = iOSTheme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +513,8 @@
 				386308F8199143520039369C /* NumpadLayout.xib in Resources */,
 				386308F9199143520039369C /* QwertyLayout.xib in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
+				380136B5199CAFC200355D69 /* shop.json in Resources */,
+				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
 				386308F7199143520039369C /* NoLayout.xib in Resources */,
@@ -527,6 +549,7 @@
 			files = (
 				386308E0199143330039369C /* Hangeul.swift in Sources */,
 				386308E7199143330039369C /* InputViewController.swift in Sources */,
+				380136B0199C68BC00355D69 /* GlobalActivicyIndicatorView.swift in Sources */,
 				386308F5199143520039369C /* Preferences.swift in Sources */,
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */,
@@ -535,10 +558,13 @@
 				386308E5199143330039369C /* GRInputButton.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
+				380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */,
+				380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
 				38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */,
 				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
+				380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

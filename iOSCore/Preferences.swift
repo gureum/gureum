@@ -12,14 +12,14 @@ class Preferences {
     var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
-        let object = self.defaults.arrayForKey(key)
+        let object = self.defaults.objectForKey(key)
         if !object {
             return defaultValue
         }
         return object
     }
 
-    func getArrayForKey(key: String, defaultValue: AnyObject) -> AnyObject {
+    func getArrayForKey(key: String, defaultValue: Array<AnyObject>) -> AnyObject {
         let object = self.defaults.arrayForKey(key) as Array!
         if !object || object.count == 0 {
             return defaultValue
@@ -44,7 +44,7 @@ class Preferences {
 
     var defaultLayoutIndex: Int {
     get {
-        let index = getArrayForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
+        let index = getObjectForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
         if index >= self.layouts.count {
         return self.layouts.count - 1
         } else {
@@ -59,7 +59,7 @@ class Preferences {
 
     var themeName: String {
     get {
-        return getArrayForKey("themename", defaultValue: "default") as String
+        return getObjectForKey("themename", defaultValue: "default") as String
     }
 
     set {

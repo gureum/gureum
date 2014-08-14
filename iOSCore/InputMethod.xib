@@ -36,7 +36,6 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backgroundImageView" destination="gwI-5b-3a8" id="eVM-Iy-Cfw"/>
                 <outlet property="layoutsView" destination="7jr-bf-Bju" id="1lc-de-668"/>
                 <outlet property="pageControl" destination="WLB-GR-bCX" id="zZm-ZD-0pN"/>
                 <outletCollection property="gestureRecognizers" destination="dwt-hY-UK0" appends="YES" id="c5x-Fc-tEF"/>

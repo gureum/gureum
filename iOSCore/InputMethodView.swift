@@ -23,10 +23,10 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         assert(self.inputMethodView != nil)
         assert(self.inputMethodView.backgroundImageView != nil)
 
-        let image = preferences.theme.backgroundImage
-        if image != nil {
-            self.inputMethodView.backgroundImageView.image = image
-        }
+//        let image = preferences.theme.backgroundImage
+//        if image != nil {
+//            self.inputMethodView.backgroundImageView.image = image
+//        }
     }
 
     required init(coder aDecoder: NSCoder!) {
@@ -153,5 +153,5 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 class InputMethodView: UIView {
     @IBOutlet var layoutsView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
-    @IBOutlet var backgroundImageView: UIImageView!
+    let backgroundImageView: UIImageView = UIImageView()
 }
