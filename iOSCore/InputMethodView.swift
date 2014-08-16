@@ -23,10 +23,10 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         assert(self.inputMethodView != nil)
         assert(self.inputMethodView.backgroundImageView != nil)
 
-//        let image = preferences.theme.backgroundImage
-//        if image != nil {
-//            self.inputMethodView.backgroundImageView.image = image
-//        }
+        let image = preferences.theme.backgroundImage
+        if image != nil {
+            self.inputMethodView.backgroundImageView.image = image
+        }
     }
 
     required init(coder aDecoder: NSCoder!) {
@@ -74,6 +74,7 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
             view.removeFromSuperview()
         }
 
+        assert(preferences.themeResources.count > 0)
         let backgroundImage = preferences.theme.backgroundImage
         let foregroundImage = preferences.theme.foregroundImage
         self.layouts.removeAll(keepCapacity: true)
@@ -93,7 +94,6 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
                 imageView.frame = layout.view.frame
                 layoutsView.addSubview(imageView)
             }
-
         }
 
         layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.layouts.count), 0)

@@ -9,15 +9,16 @@
 import UIKit
 
 class InputViewController: UIInputViewController {
-    var inputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
+    var inputMethodViewController: InputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    // overriding `init` causes crash
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//    }
+//
+//    required init(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
 
     override func updateViewConstraints() {
         super.updateViewConstraints()

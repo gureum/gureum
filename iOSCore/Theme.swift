@@ -15,32 +15,34 @@ class Theme {
         self.name = name
     }
 
-    func pathForResource(name: String?) -> String? {
-        return NSBundle.mainBundle().pathForResource(name, ofType: nil, inDirectory: self.name)
+    func dataForFilename(name: String) -> NSData? {
+        let rawData = preferences.themeResources[name]
+        if rawData == nil {
+            return nil
+        }
+        let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
+        return data
     }
 
-    func pathForResource(name: String?, ofType: String?) -> String? {
-        return NSBundle.mainBundle().pathForResource(name, ofType: ofType, inDirectory: self.name)
+    func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
+        let data = self.dataForFilename(name)
+        return NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: error)
     }
 
-    lazy var configuration: [String: AnyObject?] = {
-        let path = self.pathForResource("config", ofType: "json")
+    lazy var configuration: Dictionary<String, AnyObject> = {
         var error: NSError? = nil
-        let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions(0), error: &error)
-        assert(error == nil, "설정 파일을 찾을 수 없습니다.")
-        assert(data != nil, "설정 파일을 읽을 수 없습니다.")
-        let JSONObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error:&error) as Dictionary<String, AnyObject>?
-        assert(error == nil, "설정 파일에 오류가 있습니다.")
-        assert(JSONObject != nil, "설정 파일을 해석할 수 없습니다.")
-        return JSONObject!
+        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>
+        assert(error == nil)
+        assert(JSONObject != nil)
+        return JSONObject
     }()
 
     func imageForFilename(name: String) -> UIImage? {
-        let path = self.pathForResource(name as String?)
-        if path == nil{
+        let data = self.dataForFilename(name)
+        if data == nil {
             return nil
         } else {
-            return UIImage(contentsOfFile: path)
+            return UIImage(data: data)
         }
     }
 
@@ -84,7 +86,6 @@ class Theme {
     lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-done", fallback: self.qwerty80pxCaption)
 }
 
-
 class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject?]
     let fallback: ThemeCaptionConfiguration!
@@ -126,8 +127,7 @@ class ThemeCaptionConfiguration {
         }
         var images: [UIImage?] = []
         for imageName in imageConfiguration! {
-            let path = self.owner.pathForResource(imageName)
-            let image = UIImage(contentsOfFile: path) as UIImage!
+            let image = self.owner.imageForFilename(imageName)
             assert(image != nil, "캡션 이미지를 찾을 수 없습니다.")
             images.append(image)
         }
@@ -166,3 +166,15 @@ class ThemeCaptionConfiguration {
         return font!
     }()
 }
+
+class ThemeResourceCoder {
+    func encodeFromData(data: NSData) -> String {
+        return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+    }
+
+    func decodeToData(data: String) -> NSData {
+        return NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(0))
+    }
+}
+
+let themeResourceCoder = ThemeResourceCoder()

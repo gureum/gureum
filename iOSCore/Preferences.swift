@@ -27,52 +27,79 @@ class Preferences {
         return object
     }
 
+    func getDictionaryForKey(key: String, defaultValue: Dictionary<String, AnyObject>) -> AnyObject {
+        let object = self.defaults.dictionaryForKey(key) as Dictionary!
+        if !object {
+            return defaultValue
+        }
+        if object.count == 0 {
+            return defaultValue
+        }
+        return object
+    }
+
     func setObjectForKey(key: String, value: AnyObject) {
-        self.defaults.setValue(value, forKey: key)
+        self.defaults.setObject(value, forKey: key)
+        assert(self.defaults.objectForKey(key) != nil)
         self.defaults.synchronize()
     }
 
     var layouts: Array<String> {
-    get {
-        return getArrayForKey("layouts", defaultValue: ["qwerty", "ksx5002", "emoticon"]) as Array<String>
-    }
+        get {
+            return getArrayForKey("layouts", defaultValue: ["qwerty", "ksx5002", "emoticon"]) as Array<String>
+        }
 
-    set {
-        setObjectForKey("layouts", value: newValue)
-    }
-    }
-
-    var defaultLayoutIndex: Int {
-    get {
-        let index = getObjectForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
-        if index >= self.layouts.count {
-        return self.layouts.count - 1
-        } else {
-        return index
+        set {
+            setObjectForKey("layouts", value: newValue)
         }
     }
 
-    set {
-        setObjectForKey("layoutindex", value: newValue)
-    }
+    var defaultLayoutIndex: Int {
+        get {
+            let index = getObjectForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
+            if index >= self.layouts.count {
+            return self.layouts.count - 1
+            } else {
+            return index
+            }
+        }
+
+        set {
+            setObjectForKey("layoutindex", value: newValue)
+        }
     }
 
     var themeName: String {
-    get {
-        return getObjectForKey("themename", defaultValue: "default") as String
-    }
+        get {
+            return getObjectForKey("themename", defaultValue: "default") as String
+        }
 
-    set {
-        setObjectForKey("themename", value: newValue)
-    }
+        set {
+            setObjectForKey("themename", value: newValue)
+        }
     }
 
     var theme: Theme {
-    get {
-        let name = self.themeName
-        let theme = Theme(name: name)
-        return theme
+        get {
+            let name = self.themeName
+            let theme = Theme(name: name)
+            return theme
+        }
     }
+
+    var themeResources: Dictionary<String, String> {
+        get {
+            return getDictionaryForKey("themeresource", defaultValue: [:]) as Dictionary<String, String>
+        }
+
+        set {
+            // FIXME: Dictionary to NSDictioanry
+            var dict: NSMutableDictionary = [:]
+            for (key, value) in newValue {
+                dict[key] = value
+            }
+            self.setObjectForKey("themeresource", value: dict)
+        }
     }
 }
 

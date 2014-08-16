@@ -56,7 +56,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1)
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {

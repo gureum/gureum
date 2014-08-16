@@ -63,3 +63,80 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
+
+
+// nested function cause swiftc fault
+func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
+    println("\(node)")
+    if node is String {
+        let str = node as String
+        return [str: true]
+    }
+    else if node is Dictionary<String, AnyObject> {
+        var resources: Dictionary<String, Bool> = [:]
+        for subnode in (node as Dictionary<String, AnyObject>).values {
+            let collection = collectResources(subnode)
+            for collected in collection.keys {
+                resources[collected] = true
+            }
+        }
+        return resources
+    }
+    else if node is Array<AnyObject> {
+        var resources: Dictionary<String, Bool> = [:]
+        for subnode in node as Array<AnyObject> {
+            let collection = collectResources(subnode)
+            for collected in collection.keys {
+                resources[collected] = true
+            }
+        }
+        return resources
+    }
+    else if node is NSNull || node is Bool {
+        return [:]
+    }
+    else {
+        assert(false)
+        return [:]
+    }
+}
+
+extension Theme {
+    func pathForResource(name: String?) -> String? {
+        return NSBundle.mainBundle().pathForResource(name, ofType: nil, inDirectory: self.name)
+    }
+
+    func embeddedConfiguration() -> [String: AnyObject?] {
+        let path = self.pathForResource("config.json")
+        var error: NSError? = nil
+        let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions(0), error: &error)
+        assert(error == nil, "설정 파일을 찾을 수 없습니다.")
+        assert(data != nil, "설정 파일을 읽을 수 없습니다.")
+        let JSONObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error:&error) as Dictionary<String, AnyObject>?
+        assert(error == nil, "설정 파일에 오류가 있습니다.")
+        assert(JSONObject != nil, "설정 파일을 해석할 수 없습니다.")
+        return JSONObject!
+    }
+
+    func dump() {
+        let root: AnyObject = self.embeddedConfiguration() as Dictionary<String, AnyObject>
+        var collection = collectResources(root)
+        collection["config.json"] = true
+        var resources = Dictionary<String, String>()
+        for collected in collection.keys {
+            let path = self.pathForResource(collected)
+            let data = NSData(contentsOfFile: path)
+            if data == nil {
+                println("파일이 존재하지 않습니다: \(collected)")
+                continue
+            }
+            let str = themeResourceCoder.encodeFromData(data)
+            resources[collected] = str
+            println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
+        }
+        println("dumped resources: \(resources)")
+        assert(resources.count > 0)
+        preferences.themeResources = resources
+        assert(preferences.themeResources.count > 0)
+    }
+}

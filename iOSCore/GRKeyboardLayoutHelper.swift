@@ -74,7 +74,7 @@ class GRKeyboardLayoutHelper {
             let rowCount = delegate.numberOfRowsForHelper(self)
             for row in 0..<rowCount {
                 let rowHeight = delegate.helper(self, heightOfRow: row)
-                let columnWidth: CGFloat = delegate.helper(self, columnWidthInRow: row)
+                let columnWidth = delegate.helper(self, columnWidthInRow: row)
                 let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
                 let leftButtons = delegate.helper(self, leftButtonsForRow: row)
                 let rightButtons = delegate.helper(self, rightButtonsForRow: row)
