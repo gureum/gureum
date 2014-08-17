@@ -126,7 +126,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         if position.row == 3 {
             button.setTitle("간격", forState: .Normal)
         } else {
-            button.setTitle("\(Character(UnicodeScalar(key)))", forState: .Normal)
+            button.setTitle("\(Character(UnicodeScalar(key.value - 32)))", forState: .Normal)
         }
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
