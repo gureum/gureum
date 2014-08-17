@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
-        if preferences.themeResources.count == 0 {
-            preferences.theme.dump() // FIXME: more sane initializer
-        }
+//        if preferences.themeResources.count == 0 {
+        EmbeddedTheme(name: preferences.themeName).dump() // FIXME: more sane initializer
+//        }
         return true
     }
 

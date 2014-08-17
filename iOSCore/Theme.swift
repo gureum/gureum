@@ -9,19 +9,13 @@
 import UIKit
 
 class Theme {
-    let name: String
+    init() {
 
-    init(name: String) {
-        self.name = name
     }
 
     func dataForFilename(name: String) -> NSData? {
-        let rawData = preferences.themeResources[name]
-        if rawData == nil {
-            return nil
-        }
-        let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
-        return data
+        assert(false)
+        return nil
     }
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
@@ -86,6 +80,20 @@ class Theme {
     lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-space", fallback: self.qwerty160pxCaption)
     lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-done", fallback: self.qwerty80pxCaption)
 }
+
+
+class PreferencedTheme: Theme {
+
+    override func dataForFilename(name: String) -> NSData? {
+        let rawData = preferences.themeResources[name]
+        if rawData == nil {
+            return nil
+        }
+        let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
+        return data
+    }
+}
+
 
 class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject?]

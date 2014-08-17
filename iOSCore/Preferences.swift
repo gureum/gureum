@@ -81,9 +81,7 @@ class Preferences {
 
     var theme: Theme {
         get {
-            let name = self.themeName
-            let theme = Theme(name: name)
-            return theme
+            return PreferencedTheme()
         }
     }
 

@@ -101,37 +101,38 @@ func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
     }
 }
 
-extension Theme {
+
+class EmbeddedTheme: Theme {
+    let name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
     func pathForResource(name: String?) -> String? {
         return NSBundle.mainBundle().pathForResource(name, ofType: nil, inDirectory: self.name)
     }
 
-    func embeddedConfiguration() -> [String: AnyObject?] {
-        let path = self.pathForResource("config.json")
-        println("설정 파일 위치: \(path)")
-        var error: NSError? = nil
-        let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions(0), error: &error)
-        assert(error == nil, "설정 파일을 찾을 수 없습니다.")
-        assert(data != nil, "설정 파일을 읽을 수 없습니다.")
-        let JSONObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error:&error) as Dictionary<String, AnyObject>?
-        assert(error == nil, "설정 파일에 오류가 있습니다.")
-        assert(JSONObject != nil, "설정 파일을 해석할 수 없습니다.")
-        return JSONObject!
+    override func dataForFilename(name: String) -> NSData? {
+        let path = self.pathForResource(name)
+        let data = NSData(contentsOfFile: path)
+        return data
     }
+}
 
+extension Theme {
     func dump() {
-        let root: AnyObject = self.embeddedConfiguration() as Dictionary<String, AnyObject>
+        let root: AnyObject = self.configuration as Dictionary<String, AnyObject>
         var collection = collectResources(root)
         collection["config.json"] = true
         var resources = Dictionary<String, String>()
         for collected in collection.keys {
-            let path = self.pathForResource(collected)
-            let data = NSData(contentsOfFile: path)
+            let data = self.dataForFilename(collected)
             if data == nil {
                 println("파일이 존재하지 않습니다: \(collected)")
                 continue
             }
-            let str = themeResourceCoder.encodeFromData(data)
+            let str = themeResourceCoder.encodeFromData(data!)
             resources[collected] = str
             println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
         }
