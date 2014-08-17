@@ -15,6 +15,9 @@
 		380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
+		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
+		38324EB1199F4F270031888D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38324EB0199F4F270031888D /* UIColor.m */; };
+		38324EB2199F4F270031888D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38324EB0199F4F270031888D /* UIColor.m */; };
 		386308D5199143320039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
 		386308D8199143320039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308D9199143320039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
@@ -52,7 +55,6 @@
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
 		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
-		38D9A396199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
 		38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 /* End PBXBuildFile section */
@@ -146,6 +148,9 @@
 		38303656198D9FA000C1EE0C /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_512x512@2x.png"; path = "OSX/Icons/Gureum.iconset/icon_512x512@2x.png"; sourceTree = SOURCE_ROOT; };
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
 		3830366B199059DE00C1EE0C /* capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = capi.h; path = ../hangeul/hangeul/capi.h; sourceTree = "<group>"; };
+		38324EAD199F476B0031888D /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+		38324EAF199F4F270031888D /* UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIColor.h; path = ../../FoundationExtension/UIKitExtension/UIColor.h; sourceTree = "<group>"; };
+		38324EB0199F4F270031888D /* UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIColor.m; path = ../../FoundationExtension/UIKitExtension/UIColor.m; sourceTree = "<group>"; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3863089A199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,6 +216,8 @@
 		38630898199132210039369C /* iOSCore */ = {
 			isa = PBXGroup;
 			children = (
+				38324EAF199F4F270031888D /* UIColor.h */,
+				38324EB0199F4F270031888D /* UIColor.m */,
 				3830366B199059DE00C1EE0C /* capi.h */,
 				38303668199059D500C1EE0C /* capi.cpp */,
 				386308BD199133140039369C /* Hangeul.swift */,
@@ -362,6 +369,7 @@
 				380136B3199CAFC000355D69 /* README.md */,
 				380136B4199CAFC000355D69 /* shop.json */,
 				38D9A394199B7F8A0087A965 /* default */,
+				38324EAD199F476B0031888D /* test */,
 			);
 			path = iOSTheme;
 			sourceTree = "<group>";
@@ -518,6 +526,7 @@
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
 				386308F7199143520039369C /* NoLayout.xib in Resources */,
+				38324EAE199F476B0031888D /* test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +541,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38D9A396199B7F8A0087A965 /* default in Resources */,
 				386308F2199143520039369C /* NoLayout.xib in Resources */,
 				386308F1199143520039369C /* InputMethod.xib in Resources */,
 				386308F3199143520039369C /* NumpadLayout.xib in Resources */,
@@ -553,6 +561,7 @@
 				386308F5199143520039369C /* Preferences.swift in Sources */,
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */,
+				38324EB1199F4F270031888D /* UIColor.m in Sources */,
 				386308E3199143330039369C /* InputMethodView.swift in Sources */,
 				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
 				386308E5199143330039369C /* GRInputButton.swift in Sources */,
@@ -585,6 +594,7 @@
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,
 				38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */,
+				38324EB2199F4F270031888D /* UIColor.m in Sources */,
 				386308DC199143320039369C /* InputViewController.swift in Sources */,
 				386308D5199143320039369C /* Hangeul.swift in Sources */,
 				386308D9199143320039369C /* KeyboardLayout.swift in Sources */,

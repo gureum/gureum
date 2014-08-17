@@ -47,11 +47,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
             self.qwertyView.doneButton!: theme.qwertyDoneCaption,
         ]
         for (button, captionTheme) in map {
-            let (image1, image2, image3) = captionTheme.images
-            assert(image1 != nil)
-            button.setBackgroundImage(image1, forState: .Normal)
-            button.setBackgroundImage(image2, forState: .Highlighted)
-            button.setBackgroundImage(image3, forState: .Selected)
+            captionTheme.appeal(button)
         }
     }
 

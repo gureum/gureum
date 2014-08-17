@@ -26,15 +26,16 @@ class Theme {
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
         let data = self.dataForFilename(name)
-        return NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: error)
+        assert(data != nil)
+        return NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: error)
     }
 
     lazy var configuration: Dictionary<String, AnyObject> = {
         var error: NSError? = nil
-        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>
+        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
         assert(error == nil)
         assert(JSONObject != nil)
-        return JSONObject
+        return JSONObject!
     }()
 
     func imageForFilename(name: String) -> UIImage? {
@@ -58,16 +59,16 @@ class Theme {
         return self.imageForFilename(filename)
     }()
 
-    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(owner: self, configuration: nil, fallback: nil)
-
     func captionForKey(key: String, fallback: ThemeCaptionConfiguration?) -> ThemeCaptionConfiguration {
         let sub = self.configuration[key]
         if sub == nil {
             return fallback!
         } else {
-            return ThemeCaptionConfiguration(owner: self, configuration: sub!, fallback: nil)
+            return ThemeCaptionConfiguration(owner: self, configuration: sub!, fallback: fallback)
         }
     }
+
+    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(owner: self, configuration: nil, fallback: nil)
 
     lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
 
@@ -119,6 +120,20 @@ class ThemeCaptionConfiguration {
         self.fallback = fallback
     }
 
+    func appeal(button: UIButton) {
+        let (image1, image2, image3) = self.images
+        assert(image1 != nil)
+        button.setBackgroundImage(image1, forState: .Normal)
+        button.setBackgroundImage(image2, forState: .Highlighted)
+        button.setBackgroundImage(image3, forState: .Selected)
+        let (font, color) = self.font
+        button.titleLabel.font = font
+        button.setTitleColor(color, forState: .Normal)
+        if self.text != nil {
+            button.setTitle(self.text, forState: .Normal)
+        }
+    }
+
     lazy var images: (UIImage?, UIImage?, UIImage?) = {
         let sub = self.configuration["image"]
         let imageConfiguration = sub as Array<String!>?
@@ -139,31 +154,65 @@ class ThemeCaptionConfiguration {
         return (images[0], images[1], images[2])
     }()
 
-    lazy var font: UIFont = {
-        func fallback() -> UIFont {
-            if self.fallback != nil {
-                let font = self.fallback.font
-                if font != nil {
-                    return font
-                }
-            }
-            return UIFont.systemFontOfSize(UIFont.systemFontSize())
+    lazy var text: String? = {
+        let subLabel = self.configuration["label"]
+        if subLabel == nil {
+            return nil
+        }
+        let labelConfiguration = subLabel as Dictionary<String, AnyObject>
+        let subText = labelConfiguration["text"]
+        if subText is String {
+            return subText as String
+        } else {
+            return nil
+        }
+    }()
+
+    lazy var font: (UIFont, UIColor) = {
+        func fallback() -> (UIFont, UIColor) {
+            return self.fallback?.font ?? (UIFont.systemFontOfSize(UIFont.systemFontSize()), UIColor.blackColor())
         }
 
-        let sub = self.configuration["label"]
-        let labelConfiguration = sub as Dictionary<String, AnyObject>
-        let fontName = labelConfiguration["font"]
-        var font: UIFont?
-        if fontName == nil {
+        let subLabel = self.configuration["label"]
+        if subLabel == nil {
             return fallback()
+        }
+//        println("label1: \(subLabel)")
+//        println("label2: \(subLabel!)")
+        assert(subLabel is Dictionary<String, AnyObject>, "'label' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
+        let labelConfiguration = subLabel! as Dictionary<String, AnyObject>
+        let subFont = labelConfiguration["font"]
+        if subFont == nil {
+            return fallback()
+        }
+
+//        println("font1: \(subFont)")
+//        println("font2: \(subFont!)")
+
+        assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
+
+        let fontConfiguration = subFont as Dictionary<String, AnyObject>?
+        var font: UIFont?
+
+        let subFontName = fontConfiguration!["name"]
+        let subFontSize = fontConfiguration!["size"]
+        let fontSize = subFontSize as CGFloat? ?? UIFont.systemFontSize()
+        if subFontName != nil {
+            font = UIFont(name: subFontName as String, size: fontSize)
         } else {
-            font = UIFont(name: fontName as String, size: UIFont.systemFontSize())
-            assert(font != nil, "올바른 폰트 이름이 아닙니다")
+            font = UIFont.systemFontOfSize(fontSize)
         }
-        if font == nil {
-            font = fallback()
+        assert(font != nil, "올바른 폰트 이름이 아닙니다")
+
+        let subFontColorCode = fontConfiguration!["color"]
+        var fontColor: UIColor
+        if subFontColorCode == nil {
+            let (_, color) = fallback()
+            fontColor = color
+        } else {
+            fontColor = UIColor.colorWithHTMLExpression(subFontColorCode as String)
         }
-        return font!
+        return (font!, fontColor)
     }()
 }
 
@@ -178,3 +227,4 @@ class ThemeResourceCoder {
 }
 
 let themeResourceCoder = ThemeResourceCoder()
+

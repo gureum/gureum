@@ -28,9 +28,9 @@ class GRKeyboardLayoutHelper {
         let row: Int;
         let column: Int;
         var hashValue: Int {
-        get {
-            return Int(row << 16 + column);
-        }
+            get {
+                return Int(row << 16 + column);
+            }
         }
 
         init(tuple: (Int, Int)) {
@@ -123,17 +123,12 @@ class GRKeyboardLayoutHelper {
                     left += width + columnSpace
                 }
                 let captionTheme = preferences.theme.qwertyKeyCaption
-                let (image1, image2, image3) = captionTheme.images
-                assert(image1 != nil)
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
-                    button.setBackgroundImage(image1, forState: .Normal)
-                    button.setBackgroundImage(image2, forState: .Highlighted)
-                    button.setBackgroundImage(image3, forState: .Selected)
-                    button.titleLabel.font = captionTheme.font
+                    captionTheme.appeal(button)
                     view.addSubview(button)
                     left += columnWidth + columnSpace
                 }

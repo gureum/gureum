@@ -108,6 +108,7 @@ extension Theme {
 
     func embeddedConfiguration() -> [String: AnyObject?] {
         let path = self.pathForResource("config.json")
+        println("설정 파일 위치: \(path)")
         var error: NSError? = nil
         let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions(0), error: &error)
         assert(error == nil, "설정 파일을 찾을 수 없습니다.")
