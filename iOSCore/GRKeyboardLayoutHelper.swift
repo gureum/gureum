@@ -20,7 +20,8 @@ protocol GRKeyboardLayoutHelperDelegate {
     func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow: Int) -> Array<UIButton>
     func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow: Int) -> Array<UIButton>
 
-    func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition: GRKeyboardLayoutHelper.Position) -> UIButton;
+    func helper(helper: GRKeyboardLayoutHelper, buttonForPosition: GRKeyboardLayoutHelper.Position) -> GRInputButton
+    func helper(helper: GRKeyboardLayoutHelper, titleForPosition: GRKeyboardLayoutHelper.Position) -> String
 }
 
 class GRKeyboardLayoutHelper {
@@ -44,7 +45,7 @@ class GRKeyboardLayoutHelper {
 
 
     var delegate: GRKeyboardLayoutHelperDelegate?
-    var buttons: Dictionary<Position, UIButton> = [:]
+    var buttons: Dictionary<Position, GRInputButton> = [:]
 
     init(delegate: GRKeyboardLayoutHelperDelegate?) {
         self.delegate = delegate;
@@ -81,7 +82,9 @@ class GRKeyboardLayoutHelper {
 
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
-                    var button = delegate.helper(self, generatedButtonForPosition: position)
+                    let title = delegate.helper(self, titleForPosition: position)
+                    var button = delegate.helper(self, buttonForPosition: position)
+                    button.captionLabel.text = title
                     button.frame = CGRectMake(0, 0, columnWidth, rowHeight)
                     self.buttons[position] = button
                 }
@@ -122,12 +125,15 @@ class GRKeyboardLayoutHelper {
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     left += width + columnSpace
                 }
-                let captionTheme = preferences.theme.qwertyKeyCaption
+                let theme = preferences.theme
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    let title = self.delegate?.helper(self, titleForPosition: position)
+                    assert(title != nil)
+                    let captionTheme = theme.captionForKey("qwerty-key-" + title!, fallback: theme.qwertyKeyCaption)
                     captionTheme.appeal(button)
                     view.addSubview(button)
                     left += columnWidth + columnSpace

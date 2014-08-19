@@ -102,7 +102,7 @@ class NumpadKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", "*0#"]
         let keyline = keylines[position.row].unicodeScalars
         var idx = keyline.startIndex
@@ -111,7 +111,7 @@ class NumpadKeyboardLayout: KeyboardLayout {
         }
         let key = keyline[idx]
 
-        let button = GRInputButton.buttonWithType(.System) as UIButton
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
         button.tag = Int(key.value)
         if position.row == 3 {
             button.setTitle("간격", forState: .Normal)
@@ -133,7 +133,7 @@ class CheonjiinKeyboardLayout: NumpadKeyboardLayout {
         return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", ">0."]
         let keyline = keylines[position.row].unicodeScalars
         var idx = keyline.startIndex
@@ -142,7 +142,7 @@ class CheonjiinKeyboardLayout: NumpadKeyboardLayout {
         }
         let key = keyline[idx]
 
-        let button = GRInputButton.buttonWithType(.System) as UIButton
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
         button.tag = Int(key.value)
         if position.row == 3 {
             button.setTitle("간격", forState: .Normal)

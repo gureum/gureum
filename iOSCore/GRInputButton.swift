@@ -9,6 +9,17 @@
 import UIKit
 
 class GRInputButton: UIButton {
+    lazy var glyphView: UIImageView = {
+        let imageView = UIImageView()
+        self.addSubview(imageView)
+        return imageView
+    }()
+
+    lazy var captionLabel: UILabel = {
+        let label = UILabel()
+        self.addSubview(label)
+        return label
+    }()
 
     func _init() {
 //        self.layer.cornerRadius = 5.0

@@ -9,8 +9,8 @@
 import UIKit
 
 class QwertyKeyboardView: KeyboardView {
-    @IBOutlet var shiftButton: UIButton!
-    @IBOutlet var spaceButton: UIButton!
+    @IBOutlet var shiftButton: GRInputButton!
+    @IBOutlet var spaceButton: GRInputButton!
 
     override init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -22,6 +22,17 @@ class QwertyKeyboardLayout: KeyboardLayout {
     get {
         return self.view as QwertyKeyboardView
     }
+    }
+
+    func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
+        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
+        let keyline = keylines[position.row].unicodeScalars
+        var idx = keyline.startIndex
+        for _ in 0..<position.column {
+            idx = idx.successor()
+        }
+        let key = keyline[idx]
+        return key
     }
 
     override class func containerName() -> String {
@@ -112,27 +123,19 @@ class QwertyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
-        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let keyline = keylines[position.row].unicodeScalars
-        var idx = keyline.startIndex
-        for _ in 0..<position.column {
-            idx = idx.successor()
-        }
-        let key = keyline[idx]
-
-        let button = GRInputButton.buttonWithType(.System) as UIButton
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let key =  self.keyForPosition(position)
         button.tag = Int(key.value)
-        if position.row == 3 {
-            button.setTitle("간격", forState: .Normal)
-        } else {
-            button.setTitle("\(Character(UnicodeScalar(key.value - 32)))", forState: .Normal)
-        }
         button.sizeToFit()
-        //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
 
         return button
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let key =  self.keyForPosition(position)
+        return "\(Character(UnicodeScalar(key.value - 32)))"
     }
 
 }
@@ -143,7 +146,7 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
         return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
         let keyline = keylines[position.row].unicodeScalars
         var idx = keyline.startIndex
@@ -152,19 +155,21 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
         }
         let key = keyline[idx]
 
-        let button = GRInputButton.buttonWithType(.System) as UIButton
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
         button.tag = Int(key.value)
-        if position.row == 3 {
-            button.setTitle("간격", forState: .Normal)
-        } else {
-            let label = ksx5002_label(Int8(key.value))
-            button.setTitle("\(Character(UnicodeScalar(label)))", forState: .Normal)
-        }
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
         
         return button
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let key = self.keyForPosition(position)
+        let label = ksx5002_label(Int8(key.value))
+        let text = "\(Character(UnicodeScalar(label)))"
+        assert(text != nil)
+        return text
     }
     
 }

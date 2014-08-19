@@ -9,10 +9,10 @@
 import UIKit
 
 class KeyboardView: UIView {
-    @IBOutlet var nextKeyboardButton: UIButton! = nil
-    @IBOutlet var toggleKeyboardButton: UIButton! = nil
-    @IBOutlet var deleteButton: UIButton! = nil
-    @IBOutlet var doneButton: UIButton! = nil
+    @IBOutlet var nextKeyboardButton: GRInputButton! = nil
+    @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
+    @IBOutlet var deleteButton: GRInputButton! = nil
+    @IBOutlet var doneButton: GRInputButton! = nil
 }
 
 class NoKeyboardView: KeyboardView {
@@ -25,10 +25,10 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var foregroundImageView: UIImageView! = nil
 
     var inputViewController: InputViewController? = nil {
-    didSet {
-        self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-        self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
-    }
+        didSet {
+            self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+            self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
+        }
     }
 
     class func containerName() -> String {
@@ -75,42 +75,38 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         assert(false)
-        return UIEdgeInsetsZero
     }
 
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
         assert(false)
-        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         assert(false)
-        return 0;
     }
 
     func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
         assert(false)
-        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int) -> CGFloat {
         assert(false)
-        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         assert(false)
-        return []
     }
 
     func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         assert(false)
-        return []
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
+    func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         assert(false)
-        UIButton()
+    }
+
+    func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        assert(false)
     }
 }
 
@@ -158,12 +154,15 @@ class NoKeyboardLayout: KeyboardLayout {
         return []
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, generatedButtonForPosition position: GRKeyboardLayoutHelper.Position) -> UIButton {
-        let button = GRInputButton.buttonWithType(.System) as UIButton
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
         button.tag = Int(UnicodeScalar(" ").value)
-        button.setTitle("ERROR: This is a bug.", forState: .Normal)
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         return button
-    }    
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        return "ERROR: This is a bug."
+    }
 }
