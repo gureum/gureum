@@ -37,7 +37,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
         assert(cell)
         cell.textLabel.text = item["title"]
-        cell.accessoryType = item["name"] == preferences.themeName ? .Checkmark : .None
+        cell.accessoryType = item["addr"] == preferences.themeAddress ? .Checkmark : .None
         return cell
     }
 
@@ -51,16 +51,18 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let sub = self.entries[indexPath.section]["items"]
         let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
-        let themeName = item["name"]
-        assert(themeName != nil)
+        let themeAddress = item["addr"]
+        assert(themeAddress != nil)
 
         // 옮기자
-        
+        Theme.themeWithAddress(themeAddress! as String).dump()
         // 끝
 
-        preferences.themeName = themeName!
+        preferences.themeAddress = themeAddress!
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        self.inputMethodViewController.loadFromPreferences()
     }
 }
 
@@ -120,6 +122,26 @@ class EmbeddedTheme: Theme {
     }
 }
 
+class HTTPTheme: Theme {
+    let URLString: String
+
+    init(URLString: String) {
+        self.URLString = URLString
+    }
+
+    func URLForResource(name: String) -> NSURL? {
+        let URLString = self.URLString + name
+        let URL = NSURL(string: URLString)
+        return URL
+    }
+
+    override func dataForFilename(name: String) -> NSData? {
+        let URL = self.URLForResource(name)
+        let data = NSData(contentsOfURL: URL)
+        return data
+    }
+}
+
 extension Theme {
     func dump() {
         let root: AnyObject = self.configuration as Dictionary<String, AnyObject>
@@ -140,5 +162,19 @@ extension Theme {
         assert(resources.count > 0)
         preferences.themeResources = resources
         assert(preferences.themeResources.count > 0)
+    }
+
+    class func themeWithAddress(addr: String) -> Theme {
+        let components = addr.componentsSeparatedByString("://")
+        assert(components.count > 1)
+        let type = components[0]
+        switch type {
+            case "res":
+                return EmbeddedTheme(name: components[1])
+            case "http", "https":
+                return HTTPTheme(URLString: addr)
+            default:
+                assert(false)
+        }
     }
 }

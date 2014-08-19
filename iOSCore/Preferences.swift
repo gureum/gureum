@@ -69,13 +69,13 @@ class Preferences {
         }
     }
 
-    var themeName: String {
+    var themeAddress: String {
         get {
-            return getObjectForKey("themename", defaultValue: "default") as String
+            return getObjectForKey("themeaddr", defaultValue: "res://default") as String
         }
 
         set {
-            setObjectForKey("themename", value: newValue)
+            setObjectForKey("themeaddr", value: newValue)
         }
     }
 
