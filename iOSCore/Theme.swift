@@ -137,12 +137,16 @@ class ThemeCaptionConfiguration {
         button.setBackgroundImage(image2, forState: .Highlighted)
         button.setBackgroundImage(image3, forState: .Selected)
 
+        let position = self.position
+        //println("pos: \(position)")
+        let center = CGPointMake(button.center.x + position.x, button.center.y + position.y)
+
         if let glyph = self.glyph {
             assert(button.glyphView != nil)
             assert(button.glyphView.superview == button)
             button.glyphView.image = glyph
             button.glyphView.sizeToFit()
-            button.glyphView.center = button.center
+            button.glyphView.center = center
         } else {
             assert(button.captionLabel != nil)
             assert(button.captionLabel.superview == button)
@@ -152,6 +156,7 @@ class ThemeCaptionConfiguration {
             }
             button.captionLabel.textColor = color
             button.captionLabel.font = font
+            button.captionLabel.center = center
         }
     }
 
@@ -200,11 +205,23 @@ class ThemeCaptionConfiguration {
             let subText = config["glyph"]
             if subText is String {
                 return self.owner.imageForFilename(subText as String)
+            }
+        }
+        return nil
+    }()
+
+    lazy var position: CGPoint = {
+        if let config = self.labelConfiguration {
+            let sub = config["position"]
+            if sub is Array<CGFloat> {
+                let rawPosition = sub as Array<CGFloat>
+                let position = CGPointMake(rawPosition[0], rawPosition[1])
+                return position
             } else {
-                return nil
+                return self.fallback.position
             }
         } else {
-            return nil
+            return CGPointMake(0, 0)
         }
     }()
 
