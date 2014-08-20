@@ -15,7 +15,7 @@ class NumpadKeyboardView: KeyboardView {
     @IBOutlet var hangeulButton: UIButton!
     @IBOutlet var spaceButton: UIButton!
 
-    override init(coder aDecoder: NSCoder!) {
+    override init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

@@ -20,9 +20,9 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad()  {
         super.viewDidLoad()
-        assert(self.preview)
-        assert(self.inputMethodViewController)
-        assert(self.inputMethodViewController.view)
+        assert(self.preview != nil)
+        assert(self.inputMethodViewController != nil)
+        assert(self.inputMethodViewController.view != nil)
         self.preview.addSubview(self.inputMethodViewController.view)
         self.inputMethodViewController.loadFromPreferences()
     }
@@ -110,7 +110,8 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
             var layouts = preferences.layouts
             layouts.removeAtIndex(indexPath.row)
             preferences.layouts = layouts
-            tableView.deleteRowsAtIndexPaths([indexPath] as [AnyObject], withRowAnimation: .Top)
+            let indexPaths: Array<AnyObject> = [indexPath]
+            tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Top)
         case .Insert:
             assert(indexPath.section == 1)
             self.performSegueWithIdentifier("add", sender: self)

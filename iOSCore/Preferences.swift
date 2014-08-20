@@ -12,16 +12,13 @@ class Preferences {
     var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
-        let object = self.defaults.objectForKey(key)
-        if !object {
-            return defaultValue
-        }
-        return object
+        let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
+        return result
     }
 
-    func getArrayForKey(key: String, defaultValue: Array<AnyObject>) -> AnyObject {
+    func getArrayForKey(key: String, defaultValue: Array<AnyObject>) -> Array<AnyObject> {
         let object = self.defaults.arrayForKey(key) as Array!
-        if !object || object.count == 0 {
+        if object == nil || object.count == 0 {
             return defaultValue
         }
         return object
@@ -29,7 +26,7 @@ class Preferences {
 
     func getDictionaryForKey(key: String, defaultValue: Dictionary<String, AnyObject>) -> AnyObject {
         let object = self.defaults.dictionaryForKey(key) as Dictionary!
-        if !object {
+        if object == nil {
             return defaultValue
         }
         if object.count == 0 {
@@ -46,7 +43,9 @@ class Preferences {
 
     var layouts: Array<String> {
         get {
-            return getArrayForKey("layouts", defaultValue: ["qwerty", "ksx5002", "emoticon"]) as Array<String>
+            let defaultValue: Array<AnyObject> = ["qwerty", "ksx5002", "emoticon"]
+            let result = getArrayForKey("layouts", defaultValue: defaultValue)
+            return result as AnyObject as Array<String>
         }
 
         set {
@@ -56,11 +55,13 @@ class Preferences {
 
     var defaultLayoutIndex: Int {
         get {
-            let index = getObjectForKey("layoutindex", defaultValue: NSNumber(integer: 1)) as NSNumber
+            let defaultValue: AnyObject = NSNumber(integer: 1)
+            let rawIndex = getObjectForKey("layoutindex", defaultValue: defaultValue) as NSNumber
+            let index: Int = rawIndex.integerValue
             if index >= self.layouts.count {
-            return self.layouts.count - 1
+                return self.layouts.count - 1
             } else {
-            return index
+                return index
             }
         }
 
@@ -71,7 +72,8 @@ class Preferences {
 
     var themeAddress: String {
         get {
-            return getObjectForKey("themeaddr", defaultValue: "res://default") as String
+            let result: NSString = self.getObjectForKey("themeaddr", defaultValue: "res://default") as NSString
+            return result as String
         }
 
         set {

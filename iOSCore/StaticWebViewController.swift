@@ -11,7 +11,7 @@ import UIKit
 class StaticWebViewController: UIViewController {
     @IBOutlet var webView: UIWebView!
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -29,6 +29,7 @@ class StaticWebViewController: UIViewController {
 class InstallHelpViewController: StaticWebViewController {
     override class func URL() -> NSURL {
         let URL = NSBundle.mainBundle().URLForResource("install", withExtension: "html", subdirectory: "help")
-        return URL
+        assert(URL != nil)
+        return URL!
     }
 }

@@ -11,12 +11,12 @@ import UIKit
 class ThemeViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate {
     var entries: Array<Dictionary<String, AnyObject>> = {
         let URL = NSBundle.mainBundle().URLForResource("shop", withExtension: "json")
-        let data = NSData(contentsOfURL: URL)
+        assert(URL != nil)
+        let data = NSData(contentsOfURL: URL!)
 
         var error: NSError? = nil
         let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
         assert(error == nil)
-        assert(items != nil)
         return items
     }()
 
@@ -25,17 +25,19 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        let sub = self.entries[section]["items"]
-        let items = sub as Array<AnyObject>
+        let sub: AnyObject? = self.entries[section]["items"]
+        assert(sub != nil)
+        let items = sub! as Array<AnyObject>
         return items.count
     }
 
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let sub = self.entries[indexPath.section]["items"]
-        let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
+        let sub: AnyObject? = self.entries[indexPath.section]["items"]
+        assert(sub != nil)
+        let item = (sub! as Array<Dictionary<String, String>>)[indexPath.row]
 
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
-        assert(cell)
+        assert(cell != nil)
         cell.textLabel.text = item["title"]
         cell.accessoryType = item["addr"] == preferences.themeAddress ? .Checkmark : .None
         return cell
@@ -43,13 +45,14 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
         let category = self.entries[section]
-        let sub = category["section"]
+        let sub: AnyObject? = category["section"]
         assert(sub != nil)
-        return sub as String
+        return sub! as String
     }
 
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let sub = self.entries[indexPath.section]["items"]
+        let sub: AnyObject? = self.entries[indexPath.section]["items"]
+        assert(sub != nil)
         let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
         let themeAddress = item["addr"]
         assert(themeAddress != nil)
@@ -116,9 +119,12 @@ class EmbeddedTheme: Theme {
     }
 
     override func dataForFilename(name: String) -> NSData? {
-        let path = self.pathForResource(name)
-        let data = NSData(contentsOfFile: path)
-        return data
+        if let path = self.pathForResource(name) {
+            let data: NSData? = NSData(contentsOfFile: path)
+            return data
+        } else {
+            return nil
+        }
     }
 }
 
@@ -137,7 +143,8 @@ class HTTPTheme: Theme {
 
     override func dataForFilename(name: String) -> NSData? {
         let URL = self.URLForResource(name)
-        let data = NSData(contentsOfURL: URL)
+        assert(URL != nil)
+        let data: NSData? = NSData(contentsOfURL: URL!)
         return data
     }
 }

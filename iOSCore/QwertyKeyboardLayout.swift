@@ -12,7 +12,7 @@ class QwertyKeyboardView: KeyboardView {
     @IBOutlet var shiftButton: GRInputButton!
     @IBOutlet var spaceButton: GRInputButton!
 
-    override init(coder aDecoder: NSCoder!) {
+    override init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
@@ -168,7 +168,6 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
         let key = self.keyForPosition(position)
         let label = ksx5002_label(Int8(key.value))
         let text = "\(Character(UnicodeScalar(label)))"
-        assert(text != nil)
         return text
     }
     

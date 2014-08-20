@@ -17,35 +17,18 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet var upSwipeRecognizer: UIGestureRecognizer!
     @IBOutlet var downSwipeRecognizer: UIGestureRecognizer!
 
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)  {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
-        assert(self.inputMethodView != nil)
-        assert(self.inputMethodView.backgroundImageView != nil)
-
-        let image = preferences.theme.backgroundImage
-        if image != nil {
-            self.inputMethodView.backgroundImageView.image = image
+    var inputMethodView: InputMethodView! {
+        get {
+            return self.view as InputMethodView!
         }
     }
 
-    required init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-        assert(false) // are you kidding, swift
-    }
-
-    var inputMethodView: InputMethodView! {
-    get {
-        return self.view as InputMethodView!
-    }
-    }
-
     var selectedLayoutContext: UnsafeMutablePointer<()> {
-    get {
-        let context = self.layouts[self.selectedLayoutIndex].context
-        assert(context != nil)
-        return context
-    }
+        get {
+            let context = self.layouts[self.selectedLayoutIndex].context
+            assert(context != nil)
+            return context
+        }
     }
 
     func resetContext() {
@@ -69,17 +52,28 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func loadFromPreferences() {
+        assert(self.inputMethodView != nil)
+
         let layoutsView = self.inputMethodView.layoutsView
         for view in layoutsView.subviews {
             view.removeFromSuperview()
         }
 
+//        원근 모드
+//        let image = preferences.theme.backgroundImage
+//        if image != nil {
+//            self.inputMethodView.backgroundImageView.image = image
+//        }
+
         assert(preferences.themeResources.count > 0)
         let backgroundImage = preferences.theme.backgroundImage
         let foregroundImage = preferences.theme.foregroundImage
         self.layouts.removeAll(keepCapacity: true)
+
         let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
+            assert(self.view.bounds.height > 0)
+            assert(self.view.bounds.width > 0)
             let layout = self.keyboardLayoutForLayoutName(name, frame: self.view.bounds)
             self.layouts.append(layout)
             layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
@@ -116,9 +110,6 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func selectLayoutByIndex(index: Int, animated: Bool) {
-        assert(self.inputMethodView.pageControl)
-        assert(self.inputMethodView.layoutsView)
-
         self.inputMethodView.pageControl.currentPage = index
         let offset = CGPointMake(CGFloat(index) * self.inputMethodView.layoutsView.frame.width, 0)
         self.inputMethodView.layoutsView.setContentOffset(offset, animated: animated)

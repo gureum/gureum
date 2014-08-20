@@ -42,20 +42,20 @@ class Theme {
     }
 
     lazy var backgroundImage: UIImage? = {
-        let configFilename = self.configuration["background" as String]
+        let configFilename: AnyObject? = self.configuration["background"]
         let filename = configFilename as String? ?? "background.png"
         return self.imageForFilename(filename)
     }()
 
     lazy var foregroundImage: UIImage? = {
-        let configFilename = self.configuration["foreground" as String]
+        let configFilename: AnyObject? = self.configuration["foreground"]
         let filename = configFilename as String? ?? "foreground.png"
         return self.imageForFilename(filename)
     }()
 
     func captionForKey(key: String, fallback: ThemeCaptionConfiguration?) -> ThemeCaptionConfiguration {
         //println("\(self.configuration)")
-        let sub = self.configuration[key]
+        let sub: AnyObject? = self.configuration[key]
         if sub == nil {
             return fallback!
         } else {
@@ -86,12 +86,12 @@ class Theme {
 class PreferencedTheme: Theme {
 
     override func dataForFilename(name: String) -> NSData? {
-        let rawData = preferences.themeResources[name]
-        if rawData == nil {
+        if let rawData = preferences.themeResources[name] {
+            let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
+            return data
+        } else {
             return nil
         }
-        let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
-        return data
     }
 }
 
@@ -142,13 +142,11 @@ class ThemeCaptionConfiguration {
         let center = CGPointMake(button.center.x + position.x, button.center.y + position.y)
 
         if let glyph = self.glyph {
-            assert(button.glyphView != nil)
             assert(button.glyphView.superview == button)
             button.glyphView.image = glyph
             button.glyphView.sizeToFit()
             button.glyphView.center = center
         } else {
-            assert(button.captionLabel != nil)
             assert(button.captionLabel.superview == button)
             let (font, color) = self.font
             if let text = self.text {
@@ -189,9 +187,9 @@ class ThemeCaptionConfiguration {
 
     lazy var text: String? = {
         if let config = self.labelConfiguration {
-            let subText = config["text"]
+            let subText: AnyObject? = config["text"]
             if subText is String {
-                return subText as String
+                return subText as? String
             } else {
                 return nil
             }
@@ -202,7 +200,7 @@ class ThemeCaptionConfiguration {
 
     lazy var glyph: UIImage? = {
         if let config = self.labelConfiguration {
-            let subText = config["glyph"]
+            let subText: AnyObject? = config["glyph"]
             if subText is String {
                 return self.owner.imageForFilename(subText as String)
             }
@@ -212,7 +210,7 @@ class ThemeCaptionConfiguration {
 
     lazy var position: CGPoint = {
         if let config = self.labelConfiguration {
-            let sub = config["position"]
+            let sub: AnyObject? = config["position"]
             if sub is Array<CGFloat> {
                 let rawPosition = sub as Array<CGFloat>
                 let position = CGPointMake(rawPosition[0], rawPosition[1])
@@ -231,7 +229,7 @@ class ThemeCaptionConfiguration {
         }
 
         if let config = self.labelConfiguration {
-            let subFont = config["font"]
+            let subFont: AnyObject? = config["font"]
             if subFont == nil {
                 return fallback()
             }
@@ -244,8 +242,8 @@ class ThemeCaptionConfiguration {
             let fontConfiguration = subFont as Dictionary<String, AnyObject>?
             var font: UIFont?
 
-            let subFontName = fontConfiguration!["name"]
-            let subFontSize = fontConfiguration!["size"]
+            let subFontName: AnyObject? = fontConfiguration!["name"]
+            let subFontSize: AnyObject? = fontConfiguration!["size"]
             let fontSize = subFontSize as CGFloat? ?? UIFont.systemFontSize()
             if subFontName != nil {
                 font = UIFont(name: subFontName as String, size: fontSize)
@@ -254,7 +252,7 @@ class ThemeCaptionConfiguration {
             }
             assert(font != nil, "올바른 폰트 이름이 아닙니다")
 
-            let subFontColorCode = fontConfiguration!["color"]
+            let subFontColorCode: AnyObject? = fontConfiguration!["color"]
             var fontColor: UIColor
             if subFontColorCode == nil {
                 let (_, color) = fallback()

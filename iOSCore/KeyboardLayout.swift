@@ -20,7 +20,7 @@ class NoKeyboardView: KeyboardView {
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var view: KeyboardView!
-    var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: nil)
+    lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
     var context: UnsafeMutablePointer<()> = nil
     var foregroundImageView: UIImageView! = nil
 
@@ -42,11 +42,12 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     func _postinit() {
-        self.helper.delegate = self
+        let x = self.helper
         self.helper.layoutIn(self.view)
 
         self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
+
         self.context = self.dynamicType.loadContext()
     }
 
@@ -57,12 +58,10 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     init() {
-        self.view = nil // mad limitation
         let name = self.dynamicType.containerName()
         let vc = UIViewController(nibName: name, bundle: nil)
         self.view = vc.view as KeyboardView
         _postinit()
-
     }
 
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {

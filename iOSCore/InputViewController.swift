@@ -29,6 +29,7 @@ class InputViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        assert(self.inputMethodViewController.view != nil)
         self.view.bounds = self.inputMethodViewController.view.bounds
         self.view.addSubview(self.inputMethodViewController.view)
     }
