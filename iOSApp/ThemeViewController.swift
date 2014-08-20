@@ -136,16 +136,18 @@ class HTTPTheme: Theme {
     }
 
     func URLForResource(name: String) -> NSURL? {
-        let URLString = self.URLString + name
+        let URLString = self.URLString + name.stringByAddingPercentEscapesUsingEncoding(4)!
         let URL = NSURL(string: URLString)
         return URL
     }
 
     override func dataForFilename(name: String) -> NSData? {
-        let URL = self.URLForResource(name)
-        assert(URL != nil)
-        let data: NSData? = NSData(contentsOfURL: URL!)
-        return data
+        if let URL = self.URLForResource(name) {
+            let data: NSData? = NSData(contentsOfURL: URL)
+            return data
+        } else {
+            return nil
+        }
     }
 }
 
