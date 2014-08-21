@@ -65,14 +65,14 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        self.inputMethodViewController.loadFromPreferences()
+        self.inputPreviewController.reloadInputMethodView()
     }
 }
 
 
 // nested function cause swiftc fault
 func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
-    println("\(node)")
+    //println("\(node)")
     if node is String {
         let str = node as String
         return [str: true]
@@ -160,14 +160,14 @@ extension Theme {
         for collected in collection.keys {
             let data = self.dataForFilename(collected)
             if data == nil {
-                println("파일이 존재하지 않습니다: \(collected)")
+                //println("파일이 존재하지 않습니다: \(collected)")
                 continue
             }
             let str = themeResourceCoder.encodeFromData(data!)
             resources[collected] = str
-            println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
+            //println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
         }
-        println("dumped resources: \(resources)")
+        //println("dumped resources: \(resources)")
         assert(resources.count > 0)
         preferences.themeResources = resources
         assert(preferences.themeResources.count > 0)

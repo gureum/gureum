@@ -10,22 +10,10 @@ import UIKit
 
 var selectedLayoutInAddLayoutView: String? = nil
 
-class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
-    @IBOutlet var preview: UIView!
+class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var editBarButtonItem: UIBarButtonItem!
     @IBOutlet var doneBarButtonItem: UIBarButtonItem!
-
-    let inputMethodViewController: InputMethodViewController! = InputMethodViewController(nibName: "InputMethod", bundle: nil)
-
-    override func viewDidLoad()  {
-        super.viewDidLoad()
-        assert(self.preview != nil)
-        assert(self.inputMethodViewController != nil)
-        assert(self.inputMethodViewController.view != nil)
-        self.preview.addSubview(self.inputMethodViewController.view)
-        self.inputMethodViewController.loadFromPreferences()
-    }
 
     @IBAction func editButtonTouched(sender: UIBarButtonItem!) {
         self.tableView.editing = !self.tableView.editing
@@ -83,7 +71,7 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
         if indexPath.section == 0 {
             preferences.defaultLayoutIndex = indexPath.row
             tableView.reloadData()
-            self.inputMethodViewController.loadFromPreferences()
+            self.inputPreviewController.reloadInputMethodView()
         }
     }
 
@@ -119,7 +107,7 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
             assert(false)
         }
 
-        self.inputMethodViewController.loadFromPreferences()
+        self.inputPreviewController.reloadInputMethodView()
     }
 
     func tableView(tableView: UITableView!, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath!, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath!) -> NSIndexPath! {
@@ -137,7 +125,7 @@ class LayoutEditorViewController: UIViewController, UITableViewDataSource, UITab
         layouts.insert(removed, atIndex: destinationIndexPath.row)// - (sourceIndexPath.row > destinationIndexPath.row ? 1 : 0))
         preferences.layouts = layouts
 
-        self.inputMethodViewController.loadFromPreferences()
+        self.inputPreviewController.reloadInputMethodView()
     }
 
 }

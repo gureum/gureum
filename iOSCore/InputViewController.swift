@@ -20,6 +20,11 @@ class InputViewController: UIInputViewController {
 //        super.init(coder: coder)
 //    }
 
+    func reloadInputMethodView() {
+        self.inputMethodViewController.loadFromPreferences()
+        self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+    }
+
     override func updateViewConstraints() {
         super.updateViewConstraints()
     
@@ -28,11 +33,35 @@ class InputViewController: UIInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        assert(self.inputMethodViewController.view != nil)
-        self.view.bounds = self.inputMethodViewController.view.bounds
         self.view.addSubview(self.inputMethodViewController.view)
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        assert(self.inputMethodViewController.view != nil)
+
+        self.inputMethodViewController.view.frame = self.view.bounds
+        println("outbox bound: \(self.inputMethodViewController.view.bounds)")
+        //self.view.bounds = self.inputMethodViewController.view.bounds
+
+        self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+    }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        assert(self.inputMethodViewController.view != nil)
+
+        self.inputMethodViewController.view.frame = self.view.bounds
+        println("outbox bound: \(self.inputMethodViewController.view.bounds)")
+        //self.view.bounds = self.inputMethodViewController.view.bounds
+        self.inputMethodViewController.transitionViewToSize(size, withTransitionCoordinator: coordinator)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

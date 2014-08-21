@@ -8,13 +8,8 @@
 
 import UIKit
 
-class TestViewController: InputViewController {
-    @IBOutlet var preview: UIView!
+class TestViewController: PreviewViewController {
     @IBOutlet var compositionField: UITextField!
-
-    override func viewDidLoad() {
-        self.preview.addSubview(self.inputMethodViewController.view)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

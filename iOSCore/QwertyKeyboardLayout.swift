@@ -49,6 +49,13 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
         let theme = preferences.theme
+
+        for (position, button) in self.helper.buttons {
+            let title = self.helper(self.helper, titleForPosition: position)
+            let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
+            captionTheme.appeal(button)
+        }
+
         let map = [
             self.qwertyView.shiftButton!: theme.qwertyShiftCaption,
             self.qwertyView.deleteButton!: theme.qwertyDeleteCaption,
@@ -63,7 +70,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1)
+        return UIEdgeInsetsMake(0.01, 0.01, 0.01, 0.01)
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
@@ -85,16 +92,12 @@ class QwertyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
-        return 54
+    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+        return size.height / 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int) -> CGFloat {
-        if row == 3 {
-            return 160
-        } else {
-            return 32
-        }
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+        return size.width / 10
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
@@ -102,8 +105,11 @@ class QwertyKeyboardLayout: KeyboardLayout {
         case 1:
             return [UIButton(frame: CGRectMake(0, 0, 16, 10))]
         case 2:
+            assert(self.qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
         case 3:
+            assert(self.view.toggleKeyboardButton != nil)
+            assert(self.view.nextKeyboardButton != nil)
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton]
         default:
             return []
@@ -115,8 +121,11 @@ class QwertyKeyboardLayout: KeyboardLayout {
         case 1:
             return [UIButton(frame: CGRectMake(0, 0, 16, 10))]
         case 2:
+            assert(self.view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
+            assert(self.qwertyView.spaceButton != nil)
+            assert(self.view.doneButton != nil)
             return [self.qwertyView.spaceButton, self.view.doneButton]
         default:
             return []

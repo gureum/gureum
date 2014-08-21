@@ -13,6 +13,22 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var deleteButton: GRInputButton! = nil
     @IBOutlet var doneButton: GRInputButton! = nil
+
+    lazy var backgroundImageView: UIImageView = {
+        let view = UIImageView(frame: self.bounds)
+        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.insertSubview(view, atIndex: 0)
+        //view.alpha = 0.1
+        return view
+    }()
+
+    lazy var foregroundImageView: UIImageView = {
+        let view = UIImageView(frame: self.bounds)
+        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.addSubview(view)
+        //view.alpha = 0.1
+        return view
+    }()
 }
 
 class NoKeyboardView: KeyboardView {
@@ -43,12 +59,18 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
     func _postinit() {
         let x = self.helper
-        self.helper.layoutIn(self.view)
+        self.helper.createButtonsInView(self.view)
 
         self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
 
         self.context = self.dynamicType.loadContext()
+    }
+
+    func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+        var rect = self.view.bounds
+        rect.size = size
+        self.helper.layoutButtonsInRect(rect)
     }
 
     init(nibName: String, bundle: NSBundle?) {
@@ -84,11 +106,11 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         assert(false)
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
+    func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat {
         assert(false)
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int) -> CGFloat {
+    func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat {
         assert(false)
     }
 
@@ -137,11 +159,11 @@ class NoKeyboardLayout: KeyboardLayout {
         return 1
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int) -> CGFloat {
-        return 208
+    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat {
+        return 216
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int) -> CGFloat {
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize: CGSize) -> CGFloat {
         return 320
     }
 

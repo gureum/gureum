@@ -78,38 +78,47 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
             self.layouts.append(layout)
             layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
             if backgroundImage != nil {
-                let imageView = UIImageView(image: backgroundImage)
-                imageView.frame = layout.view.frame
-                layoutsView.addSubview(imageView)
+                layout.view.backgroundImageView.image = backgroundImage
             }
             layoutsView.addSubview(layout.view)
             if foregroundImage != nil {
-                let imageView = UIImageView(image: foregroundImage)
-                imageView.frame = layout.view.frame
-                layoutsView.addSubview(imageView)
+                layout.view.foregroundImageView.image = foregroundImage
             }
         }
 
-        layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.layouts.count), 0)
         self.inputMethodView.pageControl.numberOfPages = layouts.count
         self.selectLayoutByIndex(preferences.defaultLayoutIndex, animated: false)
     }
 
-    var selectedLayoutIndex: Int {
-    get {
-        let layoutsView = self.inputMethodView.layoutsView
-        var page = Int(layoutsView.contentOffset.x / layoutsView.frame.size.width + 0.5)
-        if page < 0 {
-            page = 0
+    func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+        let layoutIndex = self.selectedLayoutIndex
+        self.view.frame.size = size
+        self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.layouts.count), 0)
+        for (i, layout) in enumerate(self.layouts) {
+            layout.view.frame.origin.x = CGFloat(i) * size.width
+            layout.view.frame.size.width = size.width
+            layout.transitionViewToSize(size, withTransitionCoordinator: coordinator)
         }
-        else if page >= self.inputMethodView.pageControl.numberOfPages {
-            page = self.layouts.count - 1
-        }
-        return page
+        self.selectLayoutByIndex(layoutIndex, animated: false)
     }
+
+    var selectedLayoutIndex: Int {
+        get {
+            let layoutsView = self.inputMethodView.layoutsView
+            var page = Int(layoutsView.contentOffset.x / layoutsView.frame.size.width + 0.5)
+            if page < 0 {
+                page = 0
+            }
+            else if page >= self.inputMethodView.pageControl.numberOfPages {
+                page = self.layouts.count - 1
+            }
+            return page
+        }
     }
 
     func selectLayoutByIndex(index: Int, animated: Bool) {
+        self.inputMethodView.layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.layouts.count), 0)
+
         self.inputMethodView.pageControl.currentPage = index
         let offset = CGPointMake(CGFloat(index) * self.inputMethodView.layoutsView.frame.width, 0)
         self.inputMethodView.layoutsView.setContentOffset(offset, animated: animated)
