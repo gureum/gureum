@@ -11,6 +11,20 @@ import UIKit
 class InputViewController: UIInputViewController {
     var inputMethodViewController: InputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
+    lazy var logTextView: UITextView = {
+        let rect = CGRectMake(0, 0, 300, 200)
+        let textView = UITextView(frame: rect)
+        textView.backgroundColor = UIColor.clearColor()
+        textView.alpha = 0.5
+        textView.userInteractionEnabled = false
+        self.view.addSubview(textView)
+        return textView
+    }()
+
+    func log(text: String) {
+        //self.logTextView.text = text + "\n" + self.logTextView.text
+    }
+
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -22,6 +36,7 @@ class InputViewController: UIInputViewController {
 
     func reloadInputMethodView() {
         self.inputMethodViewController.loadFromPreferences()
+        println("bounds: \(self.view.bounds)")
         self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
 
@@ -40,16 +55,19 @@ class InputViewController: UIInputViewController {
         super.viewWillAppear(animated)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         assert(self.inputMethodViewController.view != nil)
 
-        self.inputMethodViewController.view.frame = self.view.bounds
-        println("outbox bound: \(self.inputMethodViewController.view.bounds)")
-        //self.view.bounds = self.inputMethodViewController.view.bounds
+        if self.view.bounds.width > 0 {
+            self.log("\(self.view.bounds)")
+            self.inputMethodViewController.view.frame = self.view.bounds
+            self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+        }
+    }
 
-        self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {

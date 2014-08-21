@@ -13,7 +13,6 @@
 		380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
 		380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
-		38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
@@ -51,6 +50,7 @@
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
+		38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
 		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
 		38CFDE0D19A0976D0050315D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CFDE0C19A0976D0050315D /* UIColor.m */; };
 		38CFDE0E19A0976D0050315D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CFDE0C19A0976D0050315D /* UIColor.m */; };
@@ -569,11 +569,11 @@
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
 				3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
+				38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */,
 				380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */,
 				380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
-				38303653198A15DB00C1EE0C /* LayoutEditorViewController.swift in Sources */,
 				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
 				380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */,
 			);

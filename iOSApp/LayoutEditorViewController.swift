@@ -50,10 +50,12 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
 
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
+        assert(cell != nil)
 
         let layoutNames = preferences.layouts
         let row = indexPath.row
         let title = layoutNames[row]
+        println("names: \(layoutNames) / row: \(row) / title: \(title)")
         cell.textLabel.text = title
 
         let defaultLayoutIndex = preferences.defaultLayoutIndex

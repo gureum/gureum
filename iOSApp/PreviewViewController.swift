@@ -17,20 +17,29 @@ class PreviewViewController: UIViewController {
         super.viewDidLoad()
         self.inputPreviewController.view.frame = self.preview.bounds
         println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
+        self.inputPreviewController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         self.preview.addSubview(self.inputPreviewController.view)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.inputPreviewController.view.frame = self.preview.bounds
         self.inputPreviewController.viewWillAppear(animated)
-        println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.inputPreviewController.viewWillLayoutSubviews()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.inputPreviewController.view.frame = self.preview.bounds
+        self.inputPreviewController.viewDidLayoutSubviews()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.inputPreviewController.viewDidAppear(animated)
-        println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
