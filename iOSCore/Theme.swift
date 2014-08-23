@@ -161,6 +161,10 @@ class ThemeCaptionConfiguration {
             assert(button.captionLabel.superview == button)
             let (font, color) = self.font
             //println("font: \(font) / color: \(color)")
+            if let title = button.titleForState(.Normal) {
+                button.setTitle(nil, forState: .Normal)
+                button.captionLabel.text = title
+            }
             if let text = self.text {
                 button.captionLabel.text = text
             }
