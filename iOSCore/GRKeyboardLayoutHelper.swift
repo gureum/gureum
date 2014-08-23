@@ -11,6 +11,8 @@ import UIKit
 protocol GRKeyboardLayoutHelperDelegate {
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper)
     func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper)
+    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
+    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int
@@ -95,6 +97,8 @@ class GRKeyboardLayoutHelper {
 
     func layoutButtonsInRect(rect: CGRect) {
         if let delegate = self.delegate {
+            delegate.layoutWillLayoutForHelper(self, forRect: rect)
+
             var rowHeightSum: CGFloat = 0.0
             var columnWidthSums = Array<CGFloat>()
 
@@ -163,6 +167,7 @@ class GRKeyboardLayoutHelper {
                     left += width + columnSpace
                 }
             }
+            delegate.layoutDidLayoutForHelper(self, forRect: rect)
         }
     }
 }

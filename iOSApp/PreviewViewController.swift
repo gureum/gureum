@@ -16,7 +16,7 @@ class PreviewViewController: UIViewController {
     override func viewDidLoad()  {
         super.viewDidLoad()
         self.inputPreviewController.view.frame = self.preview.bounds
-        println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
+        //println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
         self.inputPreviewController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         self.preview.addSubview(self.inputPreviewController.view)
     }
@@ -47,5 +47,11 @@ class PreviewViewController: UIViewController {
         var newSize = self.preview.bounds.size
         newSize.width = size.width
         self.inputPreviewController.viewWillTransitionToSize(newSize, withTransitionCoordinator: coordinator)
+    }
+
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection!) {
+        //print out the previousTrait's info
+        //println("previous tarit collection: \(previousTraitCollection)")
+        //println("current tarit collection: \(self.traitCollection)")
     }
 }

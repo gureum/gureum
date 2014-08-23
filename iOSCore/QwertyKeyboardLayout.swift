@@ -11,6 +11,8 @@ import UIKit
 class QwertyKeyboardView: KeyboardView {
     @IBOutlet var shiftButton: GRInputButton!
     @IBOutlet var spaceButton: GRInputButton!
+    @IBOutlet var leftSpaceButton: GRInputButton!
+    @IBOutlet var rightSpaceButton: GRInputButton!
 
     override init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,9 +21,9 @@ class QwertyKeyboardView: KeyboardView {
 
 class QwertyKeyboardLayout: KeyboardLayout {
     var qwertyView: QwertyKeyboardView {
-    get {
-        return self.view as QwertyKeyboardView
-    }
+        get {
+            return self.view as QwertyKeyboardView
+        }
     }
 
     func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
@@ -69,6 +71,29 @@ class QwertyKeyboardLayout: KeyboardLayout {
         }
     }
 
+    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let size = rect.size
+        for button in [self.qwertyView.shiftButton!, self.qwertyView.deleteButton!] {
+            button.frame.size = CGSizeMake(size.width * 3 / 20, size.height / 4)
+        }
+        for button in [self.qwertyView.toggleKeyboardButton!, self.qwertyView.nextKeyboardButton!] {
+            button.frame.size = CGSizeMake(size.width / 8, size.height / 4)
+        }
+        for button in [self.qwertyView.spaceButton!] {
+            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
+        }
+        for button in [self.qwertyView.doneButton!] {
+            button.frame.size = CGSizeMake(size.width / 4, size.height / 4)
+        }
+        for button in [self.qwertyView.leftSpaceButton!, self.qwertyView.rightSpaceButton!] {
+            button.frame.size = CGSizeMake(size.width / 20, size.height / 4)
+        }
+    }
+
+    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+
+    }
+
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0.01, 0.01, 0.01, 0.01)
     }
@@ -103,7 +128,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
-            return [UIButton(frame: CGRectMake(0, 0, 16, 10))]
+            return [self.qwertyView.leftSpaceButton]
         case 2:
             assert(self.qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
@@ -119,7 +144,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
-            return [UIButton(frame: CGRectMake(0, 0, 16, 10))]
+            return [self.qwertyView.rightSpaceButton]
         case 2:
             assert(self.view.deleteButton != nil)
             return [self.view.deleteButton]

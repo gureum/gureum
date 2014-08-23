@@ -36,7 +36,7 @@ class InputViewController: UIInputViewController {
 
     func reloadInputMethodView() {
         self.inputMethodViewController.loadFromPreferences()
-        println("bounds: \(self.view.bounds)")
+        //println("bounds: \(self.view.bounds)")
         self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
 
@@ -75,7 +75,7 @@ class InputViewController: UIInputViewController {
         assert(self.inputMethodViewController.view != nil)
 
         self.inputMethodViewController.view.frame = self.view.bounds
-        println("outbox bound: \(self.inputMethodViewController.view.bounds)")
+        //println("outbox bound: \(self.inputMethodViewController.view.bounds)")
         //self.view.bounds = self.inputMethodViewController.view.bounds
         self.inputMethodViewController.transitionViewToSize(size, withTransitionCoordinator: coordinator)
     }

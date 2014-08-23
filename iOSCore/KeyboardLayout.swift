@@ -94,6 +94,14 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         assert(false)
     }
 
+    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+        assert(false)
+    }
+
+    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+        assert(false)
+    }
+
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         assert(false)
     }
@@ -145,6 +153,12 @@ class NoKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    }
+
+    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+    }
+
+    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {

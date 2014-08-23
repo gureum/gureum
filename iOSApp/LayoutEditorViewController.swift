@@ -55,7 +55,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         let layoutNames = preferences.layouts
         let row = indexPath.row
         let title = layoutNames[row]
-        println("names: \(layoutNames) / row: \(row) / title: \(title)")
+        //println("names: \(layoutNames) / row: \(row) / title: \(title)")
         cell.textLabel.text = title
 
         let defaultLayoutIndex = preferences.defaultLayoutIndex

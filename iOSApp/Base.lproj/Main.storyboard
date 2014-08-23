@@ -260,7 +260,9 @@
                                 <rect key="frame" x="0.0" y="384" width="600" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="UhR-UD-rA8"/>
+                                    <constraint firstAttribute="height" constant="216" id="UhR-UD-rA8">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="162"/>
+                                    </constraint>
                                 </constraints>
                             </view>
                         </subviews>
@@ -348,7 +350,9 @@
                                 <rect key="frame" x="0.0" y="384" width="600" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="BFH-q7-J4H"/>
+                                    <constraint firstAttribute="height" constant="216" id="BFH-q7-J4H">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="162"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="384" width="800" height="216"/>
@@ -358,7 +362,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZBZ-D3-Nuf" firstAttribute="top" secondItem="KWh-rX-HxH" secondAttribute="bottom" id="277-fo-Kfd"/>
-                            <constraint firstAttribute="bottom" secondItem="KWh-rX-HxH" secondAttribute="bottom" constant="216" id="27K-pP-5W2"/>
+                            <constraint firstAttribute="bottom" secondItem="KWh-rX-HxH" secondAttribute="bottom" constant="216" id="27K-pP-5W2">
+                                <variation key="heightClass=compact-widthClass=compact" constant="162"/>
+                            </constraint>
                             <constraint firstItem="KWh-rX-HxH" firstAttribute="top" secondItem="66H-xj-mRZ" secondAttribute="top" id="Dhc-v1-0v8"/>
                             <constraint firstAttribute="bottom" secondItem="ZBZ-D3-Nuf" secondAttribute="bottom" id="QJ8-CD-5vA"/>
                             <constraint firstItem="KWh-rX-HxH" firstAttribute="top" secondItem="66H-xj-mRZ" secondAttribute="top" id="UpH-ii-oaa"/>
@@ -385,6 +391,13 @@
                                 <include reference="kaE-j8-NPN"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="27K-pP-5W2"/>
+                                <exclude reference="UpH-ii-oaa"/>
+                                <exclude reference="anQ-Ox-Kyu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="테마" id="Jr1-0l-XcV">
                         <barButtonItem key="rightBarButtonItem" title="구매 복원" id="Q6T-La-nLe"/>
@@ -395,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln7-GB-Fc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="1321"/>
+            <point key="canvasLocation" x="64" y="1326"/>
         </scene>
         <!--자판 추가-->
         <scene sceneID="xaO-Wl-3eF">
@@ -554,19 +567,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
-                                <rect key="frame" x="44" y="90" width="232" height="30"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-tO-xu6">
                                 <rect key="frame" x="0.0" y="384" width="600" height="216"/>
                                 <color key="backgroundColor" red="1" green="0.79346689865937869" blue="0.59494798472168475" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="P7z-xH-4ly"/>
+                                    <constraint firstAttribute="height" constant="216" id="P7z-xH-4ly">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="162"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="216" id="yms-gJ-vwq"/>
                                 </constraints>
                                 <variation key="default">
@@ -579,7 +586,23 @@
                                         <include reference="yms-gJ-vwq"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="yms-gJ-vwq"/>
+                                    </mask>
+                                </variation>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
+                                <rect key="frame" x="44" y="90" width="232" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="73" y="130" width="232" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.84041078629032262" alpha="0.5" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -602,6 +625,13 @@
                                 <include reference="HQd-Tu-MMa"/>
                                 <include reference="eZE-uH-5pc"/>
                                 <include reference="kHM-IK-Qpp"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="HQd-Tu-MMa"/>
+                                <exclude reference="eZE-uH-5pc"/>
+                                <exclude reference="kHM-IK-Qpp"/>
                             </mask>
                         </variation>
                     </view>
