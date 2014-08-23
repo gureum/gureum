@@ -23,12 +23,14 @@
 
 - (id)_initGRInputButton {
     {
-        id view = [[UIImageView alloc] init];
+        UIImageView *view = [[UIImageView alloc] init];
+        view.autoresizingMask = 0;
         [self addSubview:view];
         self->_glyphView = view;
     }
     {
-        id view = [[UILabel alloc] init];
+        UILabel *view = [[UILabel alloc] init];
+        view.autoresizingMask = 0;
         [self addSubview:view];
         self->_captionLabel = view;
     }

@@ -91,11 +91,16 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-
+        let theme = preferences.theme
+        for (position, button) in self.helper.buttons {
+            let title = self.helper(self.helper, titleForPosition: position)
+            let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
+            captionTheme.arrange(button)
+        }
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0.01, 0.01, 0.01, 0.01)
+        return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {

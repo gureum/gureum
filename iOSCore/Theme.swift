@@ -9,6 +9,8 @@
 import UIKit
 
 class Theme {
+    var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
+
     init() {
 
     }
@@ -54,12 +56,18 @@ class Theme {
     }()
 
     func captionForKey(key: String, fallback: ThemeCaptionConfiguration?) -> ThemeCaptionConfiguration {
-        //println("\(self.configuration)")
-        let sub: AnyObject? = self.configuration[key]
-        if sub == nil {
-            return fallback!
+        if let theme = self._captions[key] {
+            return theme
         } else {
-            return ThemeCaptionConfiguration(owner: self, configuration: sub!, fallback: fallback)
+            let theme: ThemeCaptionConfiguration = {
+                if let sub: AnyObject = self.configuration[key] {
+                    return ThemeCaptionConfiguration(owner: self, configuration: sub, fallback: fallback)
+                } else {
+                    return fallback!
+                }
+            }()
+            self._captions[key] = theme
+            return theme
         }
     }
 
@@ -137,25 +145,32 @@ class ThemeCaptionConfiguration {
         button.setBackgroundImage(image2, forState: .Highlighted)
         button.setBackgroundImage(image3, forState: .Selected)
 
-        let position = self.position
-        //println("pos: \(position)")
-        let center = CGPointMake(button.center.x + position.x, button.center.y + position.y)
-
         if let glyph = self.glyph {
             assert(button.glyphView.superview == button)
             button.glyphView.image = glyph
-            button.glyphView.sizeToFit()
-            button.glyphView.center = center
         } else {
             assert(button.captionLabel.superview == button)
             let (font, color) = self.font
+            //println("font: \(font) / color: \(color)")
             if let text = self.text {
                 button.captionLabel.text = text
             }
             button.captionLabel.textColor = color
             button.captionLabel.font = font
-            button.captionLabel.center = center
+            //println("caption center: \(button.captionLabel.center) / button center: \(center)")
         }
+    }
+
+    func arrange(button: GRInputButton) {
+        let position = self.position
+        //println("pos: \(position)")
+        let center = CGPointMake(button.frame.width / 2 + position.x, button.frame.height / 2 + position.y)
+
+        button.glyphView.sizeToFit()
+        button.glyphView.center = center
+
+        button.captionLabel.sizeToFit()
+        button.captionLabel.center = center
     }
 
     lazy var images: (UIImage?, UIImage?, UIImage?) = {
