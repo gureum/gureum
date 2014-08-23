@@ -35,11 +35,20 @@ class Theme {
     }()
 
     func imageForFilename(name: String) -> UIImage? {
-        let data = self.dataForFilename(name)
-        if data == nil {
-            return nil
+        let parts = name.componentsSeparatedByString("::")
+        let filename = parts[0]
+        println("parts: \(parts) \(parts[0]) \(filename)")
+        if let data = self.dataForFilename(filename) {
+            var image = UIImage(data: data, scale: 2)
+            if parts.count > 1 {
+                let valueStrings = parts[1].componentsSeparatedByString(" ")
+                let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
+                let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!), CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
+                image = image.resizableImageWithCapInsets(insets)
+            }
+            return image
         } else {
-            return UIImage(data: data, scale: 2)
+            return nil
         }
     }
 

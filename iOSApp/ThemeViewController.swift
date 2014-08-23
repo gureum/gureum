@@ -158,13 +158,14 @@ extension Theme {
         collection["config.json"] = true
         var resources = Dictionary<String, String>()
         for collected in collection.keys {
-            let data = self.dataForFilename(collected)
+            let filename = collected.componentsSeparatedByString("::")[0]
+            let data = self.dataForFilename(filename)
             if data == nil {
-                //println("파일이 존재하지 않습니다: \(collected)")
+                println("파일이 존재하지 않습니다: \(filename)")
                 continue
             }
             let str = themeResourceCoder.encodeFromData(data!)
-            resources[collected] = str
+            resources[filename] = str
             //println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
         }
         //println("dumped resources: \(resources)")
