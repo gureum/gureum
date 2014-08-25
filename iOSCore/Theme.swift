@@ -9,12 +9,6 @@
 import UIKit
 
 class Theme {
-    var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
-
-    init() {
-
-    }
-
     func dataForFilename(name: String) -> NSData? {
         assert(false)
         return nil
@@ -22,22 +16,14 @@ class Theme {
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
         let data = self.dataForFilename(name)
-        assert(data != nil)
+        assert(data != nil, "지정한 데이터 파일이 없습니다.")
         return NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: error)
     }
-
-    lazy var configuration: Dictionary<String, AnyObject> = {
-        var error: NSError? = nil
-        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
-        assert(error == nil, "설정 파일의 서식이 올바르지 않습니다.")
-        assert(JSONObject != nil)
-        return JSONObject!
-    }()
 
     func imageForFilename(name: String) -> UIImage? {
         let parts = name.componentsSeparatedByString("::")
         let filename = parts[0]
-        println("parts: \(parts) \(parts[0]) \(filename)")
+        //println("parts: \(parts) \(parts[0]) \(filename)")
         if let data = self.dataForFilename(filename) {
             var image = UIImage(data: data, scale: 2)
             if parts.count > 1 {
@@ -52,16 +38,81 @@ class Theme {
         }
     }
 
+    lazy var mainConfiguration: Dictionary<String, AnyObject> = {
+        var error: NSError? = nil
+        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
+        assert(error == nil, "설정 파일의 서식이 올바르지 않습니다.")
+        assert(JSONObject != nil)
+        return JSONObject!
+    }()
+
+    func traitForName(traitName: String) -> ThemeTraitConfiguration {
+        let sub: AnyObject? = self.mainConfiguration["trait"]
+        if let traits = sub as Dictionary<String, String>? {
+            if let traitFilename = traits[traitName] {
+                var error: NSError? = nil
+                let traitData: AnyObject! = self.JSONObjectForFilename(traitFilename, error: &error)
+                assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
+                return ThemeTraitConfiguration(owner: self, configuration: traitData)
+            } else {
+                assert(false, "지정한 trait에 대한 설정이 없습니다.")
+            }
+        } else {
+            assert(false, "주 설정 파일에 trait 키가 없습니다.")
+        }
+    }
+
+    func traitForCoordinator(coordinator: UIViewControllerTransitionCoordinator!) -> ThemeTraitConfiguration {
+        println("coordinator: \(coordinator)")
+        return self.phonePortraitConfiguration
+    }
+
+    func traitForSize(size: CGSize) -> ThemeTraitConfiguration {
+        switch size.width {
+        case 320.0:
+            return self.phonePortraitConfiguration
+        case 480.0:
+            return self.phoneLandscape480Configuration
+        case 568.0:
+            return self.phoneLandscape568Configuration
+        default:
+            assert(false, "no coverage")
+        }
+    }
+
+    lazy var phonePortraitConfiguration: ThemeTraitConfiguration = {
+        return self.traitForName("phone-portrait")
+    }()
+
+    lazy var phoneLandscape480Configuration: ThemeTraitConfiguration = {
+        return self.traitForName("phone-landscape480")
+    }()
+
+    lazy var phoneLandscape568Configuration: ThemeTraitConfiguration = {
+        return self.traitForName("phone-landscape568")
+    }()
+}
+
+class ThemeTraitConfiguration {
+    let configuration: Dictionary<String, AnyObject>
+    let owner: Theme
+    var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
+
+    init(owner: Theme, configuration: AnyObject?) {
+        self.owner = owner
+        self.configuration = configuration as Dictionary<String, AnyObject>
+    }
+
     lazy var backgroundImage: UIImage? = {
         let configFilename: AnyObject? = self.configuration["background"]
         let filename = configFilename as String? ?? "background.png"
-        return self.imageForFilename(filename)
+        return self.owner.imageForFilename(filename)
     }()
 
     lazy var foregroundImage: UIImage? = {
         let configFilename: AnyObject? = self.configuration["foreground"]
         let filename = configFilename as String? ?? "foreground.png"
-        return self.imageForFilename(filename)
+        return self.owner.imageForFilename(filename)
     }()
 
     func captionForKey(key: String, fallback: ThemeCaptionConfiguration?) -> ThemeCaptionConfiguration {
@@ -70,7 +121,7 @@ class Theme {
         } else {
             let theme: ThemeCaptionConfiguration = {
                 if let sub: AnyObject = self.configuration[key] {
-                    return ThemeCaptionConfiguration(owner: self, configuration: sub, fallback: fallback)
+                    return ThemeCaptionConfiguration(owner: self.owner, configuration: sub, fallback: fallback)
                 } else {
                     return fallback!
                 }
@@ -80,7 +131,7 @@ class Theme {
         }
     }
 
-    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(owner: self, configuration: nil, fallback: nil)
+    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(owner: self.owner, configuration: nil, fallback: nil)
 
     lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
 
@@ -101,7 +152,6 @@ class Theme {
 
 
 class PreferencedTheme: Theme {
-
     override func dataForFilename(name: String) -> NSData? {
         if let rawData = preferences.themeResources[name] {
             let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
@@ -195,7 +245,7 @@ class ThemeCaptionConfiguration {
         var images: [UIImage?] = []
         for imageName in imageConfiguration! {
             let image = self.owner.imageForFilename(imageName)
-            assert(image != nil, "캡션 이미지를 찾을 수 없습니다.")
+            assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
             images.append(image)
         }
         while images.count < 3 {

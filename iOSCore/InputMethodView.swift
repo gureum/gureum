@@ -66,8 +66,6 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 //        }
 
         assert(preferences.themeResources.count > 0)
-        let backgroundImage = preferences.theme.backgroundImage
-        let foregroundImage = preferences.theme.foregroundImage
         self.layouts.removeAll(keepCapacity: true)
 
         let layoutNames = preferences.layouts
@@ -77,13 +75,7 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
             let layout = self.keyboardLayoutForLayoutName(name, frame: self.view.bounds)
             self.layouts.append(layout)
             layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
-            if backgroundImage != nil {
-                layout.view.backgroundImageView.image = backgroundImage
-            }
             layoutsView.addSubview(layout.view)
-            if foregroundImage != nil {
-                layout.view.foregroundImageView.image = foregroundImage
-            }
         }
 
         self.inputMethodView.pageControl.numberOfPages = layouts.count
@@ -91,10 +83,13 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+        let themeTrait = preferences.theme.traitForSize(size)
         let layoutIndex = self.selectedLayoutIndex
         self.view.frame.size = size
         self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.layouts.count), 0)
         for (i, layout) in enumerate(self.layouts) {
+            layout.view.backgroundImageView.image = themeTrait.backgroundImage
+            layout.view.foregroundImageView.image = themeTrait.foregroundImage
             layout.view.frame.origin.x = CGFloat(i) * size.width
             layout.view.frame.size.width = size.width
             layout.transitionViewToSize(size, withTransitionCoordinator: coordinator)

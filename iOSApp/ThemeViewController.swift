@@ -152,24 +152,42 @@ class HTTPTheme: Theme {
 }
 
 extension Theme {
-    func dump() {
-        let root: AnyObject = self.configuration as Dictionary<String, AnyObject>
-        var collection = collectResources(root)
-        collection["config.json"] = true
-        var resources = Dictionary<String, String>()
-        for collected in collection.keys {
-            let filename = collected.componentsSeparatedByString("::")[0]
-            let data = self.dataForFilename(filename)
-            if data == nil {
-                println("파일이 존재하지 않습니다: \(filename)")
-                continue
-            }
-            let str = themeResourceCoder.encodeFromData(data!)
-            resources[filename] = str
-            //println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
+    func encodedDataForFilename(filename: String) -> String! {
+        if let data = self.dataForFilename(filename) {
+            let str = themeResourceCoder.encodeFromData(data)
+            return str
+        } else {
+            return nil
         }
-        //println("dumped resources: \(resources)")
-        assert(resources.count > 0)
+    }
+
+    func dump() {
+        let sub: AnyObject? = self.mainConfiguration["trait"]
+        var resources = Dictionary<String, String>()
+        let traitsConfiguration = sub as Dictionary<String, String>?
+        assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
+        for traitFilename in traitsConfiguration!.values {
+            let datastr = self.encodedDataForFilename(traitFilename)
+            assert(datastr != nil)
+            resources[traitFilename] = datastr!
+            var error: NSError? = nil
+            let root: AnyObject? = self.JSONObjectForFilename(traitFilename, error: &error)
+            assert(error == nil)
+            var collection = collectResources(root)
+            collection["config.json"] = true
+            for collected in collection.keys {
+                let filename = collected.componentsSeparatedByString("::")[0]
+                if let datastr = self.encodedDataForFilename(filename) {
+                    resources[filename] = datastr
+                } else {
+                    println("파일이 존재하지 않습니다: \(filename)")
+                    continue
+                }
+                //println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
+            }
+            //println("dumped resources: \(resources)")
+            assert(resources.count > 0)
+        }
         preferences.themeResources = resources
         assert(preferences.themeResources.count > 0)
     }

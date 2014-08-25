@@ -62,7 +62,7 @@ class InputViewController: UIInputViewController {
         if self.view.bounds.width > 0 {
             self.log("\(self.view.bounds)")
             self.inputMethodViewController.view.frame = self.view.bounds
-            self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+            self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
         }
     }
 
@@ -73,6 +73,7 @@ class InputViewController: UIInputViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         assert(self.inputMethodViewController.view != nil)
+        println("coordinator: \(coordinator)")
 
         self.inputMethodViewController.view.frame = self.view.bounds
         //println("outbox bound: \(self.inputMethodViewController.view.bounds)")

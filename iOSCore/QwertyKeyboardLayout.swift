@@ -50,7 +50,10 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        let theme = preferences.theme
+    }
+
+    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let theme = preferences.theme.traitForSize(rect.size)
 
         for (position, button) in self.helper.buttons {
             let title = self.helper(self.helper, titleForPosition: position)
@@ -69,9 +72,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         for (button, captionTheme) in map {
             captionTheme.appeal(button)
         }
-    }
 
-    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
         let size = rect.size
         for button in [self.qwertyView.shiftButton!, self.qwertyView.deleteButton!] {
             button.frame.size = CGSizeMake(size.width * 3 / 20, size.height / 4)
@@ -91,7 +92,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let theme = preferences.theme
+        let theme = preferences.theme.traitForSize(rect.size)
         for (position, button) in self.helper.buttons {
             let title = self.helper(self.helper, titleForPosition: position)
             let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
