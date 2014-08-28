@@ -23,11 +23,10 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
 
-    var selectedLayoutContext: UnsafeMutablePointer<()> {
+    var selectedLayout: KeyboardLayout {
         get {
-            let context = self.layouts[self.selectedLayoutIndex].context
-            assert(context != nil)
-            return context
+            let layout = self.layouts[self.selectedLayoutIndex]
+            return layout
         }
     }
 

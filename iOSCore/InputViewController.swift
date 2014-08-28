@@ -137,20 +137,28 @@ class InputViewController: UIInputViewController {
         //log(proxy.documentContextAfterInput);
         //println("\(self.context) \(sender.tag)")
 
-        let context = self.inputMethodViewController.selectedLayoutContext
+        let selectedLayout = self.inputMethodViewController.selectedLayout
         for layout in self.inputMethodViewController.layouts {
-            if context != layout.context && layout.context != nil {
+            if selectedLayout.context != layout.context && layout.context != nil {
                 context_truncate(layout.context)
             }
         }
 
+        let context = selectedLayout.context
+        let shiftButton = self.inputMethodViewController.selectedLayout.view.shiftButton
+        var keycode = sender.tag
+        if shiftButton.selected {
+            keycode -= 32
+            shiftButton.selected = false
+        }
+
         let precomposed = context_get_composed_unicode(context)
-        let processed = context_put(context, UInt32(sender.tag))
-        println("processed: \(processed) / precomposed: \(precomposed)")
+        let processed = context_put(context, UInt32(keycode))
+        //println("processed: \(processed) / precomposed: \(precomposed)")
 
         if !processed {
             context_truncate(context)
-            proxy.insertText("\(UnicodeScalar(sender.tag))")
+            proxy.insertText("\(UnicodeScalar(keycode))")
         } else {
             if precomposed > 0 {
                 proxy.deleteBackward()
@@ -170,12 +178,16 @@ class InputViewController: UIInputViewController {
         }
     }
 
+    func shift(sender: UIButton) {
+        sender.selected = !sender.selected
+    }
+
     func delete() {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         //self.keyboard.view.logTextView.text = ""
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);
-        let context = self.inputMethodViewController.selectedLayoutContext
+        let context = self.inputMethodViewController.selectedLayout.context
         let precomposed = context_get_composed_unicode(context)
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
         if precomposed > 0 {

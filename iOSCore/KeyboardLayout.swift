@@ -14,6 +14,8 @@ class KeyboardView: UIView {
     @IBOutlet var deleteButton: GRInputButton! = nil
     @IBOutlet var doneButton: GRInputButton! = nil
 
+    @IBOutlet var shiftButton: GRInputButton!
+
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView(frame: self.bounds)
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight

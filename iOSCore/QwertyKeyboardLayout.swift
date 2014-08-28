@@ -9,7 +9,6 @@
 import UIKit
 
 class QwertyKeyboardView: KeyboardView {
-    @IBOutlet var shiftButton: GRInputButton!
     @IBOutlet var spaceButton: GRInputButton!
     @IBOutlet var leftSpaceButton: GRInputButton!
     @IBOutlet var rightSpaceButton: GRInputButton!
@@ -48,6 +47,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
         self.qwertyView.spaceButton.tag = 32
         self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+
+        self.qwertyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
