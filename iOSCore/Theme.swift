@@ -226,7 +226,7 @@ class ThemeCaptionConfiguration {
 
     func appeal(button: GRInputButton) {
         let (image1, image2, image3) = self.images
-        assert(image1 != nil)
+        //assert(image1 != nil)
         button.tintColor = UIColor.clearColor()
         button.setBackgroundImage(image1, forState: .Normal)
         button.setBackgroundImage(image2, forState: .Highlighted)
@@ -275,12 +275,12 @@ class ThemeCaptionConfiguration {
         var images: [UIImage?] = []
         for imageName in imageConfiguration! {
             let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.trait.topMargin)
-            assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
+            //assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
             images.append(image)
         }
         while images.count < 3 {
             let lastImage = images.last!
-            assert(lastImage != nil)
+            //assert(lastImage != nil)
             images.append(lastImage)
         }
         return (images[0], images[1], images[2])
