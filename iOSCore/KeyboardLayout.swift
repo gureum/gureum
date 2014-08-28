@@ -42,13 +42,6 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var context: UnsafeMutablePointer<()> = nil
     var foregroundImageView: UIImageView! = nil
 
-    var inputViewController: InputViewController? = nil {
-        didSet {
-            self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-            self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
-        }
-    }
-
     class func containerName() -> String {
         assert(false)
         return ""
@@ -63,8 +56,8 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         let x = self.helper
         self.helper.createButtonsInView(self.view)
 
-        self.view.nextKeyboardButton.addTarget(self.inputViewController, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-        self.view.deleteButton.addTarget(self.inputViewController, action: "delete", forControlEvents: .TouchUpInside)
+        self.view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        self.view.deleteButton.addTarget(nil, action: "delete", forControlEvents: .TouchUpInside)
 
         self.context = self.dynamicType.loadContext()
     }

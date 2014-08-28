@@ -120,7 +120,7 @@ class NumpadKeyboardLayout: KeyboardLayout {
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
         return button
     }
@@ -152,7 +152,7 @@ class CheonjiinKeyboardLayout: NumpadKeyboardLayout {
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         
         return button
     }

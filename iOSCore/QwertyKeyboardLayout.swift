@@ -18,6 +18,16 @@ class QwertyKeyboardView: KeyboardView {
     }
 }
 
+func getKey(keylines: [String], position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
+    let keyline = keylines[position.row].unicodeScalars
+    var idx = keyline.startIndex
+    for _ in 0..<position.column {
+        idx = idx.successor()
+    }
+    let key = keyline[idx]
+    return key
+}
+
 class QwertyKeyboardLayout: KeyboardLayout {
     var qwertyView: QwertyKeyboardView {
         get {
@@ -27,12 +37,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
     func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let keyline = keylines[position.row].unicodeScalars
-        var idx = keyline.startIndex
-        for _ in 0..<position.column {
-            idx = idx.successor()
-        }
-        let key = keyline[idx]
+        let key = getKey(keylines, position)
         return key
     }
 
@@ -185,9 +190,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
         let key =  self.keyForPosition(position)
-        button.tag = Int(key.value)
+        button.tag = Int(((key.value - 32) << 16) + key.value)
         button.sizeToFit()
-        button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
         return button
     }
@@ -199,6 +204,32 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
 }
 
+class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
+    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'", " "]
+        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'", " "]
+        let key1 = getKey(keylines1, position)
+        let key2 = getKey(keylines2, position)
+
+        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        button.tag = Int((key2.value << 16) + key1.value)
+        button.sizeToFit()
+        //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
+        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+
+        return button
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'", " "]
+        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'", " "]
+
+        let keycode = self.qwertyView.shiftButton.selected ? getKey(keylines2, position) : getKey(keylines1, position)
+        let text = "\(Character(UnicodeScalar(keycode.value)))"
+        return text
+    }
+}
+
 class KSX5002KeyboardLayout: QwertyKeyboardLayout {
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
@@ -206,19 +237,13 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let keyline = keylines[position.row].unicodeScalars
-        var idx = keyline.startIndex
-        for _ in 0..<position.column {
-            idx = idx.successor()
-        }
-        let key = keyline[idx]
+        let key = self.keyForPosition(position)
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        button.tag = Int(key.value)
+        button.tag = Int(((key.value - 32) << 16) + key.value)
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(self.inputViewController, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         
         return button
     }
@@ -230,5 +255,5 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
         let text = "\(Character(UnicodeScalar(label)))"
         return text
     }
-    
+
 }

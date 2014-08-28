@@ -146,9 +146,8 @@ class InputViewController: UIInputViewController {
 
         let context = selectedLayout.context
         let shiftButton = self.inputMethodViewController.selectedLayout.view.shiftButton
-        var keycode = sender.tag
+        var keycode = shiftButton.selected ? sender.tag >> 16 : sender.tag & 0xffff
         if shiftButton.selected {
-            keycode -= 32
             shiftButton.selected = false
             self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
         }
