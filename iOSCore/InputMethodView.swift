@@ -32,7 +32,11 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func resetContext() {
-        context_flush(self.selectedLayoutContext)
+        for layout in self.layouts {
+            if layout.context != nil {
+                context_truncate(layout.context)
+            }
+        }
     }
 
     func keyboardLayoutForLayoutName(name: String, frame: CGRect) -> KeyboardLayout {

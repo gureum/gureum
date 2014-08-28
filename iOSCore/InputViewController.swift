@@ -138,23 +138,36 @@ class InputViewController: UIInputViewController {
         //println("\(self.context) \(sender.tag)")
 
         let context = self.inputMethodViewController.selectedLayoutContext
-        let precomposed = context_get_composed_unicode(context)
-        let processed = context_put(context, UInt32(sender.tag))
-        if processed && precomposed > 0 {
-            proxy.deleteBackward()
+        for layout in self.inputMethodViewController.layouts {
+            if context != layout.context && layout.context != nil {
+                context_truncate(layout.context)
+            }
         }
 
-        let commited = context_get_commited_unicode(context)
-        if commited > 0 {
-            proxy.insertText("\(UnicodeScalar(commited))")
+        let precomposed = context_get_composed_unicode(context)
+        let processed = context_put(context, UInt32(sender.tag))
+        println("processed: \(processed) / precomposed: \(precomposed)")
+
+        if !processed {
+            context_truncate(context)
+            proxy.insertText("\(UnicodeScalar(sender.tag))")
+        } else {
+            if precomposed > 0 {
+                proxy.deleteBackward()
+            }
+
+            let commited = context_get_commited_unicode(context)
+            if commited > 0 {
+                proxy.insertText("\(UnicodeScalar(commited))")
+            }
+            let composed = context_get_composed_unicode(context)
+            if composed > 0 {
+                proxy.insertText("\(UnicodeScalar(composed))")
+            }
+            println("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
+            //log(proxy.documentContextBeforeInput);
+            //log(proxy.documentContextAfterInput);
         }
-        let composed = context_get_composed_unicode(context)
-        if composed > 0 {
-            proxy.insertText("\(UnicodeScalar(composed))")
-        }
-        //println("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
-//        log(proxy.documentContextBeforeInput);
-//        log(proxy.documentContextAfterInput);
     }
 
     func delete() {
