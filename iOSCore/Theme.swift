@@ -39,14 +39,24 @@ class Theme {
     }
 
     func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
-        if let image = self.imageForFilename(name) {
+        let parts = name.componentsSeparatedByString("::")
+        let filename = parts[0]
+        if let image = self.imageForFilename(filename) {
             var size = image.size
             size.height += margin
             UIGraphicsBeginImageContextWithOptions(size, false, 2)
             var rect = CGRectMake(0, margin, image.size.width, image.size.height)
             image.drawInRect(rect)
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            var newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
+
+            if parts.count > 1 {
+                let valueStrings = parts[1].componentsSeparatedByString(" ")
+                let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
+                let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!) + margin, CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
+                newImage = newImage.resizableImageWithCapInsets(insets)
+            }
+
             return newImage
         } else {
             return nil
