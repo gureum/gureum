@@ -22,6 +22,7 @@
 @synthesize captionLabel=_captionLabel;
 
 - (id)_initGRInputButton {
+    self.titleLabel.textColor = [UIColor clearColor];
     {
         UIImageView *view = [[UIImageView alloc] init];
         view.autoresizingMask = 0;

@@ -49,6 +49,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
         self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
         self.qwertyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
+
+        self.qwertyView.toggleKeyboardButton.addTarget(nil, action: "toggle:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -223,7 +225,8 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         let key = self.keyForPosition(position)
-        let label = ksx5002_label(Int8(key.value))
+        let keycode = self.qwertyView.shiftButton.selected ? key.value - 32 : key.value
+        let label = ksx5002_label(Int8(keycode))
         let text = "\(Character(UnicodeScalar(label)))"
         return text
     }

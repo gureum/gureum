@@ -10,11 +10,11 @@ import UIKit
 
 class KeyboardView: UIView {
     @IBOutlet var nextKeyboardButton: GRInputButton! = nil
-    @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var deleteButton: GRInputButton! = nil
     @IBOutlet var doneButton: GRInputButton! = nil
 
-    @IBOutlet var shiftButton: GRInputButton!
+    @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
+    @IBOutlet var shiftButton: GRInputButton! = nil
 
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView(frame: self.bounds)

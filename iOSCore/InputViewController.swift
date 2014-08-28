@@ -150,6 +150,7 @@ class InputViewController: UIInputViewController {
         if shiftButton.selected {
             keycode -= 32
             shiftButton.selected = false
+            self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
         }
 
         let precomposed = context_get_composed_unicode(context)
@@ -180,6 +181,12 @@ class InputViewController: UIInputViewController {
 
     func shift(sender: UIButton) {
         sender.selected = !sender.selected
+        self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
+    }
+
+    func toggle(sender: UIButton) {
+        sender.selected = !sender.selected
+        self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
     }
 
     func delete() {

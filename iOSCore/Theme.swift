@@ -231,7 +231,6 @@ class ThemeCaptionConfiguration {
             let (font, color) = self.font
             //println("font: \(font) / color: \(color)")
             if let title = button.titleForState(.Normal) {
-                button.setTitle(nil, forState: .Normal)
                 button.captionLabel.text = title
             }
             if let text = self.text {

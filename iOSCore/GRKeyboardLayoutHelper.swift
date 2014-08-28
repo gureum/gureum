@@ -81,9 +81,7 @@ class GRKeyboardLayoutHelper {
                 }
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
-                    let title = delegate.helper(self, titleForPosition: position)
                     var button = delegate.helper(self, buttonForPosition: position)
-                    button.captionLabel.text = title
                     self.buttons[position] = button
                     view.addSubview(button)
                 }
@@ -93,6 +91,7 @@ class GRKeyboardLayoutHelper {
             }
             delegate.layoutDidLoadForHelper(self)
         }
+        self.updateCaptionLabel()
     }
 
     func layoutButtonsInRect(rect: CGRect) {
@@ -168,6 +167,17 @@ class GRKeyboardLayoutHelper {
                 }
             }
             delegate.layoutDidLayoutForHelper(self, forRect: rect)
+        }
+    }
+
+    func updateCaptionLabel() {
+        if let delegate = self.delegate {
+            for (position, button) in self.buttons {
+                if button.titleForState(.Normal) == nil {
+                    let label = delegate.helper(self, titleForPosition: position)
+                    button.captionLabel.text = label
+                }
+            }
         }
     }
 }
