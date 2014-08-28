@@ -172,7 +172,7 @@ extension Theme {
             resources[traitFilename] = datastr!
             var error: NSError? = nil
             let root: AnyObject? = self.JSONObjectForFilename(traitFilename, error: &error)
-            assert(error == nil)
+            assert(error == nil, "trait 파일이 올바른 JSON 파일이 아닙니다. \(traitFilename)")
             var collection = collectResources(root)
             collection["config.json"] = true
             for collected in collection.keys {

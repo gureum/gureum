@@ -46,10 +46,12 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-
+        self.qwertyView.spaceButton.tag = 32
+        self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
+
     }
 
     override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
@@ -69,6 +71,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
             self.qwertyView.spaceButton!: theme.qwertySpaceCaption,
             self.qwertyView.doneButton!: theme.qwertyDoneCaption,
         ]
+
         for (button, captionTheme) in map {
             captionTheme.appeal(button)
         }
@@ -96,6 +99,19 @@ class QwertyKeyboardLayout: KeyboardLayout {
         for (position, button) in self.helper.buttons {
             let title = self.helper(self.helper, titleForPosition: position)
             let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
+            captionTheme.arrange(button)
+        }
+
+        let map = [
+            self.qwertyView.shiftButton!: theme.qwertyShiftCaption,
+            self.qwertyView.deleteButton!: theme.qwertyDeleteCaption,
+            self.qwertyView.toggleKeyboardButton!: theme.qwerty123Caption,
+            self.qwertyView.nextKeyboardButton!: theme.qwertyGlobeCaption,
+            self.qwertyView.spaceButton!: theme.qwertySpaceCaption,
+            self.qwertyView.doneButton!: theme.qwertyDoneCaption,
+        ]
+
+        for (button, captionTheme) in map {
             captionTheme.arrange(button)
         }
     }

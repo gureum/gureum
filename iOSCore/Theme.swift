@@ -63,7 +63,8 @@ class Theme {
     }
 
     func traitForCoordinator(coordinator: UIViewControllerTransitionCoordinator!) -> ThemeTraitConfiguration {
-        println("coordinator: \(coordinator)")
+        assert(false)
+        //println("coordinator: \(coordinator)")
         return self.phonePortraitConfiguration
     }
 
@@ -207,6 +208,7 @@ class ThemeCaptionConfiguration {
         if let glyph = self.glyph {
             assert(button.glyphView.superview == button)
             button.glyphView.image = glyph
+            assert(button.glyphView.image != nil)
         } else {
             assert(button.captionLabel.superview == button)
             let (font, color) = self.font
@@ -231,9 +233,11 @@ class ThemeCaptionConfiguration {
 
         button.glyphView.sizeToFit()
         button.glyphView.center = center
+        //println("glyphView: \(button.glyphView.frame)")
 
         button.captionLabel.sizeToFit()
         button.captionLabel.center = center
+        //println("captionlabel: \(button.captionLabel.frame)")
     }
 
     lazy var images: (UIImage?, UIImage?, UIImage?) = {
@@ -258,7 +262,7 @@ class ThemeCaptionConfiguration {
 
     lazy var labelConfiguration: Dictionary<String, AnyObject>? = {
         let sub = self.configuration["label"]
-//        println("label: \(sub)")
+        //println("label: \(sub)")
         assert(sub is Dictionary<String, AnyObject>, "'label' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
         return sub as Dictionary<String, AnyObject>?
     }()
@@ -279,8 +283,11 @@ class ThemeCaptionConfiguration {
     lazy var glyph: UIImage? = {
         if let config = self.labelConfiguration {
             let subText: AnyObject? = config["glyph"]
+            //println("glyph: \(subText)")
             if subText is String {
-                return self.owner.imageForFilename(subText as String)
+                let image = self.owner.imageForFilename(subText as String)
+                //println("glyph image: \(image)")
+                return image
             }
         }
         return nil

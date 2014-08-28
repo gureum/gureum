@@ -73,7 +73,7 @@ class InputViewController: UIInputViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         assert(self.inputMethodViewController.view != nil)
-        println("coordinator: \(coordinator)")
+        //println("coordinator: \(coordinator)")
 
         self.inputMethodViewController.view.frame = self.view.bounds
         //println("outbox bound: \(self.inputMethodViewController.view.bounds)")
@@ -133,9 +133,9 @@ class InputViewController: UIInputViewController {
 
     func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-//        log(proxy.documentContextBeforeInput);
-//        log(proxy.documentContextAfterInput);
-//        println("\(self.context) \(sender.tag)")
+        //log(proxy.documentContextBeforeInput);
+        //log(proxy.documentContextAfterInput);
+        //println("\(self.context) \(sender.tag)")
 
         let context = self.inputMethodViewController.selectedLayoutContext
         let precomposed = context_get_composed_unicode(context)
@@ -152,6 +152,7 @@ class InputViewController: UIInputViewController {
         if composed > 0 {
             proxy.insertText("\(UnicodeScalar(composed))")
         }
+        //println("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
 //        log(proxy.documentContextBeforeInput);
 //        log(proxy.documentContextAfterInput);
     }
