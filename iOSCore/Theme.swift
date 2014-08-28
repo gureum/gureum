@@ -38,6 +38,21 @@ class Theme {
         }
     }
 
+    func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
+        if let image = self.imageForFilename(name) {
+            var size = image.size
+            size.height += margin
+            UIGraphicsBeginImageContextWithOptions(size, false, 2)
+            var rect = CGRectMake(0, margin, image.size.width, image.size.height)
+            image.drawInRect(rect)
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return newImage
+        } else {
+            return nil
+        }
+    }
+
     lazy var mainConfiguration: Dictionary<String, AnyObject> = {
         var error: NSError? = nil
         let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
@@ -46,14 +61,14 @@ class Theme {
         return JSONObject!
     }()
 
-    func traitForName(traitName: String) -> ThemeTraitConfiguration {
+    func traitForName(traitName: String, topMargin: CGFloat) -> ThemeTraitConfiguration {
         let sub: AnyObject? = self.mainConfiguration["trait"]
         if let traits = sub as Dictionary<String, String>? {
             if let traitFilename = traits[traitName] {
                 var error: NSError? = nil
                 let traitData: AnyObject! = self.JSONObjectForFilename(traitFilename, error: &error)
                 assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
-                return ThemeTraitConfiguration(owner: self, configuration: traitData)
+                return ThemeTraitConfiguration(owner: self, configuration: traitData, topMargin: topMargin)
             } else {
                 assert(false, "지정한 trait에 대한 설정이 없습니다.")
             }
@@ -82,25 +97,27 @@ class Theme {
     }
 
     lazy var phonePortraitConfiguration: ThemeTraitConfiguration = {
-        return self.traitForName("phone-portrait")
+        return self.traitForName("phone-portrait", topMargin: 8)
     }()
 
     lazy var phoneLandscape480Configuration: ThemeTraitConfiguration = {
-        return self.traitForName("phone-landscape480")
+        return self.traitForName("phone-landscape480", topMargin: 4)
     }()
 
     lazy var phoneLandscape568Configuration: ThemeTraitConfiguration = {
-        return self.traitForName("phone-landscape568")
+        return self.traitForName("phone-landscape568", topMargin: 4)
     }()
 }
 
 class ThemeTraitConfiguration {
     let configuration: Dictionary<String, AnyObject>
     let owner: Theme
+    let topMargin: CGFloat
     var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
 
-    init(owner: Theme, configuration: AnyObject?) {
+    init(owner: Theme, configuration: AnyObject?, topMargin: CGFloat) {
         self.owner = owner
+        self.topMargin = topMargin
         self.configuration = configuration as Dictionary<String, AnyObject>
     }
 
@@ -122,7 +139,7 @@ class ThemeTraitConfiguration {
         } else {
             let theme: ThemeCaptionConfiguration = {
                 if let sub: AnyObject = self.configuration[key] {
-                    return ThemeCaptionConfiguration(owner: self.owner, configuration: sub, fallback: fallback)
+                    return ThemeCaptionConfiguration(trait: self, configuration: sub, fallback: fallback)
                 } else {
                     return fallback!
                 }
@@ -132,7 +149,7 @@ class ThemeTraitConfiguration {
         }
     }
 
-    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(owner: self.owner, configuration: nil, fallback: nil)
+    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(trait: self, configuration: nil, fallback: nil)
 
     lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
 
@@ -167,10 +184,10 @@ class PreferencedTheme: Theme {
 class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject?]
     let fallback: ThemeCaptionConfiguration!
-    let owner: Theme
+    let trait: ThemeTraitConfiguration
 
-    init(owner: Theme, configuration: AnyObject?, fallback: ThemeCaptionConfiguration?) {
-        self.owner = owner
+    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, fallback: ThemeCaptionConfiguration?) {
+        self.trait = trait
 
         var given: AnyObject = configuration ?? Dictionary<String, AnyObject>()
 
@@ -248,7 +265,7 @@ class ThemeCaptionConfiguration {
         }
         var images: [UIImage?] = []
         for imageName in imageConfiguration! {
-            let image = self.owner.imageForFilename(imageName)
+            let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.trait.topMargin)
             assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
             images.append(image)
         }
@@ -285,7 +302,7 @@ class ThemeCaptionConfiguration {
             let subText: AnyObject? = config["glyph"]
             //println("glyph: \(subText)")
             if subText is String {
-                let image = self.owner.imageForFilename(subText as String)
+                let image = self.trait.owner.imageForFilename(subText as String)
                 //println("glyph image: \(image)")
                 return image
             }
