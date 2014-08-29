@@ -9,7 +9,7 @@
 import UIKit
 
 class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
-    var layouts: [KeyboardLayout] = []
+    var collections: [KeyboardLayoutCollection] = []
     @IBOutlet var logTextView: UITextView!
 
     @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
@@ -25,27 +25,29 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 
     var selectedLayout: KeyboardLayout {
         get {
-            let layout = self.layouts[self.selectedLayoutIndex]
-            return layout
+            let collection = self.collections[self.selectedLayoutIndex]
+            return collection.selectedLayout
         }
     }
 
     func resetContext() {
-        for layout in self.layouts {
-            if layout.context != nil {
-                context_truncate(layout.context)
+        for collection in self.collections {
+            if collection.selectedLayout.context != nil {
+                context_truncate(collection.selectedLayout.context)
             }
         }
     }
 
-    func keyboardLayoutForLayoutName(name: String, frame: CGRect) -> KeyboardLayout {
+    func keyboardLayoutForLayoutName(name: String, frame: CGRect) -> [KeyboardLayout] {
         switch name {
         case "qwerty":
-            return QwertyKeyboardLayout()
+            return [QwertyKeyboardLayout(), QwertySymbolKeyboardLayout()]
+        case "qwerty123":
+            return [QwertySymbolKeyboardLayout()]
         case "ksx5002":
-            return KSX5002KeyboardLayout()
+            return [KSX5002KeyboardLayout(), QwertySymbolKeyboardLayout()]
         default:
-            return NoKeyboardLayout()
+            return [NoKeyboardLayout()]
         }
     }
 
@@ -69,19 +71,21 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 //        }
 
         assert(preferences.themeResources.count > 0)
-        self.layouts.removeAll(keepCapacity: true)
+        self.collections.removeAll(keepCapacity: true)
 
         let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
             assert(self.view.bounds.height > 0)
             assert(self.view.bounds.width > 0)
-            let layout = self.keyboardLayoutForLayoutName(name, frame: self.view.bounds)
-            self.layouts.append(layout)
-            layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
-            layoutsView.addSubview(layout.view)
+            let layouts = self.keyboardLayoutForLayoutName(name, frame: self.view.bounds)
+            self.collections.append(KeyboardLayoutCollection(layouts: layouts))
+            for layout in layouts {
+                layout.view.frame.origin.x = CGFloat(i) * self.view.frame.width
+            }
+            layoutsView.addSubview(layouts[0].view)
         }
 
-        self.inputMethodView.pageControl.numberOfPages = layouts.count
+        self.inputMethodView.pageControl.numberOfPages = collections.count
         self.selectLayoutByIndex(preferences.defaultLayoutIndex, animated: false)
     }
 
@@ -89,13 +93,15 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         let themeTrait = preferences.theme.traitForSize(size)
         let layoutIndex = self.selectedLayoutIndex
         self.view.frame.size = size
-        self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.layouts.count), 0)
-        for (i, layout) in enumerate(self.layouts) {
-            layout.view.backgroundImageView.image = themeTrait.backgroundImage
-            layout.view.foregroundImageView.image = themeTrait.foregroundImage
-            layout.view.frame.origin.x = CGFloat(i) * size.width
-            layout.view.frame.size.width = size.width
-            layout.transitionViewToSize(size, withTransitionCoordinator: coordinator)
+        self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.collections.count), 0)
+        for (i, collection) in enumerate(self.collections) {
+            for layout in collection.layouts {
+                layout.view.backgroundImageView.image = themeTrait.backgroundImage
+                layout.view.foregroundImageView.image = themeTrait.foregroundImage
+                layout.view.frame.origin.x = CGFloat(i) * size.width
+                layout.view.frame.size.width = size.width
+                layout.transitionViewToSize(size, withTransitionCoordinator: coordinator)
+            }
         }
         self.selectLayoutByIndex(layoutIndex, animated: false)
     }
@@ -108,14 +114,14 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
                 page = 0
             }
             else if page >= self.inputMethodView.pageControl.numberOfPages {
-                page = self.layouts.count - 1
+                page = self.collections.count - 1
             }
             return page
         }
     }
 
     func selectLayoutByIndex(index: Int, animated: Bool) {
-        self.inputMethodView.layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.layouts.count), 0)
+        self.inputMethodView.layoutsView.contentSize = CGSizeMake(self.inputMethodView.frame.width * CGFloat(self.collections.count), 0)
 
         self.inputMethodView.pageControl.currentPage = index
         let offset = CGPointMake(CGFloat(index) * self.inputMethodView.layoutsView.frame.width, 0)
@@ -134,7 +140,7 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 
     @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
         let index = self.selectedLayoutIndex
-        if index < self.layouts.count - 1 {
+        if index < self.collections.count - 1 {
             self.selectLayoutByIndex(index + 1, animated: true)
         }
     }

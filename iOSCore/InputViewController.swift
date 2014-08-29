@@ -138,9 +138,9 @@ class InputViewController: UIInputViewController {
         //println("\(self.context) \(sender.tag)")
 
         let selectedLayout = self.inputMethodViewController.selectedLayout
-        for layout in self.inputMethodViewController.layouts {
-            if selectedLayout.context != layout.context && layout.context != nil {
-                context_truncate(layout.context)
+        for collection in self.inputMethodViewController.collections {
+            if selectedLayout.context != collection.selectedLayout.context && collection.selectedLayout.context != nil {
+                context_truncate(collection.selectedLayout.context)
             }
         }
 

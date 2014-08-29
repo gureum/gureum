@@ -40,7 +40,6 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var view: KeyboardView!
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
     var context: UnsafeMutablePointer<()> = nil
-    var foregroundImageView: UIImageView! = nil
 
     class func containerName() -> String {
         assert(false)
@@ -195,4 +194,19 @@ class NoKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         return "ERROR: This is a bug."
     }
+}
+
+class KeyboardLayoutCollection {
+    let layouts: [KeyboardLayout]
+    var selectedLayoutIndex = 0
+    var selectedLayout: KeyboardLayout {
+        get {
+            return self.layouts[self.selectedLayoutIndex]
+        }
+    }
+
+    init(layouts: [KeyboardLayout]) {
+        self.layouts = layouts
+    }
+
 }
