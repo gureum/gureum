@@ -184,7 +184,8 @@ class InputViewController: UIInputViewController {
     }
 
     func toggle(sender: UIButton) {
-        sender.selected = !sender.selected
+        let collection = self.inputMethodViewController.selectedCollection
+        collection.switchLayout()
         self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
     }
 

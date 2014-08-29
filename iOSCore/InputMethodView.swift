@@ -23,10 +23,16 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
 
-    var selectedLayout: KeyboardLayout {
+    var selectedCollection: KeyboardLayoutCollection {
         get {
             let collection = self.collections[self.selectedLayoutIndex]
-            return collection.selectedLayout
+            return collection
+        }
+    }
+
+    var selectedLayout: KeyboardLayout {
+        get {
+            return self.selectedCollection.selectedLayout
         }
     }
 

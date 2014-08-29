@@ -209,4 +209,16 @@ class KeyboardLayoutCollection {
         self.layouts = layouts
     }
 
+    func switchLayout() {
+        let oldLayout = self.selectedLayout
+        self.selectedLayoutIndex += 1
+        if self.selectedLayoutIndex >= self.layouts.count {
+            self.selectedLayoutIndex = 0
+        }
+        let newLayout = self.selectedLayout
+
+        newLayout.view.frame = oldLayout.view.frame
+        oldLayout.view.superview!.addSubview(newLayout.view)
+        oldLayout.view.removeFromSuperview()
+    }
 }
