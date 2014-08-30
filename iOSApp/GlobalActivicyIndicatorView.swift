@@ -26,29 +26,36 @@ extension UIActivityIndicatorView {
     }
 
     func pushAnimating() {
+        if let superview = self.superview {
+            superview.bringSubviewToFront(self)
+        }
         self._animatingCount += 1
     }
 
-    func popAnimation() {
+    func popAnimating() {
         self._animatingCount -= 1
     }
 }
 
 var _UIWindowActivityIndicatorViews = Dictionary<UIWindow, UIActivityIndicatorView>()
 
+func UIActivitiIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorView {
+    let indicator_ = _UIWindowActivityIndicatorViews[window]
+    if let indicator = indicator_ {
+        return indicator
+    } else {
+        let newIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        newIndicator.center = window.center
+        window.addSubview(newIndicator)
+        _UIWindowActivityIndicatorViews[window] = newIndicator
+        return newIndicator
+    }
+}
+
 extension UIWindow {
     var activityIndicatorView: UIActivityIndicatorView {
         get {
-            let indicator_ = _UIWindowActivityIndicatorViews[self]
-            if let indicator = indicator_ {
-                return indicator
-            } else {
-                let newIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-                newIndicator.center = self.center
-                self.addSubview(newIndicator)
-                _UIWindowActivityIndicatorViews[self] = newIndicator
-                return newIndicator
-            }
+            return UIActivitiIndicatorViewForWindow(self)
         }
     }
 }

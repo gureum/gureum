@@ -10,13 +10,14 @@
 		380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AA199C651A00355D69 /* StaticWebViewController.swift */; };
 		380136AE199C67F200355D69 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 380136AD199C67F200355D69 /* help */; };
 		380136B0199C68BC00355D69 /* GlobalActivicyIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */; };
-		380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
 		380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
+		3852354719B06009001B8E3E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354619B06009001B8E3E /* Store.swift */; };
+		3852354919B07A2F001B8E3E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
 		386308D5199143320039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
 		386308D8199143320039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308D9199143320039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
@@ -51,10 +52,12 @@
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
 		38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
+		38ACE39419B0479C0075B04F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38ACE39319B0479C0075B04F /* StoreKit.framework */; };
 		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
 		38CFDE0D19A0976D0050315D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CFDE0C19A0976D0050315D /* UIColor.m */; };
 		38CFDE0E19A0976D0050315D /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CFDE0C19A0976D0050315D /* UIColor.m */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
+		38E2837D19B07E4E00FB5046 /* ThemeShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */; };
 		38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 /* End PBXBuildFile section */
@@ -153,6 +156,8 @@
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
+		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
 		3863089A199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386308A7199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386308A8199132210039369C /* GureumCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumCoreTests.swift; sourceTree = "<group>"; };
@@ -176,6 +181,7 @@
 		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		38904F7F1944F71400858B09 /* hangeul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hangeul.xcodeproj; path = hangeul/hangeul.xcodeproj; sourceTree = "<group>"; };
+		38ACE39319B0479C0075B04F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = org.youknowone.Gureum.inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
+				38ACE39419B0479C0075B04F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +276,7 @@
 		3882B9ED193F9E6600076C26 = {
 			isa = PBXGroup;
 			children = (
+				38ACE39319B0479C0075B04F /* StoreKit.framework */,
 				38BB7024193FA29100605583 /* Playground.playground */,
 				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
@@ -304,6 +312,8 @@
 				380136AA199C651A00355D69 /* StaticWebViewController.swift */,
 				380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */,
 				380136B1199CAE1F00355D69 /* ThemeViewController.swift */,
+				3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */,
+				3852354619B06009001B8E3E /* Store.swift */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
 				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
@@ -453,6 +463,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 					3882BA07193F9E6600076C26 = {
@@ -567,15 +580,17 @@
 				386308E3199143330039369C /* InputMethodView.swift in Sources */,
 				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
+				3852354919B07A2F001B8E3E /* ThemeViewController.swift in Sources */,
 				3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
 				38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */,
-				380136B2199CAE1F00355D69 /* ThemeViewController.swift in Sources */,
 				380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */,
+				3852354719B06009001B8E3E /* Store.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
 				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
 				380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */,
+				38E2837D19B07E4E00FB5046 /* ThemeShopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,7 +758,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iOSApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
@@ -757,7 +775,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iOSApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
