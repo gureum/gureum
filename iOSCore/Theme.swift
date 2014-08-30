@@ -182,7 +182,7 @@ class ThemeTraitConfiguration {
 class PreferencedTheme: Theme {
     override func dataForFilename(name: String) -> NSData? {
         if let rawData = preferences.themeResources[name] {
-            let data = NSData(base64EncodedString: rawData, options: NSDataBase64DecodingOptions(0))
+            let data = themeResourceCoder.decodeToData(rawData)
             return data
         } else {
             return nil
@@ -379,14 +379,24 @@ class ThemeCaptionConfiguration {
 }
 
 class ThemeResourceCoder {
+    func key() -> NSData {
+        let identifier = UIDevice.currentDevice().identifierForVendor
+        var UUIDBytes = UnsafeMutablePointer<UInt8>(malloc(16))
+        identifier.getUUIDBytes(UUIDBytes as UnsafeMutablePointer<UInt8>)
+        let result = NSData(bytes: UUIDBytes, length: 16)
+        free(UUIDBytes)
+        return result
+    }
+
     func encodeFromData(data: NSData) -> String {
-        return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+        let encoded = data.encryptedAES256DataWithKey(self.key())
+        return encoded.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
     }
 
     func decodeToData(data: String) -> NSData {
-        return NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(0))
+        let encoded = NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(0))
+        return encoded.decryptedAES256DataWithKey(self.key())
     }
 }
 
 let themeResourceCoder = ThemeResourceCoder()
-

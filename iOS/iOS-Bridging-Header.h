@@ -3,5 +3,7 @@
 //
 
 #include <hangeul/capi.h>
-#include "UIColor.h"
+#include <FoundationExtension/FoundationExtension.h>
+#include <UIKitExtension/UIKitExtension.h>
+#include "NSACommonCrypto.h"
 #include "GRInputButton.h"

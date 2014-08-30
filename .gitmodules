@@ -10,3 +10,9 @@
 [submodule "iOSTheme"]
 	path = iOSTheme
 	url = https://bitbucket.org/youknowone/gureum-theme.git
+[submodule "FoundationExtension"]
+	path = FoundationExtension
+	url = https://github.com/youknowone/FoundationExtension.git
+[submodule "cdebug"]
+	path = cdebug
+	url = https://github.com/youknowone/cdebug.git

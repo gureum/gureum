@@ -53,7 +53,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
     override init() {
         super.init()
-        println("availablility: \(self.available())")
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
 
         dispatch_async(self.backgroundQueue, {
@@ -84,9 +83,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         req.start()
     }
 
-    func available() -> Bool {
+    func canMakePayments() -> Bool {
         let available = SKPaymentQueue.canMakePayments()
-        println("in-app purchase availability: \(available)")
         return available
     }
 
@@ -105,37 +103,46 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
             self.products[product.productIdentifier] = product as SKProduct
         }
 
-        for invalidId in response.invalidProductIdentifiers {
-            println("invalid product identifier \(invalidId)")
+        for invalidProductIdentifier in response.invalidProductIdentifiers {
+            println("invalid product identifier \(invalidProductIdentifier)")
         }
     }
 
     func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
-        for transaction in transactions {
+        for rawTransaction in transactions {
+            let transaction = rawTransaction as SKPaymentTransaction
             println("transaction: \(transaction)")
-            switch transaction.transactionState! {
+            switch transaction.transactionState {
                     ///< 서버에 거래 처리중
                 case .Purchasing:
                     println("InAppPurchase SKPaymentTransactionStatePurchasing");
+                    let alertView = UIAlertView(title: "구매를 시도합니다", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                    alertView.show()
                     break;
                     ///< 구매 완료
                 case .Purchased:
                     println("InAppPurchase SKPaymentTransactionStatePurchased");
-                    //[self completeTransaction:transaction];
-                    break;
+//                let alertView = UIAlertView(title: "구매가 완료되었습니다.", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+//                    alertView.show()
+                    SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                     ///< 거래 실패 또는 취소
                 case .Failed:
                     println("InAppPurchase SKPaymentTransactionStateFailed");
-                    //[self failedTransaction:transaction];
-                    break;
+                    let alertView = UIAlertView(title: "구매 실패", message: transaction.error.localizedDescription, delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                    alertView.show()
+                    println("error code: \(transaction.error)")
+                    SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+
                     ///< 재구매
                 case .Restored:
+                    let alertView = UIAlertView(title: "구매가 복원되었습니다.", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                    alertView.show()
                     println("InAppPurchase SKPaymentTransactionStateRestore");
-                    //[self restoreTransaction:transaction];
-                    break;
+                    SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 case .Deferred:
+                    let alertView = UIAlertView(title: "뭐셔?", message: transaction.error.localizedDescription, delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                    alertView.show()
                     println("InAppPurchase SKPaymentTransactionStateDeferred");
-                    break;
             }
         }
     }

@@ -53,8 +53,11 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
             formatter.locale = product.priceLocale
             cell.detailTextLabel.text = formatter.stringFromNumber(product.price)
         } else {
-            cell.detailTextLabel.text = "구매 불가"
-
+            if let _ = item.data["id"] {
+                cell.detailTextLabel.text = "구매 불가"
+            } else {
+                cell.detailTextLabel.text = "무료"
+            }
         }
         return cell
     }
@@ -64,6 +67,13 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        if !store.canMakePayments() {
+            let alert = UIAlertController(title: "구매 불가", message: "일시적인 문제로 지금은 iTunes Store를 이용할 수 없습니다. 잠시 후에 다시 시도해 주세요.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+
         let item = store.itemForIndexPath(indexPath)
         if item.product == nil {
             let alertView = UIAlertView(title: "구매 불가한 상품입니다.", message: "안돼", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
