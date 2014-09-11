@@ -24,33 +24,35 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         return self.entries.count
     }
 
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sub: AnyObject? = self.entries[section]["items"]
         assert(sub != nil)
         let items = sub! as Array<AnyObject>
         return items.count
     }
 
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub! as Array<Dictionary<String, String>>)[indexPath.row]
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
-        assert(cell != nil)
-        cell.textLabel.text = item["title"]
-        cell.accessoryType = item["addr"] == preferences.themeAddress ? .Checkmark : .None
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell? {
+            cell.textLabel!.text = item["title"]
+            cell.accessoryType = item["addr"] == preferences.themeAddress ? .Checkmark : .None
+            return cell
+        } else {
+            assert(false);
+        }
     }
 
-    func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
         let category = self.entries[section]
         let sub: AnyObject? = category["section"]
         assert(sub != nil)
         return sub! as String
     }
 
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]

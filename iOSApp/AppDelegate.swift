@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
-//        if preferences.themeResources.count == 0 {
+        //if preferences.themeResources.count == 0 {
         Theme.themeWithAddress(preferences.themeAddress).dump() // FIXME: more sane initializer
-//        }
+        //}
         sharedAppDelegate = self
         store // force lazy loading
         return true

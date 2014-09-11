@@ -26,7 +26,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         //if self.navigationItem.rightBarButtonItem == self.doneBarButtonItem {
             return 2
         //} else {
@@ -34,7 +34,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         //}
     }
 
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             let number = preferences.layouts.count;
             return number
@@ -43,20 +43,19 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!  {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("add") as UITableViewCell!
-            return cell
+            var cell = tableView.dequeueReusableCellWithIdentifier("add") as UITableViewCell?
+            return cell!
         }
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
-        assert(cell != nil)
+        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
 
         let layoutNames = preferences.layouts
         let row = indexPath.row
         let title = layoutNames[row]
         //println("names: \(layoutNames) / row: \(row) / title: \(title)")
-        cell.textLabel.text = title
+        cell.textLabel!.text = title
 
         let defaultLayoutIndex = preferences.defaultLayoutIndex
         if indexPath.row == defaultLayoutIndex {
@@ -134,9 +133,12 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
 
 
 class AddLayoutTableViewController: UITableViewController {
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        selectedLayoutInAddLayoutView = cell.detailTextLabel.text
-        self.navigationController.popViewControllerAnimated(true)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            selectedLayoutInAddLayoutView = cell.detailTextLabel!.text
+            self.navigationController!.popViewControllerAnimated(true)
+        } else {
+            assert(false);
+        }
     }
 }

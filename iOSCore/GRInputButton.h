@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@interface GRInputEffectView: UIView
+
+@property(readonly) UIImageView *backgroundImageView;
+@property(readonly) UILabel *textLabel;
+
+@end
+
+
 @interface GRInputButton: UIButton
 
 @property(readonly) UIImageView *glyphView;
 @property(readonly) UILabel *captionLabel;
+@property(readonly) GRInputEffectView *effectView;
 
 @end

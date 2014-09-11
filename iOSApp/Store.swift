@@ -100,7 +100,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
     func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
         for product in response.products {
-            self.products[product.productIdentifier] = product as SKProduct
+            self.products[product.productIdentifier] = product as? SKProduct
         }
 
         for invalidProductIdentifier in response.invalidProductIdentifiers {

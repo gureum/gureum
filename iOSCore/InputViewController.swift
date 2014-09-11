@@ -57,7 +57,6 @@ class InputViewController: UIInputViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        assert(self.inputMethodViewController.view != nil)
 
         if self.view.bounds.width > 0 {
             self.log("\(self.view.bounds)")
@@ -70,9 +69,8 @@ class InputViewController: UIInputViewController {
         super.viewDidAppear(animated)
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        assert(self.inputMethodViewController.view != nil)
         //println("coordinator: \(coordinator)")
 
         self.inputMethodViewController.view.frame = self.view.bounds
@@ -87,7 +85,7 @@ class InputViewController: UIInputViewController {
         // Dispose of any resources that can be recreated
     }
 
-    override func textWillChange(textInput: UITextInput!) {
+    override func textWillChange(textInput: UITextInput) {
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.yellowColor()
 //        self.keyboard.view.logTextView.text = ""
 //        self.log("text will change:")
@@ -95,7 +93,7 @@ class InputViewController: UIInputViewController {
         self.inputMethodViewController.resetContext()
     }
 
-    override func textDidChange(textInput: UITextInput!) {
+    override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
 //        self.log("text did change:")
@@ -112,12 +110,12 @@ class InputViewController: UIInputViewController {
         //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
-    override func selectionDidChange(textInput: UITextInput!)  {
+    override func selectionDidChange(textInput: UITextInput)  {
         self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
-    override func selectionWillChange(textInput: UITextInput!)  {
+    override func selectionWillChange(textInput: UITextInput)  {
         self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }

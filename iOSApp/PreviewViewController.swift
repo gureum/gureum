@@ -42,14 +42,14 @@ class PreviewViewController: UIViewController {
         self.inputPreviewController.viewDidAppear(animated)
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         var newSize = self.preview.bounds.size
         newSize.width = size.width
         self.inputPreviewController.viewWillTransitionToSize(newSize, withTransitionCoordinator: coordinator)
     }
 
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection!) {
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection) {
         //print out the previousTrait's info
         //println("previous tarit collection: \(previousTraitCollection)")
         //println("current tarit collection: \(self.traitCollection)")

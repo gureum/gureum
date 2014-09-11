@@ -16,7 +16,7 @@ class Theme {
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
         let data = self.dataForFilename(name)
-        assert(data != nil, "지정한 데이터 파일이 없습니다.")
+        assert(data != nil, "지정한 JSON 데이터 파일이 없습니다. \(name)")
         return NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: error)
     }
 
@@ -66,7 +66,7 @@ class Theme {
     lazy var mainConfiguration: Dictionary<String, AnyObject> = {
         var error: NSError? = nil
         let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
-        assert(error == nil, "설정 파일의 서식이 올바르지 않습니다.")
+        assert(error == nil, "설정 파일의 서식이 올바르지 않습니다. \(self)")
         assert(JSONObject != nil)
         return JSONObject!
     }()
@@ -192,7 +192,7 @@ class PreferencedTheme: Theme {
 
 
 class ThemeCaptionConfiguration {
-    let configuration: [String: AnyObject?]
+    let configuration: [String: AnyObject]
     let fallback: ThemeCaptionConfiguration!
     let trait: ThemeTraitConfiguration
 
@@ -201,19 +201,19 @@ class ThemeCaptionConfiguration {
 
         var given: AnyObject = configuration ?? Dictionary<String, AnyObject>()
 
-        var full: [String: AnyObject?] = [
+        var full: [String: AnyObject] = [
             "image": Array<String>(),
             "label": Dictionary<String, AnyObject>(),
         ]
 
         if given is String {
-            var sub = full["image"]
+            var sub: AnyObject? = full["image"]
             var image = sub as Array<NSString>
             image.append(given as String)
         }
         else if given is Array<String!> {
             full["image"] = configuration
-            var sub = full["image"]
+            var sub: AnyObject? = full["image"]
             var image = sub as Array<NSString>
         }
         else {
@@ -250,6 +250,8 @@ class ThemeCaptionConfiguration {
             button.captionLabel.font = font
             //println("caption center: \(button.captionLabel.center) / button center: \(center)")
         }
+
+        button.effectView.backgroundImageView.image = self.effectBackgroundImage
     }
 
     func arrange(button: GRInputButton) {
@@ -267,7 +269,7 @@ class ThemeCaptionConfiguration {
     }
 
     lazy var images: (UIImage?, UIImage?, UIImage?) = {
-        let sub = self.configuration["image"]
+        let sub: AnyObject? = self.configuration["image"]
         let imageConfiguration = sub as Array<String!>?
         if imageConfiguration == nil || imageConfiguration!.count == 0 {
             return self.fallback.images
@@ -286,8 +288,14 @@ class ThemeCaptionConfiguration {
         return (images[0], images[1], images[2])
     }()
 
+    lazy var effectbackgroundImage: UIImage? = {
+        let configFilename: AnyObject? = self.configuration["background"]
+        let filename = configFilename as String? ?? "background.png"
+        return self.trait.owner.imageForFilename(filename)
+    }()
+
     lazy var labelConfiguration: Dictionary<String, AnyObject>? = {
-        let sub = self.configuration["label"]
+        let sub: AnyObject? = self.configuration["label"]
         //println("label: \(sub)")
         assert(sub is Dictionary<String, AnyObject>, "'label' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
         return sub as Dictionary<String, AnyObject>?
@@ -375,6 +383,31 @@ class ThemeCaptionConfiguration {
         } else {
             return fallback()
         }
+    }()
+
+    lazy var effectConfiguration: Dictionary<String, AnyObject>? = {
+        if let sub: AnyObject = self.configuration["effect"] {
+            assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
+            return sub as Dictionary<String, AnyObject>
+        } else {
+            if let fallback = self.fallback {
+                return fallback.effectConfiguration
+            } else {
+                return nil;
+                // remove this case
+            }
+        }
+    }()
+
+    lazy var effectBackgroundImage: UIImage? = {
+        if let config = self.effectConfiguration {
+            if let sub: AnyObject = config["background"] {
+                self.trait.owner.imageForFilename(sub as String)
+            } else {
+                return nil;
+            }
+        }
+        return nil
     }()
 }
 

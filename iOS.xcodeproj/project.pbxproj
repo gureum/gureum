@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AA199C651A00355D69 /* StaticWebViewController.swift */; };
 		380136AE199C67F200355D69 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 380136AD199C67F200355D69 /* help */; };
-		380136B0199C68BC00355D69 /* GlobalActivicyIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */; };
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
-		380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
-		3852354719B06009001B8E3E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354619B06009001B8E3E /* Store.swift */; };
-		3852354919B07A2F001B8E3E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
+		384ADEBC19C19CCD0007A993 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
+		384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
+		384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
+		384ADED219C1B3130007A993 /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
+		384ADED319C1B3180007A993 /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AA199C651A00355D69 /* StaticWebViewController.swift */; };
+		384ADED419C1B31D0007A993 /* GlobalActivicyIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */; };
+		384ADED519C1B3210007A993 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
+		384ADED719C1B32E0007A993 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354619B06009001B8E3E /* Store.swift */; };
+		384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */; };
 		386308D5199143320039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
 		386308D8199143320039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308D9199143320039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
@@ -46,12 +51,9 @@
 		38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
 		38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630900199148C50039369C /* QwertyKeyboardLayout.swift */; };
 		38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
-		3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
-		3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
-		38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */; };
 		38ACE39419B0479C0075B04F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38ACE39319B0479C0075B04F /* StoreKit.framework */; };
 		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
 		38CDD7D219B2856B0086D013 /* NSAArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76319B2856B0086D013 /* NSAArray.m */; };
@@ -106,9 +108,7 @@
 		38CDD80719B2858E0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38CDD80A19B2859C0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
-		38E2837D19B07E4E00FB5046 /* ThemeShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */; };
 		38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
-		38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -500,9 +500,9 @@
 				38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */,
 				380136AA199C651A00355D69 /* StaticWebViewController.swift */,
 				380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */,
+				3852354619B06009001B8E3E /* Store.swift */,
 				380136B1199CAE1F00355D69 /* ThemeViewController.swift */,
 				3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */,
-				3852354619B06009001B8E3E /* Store.swift */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
 				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
@@ -906,26 +906,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */,
+				384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */,
 				386308E0199143330039369C /* Hangeul.swift in Sources */,
 				386308E7199143330039369C /* InputViewController.swift in Sources */,
-				380136B0199C68BC00355D69 /* GlobalActivicyIndicatorView.swift in Sources */,
+				384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */,
 				386308F5199143520039369C /* Preferences.swift in Sources */,
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
-				3882B9FE193F9E6600076C26 /* TestViewController.swift in Sources */,
+				384ADED519C1B3210007A993 /* ThemeViewController.swift in Sources */,
 				386308E3199143330039369C /* InputMethodView.swift in Sources */,
+				384ADED419C1B31D0007A993 /* GlobalActivicyIndicatorView.swift in Sources */,
+				384ADED219C1B3130007A993 /* LayoutEditorViewController.swift in Sources */,
 				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
-				3852354919B07A2F001B8E3E /* ThemeViewController.swift in Sources */,
 				3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
-				38ACE38F19A66B4E0075B04F /* LayoutEditorViewController.swift in Sources */,
-				380136AB199C651A00355D69 /* StaticWebViewController.swift in Sources */,
-				3852354719B06009001B8E3E /* Store.swift in Sources */,
+				384ADED719C1B32E0007A993 /* Store.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
-				3882B9FC193F9E6600076C26 /* AppDelegate.swift in Sources */,
+				384ADED319C1B3180007A993 /* StaticWebViewController.swift in Sources */,
+				384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */,
 				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
-				380136B7199CB4A700355D69 /* PreviewViewController.swift in Sources */,
-				38E2837D19B07E4E00FB5046 /* ThemeShopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,8 +944,8 @@
 				386308F0199143520039369C /* Preferences.swift in Sources */,
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,
-				38E37EFA199A44EB00BA7F0C /* Theme.swift in Sources */,
 				386308DC199143320039369C /* InputViewController.swift in Sources */,
+				384ADEBC19C19CCD0007A993 /* Theme.swift in Sources */,
 				386308D5199143320039369C /* Hangeul.swift in Sources */,
 				3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */,
 				386308D9199143320039369C /* KeyboardLayout.swift in Sources */,

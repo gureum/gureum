@@ -17,9 +17,9 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet var upSwipeRecognizer: UIGestureRecognizer!
     @IBOutlet var downSwipeRecognizer: UIGestureRecognizer!
 
-    var inputMethodView: InputMethodView! {
+    var inputMethodView: InputMethodView {
         get {
-            return self.view as InputMethodView!
+            return self.view as InputMethodView
         }
     }
 
@@ -63,8 +63,6 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func loadFromPreferences() {
-        assert(self.inputMethodView != nil)
-
         let layoutsView = self.inputMethodView.layoutsView
         for view in layoutsView.subviews {
             view.removeFromSuperview()

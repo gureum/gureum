@@ -29,44 +29,43 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return store.entries.count
     }
 
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sub: AnyObject? = store.entries[section]["items"]
         assert(sub != nil)
         let items = sub! as Array<AnyObject>
         return items.count
     }
 
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = store.itemForIndexPath(indexPath)
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
-        assert(cell != nil)
-        cell.textLabel.text = item.title
+        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
+        cell.textLabel!.text = item.title
         if let product = item.product {
             let formatter = NSNumberFormatter()
             formatter.formatterBehavior = .Behavior10_4
             formatter.numberStyle = .CurrencyStyle
             formatter.locale = product.priceLocale
-            cell.detailTextLabel.text = formatter.stringFromNumber(product.price)
+            cell.detailTextLabel!.text = formatter.stringFromNumber(product.price)
         } else {
             if let _ = item.data["id"] {
-                cell.detailTextLabel.text = "구매 불가"
+                cell.detailTextLabel!.text = "구매 불가"
             } else {
-                cell.detailTextLabel.text = "무료"
+                cell.detailTextLabel!.text = "무료"
             }
         }
         return cell
     }
 
-    func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
         return store.categoryForSection(section).title
     }
 
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !store.canMakePayments() {
             let alert = UIAlertController(title: "구매 불가", message: "일시적인 문제로 지금은 iTunes Store를 이용할 수 없습니다. 잠시 후에 다시 시도해 주세요.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -85,7 +84,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-    func alertView(alertView: UIAlertView!, didDismissWithButtonIndex buttonIndex: Int) {
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         let (section, row) = (alertView.tag >> 16, alertView.tag & 0xffff)
         let item = store.categoryForSection(section).itemForRow(row)
         let payment = SKPayment(product: item.product)
