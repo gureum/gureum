@@ -8,7 +8,53 @@
 
 import UIKit
 
+class KeyboardViewEventView: UIView {
+    var keyboardView: KeyboardView {
+        get {
+            return self.superview! as KeyboardView
+        }
+    }
+    var touching: Bool = false {
+        didSet {
+            println("touching changed: \(touching)")
+        }
+    }
+
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.touching = true
+        self.touchesMoved(touches, withEvent: event)
+
+    }
+
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        for rawTouch in event.allTouches()! {
+            let touch = rawTouch as UITouch
+            let point = touch.locationInView(self)
+            let button = self.keyboardView.layout.correspondingButtonForPoint(point)
+            println("touch point: \(point) \(button)")
+            button.showEffect()
+        }
+    }
+
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        for rawTouch in event.allTouches()! {
+            let touch = rawTouch as UITouch
+            let point = touch.locationInView(self)
+            let button = self.keyboardView.layout.correspondingButtonForPoint(point)
+            globalInputViewController?.input(button)
+            button.hideEffect()
+        }
+        self.touching = false
+    }
+
+    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+        self.touching = false
+    }
+}
+
 class KeyboardView: UIView {
+    var layout: KeyboardLayout! = nil
+
     @IBOutlet var nextKeyboardButton: GRInputButton! = nil
     @IBOutlet var deleteButton: GRInputButton! = nil
     @IBOutlet var doneButton: GRInputButton! = nil
@@ -16,19 +62,32 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var shiftButton: GRInputButton! = nil
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.backgroundImageView.removeFromSuperview()
+        self.insertSubview(self.backgroundImageView, atIndex: 0)
+        self.foregroundImageView.removeFromSuperview()
+        self.addSubview(self.foregroundImageView)
+        self.foregroundEventView.removeFromSuperview()
+        self.addSubview(self.foregroundEventView)
+    }
+
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView(frame: self.bounds)
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        self.insertSubview(view, atIndex: 0)
-        //view.alpha = 0.1
         return view
     }()
 
     lazy var foregroundImageView: UIImageView = {
         let view = UIImageView(frame: self.bounds)
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        self.addSubview(view)
-        //view.alpha = 0.1
+        return view
+    }()
+
+    lazy var foregroundEventView: KeyboardViewEventView = {
+        let view = KeyboardViewEventView(frame: self.bounds)
+        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        view.userInteractionEnabled = true
         return view
     }()
 }
@@ -70,6 +129,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     init(nibName: String, bundle: NSBundle?) {
         let vc = UIViewController(nibName: nibName, bundle: bundle)
         self.view = vc.view as KeyboardView
+        self.view.layout = self
         _postinit()
     }
 
@@ -77,7 +137,20 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         let name = self.dynamicType.containerName()
         let vc = UIViewController(nibName: name, bundle: nil)
         self.view = vc.view as KeyboardView
+        self.view.layout = self
         _postinit()
+    }
+
+    func correspondingButtonForPoint(point: CGPoint) -> GRInputButton {
+        for button in self.view.subviews {
+            if !(button is GRInputButton) {
+                continue
+            }
+            if CGRectContainsPoint(button.frame, point) {
+                return button as GRInputButton
+            }
+        }
+        assert(false)
     }
 
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {

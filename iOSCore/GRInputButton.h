@@ -23,4 +23,9 @@
 @property(readonly) UILabel *captionLabel;
 @property(readonly) GRInputEffectView *effectView;
 
+- (void)preloadEffectView;
+- (void)arrangeEffectViewWithInsets:(UIEdgeInsets)insets;
+- (void)showEffect;
+- (void)hideEffect;
+
 @end

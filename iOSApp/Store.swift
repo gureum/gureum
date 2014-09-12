@@ -62,25 +62,34 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
     func refresh() {
         let URL = NSURL(string: "http://w.youknowone.org/gureum/store.json")
-        let data = NSData(contentsOfURL: URL)
         var error: NSError? = nil
-        let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as NSArray
-        self.entries = items
 
-        var names = NSMutableSet()
-        for category in entries {
-            let items = category["items"]
-            assert(items != nil)
-            for ritem in items as NSArray {
-                let item = ritem as NSDictionary
-                if let pid: AnyObject = item["id"] {
-                    names.addObject(pid)
+        let data = NSData(contentsOfURL: URL, options: NSDataReadingOptions(0), error: &error);
+        if (error != nil) {
+            println("fixme: internet not availble")
+            return
+        }
+
+        if let items: NSArray = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as NSArray? {
+            self.entries = items
+
+            var names = NSMutableSet()
+            for category in entries {
+                let items = category["items"]
+                assert(items != nil)
+                for ritem in items as NSArray {
+                    let item = ritem as NSDictionary
+                    if let pid: AnyObject = item["id"] {
+                        names.addObject(pid)
+                    }
                 }
             }
+            let req = SKProductsRequest(productIdentifiers: names)
+            req.delegate = self
+            req.start()
+        } else {
+            println("FIXME: store not available");
         }
-        let req = SKProductsRequest(productIdentifiers: names)
-        req.delegate = self
-        req.start()
     }
 
     func canMakePayments() -> Bool {

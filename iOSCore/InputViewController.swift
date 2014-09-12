@@ -8,6 +8,8 @@
 
 import UIKit
 
+var globalInputViewController: InputViewController? = nil;
+
 class InputViewController: UIInputViewController {
     var inputMethodViewController: InputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
 
@@ -47,7 +49,19 @@ class InputViewController: UIInputViewController {
     }
 
     override func viewDidLoad() {
+        assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
+        globalInputViewController = self
         super.viewDidLoad()
+        var view = self.view
+        while true {
+            view.clipsToBounds = false
+            if let superview = view.superview {
+                view = superview
+            } else {
+                break
+            }
+        }
+
         self.view.addSubview(self.inputMethodViewController.view)
     }
 

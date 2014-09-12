@@ -15,9 +15,17 @@ class Theme {
     }
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
-        let data = self.dataForFilename(name)
-        assert(data != nil, "지정한 JSON 데이터 파일이 없습니다. \(name)")
-        return NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: error)
+        if let data = self.dataForFilename(name) {
+            if let result: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: error) {
+                return result
+            } else {
+                let dataString = data.stringUsingUTF8Encoding
+                assert(false, "JSON 파일의 서식이 올바르지 않습니다.\(error)\n\(data)\n\(dataString)")
+            }
+        } else {
+            assert(false, "지정한 JSON 데이터 파일이 없습니다. \(name)")
+        }
+        return nil
     }
 
     func imageForFilename(name: String) -> UIImage? {
@@ -65,8 +73,8 @@ class Theme {
 
     lazy var mainConfiguration: Dictionary<String, AnyObject> = {
         var error: NSError? = nil
-        let JSONObject = self.JSONObjectForFilename("config.json", error: &error) as Dictionary<String, AnyObject>!
-        assert(error == nil, "설정 파일의 서식이 올바르지 않습니다. \(self)")
+        let filename = "config.json"
+        let JSONObject = self.JSONObjectForFilename(filename, error: &error) as Dictionary<String, AnyObject>!
         assert(JSONObject != nil)
         return JSONObject!
     }()
@@ -388,7 +396,7 @@ class ThemeCaptionConfiguration {
     lazy var effectConfiguration: Dictionary<String, AnyObject>? = {
         if let sub: AnyObject = self.configuration["effect"] {
             assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
-            return sub as Dictionary<String, AnyObject>
+            return sub as AnyObject? as Dictionary<String, AnyObject>?
         } else {
             if let fallback = self.fallback {
                 return fallback.effectConfiguration

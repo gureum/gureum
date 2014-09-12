@@ -77,16 +77,21 @@ class GRKeyboardLayoutHelper {
                 let rightButtons = delegate.helper(self, rightButtonsForRow: row)
 
                 for button in delegate.helper(self, leftButtonsForRow: row) {
-                    view.addSubview(button)
+                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    //button.preload()
                 }
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = delegate.helper(self, buttonForPosition: position)
                     self.buttons[position] = button
-                    view.addSubview(button)
+                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                 }
                 for button in delegate.helper(self, rightButtonsForRow: row) {
-                    view.addSubview(button)
+                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    //button.preload()
                 }
             }
             delegate.layoutDidLoadForHelper(self)
@@ -148,7 +153,6 @@ class GRKeyboardLayoutHelper {
                 for button in leftButtons {
                     let width = button.frame.size.width
                     button.frame = CGRectMake(left, rowTop, width, rowHeight)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     left += width + columnSpace
                 }
                 let theme = preferences.theme
@@ -156,13 +160,12 @@ class GRKeyboardLayoutHelper {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    button.arrangeEffectViewWithInsets(UIEdgeInsetsZero)
                     left += columnWidth + columnSpace
                 }
                 for button in rightButtons {
                     let width = button.frame.size.width
                     button.frame = CGRectMake(left, rowTop, width, rowHeight)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     left += width + columnSpace
                 }
             }
@@ -176,6 +179,7 @@ class GRKeyboardLayoutHelper {
                 if button.titleForState(.Normal) == nil {
                     let label = delegate.helper(self, titleForPosition: position)
                     button.captionLabel.text = label
+                    button.effectView.textLabel.text = label;
                 }
             }
         }
