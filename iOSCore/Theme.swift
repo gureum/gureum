@@ -274,6 +274,44 @@ class ThemeCaptionConfiguration {
         button.captionLabel.sizeToFit()
         button.captionLabel.center = center
         //println("captionlabel: \(button.captionLabel.frame)")
+
+        self.arrangeEffectView(button)
+    }
+
+    func arrangeEffectView(button: GRInputButton) {
+        if button.effectView.superview != button.superview {
+            button.superview!.addSubview(button.effectView)
+        }
+
+        button.effectView.backgroundImageView.image = self.effectBackgroundImage
+        let insets = self.effectEdgeInsets
+        var frame = button.frame
+        frame.size.height -= self.trait.topMargin
+        frame.origin = CGPointMake(insets.left, insets.top)
+        button.effectView!.textLabel!.frame = frame
+        //* original implementation
+        //        CGRect frame = self.effectView.textLabel.frame;
+        //        frame.size.height += insets.top + insets.bottom;
+        //        frame.size.width += insets.left + insets.right;
+        //        frame.origin.x = self.frame.origin.x - insets.left;
+        //        frame.origin.y = self.frame.origin.y - frame.size.height;
+        //        self.effectView.frame = frame;
+
+        frame.size.height += insets.top + insets.bottom
+        frame.size.width += insets.left + insets.right
+        if button.center.x <= button.superview!.frame.size.width / 2 {
+            frame.origin.x = button.frame.origin.x + button.frame.size.width
+        } else {
+            frame.origin.x = button.frame.origin.x - frame.size.width
+        }
+        frame.origin.y = button.frame.origin.y - insets.top
+
+        let position = self.effectPosition
+        frame.origin.x += position.x
+        frame.origin.y += position.y
+
+        button.effectView.frame = frame
+        button.effectView.backgroundImageView.frame = button.effectView.bounds
     }
 
     lazy var images: (UIImage?, UIImage?, UIImage?) = {
@@ -294,12 +332,6 @@ class ThemeCaptionConfiguration {
             images.append(lastImage)
         }
         return (images[0], images[1], images[2])
-    }()
-
-    lazy var effectbackgroundImage: UIImage? = {
-        let configFilename: AnyObject? = self.configuration["background"]
-        let filename = configFilename as String? ?? "background.png"
-        return self.trait.owner.imageForFilename(filename)
     }()
 
     lazy var labelConfiguration: Dictionary<String, AnyObject>? = {
@@ -393,29 +425,62 @@ class ThemeCaptionConfiguration {
         }
     }()
 
-    lazy var effectConfiguration: Dictionary<String, AnyObject>? = {
+    lazy var effectConfiguration: Dictionary<String, AnyObject> = {
         if let sub: AnyObject = self.configuration["effect"] {
+            //println("effect: \(sub)")
             assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
-            return sub as AnyObject? as Dictionary<String, AnyObject>?
+            return sub as Dictionary<String, AnyObject>
         } else {
             if let fallback = self.fallback {
                 return fallback.effectConfiguration
             } else {
-                return nil;
-                // remove this case
+                return [:]
             }
         }
     }()
 
     lazy var effectBackgroundImage: UIImage? = {
-        if let config = self.effectConfiguration {
-            if let sub: AnyObject = config["background"] {
-                self.trait.owner.imageForFilename(sub as String)
-            } else {
-                return nil;
+        if let sub: AnyObject = self.effectConfiguration["background"] {
+            if let image = self.trait.owner.imageForFilename(sub as String) {
+                return image
             }
         }
-        return nil
+        if let fallback = self.fallback {
+            return fallback.effectBackgroundImage
+        } else {
+            let image = self.trait.owner.imageForFilename("effect.png")
+            return image
+        }
+    }()
+
+    lazy var effectEdgeInsets: UIEdgeInsets = {
+        if let sub: AnyObject? = self.effectConfiguration["padding"] {
+            if sub is Array<CGFloat> {
+                let rawInsets = sub as Array<CGFloat>
+                let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
+                return insets
+            }
+        }
+        if let fallback = self.fallback {
+            return fallback.effectEdgeInsets
+        } else {
+            return UIEdgeInsetsMake(0, 0, 0, 0)
+        }
+    }()
+
+    lazy var effectPosition: CGPoint = {
+        if let sub: AnyObject? = self.effectConfiguration["position"] {
+            if sub is Array<CGFloat> {
+                let rawPosition = sub as Array<CGFloat>
+                let position = CGPointMake(rawPosition[0], rawPosition[1])
+                return position
+            }
+        }
+        if let fallback = self.fallback {
+            return fallback.effectPosition
+        } else {
+            return CGPointMake(0, 0)
+        }
     }()
 }
 

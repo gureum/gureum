@@ -26,8 +26,12 @@
 
     self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self->_backgroundImageView.autoresizingMask = autoresizing;
-    self->_textLabel = [[UILabel alloc] initWithFrame:self.bounds];
-    self->_textLabel.autoresizingMask = autoresizing;
+    [self addSubview:self.backgroundImageView];
+    UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.autoresizingMask = autoresizing;
+    [self addSubview:label];
+    self->_textLabel = label;
     return self;
 }
 
@@ -52,11 +56,9 @@
     }
     {
         GRInputEffectView *view = [[GRInputEffectView alloc] init];
-        //view.alpha = .0;
         self->_effectView = view;
     }
 
-    [self addTarget:self action:@selector(touchAnimation:) forControlEvents:UIControlEventTouchDown];
     self.effectView.hidden = YES;
     return self;
 }
@@ -76,42 +78,7 @@
     return [self _initGRInputButton];
 }
 
-- (void)arrangeEffectViewWithInsets:(UIEdgeInsets)insets {
-    if (self.effectView.superview != self.superview) {
-        [self.superview addSubview:self.effectView];
-    }
-    {
-        CGRect frame = self.frame;
-        frame.origin.x = insets.left;
-        frame.origin.y = insets.top;
-        self.effectView.textLabel.frame = frame;
-    }
-
-    //* original implementation
-    {
-//        CGRect frame = self.effectView.textLabel.frame;
-//        frame.size.height += insets.top + insets.bottom;
-//        frame.size.width += insets.left + insets.right;
-//        frame.origin.x = self.frame.origin.x - insets.left;
-//        frame.origin.y = self.frame.origin.y - frame.size.height;
-//        self.effectView.frame = frame;
-    }
-    {
-        CGRect frame = self.effectView.textLabel.frame;
-        frame.size.height += insets.top + insets.bottom;
-        frame.size.width += insets.left + insets.right;
-        if (self.center.x <= self.superview.frame.size.width / 2) {
-            frame.origin.x = self.frame.origin.x + self.frame.size.width;
-        } else {
-            frame.origin.x = self.frame.origin.x - frame.size.width;
-        }
-        frame.origin.y = self.frame.origin.y - insets.top;
-        self.effectView.frame = frame;
-    }
-}
-
 - (void)showEffect {
-    self.effectView.backgroundColor = [UIColor redColor];
     [self.effectView setHidden:NO animated:YES];
 }
 

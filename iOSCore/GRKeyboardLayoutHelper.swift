@@ -160,7 +160,6 @@ class GRKeyboardLayoutHelper {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
                     button.frame.origin = CGPointMake(left, rowTop)
-                    button.arrangeEffectViewWithInsets(UIEdgeInsetsZero)
                     left += columnWidth + columnSpace
                 }
                 for button in rightButtons {
