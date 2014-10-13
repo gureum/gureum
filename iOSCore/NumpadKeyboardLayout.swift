@@ -27,8 +27,8 @@ class NumpadKeyboardLayout: KeyboardLayout {
     }
     }
 
-    override class func containerName() -> String {
-        return "NumpadLayout"
+    override class func loadView() -> KeyboardView {
+        return KeyboardView()
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
@@ -105,10 +105,7 @@ class NumpadKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", "*0#"]
         let keyline = keylines[position.row].unicodeScalars
-        var idx = keyline.startIndex
-        for _ in 0..<position.column {
-            idx = idx.successor()
-        }
+        let idx = advance(keyline.startIndex, position.column)
         let key = keyline[idx]
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
@@ -136,10 +133,7 @@ class CheonjiinKeyboardLayout: NumpadKeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", ">0."]
         let keyline = keylines[position.row].unicodeScalars
-        var idx = keyline.startIndex
-        for _ in 0..<position.column {
-            idx = idx.successor()
-        }
+        let idx = advance(keyline.startIndex, position.column)
         let key = keyline[idx]
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton

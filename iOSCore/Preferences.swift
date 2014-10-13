@@ -9,7 +9,7 @@
 import Foundation
 
 class Preferences {
-    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
+    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.test")
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
         let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
@@ -24,15 +24,15 @@ class Preferences {
         return object
     }
 
-    func getDictionaryForKey(key: String, defaultValue: Dictionary<String, AnyObject>) -> AnyObject {
-        let object = self.defaults.dictionaryForKey(key) as Dictionary!
+    func getDictionaryForKey(key: String, defaultValue: NSDictionary) -> AnyObject {
+        let object = self.defaults.dictionaryForKey(key)
         if object == nil {
             return defaultValue
         }
-        if object.count == 0 {
+        if object!.count == 0 {
             return defaultValue
         }
-        return object
+        return object!
     }
 
     func setObjectForKey(key: String, value: AnyObject) {
@@ -87,7 +87,7 @@ class Preferences {
         }
     }
 
-    var themeResources: Dictionary<String, String> {
+    var themeResources: NSDictionary {
         get {
             return getDictionaryForKey("themeresource", defaultValue: [:]) as Dictionary<String, String>
         }
@@ -96,7 +96,7 @@ class Preferences {
             // FIXME: Dictionary to NSDictioanry
             var dict: NSMutableDictionary = [:]
             for (key, value) in newValue {
-                dict[key] = value
+                dict[key as String] = value
             }
             self.setObjectForKey("themeresource", value: dict)
         }
@@ -104,3 +104,14 @@ class Preferences {
 }
 
 let preferences = Preferences()
+
+class PreferencedTheme: Theme {
+    override func dataForFilename(name: String) -> NSData? {
+        if let rawData = preferences.themeResources[name] as String? {
+            let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)
+            return data
+        } else {
+            return nil
+        }
+    }
+}

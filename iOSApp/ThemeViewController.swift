@@ -10,9 +10,8 @@ import UIKit
 
 class ThemeViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate {
     var entries: Array<Dictionary<String, AnyObject>> = {
-        let URL = NSBundle.mainBundle().URLForResource("shop", withExtension: "json")
-        assert(URL != nil)
-        let data = NSData(contentsOfURL: URL!)
+        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")
+        let data = NSData(contentsOfURL: URL)
 
         var error: NSError? = nil
         let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
@@ -42,6 +41,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
             return cell
         } else {
             assert(false);
+            return UITableViewCell()
         }
     }
 
@@ -156,7 +156,7 @@ class HTTPTheme: Theme {
 extension Theme {
     func encodedDataForFilename(filename: String) -> String! {
         if let data = self.dataForFilename(filename) {
-            let str = themeResourceCoder.encodeFromData(data)
+            let str = ThemeResourceCoder.defaultCoder().encodeFromData(data)
             return str
         } else {
             return nil
@@ -164,16 +164,15 @@ extension Theme {
     }
 
     func dump() {
-        let sub: AnyObject? = self.mainConfiguration["trait"]
+        let traitsConfiguration = self.mainConfiguration["trait"] as NSDictionary?
         var resources = Dictionary<String, String>()
-        let traitsConfiguration = sub as Dictionary<String, String>?
         assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
-        for traitFilename in traitsConfiguration!.values {
-            let datastr = self.encodedDataForFilename(traitFilename)
+        for traitFilename in traitsConfiguration!.allValues {
+            let datastr = self.encodedDataForFilename(traitFilename as String)
             assert(datastr != nil)
-            resources[traitFilename] = datastr!
+            resources[traitFilename as String] = datastr!
             var error: NSError? = nil
-            let root: AnyObject? = self.JSONObjectForFilename(traitFilename, error: &error)
+            let root: AnyObject? = self.JSONObjectForFilename(traitFilename as String, error: &error)
             assert(error == nil, "trait 파일이 올바른 JSON 파일이 아닙니다. \(traitFilename)")
             var collection = collectResources(root)
             collection["config.json"] = true
@@ -205,6 +204,7 @@ extension Theme {
                 return HTTPTheme(URLString: addr)
             default:
                 assert(false)
+                return PreferencedTheme()
         }
     }
 }

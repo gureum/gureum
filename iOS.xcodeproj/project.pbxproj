@@ -13,7 +13,9 @@
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
-		384ADEBC19C19CCD0007A993 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		383B07EE19E70609004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
+		383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
+		383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383B07F019E71482004046F5 /* StoreKit.framework */; };
 		384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
@@ -27,22 +29,12 @@
 		386308D8199143320039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308D9199143320039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
 		386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */; };
-		386308DC199143320039369C /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		386308E0199143330039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
 		386308E3199143330039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308E4199143330039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
 		386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */; };
-		386308E7199143330039369C /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		386308F0199143520039369C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303654198A1F1E00C1EE0C /* Preferences.swift */; };
-		386308F1199143520039369C /* InputMethod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308BE199133140039369C /* InputMethod.xib */; };
-		386308F2199143520039369C /* NoLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C1199133140039369C /* NoLayout.xib */; };
-		386308F3199143520039369C /* NumpadLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C2199133140039369C /* NumpadLayout.xib */; };
-		386308F4199143520039369C /* QwertyLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C3199133140039369C /* QwertyLayout.xib */; };
 		386308F5199143520039369C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303654198A1F1E00C1EE0C /* Preferences.swift */; };
-		386308F6199143520039369C /* InputMethod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308BE199133140039369C /* InputMethod.xib */; };
-		386308F7199143520039369C /* NoLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C1199133140039369C /* NoLayout.xib */; };
-		386308F8199143520039369C /* NumpadLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C2199133140039369C /* NumpadLayout.xib */; };
-		386308F9199143520039369C /* QwertyLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386308C3199133140039369C /* QwertyLayout.xib */; };
 		386308FC199143800039369C /* libhangeul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38904F851944F71400858B09 /* libhangeul.a */; };
 		386308FD1991438B0039369C /* libhangeul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38904F851944F71400858B09 /* libhangeul.a */; };
 		386308FE199143A80039369C /* capi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38303668199059D500C1EE0C /* capi.cpp */; };
@@ -54,8 +46,9 @@
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
-		38ACE39419B0479C0075B04F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38ACE39319B0479C0075B04F /* StoreKit.framework */; };
-		38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */; };
+		38A37EF919E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		38A37EFA19E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		38BB7017193FA11000605583 /* inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* inputmethod.appex */; };
 		38CDD7D219B2856B0086D013 /* NSAArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76319B2856B0086D013 /* NSAArray.m */; };
 		38CDD7D319B2856B0086D013 /* NSAClassDeprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76519B2856B0086D013 /* NSAClassDeprecated.m */; };
 		38CDD7D419B2856B0086D013 /* NSACommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76719B2856B0086D013 /* NSACommonCrypto.m */; };
@@ -108,7 +101,6 @@
 		38CDD80719B2858E0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38CDD80A19B2859C0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
-		38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,7 +186,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				38BB7017193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex in Embed App Extensions */,
+				38BB7017193FA11000605583 /* inputmethod.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +218,7 @@
 		38324EAD199F476B0031888D /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
+		383B07F019E71482004046F5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -234,7 +227,6 @@
 		386308A7199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386308A8199132210039369C /* GureumCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumCoreTests.swift; sourceTree = "<group>"; };
 		386308BD199133140039369C /* Hangeul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hangeul.swift; path = iOSCore/Hangeul.swift; sourceTree = SOURCE_ROOT; };
-		386308BE199133140039369C /* InputMethod.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputMethod.xib; sourceTree = "<group>"; };
 		386308BF199133140039369C /* InputMethodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMethodView.swift; sourceTree = "<group>"; };
 		386308C0199133140039369C /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
 		386308C1199133140039369C /* NoLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoLayout.xib; sourceTree = "<group>"; };
@@ -253,8 +245,7 @@
 		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		38904F7F1944F71400858B09 /* hangeul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hangeul.xcodeproj; path = hangeul/hangeul.xcodeproj; sourceTree = "<group>"; };
-		38ACE39319B0479C0075B04F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = org.youknowone.Gureum.inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BB700F193FA11000605583 /* inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
@@ -377,9 +368,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */,
 				38CDD80A19B2859C0086D013 /* libFoundationExtension.a in Frameworks */,
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
-				38ACE39419B0479C0075B04F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +418,6 @@
 				386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */,
 				38303654198A1F1E00C1EE0C /* Preferences.swift */,
 				38E37EF8199A44EB00BA7F0C /* Theme.swift */,
-				386308BE199133140039369C /* InputMethod.xib */,
 				386308C1199133140039369C /* NoLayout.xib */,
 				386308C2199133140039369C /* NumpadLayout.xib */,
 				386308C3199133140039369C /* QwertyLayout.xib */,
@@ -464,7 +454,7 @@
 		3882B9ED193F9E6600076C26 = {
 			isa = PBXGroup;
 			children = (
-				38ACE39319B0479C0075B04F /* StoreKit.framework */,
+				383B07F019E71482004046F5 /* StoreKit.framework */,
 				38BB7024193FA29100605583 /* Playground.playground */,
 				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
@@ -482,7 +472,7 @@
 			children = (
 				3882B9F6193F9E6600076C26 /* Gureum.app */,
 				3882BA08193F9E6600076C26 /* iOSTests.xctest */,
-				38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */,
+				38BB700F193FA11000605583 /* inputmethod.appex */,
 				38CDD74A19B285400086D013 /* libFoundationExtension.a */,
 			);
 			name = Products;
@@ -759,7 +749,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = 38BB700F193FA11000605583 /* org.youknowone.Gureum.inputmethod.appex */;
+			productReference = 38BB700F193FA11000605583 /* inputmethod.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		38CDD74919B285400086D013 /* FoundationExtension */ = {
@@ -868,15 +858,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */,
-				386308F6199143520039369C /* InputMethod.xib in Resources */,
-				386308F8199143520039369C /* NumpadLayout.xib in Resources */,
-				386308F9199143520039369C /* QwertyLayout.xib in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
 				380136B5199CAFC200355D69 /* shop.json in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
-				386308F7199143520039369C /* NoLayout.xib in Resources */,
 				38324EAE199F476B0031888D /* test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,10 +878,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				386308F2199143520039369C /* NoLayout.xib in Resources */,
-				386308F1199143520039369C /* InputMethod.xib in Resources */,
-				386308F3199143520039369C /* NumpadLayout.xib in Resources */,
-				386308F4199143520039369C /* QwertyLayout.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,8 +891,9 @@
 				384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */,
 				384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */,
 				386308E0199143330039369C /* Hangeul.swift in Sources */,
-				386308E7199143330039369C /* InputViewController.swift in Sources */,
 				384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */,
+				38A37EF919E7256500A9C83B /* Theme.swift in Sources */,
+				383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */,
 				386308F5199143520039369C /* Preferences.swift in Sources */,
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				384ADED519C1B3210007A993 /* ThemeViewController.swift in Sources */,
@@ -925,7 +908,6 @@
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				384ADED319C1B3180007A993 /* StaticWebViewController.swift in Sources */,
 				384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */,
-				38E37EF9199A44EB00BA7F0C /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,11 +926,11 @@
 				386308F0199143520039369C /* Preferences.swift in Sources */,
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,
-				386308DC199143320039369C /* InputViewController.swift in Sources */,
-				384ADEBC19C19CCD0007A993 /* Theme.swift in Sources */,
 				386308D5199143320039369C /* Hangeul.swift in Sources */,
+				383B07EE19E70609004046F5 /* InputViewController.swift in Sources */,
 				3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */,
 				386308D9199143320039369C /* KeyboardLayout.swift in Sources */,
+				38A37EFA19E7256500A9C83B /* Theme.swift in Sources */,
 				386308FE199143A80039369C /* capi.cpp in Sources */,
 				386308D8199143320039369C /* InputMethodView.swift in Sources */,
 				38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */,
@@ -1162,8 +1144,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1180,8 +1163,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1232,16 +1216,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = iOS/org.youknowone.Gureum.inputmethod.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
@@ -1253,12 +1240,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = iOS/org.youknowone.Gureum.inputmethod.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LLVM_LTO = YES;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = org.youknowone.Gureum.inputmethod;
+				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";

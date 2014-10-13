@@ -11,7 +11,8 @@ import UIKit
 var globalInputViewController: InputViewController? = nil;
 
 class InputViewController: UIInputViewController {
-    var inputMethodViewController: InputMethodViewController = InputMethodViewController(nibName: "InputMethod", bundle: nil)
+    var inputMethodViewController: InputMethodViewController = InputMethodViewController()
+    var initialized = false
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
@@ -19,13 +20,16 @@ class InputViewController: UIInputViewController {
         textView.backgroundColor = UIColor.clearColor()
         textView.alpha = 0.5
         textView.userInteractionEnabled = false
+        textView.textColor = UIColor.lightGrayColor()
         self.view.addSubview(textView)
         return textView
     }()
 
     func log(text: String) {
-        //self.logTextView.text = text + "\n" + self.logTextView.text
+        self.logTextView.text = text + "\n" + self.logTextView.text
+        self.view.bringSubviewToFront(self.logTextView)
     }
+
 
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -49,47 +53,40 @@ class InputViewController: UIInputViewController {
     }
 
     override func viewDidLoad() {
-        assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
+        //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
         globalInputViewController = self
         super.viewDidLoad()
-        var view = self.view
-        while true {
-            view.clipsToBounds = false
-            if let superview = view.superview {
-                view = superview
-            } else {
-                break
-            }
-        }
-
-        self.view.addSubview(self.inputMethodViewController.view)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+//        var view = self.view
+//        while true {
+//            view.clipsToBounds = false
+//            if let superview = view.superview {
+//                view = superview
+//            } else {
+//                break
+//            }
+//        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.view.addSubview(self.inputMethodViewController.view)
+        })
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if self.view.bounds.width > 0 {
-            self.log("\(self.view.bounds)")
+        if self.view.bounds.width > 0 && self.inputMethodViewController.view.superview == self.view {
+            self.log("viewDidLayoutSubviews \(self.view.bounds)")
             self.inputMethodViewController.view.frame = self.view.bounds
             self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
+            self.log("pref keys: \(preferences.themeResources.allKeys)")
         }
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        self.log("viewWillTransitionToSize \(self.view.bounds)")
         //println("coordinator: \(coordinator)")
 
         self.inputMethodViewController.view.frame = self.view.bounds
-        //println("outbox bound: \(self.inputMethodViewController.view.bounds)")
-        //self.view.bounds = self.inputMethodViewController.view.bounds
         self.inputMethodViewController.transitionViewToSize(size, withTransitionCoordinator: coordinator)
     }
     
@@ -134,15 +131,6 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
-    func log(text: String?) {
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
-        if text == nil {
-            self.inputMethodViewController.logTextView.text = "(null)\n" + self.inputMethodViewController.logTextView.text
-        } else {
-            self.inputMethodViewController.logTextView.text = text! + "\n" + self.inputMethodViewController.logTextView.text
-        }
-    }
-
     func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         //log(proxy.documentContextBeforeInput);
@@ -158,7 +146,7 @@ class InputViewController: UIInputViewController {
 
         let context = selectedLayout.context
         let shiftButton = self.inputMethodViewController.selectedLayout.view.shiftButton
-        var keycode = shiftButton.selected ? sender.tag >> 16 : sender.tag & 0xffff
+        var keycode = shiftButton.selected ? sender.tag >> 15 : sender.tag & 0x7fff
         if shiftButton.selected {
             shiftButton.selected = false
             self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
@@ -184,9 +172,9 @@ class InputViewController: UIInputViewController {
             if composed > 0 {
                 proxy.insertText("\(UnicodeScalar(composed))")
             }
-            println("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
-            //log(proxy.documentContextBeforeInput);
-            //log(proxy.documentContextAfterInput);
+            self.log("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
+            self.log(proxy.documentContextBeforeInput)
+            self.log(proxy.documentContextAfterInput)
         }
     }
 

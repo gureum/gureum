@@ -10,7 +10,6 @@ import UIKit
 
 class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
-    @IBOutlet var logTextView: UITextView!
 
     @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
     @IBOutlet var rightSwipeRecognizer: UIGestureRecognizer!
@@ -57,6 +56,28 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
 
+    override func loadView() {
+        let view = InputMethodView(frame: CGRectMake(0.0, 0.0, 320.0, 218.0))
+        let layoutsView = UIScrollView(frame: view.bounds)
+        layoutsView.scrollEnabled = false
+        view.layoutsView = layoutsView
+        view.addSubview(layoutsView)
+        let pageControl = UIPageControl()
+        pageControl.userInteractionEnabled = false
+        pageControl.center = CGPointMake(view.frame.width - 10.0, view.frame.height / 2)
+        view.pageControl = pageControl
+        view.addSubview(view.pageControl)
+
+        let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
+        leftRecognizer.direction = .Left
+        view.addGestureRecognizer(leftRecognizer)
+        let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
+        rightRecognizer.direction = .Right
+        view.addGestureRecognizer(rightRecognizer)
+        
+        self.view = view;
+    }
+
     override func viewDidLoad()  {
         super.viewDidLoad()
         self.loadFromPreferences()
@@ -94,7 +115,8 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
-        let themeTrait = preferences.theme.traitForSize(size)
+        let theme = preferences.theme
+        let themeTrait = theme.traitForSize(size)
         let layoutIndex = self.selectedLayoutIndex
         self.view.frame.size = size
         self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.collections.count), 0)

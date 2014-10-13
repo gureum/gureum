@@ -79,13 +79,13 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
             alertView.show()
         } else {
             let alertView = UIAlertView(title: item.product.localizedTitle, message: item.product.localizedDescription, delegate: self, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
-            alertView.tag = (indexPath.section << 16) + indexPath.row
+            alertView.tag = (indexPath.section << 15) + indexPath.row
             alertView.show()
         }
     }
 
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        let (section, row) = (alertView.tag >> 16, alertView.tag & 0xffff)
+        let (section, row) = (alertView.tag >> 15, alertView.tag & 0xffff)
         let item = store.categoryForSection(section).itemForRow(row)
         let payment = SKPayment(product: item.product)
         SKPaymentQueue.defaultQueue().addPayment(payment)

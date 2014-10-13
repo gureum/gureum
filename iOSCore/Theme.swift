@@ -9,6 +9,8 @@
 import UIKit
 
 class Theme {
+    var imageCaches: [String: UIImage] = [:]
+
     func dataForFilename(name: String) -> NSData? {
         assert(false)
         return nil
@@ -71,18 +73,17 @@ class Theme {
         }
     }
 
-    lazy var mainConfiguration: Dictionary<String, AnyObject> = {
+    lazy var mainConfiguration: NSDictionary = {
         var error: NSError? = nil
         let filename = "config.json"
-        let JSONObject = self.JSONObjectForFilename(filename, error: &error) as Dictionary<String, AnyObject>!
+        let JSONObject = self.JSONObjectForFilename(filename, error: &error) as NSDictionary!
         assert(JSONObject != nil)
-        return JSONObject!
+        return JSONObject
     }()
 
     func traitForName(traitName: String, topMargin: CGFloat) -> ThemeTraitConfiguration {
-        let sub: AnyObject? = self.mainConfiguration["trait"]
-        if let traits = sub as Dictionary<String, String>? {
-            if let traitFilename = traits[traitName] {
+        if let traits = self.mainConfiguration["trait"] as NSDictionary? {
+            if let traitFilename = traits[traitName] as String? {
                 var error: NSError? = nil
                 let traitData: AnyObject! = self.JSONObjectForFilename(traitFilename, error: &error)
                 assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
@@ -93,12 +94,8 @@ class Theme {
         } else {
             assert(false, "주 설정 파일에 trait 키가 없습니다.")
         }
-    }
-
-    func traitForCoordinator(coordinator: UIViewControllerTransitionCoordinator!) -> ThemeTraitConfiguration {
-        assert(false)
-        //println("coordinator: \(coordinator)")
-        return self.phonePortraitConfiguration
+        // asserted
+        return ThemeTraitConfiguration(owner: self, configuration: nil, topMargin: 0.0)
     }
 
     func traitForSize(size: CGSize) -> ThemeTraitConfiguration {
@@ -111,24 +108,26 @@ class Theme {
             return self.phoneLandscape568Configuration
         default:
             assert(false, "no coverage")
+            return self.phonePortraitConfiguration
         }
     }
 
+
     lazy var phonePortraitConfiguration: ThemeTraitConfiguration = {
         return self.traitForName("phone-portrait", topMargin: 8)
-    }()
+        }()
 
     lazy var phoneLandscape480Configuration: ThemeTraitConfiguration = {
         return self.traitForName("phone-landscape480", topMargin: 4)
-    }()
+        }()
 
     lazy var phoneLandscape568Configuration: ThemeTraitConfiguration = {
         return self.traitForName("phone-landscape568", topMargin: 4)
-    }()
+        }()
 }
 
 class ThemeTraitConfiguration {
-    let configuration: Dictionary<String, AnyObject>
+    let configuration: NSDictionary!
     let owner: Theme
     let topMargin: CGFloat
     var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
@@ -136,18 +135,18 @@ class ThemeTraitConfiguration {
     init(owner: Theme, configuration: AnyObject?, topMargin: CGFloat) {
         self.owner = owner
         self.topMargin = topMargin
-        self.configuration = configuration as Dictionary<String, AnyObject>
+        self.configuration = configuration as NSDictionary?
     }
 
     lazy var backgroundImage: UIImage? = {
-        let configFilename: AnyObject? = self.configuration["background"]
-        let filename = configFilename as String? ?? "background.png"
+        let configFilename = self.configuration["background"] as String?
+        let filename = configFilename ?? "background.png"
         return self.owner.imageForFilename(filename)
     }()
 
     lazy var foregroundImage: UIImage? = {
-        let configFilename: AnyObject? = self.configuration["foreground"]
-        let filename = configFilename as String? ?? "foreground.png"
+        let configFilename = self.configuration["foreground"] as String?
+        let filename = configFilename ?? "foreground.png"
         return self.owner.imageForFilename(filename)
     }()
 
@@ -187,18 +186,6 @@ class ThemeTraitConfiguration {
 }
 
 
-class PreferencedTheme: Theme {
-    override func dataForFilename(name: String) -> NSData? {
-        if let rawData = preferences.themeResources[name] {
-            let data = themeResourceCoder.decodeToData(rawData)
-            return data
-        } else {
-            return nil
-        }
-    }
-}
-
-
 class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject]
     let fallback: ThemeCaptionConfiguration!
@@ -232,7 +219,7 @@ class ThemeCaptionConfiguration {
         self.fallback = fallback
     }
 
-    func appeal(button: GRInputButton) {
+    func appealButton(button: GRInputButton) {
         let (image1, image2, image3) = self.images
         //assert(image1 != nil)
         button.tintColor = UIColor.clearColor()
@@ -262,7 +249,7 @@ class ThemeCaptionConfiguration {
         button.effectView.backgroundImageView.image = self.effectBackgroundImage
     }
 
-    func arrange(button: GRInputButton) {
+    func arrangeButton(button: GRInputButton) {
         let position = self.position
         //println("pos: \(position)")
         let center = CGPointMake(button.frame.width / 2 + position.x, button.frame.height / 2 + position.y)
@@ -502,6 +489,10 @@ class ThemeResourceCoder {
     func decodeToData(data: String) -> NSData {
         let encoded = NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(0))
         return encoded.decryptedAES256DataWithKey(self.key())
+    }
+
+    class func defaultCoder() -> ThemeResourceCoder {
+        return themeResourceCoder
     }
 }
 

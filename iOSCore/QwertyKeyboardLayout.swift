@@ -16,14 +16,15 @@ class QwertyKeyboardView: KeyboardView {
     override init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 }
 
 func getKey(keylines: [String], position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
     let keyline = keylines[position.row].unicodeScalars
-    var idx = keyline.startIndex
-    for _ in 0..<position.column {
-        idx = idx.successor()
-    }
+    let idx = advance(keyline.startIndex, position.column)
     let key = keyline[idx]
     return key
 }
@@ -41,8 +42,34 @@ class QwertyKeyboardLayout: KeyboardLayout {
         return key
     }
 
-    override class func containerName() -> String {
-        return "QwertyLayout"
+    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+        let layout = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+        let row = layout[position.row]
+        let chr = row[advance(row.startIndex, position.column)]
+        let altkey = "qwerty-key-\(chr)"
+        let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyKeyCaption)
+        let title = self.helper(self.helper, titleForPosition: position)
+        let theme2 = trait.captionForKey("qwerty-key-" + title, fallback: theme1)
+        return theme2
+    }
+
+    override class func loadView() -> QwertyKeyboardView {
+        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
+
+        view.nextKeyboardButton = GRInputButton()
+        view.deleteButton = GRInputButton()
+        view.doneButton = GRInputButton()
+        view.toggleKeyboardButton = GRInputButton()
+        view.shiftButton = GRInputButton()
+        view.spaceButton = GRInputButton()
+        view.leftSpaceButton = GRInputButton()
+        view.rightSpaceButton = GRInputButton()
+
+        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] {
+
+            view.addSubview(subview)
+        }
+        return view
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
@@ -66,9 +93,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
         let theme = preferences.theme.traitForSize(rect.size)
 
         for (position, button) in self.helper.buttons {
-            let title = self.helper(self.helper, titleForPosition: position)
-            let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
-            captionTheme.appeal(button)
+            let captionTheme = self.captionThemeForTrait(theme, position: position)
+            captionTheme.appealButton(button)
         }
 
         let map = [
@@ -81,7 +107,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         ]
 
         for (button, captionTheme) in map {
-            captionTheme.appeal(button)
+            captionTheme.appealButton(button)
         }
 
         let size = rect.size
@@ -105,9 +131,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
         let theme = preferences.theme.traitForSize(rect.size)
         for (position, button) in self.helper.buttons {
-            let title = self.helper(self.helper, titleForPosition: position)
-            let captionTheme = theme.captionForKey("qwerty-key-" + title, fallback: theme.qwertyKeyCaption)
-            captionTheme.arrange(button)
+            let captionTheme = self.captionThemeForTrait(theme, position: position)
+            captionTheme.arrangeButton(button)
         }
 
         let map = [
@@ -120,7 +145,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         ]
 
         for (button, captionTheme) in map {
-            captionTheme.arrange(button)
+            captionTheme.arrangeButton(button)
         }
     }
 
@@ -190,7 +215,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
         let key =  self.keyForPosition(position)
-        button.tag = Int(((key.value - 32) << 16) + key.value)
+        button.tag = Int(((key.value - 32) << 15) + key.value)
         button.sizeToFit()
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
@@ -212,11 +237,12 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
         let key2 = getKey(keylines2, position)
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        button.tag = Int((key2.value << 16) + key1.value)
+        button.tag = Int(key2.value << 15) + Int(key1.value)
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-
+        //println("button: \(button.tag)");
+//        button.tag = 0
         return button
     }
 
@@ -240,7 +266,7 @@ class KSX5002KeyboardLayout: QwertyKeyboardLayout {
         let key = self.keyForPosition(position)
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        button.tag = Int(((key.value - 32) << 16) + key.value)
+        button.tag = Int(((key.value - 32) << 15) + key.value)
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)

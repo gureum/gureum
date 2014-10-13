@@ -23,7 +23,6 @@ class KeyboardViewEventView: UIView {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.touching = true
         self.touchesMoved(touches, withEvent: event)
-
     }
 
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
@@ -41,7 +40,7 @@ class KeyboardViewEventView: UIView {
             let touch = rawTouch as UITouch
             let point = touch.locationInView(self)
             let button = self.keyboardView.layout.correspondingButtonForPoint(point)
-            globalInputViewController?.input(button)
+            button.sendActionsForControlEvents(.TouchUpInside)
             button.hideEffect()
         }
         self.touching = false
@@ -96,13 +95,25 @@ class NoKeyboardView: KeyboardView {
 }
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
-    var view: KeyboardView!
-    lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
     var context: UnsafeMutablePointer<()> = nil
+    lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
+    lazy var view: KeyboardView = {
+        let view = self.dynamicType.loadView()
+        view.layout = self
 
-    class func containerName() -> String {
+        assert(view.nextKeyboardButton != nil)
+        assert(view.deleteButton != nil)
+        view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        view.deleteButton.addTarget(nil, action: "delete", forControlEvents: .TouchUpInside)
+
+        self.context = self.dynamicType.loadContext()
+
+        return view
+    }()
+
+    class func loadView() -> KeyboardView {
         assert(false)
-        return ""
+        return KeyboardView()
     }
 
     class func loadContext() -> UnsafeMutablePointer<()> {
@@ -110,35 +121,15 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         return nil
     }
 
-    func _postinit() {
-        let x = self.helper
-        self.helper.createButtonsInView(self.view)
-
-        self.view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-        self.view.deleteButton.addTarget(nil, action: "delete", forControlEvents: .TouchUpInside)
-
-        self.context = self.dynamicType.loadContext()
+    init() {
+        let view = self.view
+        self.helper.createButtonsInView(view)
     }
 
     func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
         var rect = self.view.bounds
         rect.size = size
         self.helper.layoutButtonsInRect(rect)
-    }
-
-    init(nibName: String, bundle: NSBundle?) {
-        let vc = UIViewController(nibName: nibName, bundle: bundle)
-        self.view = vc.view as KeyboardView
-        self.view.layout = self
-        _postinit()
-    }
-
-    init() {
-        let name = self.dynamicType.containerName()
-        let vc = UIViewController(nibName: name, bundle: nil)
-        self.view = vc.view as KeyboardView
-        self.view.layout = self
-        _postinit()
     }
 
     func correspondingButtonForPoint(point: CGPoint) -> GRInputButton {
@@ -151,6 +142,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
             }
         }
         assert(false)
+        return GRInputButton()
     }
 
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -171,45 +163,65 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         assert(false)
+        return UIEdgeInsetsZero
     }
 
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
         assert(false)
+        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         assert(false)
+        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat {
         assert(false)
+        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat {
         assert(false)
+        return 0
     }
 
     func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         assert(false)
+        return []
     }
 
     func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         assert(false)
+        return []
     }
 
     func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         assert(false)
+        return GRInputButton()
     }
 
     func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         assert(false)
+        return ""
     }
 }
 
 class NoKeyboardLayout: KeyboardLayout {
 
-    override class func containerName() -> String {
-        return "NoLayout"
+    override class func loadView() -> KeyboardView {
+        let view = KeyboardView(frame: CGRectMake(0, 0, 320, 216))
+
+        view.nextKeyboardButton = GRInputButton()
+        view.deleteButton = GRInputButton()
+        view.doneButton = GRInputButton()
+        view.toggleKeyboardButton = GRInputButton()
+        view.shiftButton = GRInputButton()
+
+        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton] {
+            view.addSubview(subview)
+        }
+        return view
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
