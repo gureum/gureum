@@ -22,3 +22,5 @@ Podfile.lock
 
 build
 *.playground
+
+Crashlytics.framework

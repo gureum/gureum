@@ -190,6 +190,7 @@ extension Theme {
             assert(resources.count > 0)
         }
         preferences.themeResources = resources
+        preferences.resourceCaches = [:]
         assert(preferences.themeResources.count > 0)
     }
 

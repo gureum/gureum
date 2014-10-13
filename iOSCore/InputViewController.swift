@@ -26,6 +26,7 @@ class InputViewController: UIInputViewController {
     }()
 
     func log(text: String) {
+        return;
         self.logTextView.text = text + "\n" + self.logTextView.text
         self.view.bringSubviewToFront(self.logTextView)
     }
@@ -65,9 +66,10 @@ class InputViewController: UIInputViewController {
 //                break
 //            }
 //        }
-        dispatch_async(dispatch_get_main_queue(), {
+        
+//        dispatch_async(dispatch_get_main_queue(), {
             self.view.addSubview(self.inputMethodViewController.view)
-        })
+//        })
     }
 
     override func viewDidLayoutSubviews() {
@@ -173,8 +175,8 @@ class InputViewController: UIInputViewController {
                 proxy.insertText("\(UnicodeScalar(composed))")
             }
             self.log("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
-            self.log(proxy.documentContextBeforeInput)
-            self.log(proxy.documentContextAfterInput)
+            //self.log(proxy.documentContextBeforeInput)
+            //self.log(proxy.documentContextAfterInput)
         }
     }
 

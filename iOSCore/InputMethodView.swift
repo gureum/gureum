@@ -64,7 +64,7 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
         view.addSubview(layoutsView)
         let pageControl = UIPageControl()
         pageControl.userInteractionEnabled = false
-        pageControl.center = CGPointMake(view.frame.width - 10.0, view.frame.height / 2)
+        pageControl.center = CGPointMake(view.frame.width / 2, view.frame.height - 20.0)
         view.pageControl = pageControl
         view.addSubview(view.pageControl)
 
@@ -159,15 +159,15 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 
     @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
         let index = self.selectedLayoutIndex
-        if index > 0 {
-            self.selectLayoutByIndex(index - 1, animated: true)
+        if index < self.collections.count - 1 {
+            self.selectLayoutByIndex(index + 1, animated: true)
         }
     }
 
     @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
         let index = self.selectedLayoutIndex
-        if index < self.collections.count - 1 {
-            self.selectLayoutByIndex(index + 1, animated: true)
+        if index > 0 {
+            self.selectLayoutByIndex(index - 1, animated: true)
         }
     }
 

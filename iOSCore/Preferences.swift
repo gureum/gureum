@@ -9,7 +9,7 @@
 import Foundation
 
 class Preferences {
-    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.test")
+    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
         let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
@@ -24,7 +24,7 @@ class Preferences {
         return object
     }
 
-    func getDictionaryForKey(key: String, defaultValue: NSDictionary) -> AnyObject {
+    func getDictionaryForKey(key: String, defaultValue: NSDictionary) -> NSDictionary {
         let object = self.defaults.dictionaryForKey(key)
         if object == nil {
             return defaultValue
@@ -89,7 +89,7 @@ class Preferences {
 
     var themeResources: NSDictionary {
         get {
-            return getDictionaryForKey("themeresource", defaultValue: [:]) as Dictionary<String, String>
+            return getDictionaryForKey("themeresource", defaultValue: [:])
         }
 
         set {
@@ -99,6 +99,30 @@ class Preferences {
                 dict[key as String] = value
             }
             self.setObjectForKey("themeresource", value: dict)
+        }
+    }
+
+    var resourceCaches: NSDictionary {
+        get {
+            return self.getDictionaryForKey("rcache", defaultValue: [:])
+        }
+        set {
+            return self.setObjectForKey("rcache", value: newValue)
+        }
+    }
+
+    func setResourceCache(data: NSData, forKey key: String) {
+        let caches = self.resourceCaches.mutableCopy() as NSMutableDictionary
+        let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data)
+        caches.setObject(encoded, forKey: key)
+        self.setObjectForKey("rcache", value: caches)
+    }
+
+    func resourceCacheForKey(key: String) -> NSData! {
+        if let encoded = self.resourceCaches[key] as String? {
+            return ThemeResourceCoder.defaultCoder().decodeToData(encoded)
+        } else {
+            return nil
         }
     }
 }
@@ -113,5 +137,19 @@ class PreferencedTheme: Theme {
         } else {
             return nil
         }
+    }
+
+    override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
+//        return nil;
+        let key = name + "::\(Int(margin))"
+        if let data = preferences.resourceCacheForKey(key) {
+            return UIImage(data: data, scale: 2)
+        }
+        let image = super.imageForFilename(name, withTopMargin: margin)
+        if image != nil {
+            let data = UIImagePNGRepresentation(image)
+            preferences.setResourceCache(data, forKey: key)
+        }
+        return image
     }
 }

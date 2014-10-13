@@ -31,46 +31,36 @@ class Theme {
     }
 
     func imageForFilename(name: String) -> UIImage? {
-        let parts = name.componentsSeparatedByString("::")
-        let filename = parts[0]
-        //println("parts: \(parts) \(parts[0]) \(filename)")
-        if let data = self.dataForFilename(filename) {
-            var image = UIImage(data: data, scale: 2)
-            if parts.count > 1 {
-                let valueStrings = parts[1].componentsSeparatedByString(" ")
-                let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
-                let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!), CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
-                image = image.resizableImageWithCapInsets(insets)
-            }
-            return image
-        } else {
-            return nil
-        }
+        return self.imageForFilename(name, withTopMargin: 0)
     }
 
     func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
         let parts = name.componentsSeparatedByString("::")
         let filename = parts[0]
-        if let image = self.imageForFilename(filename) {
+
+        let data = self.dataForFilename(filename)
+        if data == nil {
+            return nil
+        }
+
+        var image = UIImage(data: data!, scale: 2)
+        if margin != 0 {
             var size = image.size
             size.height += margin
             UIGraphicsBeginImageContextWithOptions(size, false, 2)
             var rect = CGRectMake(0, margin, image.size.width, image.size.height)
             image.drawInRect(rect)
-            var newImage = UIGraphicsGetImageFromCurrentImageContext()
+            image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-
-            if parts.count > 1 {
-                let valueStrings = parts[1].componentsSeparatedByString(" ")
-                let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
-                let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!) + margin, CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
-                newImage = newImage.resizableImageWithCapInsets(insets)
-            }
-
-            return newImage
-        } else {
-            return nil
         }
+        if parts.count > 1 {
+            let valueStrings = parts[1].componentsSeparatedByString(" ")
+            let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
+            let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!) + margin, CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
+            image = image.resizableImageWithCapInsets(insets)
+        }
+
+        return image
     }
 
     lazy var mainConfiguration: NSDictionary = {
@@ -492,8 +482,8 @@ class ThemeResourceCoder {
     }
 
     class func defaultCoder() -> ThemeResourceCoder {
-        return themeResourceCoder
+        return ThemeResourceCoderDefaultCoder
     }
 }
 
-let themeResourceCoder = ThemeResourceCoder()
+let ThemeResourceCoderDefaultCoder = ThemeResourceCoder()
