@@ -481,10 +481,24 @@
                         <barButtonItem key="rightBarButtonItem" title="구매 복원" id="Q6T-La-nLe"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="2fu-SI-VE7" id="Htc-Zz-EH8"/>
+                        <outlet property="doneButton" destination="6cF-vj-js7" id="htQ-pd-zLl"/>
                         <outlet property="preview" destination="ZBZ-D3-Nuf" id="DA2-kI-7tl"/>
+                        <outlet property="restoreButton" destination="Q6T-La-nLe" id="y2g-Zk-aa1"/>
+                        <outlet property="tableView" destination="KWh-rX-HxH" id="08j-ir-4Os"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln7-GB-Fc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="cancel" id="2fu-SI-VE7">
+                    <connections>
+                        <action selector="cancelTheme:" destination="vWb-Sm-Sh2" id="h9H-HP-022"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem style="done" systemItem="done" id="6cF-vj-js7">
+                    <connections>
+                        <action selector="applyTheme:" destination="vWb-Sm-Sh2" id="yYC-1X-wa8"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="64" y="1326"/>
         </scene>

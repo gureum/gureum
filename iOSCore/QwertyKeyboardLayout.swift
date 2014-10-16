@@ -13,7 +13,7 @@ class QwertyKeyboardView: KeyboardView {
     @IBOutlet var leftSpaceButton: GRInputButton!
     @IBOutlet var rightSpaceButton: GRInputButton!
 
-    override init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -90,20 +90,20 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let theme = preferences.theme.traitForSize(rect.size)
+        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
 
         for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(theme, position: position)
+            let captionTheme = self.captionThemeForTrait(trait, position: position)
             captionTheme.appealButton(button)
         }
 
         let map = [
-            self.qwertyView.shiftButton!: theme.qwertyShiftCaption,
-            self.qwertyView.deleteButton!: theme.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: theme.qwerty123Caption,
-            self.qwertyView.nextKeyboardButton!: theme.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: theme.qwertySpaceCaption,
-            self.qwertyView.doneButton!: theme.qwertyDoneCaption,
+            self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
+            self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
+            self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
+            self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
+            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
+            self.qwertyView.doneButton!: trait.qwertyDoneCaption,
         ]
 
         for (button, captionTheme) in map {
@@ -129,19 +129,19 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let theme = preferences.theme.traitForSize(rect.size)
+        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
         for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(theme, position: position)
+            let captionTheme = self.captionThemeForTrait(trait, position: position)
             captionTheme.arrangeButton(button)
         }
 
         let map = [
-            self.qwertyView.shiftButton!: theme.qwertyShiftCaption,
-            self.qwertyView.deleteButton!: theme.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: theme.qwerty123Caption,
-            self.qwertyView.nextKeyboardButton!: theme.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: theme.qwertySpaceCaption,
-            self.qwertyView.doneButton!: theme.qwertyDoneCaption,
+            self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
+            self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
+            self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
+            self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
+            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
+            self.qwertyView.doneButton!: trait.qwertyDoneCaption,
         ]
 
         for (button, captionTheme) in map {

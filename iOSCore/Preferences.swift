@@ -10,6 +10,7 @@ import Foundation
 
 class Preferences {
     var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
+    lazy var theme = PreferencedTheme()
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
         let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
@@ -81,12 +82,6 @@ class Preferences {
         }
     }
 
-    var theme: Theme {
-        get {
-            return PreferencedTheme()
-        }
-    }
-
     var themeResources: NSDictionary {
         get {
             return getDictionaryForKey("themeresource", defaultValue: [:])
@@ -130,6 +125,8 @@ class Preferences {
 let preferences = Preferences()
 
 class PreferencedTheme: Theme {
+    var imageCaches: [String: UIImage] = [:]
+
     override func dataForFilename(name: String) -> NSData? {
         if let rawData = preferences.themeResources[name] as String? {
             let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)

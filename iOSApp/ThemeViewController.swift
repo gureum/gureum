@@ -9,15 +9,46 @@
 import UIKit
 
 class ThemeViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate {
-    var entries: Array<Dictionary<String, AnyObject>> = {
-        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")
-        let data = NSData(contentsOfURL: URL)
+    @IBOutlet var tableView: UITableView! = nil
+    @IBOutlet var doneButton: UIBarButtonItem! = nil
+    @IBOutlet var cancelButton: UIBarButtonItem! = nil
+    @IBOutlet var restoreButton: UIBarButtonItem! = nil
 
-        var error: NSError? = nil
-        let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
-        assert(error == nil)
-        return items
-    }()
+    var themeAddress = preferences.themeAddress
+
+    var entries: Array<Dictionary<String, AnyObject>> = []
+
+    func loadEntries() {
+        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")
+        let data: NSData? = NSData(contentsOfURL: URL)
+
+        if let data = data {
+            var error: NSError? = nil
+            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
+            assert(error == nil)
+            entries = items
+        }
+    }
+
+    @IBAction func applyTheme(sender: UIButton!) {
+        Theme.themeWithAddress(self.themeAddress).dump()
+        preferences.themeAddress = self.themeAddress
+        preferences.resourceCaches = [:]
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = restoreButton;
+    }
+
+    @IBAction func cancelTheme(sender: UIButton!) {
+        self.themeAddress = preferences.themeAddress
+        self.inputPreviewController.inputMethodViewController.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = restoreButton;
+        self.tableView.reloadData()
+    }
+
+    @IBAction func restorePurchasedTheme(sender: UIButton!) {
+        
+    }
 
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return self.entries.count
@@ -30,6 +61,21 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         return items.count
     }
 
+    override func viewDidLoad() {
+        self.inputPreviewController.inputMethodViewController.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        super.viewDidLoad()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            self.loadEntries()
+            dispatch_async(dispatch_get_main_queue(), {
+                if self.entries.count > 0 {
+                    self.tableView.reloadData()
+                } else {
+                    UIAlertView(title: "네트워크 오류", message: "테마 목록을 불러올 수 없습니다. LTE 또는 Wi-Fi 연결을 확인하고 잠시 후에 다시 시도해 주세요.", delegate: nil, cancelButtonTitle: "확인").show()
+                }
+            })
+        })
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
@@ -37,7 +83,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell? {
             cell.textLabel!.text = item["title"]
-            cell.accessoryType = item["addr"] == preferences.themeAddress ? .Checkmark : .None
+            cell.accessoryType = item["addr"] == self.themeAddress ? .Checkmark : .None
             return cell
         } else {
             assert(false);
@@ -56,17 +102,15 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
-        let themeAddress = item["addr"]
-        assert(themeAddress != nil)
+        self.themeAddress = item["addr"]!
 
-        // 옮기자
-        Theme.themeWithAddress(themeAddress! as String).dump()
-        // 끝
+        self.navigationItem.rightBarButtonItem = self.doneButton
+        self.navigationItem.leftBarButtonItem = self.cancelButton
 
-        preferences.themeAddress = themeAddress!
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
+        self.inputPreviewController.inputMethodViewController.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
         self.inputPreviewController.reloadInputMethodView()
     }
 }

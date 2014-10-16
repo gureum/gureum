@@ -34,7 +34,7 @@ class PreviewViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.inputPreviewController.view.frame = self.preview.bounds
-        //self.inputPreviewController.viewDidLayoutSubviews()
+        self.inputPreviewController.viewDidLayoutSubviews()
     }
 
     override func viewDidAppear(animated: Bool) {

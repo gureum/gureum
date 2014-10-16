@@ -13,6 +13,7 @@ protocol GRKeyboardLayoutHelperDelegate {
     func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper)
     func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
     func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
+    func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int
@@ -103,6 +104,7 @@ class GRKeyboardLayoutHelper {
     func layoutButtonsInRect(rect: CGRect) {
         if let delegate = self.delegate {
             delegate.layoutWillLayoutForHelper(self, forRect: rect)
+            let theme = delegate.themeForHelper(self)
 
             var rowHeightSum: CGFloat = 0.0
             var columnWidthSums = Array<CGFloat>()
@@ -156,7 +158,6 @@ class GRKeyboardLayoutHelper {
                     button.frame = CGRectMake(left, rowTop, width, rowHeight)
                     left += width + columnSpace
                 }
-                let theme = preferences.theme
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!

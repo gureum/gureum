@@ -8,29 +8,30 @@
 
 import UIKit
 
-var globalInputViewController: InputViewController? = nil;
+var globalInputViewController: InputViewController? = nil
+var launchedDate: NSDate = NSDate()
 
 class InputViewController: UIInputViewController {
     var inputMethodViewController: InputMethodViewController = InputMethodViewController()
     var initialized = false
+    var needsProtection = false
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
         let textView = UITextView(frame: rect)
         textView.backgroundColor = UIColor.clearColor()
-        textView.alpha = 0.5
         textView.userInteractionEnabled = false
-        textView.textColor = UIColor.lightGrayColor()
+        textView.textColor = UIColor.redColor()
         self.view.addSubview(textView)
         return textView
     }()
 
     func log(text: String) {
         return;
-        self.logTextView.text = text + "\n" + self.logTextView.text
+        let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
+        self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
         self.view.bringSubviewToFront(self.logTextView)
     }
-
 
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -42,7 +43,7 @@ class InputViewController: UIInputViewController {
 //    }
 
     func reloadInputMethodView() {
-        self.inputMethodViewController.loadFromPreferences()
+        self.inputMethodViewController.loadFromTheme()
         //println("bounds: \(self.view.bounds)")
         self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
@@ -66,21 +67,27 @@ class InputViewController: UIInputViewController {
 //                break
 //            }
 //        }
-        
-//        dispatch_async(dispatch_get_main_queue(), {
-            self.view.addSubview(self.inputMethodViewController.view)
-//        })
+
+        self.view.addSubview(self.inputMethodViewController.view)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.log("adding input method view")
+            self.inputMethodViewController.loadFromTheme()
+            self.log("added method view")
+        })
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         if self.view.bounds.width > 0 && self.inputMethodViewController.view.superview == self.view {
-            self.log("viewDidLayoutSubviews \(self.view.bounds)")
             self.inputMethodViewController.view.frame = self.view.bounds
             self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
-            self.log("pref keys: \(preferences.themeResources.allKeys)")
+            self.log("viewDidLayoutSubviews \(self.view.bounds)")
+            assert(self.view.bounds.width == self.inputMethodViewController.view.frame.width)
+        } else {
+            self.log("rejected viewDidLayoutSubviews \(self.view.bounds)")
         }
+        println("")
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -88,7 +95,7 @@ class InputViewController: UIInputViewController {
         self.log("viewWillTransitionToSize \(self.view.bounds)")
         //println("coordinator: \(coordinator)")
 
-        self.inputMethodViewController.view.frame = self.view.bounds
+        self.inputMethodViewController.view.frame = CGRect(origin: CGPointZero, size: size)
         self.inputMethodViewController.transitionViewToSize(size, withTransitionCoordinator: coordinator)
     }
     
@@ -99,18 +106,21 @@ class InputViewController: UIInputViewController {
     }
 
     override func textWillChange(textInput: UITextInput) {
-//        self.keyboard.view.logTextView.backgroundColor = UIColor.yellowColor()
-//        self.keyboard.view.logTextView.text = ""
-//        self.log("text will change:")
         // The app is about to change the document's contents. Perform any preparation here.
-        self.inputMethodViewController.resetContext()
+        //self.log("text will change: \(self.needsProtection)")
+        if !self.needsProtection {
+            self.inputMethodViewController.resetContext()
+        }
     }
 
     override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
-//        self.log("text did change:")
-        self.inputMethodViewController.resetContext()
+        //self.log("text did change: \(self.needsProtection)")
+        if !self.needsProtection {
+            self.inputMethodViewController.resetContext()
+            self.needsProtection = false
+        }
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
@@ -124,25 +134,26 @@ class InputViewController: UIInputViewController {
     }
 
     override func selectionDidChange(textInput: UITextInput)  {
+        //self.log("selection did change:")
         self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
     override func selectionWillChange(textInput: UITextInput)  {
+        //self.log("selection will change:")
         self.inputMethodViewController.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
     func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-        //log(proxy.documentContextBeforeInput);
-        //log(proxy.documentContextAfterInput);
+        self.log("before: \(proxy.documentContextBeforeInput)");
         //println("\(self.context) \(sender.tag)")
 
         let selectedLayout = self.inputMethodViewController.selectedLayout
         for collection in self.inputMethodViewController.collections {
             if selectedLayout.context != collection.selectedLayout.context && collection.selectedLayout.context != nil {
-                context_truncate(collection.selectedLayout.context)
+                //context_truncate(collection.selectedLayout.context)
             }
         }
 
@@ -156,16 +167,21 @@ class InputViewController: UIInputViewController {
 
         let precomposed = context_get_composed_unicode(context)
         let processed = context_put(context, UInt32(keycode))
-        //println("processed: \(processed) / precomposed: \(precomposed)")
+        //self.log("processed: \(processed) / precomposed: \(precomposed)")
 
         if !processed {
             context_truncate(context)
             proxy.insertText("\(UnicodeScalar(keycode))")
+            //self.log("truncate and insert: \(UnicodeScalar(keycode))")
         } else {
             if precomposed > 0 {
+                //self.log("-- deleting")
                 proxy.deleteBackward()
+                //self.log("-- deleted")
             }
+            self.needsProtection = !proxy.hasText()
 
+            //self.log("-- inserting")
             let commited = context_get_commited_unicode(context)
             if commited > 0 {
                 proxy.insertText("\(UnicodeScalar(commited))")
@@ -174,10 +190,11 @@ class InputViewController: UIInputViewController {
             if composed > 0 {
                 proxy.insertText("\(UnicodeScalar(composed))")
             }
-            self.log("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
-            //self.log(proxy.documentContextBeforeInput)
-            //self.log(proxy.documentContextAfterInput)
+            //self.log("-- inserted")
+            //self.log("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
+
         }
+        //self.log("after: \(proxy.documentContextAfterInput)")
     }
 
     func shift(sender: UIButton) {
@@ -193,9 +210,6 @@ class InputViewController: UIInputViewController {
 
     func delete() {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-        //self.keyboard.view.logTextView.text = ""
-//        log(proxy.documentContextBeforeInput);
-//        log(proxy.documentContextAfterInput);
         let context = self.inputMethodViewController.selectedLayout.context
         let precomposed = context_get_composed_unicode(context)
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
@@ -205,9 +219,12 @@ class InputViewController: UIInputViewController {
             let composed = context_get_composed_unicode(context)
             if composed > 0 {
                 proxy.insertText("\(UnicodeScalar(composed))")
+                //self.log("deleted and add \(UnicodeScalar(composed))")
+            } else {
+                //self.log("deleted")
             }
+        } else {
+            //self.log("deleted")
         }
-//        log(proxy.documentContextBeforeInput);
-//        log(proxy.documentContextAfterInput);
     }
 }

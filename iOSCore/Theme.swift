@@ -9,8 +9,6 @@
 import UIKit
 
 class Theme {
-    var imageCaches: [String: UIImage] = [:]
-
     func dataForFilename(name: String) -> NSData? {
         assert(false)
         return nil
@@ -459,6 +457,25 @@ class ThemeCaptionConfiguration {
             return CGPointMake(0, 0)
         }
     }()
+}
+
+class CachedTheme: Theme {
+    let theme: Theme
+    var _cache: [String: NSData?] = [:]
+
+    init(theme: Theme) {
+        self.theme = theme
+        super.init()
+    }
+
+    override func dataForFilename(name: String) -> NSData? {
+        if let data = _cache[name] {
+            return data
+        }
+        let data = self.theme.dataForFilename(name)
+        _cache[name] = data
+        return data
+    }
 }
 
 class ThemeResourceCoder {

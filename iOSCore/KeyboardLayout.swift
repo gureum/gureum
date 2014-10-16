@@ -61,6 +61,21 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var shiftButton: GRInputButton! = nil
 
+    override init() {
+        super.init()
+        self.backgroundColor = UIColor.clearColor()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clearColor()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.backgroundColor = UIColor.clearColor()
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundImageView.removeFromSuperview()
@@ -97,6 +112,7 @@ class NoKeyboardView: KeyboardView {
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var context: UnsafeMutablePointer<()> = nil
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
+
     lazy var view: KeyboardView = {
         let view = self.dynamicType.loadView()
         view.layout = self
@@ -204,6 +220,10 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         assert(false)
         return ""
+    }
+
+    func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme {
+        return globalInputViewController!.inputMethodViewController.theme
     }
 }
 

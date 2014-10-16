@@ -10,11 +10,7 @@ import UIKit
 
 class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
-
-    @IBOutlet var leftSwipeRecognizer: UIGestureRecognizer!
-    @IBOutlet var rightSwipeRecognizer: UIGestureRecognizer!
-    @IBOutlet var upSwipeRecognizer: UIGestureRecognizer!
-    @IBOutlet var downSwipeRecognizer: UIGestureRecognizer!
+    var theme: Theme = preferences.theme
 
     var inputMethodView: InputMethodView {
         get {
@@ -57,40 +53,30 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
 
     override func loadView() {
-        let view = InputMethodView(frame: CGRectMake(0.0, 0.0, 320.0, 218.0))
-        let layoutsView = UIScrollView(frame: view.bounds)
-        layoutsView.scrollEnabled = false
-        view.layoutsView = layoutsView
-        view.addSubview(layoutsView)
-        let pageControl = UIPageControl()
-        pageControl.userInteractionEnabled = false
-        pageControl.center = CGPointMake(view.frame.width / 2, view.frame.height - 20.0)
-        view.pageControl = pageControl
-        view.addSubview(view.pageControl)
-
+        self.view = InputMethodView(frame: CGRectMake(0.0, 0.0, 320.0, 218.0))
         let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
         leftRecognizer.direction = .Left
-        view.addGestureRecognizer(leftRecognizer)
+        self.view.addGestureRecognizer(leftRecognizer)
         let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
         rightRecognizer.direction = .Right
-        view.addGestureRecognizer(rightRecognizer)
-        
-        self.view = view;
+        self.view.addGestureRecognizer(rightRecognizer)
+
+        self.preloadFromTheme()
     }
 
-    override func viewDidLoad()  {
-        super.viewDidLoad()
-        self.loadFromPreferences()
+    func preloadFromTheme() {
+        let trait = self.theme.traitForSize(self.view.frame.size)
+        self.inputMethodView.backgroundImageView.image = trait.backgroundImage
     }
 
-    func loadFromPreferences() {
+    func loadFromTheme() {
         let layoutsView = self.inputMethodView.layoutsView
         for view in layoutsView.subviews {
             view.removeFromSuperview()
         }
 
 //        원근 모드
-//        let image = preferences.theme.backgroundImage
+//        let image = self.theme.backgroundImage
 //        if image != nil {
 //            self.inputMethodView.backgroundImageView.image = image
 //        }
@@ -112,18 +98,20 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 
         self.inputMethodView.pageControl.numberOfPages = collections.count
         self.selectLayoutByIndex(preferences.defaultLayoutIndex, animated: false)
+
+        //self.inputMethodView.backgroundImageView.image = nil
     }
 
     func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
-        let theme = preferences.theme
-        let themeTrait = theme.traitForSize(size)
+        let theme = self.theme
+        let trait = theme.traitForSize(size)
         let layoutIndex = self.selectedLayoutIndex
         self.view.frame.size = size
         self.inputMethodView.layoutsView.contentSize = CGSizeMake(size.width * CGFloat(self.collections.count), 0)
         for (i, collection) in enumerate(self.collections) {
             for layout in collection.layouts {
-                layout.view.backgroundImageView.image = themeTrait.backgroundImage
-                layout.view.foregroundImageView.image = themeTrait.foregroundImage
+                layout.view.backgroundImageView.image = trait.backgroundImage
+                layout.view.foregroundImageView.image = trait.foregroundImage
                 layout.view.frame.origin.x = CGFloat(i) * size.width
                 layout.view.frame.size.width = size.width
                 layout.transitionViewToSize(size, withTransitionCoordinator: coordinator)
@@ -181,7 +169,32 @@ class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, 
 }
 
 class InputMethodView: UIView {
-    @IBOutlet var layoutsView: UIScrollView!
-    @IBOutlet var pageControl: UIPageControl!
+    let layoutsView: UIScrollView! = UIScrollView()
+    let pageControl: UIPageControl! = UIPageControl()
     let backgroundImageView: UIImageView = UIImageView()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clearColor()
+        self.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleHeight | .FlexibleWidth
+
+        layoutsView.frame = self.bounds
+        layoutsView.scrollEnabled = false
+        layoutsView.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleHeight | .FlexibleWidth
+
+        pageControl.userInteractionEnabled = false
+        pageControl.center = CGPointMake(self.frame.width / 2, self.frame.height - 20.0)
+
+        backgroundImageView.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleHeight | .FlexibleWidth
+        backgroundImageView.frame = self.bounds
+
+
+        self.addSubview(self.backgroundImageView)
+        self.addSubview(self.layoutsView)
+        self.addSubview(self.pageControl)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

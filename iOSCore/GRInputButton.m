@@ -9,30 +9,8 @@
 #import <UIKitExtension/UIKitExtension.h>
 #import "GRInputButton.h"
 
-@interface GRInputButton (private)
-
-@property(retain) UIImageView *glyphView;
-@property(retain) UILabel *captionLabel;
-
-@end
-
-
-@implementation GRInputEffectView
-
-- (id)init {
-    self = [super initWithFrame:CGRectMake(0, 0, 20, 20)];
-
-    UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-    self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self->_backgroundImageView.autoresizingMask = autoresizing;
-    [self addSubview:self.backgroundImageView];
-    UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.autoresizingMask = autoresizing;
-    [self addSubview:label];
-    self->_textLabel = label;
-    return self;
+@interface GRInputButton () {
+    GRInputEffectView *_effectView;
 }
 
 @end
@@ -54,13 +32,17 @@
         [self addSubview:view];
         self->_captionLabel = view;
     }
-    {
+
+    return self;
+}
+
+- (GRInputEffectView *)effectView {
+    if (self->_effectView == nil) {
         GRInputEffectView *view = [[GRInputEffectView alloc] init];
         self->_effectView = view;
+        self.effectView.hidden = YES;
     }
-
-    self.effectView.hidden = YES;
-    return self;
+    return self->_effectView;
 }
 
 - (instancetype)init {
@@ -84,6 +66,27 @@
 
 - (void)hideEffect {
     [self.effectView setHidden:YES animated:YES];
+}
+
+@end
+
+
+@implementation GRInputEffectView
+
+- (id)init {
+    self = [super initWithFrame:CGRectMake(0, 0, 20, 20)];
+
+    UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+    self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self->_backgroundImageView.autoresizingMask = autoresizing;
+    [self addSubview:self.backgroundImageView];
+    UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.autoresizingMask = autoresizing;
+    [self addSubview:label];
+    self->_textLabel = label;
+    return self;
 }
 
 @end
