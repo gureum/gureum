@@ -12,7 +12,7 @@ var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
 
 class InputViewController: UIInputViewController {
-    var inputMethodViewController: InputMethodViewController = InputMethodViewController()
+    lazy var inputMethodViewController: InputMethodViewController = InputMethodViewController(traits: self.textDocumentProxy as UITextDocumentProxy as UITextInputTraits)
     var initialized = false
     var needsProtection = false
 
@@ -124,7 +124,7 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
-        var proxy = self.textDocumentProxy as UITextDocumentProxy
+        let proxy = self.textDocumentProxy as UITextDocumentProxy
         if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
             textColor = UIColor.whiteColor()
         } else {

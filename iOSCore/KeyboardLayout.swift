@@ -29,7 +29,7 @@ class KeyboardViewEventView: UIView {
         for rawTouch in event.allTouches()! {
             let touch = rawTouch as UITouch
             let point = touch.locationInView(self)
-            let button = self.keyboardView.layout.correspondingButtonForPoint(point)
+            let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
             println("touch point: \(point) \(button)")
             button.showEffect()
         }
@@ -39,7 +39,7 @@ class KeyboardViewEventView: UIView {
         for rawTouch in event.allTouches()! {
             let touch = rawTouch as UITouch
             let point = touch.locationInView(self)
-            let button = self.keyboardView.layout.correspondingButtonForPoint(point)
+            let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
             button.sendActionsForControlEvents(.TouchUpInside)
             button.hideEffect()
         }
@@ -148,7 +148,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         self.helper.layoutButtonsInRect(rect)
     }
 
-    func correspondingButtonForPoint(point: CGPoint) -> GRInputButton {
+    func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
         for button in self.view.subviews {
             if !(button is GRInputButton) {
                 continue

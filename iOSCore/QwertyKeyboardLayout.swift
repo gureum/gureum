@@ -43,9 +43,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let layout = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-        let row = layout[position.row]
-        let chr = row[advance(row.startIndex, position.column)]
+        let chr = self.keyForPosition(position)
         let altkey = "qwerty-key-\(chr)"
         let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyKeyCaption)
         let title = self.helper(self.helper, titleForPosition: position)
@@ -227,12 +225,90 @@ class QwertyKeyboardLayout: KeyboardLayout {
         return "\(Character(UnicodeScalar(key.value - 32)))"
     }
 
+    override func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
+        var newPoint = point
+        if point.x < size.width / 2 {
+            newPoint.x += 2
+        } else {
+            newPoint.x -= 2
+        }
+        var button = super.correspondingButtonForPoint(point, size: size)
+        if button == self.qwertyView.leftSpaceButton {
+            button = self.helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 0)]!
+        }
+        else if button == self.qwertyView.rightSpaceButton {
+            button = self.helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 8)]!
+        }
+        return button
+    }
+
 }
 
 class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
+    override func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
+        let keylines = ["qwertyuiop", "asdfghjklm", "zxcvbnm", " "]
+        let key = getKey(keylines, position)
+        return key
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+        switch row {
+        case 0:
+            return 10
+        case 1:
+            return 10
+        case 2:
+            return 5
+        case 3:
+            return 0
+        default:
+            return 0
+        }
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+        switch row {
+        case 1:
+            return []
+        case 2:
+            assert(self.qwertyView.shiftButton != nil)
+            return [self.qwertyView.shiftButton]
+        case 3:
+            assert(self.view.toggleKeyboardButton != nil)
+            assert(self.view.nextKeyboardButton != nil)
+            return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton]
+        default:
+            return []
+        }
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+        switch row {
+        case 1:
+            return []
+        case 2:
+            assert(self.view.deleteButton != nil)
+            return [self.view.deleteButton]
+        case 3:
+            assert(self.qwertyView.spaceButton != nil)
+            assert(self.view.doneButton != nil)
+            return [self.qwertyView.spaceButton, self.view.doneButton]
+        default:
+            return []
+        }
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+        if row == 2 {
+            return size.width * 7 / 5 / 10
+        } else {
+            return size.width / 10
+        }
+    }
+
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'", " "]
-        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'", " "]
+        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'\"₩", " "]
+        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'\"₩", " "]
         let key1 = getKey(keylines1, position)
         let key2 = getKey(keylines2, position)
 

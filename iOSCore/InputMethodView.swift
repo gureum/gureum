@@ -11,6 +11,21 @@ import UIKit
 class InputMethodViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
     var theme: Theme = preferences.theme
+    var traits: UITextInputTraits! = nil
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    init(traits: UITextInputTraits) {
+        super.init()
+        self.traits = traits
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        assert(false)
+    }
 
     var inputMethodView: InputMethodView {
         get {
