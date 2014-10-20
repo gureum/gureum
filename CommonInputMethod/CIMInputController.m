@@ -64,6 +64,8 @@
 // IMKServerInput 프로토콜에 대한 공용 핸들러
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     dlog(DEBUG_LOGGING, @"LOGGING::KEY::(%@)(%ld)(%lu)", [string stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"], keyCode, flags);
+
+    BOOL hadComposedString = self._internalComposedString.length > 0;
     CIMInputTextProcessResult handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 
     CIMSharedInputManager.inputting = YES;
@@ -86,7 +88,8 @@
     }
 
     BOOL commited = [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
-    if (commited || controller.selectionRange.length > 0 || self._internalComposedString.length > 0) {
+    BOOL hasComposedString = self._internalComposedString.length > 0;
+    if (commited || controller.selectionRange.length > 0 || hadComposedString || hasComposedString) {
         [self updateComposition:controller]; // 조합 중인 문자 반영
     }
 
@@ -172,12 +175,12 @@
         string = @""; // 선택된 영역이 있을 경우 삭제되지 않도록 보호한다.
     }
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with sender: %@ / return: '%@'", sender, string);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with return: '%@'", string);
     return string;
 }
 
 - (NSAttributedString *)originalString:(id)sender controller:(CIMInputController *)controller {
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString: with sender: %@", sender);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString:");
     NSAttributedString *string = [[[NSAttributedString alloc] initWithString:[self.composer originalString]] autorelease];
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::ORIGINALSTRING::%@", string.string);
     return string;
@@ -217,7 +220,7 @@
 //! @brief 자판 전환을 감지한다.
 - (void)setValue:(id)value forTag:(long)tag client:(id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CHANGE-%lu-%@", tag, value);
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / sender: %@ / client: %@", value, tag, sender, controller.client);
+    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value, tag, controller.client);
     switch (tag) {
         case kTextServiceInputModePropertyTag:
             if (![value isEqualToString:self.composer.inputMode]) {
