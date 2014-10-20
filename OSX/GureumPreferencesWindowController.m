@@ -246,7 +246,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 #pragma NSComboBox dataSource
 
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox {
-    return [GureumPreferencesHangulLayouts count];
+    return GureumPreferencesHangulLayouts.count;
 }
 
 - (NSUInteger)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)string {

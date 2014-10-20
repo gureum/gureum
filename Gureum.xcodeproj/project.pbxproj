@@ -53,6 +53,7 @@
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+		38FDDEE019F547170055731D /* RomanComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FDDEDF19F547170055731D /* RomanComposer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,8 @@
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
+		38FDDEDE19F547170055731D /* RomanComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RomanComposer.h; sourceTree = "<group>"; };
+		38FDDEDF19F547170055731D /* RomanComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RomanComposer.m; sourceTree = "<group>"; };
 		3BF1EF238D995173D4656033 /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		96531747FFE34C269FBF9A41 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFAA3DB67697F0587B6FE43E /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -409,6 +412,8 @@
 			children = (
 				38FA21D814230E1000444D67 /* GureumComposer.h */,
 				38FA21D914230E1000444D67 /* GureumComposer.m */,
+				38FDDEDE19F547170055731D /* RomanComposer.h */,
+				38FDDEDF19F547170055731D /* RomanComposer.m */,
 				38162D7A140F64B70077AA2D /* HangulComposer.h */,
 				38162D7B140F64B70077AA2D /* HangulComposer.m */,
 			);
@@ -639,6 +644,7 @@
 				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
 				3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */,
+				38FDDEE019F547170055731D /* RomanComposer.m in Sources */,
 				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,

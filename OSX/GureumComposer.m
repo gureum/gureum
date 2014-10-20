@@ -37,6 +37,7 @@ NSString *kGureumInputSourceIdentifierHan3_2012Loose = @"org.youknowone.inputmet
 NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputmethod.Gureum.han3finalnoshift";
 NSString *kGureumInputSourceIdentifierHan3_2014 = @"org.youknowone.inputmethod.Gureum.han3-2014";
 
+#import "RomanComposer.h"
 #import "HangulComposer.h"
 
 @implementation GureumComposer
@@ -45,7 +46,7 @@ NSString *kGureumInputSourceIdentifierHan3_2014 = @"org.youknowone.inputmethod.G
 {
     self = [super init];
     if (self) {
-        self->romanComposer = [[CIMBaseComposer alloc] init];
+        self->romanComposer = [[RomanComposer alloc] init];
         self->hangulComposer = [[HangulComposer alloc] init];
         self->hanjaComposer = [[HanjaComposer alloc] init];
         self->hanjaComposer.delegate = self->hangulComposer;
@@ -92,7 +93,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     if (self.inputMode == newInputMode || [self.inputMode isEqualToString:newInputMode]) return;
 
     NSString *keyboardIdentifier = GureumInputSourceToHangulKeyboardIdentifierTable[newInputMode];
-    if ([keyboardIdentifier length] == 0) {
+    if (keyboardIdentifier.length == 0) {
         self.delegate = self->romanComposer;
     } else {
         self.delegate = self->hangulComposer;

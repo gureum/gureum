@@ -34,7 +34,7 @@
 #pragma - IMKServerInputTextData
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    // 입력기용 특수 커맨드 우선 처리
+    // 입력기용 특수 커맨드 처리
     CIMInputTextProcessResult result = [controller.composer inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
     if (result == CIMInputTextProcessResultNotProcessedAndNeedsCommit) {
         return result;
@@ -59,6 +59,12 @@
                     string = @(key);
                 }
             }   break;
+        }
+    } else {
+        if (keyCode < 0x33) {
+            char key[2] = {0, 0};
+            key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMKeyMapUpper[keyCode] : CIMKeyMapLower[keyCode];
+            string = @(key);
         }
     }
 

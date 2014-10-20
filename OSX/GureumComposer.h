@@ -30,6 +30,7 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012Loose;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2014;
 
+@class RomanComposer;
 @class HangulComposer;
 @class HanjaComposer;
 /*!
@@ -39,7 +40,7 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2014;
 */
 @interface GureumComposer : CIMComposer {
   @private
-    CIMBaseComposer *romanComposer;
+    RomanComposer *romanComposer;
     HangulComposer *hangulComposer;
     HanjaComposer *hanjaComposer;
 
