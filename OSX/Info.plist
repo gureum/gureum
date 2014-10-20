@@ -152,6 +152,27 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smKorean</string>
 			</dict>
+			<key>org.youknowone.inputmethod.Gureum.han3-2014</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.Gureum.han3-2014</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
 			<key>org.youknowone.inputmethod.Gureum.han390</key>
 			<dict>
 				<key>TISInputSourceID</key>
@@ -402,6 +423,7 @@
 			<string>org.youknowone.inputmethod.Gureum.han3-2012loose</string>
 			<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
 			<string>org.youknowone.inputmethod.Gureum.hanahnmatae</string>
+			<string>org.youknowone.inputmethod.Gureum.han3-2014</string>
 		</array>
 	</dict>
 	<key>HIMHanjaWindowSettings</key>
