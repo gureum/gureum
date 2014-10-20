@@ -6,20 +6,18 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
- 
-    dlog(TRUE, @"******* CharmIM initialized! *******");
-    NSString *mainNibName = [[NSBundle mainBundle] infoDictionary][@"NSMainNibFile"];
-    if ([NSBundle loadNibNamed:mainNibName owner:[NSApplication sharedApplication]] == NO) {
-        NSLog(@"!! CharmIM fails to load Main Nib File !!");
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        dlog(TRUE, @"******* CharmIM initialized! *******");
+        NSString *mainNibName = [[NSBundle mainBundle] infoDictionary][@"NSMainNibFile"];
+        if ([NSBundle loadNibNamed:mainNibName owner:[NSApplication sharedApplication]] == NO) {
+            NSLog(@"!! CharmIM fails to load Main Nib File !!");
+        }
+        dlog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName);
+        
+        [[NSApplication sharedApplication] run];
+        
+        dlog(TRUE, @"******* CharmIM finalized! *******");
     }
-    dlog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName);
-    
-    [[NSApplication sharedApplication] run];
-    
-    dlog(TRUE, @"******* CharmIM finalized! *******");
-    [pool release];
     return 0;
 }

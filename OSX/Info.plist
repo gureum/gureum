@@ -6,10 +6,10 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>Gureum.icns</string>
 	<key>CFBundleGetInfoString</key>
 	<string>${VERSION}, Copyright 2011-2014 Jeong YunWon</string>
+	<key>CFBundleIconFile</key>
+	<string>Gureum.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.youknowone.inputmethod.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -445,10 +445,10 @@
 	<string>CIMInputController</string>
 	<key>InputMethodServerPreferencesWindowControllerClass</key>
 	<string>GureumPreferencesWindowController</string>
-	<key>LSUIElement</key>
-	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>LSUIElement</key>
+	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright 2011-2014 Jeong YunWon</string>
 	<key>NSMainNibFile</key>

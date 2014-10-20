@@ -53,7 +53,9 @@
 }
 
 - (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSUInteger)flags {
-    BOOL processed = [self.controller inputText:text key:keyCode modifiers:flags client:self.client];
+    CIMInputController *controller = self.controller;
+    CIMMockClient *client = self.client;
+    BOOL processed = [controller inputText:text key:keyCode modifiers:flags client:client];
     [self.controller updateComposition];
     return processed;
 }

@@ -34,8 +34,8 @@
 
     self.apps = @[
         self.moderate,
-        self.terminal,
-        self.greedy,
+//        self.terminal,
+//        self.greedy,
     ];
 }
 
@@ -80,7 +80,7 @@
         XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@"\n" key:36 modifiers:0];
         if (app != self.terminal) {
-            XCTAssertEqualObjects(@"한글 한글\n", app.client.string,@"buffer: %@ app: (%@)", app.client.string, app);
+            XCTAssertEqualObjects(@"한글 한글\n", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         }
     }
 }

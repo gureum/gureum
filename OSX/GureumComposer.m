@@ -12,7 +12,7 @@
 #import "GureumAppDelegate.h"
 
 #define DEBUG_GUREUM TRUE
-#define DEBUG_SHORTCUT TRUE
+#define DEBUG_SHORTCUT FALSE
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.Gureum.qwerty";
 NSString *kGureumInputSourceIdentifierDvorak = @"org.youknowone.inputmethod.Gureum.dvorak";
@@ -169,7 +169,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             need_exchange = YES;
         }
 
-        if (CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
+        if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");
             need_hanjamode = YES;
         }

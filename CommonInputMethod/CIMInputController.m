@@ -134,12 +134,12 @@
     // 커밋할 문자가 없으면 중단
     if ([commitString length] > 0) {
         dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
-        NSRange range = [sender markedRange];
+        NSRange range = controller.selectionRange;
         dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
         if (range.length) {
-            [sender insertText:commitString replacementRange:range];
+            [controller.client insertText:commitString replacementRange:range];
         } else {
-            [sender insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+            [controller.client insertText:commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
         }
         return YES;
     }
@@ -168,7 +168,7 @@
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
     NSString *string = [self _internalComposedString];
-    if ([string isEqualToString:@"\u200b"] && [sender selectedRange].length > 0 && [sender markedRange].length == 0) {
+    if ([string isEqualToString:@"\u200b"] && controller.selectionRange.length > 0) {
         string = @""; // 선택된 영역이 있을 경우 삭제되지 않도록 보호한다.
     }
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
