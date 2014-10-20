@@ -86,7 +86,7 @@
     }
 
     BOOL commited = [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
-    if (commited || [sender markedRange].length > 0 || self._internalComposedString.length > 0) {
+    if (commited || controller.selectionRange.length > 0 || self._internalComposedString.length > 0) {
         [self updateComposition:controller]; // 조합 중인 문자 반영
     }
 
