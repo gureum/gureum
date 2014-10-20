@@ -430,6 +430,9 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     dassert(name);
     dassert(name.length);
     SEL selector = NSSelectorFromString(name);
+    if (selector == nil) {
+        selector = @selector(stringByRemovingFillerWithUCSString:);
+    }
     return [NSString performSelector:selector withObject:(id)UCSString];
 }
 
@@ -444,6 +447,9 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     dassert(name);
     dassert(name.length);
     SEL selector = NSSelectorFromString(name);
+    if (selector == nil) {
+        selector = @selector(stringByRemovingFillerWithUCSString:);
+    }
     return [NSString performSelector:selector withObject:(id)UCSString];
 }
 
