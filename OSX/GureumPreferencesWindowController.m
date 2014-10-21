@@ -218,8 +218,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->hangulCombinationModeComposing = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeComposingComboBox.stringValue];
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
 
-    configuration->zeroWidthSpaceForBlankComposedString = self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue;
-
     [configuration saveAllConfigurations];
 }
 

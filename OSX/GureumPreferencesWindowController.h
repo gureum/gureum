@@ -43,7 +43,6 @@
 
     IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
     IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
-    IBOutlet NSButton *zeroWidthSpaceForBlankComposedStringCheckbox;
 }
 
 - (IBAction)saveToConfiguration:(id)sender;

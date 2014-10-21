@@ -75,7 +75,7 @@
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
     // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
     if (keyCode == kVK_Delete) {
-        return [self->_inputContext backspace];
+        return [self->_inputContext backspace] ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessed;
     }
 
     if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
@@ -113,9 +113,6 @@
 - (NSString *)composedString {
     const HGUCSChar *preedit = [self->_inputContext preeditUCSString];
     NSString *string = [[self class] composedStringByCombinationModeWithUCSString:preedit];
-    if (string.length == 0 && CIMSharedConfiguration->zeroWidthSpaceForBlankComposedString) {
-        string = @"\u200b";
-    }
     return string;
 }
 

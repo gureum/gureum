@@ -36,6 +36,13 @@
 @end
 
 
+@interface CIMInputReceiver ()
+
+@property(nonatomic,assign) BOOL hasSelectionRange;
+
+@end
+
+
 @implementation CIMInputReceiver
 @synthesize composer=_composer, inputClient=_inputClient;
 
@@ -89,6 +96,8 @@
 
     BOOL commited = [self commitComposition:sender controller:controller]; // 조합 된 문자 반영
     BOOL hasComposedString = self._internalComposedString.length > 0;
+    NSRange selectionRange = controller.selectionRange;
+    self.hasSelectionRange = selectionRange.location != NSNotFound && selectionRange.length > 0;
     if (commited || controller.selectionRange.length > 0 || hadComposedString || hasComposedString) {
         [self updateComposition:controller]; // 조합 중인 문자 반영
     }
@@ -161,7 +170,7 @@
 
 - (NSString *)_internalComposedString {
     NSString *string = self.composer.composedString;
-    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString && CIMSharedInputManager.configuration->zeroWidthSpaceForLayoutExchange) {
+    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString && CIMSharedInputManager.configuration->zeroWidthSpaceForLayoutExchange && !self.hasSelectionRange) {
         string = @"\u200b";
     }
     return string;
@@ -171,9 +180,6 @@
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
     NSString *string = [self _internalComposedString];
-    if ([string isEqualToString:@"\u200b"] && controller.selectionRange.length > 0) {
-        string = @""; // 선택된 영역이 있을 경우 삭제되지 않도록 보호한다.
-    }
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with return: '%@'", string);
     return string;
