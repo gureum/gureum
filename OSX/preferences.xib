@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencesWindowController">
@@ -29,7 +29,6 @@
                 <outlet property="shortcutPreferenceView" destination="d3g-yd-5Pi" id="yGr-RR-7LO"/>
                 <outlet property="showsInputForHanjaCandidatesCheckbox" destination="kbw-KS-sBP" id="qlw-Vh-CVc"/>
                 <outlet property="window" destination="1" id="108"/>
-                <outlet property="zeroWidthSpaceForBlankComposedStringCheckbox" destination="qS6-9b-zpa" id="ctU-hT-dri"/>
                 <outlet property="zeroWidthSpaceForLayoutExchangeCheckbox" destination="ofO-Xf-tQi" id="VYd-af-BHG"/>
             </connections>
         </customObject>
@@ -43,7 +42,6 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="72">
-                        <rect key="frame" x="0.0" y="40" width="300" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                     <customView id="53">
@@ -143,9 +141,6 @@
                             <string>한국어로 전환</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="Edn-3G-gxX"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="Sbp-lN-W4h">
                     <rect key="frame" x="18" y="-197" width="151" height="20"/>
@@ -171,9 +166,6 @@
                             <string>한국어로 전환</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="9no-aM-KlR"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="tVu-Q2-0Zc">
                     <rect key="frame" x="18" y="-169" width="136" height="20"/>
@@ -199,9 +191,6 @@
                             <string>한국어로 전환</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="8hp-Kr-aGB"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="iup-BQ-fje">
                     <rect key="frame" x="18" y="-253" width="172" height="20"/>
@@ -227,9 +216,6 @@
                             <string>한국어로 전환</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="Qka-mk-PJQ"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="oK9-dv-5i6">
                     <rect key="frame" x="18" y="-283" width="167" height="20"/>
@@ -255,9 +241,6 @@
                             <string>한국어로 전환</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="R5Y-k1-kgI"/>
-                    </connections>
                 </comboBox>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="TqJ-NL-1r6">
                     <rect key="frame" x="18" y="20" width="293" height="20"/>
@@ -430,7 +413,7 @@
                 </button>
             </subviews>
         </customView>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="82">
             <rect key="frame" x="0.0" y="0.0" width="369" height="193"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -480,7 +463,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="130">
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="130">
                     <rect key="frame" x="20" y="142" width="331" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -508,9 +491,6 @@
                             <string>무시</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="152"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="Ifn-ec-Gzf">
                     <rect key="frame" x="24" y="116" width="105" height="20"/>
@@ -551,9 +531,6 @@
                             <string>중성 채움 문자부터 숨김</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="113"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="114">
                     <rect key="frame" x="18" y="64" width="105" height="20"/>
@@ -579,9 +556,6 @@
                             <string>중성 채움 문자부터 숨김</string>
                         </objectValues>
                     </comboBoxCell>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="118"/>
-                    </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" id="eUM-9q-JXv">
                     <rect key="frame" x="18" y="120" width="105" height="20"/>
@@ -592,7 +566,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button id="qS6-9b-zpa">
+                <button hidden="YES" id="qS6-9b-zpa">
                     <rect key="frame" x="18" y="38" width="327" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="호환성 확장 (시험중)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cc4-vj-TQP">
@@ -608,7 +582,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7Vi-ot-AUK">
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7Vi-ot-AUK">
                     <rect key="frame" x="30" y="20" width="233" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(더 많은 앱에서 정상 동작 / 커서 이상 동작)" id="GgH-ug-S6J">
@@ -617,7 +591,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="okz-lY-USR">
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="okz-lY-USR">
                     <rect key="frame" x="20" y="150" width="268" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

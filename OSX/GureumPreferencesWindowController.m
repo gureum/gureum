@@ -127,13 +127,14 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     // Remove old one
     if (oldPreferenceView == newPreferenceView) return;
     [oldPreferenceView removeFromSuperview];
-    
+
     // Arrange
     CGFloat toolbarHeight = NSHeight(self.window.frame) - NSHeight([self.window.contentView frame]);
-    
-    NSRect containerRect = preferenceContainerView.frame;
+
+    NSRect containerRect = self->preferenceContainerView.frame;
     containerRect.size = newPreferenceView.frame.size;
-    
+    containerRect.origin.y = commonButtonsView.frame.size.height;
+
     NSRect windowFrame = self.window.frame;
     windowFrame.size = containerRect.size;
     windowFrame.size.height += toolbarHeight;
@@ -152,12 +153,12 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
 
     // shortcut
-    self->leftCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftCommandKeyShortcutBehavior];
-    self->leftOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftOptionKeyShortcutBehavior];
-    self->leftControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftControlKeyShortcutBehavior];
-    self->rightCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightCommandKeyShortcutBehavior];
-    self->rightOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightOptionKeyShortcutBehavior];
-    self->rightControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightControlKeyShortcutBehavior];
+//    self->leftCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftCommandKeyShortcutBehavior];
+//    self->leftOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftOptionKeyShortcutBehavior];
+//    self->leftControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftControlKeyShortcutBehavior];
+//    self->rightCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightCommandKeyShortcutBehavior];
+//    self->rightOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightOptionKeyShortcutBehavior];
+//    self->rightControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightControlKeyShortcutBehavior];
     self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
     self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
     self->inputModeEnglishKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeEnglishKeyCode, configuration->inputModeEnglishKeyModifier);
@@ -184,20 +185,18 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
         configuration->hangulCombinationModeCommiting = 0;
     }
     self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
-
-    self->zeroWidthSpaceForBlankComposedStringCheckbox.integerValue = configuration->zeroWidthSpaceForBlankComposedString;
 }
 
 - (void)saveToConfiguration:(id)sender {
     CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
 
     // shortcut
-    configuration->leftCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftCommandBehaviorComboBox.stringValue];
-    configuration->leftOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftOptionBehaviorComboBox.stringValue];
-    configuration->leftControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftControlBehaviorComboBox.stringValue];
-    configuration->rightCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightCommandBehaviorComboBox.stringValue];
-    configuration->rightOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightOptionBehaviorComboBox.stringValue];
-    configuration->rightControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightControlBehaviorComboBox.stringValue];
+//    configuration->leftCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftCommandBehaviorComboBox.stringValue];
+//    configuration->leftOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftOptionBehaviorComboBox.stringValue];
+//    configuration->leftControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftControlBehaviorComboBox.stringValue];
+//    configuration->rightCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightCommandBehaviorComboBox.stringValue];
+//    configuration->rightOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightOptionBehaviorComboBox.stringValue];
+//    configuration->rightControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightControlBehaviorComboBox.stringValue];
     configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
     configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
     configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
