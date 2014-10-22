@@ -62,8 +62,13 @@
 
 - (NSDictionary *)getRecentVersion {
     NSError *error = nil;
-    NSString *verstring = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gureum.io/version.txt"] encoding:NSUTF8StringEncoding error:&error];
-    if (verstring == nil || error) {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gureum.io/version.txt"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
+    NSData *data = [NSData dataWithContentsOfURLRequest:request error:&error];
+    if (data == nil || error != nil) {
+        return nil;
+    }
+    NSString *verstring = [NSString stringWithData:data encoding:NSUTF8StringEncoding];
+    if (verstring == nil || error != nil) {
         return nil;
     }
     NSArray *components = [verstring componentsSeparatedByString:@"::"];

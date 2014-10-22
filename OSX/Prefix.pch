@@ -3,7 +3,7 @@
 //
 
 #ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
+    #import <CocoaExtension/CocoaExtension.h>
     #import <InputMethodKit/InputMethodKit.h>
     #import <cdebug/debug.h>
     #import "CIMCommon.h"
