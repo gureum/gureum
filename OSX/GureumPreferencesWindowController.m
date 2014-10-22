@@ -175,15 +175,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
     // hangul
     [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
-    if (!(0 <= configuration->hangulCombinationModeComposing && configuration->hangulCombinationModeComposing < HangulCharacterCombinationModeCount)) {
-        configuration->hangulCombinationModeComposing = 0;
-    }
     self->showsInputForHanjaCandidatesCheckbox.integerValue = configuration->showsInputForHanjaCandidates;
 
     self->hangulCombinationModeComposingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeComposing];
-    if (!(0 <= configuration->hangulCombinationModeCommiting && configuration->hangulCombinationModeCommiting < HangulCharacterCombinationModeCount)) {
-        configuration->hangulCombinationModeCommiting = 0;
-    }
     self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
 }
 

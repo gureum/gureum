@@ -150,6 +150,13 @@ CIMConfiguration *CIMDefaultUserConfiguration;
         *item.pConfiguration = object != nil ? [object boolValue] : item.defaultValue;
         self->originConfigurations[item.name] = @(*item.pConfiguration);
     }
+
+    if (!(0 <= self->hangulCombinationModeComposing && self->hangulCombinationModeComposing < HangulCharacterCombinationModeCount)) {
+        self->hangulCombinationModeComposing = 0;
+    }
+    if (!(0 <= self->hangulCombinationModeCommiting && self->hangulCombinationModeCommiting < HangulCharacterCombinationModeCount)) {
+        self->hangulCombinationModeCommiting = 0;
+    }
 }
 
 - (void)saveAllConfigurations {
