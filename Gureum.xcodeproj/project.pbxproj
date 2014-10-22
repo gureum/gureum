@@ -600,7 +600,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#OSX-}\necho \"VERSION = $tag\" > Version.xcconfig";
+			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
 		86654D8F3D0CA20A6B75833A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
