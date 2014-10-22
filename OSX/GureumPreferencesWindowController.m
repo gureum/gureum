@@ -13,7 +13,7 @@
 #import "CIMConfiguration.h"
 #import "HangulComposer.h"
 
-#define DEBUG_PREFERENCE TRUE
+#define DEBUG_PREFERENCE FALSE
 
 @interface GureumPreferencesWindowController ()
 
@@ -165,9 +165,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     self->inputModeKoreanKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeKoreanKeyCode, configuration->inputModeKoreanKeyModifier);
 
     // common
-    NSLog(@"default input mode: %d", configuration->autosaveDefaultInputMode);
+    dlog(DEBUG_PREFERENCE, @"default input mode: %d", configuration->autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
-    NSLog(@"last hangul input mode: %@", configuration->lastHangulInputMode);
+    dlog(DEBUG_PREFERENCE, @"last hangul input mode: %@", configuration->lastHangulInputMode);
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = GureumPreferencesHangulLayoutLocalizedNames[index];
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
@@ -202,6 +202,8 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
     configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
     configuration->inputModeEnglishKeyCode = self->inputModeEnglishKeyRecorderCell.keyCombo.code;
+    configuration->inputModeEnglishKeyModifier = self->inputModeEnglishKeyRecorderCell.keyCombo.flags;
+    configuration->inputModeKoreanKeyCode = self->inputModeKoreanKeyRecorderCell.keyCombo.code;
     configuration->inputModeKoreanKeyModifier = self->inputModeKoreanKeyRecorderCell.keyCombo.flags;
 
     // common

@@ -11,7 +11,7 @@
 #import "CIMConfiguration.h"
 #import "GureumAppDelegate.h"
 
-#define DEBUG_GUREUM TRUE
+#define DEBUG_GUREUM FALSE
 #define DEBUG_SHORTCUT FALSE
 
 NSString *kGureumInputSourceIdentifierQwerty = @"org.youknowone.inputmethod.Gureum.qwerty";
@@ -107,53 +107,54 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
+    NSInteger inputModifier = flags;// & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     BOOL need_exchange = NO;
     BOOL need_hanjamode = NO;
-    if (string == nil) {
-        NSUInteger modifierKey = flags & 0xff;
-        if (self->lastModifier != 0 && modifierKey == 0) {
-            dlog(DEBUG_SHORTCUT, @"**** Trigger modifier: %lx ****", self->lastModifier);
-            NSDictionary *correspondedConfigurations = @{
-                                                         @(0x01): @(CIMSharedConfiguration->leftControlKeyShortcutBehavior),
-                                                         @(0x20): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
-                                                         @(0x08): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
-                                                         @(0x10): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
-                                                         @(0x40): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
-                                                         };
-            for (NSNumber *marker in @[@(0x01), @(0x20), @(0x08), @(0x10), @(0x40)]) {
-                if (self->lastModifier == marker.unsignedIntegerValue ) {
-                    NSInteger configuration = [correspondedConfigurations[marker] integerValue];
-                    switch (configuration) {
-                        case 0:
-                            break;
-                        case 1: {
-                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange modifier ****");
-                            need_exchange = YES;
-                        }   break;
-                        case 2: {
-                            dlog(DEBUG_SHORTCUT, @"**** Hanja mode by hanja modifier ****");
-                            need_hanjamode = YES;
-                        }   break;
-                        case 3: if (self.delegate == self->hangulComposer) {
-                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english modifier ****");
-                            need_exchange = YES;
-                        }   break;
-                        case 4: if (self.delegate == self->romanComposer) {
-                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean modifier ****");
-                            need_exchange = YES;
-                        }   break;
-                        default:
-                            dassert(NO);
-                            break;
-                    }
-                }
-            }
-        } else {
-            self->lastModifier = modifierKey;
-            dlog(DEBUG_SHORTCUT, @"**** Save modifier: %lx ****", self->lastModifier);
-        }
-    } else {
+//    if (string == nil) {
+//        NSUInteger modifierKey = flags & 0xff;
+//        if (self->lastModifier != 0 && modifierKey == 0) {
+//            dlog(DEBUG_SHORTCUT, @"**** Trigger modifier: %lx ****", self->lastModifier);
+//            NSDictionary *correspondedConfigurations = @{
+//                                                         @(0x01): @(CIMSharedConfiguration->leftControlKeyShortcutBehavior),
+//                                                         @(0x20): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+//                                                         @(0x08): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+//                                                         @(0x10): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+//                                                         @(0x40): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+//                                                         };
+//            for (NSNumber *marker in @[@(0x01), @(0x20), @(0x08), @(0x10), @(0x40)]) {
+//                if (self->lastModifier == marker.unsignedIntegerValue ) {
+//                    NSInteger configuration = [correspondedConfigurations[marker] integerValue];
+//                    switch (configuration) {
+//                        case 0:
+//                            break;
+//                        case 1: {
+//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange modifier ****");
+//                            need_exchange = YES;
+//                        }   break;
+//                        case 2: {
+//                            dlog(DEBUG_SHORTCUT, @"**** Hanja mode by hanja modifier ****");
+//                            need_hanjamode = YES;
+//                        }   break;
+//                        case 3: if (self.delegate == self->hangulComposer) {
+//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english modifier ****");
+//                            need_exchange = YES;
+//                        }   break;
+//                        case 4: if (self.delegate == self->romanComposer) {
+//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean modifier ****");
+//                            need_exchange = YES;
+//                        }   break;
+//                        default:
+//                            dassert(NO);
+//                            break;
+//                    }
+//                }
+//            }
+//        } else {
+//            self->lastModifier = modifierKey;
+//            dlog(DEBUG_SHORTCUT, @"**** Save modifier: %lx ****", self->lastModifier);
+//        }
+//    } else
+    {
         dlog(DEBUG_SHORTCUT, @"**** Reset modifier ****");
         self->lastModifier = 0;
 
