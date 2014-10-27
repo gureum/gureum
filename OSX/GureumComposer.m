@@ -107,7 +107,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    NSInteger inputModifier = flags;// & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
+    NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     BOOL need_exchange = NO;
     BOOL need_hanjamode = NO;
 //    if (string == nil) {
