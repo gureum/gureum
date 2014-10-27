@@ -37,7 +37,7 @@
 }
 
 - (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    NSString *download = (id)contextInfo;
+    NSString *download = (__bridge id)contextInfo;
     if (returnCode == NSAlertDefaultReturn) {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:download]];
     }

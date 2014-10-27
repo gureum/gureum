@@ -217,22 +217,33 @@
 }
 
 - (void)updateHanjaCandidates {
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates");
+    NSString *dequeueCommitString = self.hangulComposer.dequeueCommitString;
     // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
-    [self->bufferedString appendString:self.hangulComposer.dequeueCommitString];
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates step1");
+    [self->bufferedString appendString:dequeueCommitString];
     // step 2: 일단 화면에 한글이 표시되도록 조정
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates step2");
     self.composedString = self.originalString;
     // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates step3");
     NSString *keyword = self.originalString;
     if (keyword.length == 0) {
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates no keywords");
         self.candidates = nil;
     } else {
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates candidates");
         NSMutableArray *candidates = [NSMutableArray array];
         for (HGHanjaTable *table in @[self.emoticonTable, self.MSSymbolTable, self.wordTable, self.reversedTable, self.emoticonReversedTable, self.characterTable]) {
+            dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates getting list for table: %@", table);
             HGHanjaList *list = [table hanjasByPrefixSearching:keyword];
+            dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates getting list: %@", list);
             for (HGHanja *hanja in list) {
+                dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates hanja: %@", hanja);
                 [candidates addObject:[NSString stringWithFormat:@"%@: %@", hanja.value, hanja.comment]];
             }
         }
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates candidating");
         if (candidates.count > 0 && CIMSharedConfiguration->showsInputForHanjaCandidates) {
             [candidates insertObject:keyword atIndex:0];
         }
@@ -242,9 +253,10 @@
 }
 
 - (void)updateFromClientSelectedRange:(id)client {
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: marked: %@ selected: %@", NSStringFromRange([client markedRange]), NSStringFromRange([client selectedRange]));
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer updateFromClientSelectedRange:");
     NSRange markedRange = [client markedRange];
     NSRange selectedRange = [client selectedRange];
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
     if ((markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0) {
         NSString *selectedString = [[client attributedSubstringFromRange:selectedRange] string];
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: selected string: %@", selectedString);
@@ -254,7 +266,9 @@
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: so buffer is: %@", self->bufferedString);
         self.mode = NO;
     }
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange super");
     [self updateHanjaCandidates];
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange done");
 }
 
 - (BOOL)hasCandidates {
@@ -430,7 +444,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     if (selector == nil) {
         selector = @selector(stringByRemovingFillerWithUCSString:);
     }
-    return [NSString performSelector:selector withObject:(id)UCSString];
+    return [NSString performSelector:selector withObject:(__bridge id)UCSString];
 }
 
 /*!

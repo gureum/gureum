@@ -43,11 +43,11 @@ FOUNDATION_EXTERN NSString *CIMRomanModeByEscapeKey;
 FOUNDATION_EXTERN NSString *CIMZeroWidthSpaceForLayoutExchange;
 FOUNDATION_EXTERN NSString *CIMShowsInputForHanjaCandidates;
 
-#define defCIMConfigurationItem(NAME, TYPE)                                                                            \
-    struct NAME {                                                                                                      \
-        NSString *name;                                                                                                \
-        TYPE *pConfiguration;                                                                                          \
-        TYPE defaultValue;                                                                                             \
+#define defCIMConfigurationItem(NAME, TYPE) \
+    struct NAME {                           \
+        NSString *name;            \
+        TYPE *pConfiguration;               \
+        TYPE defaultValue;                  \
     }
 
 defCIMConfigurationItem(CIMConfigurationStringItem, NSString *);
