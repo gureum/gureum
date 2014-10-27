@@ -68,8 +68,8 @@
         }
     }
 
-    // 특정 애플리케이션에서 커맨드/옵션 키 입력을 선점하지 못하는 문제를 회피한다
-    if (flags & (NSCommandKeyMask|NSAlternateKeyMask)) {
+    // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
+    if (flags & (NSCommandKeyMask|NSAlternateKeyMask|NSControlKeyMask)) {
         dlog(TRUE, @"-- CIMInputHandler -inputText: Command/Option key input / returned NO");
         return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
