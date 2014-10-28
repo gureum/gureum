@@ -7,6 +7,7 @@
 //
 
 #import <AppKit/AppKit.h>
+#import <Carbon/Carbon.h>
 
 #import "CIMCommon.h"
 #import "CIMApplicationDelegate.h"
@@ -17,10 +18,24 @@
 #import "CIMInputController.h"
 #import "CIMConfiguration.h"
 
+#import "TISInputSource.h"
+
 #define DEBUG_INPUTCONTROLLER FALSE
 #define DEBUG_LOGGING FALSE
 
 #define CIMSharedInputManager CIMAppDelegate.sharedInputManager
+
+
+TISInputSource *_USSource() {
+    static NSString *mainSourceID = @"com.apple.keylayout.US";
+    static TISInputSource *source = nil;
+    if (source == nil) {
+        NSArray *mainSources = [TISInputSource sourcesWithProperties:@{(NSString *)kTISPropertyInputSourceID: mainSourceID} includeAllInstalled:YES];
+        dlog(1, @"main sources: %@", mainSources);
+        source = [mainSources[0] retain];
+    }
+    return source;
+}
 
 
 @interface CIMInputReceiver(IMKServerInput)
@@ -238,6 +253,39 @@
         default:
             dlog(DEBUG_INPUTCONTROLLER, @"**** UNKNOWN TAG %ld !!! ****", tag);
             break;
+    }
+
+    dlog(1, @"==== source");
+
+    TISInputSource *mainSource = _USSource();
+    NSString *mainSourceID = mainSource.identifier;
+    TISInputSource *currentSource = [TISInputSource currentSource];
+    dlog(1, @"current source: %@", currentSource);
+
+    [TISInputSource setInputMethodKeyboardLayoutOverride:mainSource];
+
+    TISInputSource *override = [TISInputSource inputMethodKeyboardLayoutOverride];
+    if (override == nil) {
+        dlog(1, @"override fail");
+        TISInputSource *currentASCIISource = [TISInputSource currentASCIICapableLayoutSource];
+        dlog(1, @"ascii: %@", currentASCIISource);
+        id ASCIISourceID = currentASCIISource.identifier;
+        if (![ASCIISourceID isEqualToString:mainSourceID]) {
+            dlog(1, @"id: %@ != %@", ASCIISourceID, mainSourceID);
+            BOOL mainSourceIsEnabled = mainSource.enabled;
+            //if (!mainSourceIsEnabled) {
+            //    [mainSource enable];
+            //}
+            if (mainSourceIsEnabled) {
+                [mainSource select];
+                [currentSource select];
+            }
+            //if (!mainSourceIsEnabled) {
+            //    [mainSource disable];
+            //}
+        }
+    } else {
+        dlog(1, @"overrided");
     }
 }
 

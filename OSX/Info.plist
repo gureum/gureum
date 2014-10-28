@@ -28,6 +28,8 @@
 		<dict>
 			<key>org.youknowone.inputmethod.Gureum.han2</key>
 			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.inputmethod.Korean.2SetKorean</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.han2</string>
 				<key>TISIntendedLanguage</key>
@@ -238,6 +240,8 @@
 			</dict>
 			<key>org.youknowone.inputmethod.Gureum.han3final</key>
 			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.inputmethod.Korean.3SetKorean</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.han3final</string>
 				<key>TISIntendedLanguage</key>
@@ -280,6 +284,8 @@
 			</dict>
 			<key>org.youknowone.inputmethod.Gureum.han3finalnoshift</key>
 			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.inputmethod.Korean.3SetKorean</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
 				<key>TISIntendedLanguage</key>
@@ -301,6 +307,8 @@
 			</dict>
 			<key>org.youknowone.inputmethod.Gureum.han3layout2</key>
 			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.inputmethod.Korean.2SetKorean</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.han3layout2</string>
 				<key>TISIntendedLanguage</key>
@@ -385,6 +393,8 @@
 			</dict>
 			<key>org.youknowone.inputmethod.Gureum.qwerty</key>
 			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.keylayout.US</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.qwerty</string>
 				<key>TISIntendedLanguage</key>

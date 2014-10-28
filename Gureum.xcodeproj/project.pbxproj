@@ -45,6 +45,9 @@
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
 		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
+		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
+		38EE97781A00061000AD19B8 /* 2SetHangul.keylayout in Resources */ = {isa = PBXBuildFile; fileRef = 38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */; };
+		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
 		38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524816ECF87E00FE1B4A /* han3final@2x.png */; };
 		38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524A16ECF87E00FE1B4A /* han390@2x.png */; };
 		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
@@ -186,6 +189,10 @@
 		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
+		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 2SetHangul.keylayout; path = ../../../../../Users/youknowone/Downloads/2SetHangul.keylayout; sourceTree = "<group>"; };
+		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
+		38EE977A1A00148D00AD19B8 /* TISInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISInputSource.m; sourceTree = "<group>"; };
 		38F1524816ECF87E00FE1B4A /* han3final@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3final@2x.png"; path = "Icons/han3final@2x.png"; sourceTree = "<group>"; };
 		38F1524A16ECF87E00FE1B4A /* han390@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han390@2x.png"; path = "Icons/han390@2x.png"; sourceTree = "<group>"; };
 		38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hanroman@2x.png"; path = "Icons/hanroman@2x.png"; sourceTree = "<group>"; };
@@ -206,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
@@ -327,6 +335,8 @@
 				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
 				3802E4631413A9FF00256B54 /* CIMConfiguration.h */,
 				3802E4641413A9FF00256B54 /* CIMConfiguration.m */,
+				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
+				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
 			);
 			name = "Common Input Method";
 			path = CommonInputMethod;
@@ -356,6 +366,7 @@
 		38863C62140E64EB00A8ED76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38EE977519FFD65600AD19B8 /* Carbon.framework */,
 				38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */,
 				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
 				38863C98140E677900A8ED76 /* InputMethodKit.framework */,
@@ -416,6 +427,7 @@
 				38FDDEDF19F547170055731D /* RomanComposer.m */,
 				38162D7A140F64B70077AA2D /* HangulComposer.h */,
 				38162D7B140F64B70077AA2D /* HangulComposer.m */,
+				38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */,
 			);
 			name = Composers;
 			sourceTree = "<group>";
@@ -557,6 +569,7 @@
 				38162E4814128A740077AA2D /* MainMenu.xib in Resources */,
 				38475AF61412BC050062100D /* han2.png in Resources */,
 				383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */,
+				38EE97781A00061000AD19B8 /* 2SetHangul.keylayout in Resources */,
 				38475AF71412BC050062100D /* han3.png in Resources */,
 				38475AF91412BC050062100D /* han3final.png in Resources */,
 				38475AFA1412BC050062100D /* han390.png in Resources */,
@@ -639,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */,
 				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
