@@ -9,7 +9,7 @@
 import UIKit
 
 class QwertyKeyboardView: KeyboardView {
-    @IBOutlet var spaceButton: GRInputButton!
+//    @IBOutlet var spaceButton: GRInputButton!
     @IBOutlet var leftSpaceButton: GRInputButton!
     @IBOutlet var rightSpaceButton: GRInputButton!
 
@@ -63,12 +63,12 @@ class QwertyKeyboardLayout: KeyboardLayout {
         view.toggleKeyboardButton.captionLabel.text = "123"
         view.shiftButton = GRInputButton()
         view.shiftButton.captionLabel.text = "⬆︎"
-        view.spaceButton = GRInputButton()
-        view.spaceButton.captionLabel.text = "간격"
+//        view.spaceButton = GRInputButton()
+//        view.spaceButton.captionLabel.text = "간격"
         view.leftSpaceButton = GRInputButton()
         view.rightSpaceButton = GRInputButton()
 
-        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] {
+        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton/*, view.spaceButton*/] {
 
             view.addSubview(subview)
         }
@@ -80,8 +80,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        self.qwertyView.spaceButton.tag = 32
-        self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+//        self.qwertyView.spaceButton.tag = 32
+//        self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
         self.qwertyView.doneButton.tag = 13
         self.qwertyView.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
@@ -108,7 +108,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
             self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
             self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
+//            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
             self.qwertyView.doneButton!: trait.qwertyDoneCaption,
         ]
 
@@ -123,9 +123,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
         for button in [self.qwertyView.toggleKeyboardButton!, self.qwertyView.nextKeyboardButton!] {
             button.frame.size = CGSizeMake(size.width / 8, size.height / 4)
         }
-        for button in [self.qwertyView.spaceButton!] {
-            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
-        }
+//        for button in [self.qwertyView.spaceButton!] {
+//            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
+//        }
         for button in [self.qwertyView.doneButton!] {
             button.frame.size = CGSizeMake(size.width / 4, size.height / 4)
         }
@@ -146,7 +146,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
             self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
             self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
+//            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
             self.qwertyView.doneButton!: trait.qwertyDoneCaption,
         ]
 
@@ -172,7 +172,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         case 2:
             return 7
         case 3:
-            return 0
+            return 1
         default:
             return 0
         }
@@ -183,7 +183,11 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
-        return size.width / 10
+        if row == 3 {
+            return size.width / 2
+        } else {
+            return size.width / 10
+        }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
@@ -210,9 +214,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
             assert(self.view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
-            assert(self.qwertyView.spaceButton != nil)
+//            assert(self.qwertyView.spaceButton != nil)
             assert(self.view.doneButton != nil)
-            return [self.qwertyView.spaceButton, self.view.doneButton]
+            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
         default:
             return []
         }
@@ -268,7 +272,7 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
         case 2:
             return 5
         case 3:
-            return 0
+            return 1
         default:
             return 0
         }
@@ -298,16 +302,18 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
             assert(self.view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
-            assert(self.qwertyView.spaceButton != nil)
+//            assert(self.qwertyView.spaceButton != nil)
             assert(self.view.doneButton != nil)
-            return [self.qwertyView.spaceButton, self.view.doneButton]
+            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
         default:
             return []
         }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
-        if row == 2 {
+        if row == 3 {
+            return size.width / 2
+        } else if row == 2 {
             return size.width * 7 / 5 / 10
         } else {
             return size.width / 10
@@ -392,7 +398,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
             self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
             self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
+//            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
             self.qwertyView.doneButton!: trait.qwertyDoneCaption,
         ]
 
@@ -407,9 +413,9 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         for button in [self.qwertyView.toggleKeyboardButton!, self.qwertyView.nextKeyboardButton!] {
             button.frame.size = CGSizeMake(size.width / 8, size.height / 4)
         }
-        for button in [self.qwertyView.spaceButton!] {
-            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
-        }
+//        for button in [self.qwertyView.spaceButton!] {
+//            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
+//        }
         for button in [self.qwertyView.doneButton!] {
             button.frame.size = CGSizeMake(size.width / 4, size.height / 4)
         }
@@ -424,14 +430,18 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         case 2:
             return 6
         case 3:
-            return 0
+            return 1
         default:
             return 0
         }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
-        return size.width / 8
+        if row == 3 {
+            return size.width / 2
+        } else {
+            return size.width / 8
+        }
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
@@ -454,9 +464,9 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
             assert(self.view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
-            assert(self.qwertyView.spaceButton != nil)
+//            assert(self.qwertyView.spaceButton != nil)
             assert(self.view.doneButton != nil)
-            return [self.qwertyView.spaceButton, self.view.doneButton]
+            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
         default:
             return []
         }
