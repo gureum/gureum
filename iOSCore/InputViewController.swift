@@ -44,10 +44,12 @@ class InputViewController: UIInputViewController {
 //    }
 
     func reloadInputMethodView() {
-        self.inputMethodView.loadFromTheme()
+        let proxy = self.textDocumentProxy as UITextInputTraits
+        self.inputMethodView.loadFromTheme(proxy)
         self.inputMethodView.lastSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+
     }
 
     override func updateViewConstraints() {
@@ -79,8 +81,9 @@ class InputViewController: UIInputViewController {
 //        self.log("subview: \(self.inputMethodViewController.view.bounds)")
         dispatch_async(dispatch_get_main_queue(), { // prevent timeout
             self.initialized = true
+            let proxy = self.textDocumentProxy as UITextInputTraits
             self.log("adding input method view")
-            self.inputMethodView.loadFromTheme()
+            self.inputMethodView.loadFromTheme(proxy)
             self.log("added method view")
         })
     }

@@ -270,6 +270,11 @@ class ThemeCaptionConfiguration {
         frame.size.height -= self.trait.topMargin
         frame.origin = CGPointMake(insets.left, insets.top)
         button.effectView!.textLabel!.frame = frame
+
+        frame.size.width *= 1.4
+        button.effectView.frame = frame
+        button.effectView.center = button.center;
+        frame = button.effectView.frame
         //* original implementation
         //        CGRect frame = self.effectView.textLabel.frame;
         //        frame.size.height += insets.top + insets.bottom;
@@ -277,15 +282,15 @@ class ThemeCaptionConfiguration {
         //        frame.origin.x = self.frame.origin.x - insets.left;
         //        frame.origin.y = self.frame.origin.y - frame.size.height;
         //        self.effectView.frame = frame;
-
-        frame.size.height += insets.top + insets.bottom
-        frame.size.width += insets.left + insets.right
-        if button.center.x <= button.superview!.frame.size.width / 2 {
-            frame.origin.x = button.frame.origin.x + button.frame.size.width
-        } else {
-            frame.origin.x = button.frame.origin.x - frame.size.width
-        }
-        frame.origin.y = button.frame.origin.y - insets.top
+//
+//        frame.size.height += insets.top + insets.bottom
+//        frame.size.width += insets.left + insets.right
+//        if button.center.x <= button.superview!.frame.size.width / 2 {
+//            frame.origin.x = button.frame.origin.x + button.frame.size.width
+//        } else {
+//            frame.origin.x = button.frame.origin.x - frame.size.width
+//        }
+//        frame.origin.y = button.frame.origin.y - insets.top
 
         let position = self.effectPosition
         frame.origin.x += position.x

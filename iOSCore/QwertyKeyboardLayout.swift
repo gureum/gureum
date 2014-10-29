@@ -55,11 +55,16 @@ class QwertyKeyboardLayout: KeyboardLayout {
         let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
 
         view.nextKeyboardButton = GRInputButton()
+        view.nextKeyboardButton.captionLabel.text = "🌐"
         view.deleteButton = GRInputButton()
+        view.deleteButton.captionLabel.text = "⌫"
         view.doneButton = GRInputButton()
         view.toggleKeyboardButton = GRInputButton()
+        view.toggleKeyboardButton.captionLabel.text = "123"
         view.shiftButton = GRInputButton()
+        view.shiftButton.captionLabel.text = "⬆︎"
         view.spaceButton = GRInputButton()
+        view.spaceButton.captionLabel.text = "간격"
         view.leftSpaceButton = GRInputButton()
         view.rightSpaceButton = GRInputButton()
 

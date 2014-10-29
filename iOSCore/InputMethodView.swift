@@ -91,7 +91,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.backgroundImageView.image = trait.backgroundImage
     }
 
-    func loadFromTheme() {
+    func loadFromTheme(traits: UITextInputTraits) {
         for view in layoutsView.subviews {
             view.removeFromSuperview()
         }
@@ -105,6 +105,37 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         assert(preferences.themeResources.count > 0)
         self.collections.removeAll(keepCapacity: true)
 
+        let returnKeyType = traits.returnKeyType
+        let returnTitle: String = {
+            if returnKeyType == nil {
+                return "완료"
+            }
+            switch returnKeyType! {
+            case .Default:
+                return "다음문장"
+            case .Go:
+                return "이동"
+            case .Google:
+                return "Google"
+            case .Join:
+                return "가입"
+            case .Next:
+                return "다음"
+            case .Route:
+                return "이동"
+            case .Search:
+                return "검색"
+            case .Send:
+                return "보내기"
+            case .Yahoo:
+                return "Yahoo!"
+            case .Done:
+                return "완료"
+            case .EmergencyCall:
+                return "응급"
+            }
+        }()
+
         let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
             assert(self.bounds.height > 0)
@@ -112,6 +143,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             let collection = self.keyboardLayoutCollectionForLayoutName(name, frame: self.bounds)
             self.collections.append(collection)
             for layout in collection.layouts {
+                layout.view.doneButton.captionLabel.text = returnTitle
                 layout.view.frame.origin.x = CGFloat(i) * self.frame.width
             }
             layoutsView.addSubview(collection.selectedLayout.view)

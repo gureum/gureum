@@ -92,7 +92,9 @@
     UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleAll;
 
     self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-//    self->_backgroundImageView.backgroundColor = [UIColor redColor];
+    self->_backgroundImageView.backgroundColor = [UIColor redColor];
+    self->_backgroundImageView.layer.cornerRadius = 12.0;
+    self->_backgroundImageView.clipsToBounds = true;
     self->_backgroundImageView.autoresizingMask = autoresizing;
     [self addSubview:self.backgroundImageView];
 
