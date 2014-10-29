@@ -77,6 +77,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 return [QwertySymbolKeyboardLayout()]
             case "ksx5002":
                 return [KSX5002KeyboardLayout(), QwertySymbolKeyboardLayout()]
+            case "danmoum":
+                return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             default:
                 return [NoKeyboardLayout()]
             }

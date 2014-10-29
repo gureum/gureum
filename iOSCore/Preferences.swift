@@ -44,7 +44,7 @@ class Preferences {
 
     var layouts: Array<String> {
         get {
-            let defaultValue: Array<AnyObject> = ["qwerty", "ksx5002", "emoticon"]
+            let defaultValue: Array<AnyObject> = ["qwerty", "ksx5002", "danmoum"]
             let result = getArrayForKey("layouts", defaultValue: defaultValue)
             return result as AnyObject as Array<String>
         }

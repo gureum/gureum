@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //}
         sharedAppDelegate = self
         store // force lazy loading
+
         return true
     }
 

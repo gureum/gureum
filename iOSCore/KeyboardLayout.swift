@@ -10,6 +10,20 @@ import UIKit
 
 class KeyboardViewEventView: UIView {
     var touchedButtons: [GRInputButton: Bool] = [:]
+//    var touchedSpots: [UIView] = {
+//        var spots: [UIView] = []
+//        for i in 0...10 {
+//            let view = UIView(frame: CGRectMake(0, 0, 40, 40))
+//            view.backgroundColor = UIColor.redColor()
+//            view.layer.cornerRadius = 20
+//            view.clipsToBounds = true
+//            view.layer.borderWidth = 4
+//            view.layer.borderColor = UIColor.blueColor().CGColor
+//            view.hidden = true
+//            spots.append(view)
+//        }
+//        return spots
+//    }()
 
     var keyboardView: KeyboardView {
         get {
@@ -56,6 +70,17 @@ class KeyboardViewEventView: UIView {
         for button in buttons.keys {
             self.touchedButtons[button] = true
         }
+//        for spot in self.touchedSpots {
+//            spot.hidden = true
+//        }
+//        for (i, rawTouch) in enumerate(event.allTouches()!) {
+//            let touch = rawTouch as UITouch
+//            let point = touch.locationInView(self)
+//            let spot = self.touchedSpots[i]
+//            spot.center = point
+//            spot.hidden = false
+//            self.addSubview(spot)
+//        }
     }
 
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -67,6 +92,10 @@ class KeyboardViewEventView: UIView {
             button.hideEffect()
         }
         self.touching = false
+
+//        for spot in self.touchedSpots {
+//            spot.hidden = true
+//        }
     }
 
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
@@ -74,10 +103,13 @@ class KeyboardViewEventView: UIView {
             let touch = rawTouch as UITouch
             let point = touch.locationInView(self)
             let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
-            button.sendActionsForControlEvents(.TouchUpInside)
             button.hideEffect()
         }
         self.touching = false
+
+//        for spot in self.touchedSpots {
+//            spot.hidden = true
+//        }
     }
 }
 
