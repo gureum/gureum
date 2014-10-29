@@ -12,6 +12,7 @@ class PreviewViewController: UIViewController {
     @IBOutlet var preview: UIView!
 
     let inputPreviewController = InputViewController()
+    var loaded = false
 
     override func viewDidLoad()  {
         super.viewDidLoad()
@@ -26,30 +27,28 @@ class PreviewViewController: UIViewController {
         self.inputPreviewController.viewWillAppear(animated)
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.inputPreviewController.viewWillLayoutSubviews()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.inputPreviewController.view.frame = self.preview.bounds
-        self.inputPreviewController.viewDidLayoutSubviews()
-    }
-
     override func viewDidAppear(animated: Bool) {
+        self.loaded = true
         super.viewDidAppear(animated)
         self.inputPreviewController.viewDidAppear(animated)
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        var newSize = self.preview.bounds.size
-        newSize.width = size.width
-        self.inputPreviewController.viewWillTransitionToSize(newSize, withTransitionCoordinator: coordinator)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if loaded {
+            self.inputPreviewController.view.frame = self.preview.bounds
+            self.inputPreviewController.viewWillLayoutSubviews()
+        }
     }
 
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection) {
+    override func viewDidLayoutSubviews() {
+        if loaded {
+            self.inputPreviewController.viewDidLayoutSubviews()
+        }
+        super.viewDidLayoutSubviews()
+    }
+
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         //print out the previousTrait's info
         //println("previous tarit collection: \(previousTraitCollection)")
         //println("current tarit collection: \(self.traitCollection)")

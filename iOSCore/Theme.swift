@@ -42,12 +42,16 @@ class Theme {
         }
 
         var image = UIImage(data: data!, scale: 2)
+        if image == nil {
+            return nil
+        }
+
         if margin != 0 {
-            var size = image.size
+            var size = image!.size
             size.height += margin
             UIGraphicsBeginImageContextWithOptions(size, false, 2)
-            var rect = CGRectMake(0, margin, image.size.width, image.size.height)
-            image.drawInRect(rect)
+            var rect = CGRectMake(0, margin, size.width, image!.size.height)
+            image!.drawInRect(rect)
             image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
         }
@@ -55,7 +59,7 @@ class Theme {
             let valueStrings = parts[1].componentsSeparatedByString(" ")
             let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
             let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!) + margin, CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
-            image = image.resizableImageWithCapInsets(insets)
+            image = image!.resizableImageWithCapInsets(insets)
         }
 
         return image
@@ -392,7 +396,7 @@ class ThemeCaptionConfiguration {
                 let (_, color) = fallback()
                 fontColor = color
             } else {
-                fontColor = UIColor.colorWithHTMLExpression(subFontColorCode as String)
+                fontColor = UIColor(HTMLExpression: subFontColorCode as String)
             }
             return (font!, fontColor)
         } else {
@@ -461,7 +465,7 @@ class ThemeCaptionConfiguration {
 
 class CachedTheme: Theme {
     let theme: Theme
-    var _cache: [String: NSData?] = [:]
+    var _cache: [String: AnyObject?] = [:]
 
     init(theme: Theme) {
         self.theme = theme
@@ -469,11 +473,22 @@ class CachedTheme: Theme {
     }
 
     override func dataForFilename(name: String) -> NSData? {
-        if let data = _cache[name] {
+        let key = name + "_"
+        if let data = _cache[key] as NSData?? {
             return data
         }
         let data = self.theme.dataForFilename(name)
-        _cache[name] = data
+        _cache[key] = data
+        return data
+    }
+
+    override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
+        let key = name + "_\(margin)"
+        if let data = _cache[key] as UIImage?? {
+            return data
+        }
+        let data = self.theme.imageForFilename(name, withTopMargin: margin)
+        _cache[key] = data
         return data
     }
 }
@@ -495,7 +510,7 @@ class ThemeResourceCoder {
 
     func decodeToData(data: String) -> NSData {
         let encoded = NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(0))
-        return encoded.decryptedAES256DataWithKey(self.key())
+        return encoded!.decryptedAES256DataWithKey(self.key())
     }
 
     class func defaultCoder() -> ThemeResourceCoder {

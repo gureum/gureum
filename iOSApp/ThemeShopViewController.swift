@@ -44,7 +44,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         let item = store.itemForIndexPath(indexPath)
 
         let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
-        cell.textLabel!.text = item.title
+        cell.textLabel.text = item.title
         if let product = item.product {
             let formatter = NSNumberFormatter()
             formatter.formatterBehavior = .Behavior10_4

@@ -12,7 +12,7 @@ var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
 
 class InputViewController: UIInputViewController {
-    lazy var inputMethodViewController: InputMethodViewController = InputMethodViewController(traits: self.textDocumentProxy as UITextDocumentProxy as UITextInputTraits)
+    let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
     var initialized = false
     var needsProtection = false
 
@@ -27,6 +27,7 @@ class InputViewController: UIInputViewController {
     }()
 
     func log(text: String) {
+        println(text)
         return;
         let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
         self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
@@ -43,9 +44,10 @@ class InputViewController: UIInputViewController {
 //    }
 
     func reloadInputMethodView() {
-        self.inputMethodViewController.loadFromTheme()
+        self.inputMethodView.loadFromTheme()
+        self.inputMethodView.lastSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
-        self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+        self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
 
     override func updateViewConstraints() {
@@ -54,9 +56,14 @@ class InputViewController: UIInputViewController {
         // Add custom view sizing constraints here
     }
 
+    override func loadView() {
+        globalInputViewController = self
+        self.view = self.inputMethodView
+    }
+
     override func viewDidLoad() {
         //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
-        globalInputViewController = self
+        self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
 //        var view = self.view
 //        while true {
@@ -67,38 +74,32 @@ class InputViewController: UIInputViewController {
 //                break
 //            }
 //        }
-
-        self.view.addSubview(self.inputMethodViewController.view)
-        dispatch_async(dispatch_get_main_queue(), {
+//        self.view.frame = CGRectMake(0.0, 0.0, 320.0, 216.0)
+//        self.view.addSubview(self.inputMethodViewController.view)
+//        self.log("subview: \(self.inputMethodViewController.view.bounds)")
+        dispatch_async(dispatch_get_main_queue(), { // prevent timeout
+            self.initialized = true
             self.log("adding input method view")
-            self.inputMethodViewController.loadFromTheme()
+            self.inputMethodView.loadFromTheme()
             self.log("added method view")
         })
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        if self.view.bounds.width > 0 && self.inputMethodViewController.view.superview == self.view {
-            self.inputMethodViewController.view.frame = self.view.bounds
-            self.inputMethodViewController.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
-            self.log("viewDidLayoutSubviews \(self.view.bounds)")
-            assert(self.view.bounds.width == self.inputMethodViewController.view.frame.width)
-        } else {
-            self.log("rejected viewDidLayoutSubviews \(self.view.bounds)")
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if initialized {
+            //self.log("viewWillLayoutSubviews \(self.view.bounds)")
+            self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
         }
-        println("")
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        self.log("viewWillTransitionToSize \(self.view.bounds)")
-        //println("coordinator: \(coordinator)")
-
-        self.inputMethodViewController.view.frame = CGRect(origin: CGPointZero, size: size)
-        self.inputMethodViewController.transitionViewToSize(size, withTransitionCoordinator: coordinator)
+    override func viewDidLayoutSubviews() {
+        if initialized {
+            //self.log("viewDidLayoutSubviews \(self.view.bounds)")
+            self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
+        }
+        super.viewDidLayoutSubviews()
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -109,7 +110,7 @@ class InputViewController: UIInputViewController {
         // The app is about to change the document's contents. Perform any preparation here.
         //self.log("text will change: \(self.needsProtection)")
         if !self.needsProtection {
-            self.inputMethodViewController.resetContext()
+            self.inputMethodView.resetContext()
         }
     }
 
@@ -118,7 +119,7 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.text = ""
         //self.log("text did change: \(self.needsProtection)")
         if !self.needsProtection {
-            self.inputMethodViewController.resetContext()
+            self.inputMethodView.resetContext()
             self.needsProtection = false
         }
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
@@ -135,13 +136,13 @@ class InputViewController: UIInputViewController {
 
     override func selectionDidChange(textInput: UITextInput)  {
         //self.log("selection did change:")
-        self.inputMethodViewController.resetContext()
+        self.inputMethodView.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
     override func selectionWillChange(textInput: UITextInput)  {
         //self.log("selection will change:")
-        self.inputMethodViewController.resetContext()
+        self.inputMethodView.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
@@ -150,19 +151,19 @@ class InputViewController: UIInputViewController {
         self.log("before: \(proxy.documentContextBeforeInput)");
         //println("\(self.context) \(sender.tag)")
 
-        let selectedLayout = self.inputMethodViewController.selectedLayout
-        for collection in self.inputMethodViewController.collections {
+        let selectedLayout = self.inputMethodView.selectedLayout
+        for collection in self.inputMethodView.collections {
             if selectedLayout.context != collection.selectedLayout.context && collection.selectedLayout.context != nil {
                 //context_truncate(collection.selectedLayout.context)
             }
         }
 
         let context = selectedLayout.context
-        let shiftButton = self.inputMethodViewController.selectedLayout.view.shiftButton
+        let shiftButton = self.inputMethodView.selectedLayout.view.shiftButton
         var keycode = shiftButton.selected ? sender.tag >> 15 : sender.tag & 0x7fff
         if shiftButton.selected {
             shiftButton.selected = false
-            self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
+            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
 
         let precomposed = context_get_composed_unicode(context)
@@ -199,18 +200,18 @@ class InputViewController: UIInputViewController {
 
     func shift(sender: UIButton) {
         sender.selected = !sender.selected
-        self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
+        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 
     func toggle(sender: UIButton) {
-        let collection = self.inputMethodViewController.selectedCollection
+        let collection = self.inputMethodView.selectedCollection
         collection.switchLayout()
-        self.inputMethodViewController.selectedLayout.helper.updateCaptionLabel()
+        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 
     func delete() {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
-        let context = self.inputMethodViewController.selectedLayout.context
+        let context = self.inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicode(context)
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
         if precomposed > 0 {

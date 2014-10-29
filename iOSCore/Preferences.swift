@@ -9,7 +9,7 @@
 import Foundation
 
 class Preferences {
-    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")
+    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")!
     lazy var theme = PreferencedTheme()
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
@@ -125,8 +125,6 @@ class Preferences {
 let preferences = Preferences()
 
 class PreferencedTheme: Theme {
-    var imageCaches: [String: UIImage] = [:]
-
     override func dataForFilename(name: String) -> NSData? {
         if let rawData = preferences.themeResources[name] as String? {
             let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)
@@ -136,17 +134,16 @@ class PreferencedTheme: Theme {
         }
     }
 
-    override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
-//        return nil;
-        let key = name + "::\(Int(margin))"
-        if let data = preferences.resourceCacheForKey(key) {
-            return UIImage(data: data, scale: 2)
-        }
-        let image = super.imageForFilename(name, withTopMargin: margin)
-        if image != nil {
-            let data = UIImagePNGRepresentation(image)
-            preferences.setResourceCache(data, forKey: key)
-        }
-        return image
-    }
+//    override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
+//        let key = name + "::\(Int(margin))"
+//        if let data = preferences.resourceCacheForKey(key) {
+//            return UIImage(data: data, scale: 2)
+//        }
+//        let image = super.imageForFilename(name, withTopMargin: margin)
+//        if image != nil {
+//            let data = UIImagePNGRepresentation(image)
+//            preferences.setResourceCache(data, forKey: key)
+//        }
+//        return image
+//    }
 }

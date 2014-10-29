@@ -61,16 +61,16 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func refresh() {
-        let URL = NSURL(string: "http://w.youknowone.org/gureum/store.json")
+        let URL = NSURL(string: "http://w.youknowone.org/gureum/store.json")!
         var error: NSError? = nil
 
-        let data = NSData(contentsOfURL: URL, options: NSDataReadingOptions(0), error: &error);
-        if (error != nil) {
+        let data = NSData(contentsOfURL: URL, options: NSDataReadingOptions(0), error: &error)
+        if data == nil {
             println("fixme: internet not availble")
             return
         }
 
-        if let items: NSArray = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as NSArray? {
+        if let items: NSArray = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: &error) as NSArray? {
             self.entries = items
 
             var names = NSMutableSet()

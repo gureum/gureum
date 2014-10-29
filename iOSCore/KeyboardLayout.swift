@@ -149,11 +149,24 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
+        var newPoint = point
+        if point.x < 0 {
+            newPoint.x = 0
+        }
+        if point.x > self.view.frame.size.width {
+            newPoint.x = self.view.frame.size.width
+        }
+        if point.y < 0 {
+            newPoint.y = 0
+        }
+        if point.y > self.view.frame.size.height {
+            newPoint.x = self.view.frame.size.height
+        }
         for button in self.view.subviews {
             if !(button is GRInputButton) {
                 continue
             }
-            if CGRectContainsPoint(button.frame, point) {
+            if CGRectContainsPoint(button.frame, newPoint) {
                 return button as GRInputButton
             }
         }
@@ -223,7 +236,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme {
-        return globalInputViewController!.inputMethodViewController.theme
+        return globalInputViewController!.inputMethodView.theme
     }
 }
 

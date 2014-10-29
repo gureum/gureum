@@ -11,6 +11,8 @@
 
 @interface GRInputButton () {
     GRInputEffectView *_effectView;
+    UIImageView *_glyphView;
+    UILabel *_captionLabel;
 }
 
 @end
@@ -20,20 +22,31 @@
 
 - (id)_initGRInputButton {
     self.titleLabel.textColor = [UIColor clearColor];
-    {
+//    self.layer.borderWidth = 1.0f;
+//    self.layer.borderColor = [UIColor redColor].CGColor;
+//    self.layer.cornerRadius = 5.0f;
+    return self;
+}
+
+- (UIImageView *)glyphView {
+    if (self->_glyphView == nil) {
         UIImageView *view = [[UIImageView alloc] init];
         view.autoresizingMask = 0;
         [self addSubview:view];
         self->_glyphView = view;
     }
-    {
+    return self->_glyphView;
+}
+
+- (UILabel *)captionLabel {
+    if (self->_captionLabel == nil) {
         UILabel *view = [[UILabel alloc] init];
+        view.textAlignment = NSTextAlignmentCenter;
         view.autoresizingMask = 0;
         [self addSubview:view];
         self->_captionLabel = view;
     }
-
-    return self;
+    return self->_captionLabel;
 }
 
 - (GRInputEffectView *)effectView {
@@ -74,18 +87,21 @@
 @implementation GRInputEffectView
 
 - (id)init {
-    self = [super initWithFrame:CGRectMake(0, 0, 20, 20)];
+    self = [super initWithFrame:CGRectMake(0, 0, 32, 46)];
 
-    UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleAll;
 
     self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+//    self->_backgroundImageView.backgroundColor = [UIColor redColor];
     self->_backgroundImageView.autoresizingMask = autoresizing;
     [self addSubview:self.backgroundImageView];
-    UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.autoresizingMask = autoresizing;
-    [self addSubview:label];
-    self->_textLabel = label;
+
+    self->_textLabel = [[UILabel alloc] initWithFrame:self.bounds];
+//    self->_textLabel.backgroundColor = [UIColor blueColor];
+    self->_textLabel.textAlignment = NSTextAlignmentCenter;
+    self->_textLabel.autoresizingMask = autoresizing;
+    [self addSubview:self.textLabel];
+
     return self;
 }
 
