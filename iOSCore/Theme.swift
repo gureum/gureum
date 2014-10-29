@@ -222,6 +222,8 @@ class ThemeCaptionConfiguration {
         if let glyph = self.glyph {
             assert(button.glyphView.superview == button)
             button.glyphView.image = glyph
+            button.setTitle("", forState: .Normal)
+            button.captionLabel.text = ""
             assert(button.glyphView.image != nil)
         } else {
             assert(button.captionLabel.superview == button)
@@ -314,10 +316,11 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var labelConfiguration: Dictionary<String, AnyObject>? = {
-        let sub: AnyObject? = self.configuration["label"]
-        //println("label: \(sub)")
-        assert(sub is Dictionary<String, AnyObject>, "'label' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
-        return sub as Dictionary<String, AnyObject>?
+        if let sub = self.configuration["label"] as Dictionary<String, AnyObject>? {
+            return sub as Dictionary<String, AnyObject>
+        } else {
+            return self.fallback?.labelConfiguration ?? [:]
+        }
     }()
 
     lazy var text: String? = {
@@ -380,21 +383,22 @@ class ThemeCaptionConfiguration {
             let fontConfiguration = subFont as Dictionary<String, AnyObject>?
             var font: UIFont?
 
+            let (fallbackFont, fallbackColor) = fallback()
+
             let subFontName: AnyObject? = fontConfiguration!["name"]
             let subFontSize: AnyObject? = fontConfiguration!["size"]
-            let fontSize = subFontSize as CGFloat? ?? UIFont.systemFontSize()
+            let fontSize = subFontSize as CGFloat? ?? fallbackFont.pointSize
             if subFontName != nil {
                 font = UIFont(name: subFontName as String, size: fontSize)
             } else {
-                font = UIFont.systemFontOfSize(fontSize)
+                font = fallbackFont.fontWithSize(fontSize)
             }
             assert(font != nil, "올바른 폰트 이름이 아닙니다")
 
             let subFontColorCode: AnyObject? = fontConfiguration!["color"]
             var fontColor: UIColor
             if subFontColorCode == nil {
-                let (_, color) = fallback()
-                fontColor = color
+                fontColor = fallbackColor
             } else {
                 fontColor = UIColor(HTMLExpression: subFontColorCode as String)
             }
