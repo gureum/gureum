@@ -209,6 +209,12 @@ class InputViewController: UIInputViewController {
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 
+    func done(sender: UIButton) {
+        self.inputMethodView.resetContext()
+        let proxy = self.textDocumentProxy as UITextDocumentProxy
+        proxy.insertText("\n")
+    }
+
     func delete() {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         let context = self.inputMethodView.selectedLayout.context

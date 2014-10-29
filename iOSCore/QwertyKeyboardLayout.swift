@@ -78,6 +78,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
         self.qwertyView.spaceButton.tag = 32
         self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
+        self.qwertyView.doneButton.tag = 13
+        self.qwertyView.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
+
         self.qwertyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
 
         self.qwertyView.toggleKeyboardButton.addTarget(nil, action: "toggle:", forControlEvents: .TouchUpInside)

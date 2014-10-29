@@ -43,15 +43,19 @@ class KeyboardViewEventView: UIView {
             button.showEffect()
             buttons[button] = true
         }
-//        for button in self.touchedButtons.keys {
-//            if buttons[button] == nil {
-//                button.hideEffect()
-//                self.touchedButtons.removeValueForKey(button)
-//            }
-//        }
-//        for button in buttons.keys {
-//            self.touchedButtons[button] = true
-//        }
+        var orphans: [GRInputButton] = []
+        for button in self.touchedButtons.keys {
+            if buttons[button] == nil {
+                button.hideEffect()
+                orphans.append(button)
+            }
+        }
+        for button in orphans {
+            self.touchedButtons.removeValueForKey(button)
+        }
+        for button in buttons.keys {
+            self.touchedButtons[button] = true
+        }
     }
 
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -180,13 +184,13 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
             newPoint.x = 0
         }
         if point.x > self.view.frame.size.width {
-            newPoint.x = self.view.frame.size.width
+            newPoint.x = self.view.frame.size.width - 1
         }
         if point.y < 0 {
             newPoint.y = 0
         }
         if point.y > self.view.frame.size.height {
-            newPoint.x = self.view.frame.size.height
+            newPoint.y = self.view.frame.size.height - 1
         }
         for button in self.view.subviews {
             if !(button is GRInputButton) {
