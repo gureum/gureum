@@ -13,6 +13,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     var theme: Theme = CachedTheme(theme: preferences.theme)
     var traits: UITextInputTraits! = nil
     var lastSize = CGSizeZero
+    var layouts: [KeyboardLayoutCollection] = []
 
     let layoutsView: UIScrollView! = UIScrollView()
     let pageControl: UIPageControl! = UIPageControl()
@@ -67,17 +68,20 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
     }
 
-    func keyboardLayoutForLayoutName(name: String, frame: CGRect) -> [KeyboardLayout] {
-        switch name {
-        case "qwerty":
-            return [QwertyKeyboardLayout(), QwertySymbolKeyboardLayout()]
-        case "qwerty123":
-            return [QwertySymbolKeyboardLayout()]
-        case "ksx5002":
-            return [KSX5002KeyboardLayout(), QwertySymbolKeyboardLayout()]
-        default:
-            return [NoKeyboardLayout()]
-        }
+    func keyboardLayoutCollectionForLayoutName(name: String, frame: CGRect) -> KeyboardLayoutCollection {
+        var layouts: [KeyboardLayout] = {
+            switch name {
+            case "qwerty":
+                return [QwertyKeyboardLayout(), QwertySymbolKeyboardLayout()]
+            case "qwerty123":
+                return [QwertySymbolKeyboardLayout()]
+            case "ksx5002":
+                return [KSX5002KeyboardLayout(), QwertySymbolKeyboardLayout()]
+            default:
+                return [NoKeyboardLayout()]
+            }
+        }()
+        return KeyboardLayoutCollection(layouts: layouts)
     }
 
     func preloadFromTheme() {
@@ -103,12 +107,12 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         for (i, name) in enumerate(layoutNames) {
             assert(self.bounds.height > 0)
             assert(self.bounds.width > 0)
-            let layouts = self.keyboardLayoutForLayoutName(name, frame: self.bounds)
-            self.collections.append(KeyboardLayoutCollection(layouts: layouts))
-            for layout in layouts {
+            let collection = self.keyboardLayoutCollectionForLayoutName(name, frame: self.bounds)
+            self.collections.append(collection)
+            for layout in collection.layouts {
                 layout.view.frame.origin.x = CGFloat(i) * self.frame.width
             }
-            layoutsView.addSubview(layouts[0].view)
+            layoutsView.addSubview(collection.selectedLayout.view)
         }
 
         self.pageControl.numberOfPages = collections.count
@@ -173,6 +177,17 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.pageControl.currentPage = index
         let offset = CGFloat(index) * self.frame.width
         self.layoutsView.setContentOffset(CGPointMake(offset, 0), animated: animated)
+
+        for (i, collection) in enumerate(self.collections) {
+            for (j, layout) in enumerate(collection.layouts) {
+                if i == index && j == collection.selectedLayoutIndex {
+                    break;
+                }
+                for button in layout.helper.buttons.values {
+                    button.hideEffect()
+                }
+            }
+        }
 
         self.pageControl.alpha = 1.0
         let animation = { self.pageControl.alpha = 0.0 }

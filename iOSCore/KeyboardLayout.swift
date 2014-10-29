@@ -9,11 +9,14 @@
 import UIKit
 
 class KeyboardViewEventView: UIView {
+    var touchedButtons: [GRInputButton: Bool] = [:]
+
     var keyboardView: KeyboardView {
         get {
             return self.superview! as KeyboardView
         }
     }
+
     var touching: Bool = false {
         didSet {
             println("touching changed: \(touching)")
@@ -26,13 +29,29 @@ class KeyboardViewEventView: UIView {
     }
 
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        var buttons: [GRInputButton: Bool] = [:]
         for rawTouch in event.allTouches()! {
             let touch = rawTouch as UITouch
+            let prevPoint = touch.previousLocationInView(self)
+            let prevButton = self.keyboardView.layout.correspondingButtonForPoint(prevPoint, size: self.frame.size)
             let point = touch.locationInView(self)
             let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
-            println("touch point: \(point) \(button)")
+            if prevButton != button {
+                prevButton.hideEffect()
+            }
+            //println("touch point: \(point) \(button)")
             button.showEffect()
+            buttons[button] = true
         }
+//        for button in self.touchedButtons.keys {
+//            if buttons[button] == nil {
+//                button.hideEffect()
+//                self.touchedButtons.removeValueForKey(button)
+//            }
+//        }
+//        for button in buttons.keys {
+//            self.touchedButtons[button] = true
+//        }
     }
 
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -47,6 +66,13 @@ class KeyboardViewEventView: UIView {
     }
 
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+        for rawTouch in event.allTouches()! {
+            let touch = rawTouch as UITouch
+            let point = touch.locationInView(self)
+            let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
+            button.sendActionsForControlEvents(.TouchUpInside)
+            button.hideEffect()
+        }
         self.touching = false
     }
 }
