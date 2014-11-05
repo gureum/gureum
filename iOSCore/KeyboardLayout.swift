@@ -9,7 +9,12 @@
 import UIKit
 
 class KeyboardViewEventView: UIView {
-    var touchedButtons: [GRInputButton: Bool] = [:]
+    var touchedButtons: NSMutableArray = NSMutableArray()
+    func addButton(button: GRInputButton) {
+        if !self.touchedButtons.containsObject(button) {
+            self.touchedButtons.addObject(button)
+        }
+    }
 //    var touchedSpots: [UIView] = {
 //        var spots: [UIView] = []
 //        for i in 0...10 {
@@ -31,14 +36,7 @@ class KeyboardViewEventView: UIView {
         }
     }
 
-    var touching: Bool = false {
-        didSet {
-            println("touching changed: \(touching)")
-        }
-    }
-
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.touching = true
         self.touchesMoved(touches, withEvent: event)
     }
 
@@ -58,17 +56,18 @@ class KeyboardViewEventView: UIView {
             buttons[button] = true
         }
         var orphans: [GRInputButton] = []
-        for button in self.touchedButtons.keys {
+        for raw in self.touchedButtons {
+            let button = raw as GRInputButton
             if buttons[button] == nil {
                 button.hideEffect()
                 orphans.append(button)
             }
         }
         for button in orphans {
-            self.touchedButtons.removeValueForKey(button)
+            self.touchedButtons.removeObject(button)
         }
         for button in buttons.keys {
-            self.touchedButtons[button] = true
+            self.addButton(button)
         }
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
@@ -88,10 +87,18 @@ class KeyboardViewEventView: UIView {
             let touch = rawTouch as UITouch
             let point = touch.locationInView(self)
             let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
-            button.sendActionsForControlEvents(.TouchUpInside)
-            button.hideEffect()
+            if self.touchedButtons.containsObject(button) {
+                while self.touchedButtons.count > 0 {
+                    let poppedButton = self.touchedButtons[0] as GRInputButton
+                    self.touchedButtons.removeObjectAtIndex(0)
+                    poppedButton.sendActionsForControlEvents(.TouchUpInside)
+                    poppedButton.hideEffect()
+                    if button == poppedButton {
+                        break
+                    }
+                }
+            }
         }
-        self.touching = false
 
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
@@ -105,7 +112,6 @@ class KeyboardViewEventView: UIView {
             let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
             button.hideEffect()
         }
-        self.touching = false
 
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
@@ -162,6 +168,7 @@ class KeyboardView: UIView {
 
     lazy var foregroundEventView: KeyboardViewEventView = {
         let view = KeyboardViewEventView(frame: self.bounds)
+        view.multipleTouchEnabled = true
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         view.userInteractionEnabled = true
         return view
