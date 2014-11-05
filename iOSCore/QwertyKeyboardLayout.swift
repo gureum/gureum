@@ -49,7 +49,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
         let chr = self.keyForPosition(position, shift: false)
         let altkey = "qwerty-key-\(chr)"
-        let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyKeyCaption)
+        let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyCaptionForRow(position.row + 1))
         let title = self.helper(self.helper, titleForPosition: position)
         let theme2 = trait.captionForKey("qwerty-key-" + title, fallback: theme1)
         return theme2
@@ -399,9 +399,6 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         for button in [self.qwertyView.toggleKeyboardButton!, self.qwertyView.nextKeyboardButton!] {
             button.frame.size = CGSizeMake(size.width / 8, size.height / 4)
         }
-//        for button in [self.qwertyView.spaceButton!] {
-//            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
-//        }
         for button in [self.qwertyView.doneButton!] {
             button.frame.size = CGSizeMake(size.width / 4, size.height / 4)
         }

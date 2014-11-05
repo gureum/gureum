@@ -172,7 +172,9 @@ class ThemeTraitConfiguration {
     lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(trait: self, configuration: nil, fallback: nil)
 
     lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
-
+    func qwertyCaptionForRow(row: Int) -> ThemeCaptionConfiguration {
+        return self.captionForKey("qwerty-row\(row)", fallback: self.qwertyCaption)
+    }
     lazy var qwerty32pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-32px", fallback: self.qwertyCaption)
     lazy var qwerty40pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-40px", fallback: self.qwertyCaption)
     lazy var qwerty48pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-48px", fallback: self.qwertyCaption)

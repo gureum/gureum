@@ -73,7 +73,7 @@ class Preferences {
 
     var themeAddress: String {
         get {
-            let result: NSString = self.getObjectForKey("themeaddr", defaultValue: "res://default") as NSString
+            let result = self.getObjectForKey("themeaddr", defaultValue: "res://default") as NSString
             return result as String
         }
 
