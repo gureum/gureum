@@ -98,12 +98,15 @@ class Theme {
             return self.phoneLandscape480Configuration
         case 568.0:
             return self.phoneLandscape568Configuration
+        case 768.0:
+            return self.padPortraitConfiguration
+        case 1024.0:
+            return self.padLandscapeConfiguration
         default:
             assert(false, "no coverage")
             return self.phonePortraitConfiguration
         }
     }
-
 
     lazy var phonePortraitConfiguration: ThemeTraitConfiguration = {
         return self.traitForName("phone-portrait", topMargin: 8)
@@ -115,6 +118,14 @@ class Theme {
 
     lazy var phoneLandscape568Configuration: ThemeTraitConfiguration = {
         return self.traitForName("phone-landscape568", topMargin: 4)
+        }()
+
+    lazy var padPortraitConfiguration: ThemeTraitConfiguration = {
+        return self.phonePortraitConfiguration
+        }()
+
+    lazy var padLandscapeConfiguration: ThemeTraitConfiguration = {
+        return self.phoneLandscape480Configuration
         }()
 }
 

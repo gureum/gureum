@@ -36,14 +36,18 @@ class QwertyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
+    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
         let key = getKey(keylines, position)
-        return key
+        if !shift {
+            return key
+        } else {
+            return UnicodeScalar(key.value - 32)
+        }
     }
 
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position)
+        let chr = self.keyForPosition(position, shift: false)
         let altkey = "qwerty-key-\(chr)"
         let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyKeyCaption)
         let title = self.helper(self.helper, titleForPosition: position)
@@ -224,8 +228,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        let key =  self.keyForPosition(position)
-        button.tag = Int(((key.value - 32) << 15) + key.value)
+        let key1 =  self.keyForPosition(position, shift: false)
+        let key2 =  self.keyForPosition(position, shift: true)
+        button.tag = Int(((key2.value) << 15) + key1.value)
         button.sizeToFit()
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
@@ -233,8 +238,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key =  self.keyForPosition(position)
-        return "\(Character(UnicodeScalar(key.value - 32)))"
+        let key =  self.keyForPosition(position, shift: true)
+        return "\(Character(key))"
     }
 
     override func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
@@ -257,8 +262,8 @@ class QwertyKeyboardLayout: KeyboardLayout {
 }
 
 class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
-        let keylines = ["qwertyuiop", "asdfghjklm", "zxcvbnm", " "]
+    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+        let keylines = !shift ? ["1234567890", "-/:;()$&@\"", ".,?!'\"₩", " "] : ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'\"₩", " "]
         let key = getKey(keylines, position)
         return key
     }
@@ -321,10 +326,8 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'\"₩", " "]
-        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'\"₩", " "]
-        let key1 = getKey(keylines1, position)
-        let key2 = getKey(keylines2, position)
+        let key1 = self.keyForPosition(position, shift: false)
+        let key2 = self.keyForPosition(position, shift: true)
 
         let button = GRInputButton.buttonWithType(.System) as GRInputButton
         button.tag = Int(key2.value << 15) + Int(key1.value)
@@ -337,46 +340,29 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keylines1 = ["1234567890", "-/:;()$&@\"", ".,?!'", " "]
-        let keylines2 = ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'", " "]
-
-        let keycode = self.qwertyView.shiftButton.selected ? getKey(keylines2, position) : getKey(keylines1, position)
-        let text = "\(Character(UnicodeScalar(keycode.value)))"
+        let key = self.keyForPosition(position, shift: self.qwertyView.shiftButton.selected)
+        let text = "\(Character(UnicodeScalar(key.value)))"
         return text
     }
 }
 
 class KSX5002KeyboardLayout: QwertyKeyboardLayout {
-
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let key = self.keyForPosition(position)
-
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        button.tag = Int(((key.value - 32) << 15) + key.value)
-        button.sizeToFit()
-        //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-        
-        return button
-    }
-
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key = self.keyForPosition(position)
-        let keycode = self.qwertyView.shiftButton.selected ? key.value - 32 : key.value
+        let key = self.keyForPosition(position, shift: self.qwertyView.shiftButton.selected)
+        let keycode = key.value
         let label = ksx5002_label(Int8(keycode))
         let text = "\(Character(UnicodeScalar(label)))"
         return text
     }
-
 }
 
 class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
-        let keylines = ["qwertyop", "asdfgjkl", "zxcvnm", " "]
+    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+        let keylines = !shift ? ["qwerthop", "asdfgjkl", "zxcvnm", " "] : ["QWERTyOP", "asdfguil", "zxcvbm", " "]
         let key = getKey(keylines, position)
         return key
     }
@@ -471,13 +457,4 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
             return []
         }
     }
-
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key = self.keyForPosition(position)
-        let keycode = self.qwertyView.shiftButton.selected ? key.value - 32 : key.value
-        let label = danmoum_label(Int8(keycode))
-        let text = "\(Character(UnicodeScalar(label)))"
-        return text
-    }
-
 }
