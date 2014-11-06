@@ -39,7 +39,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
         let key = getKey(keylines, position)
-        if !shift {
+        if !shift || position.row == 3 {
             return key
         } else {
             return UnicodeScalar(key.value - 32)
