@@ -153,7 +153,7 @@ class ThemeTraitConfiguration {
         return self.owner.imageForFilename(filename)
     }()
 
-    func captionForKey(key: String, fallback: ThemeCaptionConfiguration?) -> ThemeCaptionConfiguration {
+    func captionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
         if let theme = self._captions[key] {
             return theme
         } else {
@@ -161,7 +161,7 @@ class ThemeTraitConfiguration {
                 if let sub: AnyObject = self.configuration[key] {
                     return ThemeCaptionConfiguration(trait: self, configuration: sub, fallback: fallback)
                 } else {
-                    return fallback!
+                    return fallback
                 }
             }()
             self._captions[key] = theme
@@ -169,7 +169,7 @@ class ThemeTraitConfiguration {
         }
     }
 
-    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeCaptionConfiguration(trait: self, configuration: nil, fallback: nil)
+    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeDefaultCaptionConfiguration(trait: self)
 
     lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
     func qwertyCaptionForRow(row: Int) -> ThemeCaptionConfiguration {
@@ -188,6 +188,11 @@ class ThemeTraitConfiguration {
     lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-globe", fallback: self.qwerty40pxCaption)
     lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-space", fallback: self.qwerty160pxCaption)
     lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-done", fallback: self.qwerty80pxCaption)
+
+    lazy var numpadCaption: ThemeCaptionConfiguration = self.captionForKey("numpad", fallback: self.defaultCaption)
+    func numpadCaptionForRow(row: Int) -> ThemeCaptionConfiguration {
+        return self.captionForKey("numpad-row\(row)", fallback: self.numpadCaption)
+    }
 }
 
 
@@ -196,7 +201,7 @@ class ThemeCaptionConfiguration {
     let fallback: ThemeCaptionConfiguration!
     let trait: ThemeTraitConfiguration
 
-    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, fallback: ThemeCaptionConfiguration?) {
+    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, fallback: ThemeCaptionConfiguration!) {
         self.trait = trait
 
         var given: AnyObject = configuration ?? Dictionary<String, AnyObject>()
@@ -313,7 +318,7 @@ class ThemeCaptionConfiguration {
         button.effectView.backgroundImageView.frame = button.effectView.bounds
     }
 
-    lazy var images: (UIImage?, UIImage?, UIImage?) = {
+    func _images() -> (UIImage?, UIImage?, UIImage?) {
         let sub: AnyObject? = self.configuration["image"]
         let imageConfiguration = sub as Array<String!>?
         if imageConfiguration == nil || imageConfiguration!.count == 0 {
@@ -331,99 +336,88 @@ class ThemeCaptionConfiguration {
             images.append(lastImage)
         }
         return (images[0], images[1], images[2])
-    }()
+    }
 
-    lazy var labelConfiguration: Dictionary<String, AnyObject>? = {
+    lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
+
+    lazy var labelConfiguration: Dictionary<String, AnyObject> = {
         if let sub = self.configuration["label"] as Dictionary<String, AnyObject>? {
-            return sub as Dictionary<String, AnyObject>
+            return sub
         } else {
-            return self.fallback?.labelConfiguration ?? [:]
+            return self.fallback.labelConfiguration
         }
     }()
 
     lazy var text: String? = {
-        if let config = self.labelConfiguration {
-            let subText: AnyObject? = config["text"]
-            if subText is String {
-                return subText as? String
-            } else {
-                return nil
-            }
+        let subText: AnyObject? = self.labelConfiguration["text"]
+        if subText is String {
+            return subText as? String
         } else {
             return nil
         }
     }()
 
     lazy var glyph: UIImage? = {
-        if let config = self.labelConfiguration {
-            let subText: AnyObject? = config["glyph"]
-            //println("glyph: \(subText)")
-            if subText is String {
-                let image = self.trait.owner.imageForFilename(subText as String)
-                //println("glyph image: \(image)")
-                return image
-            }
+        let subText: AnyObject? = self.labelConfiguration["glyph"]
+        //println("glyph: \(subText)")
+        if subText is String {
+            let image = self.trait.owner.imageForFilename(subText as String)
+            //println("glyph image: \(image)")
+            return image
+        } else {
+            return nil
         }
-        return nil
     }()
 
     lazy var position: CGPoint = {
-        if let config = self.labelConfiguration {
-            let sub: AnyObject? = config["position"]
-            if sub is Array<CGFloat> {
-                let rawPosition = sub as Array<CGFloat>
-                let position = CGPointMake(rawPosition[0], rawPosition[1])
-                return position
-            } else {
-                return self.fallback.position
-            }
+        let sub: AnyObject? = self.labelConfiguration["position"]
+        if sub is Array<CGFloat> {
+            let rawPosition = sub as Array<CGFloat>
+            let position = CGPointMake(rawPosition[0], rawPosition[1])
+            return position
         } else {
-            return CGPointMake(0, 0)
+            return self.fallback.position
         }
     }()
 
     lazy var font: (UIFont, UIColor) = {
         func fallback() -> (UIFont, UIColor) {
-            return self.fallback?.font ?? (UIFont.systemFontOfSize(UIFont.systemFontSize()), UIColor.blackColor())
+            return self.fallback.font
         }
 
-        if let config = self.labelConfiguration {
-            let subFont: AnyObject? = config["font"]
-            if subFont == nil {
-                return fallback()
-            }
+        let subFont: AnyObject? = self.labelConfiguration["font"]
+        if subFont == nil {
+            return fallback()
+        }
 
 //        println("font1: \(subFont)")
 //        println("font2: \(subFont!)")
 
-            assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
+        assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
 
-            let fontConfiguration = subFont as Dictionary<String, AnyObject>?
-            var font: UIFont?
+        let fontConfiguration = subFont! as Dictionary<String, AnyObject>
+        var font: UIFont?
 
-            let (fallbackFont, fallbackColor) = fallback()
+        let (fallbackFont, fallbackColor) = fallback()
 
-            let subFontName: AnyObject? = fontConfiguration!["name"]
-            let subFontSize: AnyObject? = fontConfiguration!["size"]
-            let fontSize = subFontSize as CGFloat? ?? fallbackFont.pointSize
-            if subFontName != nil {
-                font = UIFont(name: subFontName as String, size: fontSize)
-            } else {
-                font = fallbackFont.fontWithSize(fontSize)
-            }
-            assert(font != nil, "올바른 폰트 이름이 아닙니다")
-
-            let subFontColorCode: AnyObject? = fontConfiguration!["color"]
-            var fontColor: UIColor
-            if subFontColorCode == nil {
-                fontColor = fallbackColor
-            } else {
-                fontColor = UIColor(HTMLExpression: subFontColorCode as String)
-            }
-            return (font!, fontColor)
+        let subFontName: AnyObject? = fontConfiguration["name"]
+        let subFontSize: AnyObject? = fontConfiguration["size"]
+        let fontSize = subFontSize as CGFloat? ?? fallbackFont.pointSize
+        if subFontName != nil {
+            font = UIFont(name: subFontName as String, size: fontSize)
         } else {
-            return fallback()
+            font = fallbackFont.fontWithSize(fontSize)
         }
+        assert(font != nil, "올바른 폰트 이름이 아닙니다")
+
+        let subFontColorCode: AnyObject? = fontConfiguration["color"]
+        var fontColor: UIColor
+        if subFontColorCode == nil {
+            fontColor = fallbackColor
+        } else {
+            fontColor = UIColor(HTMLExpression: subFontColorCode as String)
+        }
+        return (font!, fontColor)
     }()
 
     lazy var effectConfiguration: Dictionary<String, AnyObject> = {
@@ -432,11 +426,7 @@ class ThemeCaptionConfiguration {
             assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
             return sub as Dictionary<String, AnyObject>
         } else {
-            if let fallback = self.fallback {
-                return fallback.effectConfiguration
-            } else {
-                return [:]
-            }
+            return self.fallback.effectConfiguration
         }
     }()
 
@@ -446,12 +436,7 @@ class ThemeCaptionConfiguration {
                 return image
             }
         }
-        if let fallback = self.fallback {
-            return fallback.effectBackgroundImage
-        } else {
-            let image = self.trait.owner.imageForFilename("effect.png")
-            return image
-        }
+        return self.fallback.effectBackgroundImage
     }()
 
     lazy var effectEdgeInsets: UIEdgeInsets = {
@@ -462,11 +447,7 @@ class ThemeCaptionConfiguration {
                 return insets
             }
         }
-        if let fallback = self.fallback {
-            return fallback.effectEdgeInsets
-        } else {
-            return UIEdgeInsetsMake(0, 0, 0, 0)
-        }
+        return self.fallback.effectEdgeInsets
     }()
 
     lazy var effectPosition: CGPoint = {
@@ -477,12 +458,90 @@ class ThemeCaptionConfiguration {
                 return position
             }
         }
-        if let fallback = self.fallback {
-            return fallback.effectPosition
-        } else {
-            return CGPointMake(0, 0)
-        }
+        return self.fallback.effectPosition
     }()
+}
+
+let ThemeDefaultCaptionImage: UIImage? = {
+    let URL = NSBundle.mainBundle().URLForResource("9patch", withExtension: "png", subdirectory: "default/qwerty")!
+    let image = UIImage(contentsOfFile: URL.absoluteString!)
+    return image
+}()
+
+class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
+    init(trait: ThemeTraitConfiguration) {
+        super.init(trait: trait, configuration: nil, fallback: nil)
+    }
+
+    override var images: (UIImage?, UIImage?, UIImage?) {
+        get {
+            return (ThemeDefaultCaptionImage, ThemeDefaultCaptionImage, ThemeDefaultCaptionImage)
+        }
+        set {
+
+        }
+    }
+
+    override var labelConfiguration: Dictionary<String, AnyObject> {
+        get {
+            return [:]
+        }
+        set {
+
+        }
+    }
+
+    override var position: CGPoint {
+        get {
+            return CGPointZero
+        }
+        set {
+
+        }
+    }
+
+    override var font: (UIFont, UIColor) {
+        get {
+            return (UIFont.systemFontOfSize(UIFont.systemFontSize()), UIColor.blackColor())
+        }
+        set {
+
+        }
+    }
+
+    override var effectConfiguration: Dictionary<String, AnyObject> {
+        get {
+            return [:]
+        }
+        set {
+
+        }
+    }
+
+    override var effectPosition: CGPoint {
+        get {
+            return CGPointZero
+        }
+        set {
+        }
+    }
+
+    override var effectBackgroundImage: UIImage? {
+        get {
+            let image = self.trait.owner.imageForFilename("effect.png")
+            return image
+        }
+        set {
+        }
+    }
+
+    override var effectEdgeInsets: UIEdgeInsets {
+        get {
+            return UIEdgeInsetsZero
+        }
+        set {
+        }
+    }
 }
 
 class CachedTheme: Theme {

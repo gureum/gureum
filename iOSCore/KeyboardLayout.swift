@@ -260,7 +260,6 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
-        assert(false)
         return UIEdgeInsetsZero
     }
 
