@@ -15,6 +15,7 @@ class InputViewController: UIInputViewController {
     let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
     var initialized = false
     var needsProtection = false
+    var deleting = false
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
@@ -121,7 +122,7 @@ class InputViewController: UIInputViewController {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
         //self.log("text did change: \(self.needsProtection)")
-        if !self.needsProtection {
+        if !self.needsProtection || self.deleting {
             self.inputMethodView.resetContext()
             self.needsProtection = false
         }
@@ -222,7 +223,9 @@ class InputViewController: UIInputViewController {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         let context = self.inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicode(context)
+        self.deleting = true
         (self.textDocumentProxy as UIKeyInput).deleteBackward()
+        self.deleting = false
         if precomposed > 0 {
             let processed = context_put(context, 0x7f)
             assert(processed)
