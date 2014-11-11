@@ -6,6 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+#import <Crashlytics/Crashlytics.h>
 #import "GureumAppDelegate.h"
 
 #import "CIMInputManager.h"
@@ -17,6 +18,8 @@
 @synthesize menu;
 
 - (void)awakeFromNib {
+    [Crashlytics startWithAPIKey:@"1b5d8443c3eabba778b0d97bff234647af846181"];
+
     self->sharedInputManager = [[CIMInputManager alloc] init];
 
     NSDictionary *versionInfo = [[GureumAppDelegate sharedAppDelegate] getRecentVersion];

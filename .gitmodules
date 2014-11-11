@@ -4,3 +4,6 @@
 [submodule "ShortcutRecorder"]
 	path = OSX/ShortcutRecorder
 	url = git://github.com/gureum/shortcutrecorder.git
+[submodule "Crashlytics.framework"]
+	path = Crashlytics.framework
+	url = https://github.com/gureum/Crashlytics.git

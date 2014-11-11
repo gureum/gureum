@@ -36,6 +36,7 @@
 		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
+		388FB64B1A12323E00DCB995 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388FB64A1A12323E00DCB995 /* Crashlytics.framework */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -177,6 +178,7 @@
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
 		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = OSX/ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
+		388FB64A1A12323E00DCB995 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +221,7 @@
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
 				384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */,
 				0B809CF5719B709CD257BBED /* libPods-OSX.a in Frameworks */,
+				388FB64B1A12323E00DCB995 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +248,7 @@
 		38162DF6141263270077AA2D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				388FB64A1A12323E00DCB995 /* Crashlytics.framework */,
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
@@ -446,6 +450,7 @@
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				86654D8F3D0CA20A6B75833A /* Copy Pods Resources */,
+				388FB6471A12320E00DCB995 /* Run Crashlytics Script */,
 			);
 			buildRules = (
 			);
@@ -601,6 +606,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		388FB6471A12320E00DCB995 /* Run Crashlytics Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Crashlytics Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
+		};
 		388FD025175ED98E00469B76 /* Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +749,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
 					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -769,6 +789,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
 					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
