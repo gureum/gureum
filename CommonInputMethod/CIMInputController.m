@@ -504,6 +504,10 @@ TISInputSource *_USSource() {
     return self->_receiver.composer;
 }
 
+- (NSRange)selectionRange {
+    return [self->_receiver.inputClient selectedRange];
+}
+
 @end
 
 

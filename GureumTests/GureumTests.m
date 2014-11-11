@@ -85,6 +85,46 @@
     }
 }
 
+- (void)testCapslockRoman {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"r" key:15 modifiers:0];
+        [app inputText:@"2" key:19 modifiers:0];
+        XCTAssertEqualObjects(@"mr2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+
+        app.client.string = @"";
+        [app inputText:@"m" key:46 modifiers:0x10000];
+        [app inputText:@"r" key:15 modifiers:0x10000];
+        [app inputText:@"2" key:19 modifiers:0x10000];
+        XCTAssertEqualObjects(@"MR2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+    }
+}
+
+- (void)testCapslockHangul {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"r" key:15 modifiers:0];
+        [app inputText:@"2" key:19 modifiers:0];
+        XCTAssertEqualObjects(@"했", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"했", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+
+        [app inputText:@" " key:49 modifiers:0];
+
+        app.client.string = @"";
+        [app inputText:@"m" key:46 modifiers:0x10000];
+        [app inputText:@"r" key:15 modifiers:0x10000];
+        [app inputText:@"2" key:19 modifiers:0x10000];
+        XCTAssertEqualObjects(@"했", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"했", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+    }
+}
+
 - (void)testBlock {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
@@ -154,8 +194,8 @@
         XCTAssertEqualObjects(@"한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"韓: 나라 이름 한"]];
-        XCTAssertEqualObjects(@"韓", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"韓", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"韓: 나라 이름 한"]];
         XCTAssertEqualObjects(@"韓", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -184,8 +224,8 @@
         XCTAssertEqualObjects(@"물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
-        XCTAssertEqualObjects(@"水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"水", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
         XCTAssertEqualObjects(@"水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -211,8 +251,8 @@
         XCTAssertEqualObjects(@"水 물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
-        XCTAssertEqualObjects(@"水 水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"水", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"水 물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
         XCTAssertEqualObjects(@"水 水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -232,8 +272,8 @@
 
         [app inputText:@"\n" key:36 modifiers:524288];
         [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
-        XCTAssertEqualObjects(@"水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"水", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
         XCTAssertEqualObjects(@"水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
