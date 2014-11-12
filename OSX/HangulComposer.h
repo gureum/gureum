@@ -64,7 +64,7 @@ typedef enum {
 }
 
 - (void)updateHanjaCandidates;
-- (void)updateFromClientSelectedRange:(id)client;
+- (void)updateFromController:(id)controller;
 
 @property(nonatomic, readonly) HangulComposer *hangulComposer;
 @property(nonatomic, readonly) HGHanjaTable *characterTable, *wordTable, *reversedTable, *MSSymbolTable, *emoticonTable, *emoticonReversedTable;

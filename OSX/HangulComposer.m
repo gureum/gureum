@@ -10,6 +10,7 @@
 #import "HangulComposer.h"
 
 #import "CIMConfiguration.h"
+#import "CIMInputController.h"
 #import "GureumAppDelegate.h"
 
 #define DEBUG_HANGULCOMPOSER FALSE
@@ -252,16 +253,16 @@
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates showing: %d", self.candidates != nil);
 }
 
-- (void)updateFromClientSelectedRange:(id)client {
+- (void)updateFromController:(CIMInputController *)controller {
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer updateFromClientSelectedRange:");
-    NSRange markedRange = [client markedRange];
-    NSRange selectedRange = [client selectedRange];
+    NSRange markedRange = [controller.client markedRange];
+    NSRange selectedRange = [controller.client selectedRange];
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
     if ((markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0) {
-        NSString *selectedString = [[client attributedSubstringFromRange:selectedRange] string];
+        NSString *selectedString = [[controller.client attributedSubstringFromRange:selectedRange] string];
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: selected string: %@", selectedString);
-        [client setMarkedText:selectedString selectionRange:selectedRange replacementRange:selectedRange];
-        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: try marking: %@ / selected: %@", NSStringFromRange([client markedRange]), NSStringFromRange([client selectedRange]));
+        [controller.client setMarkedText:selectedString selectionRange:selectedRange replacementRange:selectedRange];
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: try marking: %@ / selected: %@", NSStringFromRange([controller.client markedRange]), NSStringFromRange([controller.client selectedRange]));
         self->bufferedString.string = selectedString;
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: so buffer is: %@", self->bufferedString);
         self.mode = NO;

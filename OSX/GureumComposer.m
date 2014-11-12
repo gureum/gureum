@@ -207,7 +207,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             self->hanjaComposer.mode = !isComposing; // 조합 중이 아니면 1회만 사전을 띄운다
             self.delegate = self->hanjaComposer;
             [self.delegate composerSelected:self];
-            [self->hanjaComposer updateFromClientSelectedRange:sender];
+            [self->hanjaComposer updateFromController:controller];
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
