@@ -5,4 +5,5 @@ target :'OSX' do
     xcodeproj 'Gureum.xcodeproj'
     pod 'cdebug'
     pod 'FoundationExtension'
+    pod 'Crashlytics'
 end

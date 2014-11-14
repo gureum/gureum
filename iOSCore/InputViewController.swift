@@ -169,13 +169,16 @@ class InputViewController: UIInputViewController {
             shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
+        if keycode == 32 && self.inputMethodView.selectedCollection.selectedLayoutIndex != 0 {
+            self.inputMethodView.selectedCollection.switchLayout()
+        }
 
         let precomposed = context_get_composed_unicode(context)
         let processed = context_put(context, UInt32(keycode))
         //self.log("processed: \(processed) / precomposed: \(precomposed)")
 
         if !processed {
-            context_truncate(context)
+            self.inputMethodView.resetContext()
             proxy.insertText("\(UnicodeScalar(keycode))")
             //self.log("truncate and insert: \(UnicodeScalar(keycode))")
         } else {
