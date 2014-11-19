@@ -8,7 +8,7 @@
 
 import UIKit
 
-let MINIMAL_COUNT = 20
+let MINIMAL_COUNT = 30
 
 class KeyboardViewEventView: UIView {
     var touchingDate: NSDate = NSDate()
@@ -45,7 +45,7 @@ class KeyboardViewEventView: UIView {
     func resetTouching() {
         self.stopTouching()
         self.touchingButtons = self.touchedButtons.copy() as NSArray
-        self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "checkTimer:", userInfo: nil, repeats: true)
+        self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.014, target: self, selector: "checkTimer:", userInfo: nil, repeats: true)
     }
 
     func stopTouching() {
@@ -136,6 +136,9 @@ class KeyboardViewEventView: UIView {
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         for rawTouch in event.allTouches()! {
             let touch = rawTouch as UITouch
+            if touch.phase != .Ended {
+                continue
+            }
             let point = touch.locationInView(self)
             var button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
             if !self.touchedButtons.containsObject(button) {
@@ -169,6 +172,9 @@ class KeyboardViewEventView: UIView {
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
         for rawTouch in event.allTouches()! {
             let touch = rawTouch as UITouch
+            if touch.phase != .Cancelled {
+                continue
+            }
             let point = touch.locationInView(self)
             let button = self.keyboardView.layout.correspondingButtonForPoint(point, size: self.frame.size)
             button.hideEffect()
