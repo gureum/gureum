@@ -15,6 +15,9 @@ class KeyboardViewEventView: UIView {
     var touchingCount: Int = 0
     var touchingTimer: NSTimer = NSTimer()
     var touchingButtons: NSArray = NSArray()
+
+    var untouchingTimer: NSTimer = NSTimer()
+
     var touchedButtons: NSMutableArray = NSMutableArray()
     func addButton(button: GRInputButton) {
         if !self.touchedButtons.containsObject(button) {
@@ -44,8 +47,9 @@ class KeyboardViewEventView: UIView {
 
     func resetTouching() {
         self.stopTouching()
+        self.untouchingTimer.invalidate()
         self.touchingButtons = self.touchedButtons.copy() as NSArray
-        self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.014, target: self, selector: "checkTimer:", userInfo: nil, repeats: true)
+        self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.014, target: self, selector: "checkTouchingTimer:", userInfo: nil, repeats: true)
     }
 
     func stopTouching() {
@@ -54,7 +58,7 @@ class KeyboardViewEventView: UIView {
         self.touchingTimer.invalidate()
     }
 
-    func checkTimer(timer: NSTimer) {
+    func checkTouchingTimer(timer: NSTimer) {
         if self.touchedButtons.count != 1 {
             self.stopTouching()
             return
@@ -72,6 +76,10 @@ class KeyboardViewEventView: UIView {
             button.sendActionsForControlEvents(.TouchUpInside)
         }
         //println("touching \(self.touchingCount)")
+    }
+
+    func checkUntouchingTimer(timer: NSTimer) {
+        self.keyboardView.untouchButton.sendActionsForControlEvents(.TouchUpInside)
     }
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -164,6 +172,10 @@ class KeyboardViewEventView: UIView {
         }
 
         self.stopTouching()
+        if self.touchedButtons.count == 0 {
+            self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.26, target: self, selector: "checkUntouchingTimer:", userInfo: nil, repeats: false)
+        }
+
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
 //        }
@@ -198,7 +210,8 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var shiftButton: GRInputButton! = nil
 
-    let errorButton: GRInputButton = GRInputButton()
+    let errorButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
+    let untouchButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
 
     override init() {
         super.init()
@@ -261,7 +274,11 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         assert(view.deleteButton != nil)
         view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
+
+        view.insertSubview(view.errorButton, atIndex: 0)
+        view.insertSubview(view.untouchButton, atIndex: 0)
         view.errorButton.addTarget(nil, action: "error:", forControlEvents: .TouchUpInside)
+        view.untouchButton.addTarget(nil, action: "untouch:", forControlEvents: .TouchUpInside)
 
         self.context = self.dynamicType.loadContext()
 

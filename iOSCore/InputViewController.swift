@@ -224,7 +224,12 @@ class InputViewController: UIInputViewController {
         proxy.insertText("\n")
     }
 
+    func untouch(sender: UIButton) {
+        self.inputMethodView.resetContext()
+    }
+
     func error(sender: UIButton) {
+        self.inputMethodView.resetContext()
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         proxy.insertText("<error: \(sender.tag)>");
     }
