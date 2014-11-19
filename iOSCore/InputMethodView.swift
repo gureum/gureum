@@ -230,7 +230,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.pageControl.alpha = 1.0
         let animation = { self.pageControl.alpha = 0.0 }
         if animated {
-            UIView.animateWithDuration(0.72, animations: animation )
+            UIView.animateWithDuration(0.36, animations: animation )
         } else {
             animation()
         }
