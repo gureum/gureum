@@ -8,17 +8,34 @@
 
 import UIKit
 
+
+class PreviewInputViewController: InputViewController {
+    var previewController: PreviewViewController! = nil
+
+    override func input(sender: UIButton) {
+        super.input(sender)
+        self.previewController.update()
+    }
+
+    override func inputDelete(sender: UIButton) {
+        super.inputDelete(sender)
+        self.previewController.update()
+    }
+}
+
 class PreviewViewController: UIViewController {
     @IBOutlet var preview: UIView!
 
-    let inputPreviewController = InputViewController()
+    let inputPreviewController = PreviewInputViewController()
     var loaded = false
 
     override func viewDidLoad()  {
         super.viewDidLoad()
+
         self.inputPreviewController.view.frame = self.preview.bounds
         //println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
         self.inputPreviewController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.inputPreviewController.previewController = self
         self.preview.addSubview(self.inputPreviewController.view)
     }
 
@@ -52,5 +69,8 @@ class PreviewViewController: UIViewController {
         //print out the previousTrait's info
         //println("previous tarit collection: \(previousTraitCollection)")
         //println("current tarit collection: \(self.traitCollection)")
+    }
+
+    func update() {
     }
 }

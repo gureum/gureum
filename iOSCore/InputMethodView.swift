@@ -62,8 +62,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
     func resetContext() {
         for collection in self.collections {
-            if collection.selectedLayout.context != nil {
-                context_truncate(collection.selectedLayout.context)
+            for layout in collection.layouts {
+                if layout.context != nil {
+                    context_truncate(collection.selectedLayout.context)
+                }
             }
         }
     }

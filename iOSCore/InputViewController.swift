@@ -157,8 +157,10 @@ class InputViewController: UIInputViewController {
 
         let selectedLayout = self.inputMethodView.selectedLayout
         for collection in self.inputMethodView.collections {
-            if selectedLayout.context != collection.selectedLayout.context && collection.selectedLayout.context != nil {
-                //context_truncate(collection.selectedLayout.context)
+            for layout in collection.layouts {
+                if selectedLayout.context != layout.context && layout.context != nil {
+                    context_truncate(layout.context)
+                }
             }
         }
 
@@ -222,7 +224,12 @@ class InputViewController: UIInputViewController {
         proxy.insertText("\n")
     }
 
-    func delete() {
+    func error(sender: UIButton) {
+        let proxy = self.textDocumentProxy as UITextDocumentProxy
+        proxy.insertText("<error: \(sender.tag)>");
+    }
+
+    func inputDelete(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         let context = self.inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicode(context)

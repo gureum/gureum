@@ -9,12 +9,16 @@
 import UIKit
 
 class TestViewController: PreviewViewController {
-    @IBOutlet var compositionField: UITextField!
+    @IBOutlet var previewField: UITextField!
+
+    override func update() {
+        super.update()
+        let proxy = self.inputPreviewController.textDocumentProxy as UITextDocumentProxy
+        self.previewField.text = "\(proxy.documentContextBeforeInput)"
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }

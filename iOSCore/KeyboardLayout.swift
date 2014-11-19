@@ -129,6 +129,8 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var shiftButton: GRInputButton! = nil
 
+    let errorButton: GRInputButton = GRInputButton()
+
     override init() {
         super.init()
         self.backgroundColor = UIColor.clearColor()
@@ -189,7 +191,8 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         assert(view.nextKeyboardButton != nil)
         assert(view.deleteButton != nil)
         view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-        view.deleteButton.addTarget(nil, action: "delete", forControlEvents: .TouchUpInside)
+        view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
+        view.errorButton.addTarget(nil, action: "error:", forControlEvents: .TouchUpInside)
 
         self.context = self.dynamicType.loadContext()
 
@@ -239,8 +242,9 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
                 return button as GRInputButton
             }
         }
-        assert(false)
-        return GRInputButton()
+
+        self.view.errorButton.tag = Int(newPoint.x) * 10000 + Int(newPoint.y)
+        return self.view.errorButton
     }
 
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
