@@ -180,6 +180,8 @@
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		38D26F641A1D36A6001E0F51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		38D26F681A1D36FD001E0F51 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = default; sourceTree = "<group>"; };
 		38E37EF8199A44EB00BA7F0C /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 3882B9ED193F9E6600076C26;
 			productRefGroup = 3882B9F7193F9E6600076C26 /* Products */;
@@ -705,6 +708,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				3882BA00193F9E6600076C26 /* Base */,
+				38D26F641A1D36A6001E0F51 /* en */,
+				38D26F681A1D36FD001E0F51 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

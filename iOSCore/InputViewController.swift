@@ -16,6 +16,7 @@ class InputViewController: UIInputViewController {
     var initialized = false
     var needsProtection = false
     var deleting = false
+    var modeDate = NSDate()
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
@@ -222,6 +223,17 @@ class InputViewController: UIInputViewController {
         self.inputMethodView.resetContext()
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         proxy.insertText("\n")
+    }
+
+    func mode(sender: UIButton) {
+        let now = NSDate()
+        if now.timeIntervalSinceDate(self.modeDate) < 0.5 {
+            self.advanceToNextInputMode()
+        } else {
+            let newIndex = self.inputMethodView.selectedLayoutIndex == 0 ? 1 : 0;
+            self.inputMethodView.selectLayoutByIndex(newIndex, animated: true)
+            self.modeDate = now
+        }
     }
 
     func untouch(sender: UIButton) {

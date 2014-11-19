@@ -173,7 +173,7 @@ class KeyboardViewEventView: UIView {
 
         self.stopTouching()
         if self.touchedButtons.count == 0 {
-            self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.26, target: self, selector: "checkUntouchingTimer:", userInfo: nil, repeats: false)
+            self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.36, target: self, selector: "checkUntouchingTimer:", userInfo: nil, repeats: false)
         }
 
 //        for spot in self.touchedSpots {
@@ -272,7 +272,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
         assert(view.nextKeyboardButton != nil)
         assert(view.deleteButton != nil)
-        view.nextKeyboardButton.addTarget(nil, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
         view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
 
         view.insertSubview(view.errorButton, atIndex: 0)
