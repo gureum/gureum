@@ -18,6 +18,11 @@
 		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
+		382E68691A1314D900031D1D /* Preferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 382E68681A1314D900031D1D /* Preferences.h */; };
+		382E686B1A1314D900031D1D /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 382E686A1A1314D900031D1D /* Preferences.m */; };
+		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
+		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
+		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562EB18B9F2D900F8B8B9 /* han2@2x.png */; };
 		383562F218B9F2DF00F8B8B9 /* han3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F118B9F2DF00F8B8B9 /* han3@2x.png */; };
 		383562F618B9F30D00F8B8B9 /* han@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F518B9F30D00F8B8B9 /* han@2x.png */; };
@@ -61,6 +66,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		382E68741A13153300031D1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 382E68631A1314D900031D1D;
+			remoteInfo = Preferences;
+		};
 		384FDE63193F898500114F48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
@@ -147,6 +159,12 @@
 		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		382E68641A1314D900031D1D /* Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		382E68681A1314D900031D1D /* Preferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		382E686A1A1314D900031D1D /* Preferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
+		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		383562EB18B9F2D900F8B8B9 /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
 		383562F118B9F2DF00F8B8B9 /* han3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3@2x.png"; path = "Icons/han3@2x.png"; sourceTree = "<group>"; };
 		383562F518B9F30D00F8B8B9 /* han@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han@2x.png"; path = "Icons/han@2x.png"; sourceTree = "<group>"; };
@@ -225,6 +243,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		382E68601A1314D900031D1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BFE7F718B45419004B2B2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +299,26 @@
 				38162E4914128A740077AA2D /* MainMenu.xib */,
 				388E2A601469249700ADBDA5 /* Hangul.strings */,
 				385ABBF5193F825500478DA8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		382E68651A1314D900031D1D /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				382E68681A1314D900031D1D /* Preferences.h */,
+				382E686A1A1314D900031D1D /* Preferences.m */,
+				382E686C1A1314D900031D1D /* Preferences.tiff */,
+				382E686E1A1314D900031D1D /* Preferences.xib */,
+				382E68661A1314D900031D1D /* Supporting Files */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		382E68661A1314D900031D1D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				382E68671A1314D900031D1D /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -352,6 +397,7 @@
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38162DF6141263270077AA2D /* OSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
+				382E68651A1314D900031D1D /* Preferences */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
 				067DBCA6B52401C5434CDEA1 /* Pods */,
@@ -363,6 +409,7 @@
 			children = (
 				38162DF3141263270077AA2D /* Gureum.app */,
 				38BFE7FA18B45419004B2B2E /* OSXTests.xctest */,
+				382E68641A1314D900031D1D /* Preferences.prefPane */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,6 +485,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		382E68611A1314D900031D1D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382E68691A1314D900031D1D /* Preferences.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		38162DF2141263270077AA2D /* OSX */ = {
 			isa = PBXNativeTarget;
@@ -455,6 +513,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				382E68751A13153300031D1D /* PBXTargetDependency */,
 				384FDE64193F898500114F48 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 			);
@@ -462,6 +521,24 @@
 			productName = OSX;
 			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
 			productType = "com.apple.product-type.application";
+		};
+		382E68631A1314D900031D1D /* Preferences */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 382E68711A1314D900031D1D /* Build configuration list for PBXNativeTarget "Preferences" */;
+			buildPhases = (
+				382E685F1A1314D900031D1D /* Sources */,
+				382E68601A1314D900031D1D /* Frameworks */,
+				382E68611A1314D900031D1D /* Headers */,
+				382E68621A1314D900031D1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Preferences;
+			productName = Preferences;
+			productReference = 382E68641A1314D900031D1D /* Preferences.prefPane */;
+			productType = "com.apple.product-type.bundle";
 		};
 		38BFE7F918B45419004B2B2E /* OSXTests */ = {
 			isa = PBXNativeTarget;
@@ -498,6 +575,9 @@
 							};
 						};
 					};
+					382E68631A1314D900031D1D = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					38BFE7F918B45419004B2B2E = {
 						TestTargetID = 38162DF2141263270077AA2D;
 					};
@@ -510,6 +590,7 @@
 			knownRegions = (
 				en,
 				ko,
+				Base,
 			);
 			mainGroup = 38863C4E140E62D100A8ED76;
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
@@ -528,6 +609,7 @@
 			targets = (
 				38162DF2141263270077AA2D /* OSX */,
 				38BFE7F918B45419004B2B2E /* OSXTests */,
+				382E68631A1314D900031D1D /* Preferences */,
 			);
 		};
 /* End PBXProject section */
@@ -568,6 +650,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				382E68761A13156700031D1D /* Preferences.prefPane in Resources */,
 				38162DFB141263280077AA2D /* InfoPlist.strings in Resources */,
 				383562F818B9F32E00F8B8B9 /* han.png in Resources */,
 				383562F618B9F30D00F8B8B9 /* han@2x.png in Resources */,
@@ -592,6 +675,15 @@
 				38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */,
 				38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */,
 				38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		382E68621A1314D900031D1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382E68701A1314D900031D1D /* Preferences.xib in Resources */,
+				382E686D1A1314D900031D1D /* Preferences.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +780,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		382E685F1A1314D900031D1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382E686B1A1314D900031D1D /* Preferences.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BFE7F618B45419004B2B2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -700,6 +800,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		382E68751A13153300031D1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 382E68631A1314D900031D1D /* Preferences */;
+			targetProxy = 382E68741A13153300031D1D /* PBXContainerItemProxy */;
+		};
 		384FDE64193F898500114F48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ShortcutRecorder.framework;
@@ -725,6 +830,14 @@
 				38162E451412866F0077AA2D /* ko */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		382E686E1A1314D900031D1D /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				382E686F1A1314D900031D1D /* Base */,
+			);
+			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 		38BFE80018B45419004B2B2E /* InfoPlist.strings */ = {
@@ -809,6 +922,62 @@
 			};
 			name = Release;
 		};
+		382E68721A1314D900031D1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Preferences/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		382E68731A1314D900031D1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Preferences/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
 		38863C55140E62D100A8ED76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
@@ -830,6 +999,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
@@ -857,6 +1027,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
@@ -948,6 +1119,15 @@
 			buildConfigurations = (
 				38162E09141263280077AA2D /* Debug */,
 				38162E0A141263280077AA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		382E68711A1314D900031D1D /* Build configuration list for PBXNativeTarget "Preferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				382E68721A1314D900031D1D /* Debug */,
+				382E68731A1314D900031D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
