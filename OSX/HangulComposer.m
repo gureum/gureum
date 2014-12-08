@@ -254,22 +254,22 @@
 }
 
 - (void)updateFromController:(CIMInputController *)controller {
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer updateFromClientSelectedRange:");
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer updateFromController:");
     NSRange markedRange = [controller.client markedRange];
     NSRange selectedRange = [controller.client selectedRange];
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
     if ((markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0) {
         NSString *selectedString = [[controller.client attributedSubstringFromRange:selectedRange] string];
-        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: selected string: %@", selectedString);
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: selected string: %@", selectedString);
         [controller.client setMarkedText:selectedString selectionRange:selectedRange replacementRange:selectedRange];
-        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: try marking: %@ / selected: %@", NSStringFromRange([controller.client markedRange]), NSStringFromRange([controller.client selectedRange]));
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange([controller.client markedRange]), NSStringFromRange([controller.client selectedRange]));
         self->bufferedString.string = selectedString;
-        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange: so buffer is: %@", self->bufferedString);
+        dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: so buffer is: %@", self->bufferedString);
         self.mode = NO;
     }
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange super");
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController super");
     [self updateHanjaCandidates];
-    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromClientSelectedRange done");
+    dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController done");
 }
 
 - (BOOL)hasCandidates {
