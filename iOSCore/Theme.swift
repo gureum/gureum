@@ -153,13 +153,13 @@ class ThemeTraitConfiguration {
         return self.owner.imageForFilename(filename)
     }()
 
-    func captionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
+    func captionForKey(key: String, needsMargin: Bool, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
         if let theme = self._captions[key] {
             return theme
         } else {
             let theme: ThemeCaptionConfiguration = {
                 if let sub: AnyObject = self.configuration[key] {
-                    return ThemeCaptionConfiguration(trait: self, configuration: sub, fallback: fallback)
+                    return ThemeCaptionConfiguration(trait: self, configuration: sub, needsMargin: needsMargin, fallback: fallback)
                 } else {
                     return fallback
                 }
@@ -169,40 +169,67 @@ class ThemeTraitConfiguration {
         }
     }
 
+    func qwertyCaptionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
+        let newKey = "qwerty-" + key
+        return captionForKey(newKey, needsMargin: true, fallback: fallback)
+    }
+
     lazy var defaultCaption: ThemeCaptionConfiguration = ThemeDefaultCaptionConfiguration(trait: self)
-
-    lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", fallback: self.defaultCaption)
-    func qwertyCaptionForRow(row: Int) -> ThemeCaptionConfiguration {
-        return self.captionForKey("qwerty-row\(row)", fallback: self.qwertyCaption)
+    lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", needsMargin: true, fallback: self.defaultCaption)
+    func qwertyCaptionForKeyInRow(row: Int) -> ThemeCaptionConfiguration {
+        return self.qwertyCaptionForKey("row\(row)", fallback: self.qwertyCaption)
     }
-    lazy var qwerty32pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-32px", fallback: self.qwertyCaption)
-    lazy var qwerty40pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-40px", fallback: self.qwertyCaption)
-    lazy var qwerty48pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-48px", fallback: self.qwertyCaption)
-    lazy var qwerty80pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-80px", fallback: self.qwertyCaption)
-    lazy var qwerty160pxCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-160px", fallback: self.qwertyCaption)
 
-    lazy var qwertyKeyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-key", fallback: self.qwerty32pxCaption)
-    lazy var qwertyShiftCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-shift", fallback: self.qwerty48pxCaption)
-    lazy var qwertyDeleteCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-delete", fallback: self.qwerty48pxCaption)
-    lazy var qwerty123Caption: ThemeCaptionConfiguration = self.captionForKey("qwerty-123", fallback: self.qwerty40pxCaption)
-    lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-globe", fallback: self.qwerty40pxCaption)
-    lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-space", fallback: self.qwerty160pxCaption)
-    lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty-done", fallback: self.qwerty80pxCaption)
+    lazy var qwertyKeyCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("key", fallback: self.qwertyCaption)
+    lazy var qwertyFunctionCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("function", fallback: self.qwertyCaption)
 
-    lazy var numpadCaption: ThemeCaptionConfiguration = self.captionForKey("numpad", fallback: self.defaultCaption)
-    func numpadCaptionForRow(row: Int) -> ThemeCaptionConfiguration {
-        return self.captionForKey("numpad-row\(row)", fallback: self.numpadCaption)
+    lazy var qwerty1xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1x", fallback: self.qwertyKeyCaption)
+    lazy var qwerty1_25xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.25x", fallback: self.qwertyFunctionCaption)
+    lazy var qwerty1_5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.5x", fallback: self.qwertyFunctionCaption)
+    lazy var qwerty3xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("3x", fallback: self.qwertyFunctionCaption)
+    lazy var qwerty5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("5x", fallback: self.qwertyFunctionCaption)
+
+    lazy var qwertyShiftCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("shift", fallback: self.qwerty1_5xCaption)
+    lazy var qwertyDeleteCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("delete", fallback: self.qwerty1_5xCaption)
+    lazy var qwerty123Caption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("123", fallback: self.qwerty1_25xCaption)
+    lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("globe", fallback: self.qwerty1_25xCaption)
+    lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("space", fallback: self.qwerty5xCaption)
+    lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("done", fallback: self.qwerty3xCaption)
+
+    func tenkeyCaptionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
+        let newKey = "tenkey-" + key
+        return captionForKey(newKey, needsMargin: true, fallback: fallback)
     }
+
+    lazy var tenkeyCaption: ThemeCaptionConfiguration = self.captionForKey("tenkey", needsMargin: false, fallback: self.defaultCaption)
+    func tenkeyCaptionForKeyInRow(row: Int) -> ThemeCaptionConfiguration {
+        return self.captionForKey("tenkey-row\(row)", needsMargin: false, fallback: self.tenkeyCaption)
+    }
+    lazy var tenkeyKeyCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("key", fallback: self.tenkeyCaption)
+    lazy var tenkeyFunctionCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("function", fallback: self.tenkeyCaption)
+
+    lazy var tenkeyShiftCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("shift", fallback: self.tenkeyCaptionForKeyInRow(2))
+    lazy var tenkeyDeleteCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("delete", fallback: self.tenkeyCaptionForKeyInRow(1))
+    lazy var tenkey123Caption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("123", fallback: self.tenkeyCaptionForKeyInRow(1))
+    lazy var tenkeyAbcCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("abc", fallback: self.tenkeyCaptionForKeyInRow(2))
+    lazy var tenkeyHangeulCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("hangeul", fallback: self.tenkeyCaptionForKeyInRow(3))
+    lazy var tenkeyGlobeCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("globe", fallback: self.tenkeyCaptionForKeyInRow(4))
+    lazy var tenkeySpaceCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("space", fallback: self.tenkeyCaptionForKeyInRow(4))
+    lazy var tenkeyDoneCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("done", fallback: self.tenkeyCaptionForKeyInRow(3))
+
 }
 
 
 class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject]
+    let needsMargin: Bool
     let fallback: ThemeCaptionConfiguration!
     let trait: ThemeTraitConfiguration
+    lazy var topMargin: CGFloat = { return self.needsMargin ? self.trait.topMargin : 0 }()
 
-    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, fallback: ThemeCaptionConfiguration!) {
+    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, needsMargin: Bool, fallback: ThemeCaptionConfiguration!) {
         self.trait = trait
+        self.needsMargin = needsMargin
 
         var given: AnyObject = configuration ?? Dictionary<String, AnyObject>()
 
@@ -258,7 +285,7 @@ class ThemeCaptionConfiguration {
             //println("caption center: \(button.captionLabel.center) / button center: \(center)")
         }
 
-        button.effectView.backgroundImageView.image = self.effectBackgroundImage
+        button.effectBackgroundImage = self.effectBackgroundImage
     }
 
     func arrangeButton(button: GRInputButton) {
@@ -285,7 +312,7 @@ class ThemeCaptionConfiguration {
         button.effectView.backgroundImageView.image = self.effectBackgroundImage
         let insets = self.effectEdgeInsets
         var frame = button.frame
-        frame.size.height -= self.trait.topMargin
+        frame.size.height -= self.topMargin
         frame.origin = CGPointMake(insets.left, insets.top)
         button.effectView!.textLabel!.frame = frame
 
@@ -315,7 +342,7 @@ class ThemeCaptionConfiguration {
         frame.origin.y += position.y
 
         button.effectView.frame = frame
-        button.effectView.backgroundImageView.frame = button.effectView.bounds
+        button.arrange()
     }
 
     func _images() -> (UIImage?, UIImage?, UIImage?) {
@@ -326,7 +353,7 @@ class ThemeCaptionConfiguration {
         }
         var images: [UIImage?] = []
         for imageName in imageConfiguration! {
-            let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.trait.topMargin)
+            let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.topMargin)
             //assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
             images.append(image)
         }
@@ -470,7 +497,7 @@ let ThemeDefaultCaptionImage: UIImage? = {
 
 class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
     init(trait: ThemeTraitConfiguration) {
-        super.init(trait: trait, configuration: nil, fallback: nil)
+        super.init(trait: trait, configuration: nil, needsMargin: true, fallback: nil)
     }
 
     override var images: (UIImage?, UIImage?, UIImage?) {

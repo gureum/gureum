@@ -75,14 +75,14 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             switch name {
             case "qwerty":
                 return [QwertyKeyboardLayout(), QwertySymbolKeyboardLayout()]
-            case "qwerty123":
+            case "symbol":
                 return [QwertySymbolKeyboardLayout()]
             case "ksx5002":
                 return [KSX5002KeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "danmoum":
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
-            case "numpad":
-                return [NumpadKeyboardLayout(), CheonjiinKeyboardLayout()]
+            case "cheonjiin":
+                return [CheonjiinKeyboardLayout(), TenkeyKeyboardLayout(), TenkeyKeyboardLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
@@ -217,10 +217,12 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.layoutsView.setContentOffset(CGPointMake(offset, 0), animated: animated)
 
         for (i, collection) in enumerate(self.collections) {
+            collection.selectLayoutIndex(0)
             for (j, layout) in enumerate(collection.layouts) {
                 if i == index && j == collection.selectedLayoutIndex {
                     break;
                 }
+                layout.view.shiftButton.selected = false
                 for button in layout.helper.buttons.values {
                     button.hideEffect()
                 }

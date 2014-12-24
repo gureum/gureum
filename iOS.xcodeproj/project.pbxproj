@@ -11,6 +11,7 @@
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
 		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
+		3836F2101A53529E0045EE0F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3836F20F1A53529E0045EE0F /* MainViewController.swift */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		383B07EE19E70609004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
@@ -49,6 +50,7 @@
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
 		38A37EF919E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38A37EFA19E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
+		38A849DA1A4D7D6600A31A96 /* QuickHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */; };
 		38BB7017193FA11000605583 /* inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* inputmethod.appex */; };
 		38CDD7D219B2856B0086D013 /* NSAArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76319B2856B0086D013 /* NSAArray.m */; };
 		38CDD7D319B2856B0086D013 /* NSAClassDeprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD76519B2856B0086D013 /* NSAClassDeprecated.m */; };
@@ -217,6 +219,7 @@
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
 		3830366B199059DE00C1EE0C /* capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = capi.h; path = ../hangeul/hangeul/capi.h; sourceTree = "<group>"; };
 		38324EAD199F476B0031888D /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+		3836F20F1A53529E0045EE0F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
 		383B07F019E71482004046F5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -247,6 +250,8 @@
 		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		38904F7F1944F71400858B09 /* hangeul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hangeul.xcodeproj; path = hangeul/hangeul.xcodeproj; sourceTree = "<group>"; };
+		38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickHelperViewController.swift; sourceTree = "<group>"; };
+		38A849DD1A5003A700A31A96 /* appstore_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore_1024.png; sourceTree = "<group>"; };
 		38BB700F193FA11000605583 /* inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
@@ -488,6 +493,7 @@
 				3844B239198930BF007A2287 /* Gureum.entitlements */,
 				38303656198D9FA000C1EE0C /* icon_512x512@2x.png */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
+				3836F20F1A53529E0045EE0F /* MainViewController.swift */,
 				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
 				380136B6199CB4A700355D69 /* PreviewViewController.swift */,
 				3882B9FD193F9E6600076C26 /* TestViewController.swift */,
@@ -497,6 +503,8 @@
 				3852354619B06009001B8E3E /* Store.swift */,
 				380136B1199CAE1F00355D69 /* ThemeViewController.swift */,
 				3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */,
+				38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */,
+				38A849DD1A5003A700A31A96 /* appstore_1024.png */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
 				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
@@ -910,6 +918,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */,
+				3836F2101A53529E0045EE0F /* MainViewController.swift in Sources */,
 				384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */,
 				386308E0199143330039369C /* Hangeul.swift in Sources */,
 				384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */,
@@ -923,6 +932,7 @@
 				384ADED219C1B3130007A993 /* LayoutEditorViewController.swift in Sources */,
 				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
+				38A849DA1A4D7D6600A31A96 /* QuickHelperViewController.swift in Sources */,
 				3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
 				384ADED719C1B32E0007A993 /* Store.swift in Sources */,

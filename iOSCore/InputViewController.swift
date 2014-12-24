@@ -125,6 +125,9 @@ class InputViewController: UIInputViewController {
         //self.log("text did change: \(self.needsProtection)")
         if !self.needsProtection || self.deleting {
             self.inputMethodView.resetContext()
+            self.inputMethodView.selectedCollection.selectLayoutIndex(0)
+            self.inputMethodView.selectedLayout.view.shiftButton.selected = false
+            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
             self.needsProtection = false
         }
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
@@ -172,11 +175,20 @@ class InputViewController: UIInputViewController {
             shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
-        if keycode == 32 && self.inputMethodView.selectedCollection.selectedLayoutIndex != 0 {
-            self.inputMethodView.selectedCollection.switchLayout()
+        if sender == selectedLayout.view.spaceButton || sender == selectedLayout.view.doneButton {
+            self.inputMethodView.selectedCollection.selectLayoutIndex(0)
+            self.inputMethodView.resetContext()
+            // FIXME: dirty solution
+            if sender == selectedLayout.view.spaceButton {
+                proxy.insertText(" ")
+            }
+            else if sender == selectedLayout.view.doneButton {
+                proxy.insertText("\n")
+            }
+            return
         }
 
-        let precomposed = context_get_composed_unicode(context)
+        let precomposed = context_get_composed_unicodes(context)
         let processed = context_put(context, UInt32(keycode))
         //self.log("processed: \(processed) / precomposed: \(precomposed)")
 
@@ -185,24 +197,20 @@ class InputViewController: UIInputViewController {
             proxy.insertText("\(UnicodeScalar(keycode))")
             //self.log("truncate and insert: \(UnicodeScalar(keycode))")
         } else {
-            if precomposed > 0 {
-                //self.log("-- deleting")
+            //self.log("-- deleting")
+            for _ in precomposed {
                 proxy.deleteBackward()
-                //self.log("-- deleted")
             }
+            //self.log("-- deleted")
             self.needsProtection = !proxy.hasText()
 
             //self.log("-- inserting")
-            let commited = context_get_commited_unicode(context)
-            if commited > 0 {
-                proxy.insertText("\(UnicodeScalar(commited))")
-            }
-            let composed = context_get_composed_unicode(context)
-            if composed > 0 {
-                proxy.insertText("\(UnicodeScalar(composed))")
-            }
+            let commited = unicodes_to_string(context_get_commited_unicodes(context))
+            proxy.insertText(commited)
+            let composed = unicodes_to_string(context_get_composed_unicodes(context))
+            proxy.insertText(composed)
             //self.log("-- inserted")
-            //self.log("commited: \(UnicodeScalar(commited)) / composed: \(UnicodeScalar(composed))")
+            self.log("commited: \(commited) / composed: \(composed)")
 
         }
         //self.log("after: \(proxy.documentContextAfterInput)")
@@ -213,16 +221,22 @@ class InputViewController: UIInputViewController {
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 
-    func toggle(sender: UIButton) {
+    func toggleLayout(sender: UIButton) {
         let collection = self.inputMethodView.selectedCollection
         collection.switchLayout()
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 
+    func selectLayout(sender: UIButton) {
+        let collection = self.inputMethodView.selectedCollection
+        collection.selectLayoutIndex(sender.tag)
+        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+    }
+
     func done(sender: UIButton) {
         self.inputMethodView.resetContext()
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
-        proxy.insertText("\n")
+        sender.tag = (13 << 15) + 13
+        self.input(sender)
     }
 
     func mode(sender: UIButton) {
@@ -249,21 +263,21 @@ class InputViewController: UIInputViewController {
     func inputDelete(sender: UIButton) {
         let proxy = self.textDocumentProxy as UITextDocumentProxy
         let context = self.inputMethodView.selectedLayout.context
-        let precomposed = context_get_composed_unicode(context)
-        self.deleting = true
-        (self.textDocumentProxy as UIKeyInput).deleteBackward()
-        self.deleting = false
-        if precomposed > 0 {
-            let processed = context_put(context, 0x7f)
-            assert(processed)
-            let composed = context_get_composed_unicode(context)
-            if composed > 0 {
-                proxy.insertText("\(UnicodeScalar(composed))")
-                //self.log("deleted and add \(UnicodeScalar(composed))")
-            } else {
-                //self.log("deleted")
+        let precomposed = context_get_composed_unicodes(context)
+        if precomposed.count > 0 {
+            self.deleting = true
+            for _ in precomposed {
+                (self.textDocumentProxy as UIKeyInput).deleteBackward()
             }
+            self.deleting = false
+            let processed = context_put(context, InputSource(sender.tag))
+            if processed {
+                let composed = unicodes_to_string(context_get_composed_unicodes(context))
+                proxy.insertText("\(composed)")
+            }
+            //self.log("deleted and add \(UnicodeScalar(composed))")
         } else {
+            (self.textDocumentProxy as UIKeyInput).deleteBackward()
             //self.log("deleted")
         }
     }

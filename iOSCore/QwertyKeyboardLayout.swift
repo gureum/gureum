@@ -36,25 +36,6 @@ class QwertyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
-        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let key = getKey(keylines, position)
-        if !shift || position.row == 3 {
-            return key
-        } else {
-            return UnicodeScalar(key.value - 32)
-        }
-    }
-
-    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position, shift: false)
-        let altkey = "qwerty-key-\(chr)"
-        let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyCaptionForRow(position.row + 1))
-        let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.captionForKey("qwerty-key-" + title, fallback: theme1)
-        return theme2
-    }
-
     override class func loadView() -> QwertyKeyboardView {
         let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
 
@@ -62,6 +43,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
         view.nextKeyboardButton.captionLabel.text = "🌐"
         view.deleteButton = GRInputButton()
         view.deleteButton.captionLabel.text = "⌫"
+        view.deleteButton.tag = 0x7f
         view.doneButton = GRInputButton()
         view.toggleKeyboardButton = GRInputButton()
         view.toggleKeyboardButton.captionLabel.text = "123"
@@ -80,7 +62,26 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(bypass_phase(), bypass_decoder())
+        return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
+    }
+
+    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+        let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
+        let key = getKey(keylines, position)
+        if !shift || position.row == 3 {
+            return key
+        } else {
+            return UnicodeScalar(key.value - 32)
+        }
+    }
+
+    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+        let chr = self.keyForPosition(position, shift: false)
+        let altkey = "key-\(chr)"
+        let theme1 = trait.qwertyCaptionForKey(altkey, fallback: trait.qwertyCaptionForKeyInRow(position.row + 1))
+        let title = self.helper(self.helper, titleForPosition: position)
+        let theme2 = trait.qwertyCaptionForKey("key-" + title, fallback: theme1)
+        return theme2
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -92,7 +93,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
         self.qwertyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
 
-        self.qwertyView.toggleKeyboardButton.addTarget(nil, action: "toggle:", forControlEvents: .TouchUpInside)
+        self.qwertyView.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -229,7 +230,9 @@ class QwertyKeyboardLayout: KeyboardLayout {
         button.tag = Int(((key2.value) << 15) + key1.value)
         button.sizeToFit()
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-
+        if position.row == 3 {
+            self.view.spaceButton = button
+        }
         return button
     }
 
@@ -344,7 +347,7 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
 
 class KSX5002KeyboardLayout: QwertyKeyboardLayout {
     override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
+        return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
@@ -364,7 +367,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(danmoum_from_qwerty_phase(), ksx5002_decoder())
+        return context_create(danmoum_from_qwerty_handler(), danmoum_combinator(), danmoum_decoder())
     }
 
     override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {

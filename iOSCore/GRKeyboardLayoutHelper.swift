@@ -179,8 +179,7 @@ class GRKeyboardLayoutHelper {
             for (position, button) in self.buttons {
                 if button.titleForState(.Normal) == nil {
                     let label = delegate.helper(self, titleForPosition: position)
-                    button.captionLabel.text = label
-                    button.effectView.textLabel.text = label;
+                    button.title = label
                 }
             }
         }

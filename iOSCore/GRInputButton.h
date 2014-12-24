@@ -9,13 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface GRInputEffectView: UIView
-
-@property(readonly) UIImageView *backgroundImageView;
-@property(readonly) UILabel *textLabel;
-
-@end
-
+@class GRInputEffectView;
 
 @interface GRInputButton: UIButton
 
@@ -23,7 +17,19 @@
 @property(readonly) UILabel *captionLabel;
 @property(readonly) GRInputEffectView *effectView;
 
+@property(nonatomic,copy) NSString *title;
+@property(nonatomic,retain) UIImage *effectBackgroundImage;
+
 - (void)showEffect;
 - (void)hideEffect;
+- (void)arrange;
+
+@end
+
+
+@interface GRInputEffectView: UIView
+
+@property(readonly) UIImageView *backgroundImageView;
+@property(readonly) UILabel *textLabel;
 
 @end
