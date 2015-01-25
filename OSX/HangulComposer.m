@@ -457,7 +457,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     dassert(index < HangulCharacterCombinationModeCount);
     NSString *name = HangulCombinationModefillers[index];
     dassert(name);
-    dassert(name.length);
+    dassert(name.length > 0);
     SEL selector = NSSelectorFromString(name);
     if (selector == nil) {
         selector = @selector(stringByRemovingFillerWithUCSString:);

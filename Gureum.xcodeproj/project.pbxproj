@@ -52,7 +52,6 @@
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
 		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
-		38EE97781A00061000AD19B8 /* 2SetHangul.keylayout in Resources */ = {isa = PBXBuildFile; fileRef = 38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */; };
 		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
 		38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524816ECF87E00FE1B4A /* han3final@2x.png */; };
 		38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524A16ECF87E00FE1B4A /* han390@2x.png */; };
@@ -210,7 +209,6 @@
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 2SetHangul.keylayout; path = ../../../../../Users/youknowone/Downloads/2SetHangul.keylayout; sourceTree = "<group>"; };
 		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
 		38EE977A1A00148D00AD19B8 /* TISInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISInputSource.m; sourceTree = "<group>"; };
 		38F1524816ECF87E00FE1B4A /* han3final@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3final@2x.png"; path = "Icons/han3final@2x.png"; sourceTree = "<group>"; };
@@ -478,7 +476,6 @@
 				38FDDEDF19F547170055731D /* RomanComposer.m */,
 				38162D7A140F64B70077AA2D /* HangulComposer.h */,
 				38162D7B140F64B70077AA2D /* HangulComposer.m */,
-				38EE97771A00061000AD19B8 /* 2SetHangul.keylayout */,
 			);
 			name = Composers;
 			sourceTree = "<group>";
@@ -657,7 +654,6 @@
 				38162E4814128A740077AA2D /* MainMenu.xib in Resources */,
 				38475AF61412BC050062100D /* han2.png in Resources */,
 				383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */,
-				38EE97781A00061000AD19B8 /* 2SetHangul.keylayout in Resources */,
 				38475AF71412BC050062100D /* han3.png in Resources */,
 				38475AF91412BC050062100D /* han3final.png in Resources */,
 				38475AFA1412BC050062100D /* han390.png in Resources */,
