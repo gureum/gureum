@@ -324,20 +324,6 @@ class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let key1 = self.keyForPosition(position, shift: false)
-        let key2 = self.keyForPosition(position, shift: true)
-
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
-        button.tag = Int(key2.value << 15) + Int(key1.value)
-        button.sizeToFit()
-        //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-        //println("button: \(button.tag)");
-//        button.tag = 0
-        return button
-    }
-
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         let key = self.keyForPosition(position, shift: self.qwertyView.shiftButton.selected)
         let text = "\(Character(UnicodeScalar(key.value)))"

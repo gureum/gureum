@@ -82,7 +82,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             case "danmoum":
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "cheonjiin":
-                return [CheonjiinKeyboardLayout(), TenkeyKeyboardLayout(), TenkeyKeyboardLayout()]
+                return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyAlphabetKeyboardLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
@@ -210,7 +210,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     func selectLayoutByIndex(index: Int, animated: Bool) {
         let newWidth = self.frame.width * CGFloat(self.collections.count)
         self.layoutsView.contentSize = CGSizeMake(newWidth, 0)
-        globalInputViewController?.log("layoutview frame: \(self.layoutsView.frame)")
+        //globalInputViewController?.log("layoutview frame: \(self.layoutsView.frame)")
 
         self.pageControl.currentPage = index
         let offset = CGFloat(index) * self.frame.width

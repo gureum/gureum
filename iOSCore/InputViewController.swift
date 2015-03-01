@@ -31,6 +31,7 @@ class InputViewController: UIInputViewController {
     func log(text: String) {
         println(text)
         return;
+        
         let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
         self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
         self.view.bringSubviewToFront(self.logTextView)
@@ -175,6 +176,9 @@ class InputViewController: UIInputViewController {
             shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
+
+        assert(selectedLayout.view.spaceButton != nil)
+        assert(selectedLayout.view.doneButton != nil)
         if sender == selectedLayout.view.spaceButton || sender == selectedLayout.view.doneButton {
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
             self.inputMethodView.resetContext()
@@ -206,9 +210,13 @@ class InputViewController: UIInputViewController {
 
             //self.log("-- inserting")
             let commited = unicodes_to_string(context_get_commited_unicodes(context))
-            proxy.insertText(commited)
+            if commited.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+                proxy.insertText(commited)
+            }
             let composed = unicodes_to_string(context_get_composed_unicodes(context))
-            proxy.insertText(composed)
+            if composed.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+                proxy.insertText(composed)
+            }
             //self.log("-- inserted")
             self.log("commited: \(commited) / composed: \(composed)")
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		380136AE199C67F200355D69 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 380136AD199C67F200355D69 /* help */; };
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
-		38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38303656198D9FA000C1EE0C /* icon_512x512@2x.png */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		3836F2101A53529E0045EE0F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3836F20F1A53529E0045EE0F /* MainViewController.swift */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
@@ -870,7 +869,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38303657198D9FA000C1EE0C /* icon_512x512@2x.png in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
 				380136B5199CAFC200355D69 /* shop.json in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
