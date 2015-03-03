@@ -82,7 +82,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             case "danmoum":
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "cheonjiin":
-                return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyAlphabetKeyboardLayout()]
+                return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyNumberKeyboardLayout()]
             default:
                 return [NoKeyboardLayout()]
             }

@@ -1,9 +1,4 @@
-platform :osx, "10.7"
-workspace 'Gureum'
+platform :ios, "8.0"
 
-target :'OSX' do
-    xcodeproj 'Gureum.xcodeproj'
-    pod 'cdebug'
-    pod 'FoundationExtension'
-    pod 'Crashlytics'
-end
+pod 'cdebug'
+pod 'CrashlyticsFramework'

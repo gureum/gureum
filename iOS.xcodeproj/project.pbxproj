@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181431046C196B1304B850F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B977566168245B09DFDC6C1 /* libPods.a */; };
 		380136AE199C67F200355D69 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 380136AD199C67F200355D69 /* help */; };
 		380136B5199CAFC200355D69 /* shop.json in Resources */ = {isa = PBXBuildFile; fileRef = 380136B4199CAFC000355D69 /* shop.json */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
@@ -16,7 +17,6 @@
 		383B07EE19E70609004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383B07F019E71482004046F5 /* StoreKit.framework */; };
-		383C036D19EBA5B000CFE876 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383C036C19EBA5B000CFE876 /* Crashlytics.framework */; };
 		384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
@@ -47,6 +47,8 @@
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
+		38934DB21AA3A12200970BD0 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
+		38934DB51AA3A12A00970BD0 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38A37EF919E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38A37EFA19E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38A849DA1A4D7D6600A31A96 /* QuickHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */; };
@@ -100,8 +102,6 @@
 		38CDD80219B2856B0086D013 /* UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD7CD19B2856B0086D013 /* UIView.m */; };
 		38CDD80319B2856B0086D013 /* UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD7CF19B2856B0086D013 /* UIViewController.m */; };
 		38CDD80419B2856B0086D013 /* UIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CDD7D119B2856B0086D013 /* UIWebView.m */; };
-		38CDD80719B2858E0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
-		38CDD80A19B2859C0086D013 /* libFoundationExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDD74A19B285400086D013 /* libFoundationExtension.a */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +134,20 @@
 			remoteGlobalIDString = 38904F5B1942C02200858B09;
 			remoteInfo = hangeulTests;
 		};
+		38934DAF1AA3A11800970BD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38CDD74919B285400086D013;
+			remoteInfo = FoundationExtension;
+		};
+		38934DB31AA3A12700970BD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38CDD74919B285400086D013;
+			remoteInfo = FoundationExtension;
+		};
 		38BB7015193FA11000605583 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
@@ -154,20 +168,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 38904F4A1942C02200858B09;
 			remoteInfo = hangeul;
-		};
-		38CDD80519B285880086D013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38CDD74919B285400086D013;
-			remoteInfo = FoundationExtension;
-		};
-		38CDD80819B285990086D013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3882B9EE193F9E6600076C26 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38CDD74919B285400086D013;
-			remoteInfo = FoundationExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -205,6 +205,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		181B0E3CC63C8FB032DB12B8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2B977566168245B09DFDC6C1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		380136AA199C651A00355D69 /* StaticWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticWebViewController.swift; path = ../iOSCore/StaticWebViewController.swift; sourceTree = "<group>"; };
 		380136AD199C67F200355D69 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalActivicyIndicatorView.swift; sourceTree = "<group>"; };
@@ -214,7 +216,6 @@
 		380136B6199CB4A700355D69 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		38303654198A1F1E00C1EE0C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		38303656198D9FA000C1EE0C /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_512x512@2x.png"; path = "OSX/Icons/Gureum.iconset/icon_512x512@2x.png"; sourceTree = SOURCE_ROOT; };
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
 		3830366B199059DE00C1EE0C /* capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = capi.h; path = ../hangeul/hangeul/capi.h; sourceTree = "<group>"; };
 		38324EAD199F476B0031888D /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
@@ -222,7 +223,6 @@
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
 		383B07F019E71482004046F5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		383C036C19EBA5B000CFE876 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -367,6 +367,7 @@
 		38CDD7D119B2856B0086D013 /* UIWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebView.m; sourceTree = "<group>"; };
 		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = default; sourceTree = "<group>"; };
 		38E37EF8199A44EB00BA7F0C /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AFBCA8C38781C21C97255A12 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,10 +375,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38934DB21AA3A12200970BD0 /* libFoundationExtension.a in Frameworks */,
 				383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */,
-				38CDD80A19B2859C0086D013 /* libFoundationExtension.a in Frameworks */,
-				383C036D19EBA5B000CFE876 /* Crashlytics.framework in Frameworks */,
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
+				181431046C196B1304B850F1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38CDD80719B2858E0086D013 /* libFoundationExtension.a in Frameworks */,
+				38934DB51AA3A12A00970BD0 /* libFoundationExtension.a in Frameworks */,
 				386308FD1991438B0039369C /* libhangeul.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +408,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06F9C173477CBEDC2AFC968D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B977566168245B09DFDC6C1 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		38630898199132210039369C /* iOSCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +479,8 @@
 				38D9A398199B7F8E0087A965 /* iOSTheme */,
 				386308A5199132210039369C /* GureumCoreTests */,
 				3882B9F7193F9E6600076C26 /* Products */,
+				D0738081B4DEAF66A247E04F /* Pods */,
+				06F9C173477CBEDC2AFC968D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -488,9 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				383B07F019E71482004046F5 /* StoreKit.framework */,
-				383C036C19EBA5B000CFE876 /* Crashlytics.framework */,
 				3844B239198930BF007A2287 /* Gureum.entitlements */,
-				38303656198D9FA000C1EE0C /* icon_512x512@2x.png */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
 				3836F20F1A53529E0045EE0F /* MainViewController.swift */,
 				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
@@ -700,6 +709,15 @@
 			path = iOSTheme;
 			sourceTree = "<group>";
 		};
+		D0738081B4DEAF66A247E04F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCA8C38781C21C97255A12 /* Pods.debug.xcconfig */,
+				181B0E3CC63C8FB032DB12B8 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -707,18 +725,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3882BA12193F9E6600076C26 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
+				9A23890718AAFD622956BB6D /* Check Pods Manifest.lock */,
 				3882B9F2193F9E6600076C26 /* Sources */,
 				3882B9F3193F9E6600076C26 /* Frameworks */,
 				3882B9F4193F9E6600076C26 /* Resources */,
 				38BB701D193FA11000605583 /* Embed App Extensions */,
 				386308B3199132210039369C /* Embed Frameworks */,
 				383C036E19EC3D3100CFE876 /* ShellScript */,
+				DCDEE6537B7084338C3B9901 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				38CDD80919B285990086D013 /* PBXTargetDependency */,
 				386308FB1991437A0039369C /* PBXTargetDependency */,
+				38934DB01AA3A11800970BD0 /* PBXTargetDependency */,
 				38BB7016193FA11000605583 /* PBXTargetDependency */,
 				38BB7019193FA11000605583 /* PBXTargetDependency */,
 			);
@@ -756,7 +776,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				38CDD80619B285880086D013 /* PBXTargetDependency */,
+				38934DB41AA3A12700970BD0 /* PBXTargetDependency */,
 				38C6A10A19450EA40061CC7C /* PBXTargetDependency */,
 			);
 			name = iOS;
@@ -906,7 +926,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./iOSApp/Crashlytics.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
+			shellScript = "./Pods/CrashlyticsFramework/Crashlytics.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
+		};
+		9A23890718AAFD622956BB6D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DCDEE6537B7084338C3B9901 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1035,6 +1085,16 @@
 			target = 3882B9F5193F9E6600076C26 /* App */;
 			targetProxy = 3882BA09193F9E6600076C26 /* PBXContainerItemProxy */;
 		};
+		38934DB01AA3A11800970BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38CDD74919B285400086D013 /* FoundationExtension */;
+			targetProxy = 38934DAF1AA3A11800970BD0 /* PBXContainerItemProxy */;
+		};
+		38934DB41AA3A12700970BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38CDD74919B285400086D013 /* FoundationExtension */;
+			targetProxy = 38934DB31AA3A12700970BD0 /* PBXContainerItemProxy */;
+		};
 		38BB7016193FA11000605583 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 38BB700E193FA11000605583 /* iOS */;
@@ -1049,16 +1109,6 @@
 			isa = PBXTargetDependency;
 			name = hangeul;
 			targetProxy = 38C6A10919450EA40061CC7C /* PBXContainerItemProxy */;
-		};
-		38CDD80619B285880086D013 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38CDD74919B285400086D013 /* FoundationExtension */;
-			targetProxy = 38CDD80519B285880086D013 /* PBXContainerItemProxy */;
-		};
-		38CDD80919B285990086D013 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38CDD74919B285400086D013 /* FoundationExtension */;
-			targetProxy = 38CDD80819B285990086D013 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1169,6 +1219,7 @@
 		};
 		3882BA13193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFBCA8C38781C21C97255A12 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1180,9 +1231,14 @@
 					"$(PROJECT_DIR)/iOSApp",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hangeul",
+					"$(PROJECT_DIR)/FoundationExtension",
+				);
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
@@ -1191,6 +1247,7 @@
 		};
 		3882BA14193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 181B0E3CC63C8FB032DB12B8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1202,9 +1259,14 @@
 					"$(PROJECT_DIR)/iOSApp",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hangeul",
+					"$(PROJECT_DIR)/FoundationExtension",
+				);
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";

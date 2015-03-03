@@ -231,6 +231,20 @@ class TenKeyAlphabetKeyboardLayout: TenkeyKeyboardLayout {
     }
 }
 
+class TenKeyNumberKeyboardLayout: TenkeyKeyboardLayout {
+    override class func loadContext() -> UnsafeMutablePointer<()> {
+        return context_create(number_from_tenkey_handler(), number_from_tenkey_handler(), number_tenkey_decoder())
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = self.keycodeForPosition(position, shift: false)
+        let titles1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", ""]
+        let titles2 = titles1
+        let label = (self.view.shiftButton.selected ? titles2 : titles1)[keycode]
+        return "\(label)"
+    }
+}
+
 class CheonjiinKeyboardLayout: TenkeyKeyboardLayout {
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
