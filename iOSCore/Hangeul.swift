@@ -40,3 +40,23 @@ func unicodes_to_string(unicodes: [UnicodeScalar]) -> String {
     }
     return result
 }
+
+func unicodes_nfc_to_nfd(unicodes: [UnicodeScalar]) -> [UnicodeScalar] {
+    let nfc_buffer = unicodevector_create()
+    let nfd_buffer = unicodevector_create()
+    for unicode in unicodes {
+        unicodevector_append(nfc_buffer, Unicode(unicode))
+    }
+
+    nfc_to_nfd(nfc_buffer, nfd_buffer)
+
+    var result: [UnicodeScalar] = []
+    for i in 0..<unicodevector_size(nfd_buffer) {
+        let unicode = unicodevector_get(nfd_buffer, i)
+        result.append(UnicodeScalar(unicode))
+    }
+
+    unicodevector_free(nfc_buffer)
+    unicodevector_free(nfd_buffer)
+    return result
+}

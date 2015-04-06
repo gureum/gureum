@@ -52,7 +52,6 @@ class InputViewController: UIInputViewController {
         self.inputMethodView.lastSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
-
     }
 
     override func updateViewConstraints() {
@@ -114,7 +113,7 @@ class InputViewController: UIInputViewController {
 
     override func textWillChange(textInput: UITextInput) {
         // The app is about to change the document's contents. Perform any preparation here.
-        //self.log("text will change: \(self.needsProtection)")
+        self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
         if !self.needsProtection {
             self.inputMethodView.resetContext()
         }
@@ -123,14 +122,14 @@ class InputViewController: UIInputViewController {
     override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
-        //self.log("text did change: \(self.needsProtection)")
+        self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
         if !self.needsProtection || self.deleting {
             self.inputMethodView.resetContext()
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
             self.inputMethodView.selectedLayout.view.shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
-            self.needsProtection = false
         }
+        self.needsProtection = false
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
@@ -144,13 +143,13 @@ class InputViewController: UIInputViewController {
     }
 
     override func selectionDidChange(textInput: UITextInput)  {
-        //self.log("selection did change:")
+        self.log("selection did change:")
         self.inputMethodView.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
     override func selectionWillChange(textInput: UITextInput)  {
-        //self.log("selection will change:")
+        self.log("selection will change:")
         self.inputMethodView.resetContext()
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
@@ -201,26 +200,80 @@ class InputViewController: UIInputViewController {
             proxy.insertText("\(UnicodeScalar(keycode))")
             //self.log("truncate and insert: \(UnicodeScalar(keycode))")
         } else {
+            let commited = context_get_commited_unicodes(context)
+            let composed = context_get_composed_unicodes(context)
+            let combined = commited + composed
+            //self.log("combined: \(combined)")
+            var sharedLength = 0
+            for (i, char) in enumerate(precomposed) {
+                if char == combined[i] {
+                    sharedLength = i + 1
+                } else {
+                    break
+                }
+            }
+
+            let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
+            let unsharedCombined = Array(combined[sharedLength..<combined.count])
+
             //self.log("-- deleting")
-            for _ in precomposed {
+            for _ in unsharedPrecomposed {
                 proxy.deleteBackward()
             }
-            //self.log("-- deleted")
             self.needsProtection = !proxy.hasText()
+            //self.log("-- deleted")
 
             //self.log("-- inserting")
-            let commited = unicodes_to_string(context_get_commited_unicodes(context))
-            if commited.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
-                proxy.insertText(commited)
-            }
-            let composed = unicodes_to_string(context_get_composed_unicodes(context))
-            if composed.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
-                proxy.insertText(composed)
+            //self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
+            if unsharedCombined.count > 0 {
+                let string = unicodes_to_string(unsharedCombined)
+                proxy.insertText(string)
             }
             //self.log("-- inserted")
             self.log("commited: \(commited) / composed: \(composed)")
 
+            /*
+            let NFDPrecomposed = unicodes_nfc_to_nfd(unsharedPrecomposed)
+            let NFDCombined = unicodes_nfc_to_nfd(unsharedCombined)
+
+            var NFDSharedLength = 0
+            for (i, char) in enumerate(NFDPrecomposed) {
+                if char == NFDCombined[i] {
+                    NFDSharedLength = i + 1
+                } else {
+                    break
+                }
+            }
+
+            let NFDUnsharedPrecomposed = Array(NFDPrecomposed[NFDSharedLength..<NFDPrecomposed.count])
+            let NFDUnsharedCombined = Array(NFDCombined[NFDSharedLength..<NFDCombined.count])
+
+            if NFDUnsharedPrecomposed.count == 0 {
+                if NFDUnsharedCombined.count > 0 {
+                    let string = unicodes_to_string(NFDUnsharedCombined)
+                    proxy.insertText(string)
+                }
+            } else {
+                //self.log("-- deleting")
+                for _ in unsharedPrecomposed {
+                    proxy.deleteBackward()
+                }
+                self.needsProtection = !proxy.hasText()
+                //self.log("-- deleted")
+
+                //self.log("-- inserting")
+                //self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
+                if unsharedCombined.count > 0 {
+                    let string = unicodes_to_string(NFDCombined)
+                    proxy.insertText(string)
+                }
+                //self.log("-- inserted")
+                self.log("commited: \(commited) / composed: \(composed)")
+            }
+            */
+
         }
+        self.log("input done")
         //self.log("after: \(proxy.documentContextAfterInput)")
     }
 
@@ -273,15 +326,39 @@ class InputViewController: UIInputViewController {
         let context = self.inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicodes(context)
         if precomposed.count > 0 {
-            self.deleting = true
-            for _ in precomposed {
-                (self.textDocumentProxy as UIKeyInput).deleteBackward()
-            }
-            self.deleting = false
             let processed = context_put(context, InputSource(sender.tag))
+            let proxy = self.textDocumentProxy as UIKeyInput
             if processed {
-                let composed = unicodes_to_string(context_get_composed_unicodes(context))
-                proxy.insertText("\(composed)")
+                self.log("start deleting")
+                let commited = context_get_commited_unicodes(context)
+                let composed = context_get_composed_unicodes(context)
+                let combined = commited + composed
+                //self.log("combined: \(combined)")
+                var sharedLength = 0
+                for (i, char) in enumerate(combined) {
+                    if char == precomposed[i] {
+                        sharedLength = i + 1
+                    } else {
+                        break
+                    }
+                }
+                let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
+                let unsharedCombined = Array(combined[sharedLength..<combined.count])
+
+                self.deleting = true
+                for _ in unsharedPrecomposed {
+                    proxy.deleteBackward()
+                }
+                self.deleting = false
+                self.needsProtection = sharedLength == 0
+
+                if unsharedCombined.count > 0 {
+                    let composed = unicodes_to_string(unsharedCombined)
+                    proxy.insertText("\(composed)")
+                }
+                self.log("end deleting")
+            } else {
+                proxy.deleteBackward()
             }
             //self.log("deleted and add \(UnicodeScalar(composed))")
         } else {

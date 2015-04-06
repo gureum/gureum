@@ -259,3 +259,35 @@ class CheonjiinKeyboardLayout: TenkeyKeyboardLayout {
         return "\(label)"
     }
 }
+
+class CheonjiinPlusKeyboardLayout: TenkeyKeyboardLayout {
+
+    override func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
+        return position.row * 6 + position.column
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+        switch row {
+            case 0: return 4
+            case 1, 2: return 6
+            case 3: return 5
+            default: return 0
+        }
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+        return size.width / 5
+    }
+
+    override class func loadContext() -> UnsafeMutablePointer<()> {
+        return context_create(cheonjiin_from_tenkey_handler(), cheonjiin_from_tenkey_handler(), cheonjiin_decoder())
+    }
+
+    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = self.keycodeForPosition(position, shift: false)
+        let titles1 = ["ㅣ", "·", "··", "ㅡ", "ㄱ", "ㅋ", "ㄴ", "ㄹ", "ㄷ", "ㅌ", "ㅂ", "ㅍ", "ㅅ", "ㅎ", "ㅈ", "ㅊ", "⇨", "ㅇ", "ㅁ", ".,", "?!"]
+        let titles2 = titles1
+        let label = (self.view.shiftButton.selected ? titles2 : titles1)[keycode]
+        return "\(label)"
+    }
+}
