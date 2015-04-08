@@ -175,7 +175,7 @@ class KeyboardViewEventView: UIView {
 //        if self.touchedButtons.count == 0 {
 //            self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.36, target: self, selector: "checkUntouchingTimer:", userInfo: nil, repeats: false)
 //        }
-
+//
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
 //        }

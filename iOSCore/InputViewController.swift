@@ -311,9 +311,9 @@ class InputViewController: UIInputViewController {
         }
     }
 
-    func untouch(sender: UIButton) {
-        self.inputMethodView.resetContext()
-    }
+//    func untouch(sender: UIButton) {
+//        context_put(self.inputMethodView.selectedLayout.context, InputSource(0))
+//    }
 
     func error(sender: UIButton) {
         self.inputMethodView.resetContext()
