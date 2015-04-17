@@ -24,7 +24,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         if let data = data {
             var error: NSError? = nil
-            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
+            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>
             assert(error == nil)
             entries = items
         }
@@ -57,7 +57,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sub: AnyObject? = self.entries[section]["items"]
         assert(sub != nil)
-        let items = sub! as Array<AnyObject>
+        let items = sub! as! Array<AnyObject>
         return items.count
     }
 
@@ -84,9 +84,9 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub! as Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub! as! Array<Dictionary<String, String>>)[indexPath.row]
 
-        if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell? {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell {
             cell.textLabel!.text = item["title"]
             cell.accessoryType = item["addr"] == self.themeAddress ? .Checkmark : .None
             return cell
@@ -96,17 +96,17 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         }
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let category = self.entries[section]
         let sub: AnyObject? = category["section"]
         assert(sub != nil)
-        return sub! as String
+        return sub as? String
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
         self.themeAddress = item["addr"]!
 
         self.navigationItem.rightBarButtonItem = self.doneButton
@@ -125,12 +125,12 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
     //println("\(node)")
     if node is String {
-        let str = node as String
+        let str = node as! String
         return [str: true]
     }
     else if node is Dictionary<String, AnyObject> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in (node as Dictionary<String, AnyObject>).values {
+        for subnode in (node as! Dictionary<String, AnyObject>).values {
             let collection = collectResources(subnode)
             for collected in collection.keys {
                 resources[collected] = true
@@ -140,7 +140,7 @@ func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
     }
     else if node is Array<AnyObject> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in node as Array<AnyObject> {
+        for subnode in node as! Array<AnyObject> {
             let collection = collectResources(subnode)
             for collected in collection.keys {
                 resources[collected] = true
@@ -213,13 +213,13 @@ extension Theme {
     }
 
     func dump() {
-        let traitsConfiguration = self.mainConfiguration["trait"] as NSDictionary?
+        let traitsConfiguration = self.mainConfiguration["trait"] as? NSDictionary
         var resources = Dictionary<String, String>()
         assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
-        for traitFilename in traitsConfiguration!.allValues {
-            let datastr = self.encodedDataForFilename(traitFilename as String)
+        for traitFilename in traitsConfiguration!.allValues as! [String] {
+            let datastr = self.encodedDataForFilename(traitFilename)
             assert(datastr != nil)
-            resources[traitFilename as String] = datastr!
+            resources[traitFilename] = datastr!
             var error: NSError? = nil
             let root: AnyObject? = self.JSONObjectForFilename(traitFilename as String, error: &error)
             assert(error == nil, "trait 파일이 올바른 JSON 파일이 아닙니다. \(traitFilename)")

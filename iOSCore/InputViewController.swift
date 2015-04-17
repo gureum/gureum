@@ -11,12 +11,8 @@ import UIKit
 var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
 
-class InputViewController: UIInputViewController {
+class MockInputViewController: UIInputViewController {
     let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
-    var initialized = false
-    var needsProtection = false
-    var deleting = false
-    var modeDate = NSDate()
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
@@ -31,11 +27,109 @@ class InputViewController: UIInputViewController {
     func log(text: String) {
         println(text)
         return;
-        
+
         let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
         self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
         self.view.bringSubviewToFront(self.logTextView)
     }
+
+    func input(sender: UIButton) {
+
+    }
+
+    func inputDelete(sender: UIButton) {
+
+    }
+
+    func reloadInputMethodView() {
+
+    }
+    
+}
+
+class InputViewController2: MockInputViewController {
+    var initialized = false
+    var needsProtection = false
+    var deleting = false
+    var modeDate = NSDate()
+
+    override func loadView() {
+        //globalInputViewController = self
+        self.view = self.inputMethodView
+    }
+
+    override func viewDidLoad() {
+        //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
+        self.log("loaded: \(self.view.frame)")
+        //globalInputViewController = self
+        super.viewDidLoad()
+
+        dispatch_async(dispatch_get_main_queue(), { // prevent timeout
+            self.initialized = true
+            let proxy = self.textDocumentProxy as! UITextInputTraits
+            self.log("adding input method view")
+            self.inputMethodView.loadFromTheme(proxy)
+            self.log("added method view")
+        })
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if initialized {
+            //self.log("viewWillLayoutSubviews \(self.view.bounds)")
+            self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        if initialized {
+            //self.log("viewDidLayoutSubviews \(self.view.bounds)")
+            self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
+        }
+        super.viewDidLayoutSubviews()
+    }
+
+    override func textWillChange(textInput: UITextInput) {
+        super.textWillChange(textInput)
+        // The app is about to change the document's contents. Perform any preparation here.
+        //self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
+        if !self.needsProtection {
+            self.inputMethodView.resetContext()
+        }
+    }
+
+    /*
+    override func textDidChange(textInput: UITextInput) {
+        // The app has just changed the document's contents, the document context has been updated.
+        //        self.keyboard.view.logTextView.text = ""
+        self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
+        if !self.needsProtection || self.deleting {
+            self.inputMethodView.resetContext()
+            self.inputMethodView.selectedCollection.selectLayoutIndex(0)
+            self.inputMethodView.selectedLayout.view.shiftButton.selected = false
+            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        }
+        self.needsProtection = false
+        //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
+
+        var textColor: UIColor
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
+            textColor = UIColor.whiteColor()
+        } else {
+            textColor = UIColor.blackColor()
+        }
+        //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
+    }
+    */
+
+}
+
+class InputViewController: MockInputViewController {
+    var initialized = false
+    var needsProtection = false
+    var deleting = false
+    var modeDate = NSDate()
 
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -46,18 +140,12 @@ class InputViewController: UIInputViewController {
 //        super.init(coder: coder)
 //    }
 
-    func reloadInputMethodView() {
-        let proxy = self.textDocumentProxy as UITextInputTraits
+    override func reloadInputMethodView() {
+        let proxy = self.textDocumentProxy as! UITextInputTraits
         self.inputMethodView.loadFromTheme(proxy)
         self.inputMethodView.lastSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
-    }
-
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-    
-        // Add custom view sizing constraints here
     }
 
     override func loadView() {
@@ -69,21 +157,10 @@ class InputViewController: UIInputViewController {
         //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
         self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
-//        var view = self.view
-//        while true {
-//            view.clipsToBounds = false
-//            if let superview = view.superview {
-//                view = superview
-//            } else {
-//                break
-//            }
-//        }
-//        self.view.frame = CGRectMake(0.0, 0.0, 320.0, 216.0)
-//        self.view.addSubview(self.inputMethodViewController.view)
-//        self.log("subview: \(self.inputMethodViewController.view.bounds)")
+
         dispatch_async(dispatch_get_main_queue(), { // prevent timeout
             self.initialized = true
-            let proxy = self.textDocumentProxy as UITextInputTraits
+            let proxy = self.textDocumentProxy as! UITextInputTraits
             self.log("adding input method view")
             self.inputMethodView.loadFromTheme(proxy)
             self.log("added method view")
@@ -113,7 +190,8 @@ class InputViewController: UIInputViewController {
 
     override func textWillChange(textInput: UITextInput) {
         // The app is about to change the document's contents. Perform any preparation here.
-        self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
+        super.textWillChange(textInput)
+        //self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
         if !self.needsProtection {
             self.inputMethodView.resetContext()
         }
@@ -122,7 +200,7 @@ class InputViewController: UIInputViewController {
     override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
-        self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
+        //self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
         if !self.needsProtection || self.deleting {
             self.inputMethodView.resetContext()
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
@@ -133,13 +211,14 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
         if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
             textColor = UIColor.whiteColor()
         } else {
             textColor = UIColor.blackColor()
         }
         //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
+        super.textDidChange(textInput)
     }
 
     override func selectionDidChange(textInput: UITextInput)  {
@@ -154,8 +233,8 @@ class InputViewController: UIInputViewController {
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
-    func input(sender: UIButton) {
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
+    override func input(sender: UIButton) {
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.log("before: \(proxy.documentContextBeforeInput)");
         //println("\(self.context) \(sender.tag)")
 
@@ -277,6 +356,52 @@ class InputViewController: UIInputViewController {
         //self.log("after: \(proxy.documentContextAfterInput)")
     }
 
+    override func inputDelete(sender: UIButton) {
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        let context = self.inputMethodView.selectedLayout.context
+        let precomposed = context_get_composed_unicodes(context)
+        if precomposed.count > 0 {
+            let processed = context_put(context, InputSource(sender.tag))
+            let proxy = self.textDocumentProxy as! UIKeyInput
+            if processed {
+                self.log("start deleting")
+                let commited = context_get_commited_unicodes(context)
+                let composed = context_get_composed_unicodes(context)
+                let combined = commited + composed
+                //self.log("combined: \(combined)")
+                var sharedLength = 0
+                for (i, char) in enumerate(combined) {
+                    if char == precomposed[i] {
+                        sharedLength = i + 1
+                    } else {
+                        break
+                    }
+                }
+                let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
+                let unsharedCombined = Array(combined[sharedLength..<combined.count])
+
+                self.deleting = true
+                for _ in unsharedPrecomposed {
+                    proxy.deleteBackward()
+                }
+                self.deleting = false
+                self.needsProtection = sharedLength == 0
+
+                if unsharedCombined.count > 0 {
+                    let composed = unicodes_to_string(unsharedCombined)
+                    proxy.insertText("\(composed)")
+                }
+                self.log("end deleting")
+            } else {
+                proxy.deleteBackward()
+            }
+            //self.log("deleted and add \(UnicodeScalar(composed))")
+        } else {
+            (self.textDocumentProxy as! UIKeyInput).deleteBackward()
+            //self.log("deleted")
+        }
+    }
+
     func shift(sender: UIButton) {
         sender.selected = !sender.selected
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
@@ -317,53 +442,8 @@ class InputViewController: UIInputViewController {
 
     func error(sender: UIButton) {
         self.inputMethodView.resetContext()
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
         proxy.insertText("<error: \(sender.tag)>");
     }
 
-    func inputDelete(sender: UIButton) {
-        let proxy = self.textDocumentProxy as UITextDocumentProxy
-        let context = self.inputMethodView.selectedLayout.context
-        let precomposed = context_get_composed_unicodes(context)
-        if precomposed.count > 0 {
-            let processed = context_put(context, InputSource(sender.tag))
-            let proxy = self.textDocumentProxy as UIKeyInput
-            if processed {
-                self.log("start deleting")
-                let commited = context_get_commited_unicodes(context)
-                let composed = context_get_composed_unicodes(context)
-                let combined = commited + composed
-                //self.log("combined: \(combined)")
-                var sharedLength = 0
-                for (i, char) in enumerate(combined) {
-                    if char == precomposed[i] {
-                        sharedLength = i + 1
-                    } else {
-                        break
-                    }
-                }
-                let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
-                let unsharedCombined = Array(combined[sharedLength..<combined.count])
-
-                self.deleting = true
-                for _ in unsharedPrecomposed {
-                    proxy.deleteBackward()
-                }
-                self.deleting = false
-                self.needsProtection = sharedLength == 0
-
-                if unsharedCombined.count > 0 {
-                    let composed = unicodes_to_string(unsharedCombined)
-                    proxy.insertText("\(composed)")
-                }
-                self.log("end deleting")
-            } else {
-                proxy.deleteBackward()
-            }
-            //self.log("deleted and add \(UnicodeScalar(composed))")
-        } else {
-            (self.textDocumentProxy as UIKeyInput).deleteBackward()
-            //self.log("deleted")
-        }
-    }
 }

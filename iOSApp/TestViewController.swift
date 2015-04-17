@@ -13,7 +13,7 @@ class TestViewController: PreviewViewController {
 
     override func update() {
         super.update()
-        let proxy = self.inputPreviewController.textDocumentProxy as UITextDocumentProxy
+        let proxy = self.inputPreviewController.textDocumentProxy as! UITextDocumentProxy
         self.previewField.text = "\(proxy.documentContextBeforeInput)"
     }
 

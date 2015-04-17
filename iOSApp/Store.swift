@@ -12,16 +12,16 @@ class StoreCategory {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: AnyObject) {
+    init(owner: Store, data: NSDictionary) {
         self.owner = owner
-        self.data = data as NSDictionary
+        self.data = data
     }
 
-    lazy var title: String = self.data["section"] as String
+    lazy var title: String = self.data["section"] as! String
     func itemForRow(row: Int) -> StoreItem {
-        let items: AnyObject? = self.data["items"]
+        let items = self.data["items"] as! NSArray?
         assert(items != nil)
-        return StoreItem(owner: self.owner, data: (items as NSArray)[row])
+        return StoreItem(owner: self.owner, data: items![row] as! NSDictionary)
     }
 }
 
@@ -29,15 +29,15 @@ class StoreItem {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: AnyObject) {
+    init(owner: Store, data: NSDictionary) {
         self.owner = owner
-        self.data = data as NSDictionary
+        self.data = data
     }
 
-    lazy var title: String = self.data["title"] as String
+    lazy var title: String = self.data["title"] as! String
 
     lazy var product: SKProduct! = {
-        if let pid = self.data["id"] as String? {
+        if let pid = self.data["id"] as? String {
             let product = self.owner.products[pid]
             return product
         } else {
@@ -70,17 +70,17 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
             return
         }
 
-        if let items: NSArray = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: &error) as NSArray? {
+        if let items = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: &error) as? NSArray {
             self.entries = items
 
-            var names = NSMutableSet()
+            var names = Set<String>()
             for category in entries {
-                let items = category["items"]
+                let items = category["items"] as? NSArray
                 assert(items != nil)
-                for ritem in items as NSArray {
-                    let item = ritem as NSDictionary
-                    if let pid: AnyObject = item["id"] {
-                        names.addObject(pid)
+                for ritem in items! {
+                    let item = ritem as! NSDictionary
+                    if let pid = item["id"] as? String {
+                        names.insert(pid)
                     }
                 }
             }
@@ -100,7 +100,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     func categoryForSection(section: Int) -> StoreCategory {
         let sub: AnyObject? = self.entries[section]
         assert(sub != nil)
-        return StoreCategory(owner: self, data: sub!)
+        return StoreCategory(owner: self, data: sub! as! NSDictionary)
     }
 
     func itemForIndexPath(indexPath: NSIndexPath) -> StoreItem {
@@ -118,8 +118,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
-        for rawTransaction in transactions {
-            let transaction = rawTransaction as SKPaymentTransaction
+        for transaction in transactions as! [SKPaymentTransaction] {
             println("transaction: \(transaction)")
             switch transaction.transactionState {
                     ///< 서버에 거래 처리중

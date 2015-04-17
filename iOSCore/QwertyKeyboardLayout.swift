@@ -32,7 +32,7 @@ func getKey(keylines: [String], position: GRKeyboardLayoutHelper.Position) -> Un
 class QwertyKeyboardLayout: KeyboardLayout {
     var qwertyView: QwertyKeyboardView {
         get {
-            return self.view as QwertyKeyboardView
+            return self.view as! QwertyKeyboardView
         }
     }
 
@@ -224,7 +224,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let button = GRInputButton.buttonWithType(.System) as! GRInputButton
         let key1 =  self.keyForPosition(position, shift: false)
         let key2 =  self.keyForPosition(position, shift: true)
         button.tag = Int(((key2.value) << 15) + key1.value)

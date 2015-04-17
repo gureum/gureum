@@ -41,14 +41,14 @@ class KeyboardViewEventView: UIView {
 
     var keyboardView: KeyboardView {
         get {
-            return self.superview! as KeyboardView
+            return self.superview! as! KeyboardView
         }
     }
 
     func resetTouching() {
         self.stopTouching()
         //self.untouchingTimer.invalidate()
-        self.touchingButtons = self.touchedButtons.copy() as NSArray
+        self.touchingButtons = self.touchedButtons.copy() as! NSArray
         self.touchingTimer = NSTimer.scheduledTimerWithTimeInterval(0.014, target: self, selector: "checkTouchingTimer:", userInfo: nil, repeats: true)
     }
 
@@ -72,7 +72,7 @@ class KeyboardViewEventView: UIView {
         self.touchingCount += 1
 
         if self.touchingCount >= MINIMAL_COUNT && self.touchingCount % 10 == 0 || self.touchingCount >= MINIMAL_COUNT * 4 && self.touchingCount % 5 == 0 {
-            let button = self.touchedButtons[0] as GRInputButton
+            let button = self.touchedButtons[0] as! GRInputButton
             button.sendActionsForControlEvents(.TouchUpInside)
         }
         //println("touching \(self.touchingCount)")
@@ -82,7 +82,7 @@ class KeyboardViewEventView: UIView {
 //        self.keyboardView.untouchButton.sendActionsForControlEvents(.TouchUpInside)
 //    }
 
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         //println("touch began?")
         if touches.count == 1 {
             self.resetTouching()
@@ -92,12 +92,11 @@ class KeyboardViewEventView: UIView {
         self.touchesMoved(touches, withEvent: event)
     }
 
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         var buttons: [GRInputButton: Bool] = [:]
         var orphans: [GRInputButton] = []
 
-        for rawTouch in event.allTouches()! {
-            let touch = rawTouch as UITouch
+        for touch in event.allTouches()! as! Set<UITouch> {
             let prevPoint = touch.previousLocationInView(self)
             let prevButton = self.keyboardView.layout.correspondingButtonForPoint(prevPoint, size: self.frame.size)
             let point = touch.locationInView(self)
@@ -115,7 +114,7 @@ class KeyboardViewEventView: UIView {
         }
 
         for raw in self.touchedButtons {
-            let button = raw as GRInputButton
+            let button = raw as! GRInputButton
             if buttons[button] == nil {
                 button.hideEffect()
                 orphans.append(button)
@@ -141,9 +140,8 @@ class KeyboardViewEventView: UIView {
 //        }
     }
 
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        for rawTouch in event.allTouches()! {
-            let touch = rawTouch as UITouch
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch in event.allTouches()! as! Set<UITouch> {
             if touch.phase != .Ended {
                 continue
             }
@@ -155,7 +153,7 @@ class KeyboardViewEventView: UIView {
             }
             if self.touchedButtons.containsObject(button) {
                 while self.touchedButtons.count > 0 {
-                    let poppedButton = self.touchedButtons[0] as GRInputButton
+                    let poppedButton = self.touchedButtons[0] as! GRInputButton
                     self.touchedButtons.removeObjectAtIndex(0)
                     if self.touchingButtons.count != 1 || self.touchingCount < MINIMAL_COUNT {
                         poppedButton.sendActionsForControlEvents(.TouchUpInside)
@@ -181,9 +179,8 @@ class KeyboardViewEventView: UIView {
 //        }
     }
 
-    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
-        for rawTouch in event.allTouches()! {
-            let touch = rawTouch as UITouch
+    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+        for touch in event.allTouches()! as! Set<UITouch> {
             if touch.phase != .Cancelled {
                 continue
             }
@@ -216,11 +213,6 @@ class KeyboardView: UIView {
 
     func needsMargin() -> Bool {
         return true
-    }
-
-    override init() {
-        super.init()
-        self.backgroundColor = UIColor.clearColor()
     }
 
     override init(frame: CGRect) {
@@ -330,7 +322,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
                 continue
             }
             if CGRectContainsPoint(button.frame, newPoint) {
-                return button as GRInputButton
+                return button as! GRInputButton
             }
         }
 
@@ -399,7 +391,11 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme {
-        return globalInputViewController!.inputMethodView.theme
+        if let inputViewController = globalInputViewController {
+            return inputViewController.inputMethodView.theme
+        } else {
+            return PreferencedTheme()
+        }
     }
 }
 
@@ -465,7 +461,7 @@ class NoKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let button = GRInputButton.buttonWithType(.System) as! GRInputButton
         button.tag = Int(UnicodeScalar(" ").value)
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)

@@ -45,8 +45,8 @@ class Preferences {
     var layouts: Array<String> {
         get {
             let defaultValue: Array<AnyObject> = ["qwerty", "ksx5002"]
-            let result = getArrayForKey("layouts", defaultValue: defaultValue)
-            return result as AnyObject as Array<String>
+            let result = getArrayForKey("layouts", defaultValue: defaultValue) as! Array<String>
+            return result
         }
 
         set {
@@ -57,7 +57,7 @@ class Preferences {
     var defaultLayoutIndex: Int {
         get {
             let defaultValue: AnyObject = NSNumber(integer: 1)
-            let rawIndex = getObjectForKey("layoutindex", defaultValue: defaultValue) as NSNumber
+            let rawIndex = getObjectForKey("layoutindex", defaultValue: defaultValue) as! NSNumber
             let index: Int = rawIndex.integerValue
             if index >= self.layouts.count {
                 return self.layouts.count - 1
@@ -73,7 +73,7 @@ class Preferences {
 
     var themeAddress: String {
         get {
-            let result = self.getObjectForKey("themeaddr", defaultValue: "res://default") as NSString
+            let result = self.getObjectForKey("themeaddr", defaultValue: "res://default") as! NSString
             return result as String
         }
 
@@ -91,7 +91,7 @@ class Preferences {
             // FIXME: Dictionary to NSDictioanry
             var dict: NSMutableDictionary = [:]
             for (key, value) in newValue {
-                dict[key as String] = value
+                dict[key as! String] = value
             }
             self.setObjectForKey("themeresource", value: dict)
         }
@@ -107,14 +107,14 @@ class Preferences {
     }
 
     func setResourceCache(data: NSData, forKey key: String) {
-        let caches = self.resourceCaches.mutableCopy() as NSMutableDictionary
+        let caches = self.resourceCaches.mutableCopy() as! NSMutableDictionary
         let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data)
         caches.setObject(encoded, forKey: key)
         self.setObjectForKey("rcache", value: caches)
     }
 
     func resourceCacheForKey(key: String) -> NSData! {
-        if let encoded = self.resourceCaches[key] as String? {
+        if let encoded = self.resourceCaches[key] as? String {
             return ThemeResourceCoder.defaultCoder().decodeToData(encoded)
         } else {
             return nil
@@ -126,7 +126,7 @@ let preferences = Preferences()
 
 class PreferencedTheme: Theme {
     override func dataForFilename(name: String) -> NSData? {
-        if let rawData = preferences.themeResources[name] as String? {
+        if let rawData = preferences.themeResources[name] as? String {
             let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)
             return data
         } else {

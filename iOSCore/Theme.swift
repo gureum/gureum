@@ -68,14 +68,13 @@ class Theme {
     lazy var mainConfiguration: NSDictionary = {
         var error: NSError? = nil
         let filename = "config.json"
-        let JSONObject = self.JSONObjectForFilename(filename, error: &error) as NSDictionary!
-        assert(JSONObject != nil)
+        let JSONObject = self.JSONObjectForFilename(filename, error: &error) as! NSDictionary
         return JSONObject
     }()
 
     func traitForName(traitName: String, topMargin: CGFloat) -> ThemeTraitConfiguration {
-        if let traits = self.mainConfiguration["trait"] as NSDictionary? {
-            if let traitFilename = traits[traitName] as String? {
+        if let traits = self.mainConfiguration["trait"] as? NSDictionary {
+            if let traitFilename = traits[traitName] as? String {
                 var error: NSError? = nil
                 let traitData: AnyObject! = self.JSONObjectForFilename(traitFilename, error: &error)
                 assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
@@ -92,18 +91,19 @@ class Theme {
 
     func traitForSize(size: CGSize) -> ThemeTraitConfiguration {
         switch size.width {
-        case 320.0:
+        case 320.0, 375.0:
             return self.phonePortraitConfiguration
         case 480.0:
             return self.phoneLandscape480Configuration
-        case 568.0:
+        case 568.0, 667.0:
             return self.phoneLandscape568Configuration
         case 768.0:
             return self.padPortraitConfiguration
         case 1024.0:
             return self.padLandscapeConfiguration
         default:
-            assert(false, "no coverage")
+            globalInputViewController?.log("size: \(size)")
+            //assert(false, "no coverage")
             return self.phonePortraitConfiguration
         }
     }
@@ -138,17 +138,17 @@ class ThemeTraitConfiguration {
     init(owner: Theme, configuration: AnyObject?, topMargin: CGFloat) {
         self.owner = owner
         self.topMargin = topMargin
-        self.configuration = configuration as NSDictionary?
+        self.configuration = configuration as? NSDictionary
     }
 
     lazy var backgroundImage: UIImage? = {
-        let configFilename = self.configuration["background"] as String?
+        let configFilename = self.configuration["background"] as? String
         let filename = configFilename ?? "background.png"
         return self.owner.imageForFilename(filename)
     }()
 
     lazy var foregroundImage: UIImage? = {
-        let configFilename = self.configuration["foreground"] as String?
+        let configFilename = self.configuration["foreground"] as? String
         let filename = configFilename ?? "foreground.png"
         return self.owner.imageForFilename(filename)
     }()
@@ -240,16 +240,16 @@ class ThemeCaptionConfiguration {
 
         if given is String {
             var sub: AnyObject? = full["image"]
-            var image = sub as Array<NSString>
-            image.append(given as String)
+            var image = sub as! Array<NSString>
+            image.append(given as! NSString)
         }
         else if given is Array<String!> {
             full["image"] = configuration
             var sub: AnyObject? = full["image"]
-            var image = sub as Array<NSString>
+            var image = sub as! Array<NSString>
         }
         else {
-            full = given as Dictionary<String, AnyObject>
+            full = given as! Dictionary<String, AnyObject>
         }
 
         self.configuration = full
@@ -347,7 +347,7 @@ class ThemeCaptionConfiguration {
 
     func _images() -> (UIImage?, UIImage?, UIImage?) {
         let sub: AnyObject? = self.configuration["image"]
-        let imageConfiguration = sub as Array<String!>?
+        let imageConfiguration = sub as? Array<String!>
         if imageConfiguration == nil || imageConfiguration!.count == 0 {
             return self.fallback.images
         }
@@ -368,7 +368,7 @@ class ThemeCaptionConfiguration {
     lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
 
     lazy var labelConfiguration: Dictionary<String, AnyObject> = {
-        if let sub = self.configuration["label"] as Dictionary<String, AnyObject>? {
+        if let sub = self.configuration["label"] as? Dictionary<String, AnyObject> {
             return sub
         } else {
             return self.fallback.labelConfiguration
@@ -388,7 +388,7 @@ class ThemeCaptionConfiguration {
         let subText: AnyObject? = self.labelConfiguration["glyph"]
         //println("glyph: \(subText)")
         if subText is String {
-            let image = self.trait.owner.imageForFilename(subText as String)
+            let image = self.trait.owner.imageForFilename(subText as! String)
             //println("glyph image: \(image)")
             return image
         } else {
@@ -399,7 +399,7 @@ class ThemeCaptionConfiguration {
     lazy var position: CGPoint = {
         let sub: AnyObject? = self.labelConfiguration["position"]
         if sub is Array<CGFloat> {
-            let rawPosition = sub as Array<CGFloat>
+            let rawPosition = sub as! Array<CGFloat>
             let position = CGPointMake(rawPosition[0], rawPosition[1])
             return position
         } else {
@@ -422,27 +422,26 @@ class ThemeCaptionConfiguration {
 
         assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
 
-        let fontConfiguration = subFont! as Dictionary<String, AnyObject>
+        let fontConfiguration = subFont as! Dictionary<String, AnyObject>
         var font: UIFont?
 
         let (fallbackFont, fallbackColor) = fallback()
 
-        let subFontName: AnyObject? = fontConfiguration["name"]
-        let subFontSize: AnyObject? = fontConfiguration["size"]
-        let fontSize = subFontSize as CGFloat? ?? fallbackFont.pointSize
+        let subFontName = fontConfiguration["name"] as? String
+        let subFontSize = fontConfiguration["size"] as? CGFloat
+        let fontSize = subFontSize ?? fallbackFont.pointSize
         if subFontName != nil {
-            font = UIFont(name: subFontName as String, size: fontSize)
+            font = UIFont(name: subFontName!, size: fontSize)
         } else {
             font = fallbackFont.fontWithSize(fontSize)
         }
         assert(font != nil, "올바른 폰트 이름이 아닙니다")
 
-        let subFontColorCode: AnyObject? = fontConfiguration["color"]
         var fontColor: UIColor
-        if subFontColorCode == nil {
-            fontColor = fallbackColor
+        if let subFontColorCode = fontConfiguration["color"] as? String {
+            fontColor = UIColor(HTMLExpression: subFontColorCode)
         } else {
-            fontColor = UIColor(HTMLExpression: subFontColorCode as String)
+            fontColor = fallbackColor
         }
         return (font!, fontColor)
     }()
@@ -451,15 +450,15 @@ class ThemeCaptionConfiguration {
         if let sub: AnyObject = self.configuration["effect"] {
             //println("effect: \(sub)")
             assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
-            return sub as Dictionary<String, AnyObject>
+            return sub as! Dictionary<String, AnyObject>
         } else {
             return self.fallback.effectConfiguration
         }
     }()
 
     lazy var effectBackgroundImage: UIImage? = {
-        if let sub: AnyObject = self.effectConfiguration["background"] {
-            if let image = self.trait.owner.imageForFilename(sub as String) {
+        if let sub = self.effectConfiguration["background"] as? String {
+            if let image = self.trait.owner.imageForFilename(sub) {
                 return image
             }
         }
@@ -467,23 +466,17 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var effectEdgeInsets: UIEdgeInsets = {
-        if let sub: AnyObject? = self.effectConfiguration["padding"] {
-            if sub is Array<CGFloat> {
-                let rawInsets = sub as Array<CGFloat>
-                let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
-                return insets
-            }
+        if let rawInsets = self.effectConfiguration["padding"] as? Array<CGFloat> {
+            let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
+            return insets
         }
         return self.fallback.effectEdgeInsets
     }()
 
     lazy var effectPosition: CGPoint = {
-        if let sub: AnyObject? = self.effectConfiguration["position"] {
-            if sub is Array<CGFloat> {
-                let rawPosition = sub as Array<CGFloat>
-                let position = CGPointMake(rawPosition[0], rawPosition[1])
-                return position
-            }
+        if let rawPosition = self.effectConfiguration["position"] as? Array<CGFloat> {
+            let position = CGPointMake(rawPosition[0], rawPosition[1])
+            return position
         }
         return self.fallback.effectPosition
     }()
@@ -582,7 +575,7 @@ class CachedTheme: Theme {
 
     override func dataForFilename(name: String) -> NSData? {
         let key = name + "_"
-        if let data = _cache[key] as NSData?? {
+        if let data = _cache[key] as? NSData? {
             return data
         }
         let data = self.theme.dataForFilename(name)
@@ -592,7 +585,7 @@ class CachedTheme: Theme {
 
     override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
         let key = name + "_\(margin)"
-        if let data = _cache[key] as UIImage?? {
+        if let data = _cache[key] as? UIImage? {
             return data
         }
         let data = self.theme.imageForFilename(name, withTopMargin: margin)

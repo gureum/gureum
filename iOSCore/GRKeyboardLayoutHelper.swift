@@ -78,7 +78,7 @@ class GRKeyboardLayoutHelper {
                 let rightButtons = delegate.helper(self, rightButtonsForRow: row)
 
                 for button in delegate.helper(self, leftButtonsForRow: row) {
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    view.insertSubview(button, belowSubview: view.subviews.last as! UIView)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     //button.preload()
                 }
@@ -87,11 +87,11 @@ class GRKeyboardLayoutHelper {
                     var button = delegate.helper(self, buttonForPosition: position)
                     self.buttons[position] = button
                     assert(view.subviews.count > 0)
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    view.insertSubview(button, belowSubview: view.subviews.last as! UIView)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                 }
                 for button in delegate.helper(self, rightButtonsForRow: row) {
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
+                    view.insertSubview(button, belowSubview: view.subviews.last as! UIView)
                     button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
                     //button.preload()
                 }

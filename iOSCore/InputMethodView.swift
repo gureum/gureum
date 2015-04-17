@@ -165,7 +165,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         } else {
             self.lastSize = size
         }
-        globalInputViewController?.log("transitionViewToSize: \(size)")
+
+//        globalInputViewController?.log("transitionViewToSize: \(size)")
         let layoutIndex = self.selectedLayoutIndex
         let theme = self.theme
         let trait = theme.traitForSize(size)
@@ -181,6 +182,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 layout.view.frame.size.width = size.width
             }
         }
+
 //        dispatch_async(dispatch_get_main_queue(), {
         for (i, collection) in enumerate(self.collections) {
             for layout in collection.layouts {

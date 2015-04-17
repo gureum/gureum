@@ -45,11 +45,11 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("add") as UITableViewCell?
+            var cell = tableView.dequeueReusableCellWithIdentifier("add") as? UITableViewCell
             return cell!
         }
 
-        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
+        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell)!
 
         let layoutNames = preferences.layouts
         let row = indexPath.row

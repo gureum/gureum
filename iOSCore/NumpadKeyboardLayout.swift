@@ -26,7 +26,7 @@ class TenkeyKeyboardView: KeyboardView {
 class TenkeyKeyboardLayout: KeyboardLayout {
     var tenkeyView: TenkeyKeyboardView {
         get {
-            return self.view as TenkeyKeyboardView
+            return self.view as! TenkeyKeyboardView
         }
     }
 
@@ -201,7 +201,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let button = GRInputButton.buttonWithType(.System) as! GRInputButton
         let key = self.keycodeForPosition(position, shift: false)
         let shift = contains([3, 5, 6, 8, 11], key) ? 2 : 1
         button.tag = key + ((key + shift * 0x100) << 15)

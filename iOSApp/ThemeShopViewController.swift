@@ -36,14 +36,14 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sub: AnyObject? = store.entries[section]["items"]
         assert(sub != nil)
-        let items = sub! as Array<AnyObject>
+        let items = sub! as! Array<AnyObject>
         return items.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = store.itemForIndexPath(indexPath)
 
-        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
+        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell)!
         cell.textLabel!.text = item.title
         if let product = item.product {
             let formatter = NSNumberFormatter()

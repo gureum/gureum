@@ -154,11 +154,11 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
         super.viewDidAppear(animated)
         self.doneButton.enabled = true
 
-        let mainIndexPath: NSIndexPath = (QuickHelperResult["main"] as [NSIndexPath])[0]
-        let leftIndexPath: NSIndexPath = (QuickHelperResult["left"] as [NSIndexPath])[0]
-        let rightIndexPaths: [NSIndexPath] = QuickHelperResult["right"] as [NSIndexPath]
+        let mainIndexPath: NSIndexPath = (QuickHelperResult["main"] as! [NSIndexPath])[0]
+        let leftIndexPath: NSIndexPath = (QuickHelperResult["left"] as! [NSIndexPath])[0]
+        let rightIndexPaths: [NSIndexPath] = QuickHelperResult["right"] as! [NSIndexPath]
         result["main"] = ["ksx5002", "danmoum", "cheonjiin"][mainIndexPath.row]
-        if result["main"] as String != "cheonjiin" {
+        if result["main"] as! String != "cheonjiin" {
             result["left"] = ["qwerty"][leftIndexPath.row]
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
@@ -186,7 +186,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
 
         result["swipe"] = false
         result["inglobe"] = false
-        let settingsIndexPaths: [NSIndexPath] = QuickHelperResult["settings"] as [NSIndexPath]
+        let settingsIndexPaths = QuickHelperResult["settings"] as! [NSIndexPath]
         for indexPath in settingsIndexPaths {
             let row = indexPath.row
             switch row {
@@ -204,12 +204,12 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
 
     override func done(sender: UIBarButtonItem) {
         var layouts: [String] = []
-        let left = (result["left"] as String?)!
+        let left = result["left"] as! String
         if left != "" {
             layouts.append(left)
         }
-        layouts.append(result["main"] as String)
-        layouts += result["right"] as [String]
+        layouts.append(result["main"] as! String)
+        layouts += result["right"] as! [String]
 
         preferences.layouts = layouts
         preferences.defaultLayoutIndex = left == "" ? 0 : 1
@@ -224,26 +224,26 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         if self.result.count == 0 {
             return cell
         }
         switch indexPath.row {
         case 0:
             cell.textLabel!.text = "주 자판"
-            cell.detailTextLabel!.text = self.result["main"] as String?
+            cell.detailTextLabel!.text = self.result["main"] as? String
         case 1:
             cell.textLabel!.text = "왼쪽 보조자판"
-            cell.detailTextLabel!.text = self.result["left"] as String?
+            cell.detailTextLabel!.text = self.result["left"] as? String
         case 2:
             cell.textLabel!.text = "오른쪽 보조자판"
-            cell.detailTextLabel!.text = (self.result["right"] as NSArray?)!.componentsJoinedByString(", ")
+            cell.detailTextLabel!.text = (self.result["right"] as? NSArray)!.componentsJoinedByString(", ")
         case 3:
             cell.textLabel!.text = "좌, 우로 쓸어서 자판 이동"
-            cell.detailTextLabel!.text = (self.result["swipe"] as Bool?)! ? "사용함" : "사용 안함"
+            cell.detailTextLabel!.text = (self.result["swipe"] as? Bool)! ? "사용함" : "사용 안함"
         case 4:
             cell.textLabel!.text = "키보드 전환 키로 왼쪽 보조자판 이용 (두 번 터치로 다른 키보드 이용)"
-            cell.detailTextLabel!.text = (self.result["inglobe"] as Bool?)! ? "사용함" : "사용 안함"
+            cell.detailTextLabel!.text = (self.result["inglobe"] as? Bool)! ? "사용함" : "사용 안함"
         default:
             assert(false)
         }
