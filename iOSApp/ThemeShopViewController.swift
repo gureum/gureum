@@ -61,7 +61,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return store.categoryForSection(section).title
     }
 

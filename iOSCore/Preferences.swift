@@ -106,6 +106,18 @@ class Preferences {
         }
     }
 
+    var swipe: Bool {
+        get {
+            return self.getObjectForKey("swipe", defaultValue: false) as! Bool
+        }
+    }
+
+    var inglobe: Bool {
+        get {
+            return self.getObjectForKey("inglobe", defaultValue: false) as! Bool
+        }
+    }
+
     func setResourceCache(data: NSData, forKey key: String) {
         let caches = self.resourceCaches.mutableCopy() as! NSMutableDictionary
         let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data)

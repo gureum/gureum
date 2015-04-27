@@ -215,6 +215,8 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
         preferences.defaultLayoutIndex = left == "" ? 0 : 1
 
         preferences.setObjectForKey("quickhelper", value: true)
+        preferences.setObjectForKey("swipe", value: result["swipe"] as! Bool)
+        preferences.setObjectForKey("inglobe", value: result["inglobe"] as! Bool)
 
         self.navigationController!.popToRootViewControllerAnimated(true)
     }

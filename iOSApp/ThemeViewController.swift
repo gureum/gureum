@@ -19,7 +19,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     var entries: Array<Dictionary<String, AnyObject>> = []
 
     func loadEntries() {
-        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")!
+        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop-preview.json")!
         let data: NSData? = NSData(contentsOfURL: URL)
 
         if let data = data {
@@ -50,7 +50,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.entries.count
     }
 
@@ -103,7 +103,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         return sub as? String
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
@@ -205,6 +205,7 @@ class HTTPTheme: Theme {
 extension Theme {
     func encodedDataForFilename(filename: String) -> String! {
         if let data = self.dataForFilename(filename) {
+            println("case \"\(filename)\": return \"\(data.base64EncodedStringWithOptions(.allZeros))\"")
             let str = ThemeResourceCoder.defaultCoder().encodeFromData(data)
             return str
         } else {

@@ -10,7 +10,13 @@ import UIKit
 
 class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
-    var theme: Theme = CachedTheme(theme: preferences.theme)
+    var theme: Theme = {
+        var theme: Theme = preferences.theme
+        if theme.dataForFilename("config.json") == nil {
+            theme = BuiltInTheme()
+        }
+        return CachedTheme(theme: theme)
+    }()
     var traits: UITextInputTraits! = nil
     var lastSize = CGSizeZero
     var layouts: [KeyboardLayoutCollection] = []
@@ -24,13 +30,14 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.backgroundColor = UIColor.clearColor()
         self.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleHeight | .FlexibleWidth
 
-        let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
-        leftRecognizer.direction = .Left
-        self.addGestureRecognizer(leftRecognizer)
-        let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
-        rightRecognizer.direction = .Right
-        self.addGestureRecognizer(rightRecognizer)
-
+        if preferences.swipe {
+            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
+            leftRecognizer.direction = .Left
+            self.addGestureRecognizer(leftRecognizer)
+            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
+            rightRecognizer.direction = .Right
+            self.addGestureRecognizer(rightRecognizer)
+        }
         layoutsView.scrollEnabled = false
         pageControl.userInteractionEnabled = false
 
@@ -38,6 +45,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.addSubview(self.layoutsView)
         self.addSubview(self.pageControl)
         self.layoutsView.frame = frame
+
 
         self.preloadFromTheme()
     }
@@ -49,7 +57,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
     var selectedCollection: KeyboardLayoutCollection {
         get {
-            let collection = self.collections[self.selectedLayoutIndex]
+            let collection = self.collections[self.selectedCollectionIndex]
             return collection
         }
     }
@@ -105,8 +113,9 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 //        if image != nil {
 //            self.inputMethodView.backgroundImageView.image = image
 //        }
+        
 
-        assert(preferences.themeResources.count > 0)
+        //assert(preferences.themeResources.count > 0)
         self.collections.removeAll(keepCapacity: true)
 
         let returnKeyType = traits.returnKeyType
@@ -154,7 +163,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
 
         self.pageControl.numberOfPages = collections.count
-        self.selectLayoutByIndex(preferences.defaultLayoutIndex, animated: false)
+        self.selectCollectionByIndex(preferences.defaultLayoutIndex, animated: false)
 
         self.backgroundImageView.image = nil
     }
@@ -167,7 +176,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
 
 //        globalInputViewController?.log("transitionViewToSize: \(size)")
-        let layoutIndex = self.selectedLayoutIndex
+        let layoutIndex = self.selectedCollectionIndex
         let theme = self.theme
         let trait = theme.traitForSize(size)
 
@@ -192,10 +201,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             }
         }
 //        })
-        self.selectLayoutByIndex(layoutIndex, animated: false)
+        self.selectCollectionByIndex(layoutIndex, animated: false)
     }
 
-    var selectedLayoutIndex: Int {
+    var selectedCollectionIndex: Int {
         get {
             let layoutsView = self.layoutsView
             var page = Int(layoutsView.contentOffset.x / layoutsView.frame.size.width + 0.5)
@@ -209,8 +218,9 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
     }
 
-    func selectLayoutByIndex(index: Int, animated: Bool) {
+    func selectCollectionByIndex(index: Int, animated: Bool) {
         let newWidth = self.frame.width * CGFloat(self.collections.count)
+        self.layoutsView.frame = self.frame
         self.layoutsView.contentSize = CGSizeMake(newWidth, 0)
         //globalInputViewController?.log("layoutview frame: \(self.layoutsView.frame)")
 
@@ -221,7 +231,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         for (i, collection) in enumerate(self.collections) {
             collection.selectLayoutIndex(0)
             for (j, layout) in enumerate(collection.layouts) {
-                if i == index && j == collection.selectedLayoutIndex {
+                if i == index && j == collection.selectedCollectionIndex {
                     break;
                 }
                 layout.view.shiftButton.selected = false
@@ -241,24 +251,24 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     }
 
     @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let index = self.selectedLayoutIndex
+        let index = self.selectedCollectionIndex
         if index < self.collections.count - 1 {
-            self.selectLayoutByIndex(index + 1, animated: true)
+            self.selectCollectionByIndex(index + 1, animated: true)
         }
     }
 
     @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let index = self.selectedLayoutIndex
+        let index = self.selectedCollectionIndex
         if index > 0 {
-            self.selectLayoutByIndex(index - 1, animated: true)
+            self.selectCollectionByIndex(index - 1, animated: true)
         }
     }
 
-    func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.pageControl.alpha = 1.0
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
-        self.pageControl.currentPage = self.selectedLayoutIndex
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.pageControl.currentPage = self.selectedCollectionIndex
     }
 }

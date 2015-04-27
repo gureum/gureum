@@ -26,6 +26,8 @@
 		384ADED519C1B3210007A993 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B1199CAE1F00355D69 /* ThemeViewController.swift */; };
 		384ADED719C1B32E0007A993 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354619B06009001B8E3E /* Store.swift */; };
 		384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */; };
+		385BC6E01AE3756A00184053 /* appstore_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A849DD1A5003A700A31A96 /* appstore_1024.png */; };
+		385BC6E91AE6335600184053 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 385BC6E61AE6313200184053 /* Localizable.strings */; };
 		386308D5199143320039369C /* Hangeul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BD199133140039369C /* Hangeul.swift */; };
 		386308D8199143320039369C /* InputMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308BF199133140039369C /* InputMethodView.swift */; };
 		386308D9199143320039369C /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386308C0199133140039369C /* KeyboardLayout.swift */; };
@@ -227,6 +229,9 @@
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
+		385BC6E51AE6313200184053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		385BC6E81AE6316D00184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		385BC6F21AE6355200184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		3863089A199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386308A7199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386308A8199132210039369C /* GureumCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumCoreTests.swift; sourceTree = "<group>"; };
@@ -513,6 +518,7 @@
 				3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */,
 				38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */,
 				38A849DD1A5003A700A31A96 /* appstore_1024.png */,
+				385BC6E61AE6313200184053 /* Localizable.strings */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
 				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
@@ -847,6 +853,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 3882B9ED193F9E6600076C26;
 			productRefGroup = 3882B9F7193F9E6600076C26 /* Products */;
@@ -889,10 +896,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385BC6E91AE6335600184053 /* Localizable.strings in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
 				380136B5199CAFC200355D69 /* shop.json in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
+				385BC6E01AE3756A00184053 /* appstore_1024.png in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
 				38324EAE199F476B0031888D /* test in Resources */,
 			);
@@ -1113,10 +1122,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		385BC6E61AE6313200184053 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				385BC6E51AE6313200184053 /* Base */,
+				385BC6E81AE6316D00184053 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		3882B9FF193F9E6600076C26 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3882BA00193F9E6600076C26 /* Base */,
+				385BC6F21AE6355200184053 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

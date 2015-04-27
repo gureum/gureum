@@ -11,8 +11,26 @@ import UIKit
 var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
 
-class MockInputViewController: UIInputViewController {
+class BasicInputViewController: UIInputViewController {
     let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
+    var willContextBeforeInput: String!
+    var willContextAfterInput: String!
+    var didContextBeforeInput: String!
+    var didContextAfterInput: String!
+
+    override func textWillChange(textInput: UITextInput) {
+        super.textWillChange(textInput)
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        self.willContextBeforeInput = proxy.documentContextBeforeInput
+        self.willContextAfterInput = proxy.documentContextAfterInput
+    }
+
+    override func textDidChange(textInput: UITextInput) {
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        self.didContextBeforeInput = proxy.documentContextBeforeInput
+        self.didContextAfterInput = proxy.documentContextAfterInput
+        super.textDidChange(textInput)
+    }
 
     lazy var logTextView: UITextView = {
         let rect = CGRectMake(0, 0, 300, 200)
@@ -47,10 +65,8 @@ class MockInputViewController: UIInputViewController {
     
 }
 
-class InputViewController2: MockInputViewController {
+class DebugInputViewController: BasicInputViewController {
     var initialized = false
-    var needsProtection = false
-    var deleting = false
     var modeDate = NSDate()
 
     override func loadView() {
@@ -88,47 +104,10 @@ class InputViewController2: MockInputViewController {
         }
         super.viewDidLayoutSubviews()
     }
-
-    override func textWillChange(textInput: UITextInput) {
-        super.textWillChange(textInput)
-        // The app is about to change the document's contents. Perform any preparation here.
-        //self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
-        if !self.needsProtection {
-            self.inputMethodView.resetContext()
-        }
-    }
-
-    /*
-    override func textDidChange(textInput: UITextInput) {
-        // The app has just changed the document's contents, the document context has been updated.
-        //        self.keyboard.view.logTextView.text = ""
-        self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
-        if !self.needsProtection || self.deleting {
-            self.inputMethodView.resetContext()
-            self.inputMethodView.selectedCollection.selectLayoutIndex(0)
-            self.inputMethodView.selectedLayout.view.shiftButton.selected = false
-            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
-        }
-        self.needsProtection = false
-        //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
-
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy as! UITextDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
-            textColor = UIColor.whiteColor()
-        } else {
-            textColor = UIColor.blackColor()
-        }
-        //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
-    }
-    */
-
 }
 
-class InputViewController: MockInputViewController {
+class InputViewController: BasicInputViewController {
     var initialized = false
-    var needsProtection = false
-    var deleting = false
     var modeDate = NSDate()
 
     // overriding `init` causes crash
@@ -188,30 +167,24 @@ class InputViewController: MockInputViewController {
         // Dispose of any resources that can be recreated
     }
 
-    override func textWillChange(textInput: UITextInput) {
-        // The app is about to change the document's contents. Perform any preparation here.
-        super.textWillChange(textInput)
-        //self.log("text will change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
-        if !self.needsProtection {
-            self.inputMethodView.resetContext()
-        }
-    }
-
     override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
-        //self.log("text did change - protected: \(self.needsProtection) / deleting: \(self.deleting) / hasText: \(textInput.hasText())")
-        if !self.needsProtection || self.deleting {
+        self.log("text did change")
+
+        super.textDidChange(textInput)
+
+        if self.willContextBeforeInput != self.didContextBeforeInput || self.willContextAfterInput != self.didContextAfterInput {
             self.inputMethodView.resetContext()
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
             self.inputMethodView.selectedLayout.view.shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
-        self.needsProtection = false
+
 //        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
 
         var textColor: UIColor
-        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        let proxy = self.textDocumentProxy as! UITextInputTraits
         if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
             textColor = UIColor.whiteColor()
         } else {
@@ -299,7 +272,6 @@ class InputViewController: MockInputViewController {
             for _ in unsharedPrecomposed {
                 proxy.deleteBackward()
             }
-            self.needsProtection = !proxy.hasText()
             //self.log("-- deleted")
 
             //self.log("-- inserting")
@@ -364,7 +336,7 @@ class InputViewController: MockInputViewController {
             let processed = context_put(context, InputSource(sender.tag))
             let proxy = self.textDocumentProxy as! UIKeyInput
             if processed {
-                self.log("start deleting")
+                //self.log("start deleting")
                 let commited = context_get_commited_unicodes(context)
                 let composed = context_get_composed_unicodes(context)
                 let combined = commited + composed
@@ -380,18 +352,15 @@ class InputViewController: MockInputViewController {
                 let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
                 let unsharedCombined = Array(combined[sharedLength..<combined.count])
 
-                self.deleting = true
                 for _ in unsharedPrecomposed {
                     proxy.deleteBackward()
                 }
-                self.deleting = false
-                self.needsProtection = sharedLength == 0
 
                 if unsharedCombined.count > 0 {
                     let composed = unicodes_to_string(unsharedCombined)
                     proxy.insertText("\(composed)")
                 }
-                self.log("end deleting")
+                //self.log("end deleting")
             } else {
                 proxy.deleteBackward()
             }
@@ -427,12 +396,16 @@ class InputViewController: MockInputViewController {
 
     func mode(sender: UIButton) {
         let now = NSDate()
-        if now.timeIntervalSinceDate(self.modeDate) < 0.5 {
-            self.advanceToNextInputMode()
+        if preferences.inglobe {
+            if now.timeIntervalSinceDate(self.modeDate) < 0.5 {
+                self.advanceToNextInputMode()
+            } else {
+                let newIndex = self.inputMethodView.selectedCollectionIndex == 0 ? 1 : 0;
+                self.inputMethodView.selectCollectionByIndex(newIndex, animated: true)
+                self.modeDate = now
+            }
         } else {
-            let newIndex = self.inputMethodView.selectedLayoutIndex == 0 ? 1 : 0;
-            self.inputMethodView.selectLayoutByIndex(newIndex, animated: true)
-            self.modeDate = now
+            self.advanceToNextInputMode()
         }
     }
 

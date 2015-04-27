@@ -21,10 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //if preferences.themeResources.count == 0 {
         Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
 
-        Theme.themeWithAddress(preferences.themeAddress).dump() // FIXME: more sane initializer
+        
+        //Theme.themeWithAddress(preferences.themeAddress).dump() // FIXME: more sane initializer
         //}
         sharedAppDelegate = self
-        store // force lazy loading
+        //store // force lazy loading
 
         return true
     }

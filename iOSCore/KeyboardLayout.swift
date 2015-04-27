@@ -475,10 +475,10 @@ class NoKeyboardLayout: KeyboardLayout {
 
 class KeyboardLayoutCollection {
     let layouts: [KeyboardLayout]
-    var selectedLayoutIndex = 0
+    var selectedCollectionIndex = 0
     var selectedLayout: KeyboardLayout {
         get {
-            return self.layouts[self.selectedLayoutIndex]
+            return self.layouts[self.selectedCollectionIndex]
         }
     }
 
@@ -487,11 +487,11 @@ class KeyboardLayoutCollection {
     }
 
     func selectLayoutIndex(index: Int) {
-        if self.selectedLayoutIndex == index {
+        if self.selectedCollectionIndex == index {
             return
         }
         let oldLayout = self.selectedLayout
-        self.selectedLayoutIndex = index
+        self.selectedCollectionIndex = index
         let newLayout = self.selectedLayout
         newLayout.view.frame = oldLayout.view.frame
         oldLayout.view.superview!.addSubview(newLayout.view)
@@ -499,7 +499,7 @@ class KeyboardLayoutCollection {
     }
 
     func switchLayout() {
-        var layoutIndex = self.selectedLayoutIndex + 1
+        var layoutIndex = self.selectedCollectionIndex + 1
         if layoutIndex >= self.layouts.count {
             layoutIndex = 0
         }
