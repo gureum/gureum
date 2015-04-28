@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         //if preferences.themeResources.count == 0 {
-        Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
+        //Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
 
         
         //Theme.themeWithAddress(preferences.themeAddress).dump() // FIXME: more sane initializer

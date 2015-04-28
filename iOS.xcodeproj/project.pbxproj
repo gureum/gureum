@@ -16,7 +16,6 @@
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		383B07EE19E70609004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
-		383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383B07F019E71482004046F5 /* StoreKit.framework */; };
 		384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
@@ -224,9 +223,7 @@
 		3836F20F1A53529E0045EE0F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
-		383B07F019E71482004046F5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
-		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
 		385BC6E51AE6313200184053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -381,7 +378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				38934DB21AA3A12200970BD0 /* libFoundationExtension.a in Frameworks */,
-				383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */,
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
 				181431046C196B1304B850F1 /* libPods.a in Frameworks */,
 			);
@@ -503,11 +499,10 @@
 		3882B9F8193F9E6600076C26 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				383B07F019E71482004046F5 /* StoreKit.framework */,
 				3844B239198930BF007A2287 /* Gureum.entitlements */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
-				3836F20F1A53529E0045EE0F /* MainViewController.swift */,
 				3882B9FB193F9E6600076C26 /* AppDelegate.swift */,
+				3836F20F1A53529E0045EE0F /* MainViewController.swift */,
 				380136B6199CB4A700355D69 /* PreviewViewController.swift */,
 				3882B9FD193F9E6600076C26 /* TestViewController.swift */,
 				38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */,
@@ -565,7 +560,6 @@
 		38BB7010193FA11000605583 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */,
 				38BB7011193FA11000605583 /* Supporting Files */,
 				38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */,
 			);
@@ -818,13 +812,13 @@
 				TargetAttributes = {
 					3882B9F5193F9E6600076C26 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = RT8F3G27W8;
+						DevelopmentTeam = 9384JEL3M9;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -834,7 +828,7 @@
 					};
 					38BB700E193FA11000605583 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = RT8F3G27W8;
+						DevelopmentTeam = 9384JEL3M9;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1243,7 +1237,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1271,7 +1265,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1332,7 +1326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1355,7 +1349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";

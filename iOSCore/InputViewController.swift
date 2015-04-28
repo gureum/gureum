@@ -134,15 +134,15 @@ class InputViewController: BasicInputViewController {
 
     override func viewDidLoad() {
         //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
-        self.log("loaded: \(self.view.frame)")
+        //self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
 
         dispatch_async(dispatch_get_main_queue(), { // prevent timeout
             self.initialized = true
             let proxy = self.textDocumentProxy as! UITextInputTraits
-            self.log("adding input method view")
+            //self.log("adding input method view")
             self.inputMethodView.loadFromTheme(proxy)
-            self.log("added method view")
+            //self.log("added method view")
         })
     }
 

@@ -87,7 +87,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool  {
-        return true
+        return indexPath.section > 0 || preferences.layouts.count > 1
     }
 
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -102,11 +102,32 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         switch editingStyle {
         case .Delete:
             assert(indexPath.section == 0)
+            let defaultLayoutIndex = preferences.defaultLayoutIndex
             var layouts = preferences.layouts
+            let oldLayoutName = layouts[defaultLayoutIndex]
+
             layouts.removeAtIndex(indexPath.row)
             preferences.layouts = layouts
-            let indexPaths: Array<AnyObject> = [indexPath]
-            tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Top)
+
+
+            if defaultLayoutIndex > indexPath.row {
+                preferences.defaultLayoutIndex -= 1
+            }
+            else if defaultLayoutIndex == indexPath.row {
+                if defaultLayoutIndex == 0 {
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: indexPath.row + 1, inSection: 0))!
+                    cell.accessoryType = .Checkmark
+                } else {
+                    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: indexPath.row - 1, inSection: 0))!
+                    cell.accessoryType = .Checkmark
+                    preferences.defaultLayoutIndex -= 1
+                }
+            }
+
+            let newLayoutName = layouts[preferences.defaultLayoutIndex]
+            assert(oldLayoutName == newLayoutName)
+
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
         case .Insert:
             assert(indexPath.section == 1)
             self.performSegueWithIdentifier("add", sender: self)
@@ -127,10 +148,27 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
     }
 
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let defaultLayoutIndex = preferences.defaultLayoutIndex
         var layouts = preferences.layouts
+        let oldLayoutName = layouts[defaultLayoutIndex]
+
         let removed = layouts.removeAtIndex(sourceIndexPath.row)
         layouts.insert(removed, atIndex: destinationIndexPath.row)// - (sourceIndexPath.row > destinationIndexPath.row ? 1 : 0))
         preferences.layouts = layouts
+
+
+        if defaultLayoutIndex == sourceIndexPath.row {
+            preferences.defaultLayoutIndex = destinationIndexPath.row
+        }
+        else if sourceIndexPath.row < defaultLayoutIndex && defaultLayoutIndex <= destinationIndexPath.row {
+            preferences.defaultLayoutIndex -= 1
+        }
+        else if destinationIndexPath.row <= defaultLayoutIndex && defaultLayoutIndex < sourceIndexPath.row {
+            preferences.defaultLayoutIndex += 1
+        }
+
+        let newLayoutName = layouts[preferences.defaultLayoutIndex]
+        assert(oldLayoutName == newLayoutName)
 
         self.inputPreviewController.reloadInputMethodView()
     }

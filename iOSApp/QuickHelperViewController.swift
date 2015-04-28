@@ -150,8 +150,8 @@ class SettingsQuickHelperTableViewController: SelectableQuickHelperTableViewCont
 class DoneQuickHelperTableViewController: QuickHelperTableViewController {
     var result: NSMutableDictionary = NSMutableDictionary()
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.doneButton.enabled = true
 
         let mainIndexPath: NSIndexPath = (QuickHelperResult["main"] as! [NSIndexPath])[0]
@@ -233,19 +233,19 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
         switch indexPath.row {
         case 0:
             cell.textLabel!.text = "주 자판"
-            cell.detailTextLabel!.text = self.result["main"] as? String
+            cell.detailTextLabel!.text = NSLocalizedString(self.result["main"] as! String, comment: "")
         case 1:
             cell.textLabel!.text = "왼쪽 보조자판"
-            cell.detailTextLabel!.text = self.result["left"] as? String
+            cell.detailTextLabel!.text = NSLocalizedString(self.result["left"] as! String, comment: "")
         case 2:
             cell.textLabel!.text = "오른쪽 보조자판"
-            cell.detailTextLabel!.text = (self.result["right"] as? NSArray)!.componentsJoinedByString(", ")
+            cell.detailTextLabel!.text = ", ".join((self.result["right"] as! Array).map({ NSLocalizedString($0, comment: "") }))
         case 3:
             cell.textLabel!.text = "좌, 우로 쓸어서 자판 이동"
-            cell.detailTextLabel!.text = (self.result["swipe"] as? Bool)! ? "사용함" : "사용 안함"
+            cell.detailTextLabel!.text = (self.result["swipe"] as! Bool) ? "사용함" : "사용 안함"
         case 4:
             cell.textLabel!.text = "키보드 전환 키로 왼쪽 보조자판 이용 (두 번 터치로 다른 키보드 이용)"
-            cell.detailTextLabel!.text = (self.result["inglobe"] as? Bool)! ? "사용함" : "사용 안함"
+            cell.detailTextLabel!.text = (self.result["inglobe"] as! Bool) ? "사용함" : "사용 안함"
         default:
             assert(false)
         }

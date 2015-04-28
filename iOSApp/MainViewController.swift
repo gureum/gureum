@@ -18,4 +18,33 @@ class MainViewController: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        if indexPath.section == 2 {
+            switch indexPath.row {
+            case 1:
+                cell.accessoryType = preferences.swipe ? .Checkmark : .None
+            case 2:
+                cell.accessoryType = preferences.inglobe ? .Checkmark : .None
+            default:
+                break
+            }
+        }
+        return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 2 {
+            switch indexPath.row {
+            case 1:
+                preferences.swipe = !preferences.swipe
+            case 2:
+                preferences.inglobe = !preferences.inglobe
+            default:
+                return
+            }
+            tableView.reloadData()
+        }
+    }
 }

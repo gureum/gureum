@@ -9,7 +9,7 @@
 import Foundation
 
 class Preferences {
-    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")!
+    var defaults = NSUserDefaults(suiteName: "group.org.gureum")!
     lazy var theme = PreferencedTheme()
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
@@ -17,7 +17,7 @@ class Preferences {
         return result
     }
 
-    func getArrayForKey(key: String, defaultValue: Array<AnyObject>) -> Array<AnyObject> {
+    func getArrayForKey(key: String, defaultValue: [AnyObject]) -> [AnyObject] {
         let object = self.defaults.arrayForKey(key) as Array!
         if object == nil || object.count == 0 {
             return defaultValue
@@ -44,7 +44,7 @@ class Preferences {
 
     var layouts: Array<String> {
         get {
-            let defaultValue: Array<AnyObject> = ["qwerty", "ksx5002"]
+            let defaultValue = ["qwerty", "ksx5002"]
             let result = getArrayForKey("layouts", defaultValue: defaultValue) as! Array<String>
             return result
         }
@@ -56,9 +56,7 @@ class Preferences {
 
     var defaultLayoutIndex: Int {
         get {
-            let defaultValue: AnyObject = NSNumber(integer: 1)
-            let rawIndex = getObjectForKey("layoutindex", defaultValue: defaultValue) as! NSNumber
-            let index: Int = rawIndex.integerValue
+            let index = getObjectForKey("layoutindex", defaultValue: 1) as! Int
             if index >= self.layouts.count {
                 return self.layouts.count - 1
             } else {
@@ -108,14 +106,21 @@ class Preferences {
 
     var swipe: Bool {
         get {
-            return self.getObjectForKey("swipe", defaultValue: false) as! Bool
+            return self.getObjectForKey("swipe", defaultValue: true) as! Bool
+        }
+        set {
+            self.setObjectForKey("swipe", value: newValue)
         }
     }
 
     var inglobe: Bool {
         get {
-            return self.getObjectForKey("inglobe", defaultValue: false) as! Bool
+            return self.getObjectForKey("inglobe", defaultValue: true) as! Bool
         }
+        set {
+            self.setObjectForKey("inglobe", value: newValue)
+        }
+
     }
 
     func setResourceCache(data: NSData, forKey key: String) {
