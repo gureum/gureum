@@ -39,6 +39,7 @@ class Preferences {
     func setObjectForKey(key: String, value: AnyObject) {
         self.defaults.setObject(value, forKey: key)
         assert(self.defaults.objectForKey(key) != nil)
+        self.defaults.setObject(NSDate(), forKey: "edited_time")
         self.defaults.synchronize()
     }
 
@@ -56,7 +57,7 @@ class Preferences {
 
     var defaultLayoutIndex: Int {
         get {
-            let index = getObjectForKey("layoutindex", defaultValue: 1) as! Int
+            let index = getObjectForKey("layout_index", defaultValue: 1) as! Int
             if index >= self.layouts.count {
                 return self.layouts.count - 1
             } else {
@@ -65,24 +66,24 @@ class Preferences {
         }
 
         set {
-            setObjectForKey("layoutindex", value: newValue)
+            setObjectForKey("layout_index", value: newValue)
         }
     }
 
-    var themeAddress: String {
+    var themePath: String {
         get {
-            let result = self.getObjectForKey("themeaddr", defaultValue: "res://default") as! NSString
+            let result = self.getObjectForKey("theme_url", defaultValue: "res://default") as! NSString
             return result as String
         }
 
         set {
-            setObjectForKey("themeaddr", value: newValue)
+            setObjectForKey("theme_url", value: newValue)
         }
     }
 
     var themeResources: NSDictionary {
         get {
-            return getDictionaryForKey("themeresource", defaultValue: [:])
+            return getDictionaryForKey("theme_resource", defaultValue: [:])
         }
 
         set {
@@ -91,7 +92,7 @@ class Preferences {
             for (key, value) in newValue {
                 dict[key as! String] = value
             }
-            self.setObjectForKey("themeresource", value: dict)
+            self.setObjectForKey("theme_resource", value: dict)
         }
     }
 

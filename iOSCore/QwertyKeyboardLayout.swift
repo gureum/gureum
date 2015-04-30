@@ -262,7 +262,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
 class QwertySymbolKeyboardLayout: QwertyKeyboardLayout {
     override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
-        let keylines = !shift ? ["1234567890", "-/:;()$&@\"", ".,?!'\"₩", " "] : ["[]{}#%^*+=", "_\\|~<>XXXX", ".,?!'\"₩", " "]
+        let keylines = !shift ? ["1234567890", "-/:;()₩&@\"", ".,?!'\"₩", " "] : ["[]{}#%^*+=", "_\\|~<>$€¥·", ".,?!'\"₩", " "]
         let key = getKey(keylines, position)
         return key
     }

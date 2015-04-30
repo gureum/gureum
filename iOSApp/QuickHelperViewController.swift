@@ -239,7 +239,8 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             cell.detailTextLabel!.text = NSLocalizedString(self.result["left"] as! String, comment: "")
         case 2:
             cell.textLabel!.text = "오른쪽 보조자판"
-            cell.detailTextLabel!.text = ", ".join((self.result["right"] as! Array).map({ NSLocalizedString($0, comment: "") }))
+            let text = ", ".join((self.result["right"] as! Array).map({ NSLocalizedString($0, comment: "") }))
+            cell.detailTextLabel!.text = count(text) > 0 ? text : "없음"
         case 3:
             cell.textLabel!.text = "좌, 우로 쓸어서 자판 이동"
             cell.detailTextLabel!.text = (self.result["swipe"] as! Bool) ? "사용함" : "사용 안함"

@@ -14,7 +14,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     @IBOutlet var cancelButton: UIBarButtonItem! = nil
     @IBOutlet var restoreButton: UIBarButtonItem! = nil
 
-    var themeAddress = preferences.themeAddress
+    var themePath = preferences.themePath
 
     var entries: Array<Dictionary<String, AnyObject>> = []
 
@@ -31,16 +31,16 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     @IBAction func applyTheme(sender: UIButton!) {
-        Theme.themeWithAddress(self.themeAddress).dump()
-        preferences.themeAddress = self.themeAddress
+        Theme.themeWithAddress(self.themePath).dump()
+        preferences.themePath = self.themePath
         preferences.resourceCaches = [:]
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
     }
 
     @IBAction func cancelTheme(sender: UIButton!) {
-        self.themeAddress = preferences.themeAddress
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.themePath = preferences.themePath
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
         self.tableView.reloadData()
@@ -62,7 +62,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     override func viewDidLoad() {
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         super.viewDidLoad()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
             self.loadEntries()
@@ -88,7 +88,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell {
             cell.textLabel!.text = item["title"]
-            cell.accessoryType = item["addr"] == self.themeAddress ? .Checkmark : .None
+            cell.accessoryType = item["addr"] == self.themePath ? .Checkmark : .None
             return cell
         } else {
             assert(false);
@@ -107,7 +107,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         let sub: AnyObject? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
-        self.themeAddress = item["addr"]!
+        self.themePath = item["addr"]!
 
         self.navigationItem.rightBarButtonItem = self.doneButton
         self.navigationItem.leftBarButtonItem = self.cancelButton
@@ -115,7 +115,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         self.inputPreviewController.reloadInputMethodView()
     }
 }

@@ -379,6 +379,7 @@ class InputViewController: BasicInputViewController {
     func toggleLayout(sender: UIButton) {
         let collection = self.inputMethodView.selectedCollection
         collection.switchLayout()
+        collection.selectedLayout.view.toggleKeyboardButton.selected = collection.selectedLayoutIndex != 0
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
     }
 

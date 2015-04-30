@@ -231,7 +231,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         for (i, collection) in enumerate(self.collections) {
             collection.selectLayoutIndex(0)
             for (j, layout) in enumerate(collection.layouts) {
-                if i == index && j == collection.selectedCollectionIndex {
+                if i == index && j == collection.selectedLayoutIndex {
                     break;
                 }
                 layout.view.shiftButton.selected = false

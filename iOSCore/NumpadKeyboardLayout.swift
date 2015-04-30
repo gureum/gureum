@@ -222,11 +222,18 @@ class TenKeyAlphabetKeyboardLayout: TenkeyKeyboardLayout {
         return context_create(alphabet_from_tenkey_handler(), alphabet_from_tenkey_handler(), alphabet_tenkey_decoder())
     }
 
+    override class func loadView() -> KeyboardView {
+        let view = super.loadView() as! TenkeyKeyboardView
+        view.alphabetButton.selected = true
+        return view
+    }
+
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         let keycode = self.keycodeForPosition(position, shift: false)
         let titles1 = ["@#/&_", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz", "⇨", ".,?!", ""]
         let titles2 = ["@#/&_", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ", "⇨", ".,?!", ""]
         let label = (self.view.shiftButton.selected ? titles2 : titles1)[keycode]
+
         return "\(label)"
     }
 }
@@ -234,6 +241,12 @@ class TenKeyAlphabetKeyboardLayout: TenkeyKeyboardLayout {
 class TenKeyNumberKeyboardLayout: TenkeyKeyboardLayout {
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(number_from_tenkey_handler(), number_from_tenkey_handler(), number_tenkey_decoder())
+    }
+
+    override class func loadView() -> KeyboardView {
+        let view = super.loadView() as! TenkeyKeyboardView
+        view.numberButton.selected = true
+        return view
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
@@ -246,9 +259,14 @@ class TenKeyNumberKeyboardLayout: TenkeyKeyboardLayout {
 }
 
 class CheonjiinKeyboardLayout: TenkeyKeyboardLayout {
-
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(cheonjiin_from_tenkey_handler(), cheonjiin_from_tenkey_handler(), cheonjiin_decoder())
+    }
+
+    override class func loadView() -> KeyboardView {
+        let view = super.loadView() as! TenkeyKeyboardView
+        view.hangeulButton.selected = true
+        return view
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
