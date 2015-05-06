@@ -109,6 +109,7 @@ class DebugInputViewController: BasicInputViewController {
 class InputViewController: BasicInputViewController {
     var initialized = false
     var modeDate = NSDate()
+    var lastTraits: UITextInputTraits! = nil
 
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -122,6 +123,7 @@ class InputViewController: BasicInputViewController {
     override func reloadInputMethodView() {
         let proxy = self.textDocumentProxy as! UITextInputTraits
         self.inputMethodView.loadFromTheme(proxy)
+        //self.inputMethodView.adjustTraits(proxy)
         self.inputMethodView.lastSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
@@ -130,6 +132,14 @@ class InputViewController: BasicInputViewController {
     override func loadView() {
         globalInputViewController = self
         self.view = self.inputMethodView
+        if preferences.swipe {
+            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
+            leftRecognizer.direction = .Left
+            self.view.addGestureRecognizer(leftRecognizer)
+            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
+            rightRecognizer.direction = .Right
+            self.view.addGestureRecognizer(rightRecognizer)
+        }
     }
 
     override func viewDidLoad() {
@@ -142,6 +152,7 @@ class InputViewController: BasicInputViewController {
             let proxy = self.textDocumentProxy as! UITextInputTraits
             //self.log("adding input method view")
             self.inputMethodView.loadFromTheme(proxy)
+            //self.inputMethodView.adjustTraits(proxy)
             //self.log("added method view")
         })
     }
@@ -180,18 +191,67 @@ class InputViewController: BasicInputViewController {
             self.inputMethodView.selectedLayout.view.shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
+        self.lastTraits = textInput as UITextInputTraits
+        self.adjustTraits(textInput as UITextInputTraits)
+    }
 
-//        self.keyboard.view.logTextView.backgroundColor = UIColor.greenColor()
-
+    func adjustTraits(traits: UITextInputTraits) {
         var textColor: UIColor
-        let proxy = self.textDocumentProxy as! UITextInputTraits
-        if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
+        if traits.keyboardAppearance == UIKeyboardAppearance.Dark {
             textColor = UIColor.whiteColor()
         } else {
             textColor = UIColor.blackColor()
         }
+        self.inputMethodView.adjustTraits(traits)
+
+        if self.inputMethodView.selectedLayout.capitalizable {
+            if self.inputMethodView.selectedLayout.shift == .Auto {
+                self.inputMethodView.selectedLayout.shift = .Off
+            }
+            if self.inputMethodView.selectedLayout.capitalizable && self.inputMethodView.selectedLayout.shift != .Auto {
+                var needsShift = false
+                switch traits.autocapitalizationType! {
+                case .AllCharacters:
+                    needsShift = true
+                case .Words:
+                    if self.didContextBeforeInput == nil || count(self.didContextBeforeInput) == 0 {
+                        needsShift = true
+                    } else {
+                        let whitespaces = NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                        let punctuations = NSCharacterSet.punctuationCharacterSet()
+                        let utf16 = self.didContextBeforeInput.utf16
+                        let lastCharacter = utf16[utf16.endIndex.predecessor()]
+                        needsShift = whitespaces.characterIsMember(lastCharacter) || punctuations.characterIsMember(lastCharacter)
+                    }
+                case .Sentences:
+                    if self.didContextBeforeInput == nil {
+                        needsShift = true
+                    } else {
+                        let whitespaces = NSCharacterSet.whitespaceCharacterSet()
+                        let punctuations = NSCharacterSet.punctuationCharacterSet()
+                        let utf16 = self.didContextBeforeInput.utf16
+                        var index = utf16.endIndex
+                        needsShift = true
+                        while index != utf16.startIndex {
+                            index = index.predecessor()
+                            let code = utf16[index]
+                            if punctuations.characterIsMember(code) || code == 10 {
+                                break
+                            }
+                            if !whitespaces.characterIsMember(code) {
+                                needsShift = false
+                                break
+                            }
+                        }
+                    }
+                default: break
+                }
+                if needsShift {
+                    self.inputMethodView.selectedLayout.shift = .Auto
+                }
+            }
+        }
         //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
-        super.textDidChange(textInput)
     }
 
     override func selectionDidChange(textInput: UITextInput)  {
@@ -371,9 +431,13 @@ class InputViewController: BasicInputViewController {
         }
     }
 
+    func space(sender: UIButton) {
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+        self.input(sender)
+    }
+
     func shift(sender: UIButton) {
-        sender.selected = !sender.selected
-        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        self.inputMethodView.selectedLayout.shift = sender.selected ? .Off : .On
     }
 
     func toggleLayout(sender: UIButton) {
@@ -381,12 +445,14 @@ class InputViewController: BasicInputViewController {
         collection.switchLayout()
         collection.selectedLayout.view.toggleKeyboardButton.selected = collection.selectedLayoutIndex != 0
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        self.adjustTraits(self.lastTraits)
     }
 
     func selectLayout(sender: UIButton) {
         let collection = self.inputMethodView.selectedCollection
         collection.selectLayoutIndex(sender.tag)
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        self.adjustTraits(self.lastTraits)
     }
 
     func done(sender: UIButton) {
@@ -397,16 +463,37 @@ class InputViewController: BasicInputViewController {
 
     func mode(sender: UIButton) {
         let now = NSDate()
+        var needsNextInputMode = false
         if preferences.inglobe {
             if now.timeIntervalSinceDate(self.modeDate) < 0.5 {
-                self.advanceToNextInputMode()
-            } else {
-                let newIndex = self.inputMethodView.selectedCollectionIndex == 0 ? 1 : 0;
-                self.inputMethodView.selectCollectionByIndex(newIndex, animated: true)
-                self.modeDate = now
+                needsNextInputMode = true
             }
         } else {
+            needsNextInputMode = true
+        }
+        if needsNextInputMode {
             self.advanceToNextInputMode()
+        } else {
+            let newIndex = self.inputMethodView.selectedCollectionIndex == 0 ? 1 : 0;
+            self.inputMethodView.selectCollectionByIndex(newIndex, animated: true)
+            self.modeDate = now
+            self.adjustTraits(self.lastTraits)
+        }
+    }
+
+    func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
+        let index = self.inputMethodView.selectedCollectionIndex
+        if index < self.inputMethodView.collections.count - 1 {
+            self.inputMethodView.selectCollectionByIndex(index + 1, animated: true)
+            self.adjustTraits(self.lastTraits)
+        }
+    }
+
+    func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
+        let index = self.inputMethodView.selectedCollectionIndex
+        if index > 0 {
+            self.inputMethodView.selectCollectionByIndex(index - 1, animated: true)
+            self.adjustTraits(self.lastTraits)
         }
     }
 

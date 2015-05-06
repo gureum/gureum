@@ -17,9 +17,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
         return CachedTheme(theme: theme)
     }()
-    var traits: UITextInputTraits! = nil
     var lastSize = CGSizeZero
-    var layouts: [KeyboardLayoutCollection] = []
+    var selectedCollectionIndex = preferences.defaultLayoutIndex
 
     let layoutsView: UIScrollView! = UIScrollView()
     let pageControl: UIPageControl! = UIPageControl()
@@ -30,14 +29,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.backgroundColor = UIColor.clearColor()
         self.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleHeight | .FlexibleWidth
 
-        if preferences.swipe {
-            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
-            leftRecognizer.direction = .Left
-            self.addGestureRecognizer(leftRecognizer)
-            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
-            rightRecognizer.direction = .Right
-            self.addGestureRecognizer(rightRecognizer)
-        }
+
         layoutsView.scrollEnabled = false
         pageControl.userInteractionEnabled = false
 
@@ -57,6 +49,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
     var selectedCollection: KeyboardLayoutCollection {
         get {
+            assert(self.selectedCollectionIndex < self.collections.count)
             let collection = self.collections[self.selectedCollectionIndex]
             return collection
         }
@@ -103,21 +96,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.backgroundImageView.image = trait.backgroundImage
     }
 
-    func loadFromTheme(traits: UITextInputTraits) {
-        for view in layoutsView.subviews {
-            view.removeFromSuperview()
-        }
-
-//        원근 모드
-//        let image = self.theme.backgroundImage
-//        if image != nil {
-//            self.inputMethodView.backgroundImageView.image = image
-//        }
-        
-
-        //assert(preferences.themeResources.count > 0)
-        self.collections.removeAll(keepCapacity: true)
-
+    func adjustTraits(traits: UITextInputTraits) {
         let returnKeyType = traits.returnKeyType
         let returnTitle: String = {
             if returnKeyType == nil {
@@ -149,6 +128,29 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             }
         }()
 
+        for (i, collection) in enumerate(self.collections) {
+            for layout in collection.layouts {
+                layout.view.doneButton.captionLabel.text = returnTitle
+            }
+        }
+    }
+
+    func loadFromTheme(traits: UITextInputTraits) {
+        for view in layoutsView.subviews {
+            view.removeFromSuperview()
+        }
+
+//        원근 모드
+//        let image = self.theme.backgroundImage
+//        if image != nil {
+//            self.inputMethodView.backgroundImageView.image = image
+//        }
+        
+
+        //assert(preferences.themeResources.count > 0)
+        self.collections.removeAll(keepCapacity: true)
+
+
         let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
             assert(self.bounds.height > 0)
@@ -156,7 +158,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             let collection = self.keyboardLayoutCollectionForLayoutName(name, frame: self.bounds)
             self.collections.append(collection)
             for layout in collection.layouts {
-                layout.view.doneButton.captionLabel.text = returnTitle
                 layout.view.frame.origin.x = CGFloat(i) * self.frame.width
             }
             layoutsView.addSubview(collection.selectedLayout.view)
@@ -176,7 +177,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
 
 //        globalInputViewController?.log("transitionViewToSize: \(size)")
-        let layoutIndex = self.selectedCollectionIndex
         let theme = self.theme
         let trait = theme.traitForSize(size)
 
@@ -201,24 +201,11 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             }
         }
 //        })
-        self.selectCollectionByIndex(layoutIndex, animated: false)
-    }
-
-    var selectedCollectionIndex: Int {
-        get {
-            let layoutsView = self.layoutsView
-            var page = Int(layoutsView.contentOffset.x / layoutsView.frame.size.width + 0.5)
-            if page < 0 {
-                page = 0
-            }
-            else if page >= self.pageControl.numberOfPages {
-                page = self.collections.count - 1
-            }
-            return page
-        }
+        self.selectCollectionByIndex(self.selectedCollectionIndex, animated: false)
     }
 
     func selectCollectionByIndex(index: Int, animated: Bool) {
+        self.selectedCollectionIndex = index
         let newWidth = self.frame.width * CGFloat(self.collections.count)
         self.layoutsView.frame = self.frame
         self.layoutsView.contentSize = CGSizeMake(newWidth, 0)
@@ -247,20 +234,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             UIView.animateWithDuration(0.36, animations: animation )
         } else {
             animation()
-        }
-    }
-
-    @IBAction func leftForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let index = self.selectedCollectionIndex
-        if index < self.collections.count - 1 {
-            self.selectCollectionByIndex(index + 1, animated: true)
-        }
-    }
-
-    @IBAction func rightForSwipeRecognizer(recognizer: UISwipeGestureRecognizer!) {
-        let index = self.selectedCollectionIndex
-        if index > 0 {
-            self.selectCollectionByIndex(index - 1, animated: true)
         }
     }
 

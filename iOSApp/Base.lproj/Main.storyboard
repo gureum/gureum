@@ -770,7 +770,7 @@
                                     <constraint firstAttribute="height" constant="30" id="m2X-Ta-gEs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="73" y="130" width="232" height="30"/>
                                 </variation>

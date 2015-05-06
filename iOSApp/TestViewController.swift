@@ -11,10 +11,18 @@ import UIKit
 class TestViewController: PreviewViewController {
     @IBOutlet var previewField: UITextField!
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.inputPreviewController.textWillChange(self.previewField)
+        self.inputPreviewController.textDidChange(self.previewField)
+    }
+
     override func update() {
+        self.inputPreviewController.textWillChange(self.previewField)
         super.update()
         let proxy = self.inputPreviewController.textDocumentProxy as! UITextDocumentProxy
-        self.previewField.text = "\(proxy.documentContextBeforeInput)"
+        self.previewField.text = (proxy.documentContextBeforeInput ?? "") + (proxy.documentContextAfterInput ?? "")
+        self.inputPreviewController.textDidChange(self.previewField)
     }
 
     override func didReceiveMemoryWarning() {

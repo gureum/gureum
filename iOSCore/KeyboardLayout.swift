@@ -260,7 +260,18 @@ class NoKeyboardView: KeyboardView {
 }
 
 class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
+    enum ShiftState {
+        case Off
+        case On
+        case Auto
+    }
+
     var context: UnsafeMutablePointer<()> = nil
+    var capitalizable: Bool {
+        get { return false }
+    }
+    var autocapitalized = false
+
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
 
     lazy var view: KeyboardView = {
@@ -281,6 +292,21 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
         return view
     }()
+
+    var shift: ShiftState {
+        get {
+            switch (self.view.shiftButton.selected, self.autocapitalized) {
+            case (true, true): return .Auto
+            case (true, false): return .On
+            default: return .Off
+            }
+        }
+        set {
+            self.view.shiftButton.selected = newValue != .Off
+            self.autocapitalized = newValue == .Auto
+            self.helper.updateCaptionLabel()
+        }
+    }
 
     class func loadView() -> KeyboardView {
         assert(false)
