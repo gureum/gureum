@@ -13,22 +13,22 @@ var launchedDate: NSDate = NSDate()
 
 class BasicInputViewController: UIInputViewController {
     let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
-    var willContextBeforeInput: String!
-    var willContextAfterInput: String!
-    var didContextBeforeInput: String!
-    var didContextAfterInput: String!
+    var willContextBeforeInput: String = ""
+    var willContextAfterInput: String = ""
+    var didContextBeforeInput: String = ""
+    var didContextAfterInput: String = ""
 
     override func textWillChange(textInput: UITextInput) {
         super.textWillChange(textInput)
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
-        self.willContextBeforeInput = proxy.documentContextBeforeInput
-        self.willContextAfterInput = proxy.documentContextAfterInput
+        self.willContextBeforeInput = proxy.documentContextBeforeInput ?? ""
+        self.willContextAfterInput = proxy.documentContextAfterInput ?? ""
     }
 
     override func textDidChange(textInput: UITextInput) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
-        self.didContextBeforeInput = proxy.documentContextBeforeInput
-        self.didContextAfterInput = proxy.documentContextAfterInput
+        self.didContextBeforeInput = proxy.documentContextBeforeInput ?? ""
+        self.didContextAfterInput = proxy.documentContextAfterInput ?? ""
         super.textDidChange(textInput)
     }
 
@@ -84,7 +84,7 @@ class DebugInputViewController: BasicInputViewController {
             self.initialized = true
             let proxy = self.textDocumentProxy as! UITextInputTraits
             self.log("adding input method view")
-            self.inputMethodView.loadFromTheme(proxy)
+            self.inputMethodView.loadCollections(proxy)
             self.log("added method view")
         })
     }
@@ -122,9 +122,9 @@ class InputViewController: BasicInputViewController {
 
     override func reloadInputMethodView() {
         let proxy = self.textDocumentProxy as! UITextInputTraits
-        self.inputMethodView.loadFromTheme(proxy)
+        self.inputMethodView.loadCollections(proxy)
         //self.inputMethodView.adjustTraits(proxy)
-        self.inputMethodView.lastSize = CGSizeZero
+        self.inputMethodView.adjustedSize = CGSizeZero
         //println("bounds: \(self.view.bounds)")
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
@@ -151,7 +151,7 @@ class InputViewController: BasicInputViewController {
             self.initialized = true
             let proxy = self.textDocumentProxy as! UITextInputTraits
             //self.log("adding input method view")
-            self.inputMethodView.loadFromTheme(proxy)
+            self.inputMethodView.loadCollections(proxy)
             //self.inputMethodView.adjustTraits(proxy)
             //self.log("added method view")
         })
@@ -191,8 +191,12 @@ class InputViewController: BasicInputViewController {
             self.inputMethodView.selectedLayout.view.shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
-        self.lastTraits = textInput as UITextInputTraits
-        self.adjustTraits(textInput as UITextInputTraits)
+        if let traits = textInput as UITextInput? as? UITextInputTraits {
+            self.lastTraits = traits // for app
+        } else {
+            self.lastTraits = self.textDocumentProxy as! UITextInputTraits // for keyboard
+        }
+        self.adjustTraits(self.lastTraits)
     }
 
     func adjustTraits(traits: UITextInputTraits) {
@@ -202,7 +206,15 @@ class InputViewController: BasicInputViewController {
         } else {
             textColor = UIColor.blackColor()
         }
+
         self.inputMethodView.adjustTraits(traits)
+        self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
+
+        if traits.enablesReturnKeyAutomatically ?? false && count(self.didContextBeforeInput) == 0 {
+            self.inputMethodView.selectedLayout.view.doneButton.enabled = false
+        } else {
+            self.inputMethodView.selectedLayout.view.doneButton.enabled = true
+        }
 
         if self.inputMethodView.selectedLayout.capitalizable {
             if self.inputMethodView.selectedLayout.shift == .Auto {
@@ -214,7 +226,7 @@ class InputViewController: BasicInputViewController {
                 case .AllCharacters:
                     needsShift = true
                 case .Words:
-                    if self.didContextBeforeInput == nil || count(self.didContextBeforeInput) == 0 {
+                    if count(self.didContextBeforeInput) == 0 {
                         needsShift = true
                     } else {
                         let whitespaces = NSCharacterSet.whitespaceAndNewlineCharacterSet()
@@ -224,24 +236,20 @@ class InputViewController: BasicInputViewController {
                         needsShift = whitespaces.characterIsMember(lastCharacter) || punctuations.characterIsMember(lastCharacter)
                     }
                 case .Sentences:
-                    if self.didContextBeforeInput == nil {
-                        needsShift = true
-                    } else {
-                        let whitespaces = NSCharacterSet.whitespaceCharacterSet()
-                        let punctuations = NSCharacterSet.punctuationCharacterSet()
-                        let utf16 = self.didContextBeforeInput.utf16
-                        var index = utf16.endIndex
-                        needsShift = true
-                        while index != utf16.startIndex {
-                            index = index.predecessor()
-                            let code = utf16[index]
-                            if punctuations.characterIsMember(code) || code == 10 {
-                                break
-                            }
-                            if !whitespaces.characterIsMember(code) {
-                                needsShift = false
-                                break
-                            }
+                    let whitespaces = NSCharacterSet.whitespaceCharacterSet()
+                    let punctuations = NSCharacterSet.punctuationCharacterSet()
+                    let utf16 = self.didContextBeforeInput.utf16
+                    var index = utf16.endIndex
+                    needsShift = true
+                    while index != utf16.startIndex {
+                        index = index.predecessor()
+                        let code = utf16[index]
+                        if punctuations.characterIsMember(code) || code == 10 {
+                            break
+                        }
+                        if !whitespaces.characterIsMember(code) {
+                            needsShift = false
+                            break
                         }
                     }
                 default: break

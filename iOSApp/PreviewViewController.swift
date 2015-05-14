@@ -12,6 +12,13 @@ import UIKit
 class PreviewInputViewController: InputViewController {
     var previewController: PreviewViewController! = nil
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let mockTextField = UITextField()
+        self.textWillChange(mockTextField)
+        self.textDidChange(mockTextField)
+    }
+
     override func input(sender: UIButton) {
         super.input(sender)
         self.previewController.update()

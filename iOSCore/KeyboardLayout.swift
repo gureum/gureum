@@ -155,7 +155,7 @@ class KeyboardViewEventView: UIView {
                 while self.touchedButtons.count > 0 {
                     let poppedButton = self.touchedButtons[0] as! GRInputButton
                     self.touchedButtons.removeObjectAtIndex(0)
-                    if self.touchingButtons.count != 1 || self.touchingCount < MINIMAL_COUNT {
+                    if (self.touchingButtons.count != 1 || self.touchingCount < MINIMAL_COUNT) && poppedButton.enabled {
                         poppedButton.sendActionsForControlEvents(.TouchUpInside)
                     }
                     poppedButton.hideEffect()

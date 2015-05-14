@@ -10,6 +10,7 @@ import UIKit
 
 class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
+    var layoutNames: Array<String> = []
     var theme: Theme = {
         var theme: Theme = preferences.theme
         if theme.dataForFilename("config.json") == nil {
@@ -17,7 +18,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
         return CachedTheme(theme: theme)
     }()
-    var lastSize = CGSizeZero
+    var adjustedSize = CGSizeZero
     var selectedCollectionIndex = preferences.defaultLayoutIndex
 
     let layoutsView: UIScrollView! = UIScrollView()
@@ -39,7 +40,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.layoutsView.frame = frame
 
 
-        self.preloadFromTheme()
+        self.preloadTheme()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -84,6 +85,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "cheonjiin":
                 return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyNumberKeyboardLayout()]
+            case "numberpad":
+                return [TenKeyNumberKeyboardLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
@@ -91,12 +94,20 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         return KeyboardLayoutCollection(layouts: layouts)
     }
 
-    func preloadFromTheme() {
+    func preloadTheme() {
         let trait = self.theme.traitForSize(self.frame.size)
         self.backgroundImageView.image = trait.backgroundImage
     }
 
     func adjustTraits(traits: UITextInputTraits) {
+        if self.layoutNames != self.layoutNamesForKeyboardType(traits.keyboardType) {
+            self.loadCollections(traits)
+        }
+        switch traits.keyboardType! {
+        default:
+            break
+        }
+
         let returnKeyType = traits.returnKeyType
         let returnTitle: String = {
             if returnKeyType == nil {
@@ -135,7 +146,23 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
     }
 
-    func loadFromTheme(traits: UITextInputTraits) {
+    func layoutNamesForKeyboardType(type: UIKeyboardType?) -> Array<String> {
+        if let type = type {
+            switch type {
+            case .NumberPad:
+                return ["numberpad"]
+            default:
+                return preferences.layouts
+            }
+        } else {
+            return preferences.layouts
+        }
+    }
+
+    func loadCollections(traits: UITextInputTraits) {
+        let layoutNames = self.layoutNamesForKeyboardType(traits.keyboardType)
+        self.layoutNames = layoutNames
+
         for view in layoutsView.subviews {
             view.removeFromSuperview()
         }
@@ -145,13 +172,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 //        if image != nil {
 //            self.inputMethodView.backgroundImageView.image = image
 //        }
-        
 
         //assert(preferences.themeResources.count > 0)
         self.collections.removeAll(keepCapacity: true)
 
-
-        let layoutNames = preferences.layouts
         for (i, name) in enumerate(layoutNames) {
             assert(self.bounds.height > 0)
             assert(self.bounds.width > 0)
@@ -167,14 +191,17 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.selectCollectionByIndex(preferences.defaultLayoutIndex, animated: false)
 
         self.backgroundImageView.image = nil
+
+        self.selectedCollectionIndex = preferences.defaultLayoutIndex < self.collections.count ? preferences.defaultLayoutIndex : 0
+        self.adjustedSize = CGSizeZero
     }
 
     func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
-        if self.lastSize == size {
+        if self.adjustedSize == size {
             return
-        } else {
-            self.lastSize = size
         }
+
+        self.adjustedSize = size
 
 //        globalInputViewController?.log("transitionViewToSize: \(size)")
         let theme = self.theme

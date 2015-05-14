@@ -9,12 +9,13 @@
 import UIKit
 
 class TestViewController: PreviewViewController {
+    @IBOutlet var keyboardTypeScrollView: UIScrollView!
     @IBOutlet var previewField: UITextField!
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.inputPreviewController.textWillChange(self.previewField)
-        self.inputPreviewController.textDidChange(self.previewField)
+        self.keyboardTypeScrollView.setContentSizeBySubviewBoundaryWithAutoMargins()
+        self.update()
     }
 
     override func update() {
@@ -28,5 +29,10 @@ class TestViewController: PreviewViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func keyboardTypeChanged(sender: UISegmentedControl) {
+        self.previewField.keyboardType = UIKeyboardType(rawValue: sender.selectedSegmentIndex)!
+        self.update()
     }
 }

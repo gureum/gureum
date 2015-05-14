@@ -325,7 +325,7 @@ class ThemeCaptionConfiguration {
 
         let position = self.effectPosition
         frame.origin.x += position.x
-        frame.origin.y += position.y
+        frame.origin.y += position.y + self.topMargin / 2
 
         button.effectView.frame = frame
         button.arrange()

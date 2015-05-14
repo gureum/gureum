@@ -761,8 +761,35 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbY-I8-KHU">
+                                <rect key="frame" x="0.0" y="110" width="600" height="45"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r5D-nW-g75">
+                                        <rect key="frame" x="16" y="8" width="878" height="29"/>
+                                        <segments>
+                                            <segment title="Default"/>
+                                            <segment title="ASCII"/>
+                                            <segment title="NumPunc"/>
+                                            <segment title="URL"/>
+                                            <segment title="NumPad"/>
+                                            <segment title="PhonePad"/>
+                                            <segment title="NamePad"/>
+                                            <segment title="Email"/>
+                                            <segment title="Decimal"/>
+                                            <segment title="Twitter"/>
+                                            <segment title="Web"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="keyboardTypeChanged:" destination="Ron-CG-Qzw" eventType="valueChanged" id="Va9-ZT-0K1"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="bVK-Ea-FdE"/>
+                                </constraints>
+                            </scrollView>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
-                                <rect key="frame" x="44" y="90" width="512" height="30"/>
+                                <rect key="frame" x="16" y="72" width="568" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -770,23 +797,26 @@
                                     <constraint firstAttribute="height" constant="30" id="m2X-Ta-gEs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                 <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="73" y="130" width="232" height="30"/>
                                 </variation>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="0.84041078629032262" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rbY-I8-KHU" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="DPr-rK-2Gq"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="bottom" secondItem="NNT-Ad-gF3" secondAttribute="top" id="HQd-Tu-MMa"/>
+                            <constraint firstAttribute="trailing" secondItem="rbY-I8-KHU" secondAttribute="trailing" id="MhN-vG-Xmf"/>
                             <constraint firstAttribute="bottom" secondItem="v6a-tO-xu6" secondAttribute="bottom" id="R7e-Uw-XcQ"/>
                             <constraint firstAttribute="trailing" secondItem="v6a-tO-xu6" secondAttribute="trailing" id="UWh-iM-QOM"/>
-                            <constraint firstItem="8IH-T4-ofw" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leadingMargin" constant="28" id="cnG-bF-cTz"/>
+                            <constraint firstItem="8IH-T4-ofw" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leadingMargin" id="cnG-bF-cTz"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="trailing" secondItem="NNT-Ad-gF3" secondAttribute="trailing" id="eZE-uH-5pc"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="grK-xd-udn"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="NNT-Ad-gF3" secondAttribute="leading" id="kHM-IK-Qpp"/>
-                            <constraint firstItem="8IH-T4-ofw" firstAttribute="top" secondItem="n9X-yt-lP7" secondAttribute="bottom" constant="26" id="mWw-zj-29H"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8IH-T4-ofw" secondAttribute="trailing" constant="28" id="pPh-CI-Zxr"/>
+                            <constraint firstItem="8IH-T4-ofw" firstAttribute="top" secondItem="n9X-yt-lP7" secondAttribute="bottom" constant="8" id="mWw-zj-29H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8IH-T4-ofw" secondAttribute="trailing" id="pPh-CI-Zxr"/>
+                            <constraint firstItem="rbY-I8-KHU" firstAttribute="top" secondItem="8IH-T4-ofw" secondAttribute="bottom" constant="8" id="wYy-k2-wCu"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -812,6 +842,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="92e-tN-RM7"/>
                     <connections>
+                        <outlet property="keyboardTypeScrollView" destination="rbY-I8-KHU" id="GlW-eP-cFN"/>
                         <outlet property="preview" destination="v6a-tO-xu6" id="pJ9-i5-Nx6"/>
                         <outlet property="previewField" destination="8IH-T4-ofw" id="v2F-wU-3MX"/>
                     </connections>

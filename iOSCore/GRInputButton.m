@@ -84,7 +84,9 @@
 }
 
 - (void)showEffect {
-    [self.effectView setHidden:NO animated:YES];
+    if (self.enabled) {
+        [self.effectView setHidden:NO animated:YES];
+    }
 }
 
 - (void)hideEffect {
@@ -129,7 +131,7 @@
     //UIViewAutoresizing autoresizing = UIViewAutoresizingFlexibleAll;
 
     self->_backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self->_backgroundImageView.backgroundColor = [UIColor lightGrayColor];
+    self->_backgroundImageView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.75];
     self->_backgroundImageView.layer.cornerRadius = 12.0;
     self->_backgroundImageView.clipsToBounds = true;
     //self->_backgroundImageView.autoresizingMask = autoresizing;
