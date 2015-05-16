@@ -278,9 +278,8 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         let view = self.dynamicType.loadView()
         view.layout = self
 
-        assert(view.nextKeyboardButton != nil)
         assert(view.deleteButton != nil)
-        view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
+        //view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
         view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
 
         view.insertSubview(view.errorButton, atIndex: 0)

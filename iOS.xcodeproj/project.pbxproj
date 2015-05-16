@@ -14,6 +14,8 @@
 		380D44E71AFA0FC8007A2556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 380D44E11AFA0D99007A2556 /* InfoPlist.strings */; };
 		380D44E81AFA0FCF007A2556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 380D44EA1AFA0FCF007A2556 /* InfoPlist.strings */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
+		38326E411B072857007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
+		38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
 		3836F2101A53529E0045EE0F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3836F20F1A53529E0045EE0F /* MainViewController.swift */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
@@ -227,6 +229,7 @@
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
 		3830366B199059DE00C1EE0C /* capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = capi.h; path = ../hangeul/hangeul/capi.h; sourceTree = "<group>"; };
 		38324EAD199F476B0031888D /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+		38326E401B072857007318BA /* NumberPadLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadLayout.swift; sourceTree = "<group>"; };
 		3836F20F1A53529E0045EE0F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
@@ -438,6 +441,7 @@
 				386308C0199133140039369C /* KeyboardLayout.swift */,
 				38630900199148C50039369C /* QwertyKeyboardLayout.swift */,
 				38630902199148D20039369C /* NumpadKeyboardLayout.swift */,
+				38326E401B072857007318BA /* NumberPadLayout.swift */,
 				386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */,
 				38303654198A1F1E00C1EE0C /* Preferences.swift */,
 				38E37EF8199A44EB00BA7F0C /* Theme.swift */,
@@ -984,6 +988,7 @@
 				386308E0199143330039369C /* Hangeul.swift in Sources */,
 				384ADED819C1B33A0007A993 /* ThemeShopViewController.swift in Sources */,
 				38A37EF919E7256500A9C83B /* Theme.swift in Sources */,
+				38326E411B072857007318BA /* NumberPadLayout.swift in Sources */,
 				383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */,
 				386308F5199143520039369C /* Preferences.swift in Sources */,
 				386308E6199143330039369C /* GRKeyboardLayoutHelper.swift in Sources */,
@@ -1015,6 +1020,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */,
 				386308F0199143520039369C /* Preferences.swift in Sources */,
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
 				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,

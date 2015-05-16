@@ -9,18 +9,9 @@
 import UIKit
 
 class TenkeyKeyboardView: KeyboardView {
-
     @IBOutlet var numberButton: GRInputButton!
     @IBOutlet var alphabetButton: GRInputButton!
     @IBOutlet var hangeulButton: GRInputButton!
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
 }
 
 class TenkeyKeyboardLayout: KeyboardLayout {

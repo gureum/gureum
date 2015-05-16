@@ -86,7 +86,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             case "cheonjiin":
                 return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyNumberKeyboardLayout()]
             case "numberpad":
-                return [TenKeyNumberKeyboardLayout()]
+                return [NumberPadLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
@@ -248,7 +248,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 if i == index && j == collection.selectedLayoutIndex {
                     break;
                 }
-                layout.view.shiftButton.selected = false
+                layout.view.shiftButton?.selected = false
                 for button in layout.helper.buttons.values {
                     button.hideEffect()
                 }

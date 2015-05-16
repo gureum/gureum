@@ -290,15 +290,15 @@ class InputViewController: BasicInputViewController {
 
         let context = selectedLayout.context
         let shiftButton = self.inputMethodView.selectedLayout.view.shiftButton
-        var keycode = shiftButton.selected ? sender.tag >> 15 : sender.tag & 0x7fff
-        if shiftButton.selected {
+        var keycode = (shiftButton?.selected ?? false) ? sender.tag >> 15 : sender.tag & 0x7fff
+        if shiftButton?.selected ?? false {
             shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
 
-        assert(selectedLayout.view.spaceButton != nil)
-        assert(selectedLayout.view.doneButton != nil)
-        if sender == selectedLayout.view.spaceButton || sender == selectedLayout.view.doneButton {
+        //assert(selectedLayout.view.spaceButton != nil)
+        //assert(selectedLayout.view.doneButton != nil)
+        if sender == selectedLayout.view.spaceButton ?? nil || sender == selectedLayout.view.doneButton ?? nil {
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
             self.inputMethodView.resetContext()
             // FIXME: dirty solution
