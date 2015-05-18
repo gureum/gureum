@@ -85,8 +85,16 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "cheonjiin":
                 return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyNumberKeyboardLayout()]
-            case "numberpad":
+            case "number":
                 return [NumberPadLayout()]
+            case "ascii":
+                return [QwertyKeyboardLayout(), QwertySymbolKeyboardLayout()]
+            case "numberpunc":
+                return [QwertySymbolKeyboardLayout(), QwertyKeyboardLayout()]
+            case "phone":
+                return [NumberPadLayout()]
+            case "decimal":
+                return [DecimalPadLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
@@ -102,10 +110,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     func adjustTraits(traits: UITextInputTraits) {
         if self.layoutNames != self.layoutNamesForKeyboardType(traits.keyboardType) {
             self.loadCollections(traits)
-        }
-        switch traits.keyboardType! {
-        default:
-            break
         }
 
         let returnKeyType = traits.returnKeyType
@@ -142,6 +146,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         for (i, collection) in enumerate(self.collections) {
             for layout in collection.layouts {
                 layout.view.doneButton.captionLabel.text = returnTitle
+                layout.adjustTraits(traits)
             }
         }
     }
@@ -149,8 +154,18 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     func layoutNamesForKeyboardType(type: UIKeyboardType?) -> Array<String> {
         if let type = type {
             switch type {
+            case .ASCIICapable:
+                return ["ascii"]
             case .NumberPad:
-                return ["numberpad"]
+                return ["number"]
+            case .NumbersAndPunctuation:
+                return ["numberpunc"]
+            case .PhonePad:
+                return ["phone"]
+            case .NamePhonePad:
+                return preferences.layouts // temp
+            case .DecimalPad:
+                return ["decimal"]
             default:
                 return preferences.layouts
             }

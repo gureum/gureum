@@ -208,6 +208,19 @@ class KeyboardView: UIView {
     @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
     @IBOutlet var shiftButton: GRInputButton! = nil
 
+    var URLButtons: [GRInputButton] {
+        get { return [] }
+    }
+
+    var emailButtons: [GRInputButton] {
+        get { return [] }
+    }
+
+    var twitterButtons: [GRInputButton] {
+        get { return [] }
+    }
+
+
     let errorButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
     let untouchButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
 
@@ -218,6 +231,21 @@ class KeyboardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
+        self.nextKeyboardButton = GRInputButton()
+        self.nextKeyboardButton.captionLabel.text = "🌐"
+        self.deleteButton = GRInputButton()
+        self.deleteButton.captionLabel.text = "⌫"
+        self.deleteButton.tag = 0x7f
+        self.doneButton = GRInputButton()
+        self.doneButton.tag = 13
+        self.toggleKeyboardButton = GRInputButton()
+        self.toggleKeyboardButton.captionLabel.text = "123"
+        self.shiftButton = GRInputButton()
+        self.shiftButton.captionLabel.text = "⬆︎"
+        self.spaceButton = GRInputButton()
+        self.spaceButton.captionLabel.text = "간격"
+        self.spaceButton.tag = 32
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -269,6 +297,9 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var context: UnsafeMutablePointer<()> = nil
     var capitalizable: Bool {
         get { return false }
+    }
+    var togglable: Bool {
+        get { return true }
     }
     var autocapitalized = false
 
@@ -333,17 +364,20 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         if point.x < 0 {
             newPoint.x = 0
         }
-        if point.x > self.view.frame.size.width {
+        if point.x >= self.view.frame.size.width {
             newPoint.x = self.view.frame.size.width - 1
         }
         if point.y < 0 {
             newPoint.y = 0
         }
-        if point.y > self.view.frame.size.height {
+        if point.y >= self.view.frame.size.height {
             newPoint.y = self.view.frame.size.height - 1
         }
         for button in self.view.subviews {
             if !(button is GRInputButton) {
+                continue
+            }
+            if (button as! GRInputButton).alpha == 0.0 {
                 continue
             }
             if CGRectContainsPoint(button.frame, newPoint) {
@@ -421,6 +455,10 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         } else {
             return PreferencedTheme()
         }
+    }
+
+    func adjustTraits(traits: UITextInputTraits) {
+        //
     }
 }
 

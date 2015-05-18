@@ -167,20 +167,23 @@ class ThemeTraitConfiguration {
     }
 
     lazy var qwertyKeyCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("key", fallback: self.qwertyCaption)
+    lazy var qwertySpecialKeyCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("special", fallback: self.qwertyKeyCaption)
     lazy var qwertyFunctionCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("function", fallback: self.qwertyCaption)
 
+    /*
     lazy var qwerty1xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1x", fallback: self.qwertyKeyCaption)
     lazy var qwerty1_25xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.25x", fallback: self.qwertyFunctionCaption)
     lazy var qwerty1_5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.5x", fallback: self.qwertyFunctionCaption)
     lazy var qwerty3xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("3x", fallback: self.qwertyFunctionCaption)
     lazy var qwerty5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("5x", fallback: self.qwertyFunctionCaption)
+    */
 
-    lazy var qwertyShiftCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("shift", fallback: self.qwerty1_5xCaption)
-    lazy var qwertyDeleteCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("delete", fallback: self.qwerty1_5xCaption)
-    lazy var qwerty123Caption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("123", fallback: self.qwerty1_25xCaption)
-    lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("globe", fallback: self.qwerty1_25xCaption)
-    lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("space", fallback: self.qwerty5xCaption)
-    lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("done", fallback: self.qwerty3xCaption)
+    lazy var qwertyShiftCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("shift", fallback: self.qwertyFunctionCaption)
+    lazy var qwertyDeleteCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("delete", fallback: self.qwertyFunctionCaption)
+    lazy var qwerty123Caption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("123", fallback: self.qwertyFunctionCaption)
+    lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("globe", fallback: self.qwertyFunctionCaption)
+    lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("space", fallback: self.qwertySpecialKeyCaption)
+    lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("done", fallback: self.qwertyFunctionCaption)
 
     func tenkeyCaptionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
         let newKey = "tenkey-" + key
@@ -192,6 +195,7 @@ class ThemeTraitConfiguration {
         return self.captionForKey("tenkey-row\(row)", needsMargin: false, fallback: self.tenkeyCaption)
     }
     lazy var tenkeyKeyCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("key", fallback: self.tenkeyCaption)
+    lazy var tenkeySpecialKeyCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("special", fallback: self.tenkeyKeyCaption)
     lazy var tenkeyFunctionCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("function", fallback: self.tenkeyCaption)
 
     lazy var tenkeyShiftCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("shift", fallback: self.tenkeyCaptionForKeyInRow(2))

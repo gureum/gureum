@@ -23,7 +23,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
 
     override class func loadView() -> KeyboardView {
         let view = TenkeyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
-
+        view.deleteButton.tag = 0x0e
         view.numberButton = GRInputButton()
         view.numberButton.captionLabel.text = "123"
         view.numberButton.tag = 2
@@ -33,18 +33,6 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         view.hangeulButton = GRInputButton()
         view.hangeulButton.captionLabel.text = "한글"
         view.hangeulButton.tag = 0
-        view.nextKeyboardButton = GRInputButton()
-        view.nextKeyboardButton.captionLabel.text = "🌐"
-        view.deleteButton = GRInputButton()
-        view.deleteButton.captionLabel.text = "⌫"
-        view.deleteButton.tag = 0x0e
-        view.doneButton = GRInputButton()
-        //view.toggleKeyboardButton = GRInputButton()
-        //view.toggleKeyboardButton.captionLabel.text = "123"
-        view.shiftButton = GRInputButton()
-        view.shiftButton.captionLabel.text = "⬆︎"
-        view.spaceButton = GRInputButton()
-        view.spaceButton.captionLabel.text = "간격"
 
         for subview in [view.numberButton, view.alphabetButton, view.hangeulButton, view.nextKeyboardButton, view.deleteButton, view.doneButton, view.shiftButton, view.spaceButton] {
             view.addSubview(subview)
@@ -242,7 +230,7 @@ class TenKeyNumberKeyboardLayout: TenkeyKeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
         let keycode = self.keycodeForPosition(position, shift: false)
-        let titles1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", ""]
+        let titles1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "0", "."]
         let titles2 = titles1
         let label = (self.view.shiftButton.selected ? titles2 : titles1)[keycode]
         return "\(label)"

@@ -9,7 +9,7 @@
 import UIKit
 
 class NumberPadView: KeyboardView {
-    @IBOutlet var leftSpaceButton: GRInputButton!
+    @IBOutlet var leftButton: GRInputButton!
 }
 
 class NumberPadLayout: KeyboardLayout {
@@ -21,18 +21,10 @@ class NumberPadLayout: KeyboardLayout {
 
     override class func loadView() -> KeyboardView {
         let view = NumberPadView(frame: CGRectMake(0, 0, 320, 216))
-        view.deleteButton = GRInputButton()
-        view.deleteButton.captionLabel.text = "⌫"
-        view.deleteButton.tag = 0x0e
-        view.doneButton = GRInputButton()
 
-        //view.toggleKeyboardButton = GRInputButton()
-        //view.toggleKeyboardButton.captionLabel.text = "123"
-        //view.shiftButton = GRInputButton()
-        //view.shiftButton.captionLabel.text = "⬆︎"
-        view.leftSpaceButton = GRInputButton()
+        view.leftButton = GRInputButton()
 
-        for subview in [view.deleteButton] {
+        for subview in [view.deleteButton, view.toggleKeyboardButton] {
             view.addSubview(subview)
         }
         return view
@@ -43,7 +35,7 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
-        let code: Int? = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [nil, 0]][position.row][position.column]
+        let code: Int? = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]][position.row][position.column]
         if let code = code {
             return code + 48
         } else {
@@ -61,6 +53,8 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+        self.padView.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
+        self.padView.leftButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -74,17 +68,25 @@ class NumberPadLayout: KeyboardLayout {
             captionTheme.appealButton(button)
         }
 
-        let map = [
+        var map = [
             self.padView.deleteButton!: trait.tenkeyDeleteCaption,
         ]
+        if self.togglable {
+            map[self.padView.toggleKeyboardButton!] = trait.tenkey123Caption
+        }
+        if self.padView.leftButton.tag != 0 {
+            map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
+        }
 
         for (button, captionTheme) in map {
             captionTheme.appealButton(button)
         }
 
         let size = rect.size
-        for button in [self.padView.deleteButton] {
-            button.frame.size = CGSizeMake(size.width / 3, size.height / 4)
+        for button in [self.padView.deleteButton, self.padView.toggleKeyboardButton, self.padView.leftButton] {
+            let width = self.helper(self.helper, columnWidthInRow: 3, forSize: size)
+            let height = self.helper(self.helper, columnWidthInRow: 3, forSize: size)
+            button.frame.size = CGSizeMake(width, height)
         }
     }
 
@@ -95,11 +97,16 @@ class NumberPadLayout: KeyboardLayout {
             captionTheme.arrangeButton(button)
         }
 
-        let map = [
+        var map = [
             self.padView.deleteButton!: trait.tenkeyDeleteCaption,
-            //self.padView.toggleKeyboardButton!: trait.tenkeyShiftCaption,
             //self.padView.nextKeyboardButton!: trait.tenkeyGlobeCaption,
         ]
+        if self.togglable {
+            map[self.padView.toggleKeyboardButton!] = trait.tenkey123Caption
+        }
+        if self.padView.leftButton.tag != 0 {
+            map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
+        }
         
         for (button, captionTheme) in map {
             captionTheme.arrangeButton(button)
@@ -112,7 +119,7 @@ class NumberPadLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         if row == 3 {
-            return 2
+            return 1
         }
         return 3
     }
@@ -130,7 +137,11 @@ class NumberPadLayout: KeyboardLayout {
         case 0, 1, 2:
             return []
         case 3:
-            return [self.padView.leftSpaceButton]
+            if togglable {
+                return [self.padView.toggleKeyboardButton]
+            } else {
+                return [self.padView.leftButton]
+            }
         default:
             assert(false)
             return []
@@ -166,21 +177,21 @@ class NumberPadLayout: KeyboardLayout {
     }
 }
 
-class PhonePadLayout: NumberPadLayout {
-    override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(number_from_tenkey_handler(), number_from_tenkey_handler(), number_tenkey_decoder())
+class DecimalPadLayout: NumberPadLayout {
+    override var togglable: Bool {
+        get { return false }
     }
 
     override class func loadView() -> KeyboardView {
         let view = super.loadView() as! NumberPadView
+        view.leftButton.captionLabel.text = "."
+        view.leftButton.tag = 46
+        view.addSubview(view.leftButton)
         return view
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position, shift: false)
-        let titles1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", ""]
-        let titles2 = titles1
-        let label = (self.view.shiftButton.selected ? titles2 : titles1)[keycode]
-        return "\(label)"
-    }
+}
+
+class PhonePadLayout: NumberPadLayout {
+
 }

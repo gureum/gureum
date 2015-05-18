@@ -188,7 +188,7 @@ class InputViewController: BasicInputViewController {
         if self.willContextBeforeInput != self.didContextBeforeInput || self.willContextAfterInput != self.didContextAfterInput {
             self.inputMethodView.resetContext()
             self.inputMethodView.selectedCollection.selectLayoutIndex(0)
-            self.inputMethodView.selectedLayout.view.shiftButton.selected = false
+            self.inputMethodView.selectedLayout.view.shiftButton?.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
         if let traits = textInput as UITextInput? as? UITextInputTraits {
@@ -442,6 +442,17 @@ class InputViewController: BasicInputViewController {
     func space(sender: UIButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.input(sender)
+    }
+
+    func dotcom(sender: UIButton) {
+        for collection in self.inputMethodView.collections {
+            for layout in collection.layouts {
+                if layout.context != nil {
+                    context_truncate(layout.context)
+                }
+            }
+        }
+        (self.textDocumentProxy as! UIKeyInput).insertText(".com")
     }
 
     func shift(sender: UIButton) {

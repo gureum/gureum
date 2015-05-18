@@ -46,9 +46,9 @@
 		386308FE199143A80039369C /* capi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38303668199059D500C1EE0C /* capi.cpp */; };
 		386308FF199143A90039369C /* capi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38303668199059D500C1EE0C /* capi.cpp */; };
 		38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630900199148C50039369C /* QwertyKeyboardLayout.swift */; };
-		38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
+		38630903199148D20039369C /* TenkeyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* TenkeyKeyboardLayout.swift */; };
 		38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630900199148C50039369C /* QwertyKeyboardLayout.swift */; };
-		38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* NumpadKeyboardLayout.swift */; };
+		38630905199149180039369C /* TenkeyKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38630902199148D20039369C /* TenkeyKeyboardLayout.swift */; };
 		3882BA01193F9E6600076C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FF193F9E6600076C26 /* Main.storyboard */; };
 		3882BA03193F9E6600076C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3882BA02193F9E6600076C26 /* Images.xcassets */; };
 		3882BA0F193F9E6600076C26 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882BA0E193F9E6600076C26 /* GureumTests.swift */; };
@@ -250,7 +250,7 @@
 		386308C3199133140039369C /* QwertyLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QwertyLayout.xib; sourceTree = "<group>"; };
 		386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRKeyboardLayoutHelper.swift; sourceTree = "<group>"; };
 		38630900199148C50039369C /* QwertyKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QwertyKeyboardLayout.swift; sourceTree = "<group>"; };
-		38630902199148D20039369C /* NumpadKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpadKeyboardLayout.swift; sourceTree = "<group>"; };
+		38630902199148D20039369C /* TenkeyKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenkeyKeyboardLayout.swift; sourceTree = "<group>"; };
 		3882B9F6193F9E6600076C26 /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3882B9FA193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882B9FB193F9E6600076C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 				386308BF199133140039369C /* InputMethodView.swift */,
 				386308C0199133140039369C /* KeyboardLayout.swift */,
 				38630900199148C50039369C /* QwertyKeyboardLayout.swift */,
-				38630902199148D20039369C /* NumpadKeyboardLayout.swift */,
+				38630902199148D20039369C /* TenkeyKeyboardLayout.swift */,
 				38326E401B072857007318BA /* NumberPadLayout.swift */,
 				386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */,
 				38303654198A1F1E00C1EE0C /* Preferences.swift */,
@@ -996,7 +996,7 @@
 				386308E3199143330039369C /* InputMethodView.swift in Sources */,
 				384ADED419C1B31D0007A993 /* GlobalActivicyIndicatorView.swift in Sources */,
 				384ADED219C1B3130007A993 /* LayoutEditorViewController.swift in Sources */,
-				38630903199148D20039369C /* NumpadKeyboardLayout.swift in Sources */,
+				38630903199148D20039369C /* TenkeyKeyboardLayout.swift in Sources */,
 				386308E4199143330039369C /* KeyboardLayout.swift in Sources */,
 				38A849DA1A4D7D6600A31A96 /* QuickHelperViewController.swift in Sources */,
 				3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */,
@@ -1023,7 +1023,7 @@
 				38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */,
 				386308F0199143520039369C /* Preferences.swift in Sources */,
 				386308DB199143320039369C /* GRKeyboardLayoutHelper.swift in Sources */,
-				38630905199149180039369C /* NumpadKeyboardLayout.swift in Sources */,
+				38630905199149180039369C /* TenkeyKeyboardLayout.swift in Sources */,
 				386308D5199143320039369C /* Hangeul.swift in Sources */,
 				383B07EE19E70609004046F5 /* InputViewController.swift in Sources */,
 				3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */,
