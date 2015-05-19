@@ -336,6 +336,9 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
     override var capitalizable: Bool {
         get { return true }
     }
+    override var autounshift: Bool {
+        get { return true }
+    }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
@@ -504,6 +507,10 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
 }
 
 class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
+    override var autounshift: Bool {
+        get { return true }
+    }
+
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
     }

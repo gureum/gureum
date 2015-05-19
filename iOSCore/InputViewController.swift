@@ -291,7 +291,7 @@ class InputViewController: BasicInputViewController {
         let context = selectedLayout.context
         let shiftButton = self.inputMethodView.selectedLayout.view.shiftButton
         var keycode = (shiftButton?.selected ?? false) ? sender.tag >> 15 : sender.tag & 0x7fff
-        if shiftButton?.selected ?? false {
+        if self.inputMethodView.selectedLayout.autounshift && shiftButton?.selected ?? false {
             shiftButton.selected = false
             self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }

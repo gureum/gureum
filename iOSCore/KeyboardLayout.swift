@@ -301,6 +301,9 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var togglable: Bool {
         get { return true }
     }
+    var autounshift: Bool {
+        get { return false }
+    }
     var autocapitalized = false
 
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
