@@ -60,13 +60,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
         self.tenkeyView.spaceButton.tag = 12
         self.tenkeyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-
         self.tenkeyView.doneButton.tag = 13
-        self.tenkeyView.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
-
-        self.tenkeyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
-
-        //self.tenkeyView.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
 
         self.tenkeyView.numberButton.addTarget(nil, action: "selectLayout:", forControlEvents: .TouchUpInside)
         self.tenkeyView.alphabetButton.addTarget(nil, action: "selectLayout:", forControlEvents: .TouchUpInside)

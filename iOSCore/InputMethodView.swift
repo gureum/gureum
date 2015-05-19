@@ -92,13 +92,16 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             case "numberpunc":
                 return [QwertySymbolKeyboardLayout(), QwertyKeyboardLayout()]
             case "phone":
-                return [NumberPadLayout()]
+                return [PhonePadLayout()]
             case "decimal":
                 return [DecimalPadLayout()]
             default:
                 return [NoKeyboardLayout()]
             }
         }()
+        if layouts.count == 1 {
+            layouts[0].togglable = false
+        }
         return KeyboardLayoutCollection(layouts: layouts)
     }
 

@@ -298,8 +298,11 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     var capitalizable: Bool {
         get { return false }
     }
-    var togglable: Bool {
-        get { return true }
+    var togglable = true {
+        didSet {
+            self.view.toggleKeyboardButton.enabled = togglable
+            self.view.toggleKeyboardButton.alpha = togglable ? 1.0 : 0.0
+        }
     }
     var autounshift: Bool {
         get { return false }
@@ -315,6 +318,9 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         assert(view.deleteButton != nil)
         //view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
         view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
+        view.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
+        view.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
+        view.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
 
         view.insertSubview(view.errorButton, atIndex: 0)
         view.insertSubview(view.untouchButton, atIndex: 0)
@@ -376,15 +382,16 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         if point.y >= self.view.frame.size.height {
             newPoint.y = self.view.frame.size.height - 1
         }
-        for button in self.view.subviews {
-            if !(button is GRInputButton) {
+        for view in self.view.subviews {
+            if !(view is GRInputButton) {
                 continue
             }
-            if (button as! GRInputButton).alpha == 0.0 {
+            let button = view as! GRInputButton
+            if button.alpha == 0.0 {
                 continue
             }
             if CGRectContainsPoint(button.frame, newPoint) {
-                return button as! GRInputButton
+                return button
             }
         }
 

@@ -523,7 +523,9 @@ class InputViewController: BasicInputViewController {
     func error(sender: UIButton) {
         self.inputMethodView.resetContext()
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
-        proxy.insertText("<error: \(sender.tag)>");
+        #if DEBUG
+        proxy.insertText("<error: \(sender.tag)>")
+        #endif
     }
 
 }

@@ -123,9 +123,6 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        self.qwertyView.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
-        self.qwertyView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
-        self.qwertyView.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
         self.qwertyView.spaceButton.addTarget(nil, action: "space:", forControlEvents: .TouchUpInside)
 
         for button in [self.qwertyView.URLDotComButton, self.qwertyView.URLSlashButton] + self.view.emailButtons + self.view.twitterButtons {

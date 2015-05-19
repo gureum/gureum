@@ -22,9 +22,9 @@ class NumberPadLayout: KeyboardLayout {
     override class func loadView() -> KeyboardView {
         let view = NumberPadView(frame: CGRectMake(0, 0, 320, 216))
 
-        view.leftButton = GRInputButton()
+        view.leftButton = view.toggleKeyboardButton
 
-        for subview in [view.deleteButton, view.toggleKeyboardButton] {
+        for subview in [view.deleteButton, view.leftButton] {
             view.addSubview(subview)
         }
         return view
@@ -53,8 +53,6 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        self.padView.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
-        self.padView.leftButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -70,11 +68,10 @@ class NumberPadLayout: KeyboardLayout {
 
         var map = [
             self.padView.deleteButton!: trait.tenkeyDeleteCaption,
+            self.padView.toggleKeyboardButton!: trait.tenkey123Caption,
+            self.padView.shiftButton!: trait.tenkeyShiftCaption,
         ]
-        if self.togglable {
-            map[self.padView.toggleKeyboardButton!] = trait.tenkey123Caption
-        }
-        if self.padView.leftButton.tag != 0 {
+        if !contains(map.keys, self.padView.leftButton) {
             map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
         }
 
@@ -101,13 +98,8 @@ class NumberPadLayout: KeyboardLayout {
             self.padView.deleteButton!: trait.tenkeyDeleteCaption,
             //self.padView.nextKeyboardButton!: trait.tenkeyGlobeCaption,
         ]
-        if self.togglable {
-            map[self.padView.toggleKeyboardButton!] = trait.tenkey123Caption
-        }
-        if self.padView.leftButton.tag != 0 {
-            map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
-        }
-        
+        map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
+
         for (button, captionTheme) in map {
             captionTheme.arrangeButton(button)
         }
@@ -137,11 +129,7 @@ class NumberPadLayout: KeyboardLayout {
         case 0, 1, 2:
             return []
         case 3:
-            if togglable {
-                return [self.padView.toggleKeyboardButton]
-            } else {
-                return [self.padView.leftButton]
-            }
+            return [self.padView.leftButton]
         default:
             assert(false)
             return []
@@ -178,20 +166,26 @@ class NumberPadLayout: KeyboardLayout {
 }
 
 class DecimalPadLayout: NumberPadLayout {
-    override var togglable: Bool {
-        get { return false }
-    }
-
     override class func loadView() -> KeyboardView {
         let view = super.loadView() as! NumberPadView
+        view.leftButton = GRInputButton()
         view.leftButton.captionLabel.text = "."
         view.leftButton.tag = 46
         view.addSubview(view.leftButton)
         return view
     }
 
+    override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+        super.layoutWillLoadForHelper(self.helper)
+        self.padView.leftButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+    }
 }
 
 class PhonePadLayout: NumberPadLayout {
-
+    override class func loadView() -> KeyboardView {
+        let view = super.loadView() as! NumberPadView
+        view.leftButton = view.shiftButton
+        view.addSubview(view.shiftButton)
+        return view
+    }
 }

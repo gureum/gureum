@@ -724,7 +724,7 @@
             </objects>
             <point key="canvasLocation" x="772" y="-650"/>
         </scene>
-        <!--Test View Controller-->
+        <!--Test-->
         <scene sceneID="e0k-zV-AvS">
             <objects>
                 <viewController id="Ron-CG-Qzw" customClass="TestViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
@@ -840,7 +840,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="92e-tN-RM7"/>
+                    <navigationItem key="navigationItem" title="Test" id="92e-tN-RM7"/>
                     <connections>
                         <outlet property="keyboardTypeScrollView" destination="rbY-I8-KHU" id="GlW-eP-cFN"/>
                         <outlet property="preview" destination="v6a-tO-xu6" id="pJ9-i5-Nx6"/>
