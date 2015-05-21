@@ -436,6 +436,20 @@
 			<string>org.youknowone.inputmethod.Gureum.han3-2014</string>
 		</array>
 	</dict>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>1b5d8443c3eabba778b0d97bff234647af846181</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>HIMHanjaWindowSettings</key>
 	<dict>
 		<key>fontName</key>
