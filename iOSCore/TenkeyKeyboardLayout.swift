@@ -80,7 +80,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
 
         let map = [
-            self.tenkeyView.numberButton!: trait.tenkey123Caption,
+            self.tenkeyView.numberButton!: trait.tenkeyToggleCaption,
             self.tenkeyView.alphabetButton!: trait.tenkeyAbcCaption,
             self.tenkeyView.hangeulButton!: trait.tenkeyHangeulCaption,
             self.tenkeyView.shiftButton!: trait.tenkeyShiftCaption,
@@ -109,7 +109,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
 
         let map = [
-            self.tenkeyView.numberButton!: trait.tenkey123Caption,
+            self.tenkeyView.numberButton!: trait.tenkeyToggleCaption,
             self.tenkeyView.alphabetButton!: trait.tenkeyAbcCaption,
             self.tenkeyView.hangeulButton!: trait.tenkeyHangeulCaption,
             self.tenkeyView.shiftButton!: trait.tenkeyShiftCaption,

@@ -11,7 +11,6 @@ import UIKit
 let QuickHelperResult: NSMutableDictionary = NSMutableDictionary()
 
 class QuickHelperTableViewController: UITableViewController {
-
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done:")
         button.enabled = false
@@ -70,7 +69,6 @@ class SingleSelectableQuickHelperTableViewController: SelectableQuickHelperTable
         tableView.reloadData()
     }
 }
-
 
 class MainLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTableViewController {
     override func viewWillAppear(animated: Bool) {
@@ -134,7 +132,7 @@ class SettingsQuickHelperTableViewController: SelectableQuickHelperTableViewCont
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.selectedIndexPaths = [NSIndexPath(forRow: 0, inSection: 0)]
+        self.selectedIndexPaths = [NSIndexPath(forRow: 0, inSection: 0), NSIndexPath(forRow: 1, inSection: 0)]
         self.doneButton.enabled = true
     }
 
@@ -144,112 +142,5 @@ class SettingsQuickHelperTableViewController: SelectableQuickHelperTableViewCont
 
     override func nextSegueIdentifier() -> String {
         return "done"
-    }
-}
-
-class DoneQuickHelperTableViewController: QuickHelperTableViewController {
-    var result: NSMutableDictionary = NSMutableDictionary()
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.doneButton.enabled = true
-
-        let mainIndexPath: NSIndexPath = (QuickHelperResult["main"] as! [NSIndexPath])[0]
-        let leftIndexPath: NSIndexPath = (QuickHelperResult["left"] as! [NSIndexPath])[0]
-        let rightIndexPaths: [NSIndexPath] = QuickHelperResult["right"] as! [NSIndexPath]
-        result["main"] = ["ksx5002", "danmoum", "cheonjiin"][mainIndexPath.row]
-        if result["main"] as! String != "cheonjiin" {
-            result["left"] = ["qwerty"][leftIndexPath.row]
-            let rights = NSMutableArray()
-            for indexPath in rightIndexPaths {
-                let row = indexPath.row
-                if row == 0 {
-                    continue
-                }
-                let right = ["", "symbol", "cheonjiin"][row]
-                rights.addObject(right)
-            }
-            result["right"] = rights
-        } else {
-            result["left"] = ["", "ksx5002", "danmoum", "qwerty"][leftIndexPath.row]
-            let rights = NSMutableArray()
-            for indexPath in rightIndexPaths {
-                let row = indexPath.row
-                if row == 0 {
-                    continue
-                }
-                let right = ["", "ksx5002", "danmoum", "qwerty", "symbol"][row]
-                rights.addObject(right)
-            }
-            result["right"] = rights
-        }
-
-        result["swipe"] = false
-        result["inglobe"] = false
-        let settingsIndexPaths = QuickHelperResult["settings"] as! [NSIndexPath]
-        for indexPath in settingsIndexPaths {
-            let row = indexPath.row
-            switch row {
-            case 0:
-                result["swipe"] = true
-            case 1:
-                result["inglobe"] = true
-            default:
-                assert(false)
-            }
-        }
-
-        self.tableView.reloadData()
-    }
-
-    override func done(sender: UIBarButtonItem) {
-        var layouts: [String] = []
-        let left = result["left"] as! String
-        if left != "" {
-            layouts.append(left)
-        }
-        layouts.append(result["main"] as! String)
-        layouts += result["right"] as! [String]
-
-        preferences.layouts = layouts
-        preferences.defaultLayoutIndex = left == "" ? 0 : 1
-
-        preferences.setObjectForKey("quickhelper", value: true)
-        preferences.setObjectForKey("swipe", value: result["swipe"] as! Bool)
-        preferences.setObjectForKey("inglobe", value: result["inglobe"] as! Bool)
-
-        self.navigationController!.popToRootViewControllerAnimated(true)
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-        if self.result.count == 0 {
-            return cell
-        }
-        switch indexPath.row {
-        case 0:
-            cell.textLabel!.text = "주 자판"
-            cell.detailTextLabel!.text = NSLocalizedString(self.result["main"] as! String, comment: "")
-        case 1:
-            cell.textLabel!.text = "왼쪽 보조자판"
-            cell.detailTextLabel!.text = NSLocalizedString(self.result["left"] as! String, comment: "")
-        case 2:
-            cell.textLabel!.text = "오른쪽 보조자판"
-            let text = ", ".join((self.result["right"] as! Array).map({ NSLocalizedString($0, comment: "") }))
-            cell.detailTextLabel!.text = count(text) > 0 ? text : "없음"
-        case 3:
-            cell.textLabel!.text = "좌, 우로 쓸어서 자판 이동"
-            cell.detailTextLabel!.text = (self.result["swipe"] as! Bool) ? "사용함" : "사용 안함"
-        case 4:
-            cell.textLabel!.text = "키보드 전환 키로 왼쪽 보조자판 이용 (두 번 터치로 다른 키보드 이용)"
-            cell.detailTextLabel!.text = (self.result["inglobe"] as! Bool) ? "사용함" : "사용 안함"
-        default:
-            assert(false)
-        }
-        return cell
     }
 }

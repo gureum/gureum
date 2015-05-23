@@ -98,7 +98,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         view.leftSpaceButton = GRInputButton()
         view.rightSpaceButton = GRInputButton()
 
-        for subview in view.URLButtons + view.emailButtons {
+        for subview in view.URLButtons + view.emailButtons + view.twitterButtons {
             subview.alpha = 0
         }
 
@@ -146,7 +146,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         let map = [
             self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
+            self.qwertyView.toggleKeyboardButton!: trait.qwertyToggleCaption,
             self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
             self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
             self.qwertyView.doneButton!: trait.qwertyDoneCaption,
@@ -205,7 +205,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         let map = [
             self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: trait.qwerty123Caption,
+            self.qwertyView.toggleKeyboardButton!: trait.qwertyToggleCaption,
             self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
             self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
             self.qwertyView.doneButton!: trait.qwertyDoneCaption,
@@ -330,10 +330,13 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
 }
 
 class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
-    override var capitalizable: Bool {
+    override class var toggleCaption: String {
+        get { return "ABC" }
+    }
+    override class var capitalizable: Bool {
         get { return true }
     }
-    override var autounshift: Bool {
+    override class var autounshift: Bool {
         get { return true }
     }
 
@@ -430,6 +433,9 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
 }
 
 class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
+    override class var toggleCaption: String {
+        get { return "123" }
+    }
     override class func loadContext() -> UnsafeMutablePointer<()> {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
     }
@@ -504,7 +510,10 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
 }
 
 class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
-    override var autounshift: Bool {
+    override class var toggleCaption: String {
+        get { return "한글" }
+    }
+    override class var autounshift: Bool {
         get { return true }
     }
 

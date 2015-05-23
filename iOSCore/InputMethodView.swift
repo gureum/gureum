@@ -99,8 +99,17 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 return [NoKeyboardLayout()]
             }
         }()
+        assert(layouts.count > 0)
         if layouts.count == 1 {
             layouts[0].togglable = false
+        } else {
+            for (i, layout) in enumerate(layouts) {
+                if i == 0 {
+                    layout.view.toggleKeyboardButton.captionLabel.text = layouts[1].dynamicType.toggleCaption
+                } else {
+                    layout.view.toggleKeyboardButton.captionLabel.text = layouts[0].dynamicType.toggleCaption
+                }
+            }
         }
         return KeyboardLayoutCollection(layouts: layouts)
     }

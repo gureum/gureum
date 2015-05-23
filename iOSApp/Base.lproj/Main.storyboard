@@ -8,7 +8,7 @@
         <!--Installation-->
         <scene sceneID="3Sx-fS-S6P">
             <objects>
-                <viewController id="u8y-ei-8FF" customClass="InstallHelpViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Installation" id="u8y-ei-8FF" customClass="InstallHelpViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R6w-qr-v0P"/>
                         <viewControllerLayoutGuide type="bottom" id="cv1-xe-T3T"/>
@@ -30,7 +30,6 @@
                             <constraint firstAttribute="trailing" secondItem="8Ml-Ta-FqV" secondAttribute="trailing" id="jg5-NW-1ZM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Installation" id="BUE-1q-Dti"/>
                     <connections>
                         <outlet property="webView" destination="8Ml-Ta-FqV" id="T4c-el-Pln"/>
                     </connections>
@@ -68,7 +67,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="u8y-ei-8FF" kind="show" id="7kN-cF-A3t"/>
+                                            <segue destination="u8y-ei-8FF" kind="show" identifier="installation" id="7kN-cF-A3t"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="JMw-We-j9y" style="IBUITableViewCellStyleDefault" id="1Wf-yc-SYo">
@@ -92,24 +91,6 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Settings" id="MFq-Nj-UTZ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="xIj-p9-gTt" style="IBUITableViewCellStyleDefault" id="wMu-y5-Sgy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wMu-y5-Sgy" id="a7r-wa-JZe">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="테마 샵 (임시)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIj-p9-gTt">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="RVj-Sn-JE4" kind="show" id="gOm-5D-W1x"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="m3z-Og-CsD" style="IBUITableViewCellStyleDefault" id="dBq-3l-CRM">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBq-3l-CRM" id="4q9-jI-nEi">
@@ -141,7 +122,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Ron-CG-Qzw" kind="show" id="q5G-P6-afr"/>
+                                            <segue destination="Ron-CG-Qzw" kind="show" identifier="test" id="q5G-P6-afr"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -467,9 +448,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Theme" id="Jr1-0l-XcV">
-                        <barButtonItem key="rightBarButtonItem" title="구매 복원" id="Q6T-La-nLe"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Theme" id="Jr1-0l-XcV"/>
                     <connections>
                         <outlet property="cancelButton" destination="2fu-SI-VE7" id="Htc-Zz-EH8"/>
                         <outlet property="doneButton" destination="6cF-vj-js7" id="htQ-pd-zLl"/>
@@ -479,6 +458,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln7-GB-Fc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem id="Q6T-La-nLe"/>
                 <barButtonItem systemItem="cancel" id="2fu-SI-VE7">
                     <connections>
                         <action selector="cancelTheme:" destination="vWb-Sm-Sh2" id="h9H-HP-022"/>
@@ -727,7 +707,7 @@
         <!--Test-->
         <scene sceneID="e0k-zV-AvS">
             <objects>
-                <viewController id="Ron-CG-Qzw" customClass="TestViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Test" id="Ron-CG-Qzw" customClass="TestViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n9X-yt-lP7"/>
                         <viewControllerLayoutGuide type="bottom" id="NNT-Ad-gF3"/>
@@ -761,8 +741,22 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbY-I8-KHU">
-                                <rect key="frame" x="0.0" y="110" width="600" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
+                                <rect key="frame" x="16" y="80" width="568" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="m2X-Ta-gEs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="73" y="130" width="232" height="30"/>
+                                </variation>
+                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbY-I8-KHU">
+                                <rect key="frame" x="0.0" y="118" width="600" height="45"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r5D-nW-g75">
                                         <rect key="frame" x="16" y="8" width="878" height="29"/>
@@ -788,20 +782,6 @@
                                     <constraint firstAttribute="height" constant="45" id="bVK-Ea-FdE"/>
                                 </constraints>
                             </scrollView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
-                                <rect key="frame" x="16" y="72" width="568" height="30"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="m2X-Ta-gEs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="73" y="130" width="232" height="30"/>
-                                </variation>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -814,7 +794,7 @@
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="trailing" secondItem="NNT-Ad-gF3" secondAttribute="trailing" id="eZE-uH-5pc"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="grK-xd-udn"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="NNT-Ad-gF3" secondAttribute="leading" id="kHM-IK-Qpp"/>
-                            <constraint firstItem="8IH-T4-ofw" firstAttribute="top" secondItem="n9X-yt-lP7" secondAttribute="bottom" constant="8" id="mWw-zj-29H"/>
+                            <constraint firstItem="8IH-T4-ofw" firstAttribute="top" secondItem="n9X-yt-lP7" secondAttribute="bottom" constant="16" id="mWw-zj-29H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8IH-T4-ofw" secondAttribute="trailing" id="pPh-CI-Zxr"/>
                             <constraint firstItem="rbY-I8-KHU" firstAttribute="top" secondItem="8IH-T4-ofw" secondAttribute="bottom" constant="8" id="wYy-k2-wCu"/>
                         </constraints>
@@ -840,7 +820,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Test" id="92e-tN-RM7"/>
                     <connections>
                         <outlet property="keyboardTypeScrollView" destination="rbY-I8-KHU" id="GlW-eP-cFN"/>
                         <outlet property="preview" destination="v6a-tO-xu6" id="pJ9-i5-Nx6"/>
@@ -854,7 +833,7 @@
         <!--보조 자판 설정 (1/2)-->
         <scene sceneID="Ced-a3-jWV">
             <objects>
-                <tableViewController title="보조 자판 설정 (1/2)" id="Jot-bZ-HCx" customClass="SelectableQuickHelperTableViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="보조 자판 설정 (1/2)" id="Jot-bZ-HCx" customClass="TenKeyLeftLayoutQuickHelperTableViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="22" sectionFooterHeight="22" id="reO-K1-VDv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -990,7 +969,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="e1h-DJ-s0A" kind="show" id="DYq-hV-W4B"/>
+                        <segue destination="e1h-DJ-s0A" kind="show" identifier="right" id="DYq-hV-W4B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz2-Gs-nxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1370,7 +1349,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cH5-BE-JOu" id="n4I-DC-TgW">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="자판 전환 버튼으로 왼쪽 보조자판과 전환하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Epb-SV-9ur">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="🌐 키로 왼쪽 보조자판과 전환하기 (권장)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Epb-SV-9ur">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1469,6 +1448,6 @@
         <image name="appstore_1024.png" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OTp-If-aJD"/>
+        <segue reference="acE-qO-ZRS"/>
     </inferredMetricsTieBreakers>
 </document>

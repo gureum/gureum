@@ -237,11 +237,10 @@ class KeyboardView: UIView {
         self.deleteButton.captionLabel.text = "⌫"
         self.deleteButton.tag = 0x7f
         self.doneButton = GRInputButton()
+        self.doneButton.captionLabel.text = "다음문장"
         self.doneButton.tag = 13
         self.toggleKeyboardButton = GRInputButton()
-        self.toggleKeyboardButton.captionLabel.text = "123"
         self.shiftButton = GRInputButton()
-        self.shiftButton.captionLabel.text = "⬆︎"
         self.spaceButton = GRInputButton()
         self.spaceButton.captionLabel.text = "간격"
         self.spaceButton.tag = 32
@@ -295,18 +294,25 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     }
 
     var context: UnsafeMutablePointer<()> = nil
-    var capitalizable: Bool {
-        get { return false }
-    }
     var togglable = true {
         didSet {
             self.view.toggleKeyboardButton.enabled = togglable
             self.view.toggleKeyboardButton.alpha = togglable ? 1.0 : 0.0
         }
     }
-    var autounshift: Bool {
+    class var capitalizable: Bool {
         get { return false }
     }
+    class var autounshift: Bool {
+        get { return false }
+    }
+    class var shiftCaption: String {
+        get { return "⬆︎" }
+    }
+    class var toggleCaption: String {
+        get { return "123" }
+    }
+    
     var autocapitalized = false
 
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
@@ -316,9 +322,10 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         view.layout = self
 
         assert(view.deleteButton != nil)
-        //view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
+        view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
         view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
         view.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
+        view.shiftButton.captionLabel.text = self.dynamicType.shiftCaption
         view.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
         view.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
 

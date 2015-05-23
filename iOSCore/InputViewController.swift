@@ -43,12 +43,14 @@ class BasicInputViewController: UIInputViewController {
     }()
 
     func log(text: String) {
+        #if DEBUG
         println(text)
         return;
 
         let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
         self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
         self.view.bringSubviewToFront(self.logTextView)
+        #endif
     }
 
     func input(sender: UIButton) {
@@ -210,17 +212,20 @@ class InputViewController: BasicInputViewController {
         self.inputMethodView.adjustTraits(traits)
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
 
-        if traits.enablesReturnKeyAutomatically ?? false && count(self.didContextBeforeInput) == 0 {
-            self.inputMethodView.selectedLayout.view.doneButton.enabled = false
+        let selectedLayout = self.inputMethodView.selectedLayout
+        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+
+        if traits.enablesReturnKeyAutomatically ?? false && count(self.didContextBeforeInput + self.didContextAfterInput) == 0 {
+            selectedLayout.view.doneButton.enabled = false
         } else {
-            self.inputMethodView.selectedLayout.view.doneButton.enabled = true
+            selectedLayout.view.doneButton.enabled = true
         }
 
-        if self.inputMethodView.selectedLayout.capitalizable {
-            if self.inputMethodView.selectedLayout.shift == .Auto {
-                self.inputMethodView.selectedLayout.shift = .Off
+        if selectedLayout.dynamicType.capitalizable {
+            if selectedLayout.shift == .Auto {
+                selectedLayout.shift = .Off
             }
-            if self.inputMethodView.selectedLayout.capitalizable && self.inputMethodView.selectedLayout.shift != .Auto {
+            if selectedLayout.dynamicType.capitalizable && selectedLayout.shift != .Auto {
                 var needsShift = false
                 switch traits.autocapitalizationType! {
                 case .AllCharacters:
@@ -255,7 +260,7 @@ class InputViewController: BasicInputViewController {
                 default: break
                 }
                 if needsShift {
-                    self.inputMethodView.selectedLayout.shift = .Auto
+                    selectedLayout.shift = .Auto
                 }
             }
         }
@@ -289,12 +294,15 @@ class InputViewController: BasicInputViewController {
         }
 
         let context = selectedLayout.context
-        let shiftButton = self.inputMethodView.selectedLayout.view.shiftButton
+        let shiftButton = selectedLayout.view.shiftButton
+
         var keycode = (shiftButton?.selected ?? false) ? sender.tag >> 15 : sender.tag & 0x7fff
-        if self.inputMethodView.selectedLayout.autounshift && shiftButton?.selected ?? false {
+        if selectedLayout.dynamicType.autounshift && shiftButton?.selected ?? false {
             shiftButton.selected = false
-            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+            selectedLayout.helper.updateCaptionLabel()
         }
+
+        selectedLayout.view.doneButton.enabled = true
 
         //assert(selectedLayout.view.spaceButton != nil)
         //assert(selectedLayout.view.doneButton != nil)
@@ -308,6 +316,7 @@ class InputViewController: BasicInputViewController {
             else if sender == selectedLayout.view.doneButton {
                 proxy.insertText("\n")
             }
+
             return
         }
 
@@ -460,6 +469,7 @@ class InputViewController: BasicInputViewController {
     }
 
     func toggleLayout(sender: UIButton) {
+        self.inputMethodView.selectedLayout.shift = .Off
         let collection = self.inputMethodView.selectedCollection
         collection.switchLayout()
         collection.selectedLayout.view.toggleKeyboardButton.selected = collection.selectedLayoutIndex != 0

@@ -8,6 +8,9 @@
 /* Class = "UILabel"; text = "iOS에 내장된 한글 자판과 같은 배열의 자판. \"쿼티\" 라고도 불리며 PC에서 사용하는 표준 두벌식 자판과 비슷한 배열이다."; ObjectID = "2FB-PL-k3P"; */
 "2FB-PL-k3P.text" = "iOS에 내장된 한글 자판과 같은 배열의 자판. \"쿼티\" 라고도 불리며 PC에서 사용하는 표준 두벌식 자판과 비슷한 배열이다.";
 
+/* Class = "UILabel"; text = "-"; ObjectID = "3Wk-hr-NX3"; */
+"3Wk-hr-NX3.text" = "-";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "3Xq-PY-sfT"; */
 "3Xq-PY-sfT.text" = "Title";
 
@@ -18,24 +21,19 @@
 "4Qk-f3-a6u.text" = "cheonjiin";
 
 /* Class = "UILabel"; text = "10 key (iOS embedded, Cheonjiin)"; ObjectID = "4lO-iC-XZh"; */
-"4lO-iC-XZh.text" = "10키 (iOS 내장, 천지인)";
+"4lO-iC-XZh.text" = "10 key (iOS embedded, Cheonjiin)";
 
 /* Class = "UITableViewSection"; headerTitle = "Korean"; ObjectID = "5py-io-2G6"; */
-"5py-io-2G6.headerTitle" = "한국어";
+"5py-io-2G6.headerTitle" = "Korean";
 
 /* Class = "UILabel"; text = "자판 전환 버튼으로 구름 이외의 다른 입력기를 선택하는 대신 구름 내부에서 보조자판과 주 자판을 전환합니다. 이 옵션을 선택할 경우 자판 전환 버튼을 빠르게 두 번 누르는 것으로 구름 이외의 다른 입력기를 선택할 수 있습니다."; ObjectID = "77c-M5-FoG"; */
-"77c-M5-FoG.text" = "자판 전환 키로 구름 이외의 다른 입력기를 선택하는 대신 구름 내부에서 보조자판과 주 자판을 전환합니다. 이 옵션을 선택할 경우 자판 전환 버튼을 빠르게 두 번 누르는 것으로 구름 이외의 다른 입력기를 선택할 수 있습니다.";
+"77c-M5-FoG.text" = "자판 전환 버튼으로 구름 이외의 다른 입력기를 선택하는 대신 구름 내부에서 보조자판과 주 자판을 전환합니다. 이 옵션을 선택할 경우 자판 전환 버튼을 빠르게 두 번 누르는 것으로 구름 이외의 다른 입력기를 선택할 수 있습니다.";
 
 /* Class = "UILabel"; text = "Installation"; ObjectID = "8kv-f5-cXP"; */
-"8kv-f5-cXP.text" = "처음 설치하기";
+"8kv-f5-cXP.text" = "Installation";
 
-/* Class = "UINavigationItem"; title = "Installation"; ObjectID = "BUE-1q-Dti"; */
-"BUE-1q-Dti.title" = "처음 설치하기";
-
-/* Class = "UITextView"; text = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까?
-원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다."; ObjectID = "CHl-NU-NE2"; */
-"CHl-NU-NE2.text" = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까?
-원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다.";
+/* Class = "UITextView"; text = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까? 원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다."; ObjectID = "CHl-NU-NE2"; */
+"CHl-NU-NE2.text" = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까? 원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다.";
 
 /* Class = "UILabel"; text = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다."; ObjectID = "CzY-s1-nFH"; */
 "CzY-s1-nFH.text" = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다.";
@@ -44,26 +42,22 @@
 "ESN-8O-WV2.text" = "영어/QWERTY";
 
 /* Class = "UILabel"; text = "Layout editor"; ObjectID = "EWt-r6-MGU"; */
-"EWt-r6-MGU.text" = "자판 편집";
+"EWt-r6-MGU.text" = "Layout editor";
 
-/* Class = "UITextView"; text = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까?
-원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다."; ObjectID = "EZ7-AE-P0l"; */
-"EZ7-AE-P0l.text" = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까?
-원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다.";
+/* Class = "UITextView"; text = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까? 원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다."; ObjectID = "EZ7-AE-P0l"; */
+"EZ7-AE-P0l.text" = "오른쪽으로 스크롤했을 때 나타날 보조 자판도 추가할 수 있습니다. 선택하시겠습니까? 원하는 갯수만큼 선택할 수 있지만, 많이 추가하면 오히려 사용하기 번거로워질 수 있습니다.";
 
-/* Class = "UILabel"; text = "자판 전환 버튼으로 왼쪽 보조자판과 전환하기"; ObjectID = "Epb-SV-9ur"; */
+/* Class = "UILabel"; text = "🌐 키로 왼쪽 보조자판과 전환하기 (권장)"; ObjectID = "Epb-SV-9ur"; */
 "Epb-SV-9ur.text" = "🌐 키로 왼쪽 보조자판과 전환하기 (권장)";
 
-/* Class = "UITextView"; text = "지금까지 선택한 설정을 한 눈에 보여드립니다. 확인 후 '완료'를 누르시면 이 설정이 적용됩니다.
-빠져나간 이후에도 언제든지 '쉬운 설정 도우미'를 선택해 처음부터 설정을 다시 할 수 있습니다."; ObjectID = "Ffi-IK-R17"; */
-"Ffi-IK-R17.text" = "지금까지 선택한 설정을 한 눈에 보여드립니다. 확인 후 '완료'를 누르시면 이 설정이 적용됩니다.
-빠져나간 이후에도 언제든지 '쉬운 설정 도우미'를 선택해 처음부터 설정을 다시 할 수 있습니다.";
+/* Class = "UITextView"; text = "지금까지 선택한 설정을 한 눈에 보여드립니다. 확인 후 '완료'를 누르시면 이 설정이 적용됩니다. 빠져나간 이후에도 언제든지 '쉬운 설정 도우미'를 선택해 처음부터 설정을 다시 할 수 있습니다."; ObjectID = "Ffi-IK-R17"; */
+"Ffi-IK-R17.text" = "지금까지 선택한 설정을 한 눈에 보여드립니다. 확인 후 '완료'를 누르시면 이 설정이 적용됩니다. 빠져나간 이후에도 언제든지 '쉬운 설정 도우미'를 선택해 처음부터 설정을 다시 할 수 있습니다.";
 
 /* Class = "UILabel"; text = "10키 (천지인)"; ObjectID = "FzF-cD-3jF"; */
 "FzF-cD-3jF.text" = "10키 (천지인)";
 
 /* Class = "UILabel"; text = "Danmoum (Google keyboard)"; ObjectID = "G4m-Kq-wJT"; */
-"G4m-Kq-wJT.text" = "단모음 (구글 키보드)";
+"G4m-Kq-wJT.text" = "Danmoum (Google keyboard)";
 
 /* Class = "UILabel"; text = "앞에서 보조 자판을 선택했으면 화면을 터치하는 대신 좌, 우로 쓸어넘겨 보조 자판을 선택할 수 있습니다. 이 기능은 추천되는 기능이므로 기본으로 선택되어 있습니다. 필요하지 않은 기능이라면 해제해 주세요."; ObjectID = "H2z-Fm-XVr"; */
 "H2z-Fm-XVr.text" = "앞에서 보조 자판을 선택했으면 화면을 터치하는 대신 좌, 우로 쓸어넘겨 보조 자판을 선택할 수 있습니다. 이 기능은 추천되는 기능이므로 기본으로 선택되어 있습니다. 필요하지 않은 기능이라면 해제해 주세요.";
@@ -72,19 +66,16 @@
 "HG0-IT-YHo.title" = "설정 완료";
 
 /* Class = "UILabel"; text = "Setup wizard"; ObjectID = "JMw-We-j9y"; */
-"JMw-We-j9y.text" = "쉬운 설정 도우미";
+"JMw-We-j9y.text" = "Setup wizard";
 
-/* Class = "UILabel"; text = "ksx5002"; ObjectID = "Jk4-gb-R9s"; */
-"Jk4-gb-R9s.text" = "ksx5002";
+/* Class = "UILabel"; text = "danmoum"; ObjectID = "Jk4-gb-R9s"; */
+"Jk4-gb-R9s.text" = "danmoum";
 
 /* Class = "UITableViewController"; title = "보조 자판 설정 (1/2)"; ObjectID = "Jot-bZ-HCx"; */
 "Jot-bZ-HCx.title" = "보조 자판 설정 (1/2)";
 
 /* Class = "UINavigationItem"; title = "Theme"; ObjectID = "Jr1-0l-XcV"; */
-"Jr1-0l-XcV.title" = "테마";
-
-/* Class = "UIViewController"; title = "Installation"; ObjectID = "u8y-ei-8FF"; */
-"u8y-ei-8FF.title" = "처음 설치하기";
+"Jr1-0l-XcV.title" = "Theme";
 
 /* Class = "UILabel"; text = "선택하지 않음"; ObjectID = "KJJ-H3-3CG"; */
 "KJJ-H3-3CG.text" = "선택하지 않음";
@@ -93,7 +84,7 @@
 "KNA-hC-rXO.text" = "특수문자";
 
 /* Class = "UILabel"; text = "Swipe to switch layout"; ObjectID = "KbC-1U-4qy"; */
-"KbC-1U-4qy.text" = "좌우로 쓸어 자판 전환하기";
+"KbC-1U-4qy.text" = "Swipe to switch layout";
 
 /* Class = "UILabel"; text = "한국어/단모음"; ObjectID = "KxH-ke-a5C"; */
 "KxH-ke-a5C.text" = "한국어/단모음";
@@ -105,34 +96,34 @@
 "M0O-tn-RlA.text" = "구글 한글 키보드의 \"단모음 키보드\"와 같은 배열의 자판.";
 
 /* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "MFq-Nj-UTZ"; */
-"MFq-Nj-UTZ.headerTitle" = "설정";
+"MFq-Nj-UTZ.headerTitle" = "Settings";
 
 /* Class = "UILabel"; text = "특수문자"; ObjectID = "Mlw-ET-MwV"; */
 "Mlw-ET-MwV.text" = "특수문자";
 
 /* Class = "UITableViewSection"; headerTitle = "Advanced"; ObjectID = "O9b-4q-G0c"; */
-"O9b-4q-G0c.headerTitle" = "고급 설정";
+"O9b-4q-G0c.headerTitle" = "Advanced";
 
-/* Class = "UIBarButtonItem"; title = "구매 복원"; ObjectID = "Q6T-La-nLe"; */
-"Q6T-La-nLe.title" = "구매 복원";
+/* Class = "UILabel"; text = "-"; ObjectID = "PUq-yu-gt4"; */
+"PUq-yu-gt4.text" = "-";
 
 /* Class = "UILabel"; text = "iOS에 내장된 한글 10키 자판과 같은 배열의 자판."; ObjectID = "QOa-If-x2M"; */
 "QOa-If-x2M.text" = "iOS에 내장된 한글 10키 자판과 같은 배열의 자판.";
 
 /* Class = "UILabel"; text = "Add a layout"; ObjectID = "Qrr-p3-yCB"; */
-"Qrr-p3-yCB.text" = "새 자판 추가";
+"Qrr-p3-yCB.text" = "Add a layout";
 
 /* Class = "UILabel"; text = "Test current settings"; ObjectID = "RY6-Vo-U5z"; */
-"RY6-Vo-U5z.text" = "현재 설정 시험하기";
+"RY6-Vo-U5z.text" = "Test current settings";
 
 /* Class = "UIViewController"; title = "Test"; ObjectID = "Ron-CG-Qzw"; */
-"Ron-CG-Qzw.title" = "설정 시험";
+"Ron-CG-Qzw.title" = "Test";
 
 /* Class = "UILabel"; text = "Globe to switch layout"; ObjectID = "S6i-aq-4nR"; */
-"S6i-aq-4nR.text" = "언어 전환 단추로 다른 자판으로 전환";
+"S6i-aq-4nR.text" = "Globe to switch layout";
 
 /* Class = "UINavigationItem"; title = "Add a layout"; ObjectID = "SHJ-7Q-stJ"; */
-"SHJ-7Q-stJ.title" = "새 자판 추가";
+"SHJ-7Q-stJ.title" = "Add a layout";
 
 /* Class = "UILabel"; text = "단모음"; ObjectID = "TFQ-Ge-I7B"; */
 "TFQ-Ge-I7B.text" = "단모음";
@@ -156,7 +147,7 @@
 "dIz-Zq-cJm.text" = "Detail";
 
 /* Class = "UITableViewSection"; headerTitle = "Help"; ObjectID = "dl2-C0-do0"; */
-"dl2-C0-do0.headerTitle" = "도움말";
+"dl2-C0-do0.headerTitle" = "Help";
 
 /* Class = "UITableViewController"; title = "보조 자판 설정 (2/2)"; ObjectID = "e1h-DJ-s0A"; */
 "e1h-DJ-s0A.title" = "보조 자판 설정 (2/2)";
@@ -168,7 +159,7 @@
 "g4P-Yn-sKu.text" = "한국어/표준 (두벌식)";
 
 /* Class = "UINavigationItem"; title = "Gureum"; ObjectID = "gCw-RU-vHX"; */
-"gCw-RU-vHX.title" = "구름";
+"gCw-RU-vHX.title" = "Gureum";
 
 /* Class = "UILabel"; text = "구글 한글 키보드의 \"단모음 키보드\"와 같은 배열의 자판."; ObjectID = "gbV-hX-2RQ"; */
 "gbV-hX-2RQ.text" = "구글 한글 키보드의 \"단모음 키보드\"와 같은 배열의 자판.";
@@ -186,13 +177,13 @@
 "jlI-Xv-8Sz.text" = "특수문자";
 
 /* Class = "UITableViewSection"; headerTitle = "English"; ObjectID = "kq8-KH-upK"; */
-"kq8-KH-upK.headerTitle" = "영어";
+"kq8-KH-upK.headerTitle" = "English";
 
 /* Class = "UILabel"; text = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다."; ObjectID = "lY2-g3-TV1"; */
 "lY2-g3-TV1.text" = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다.";
 
 /* Class = "UILabel"; text = "Theme"; ObjectID = "m3z-Og-CsD"; */
-"m3z-Og-CsD.text" = "테마";
+"m3z-Og-CsD.text" = "Theme";
 
 /* Class = "UILabel"; text = "좌, 우로 쓸어 넘겨 보조 자판 선택하기"; ObjectID = "mzz-Zk-5Jo"; */
 "mzz-Zk-5Jo.text" = "좌, 우로 쓸어 넘겨 보조 자판 선택하기";
@@ -207,10 +198,43 @@
 "on3-J2-qu8.text" = "iOS에 내장된 한국어/표준 자판의 특수문자와 같은 배열의 자판.";
 
 /* Class = "UILabel"; text = "QWERTY (iOS default)"; ObjectID = "qRl-lq-5a4"; */
-"qRl-lq-5a4.text" = "쿼티 (iOS 기본)";
+"qRl-lq-5a4.text" = "QWERTY (iOS default)";
 
 /* Class = "UILabel"; text = "선택하지 않음"; ObjectID = "qsb-ih-IrP"; */
 "qsb-ih-IrP.text" = "선택하지 않음";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[0] = "Default"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[0]" = "Default";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[1] = "ASCII"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[1]" = "ASCII";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[2] = "NumPunc"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[2]" = "NumPunc";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[3] = "URL"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[3]" = "URL";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[4] = "NumPad"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[4]" = "NumPad";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[5] = "PhonePad"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[5]" = "PhonePad";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[6] = "NamePad"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[6]" = "NamePad";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[7] = "Email"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[7]" = "Email";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[8] = "Decimal"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[8]" = "Decimal";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[9] = "Twitter"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[9]" = "Twitter";
+
+/* Class = "UISegmentedControl"; r5D-nW-g75.segmentTitles[10] = "Web"; ObjectID = "r5D-nW-g75"; */
+"r5D-nW-g75.segmentTitles[10]" = "Web";
 
 /* Class = "UITextView"; text = "주 자판으로 쓸 한글 자판을 설정합니다. 한글 자판은 다른 키보드에서 구름 키보드로 전환할 때나 앱에서 처음으로 구름 키보드를 사용할 때 가장 먼저 보이는 키보드입니다."; ObjectID = "rHb-Jh-7rM"; */
 "rHb-Jh-7rM.text" = "주 자판으로 쓸 한글 자판을 설정합니다. 한글 자판은 다른 키보드에서 구름 키보드로 전환할 때나 앱에서 처음으로 구름 키보드를 사용할 때 가장 먼저 보이는 키보드입니다.";
@@ -224,6 +248,9 @@
 /* Class = "UILabel"; text = "iOS에 내장된 영어/QWERTY 자판과 같은 배열의 자판."; ObjectID = "t8L-lv-DbE"; */
 "t8L-lv-DbE.text" = "iOS에 내장된 영어/QWERTY 자판과 같은 배열의 자판.";
 
+/* Class = "UIViewController"; title = "Installation"; ObjectID = "u8y-ei-8FF"; */
+"u8y-ei-8FF.title" = "Installation";
+
 /* Class = "UILabel"; text = "선택하지 않음"; ObjectID = "uNL-Gz-ajx"; */
 "uNL-Gz-ajx.text" = "선택하지 않음";
 
@@ -231,7 +258,7 @@
 "uNQ-vx-o2V.title" = "뒤로";
 
 /* Class = "UINavigationItem"; title = "Layout Editor"; ObjectID = "ulc-F6-i5X"; */
-"ulc-F6-i5X.title" = "자판 편집";
+"ulc-F6-i5X.title" = "Layout Editor";
 
 /* Class = "UILabel"; text = "iOS에 내장된 영어/QWERTY 자판과 같은 배열의 자판."; ObjectID = "vAD-Ng-g9l"; */
 "vAD-Ng-g9l.text" = "iOS에 내장된 영어/QWERTY 자판과 같은 배열의 자판.";
@@ -252,7 +279,7 @@
 "xLs-bF-8be.text" = "영어/QWERTY";
 
 /* Class = "UILabel"; text = "Standard (iOS default)"; ObjectID = "y9X-aw-dFr"; */
-"y9X-aw-dFr.text" = "표준 (iOS 기본)";
+"y9X-aw-dFr.text" = "Standard (iOS default)";
 
 /* Class = "UITextView"; text = "한국어 키보드 사용 중 왼쪽으로 스크롤 해 영문 자판을 선택할 수 있습니다. 현재 선택할 수 있는 자판이 하나뿐이므로 자동으로 선택됩니다."; ObjectID = "z4B-z3-DmY"; */
 "z4B-z3-DmY.text" = "한국어 키보드 사용 중 왼쪽으로 스크롤 해 영문 자판을 선택할 수 있습니다. 현재 선택할 수 있는 자판이 하나뿐이므로 자동으로 선택됩니다.";

@@ -1,5 +1,6 @@
 platform :ios, "8.0"
 
 pod 'cdebug'
-pod 'CrashlyticsFramework'
+pod 'Fabric/Crashlytics'
+pod 'Fabric/Core'
 pod 'GlobalActivityIndicatorView'

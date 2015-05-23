@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import Fabric
 import Crashlytics
 
 var sharedAppDelegate: AppDelegate! = nil
@@ -19,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         //if preferences.themeResources.count == 0 {
-        //Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
+        Fabric.with([Crashlytics()])
+        Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
 
         
         //Theme.themeWithAddress(preferences.themePath).dump() // FIXME: more sane initializer

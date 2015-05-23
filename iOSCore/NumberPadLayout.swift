@@ -35,16 +35,12 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
-        let code: Int? = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]][position.row][position.column]
-        if let code = code {
-            return code + 48
-        } else {
-            return 0
-        }
+        let code: Int = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]][position.row][position.column]
+        return code + 48
     }
 
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let charcode = self.keycodeForPosition(position, shift: false)
+        let charcode = self.keycodeForPosition(position, shift: self.view.shiftButton.selected)
         let altkey = "key-\(charcode)" // fixme
         let theme1 = trait.tenkeyCaptionForKey(altkey, fallback: trait.tenkeyCaptionForKeyInRow(position.row + 1))
         let title = self.helper(self.helper, titleForPosition: position)
@@ -68,7 +64,7 @@ class NumberPadLayout: KeyboardLayout {
 
         var map = [
             self.padView.deleteButton!: trait.tenkeyDeleteCaption,
-            self.padView.toggleKeyboardButton!: trait.tenkey123Caption,
+            self.padView.toggleKeyboardButton!: trait.tenkeyToggleCaption,
             self.padView.shiftButton!: trait.tenkeyShiftCaption,
         ]
         if !contains(map.keys, self.padView.leftButton) {
@@ -150,8 +146,9 @@ class NumberPadLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as! GRInputButton
-        let key = self.keycodeForPosition(position, shift: false)
-        button.tag = key
+        let key1 = self.keycodeForPosition(position, shift: false)
+        let key2 = self.keycodeForPosition(position, shift: true)
+        button.tag = (key2 << 15) + key1
         if button.tag != 0 {
             button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         }
@@ -159,7 +156,7 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position, shift: false)
+        let keycode = self.keycodeForPosition(position, shift: self.view.shiftButton.selected)
         let title = String(UnicodeScalar(keycode))
         return title
     }
@@ -182,10 +179,26 @@ class DecimalPadLayout: NumberPadLayout {
 }
 
 class PhonePadLayout: NumberPadLayout {
+    override class var shiftCaption: String {
+        get { return "+*#" }
+    }
+    override class var autounshift: Bool {
+        get { return true }
+    }
+
     override class func loadView() -> KeyboardView {
         let view = super.loadView() as! NumberPadView
         view.leftButton = view.shiftButton
         view.addSubview(view.shiftButton)
         return view
+    }
+
+    override func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
+        if shift {
+            let code: Int = [[49, 50, 51], [44, 53, 59], [42, 56, 35], [43]][position.row][position.column]
+            return code
+        } else {
+            return super.keycodeForPosition(position, shift: shift)
+        }
     }
 }
