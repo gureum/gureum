@@ -243,14 +243,13 @@ class InputViewController: BasicInputViewController {
                         needsShift = true
                     } else {
                         let whitespaces = NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                        let punctuations = NSCharacterSet.punctuationCharacterSet()
                         let utf16 = self.didContextBeforeInput.utf16
                         let lastCharacter = utf16[utf16.endIndex.predecessor()]
-                        needsShift = whitespaces.characterIsMember(lastCharacter) || punctuations.characterIsMember(lastCharacter)
+                        needsShift = whitespaces.characterIsMember(lastCharacter)
                     }
                 case .Sentences:
                     let whitespaces = NSCharacterSet.whitespaceCharacterSet()
-                    let punctuations = NSCharacterSet.punctuationCharacterSet()
+                    let punctuations = NSCharacterSet(charactersInString: ".!?")
                     let utf16 = self.didContextBeforeInput.utf16
                     var index = utf16.endIndex
                     needsShift = true
@@ -258,7 +257,10 @@ class InputViewController: BasicInputViewController {
                         index = index.predecessor()
                         let code = utf16[index]
                         if punctuations.characterIsMember(code) || code == 10 {
-                            break
+                            let nextIndex = index.successor()
+                            if utf16.endIndex != nextIndex && utf16[nextIndex] == 32 {
+                                break
+                            }
                         }
                         if !whitespaces.characterIsMember(code) {
                             needsShift = false
