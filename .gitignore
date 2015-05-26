@@ -23,4 +23,4 @@ Podfile.lock
 build
 *.playground
 
-Crashlytics.framework
+Version.xcconfig

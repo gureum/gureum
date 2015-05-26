@@ -23,7 +23,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
     let layoutsView: UIScrollView! = UIScrollView()
     let pageControl: UIPageControl! = UIPageControl()
-    //let backgroundImageView: UIImageView = UIImageView()
+    let backgroundImageView: UIImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,9 +34,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         layoutsView.scrollEnabled = false
         pageControl.userInteractionEnabled = false
 
-        //self.addSubview(self.backgroundImageView)
+        self.addSubview(self.backgroundImageView)
         self.addSubview(self.layoutsView)
         self.addSubview(self.pageControl)
+        self.backgroundImageView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
         self.layoutsView.frame = frame
 
         self.preloadTheme()
@@ -114,8 +115,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     }
 
     func preloadTheme() {
-        //let trait = self.theme.traitForSize(self.frame.size)
-        //self.backgroundImageView.image = trait.backgroundImage
+        let trait = self.theme.traitForSize(self.frame.size)
+        self.backgroundImageView.image = trait.backgroundImage
     }
 
     func adjustTraits(traits: UITextInputTraits) {

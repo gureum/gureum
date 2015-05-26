@@ -4,3 +4,5 @@ pod 'cdebug'
 pod 'Fabric/Crashlytics'
 pod 'Fabric/Core'
 pod 'GlobalActivityIndicatorView'
+pod 'Google-Mobile-Ads-SDK'
+
