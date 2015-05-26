@@ -252,8 +252,6 @@
 		385BC6F21AE6355200184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		3861A76D1B0CB8A300FAC28A /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
 		3863089A199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		386308A7199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		386308A8199132210039369C /* GureumCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumCoreTests.swift; sourceTree = "<group>"; };
 		386308BD199133140039369C /* Hangeul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hangeul.swift; sourceTree = "<group>"; };
 		386308BF199133140039369C /* InputMethodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMethodView.swift; sourceTree = "<group>"; };
 		386308C0199133140039369C /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
@@ -483,23 +481,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		386308A5199132210039369C /* GureumCoreTests */ = {
-			isa = PBXGroup;
-			children = (
-				386308A8199132210039369C /* GureumCoreTests.swift */,
-				386308A6199132210039369C /* Supporting Files */,
-			);
-			path = GureumCoreTests;
-			sourceTree = "<group>";
-		};
-		386308A6199132210039369C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				386308A7199132210039369C /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		3882B9ED193F9E6600076C26 = {
 			isa = PBXGroup;
 			children = (
@@ -511,8 +492,7 @@
 				3882BA0B193F9E6600076C26 /* Tests */,
 				38BB7010193FA11000605583 /* InputMethod */,
 				38630898199132210039369C /* iOSShared */,
-				38D9A398199B7F8E0087A965 /* iOSTheme */,
-				386308A5199132210039369C /* GureumCoreTests */,
+				38D9A398199B7F8E0087A965 /* Theme */,
 				3882B9F7193F9E6600076C26 /* Products */,
 				D0738081B4DEAF66A247E04F /* Pods */,
 				06F9C173477CBEDC2AFC968D /* Frameworks */,
@@ -733,7 +713,7 @@
 			path = FoundationExtension/UIKitExtension;
 			sourceTree = SOURCE_ROOT;
 		};
-		38D9A398199B7F8E0087A965 /* iOSTheme */ = {
+		38D9A398199B7F8E0087A965 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
 				380136B3199CAFC000355D69 /* README.md */,
@@ -742,6 +722,7 @@
 				3861A76D1B0CB8A300FAC28A /* iOS */,
 				38324EAD199F476B0031888D /* test */,
 			);
+			name = Theme;
 			path = iOSTheme;
 			sourceTree = "<group>";
 		};
@@ -898,8 +879,8 @@
 			projectRoot = "";
 			targets = (
 				3882B9F5193F9E6600076C26 /* App */,
-				3882BA07193F9E6600076C26 /* Tests */,
 				38BB700E193FA11000605583 /* InputMethod */,
+				3882BA07193F9E6600076C26 /* Tests */,
 				38CDD74919B285400086D013 /* FoundationExtension */,
 			);
 		};
@@ -997,7 +978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/iOSShared\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\n    echo \"VERSION = $tag\" > Version.xcconfig";
+			shellScript = "cd $PROJECT_DIR/iOSShared\ntag=`git describe --tags`\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
 		383C036E19EC3D3100CFE876 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1242,6 +1223,7 @@
 /* Begin XCBuildConfiguration section */
 		3882BA10193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3810A2401B14FE84004AE8FC /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1292,6 +1274,7 @@
 		};
 		3882BA11193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3810A2401B14FE84004AE8FC /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
