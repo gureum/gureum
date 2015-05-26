@@ -12,6 +12,11 @@
 		380D44E51AFA0F56007A2556 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 385BC6E61AE6313200184053 /* Localizable.strings */; };
 		380D44E71AFA0FC8007A2556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 380D44E11AFA0D99007A2556 /* InfoPlist.strings */; };
 		380D44E81AFA0FCF007A2556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 380D44EA1AFA0FCF007A2556 /* InfoPlist.strings */; };
+		3810A22B1B14D70B004AE8FC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531EF21B0E773300E2C16D /* Fabric.framework */; };
+		3810A22D1B14D8A7004AE8FC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */; };
+		3810A22E1B14D8A7004AE8FC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */; };
+		3810A2301B14D8D5004AE8FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22F1B14D8D5004AE8FC /* libz.dylib */; };
+		3810A2311B14D8FB004AE8FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22F1B14D8D5004AE8FC /* libz.dylib */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		38326E411B072857007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
 		38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
@@ -226,6 +231,8 @@
 		380D44E21AFA0D9E007A2556 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		380D44E91AFA0FCF007A2556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		380D44EB1AFA0FD2007A2556 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Pods/Fabric/Crashlytics.framework; sourceTree = "<group>"; };
+		3810A22F1B14D8D5004AE8FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		38303654198A1F1E00C1EE0C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
@@ -238,7 +245,7 @@
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
-		38531EF21B0E773300E2C16D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/CrashlyticsFramework/Fabric.framework; sourceTree = "<group>"; };
+		38531EF21B0E773300E2C16D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/Fabric/Fabric.framework; sourceTree = "<group>"; };
 		385BC6E51AE6313200184053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		385BC6E81AE6316D00184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		385BC6F21AE6355200184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -391,7 +398,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3810A2311B14D8FB004AE8FC /* libz.dylib in Frameworks */,
 				38934DB21AA3A12200970BD0 /* libFoundationExtension.a in Frameworks */,
+				3810A22D1B14D8A7004AE8FC /* Crashlytics.framework in Frameworks */,
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
 				181431046C196B1304B850F1 /* libPods.a in Frameworks */,
 				38531EF31B0E773300E2C16D /* Fabric.framework in Frameworks */,
@@ -409,8 +418,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3810A2301B14D8D5004AE8FC /* libz.dylib in Frameworks */,
 				38934DB51AA3A12A00970BD0 /* libFoundationExtension.a in Frameworks */,
 				386308FD1991438B0039369C /* libhangeul.a in Frameworks */,
+				3810A22E1B14D8A7004AE8FC /* Crashlytics.framework in Frameworks */,
+				3810A22B1B14D70B004AE8FC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +439,7 @@
 		06F9C173477CBEDC2AFC968D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3810A22F1B14D8D5004AE8FC /* libz.dylib */,
 				2B977566168245B09DFDC6C1 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -488,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				38531EF21B0E773300E2C16D /* Fabric.framework */,
+				3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */,
 				38BB7024193FA29100605583 /* Playground.playground */,
 				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
@@ -752,7 +766,7 @@
 				3882B9F4193F9E6600076C26 /* Resources */,
 				38BB701D193FA11000605583 /* Embed App Extensions */,
 				386308B3199132210039369C /* Embed Frameworks */,
-				383C036E19EC3D3100CFE876 /* ShellScript */,
+				383C036E19EC3D3100CFE876 /* Run Fabric */,
 				DCDEE6537B7084338C3B9901 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -793,6 +807,8 @@
 				38BB700B193FA11000605583 /* Sources */,
 				38BB700C193FA11000605583 /* Frameworks */,
 				38BB700D193FA11000605583 /* Resources */,
+				3810A2291B14D6DD004AE8FC /* ShellScript */,
+				3810A22A1B14D6E9004AE8FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -939,13 +955,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		383C036E19EC3D3100CFE876 /* ShellScript */ = {
+		3810A2291B14D6DD004AE8FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/Fabric/Fabric.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
+		};
+		3810A22A1B14D6E9004AE8FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
+		};
+		383C036E19EC3D3100CFE876 /* Run Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Fabric";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1367,9 +1410,15 @@
 		};
 		38BB701A193FA11000605583 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFBCA8C38781C21C97255A12 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/CrashlyticsFramework",
+					"$(PROJECT_DIR)/Pods/Fabric",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1388,9 +1437,15 @@
 		};
 		38BB701B193FA11000605583 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 181B0E3CC63C8FB032DB12B8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/CrashlyticsFramework",
+					"$(PROJECT_DIR)/Pods/Fabric",
+				);
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";
 				INFOPLIST_FILE = iOS/Info.plist;

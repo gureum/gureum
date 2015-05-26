@@ -6,6 +6,8 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
+import Crashlytics
+
 class MainViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

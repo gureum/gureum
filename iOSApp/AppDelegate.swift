@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //if preferences.themeResources.count == 0 {
         Fabric.with([Crashlytics()])
-        Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
-
-        
+        crashlyticsInitialized = true
         //Theme.themeWithAddress(preferences.themePath).dump() // FIXME: more sane initializer
         //}
         sharedAppDelegate = self

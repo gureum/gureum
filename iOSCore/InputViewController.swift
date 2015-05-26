@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+
+var crashlyticsInitialized = false
 
 var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
@@ -145,6 +149,10 @@ class InputViewController: BasicInputViewController {
     }
 
     override func viewDidLoad() {
+        if !crashlyticsInitialized {
+            Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
+            crashlyticsInitialized = true
+        }
         //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
         //self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
