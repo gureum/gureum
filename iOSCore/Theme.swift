@@ -91,7 +91,7 @@ class Theme {
 
     func traitForSize(size: CGSize) -> ThemeTraitConfiguration {
         switch size.width {
-        case 320.0, 375.0:
+        case 320.0, 375.0, 414.0:
             return self.phonePortraitConfiguration
         case 480.0:
             return self.phoneLandscape480Configuration
@@ -102,7 +102,7 @@ class Theme {
         case 1024.0:
             return self.padLandscapeConfiguration
         default:
-            globalInputViewController?.log("size: \(size)")
+            globalInputViewController?.log("unknown size: \(size)")
             //assert(false, "no coverage")
             return self.phonePortraitConfiguration
         }

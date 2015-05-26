@@ -265,6 +265,7 @@ class KeyboardView: UIView {
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView(frame: self.bounds)
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        view.contentMode = .ScaleToFill
         return view
     }()
 
@@ -482,7 +483,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 class NoKeyboardLayout: KeyboardLayout {
 
     override class func loadView() -> KeyboardView {
-        let view = KeyboardView(frame: CGRectMake(0, 0, 320, 216))
+        let view = KeyboardView(frame: CGRectMake(0, 0, 200, 100))
 
         view.nextKeyboardButton = GRInputButton()
         view.deleteButton = GRInputButton()
@@ -524,12 +525,12 @@ class NoKeyboardLayout: KeyboardLayout {
         return 1
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat {
-        return 216
+    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+        return size.height
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize: CGSize) -> CGFloat {
-        return 320
+    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+        return size.width
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {

@@ -22,7 +22,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
     }
 
     override class func loadView() -> KeyboardView {
-        let view = TenkeyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
+        let view = TenkeyKeyboardView(frame: CGRectMake(0, 0, 200, 100))
         view.deleteButton.tag = 0x0e
         view.numberButton = GRInputButton()
         view.numberButton.captionLabel.text = "123"

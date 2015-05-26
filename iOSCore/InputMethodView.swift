@@ -23,7 +23,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
     let layoutsView: UIScrollView! = UIScrollView()
     let pageControl: UIPageControl! = UIPageControl()
-    let backgroundImageView: UIImageView = UIImageView()
+    //let backgroundImageView: UIImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,11 +34,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         layoutsView.scrollEnabled = false
         pageControl.userInteractionEnabled = false
 
-        self.addSubview(self.backgroundImageView)
+        //self.addSubview(self.backgroundImageView)
         self.addSubview(self.layoutsView)
         self.addSubview(self.pageControl)
         self.layoutsView.frame = frame
-
 
         self.preloadTheme()
     }
@@ -115,8 +114,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     }
 
     func preloadTheme() {
-        let trait = self.theme.traitForSize(self.frame.size)
-        self.backgroundImageView.image = trait.backgroundImage
+        //let trait = self.theme.traitForSize(self.frame.size)
+        //self.backgroundImageView.image = trait.backgroundImage
     }
 
     func adjustTraits(traits: UITextInputTraits) {
@@ -217,7 +216,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.pageControl.numberOfPages = collections.count
         self.selectCollectionByIndex(preferences.defaultLayoutIndex, animated: false)
 
-        self.backgroundImageView.image = nil
+        //self.backgroundImageView.image = nil
 
         self.selectedCollectionIndex = preferences.defaultLayoutIndex < self.collections.count ? preferences.defaultLayoutIndex : 0
         self.adjustedSize = CGSizeZero
@@ -235,14 +234,14 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         let trait = theme.traitForSize(size)
 
         let viewBounds = CGRect(origin: CGPointZero, size: size)
-        layoutsView.frame = viewBounds
-        backgroundImageView.frame = viewBounds
+        self.layoutsView.frame = viewBounds
+        //self.backgroundImageView.frame = viewBounds
         pageControl.center = CGPointMake(size.width / 2, size.height - 20.0)
 
         for (i, collection) in enumerate(self.collections) {
             for layout in collection.layouts {
                 layout.view.frame.origin.x = CGFloat(i) * size.width
-                layout.view.frame.size.width = size.width
+                layout.view.frame.size = size
             }
         }
 

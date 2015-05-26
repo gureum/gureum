@@ -20,7 +20,7 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     override class func loadView() -> KeyboardView {
-        let view = NumberPadView(frame: CGRectMake(0, 0, 320, 216))
+        let view = NumberPadView(frame: CGRectMake(0, 0, 200, 100))
 
         view.leftButton = view.toggleKeyboardButton
 

@@ -16,13 +16,14 @@ var globalInputViewController: InputViewController? = nil
 var launchedDate: NSDate = NSDate()
 
 class BasicInputViewController: UIInputViewController {
-    let inputMethodView = InputMethodView(frame: CGRectMake(0, 0, 320, 216))
+    lazy var inputMethodView: InputMethodView = { return InputMethodView(frame: self.view.bounds) }()
     var willContextBeforeInput: String = ""
     var willContextAfterInput: String = ""
     var didContextBeforeInput: String = ""
     var didContextAfterInput: String = ""
 
     override func textWillChange(textInput: UITextInput) {
+        //self.log("text will change")
         super.textWillChange(textInput)
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.willContextBeforeInput = proxy.documentContextBeforeInput ?? ""
@@ -30,10 +31,23 @@ class BasicInputViewController: UIInputViewController {
     }
 
     override func textDidChange(textInput: UITextInput) {
+        //self.log("text did change")
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.didContextBeforeInput = proxy.documentContextBeforeInput ?? ""
         self.didContextAfterInput = proxy.documentContextAfterInput ?? ""
         super.textDidChange(textInput)
+    }
+
+    override func selectionDidChange(textInput: UITextInput)  {
+        //self.log("selection did change:")
+        self.inputMethodView.resetContext()
+        //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
+    }
+
+    override func selectionWillChange(textInput: UITextInput)  {
+        //self.log("selection will change:")
+        self.inputMethodView.resetContext()
+        //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
     lazy var logTextView: UITextView = {
@@ -135,19 +149,6 @@ class InputViewController: BasicInputViewController {
         self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: nil)
     }
 
-    override func loadView() {
-        globalInputViewController = self
-        self.view = self.inputMethodView
-        if preferences.swipe {
-            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
-            leftRecognizer.direction = .Left
-            self.view.addGestureRecognizer(leftRecognizer)
-            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
-            rightRecognizer.direction = .Right
-            self.view.addGestureRecognizer(rightRecognizer)
-        }
-    }
-
     override func viewDidLoad() {
         if !crashlyticsInitialized {
             Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
@@ -157,6 +158,16 @@ class InputViewController: BasicInputViewController {
         //self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
 
+        globalInputViewController = self
+        if preferences.swipe {
+            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
+            leftRecognizer.direction = .Left
+            self.view.addGestureRecognizer(leftRecognizer)
+            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
+            rightRecognizer.direction = .Right
+            self.view.addGestureRecognizer(rightRecognizer)
+        }
+/*
         dispatch_async(dispatch_get_main_queue(), { // prevent timeout
             self.initialized = true
             let proxy = self.textDocumentProxy as! UITextInputTraits
@@ -165,19 +176,21 @@ class InputViewController: BasicInputViewController {
             //self.inputMethodView.adjustTraits(proxy)
             //self.log("added method view")
         })
+*/
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if initialized {
-            //self.log("viewWillLayoutSubviews \(self.view.bounds)")
-            self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
+        if !initialized && self.view.bounds != CGRectZero {
+            self.view = self.inputMethodView
+            let proxy = self.textDocumentProxy as! UITextInputTraits
+            self.inputMethodView.loadCollections(proxy)
+            initialized = true
         }
     }
 
     override func viewDidLayoutSubviews() {
         if initialized {
-            //self.log("viewDidLayoutSubviews \(self.view.bounds)")
             self.inputMethodView.transitionViewToSize(self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator())
         }
         super.viewDidLayoutSubviews()
@@ -191,9 +204,10 @@ class InputViewController: BasicInputViewController {
     override func textDidChange(textInput: UITextInput) {
         // The app has just changed the document's contents, the document context has been updated.
 //        self.keyboard.view.logTextView.text = ""
-        self.log("text did change")
-
         super.textDidChange(textInput)
+        if !initialized {
+            return
+        }
 
         if self.willContextBeforeInput != self.didContextBeforeInput || self.willContextAfterInput != self.didContextAfterInput {
             self.inputMethodView.resetContext()
@@ -277,17 +291,6 @@ class InputViewController: BasicInputViewController {
         //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
-    override func selectionDidChange(textInput: UITextInput)  {
-        self.log("selection did change:")
-        self.inputMethodView.resetContext()
-//        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
-    }
-
-    override func selectionWillChange(textInput: UITextInput)  {
-        self.log("selection will change:")
-        self.inputMethodView.resetContext()
-//        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
-    }
 
     override func input(sender: UIButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy

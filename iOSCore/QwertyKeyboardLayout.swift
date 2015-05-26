@@ -66,7 +66,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
     }
 
     override class func loadView() -> QwertyKeyboardView {
-        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
+        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 200, 100))
 
         view.URLDotButton = GRInputButton()
         view.URLDotButton.captionLabel.text = "."
