@@ -10,16 +10,13 @@ import Crashlytics
 import GoogleMobileAds
 
 class MainViewController: UITableViewController {
-    @IBOutlet var bannerView: GADBannerView!
+    @IBOutlet var _bannerAdsView: GADBannerView!
+    override var bannerAdsView:GADBannerView! { get { return self._bannerAdsView; } }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        if ADMOB_BANNER_ID != "" {
-            self.bannerView.adUnitID = ADMOB_BANNER_ID
-            self.bannerView.rootViewController = self
-            self.bannerView.loadRequest(GADRequest())
-        }
+        self.loadBannerAds()
 
         let quickhelper = preferences.getObjectForKey("quickhelper", defaultValue: false) as! Bool
         if !quickhelper {

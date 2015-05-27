@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class TestViewController: PreviewViewController {
+    @IBOutlet var _bannerAdsView: GADBannerView!
+    override var bannerAdsView:GADBannerView! { get { return self._bannerAdsView; } }
+
     @IBOutlet var keyboardTypeScrollView: UIScrollView!
     @IBOutlet var previewField: UITextField!
 
@@ -16,6 +20,8 @@ class TestViewController: PreviewViewController {
         super.viewDidAppear(animated)
         self.keyboardTypeScrollView.setContentSizeBySubviewBoundaryWithAutoMargins()
         self.update()
+
+        self.loadBannerAds()
     }
 
     override func update() {

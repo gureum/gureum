@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import Fabric
 import Crashlytics
+import GoogleMobileAds
 
 var sharedAppDelegate: AppDelegate! = nil
 
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         crashlyticsInitialized = true
         sharedAppDelegate = self
         //store // force lazy loading
+
         return true
     }
 

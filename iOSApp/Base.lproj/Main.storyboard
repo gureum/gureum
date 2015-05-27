@@ -47,19 +47,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="sp1-Vd-XIm">
-                            <rect key="frame" x="0.0" y="64" width="600" height="280"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore_1024.png" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-ig-A4k">
-                                    <rect key="frame" x="0.0" y="48" width="600" height="232"/>
-                                </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVy-ZI-GV7" customClass="GADBannerView">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="k5m-YU-GMd"/>
+                                        <constraint firstAttribute="height" constant="50" id="k5m-YU-GMd"/>
                                     </constraints>
                                 </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore_1024.png" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-ig-A4k">
+                                    <rect key="frame" x="0.0" y="50" width="600" height="250"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -208,7 +208,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="uNQ-vx-o2V"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bannerView" destination="PVy-ZI-GV7" id="ggJ-oi-fBi"/>
+                        <outlet property="_bannerAdsView" destination="PVy-ZI-GV7" id="cqi-nm-qau"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd5-Z3-yer" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -769,8 +769,15 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fau-ET-poV" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="AZE-QW-6HU"/>
+                                </constraints>
+                            </view>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-T4-ofw">
-                                <rect key="frame" x="16" y="80" width="568" height="30"/>
+                                <rect key="frame" x="16" y="120" width="568" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -784,7 +791,7 @@
                                 </variation>
                             </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbY-I8-KHU">
-                                <rect key="frame" x="0.0" y="118" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="158" width="600" height="45"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r5D-nW-g75">
                                         <rect key="frame" x="16" y="8" width="878" height="29"/>
@@ -813,12 +820,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fau-ET-poV" secondAttribute="trailing" id="0kN-UX-ygY"/>
+                            <constraint firstItem="fau-ET-poV" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="7K0-qe-Jbh"/>
                             <constraint firstItem="rbY-I8-KHU" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="DPr-rK-2Gq"/>
+                            <constraint firstItem="8IH-T4-ofw" firstAttribute="top" secondItem="fau-ET-poV" secondAttribute="bottom" constant="8" id="Fed-GB-6Ju"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="bottom" secondItem="NNT-Ad-gF3" secondAttribute="top" id="HQd-Tu-MMa"/>
                             <constraint firstAttribute="trailing" secondItem="rbY-I8-KHU" secondAttribute="trailing" id="MhN-vG-Xmf"/>
                             <constraint firstAttribute="bottom" secondItem="v6a-tO-xu6" secondAttribute="bottom" id="R7e-Uw-XcQ"/>
                             <constraint firstAttribute="trailing" secondItem="v6a-tO-xu6" secondAttribute="trailing" id="UWh-iM-QOM"/>
                             <constraint firstItem="8IH-T4-ofw" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leadingMargin" id="cnG-bF-cTz"/>
+                            <constraint firstItem="fau-ET-poV" firstAttribute="top" secondItem="n9X-yt-lP7" secondAttribute="bottom" id="cvT-Dn-u6y"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="trailing" secondItem="NNT-Ad-gF3" secondAttribute="trailing" id="eZE-uH-5pc"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="AxS-II-k71" secondAttribute="leading" id="grK-xd-udn"/>
                             <constraint firstItem="v6a-tO-xu6" firstAttribute="leading" secondItem="NNT-Ad-gF3" secondAttribute="leading" id="kHM-IK-Qpp"/>
@@ -828,6 +839,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="mWw-zj-29H"/>
                                 <exclude reference="HQd-Tu-MMa"/>
                                 <exclude reference="eZE-uH-5pc"/>
                                 <exclude reference="kHM-IK-Qpp"/>
@@ -849,6 +861,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="_bannerAdsView" destination="fau-ET-poV" id="pbZ-mv-jNg"/>
                         <outlet property="keyboardTypeScrollView" destination="rbY-I8-KHU" id="GlW-eP-cFN"/>
                         <outlet property="preview" destination="v6a-tO-xu6" id="pJ9-i5-Nx6"/>
                         <outlet property="previewField" destination="8IH-T4-ofw" id="v2F-wU-3MX"/>

@@ -100,13 +100,11 @@ class DebugInputViewController: BasicInputViewController {
         //globalInputViewController = self
         super.viewDidLoad()
 
-        dispatch_async(dispatch_get_main_queue(), { // prevent timeout
-            self.initialized = true
-            let proxy = self.textDocumentProxy as! UITextInputTraits
-            self.log("adding input method view")
-            self.inputMethodView.loadCollections(proxy)
-            self.log("added method view")
-        })
+        self.initialized = true
+        let proxy = self.textDocumentProxy as! UITextInputTraits
+        self.log("adding input method view")
+        self.inputMethodView.loadCollections(proxy)
+        self.log("added method view")
     }
 
     override func viewWillLayoutSubviews() {
@@ -159,32 +157,25 @@ class InputViewController: BasicInputViewController {
         super.viewDidLoad()
 
         globalInputViewController = self
-        if preferences.swipe {
-            let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
-            leftRecognizer.direction = .Left
-            self.view.addGestureRecognizer(leftRecognizer)
-            let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
-            rightRecognizer.direction = .Right
-            self.view.addGestureRecognizer(rightRecognizer)
-        }
-/*
-        dispatch_async(dispatch_get_main_queue(), { // prevent timeout
-            self.initialized = true
-            let proxy = self.textDocumentProxy as! UITextInputTraits
-            //self.log("adding input method view")
-            self.inputMethodView.loadCollections(proxy)
-            //self.inputMethodView.adjustTraits(proxy)
-            //self.log("added method view")
-        })
-*/
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if !initialized && self.view.bounds != CGRectZero {
             self.view = self.inputMethodView
-            let proxy = self.textDocumentProxy as! UITextInputTraits
-            self.inputMethodView.loadCollections(proxy)
+            let traits = self.textDocumentProxy as! UITextInputTraits
+            self.lastTraits = traits
+            self.inputMethodView.loadCollections(traits)
+
+            if preferences.swipe {
+                let leftRecognizer = UISwipeGestureRecognizer(target: self, action: "leftForSwipeRecognizer:")
+                leftRecognizer.direction = .Left
+                let rightRecognizer = UISwipeGestureRecognizer(target: self, action: "rightForSwipeRecognizer:")
+                rightRecognizer.direction = .Right
+                self.view.addGestureRecognizer(leftRecognizer)
+                self.view.addGestureRecognizer(rightRecognizer)
+            }
+
             initialized = true
         }
     }
@@ -528,6 +519,8 @@ class InputViewController: BasicInputViewController {
         if index < self.inputMethodView.collections.count - 1 {
             self.inputMethodView.selectCollectionByIndex(index + 1, animated: true)
             self.adjustTraits(self.lastTraits)
+        } else {
+            self.inputMethodView.selectCollectionByIndex(0, animated: true)
         }
     }
 
@@ -536,6 +529,8 @@ class InputViewController: BasicInputViewController {
         if index > 0 {
             self.inputMethodView.selectCollectionByIndex(index - 1, animated: true)
             self.adjustTraits(self.lastTraits)
+        } else {
+            self.inputMethodView.selectCollectionByIndex(self.inputMethodView.collections.count - 1, animated: true)
         }
     }
 

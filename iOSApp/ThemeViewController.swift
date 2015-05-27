@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class ThemeViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate {
+class ThemeViewController: PreviewViewController, UITableViewDataSource, UITableViewDelegate, GADInterstitialDelegate {
+    var interstitial: GADInterstitial!
+
     @IBOutlet var tableView: UITableView! = nil
     @IBOutlet var doneButton: UIBarButtonItem! = nil
     @IBOutlet var cancelButton: UIBarButtonItem! = nil
@@ -30,12 +33,29 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         }
     }
 
+    func readyTheme() {
+        if self.navigationItem.rightBarButtonItem == self.doneButton {
+            return
+        }
+
+        self.navigationItem.rightBarButtonItem = self.doneButton
+        self.navigationItem.leftBarButtonItem = self.cancelButton
+
+        if ADMOB_INTERSTITIAL_ID != "" {
+            self.interstitial = self.loadInterstitialAds()
+        }
+    }
+
     @IBAction func applyTheme(sender: UIButton!) {
         Theme.themeWithAddress(self.themePath).dump()
         preferences.themePath = self.themePath
         preferences.resourceCaches = [:]
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
+
+        if self.interstitial?.isReady ?? false {
+            self.interstitial.presentFromRootViewController(self)
+        }
     }
 
     @IBAction func cancelTheme(sender: UIButton!) {
@@ -44,6 +64,8 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
         self.tableView.reloadData()
+
+        self.interstitial = nil
     }
 
     @IBAction func restorePurchasedTheme(sender: UIButton!) {
@@ -109,15 +131,29 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
         self.themePath = item["addr"]!
 
-        self.navigationItem.rightBarButtonItem = self.doneButton
-        self.navigationItem.leftBarButtonItem = self.cancelButton
+        self.readyTheme()
 
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         self.inputPreviewController.reloadInputMethodView()
+
+        assert(item["tier"] == "free")
     }
+
+    func interstitialDidReceiveAd(ad: GADInterstitial!) {
+        self.interstitial = ad
+    }
+
+    func interstitialDidDismissScreen(ad: GADInterstitial!) {
+
+    }
+
+    func interstitial(ad: GADInterstitial!, didFailToReceiveAdWithError error: GADRequestError!) {
+        self.interstitial = nil
+    }
+
 }
 
 
