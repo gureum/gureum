@@ -47,6 +47,7 @@ class QuickHelperTableViewController: UITableViewController {
 
 class SelectableQuickHelperTableViewController: QuickHelperTableViewController {
     var selectedIndexPaths: [NSIndexPath] = []
+    var needsSelection: Bool = true
 
     override func viewWillDisappear(animated: Bool) {
         let key = self.helperKey()
@@ -59,7 +60,7 @@ class SelectableQuickHelperTableViewController: QuickHelperTableViewController {
         } else {
             self.selectedIndexPaths.append(indexPath)
         }
-        self.doneButton.enabled = self.selectedIndexPaths.count > 0
+        self.doneButton.enabled = !self.needsSelection || self.selectedIndexPaths.count > 0
         tableView.reloadData()
     }
 
@@ -126,6 +127,12 @@ class TenKeyLeftLayoutQuickHelperTableViewController: SingleSelectableQuickHelpe
 }
 
 class RightLayoutQuickHelperTableViewController: SelectableQuickHelperTableViewController {
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.needsSelection = false
+        self.doneButton.enabled = true
+    }
 
     override func helperKey() -> String {
         return "right"

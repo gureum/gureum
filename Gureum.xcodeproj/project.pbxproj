@@ -248,7 +248,6 @@
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
 		38531EF21B0E773300E2C16D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/Fabric/Fabric.framework; sourceTree = "<group>"; };
-		3859C7B81B15AA72005E6D87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3859C7B91B15AF8A005E6D87 /* AdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsViewController.swift; sourceTree = "<group>"; };
 		385BC6E51AE6313200184053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		385BC6E81AE6316D00184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -984,7 +983,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/iOSShared\nVERSION=`git describe --tags --long`\nSHORT=`echo $VERSION | sed s/\\-.*$//`\necho \"SHORT_VERSION = $SHORT\" > Version.xcconfig\necho \"VERSION = $VERSION\" >> Version.xcconfig\necho -n \"ADMOB_BANNER_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Banner.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig\necho -n \"ADMOB_INTERSTITIAL_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Interstitial.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig";
+			shellScript = "cd $PROJECT_DIR/iOSShared\nLONG_VERSION=`git describe --tags --long`\nVERSION=`echo $VERSION | sed s/\\-.*$//`\necho \"VERSION = $VERSION\" > Version.xcconfig\necho \"BUILD_NUMBER = $(git rev-list HEAD | wc -l | tr -d ' ')\" >> Version.xcconfig\necho \"LONG_VERSION = $LONG_VERSION\" >> Version.xcconfig\necho -n \"ADMOB_BANNER_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Banner.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig\necho -n \"ADMOB_INTERSTITIAL_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Interstitial.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig";
 		};
 		383C036E19EC3D3100CFE876 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1221,7 +1220,6 @@
 			children = (
 				3882BA00193F9E6600076C26 /* Base */,
 				385BC6F21AE6355200184053 /* ko */,
-				3859C7B81B15AA72005E6D87 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

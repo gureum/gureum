@@ -132,7 +132,7 @@
 "Ron-CG-Qzw.title" = "설정 시험";
 
 /* Class = "UILabel"; text = "Globe to switch layout"; ObjectID = "S6i-aq-4nR"; */
-"S6i-aq-4nR.text" = "언어 전환 단추로 다른 자판으로 전환";
+"S6i-aq-4nR.text" = "🌐 키로 구름 내의 다른 자판으로 전환";
 
 /* Class = "UINavigationItem"; title = "Add a layout"; ObjectID = "SHJ-7Q-stJ"; */
 "SHJ-7Q-stJ.title" = "새 자판 추가";
