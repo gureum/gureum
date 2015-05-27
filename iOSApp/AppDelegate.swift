@@ -18,15 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        //if preferences.themeResources.count == 0 {
         Fabric.with([Crashlytics()])
         crashlyticsInitialized = true
-        //Theme.themeWithAddress(preferences.themePath).dump() // FIXME: more sane initializer
-        //}
         sharedAppDelegate = self
         //store // force lazy loading
-
         return true
     }
 

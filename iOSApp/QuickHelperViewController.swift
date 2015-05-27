@@ -11,8 +11,16 @@ import UIKit
 let QuickHelperResult: NSMutableDictionary = NSMutableDictionary()
 
 class QuickHelperTableViewController: UITableViewController {
+    var doneButtonTitle: String? {
+        get { return NSLocalizedString("Next", comment: "Next button of wizard") }
+    }
     lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done:")
+        let button: UIBarButtonItem
+        if let title = self.doneButtonTitle {
+            button = UIBarButtonItem(title: NSLocalizedString("Next", comment: "Next button of wizard"), style: .Bordered, target: self, action: "done:")
+        } else {
+            button = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done:")
+        }
         button.enabled = false
         return button
     }()

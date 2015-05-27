@@ -24,3 +24,4 @@ build
 *.playground
 
 Version.xcconfig
+*.admob

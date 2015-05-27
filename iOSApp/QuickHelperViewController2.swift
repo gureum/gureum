@@ -11,6 +11,9 @@ import UIKit
 // Separated file prevents Swift compiler crash
 
 class DoneQuickHelperTableViewController: QuickHelperTableViewController {
+    override var doneButtonTitle: String? {
+        get { return nil }
+    }
     var result = NSMutableDictionary()
 
     override func viewWillAppear(animated: Bool) {
@@ -26,10 +29,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
                 let row = indexPath.row
-                if row == 0 {
-                    continue
-                }
-                let right = ["", "symbol", "cheonjiin"][row]
+                let right = ["symbol", "cheonjiin"][row]
                 rights.addObject(right)
             }
             result["right"] = rights
@@ -38,10 +38,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
                 let row = indexPath.row
-                if row == 0 {
-                    continue
-                }
-                let right = ["", "ksx5002", "danmoum", "qwerty", "symbol"][row]
+                let right = ["ksx5002", "danmoum", "qwerty", "symbol"][row]
                 rights.addObject(right)
             }
             result["right"] = rights

@@ -40,6 +40,9 @@
 /* Class = "UILabel"; text = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다."; ObjectID = "CzY-s1-nFH"; */
 "CzY-s1-nFH.text" = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다.";
 
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "EBw-pj-QTT"; */
+"EBw-pj-QTT.title" = "뒤로";
+
 /* Class = "UILabel"; text = "영어/QWERTY"; ObjectID = "ESN-8O-WV2"; */
 "ESN-8O-WV2.text" = "영어/QWERTY";
 

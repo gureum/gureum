@@ -38,6 +38,9 @@
 /* Class = "UILabel"; text = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다."; ObjectID = "CzY-s1-nFH"; */
 "CzY-s1-nFH.text" = "오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다.";
 
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "EBw-pj-QTT"; */
+"EBw-pj-QTT.title" = "Back";
+
 /* Class = "UILabel"; text = "영어/QWERTY"; ObjectID = "ESN-8O-WV2"; */
 "ESN-8O-WV2.text" = "영어/QWERTY";
 
@@ -131,11 +134,17 @@
 /* Class = "UITextView"; text = "기본 자판으로 10키 키보드를 선택했지만, 편의에 따라 왼쪽으로 스크롤하여 한글 또는 영문 자판을 쓸 수도 있습니다. 선택하시겠습니까?"; ObjectID = "UJ3-zi-80B"; */
 "UJ3-zi-80B.text" = "기본 자판으로 10키 키보드를 선택했지만, 편의에 따라 왼쪽으로 스크롤하여 한글 또는 영문 자판을 쓸 수도 있습니다. 선택하시겠습니까?";
 
+/* Class = "UILabel"; text = "Layout editor"; ObjectID = "UOo-ti-zGW"; */
+"UOo-ti-zGW.text" = "Layout editor";
+
 /* Class = "UILabel"; text = "영어/QWERTY"; ObjectID = "UlT-Dy-Nm3"; */
 "UlT-Dy-Nm3.text" = "영어/QWERTY";
 
 /* Class = "UILabel"; text = "구글 한글 키보드의 \"단모음 키보드\"와 같은 배열의 자판. 표준에 비해 배열에 더 적은 키를 사용하므로 터치할 영역이 넓어 오동작이 적다."; ObjectID = "VTj-SE-DYC"; */
 "VTj-SE-DYC.text" = "구글 한글 키보드의 \"단모음 키보드\"와 같은 배열의 자판. 표준에 비해 배열에 더 적은 키를 사용하므로 터치할 영역이 넓어 오동작이 적다.";
+
+/* Class = "UINavigationItem"; title = "한글 자판 설정"; ObjectID = "Vo9-fx-076"; */
+"Vo9-fx-076.title" = "한글 자판 설정";
 
 /* Class = "UILabel"; text = "qwerty"; ObjectID = "Zsg-n6-x7R"; */
 "Zsg-n6-x7R.text" = "qwerty";
@@ -254,8 +263,8 @@
 /* Class = "UILabel"; text = "선택하지 않음"; ObjectID = "uNL-Gz-ajx"; */
 "uNL-Gz-ajx.text" = "선택하지 않음";
 
-/* Class = "UIBarButtonItem"; title = "뒤로"; ObjectID = "uNQ-vx-o2V"; */
-"uNQ-vx-o2V.title" = "뒤로";
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "uNQ-vx-o2V"; */
+"uNQ-vx-o2V.title" = "Back";
 
 /* Class = "UINavigationItem"; title = "Layout Editor"; ObjectID = "ulc-F6-i5X"; */
 "ulc-F6-i5X.title" = "Layout Editor";

@@ -247,6 +247,7 @@
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
 		38531EF21B0E773300E2C16D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/Fabric/Fabric.framework; sourceTree = "<group>"; };
+		3859C7B81B15AA72005E6D87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		385BC6E51AE6313200184053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		385BC6E81AE6316D00184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		385BC6F21AE6355200184053 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -832,6 +833,7 @@
 				TargetAttributes = {
 					3882B9F5193F9E6600076C26 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 9384JEL3M9;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -847,6 +849,7 @@
 					};
 					38BB700E193FA11000605583 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 9384JEL3M9;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -977,8 +980,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/iOSShared\ntag=`git describe --tags`\necho \"VERSION = $tag\" > Version.xcconfig";
+			shellPath = /bin/bash;
+			shellScript = "cd $PROJECT_DIR/iOSShared\nVERSION=`git describe --tags --long`\nSHORT=`echo $VERSION | sed s/\\-.*$//`\necho \"SHORT_VERSION = $SHORT\" > Version.xcconfig\necho \"VERSION = $VERSION\" >> Version.xcconfig\necho -n \"ADMOB_BANNER_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Banner.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig\necho -n \"ADMOB_INTERSTITIAL_ID = \" >> Version.xcconfig\ncat \"$PROJECT_DIR/Interstitial.admob\" >> Version.xcconfig\necho '' >> Version.xcconfig";
 		};
 		383C036E19EC3D3100CFE876 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1214,6 +1217,7 @@
 			children = (
 				3882BA00193F9E6600076C26 /* Base */,
 				385BC6F21AE6355200184053 /* ko */,
+				3859C7B81B15AA72005E6D87 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1330,7 +1334,12 @@
 					"$(PROJECT_DIR)/Pods/CrashlyticsFramework",
 					"$(PROJECT_DIR)/Pods/Fabric",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"ADMOB_BANNER_ID=\\\"$(ADMOB_BANNER_ID)\\\"",
+					"ADMOB_INTERSTITIAL_ID=\\\"$(ADMOB_INTERSTITIAL_ID)\\\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hangeul",
@@ -1358,7 +1367,12 @@
 					"$(PROJECT_DIR)/Pods/CrashlyticsFramework",
 					"$(PROJECT_DIR)/Pods/Fabric",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"ADMOB_BANNER_ID=\\\"$(ADMOB_BANNER_ID)\\\"",
+					"ADMOB_INTERSTITIAL_ID=\\\"$(ADMOB_INTERSTITIAL_ID)\\\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hangeul",
@@ -1420,11 +1434,6 @@
 					"$(PROJECT_DIR)/Pods/CrashlyticsFramework",
 					"$(PROJECT_DIR)/Pods/Fabric",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
@@ -1448,7 +1457,6 @@
 					"$(PROJECT_DIR)/Pods/Fabric",
 				);
 				GCC_OPTIMIZATION_LEVEL = fast;
-				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"org_youknowone_Gureum_inputmethod-Swift.h\\\"";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LLVM_LTO = YES;

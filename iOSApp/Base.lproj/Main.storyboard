@@ -46,10 +46,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore_1024.png" id="kVC-3P-GHi">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="sp1-Vd-XIm">
                             <rect key="frame" x="0.0" y="64" width="600" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore_1024.png" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-ig-A4k">
+                                    <rect key="frame" x="0.0" y="48" width="600" height="232"/>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVy-ZI-GV7" customClass="GADBannerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="k5m-YU-GMd"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="PVy-ZI-GV7" firstAttribute="leading" secondItem="sp1-Vd-XIm" secondAttribute="leading" id="6Ie-cn-U4J"/>
+                                <constraint firstItem="ojG-ig-A4k" firstAttribute="leading" secondItem="sp1-Vd-XIm" secondAttribute="leading" id="7nN-Fc-kcd"/>
+                                <constraint firstItem="PVy-ZI-GV7" firstAttribute="top" secondItem="sp1-Vd-XIm" secondAttribute="top" id="ECv-uF-y8f"/>
+                                <constraint firstAttribute="trailing" secondItem="ojG-ig-A4k" secondAttribute="trailing" id="TgV-Ik-y3h"/>
+                                <constraint firstItem="ojG-ig-A4k" firstAttribute="top" secondItem="PVy-ZI-GV7" secondAttribute="bottom" id="aDe-Iz-fWh"/>
+                                <constraint firstAttribute="bottom" secondItem="ojG-ig-A4k" secondAttribute="bottom" id="h9U-Rc-dKz"/>
+                                <constraint firstAttribute="trailing" secondItem="PVy-ZI-GV7" secondAttribute="trailing" id="u19-x0-K7S"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Help" id="dl2-C0-do0">
                                 <cells>
@@ -183,8 +205,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gureum" id="gCw-RU-vHX">
-                        <barButtonItem key="backBarButtonItem" title="뒤로" id="uNQ-vx-o2V"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="uNQ-vx-o2V"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bannerView" destination="PVy-ZI-GV7" id="ggJ-oi-fBi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd5-Z3-yer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -695,6 +720,9 @@
                             <outlet property="delegate" destination="zmc-mW-BrR" id="UTO-PT-uJ0"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="한글 자판 설정" id="Vo9-fx-076">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EBw-pj-QTT"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="Jot-bZ-HCx" kind="show" identifier="10key" id="PDw-vb-Wnp"/>
                         <segue destination="wz4-PW-FdP" kind="show" identifier="hangeul" id="744-F3-Mdp"/>
@@ -1006,26 +1034,6 @@
                         <sections>
                             <tableViewSection id="XIf-OY-aB7">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="qsb-ih-IrP" detailTextLabel="lY2-g3-TV1" style="IBUITableViewCellStyleSubtitle" id="8BO-xl-T7w">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8BO-xl-T7w" id="NXa-Pj-dwb">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="선택하지 않음" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qsb-ih-IrP">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lY2-g3-TV1">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KNA-hC-rXO" detailTextLabel="rk4-of-DJQ" style="IBUITableViewCellStyleSubtitle" id="d6h-se-apT">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d6h-se-apT" id="WWV-7l-dzS">
@@ -1112,26 +1120,6 @@
                         <sections>
                             <tableViewSection id="zLL-9c-X7o">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KJJ-H3-3CG" detailTextLabel="CzY-s1-nFH" style="IBUITableViewCellStyleSubtitle" id="hyA-4e-Kq3">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hyA-4e-Kq3" id="jIz-6Y-r2V">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="선택하지 않음" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KJJ-H3-3CG">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="오른쪽으로 스크롤 해 쓸 수 있는 보조키보드를 사용하지 않습니다." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CzY-s1-nFH">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="g4P-Yn-sKu" detailTextLabel="vLN-pn-fBb" style="IBUITableViewCellStyleSubtitle" id="KsT-s4-CBf">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KsT-s4-CBf" id="HEH-mQ-tBK">
@@ -1448,6 +1436,6 @@
         <image name="appstore_1024.png" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="acE-qO-ZRS"/>
+        <segue reference="OTp-If-aJD"/>
     </inferredMetricsTieBreakers>
 </document>
