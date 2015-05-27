@@ -521,13 +521,13 @@
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
 				DB309AEB1CE918C6673885DB /* Check Pods Manifest.lock */,
-				388FD025175ED98E00469B76 /* Version */,
+				388FD025175ED98E00469B76 /* Run Version Script */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				86654D8F3D0CA20A6B75833A /* Copy Pods Resources */,
-				388FB6471A12320E00DCB995 /* Run Crashlytics Script */,
+				388FB6471A12320E00DCB995 /* Run Fabric */,
 			);
 			buildRules = (
 			);
@@ -716,28 +716,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		388FB6471A12320E00DCB995 /* Run Crashlytics Script */ = {
+		388FB6471A12320E00DCB995 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Crashlytics Script";
+			name = "Run Fabric";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Pods/FabricOSX/Fabric.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
 		};
-		388FD025175ED98E00469B76 /* Version */ = {
+		388FD025175ED98E00469B76 /* Run Version Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Version;
+			name = "Run Version Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

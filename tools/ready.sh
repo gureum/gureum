@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ../..
+cd ..
 
 PROJDIR=`pwd`
 INSTDIR='/Library/Input Methods'
