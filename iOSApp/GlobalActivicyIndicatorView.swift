@@ -39,7 +39,7 @@ extension UIActivityIndicatorView {
 
 var _UIWindowActivityIndicatorViews = Dictionary<UIWindow, UIActivityIndicatorView>()
 
-func UIActivitiIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorView {
+func UIActivityIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorView {
     let indicator_ = _UIWindowActivityIndicatorViews[window]
     if let indicator = indicator_ {
         return indicator
@@ -55,7 +55,7 @@ func UIActivitiIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorVi
 extension UIWindow {
     var activityIndicatorView: UIActivityIndicatorView {
         get {
-            return UIActivitiIndicatorViewForWindow(self)
+            return UIActivityIndicatorViewForWindow(self)
         }
     }
 }

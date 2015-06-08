@@ -29,7 +29,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
             var error: NSError? = nil
             let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>
             assert(error == nil)
-            entries = items
+            self.entries = items
         }
     }
 
@@ -47,15 +47,23 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     @IBAction func applyTheme(sender: UIButton!) {
-        Theme.themeWithAddress(self.themePath).dump()
-        preferences.themePath = self.themePath
-        preferences.resourceCaches = [:]
+        if !self.themePath.hasPrefix("res://") {
+            let alert = UIAlertController(title: "출시 대기 중!", message: "이 테마는 아직 미리볼 수만 있습니다. 다음 버전에서 정식으로 이용할 수 있습니다!", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "확인", style: .Default, handler: nil)
+            alert.addAction(action)
+            self.presentViewController(alert, animated: true, completion: nil)
+            return;
+        }
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
 
         if self.interstitial?.isReady ?? false {
             self.interstitial.presentFromRootViewController(self)
         }
+
+        Theme.themeWithAddress(self.themePath).dump()
+        preferences.themePath = self.themePath
+        preferences.resourceCaches = [:]
     }
 
     @IBAction func cancelTheme(sender: UIButton!) {
@@ -86,6 +94,8 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         super.viewDidLoad()
+
+        UIActivityIndicatorView.globalActivityIndicatorView().startAnimating()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
             self.loadEntries()
             dispatch_async(dispatch_get_main_queue(), {
@@ -94,6 +104,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
                 } else {
                     UIAlertView(title: "네트워크 오류", message: "테마 목록을 불러올 수 없습니다. LTE 또는 Wi-Fi 연결을 확인하고 잠시 후에 다시 시도해 주세요.", delegate: nil, cancelButtonTitle: "확인").show()
                 }
+                UIActivityIndicatorView.globalActivityIndicatorView().stopAnimating()
             })
         })
     }
@@ -110,7 +121,11 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell {
             cell.textLabel!.text = item["title"]
-            cell.accessoryType = item["addr"] == self.themePath ? .Checkmark : .None
+
+            let selected = item["addr"] == self.themePath
+            cell.accessoryType = selected ? .Checkmark : .None
+            cell.detailTextLabel!.text = (selected || item["tier"] == "free") ? "무료" : "미리보기"
+            cell.detailTextLabel!.textColor = cell.detailTextLabel!.text == "무료" ? UIColor.clearColor() : UIColor.lightGrayColor()
             return cell
         } else {
             assert(false);
@@ -138,8 +153,6 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themePath))
         self.inputPreviewController.reloadInputMethodView()
-
-        assert(item["tier"] == "free")
     }
 
     func interstitialDidReceiveAd(ad: GADInterstitial!) {

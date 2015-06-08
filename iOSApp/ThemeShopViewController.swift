@@ -14,7 +14,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewWillAppear(animated: Bool) {
         let window = sharedAppDelegate.window!
-        UIActivitiIndicatorViewForWindow(window).pushAnimating()
+        UIActivityIndicatorViewForWindow(window).pushAnimating()
 
         dispatch_async(store.backgroundQueue, {
             let previousCount = store.entries.count
@@ -24,7 +24,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
                 if previousCount > store.entries.count {
                     self.tableView.reloadData()
                 }
-                UIActivitiIndicatorViewForWindow(window).popAnimating()
+                UIActivityIndicatorViewForWindow(window).popAnimating()
             })
         })
     }

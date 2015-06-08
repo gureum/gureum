@@ -190,7 +190,7 @@ class ThemeTraitConfiguration {
         return captionForKey(newKey, needsMargin: true, fallback: fallback)
     }
 
-    lazy var tenkeyCaption: ThemeCaptionConfiguration = self.captionForKey("tenkey", needsMargin: false, fallback: self.defaultCaption)
+    lazy var tenkeyCaption: ThemeCaptionConfiguration = self.captionForKey("tenkey", needsMargin: false, fallback: self.qwertyCaption) // FIXME: 'default'가 되어야 함
     func tenkeyCaptionForKeyInRow(row: Int) -> ThemeCaptionConfiguration {
         return self.captionForKey("tenkey-row\(row)", needsMargin: false, fallback: self.tenkeyCaption)
     }
@@ -287,7 +287,7 @@ class ThemeCaptionConfiguration {
         button.glyphView.center = center
         //println("glyphView: \(button.glyphView.frame)")
 
-        button.captionLabel.sizeToFit()
+        button.captionLabel.frame = button.bounds;
         button.captionLabel.center = center
         //println("captionlabel: \(button.captionLabel.frame)")
 
@@ -306,7 +306,7 @@ class ThemeCaptionConfiguration {
         frame.origin = CGPointMake(insets.left, insets.top)
         button.effectView!.textLabel!.frame = frame
 
-        frame.size.width *= 1.4
+        frame.size.width += 12
         button.effectView.frame = frame
         button.effectView.center = button.center;
         frame = button.effectView.frame
