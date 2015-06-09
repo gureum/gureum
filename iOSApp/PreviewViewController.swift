@@ -1,6 +1,6 @@
 //
 //  PreviewViewController.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 14..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -19,17 +19,17 @@ class PreviewInputViewController: InputViewController {
         self.textDidChange(mockTextField)
     }
 
-    override func input(sender: UIButton) {
+    override func input(sender: GRInputButton) {
         super.input(sender)
         self.previewController.update()
     }
 
-    override func inputDelete(sender: UIButton) {
+    override func inputDelete(sender: GRInputButton) {
         super.inputDelete(sender)
         self.previewController.update()
     }
 
-    override func dotcom(sender: UIButton) {
+    override func dotcom(sender: GRInputButton) {
         super.dotcom(sender)
         self.previewController.update() // huh...
     }

@@ -1,6 +1,6 @@
 //
 //  NumberPadLayout.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 6..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -34,14 +34,14 @@ class NumberPadLayout: KeyboardLayout {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
     }
 
-    func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
-        let code: Int = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]][position.row][position.column]
-        return code + 48
+    func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
+        let code: UInt = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]][position.row][position.column]
+        return [code + 48]
     }
 
-    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let charcode = self.keycodeForPosition(position, shift: self.view.shiftButton.selected)
-        let altkey = "key-\(charcode)" // fixme
+    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+        let keycodes = self.keycodesForPosition(position)
+        let altkey = "key-\(keycodes[0])" // FIXME:
         let theme1 = trait.tenkeyCaptionForKey(altkey, fallback: trait.tenkeyCaptionForKeyInRow(position.row + 1))
         let title = self.helper(self.helper, titleForPosition: position)
         let theme2 = trait.tenkeyCaptionForKey("key-" + title, fallback: theme1)
@@ -146,18 +146,16 @@ class NumberPadLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as! GRInputButton
-        let key1 = self.keycodeForPosition(position, shift: false)
-        let key2 = self.keycodeForPosition(position, shift: true)
-        button.tag = (key2 << 15) + key1
-        if button.tag != 0 {
+        button.keycodes = self.keycodesForPosition(position)
+        if button.keycode != 0 {
             button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         }
         return button
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position, shift: self.view.shiftButton.selected)
-        let title = String(UnicodeScalar(keycode))
+        let keycodes = self.keycodesForPosition(position)
+        let title = String(UnicodeScalar(UInt32(keycodes[0])))
         return title
     }
 }
@@ -167,7 +165,7 @@ class DecimalPadLayout: NumberPadLayout {
         let view = super.loadView() as! NumberPadView
         view.leftButton = GRInputButton()
         view.leftButton.captionLabel.text = "."
-        view.leftButton.tag = 46
+        view.leftButton.keycode = UnicodeScalar(".").value
         view.addSubview(view.leftButton)
         return view
     }
@@ -193,12 +191,8 @@ class PhonePadLayout: NumberPadLayout {
         return view
     }
 
-    override func keycodeForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> Int {
-        if shift {
-            let code: Int = [[49, 50, 51], [44, 53, 59], [42, 56, 35], [43]][position.row][position.column]
-            return code
-        } else {
-            return super.keycodeForPosition(position, shift: shift)
-        }
+    override func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
+        let altcode: UInt = [[49, 50, 51], [44, 53, 59], [42, 56, 35], [43]][position.row][position.column]
+        return [super.keycodesForPosition(position)[0], altcode]
     }
 }

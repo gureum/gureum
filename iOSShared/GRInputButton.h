@@ -1,6 +1,6 @@
 //
 //  GRInputButton.h
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 20..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -18,11 +18,14 @@
 @property(readonly) GRInputEffectView *effectView;
 
 @property(nonatomic,copy) NSString *title;
-@property(nonatomic,retain) UIImage *effectBackgroundImage;
+@property(nonatomic,strong) UIImage *effectBackgroundImage;
+@property(nonatomic,copy) NSArray *keycodes;
+@property(nonatomic,assign) UInt32 keycode;
 
 - (void)showEffect;
 - (void)hideEffect;
 - (void)arrange;
+- (UInt32)keycodeAtIndex:(NSUInteger)index;
 
 @end
 

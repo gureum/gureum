@@ -1,6 +1,6 @@
 //
 //  GRInputButton.m
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 20..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -118,6 +118,24 @@
     } else {
         self->_effectView.backgroundImageView.image = image;
     }
+}
+
+- (UInt32)keycode {
+    if (self.keycodes.count == 0) {
+        return 0;
+    }
+    return [self.keycodes[0] unsignedIntValue];
+}
+
+- (void)setKeycode:(UInt32)keycode {
+    self.keycodes = @[@(keycode)];
+}
+
+- (UInt32)keycodeAtIndex:(NSUInteger)index {
+    if (self.keycodes.count > index) {
+        return [self.keycodes[index] unsignedIntValue];
+    }
+    return self.keycode;
 }
 
 @end

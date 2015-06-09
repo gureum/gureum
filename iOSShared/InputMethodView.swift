@@ -1,6 +1,6 @@
 //
 //  InputMethodView.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 8/3/14.
 //  Copyright (c) 2014 youknowone.org. All rights reserved.
@@ -85,6 +85,8 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                 return [DanmoumKeyboardLayout(), QwertySymbolKeyboardLayout()]
             case "cheonjiin":
                 return [CheonjiinKeyboardLayout(), TenKeyAlphabetKeyboardLayout(), TenKeyNumberKeyboardLayout()]
+            case "emoticon":
+                return [EmoticonKeyboardLayout()]
             case "number":
                 return [NumberPadLayout()]
             case "ascii":

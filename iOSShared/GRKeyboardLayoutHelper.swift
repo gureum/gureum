@@ -143,6 +143,7 @@ class GRKeyboardLayoutHelper {
 
             let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
             //println("\(rowHeightSum) \(rowSpace)")
+            var rowHeightSum2: CGFloat = 0.0
             for row in 0..<rowCount {
                 let rowHeight = delegate.helper(self, heightOfRow: row, forSize: rect.size)
                 let columnWidth = delegate.helper(self, columnWidthInRow: row, forSize: rect.size)
@@ -151,7 +152,7 @@ class GRKeyboardLayoutHelper {
                 let rightButtons = delegate.helper(self, rightButtonsForRow: row)
 
                 let columnSpace = (insetFrame.size.width - columnWidthSums[row]) / CGFloat(columnCount + leftButtons.count + rightButtons.count - 1)
-                let rowTop = insets.top + (rowHeight + rowSpace) * CGFloat(row)
+                let rowTop = insets.top + rowHeightSum2 + rowSpace * CGFloat(row)
                 var left = insets.left
                 for button in leftButtons {
                     let width = button.frame.size.width
@@ -169,6 +170,7 @@ class GRKeyboardLayoutHelper {
                     button.frame = CGRectMake(left, rowTop, width, rowHeight)
                     left += width + columnSpace
                 }
+                rowHeightSum2 += rowHeight
             }
             delegate.layoutDidLayoutForHelper(self, forRect: rect)
         }

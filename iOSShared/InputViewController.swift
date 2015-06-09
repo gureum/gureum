@@ -71,11 +71,11 @@ class BasicInputViewController: UIInputViewController {
         #endif
     }
 
-    func input(sender: UIButton) {
+    func input(sender: GRInputButton) {
 
     }
 
-    func inputDelete(sender: UIButton) {
+    func inputDelete(sender: GRInputButton) {
 
     }
 
@@ -283,10 +283,9 @@ class InputViewController: BasicInputViewController {
     }
 
 
-    override func input(sender: UIButton) {
+    override func input(sender: GRInputButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.log("before: \(proxy.documentContextBeforeInput)");
-        //println("\(self.context) \(sender.tag)")
 
         let selectedLayout = self.inputMethodView.selectedLayout
         for collection in self.inputMethodView.collections {
@@ -300,7 +299,13 @@ class InputViewController: BasicInputViewController {
         let context = selectedLayout.context
         let shiftButton = selectedLayout.view.shiftButton
 
-        var keycode = (shiftButton?.selected ?? false) ? sender.tag >> 15 : sender.tag & 0x7fff
+        let keycode: UInt32
+        if sender.keycodes.count > 1 && shiftButton?.selected ?? false {
+            keycode = UInt32(sender.keycodes[1] as! UInt)
+        } else {
+            keycode = sender.keycode
+        }
+
         if selectedLayout.dynamicType.autounshift && shiftButton?.selected ?? false {
             shiftButton.selected = false
             selectedLayout.helper.updateCaptionLabel()
@@ -409,12 +414,12 @@ class InputViewController: BasicInputViewController {
         //self.log("after: \(proxy.documentContextAfterInput)")
     }
 
-    override func inputDelete(sender: UIButton) {
+    override func inputDelete(sender: GRInputButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         let context = self.inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicodes(context)
         if precomposed.count > 0 {
-            let processed = context_put(context, InputSource(sender.tag))
+            let processed = context_put(context, InputSource(sender.keycode))
             let proxy = self.textDocumentProxy as! UIKeyInput
             if processed {
                 //self.log("start deleting")
@@ -452,12 +457,12 @@ class InputViewController: BasicInputViewController {
         }
     }
 
-    func space(sender: UIButton) {
+    func space(sender: GRInputButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.input(sender)
     }
 
-    func dotcom(sender: UIButton) {
+    func dotcom(sender: GRInputButton) {
         for collection in self.inputMethodView.collections {
             for layout in collection.layouts {
                 if layout.context != nil {
@@ -468,11 +473,11 @@ class InputViewController: BasicInputViewController {
         (self.textDocumentProxy as! UIKeyInput).insertText(".com")
     }
 
-    func shift(sender: UIButton) {
+    func shift(sender: GRInputButton) {
         self.inputMethodView.selectedLayout.shift = sender.selected ? .Off : .On
     }
 
-    func toggleLayout(sender: UIButton) {
+    func toggleLayout(sender: GRInputButton) {
         self.inputMethodView.selectedLayout.shift = .Off
         let collection = self.inputMethodView.selectedCollection
         collection.switchLayout()
@@ -481,20 +486,20 @@ class InputViewController: BasicInputViewController {
         self.adjustTraits(self.lastTraits)
     }
 
-    func selectLayout(sender: UIButton) {
+    func selectLayout(sender: GRInputButton) {
         let collection = self.inputMethodView.selectedCollection
         collection.selectLayoutIndex(sender.tag)
         self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
         self.adjustTraits(self.lastTraits)
     }
 
-    func done(sender: UIButton) {
+    func done(sender: GRInputButton) {
         self.inputMethodView.resetContext()
-        sender.tag = (13 << 15) + 13
+        sender.keycode = 13
         self.input(sender)
     }
 
-    func mode(sender: UIButton) {
+    func mode(sender: GRInputButton) {
         let now = NSDate()
         var needsNextInputMode = false
         if preferences.inglobe {

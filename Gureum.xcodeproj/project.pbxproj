@@ -17,6 +17,10 @@
 		3810A22E1B14D8A7004AE8FC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */; };
 		3810A2301B14D8D5004AE8FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22F1B14D8D5004AE8FC /* libz.dylib */; };
 		3810A2311B14D8FB004AE8FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22F1B14D8D5004AE8FC /* libz.dylib */; };
+		38178B301B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */; };
+		38178B311B260FC500DB01C7 /* EmoticonKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */; };
+		38178B331B26333A00DB01C7 /* EmoticonLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38178B321B26333A00DB01C7 /* EmoticonLayout.xib */; };
+		38178B341B26333A00DB01C7 /* EmoticonLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38178B321B26333A00DB01C7 /* EmoticonLayout.xib */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		38326E411B072857007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
 		38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
@@ -235,6 +239,8 @@
 		3810A22C1B14D8A7004AE8FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Pods/Fabric/Crashlytics.framework; sourceTree = "<group>"; };
 		3810A22F1B14D8D5004AE8FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3810A2401B14FE84004AE8FC /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Version.xcconfig; path = iOSShared/Version.xcconfig; sourceTree = SOURCE_ROOT; };
+		38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonKeyboardLayout.swift; sourceTree = "<group>"; };
+		38178B321B26333A00DB01C7 /* EmoticonLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmoticonLayout.xib; sourceTree = "<group>"; };
 		38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		38303654198A1F1E00C1EE0C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
@@ -463,6 +469,7 @@
 				386308C0199133140039369C /* KeyboardLayout.swift */,
 				38630900199148C50039369C /* QwertyKeyboardLayout.swift */,
 				38630902199148D20039369C /* TenkeyKeyboardLayout.swift */,
+				38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */,
 				38326E401B072857007318BA /* NumberPadLayout.swift */,
 				386308CD199133C50039369C /* GRKeyboardLayoutHelper.swift */,
 				38303654198A1F1E00C1EE0C /* Preferences.swift */,
@@ -470,6 +477,7 @@
 				386308C1199133140039369C /* NoLayout.xib */,
 				386308C2199133140039369C /* NumpadLayout.xib */,
 				386308C3199133140039369C /* QwertyLayout.xib */,
+				38178B321B26333A00DB01C7 /* EmoticonLayout.xib */,
 				38630899199132210039369C /* Supporting Files */,
 			);
 			path = iOSShared;
@@ -491,9 +499,9 @@
 				38BB7024193FA29100605583 /* Playground.playground */,
 				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
+				38630898199132210039369C /* iOSShared */,
 				3882BA0B193F9E6600076C26 /* Tests */,
 				38BB7010193FA11000605583 /* InputMethod */,
-				38630898199132210039369C /* iOSShared */,
 				38D9A398199B7F8E0087A965 /* Theme */,
 				3882B9F7193F9E6600076C26 /* Products */,
 				D0738081B4DEAF66A247E04F /* Pods */,
@@ -914,6 +922,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3861A76E1B0CB8A300FAC28A /* iOS in Resources */,
+				38178B331B26333A00DB01C7 /* EmoticonLayout.xib in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
@@ -937,6 +946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				380D44E71AFA0FC8007A2556 /* InfoPlist.strings in Resources */,
+				38178B341B26333A00DB01C7 /* EmoticonLayout.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1068,7 @@
 				389F0EF41B0D3DE80069DBEF /* QuickHelperViewController2.swift in Sources */,
 				38630901199148C50039369C /* QwertyKeyboardLayout.swift in Sources */,
 				384ADED719C1B32E0007A993 /* Store.swift in Sources */,
+				38178B301B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift in Sources */,
 				386308FF199143A90039369C /* capi.cpp in Sources */,
 				384ADED319C1B3180007A993 /* StaticWebViewController.swift in Sources */,
 				384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */,
@@ -1085,6 +1096,7 @@
 				3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */,
 				386308D9199143320039369C /* KeyboardLayout.swift in Sources */,
 				38A37EFA19E7256500A9C83B /* Theme.swift in Sources */,
+				38178B311B260FC500DB01C7 /* EmoticonKeyboardLayout.swift in Sources */,
 				386308FE199143A80039369C /* capi.cpp in Sources */,
 				386308D8199143320039369C /* InputMethodView.swift in Sources */,
 				38630904199149140039369C /* QwertyKeyboardLayout.swift in Sources */,

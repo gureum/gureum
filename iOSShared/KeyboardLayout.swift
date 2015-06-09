@@ -1,6 +1,6 @@
 //
 //  KeyboardLayout.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 6. 6..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -220,6 +220,9 @@ class KeyboardView: UIView {
         get { return [] }
     }
 
+    var visibleButtons: [GRInputButton] {
+        get { return [] }
+    }
 
     let errorButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
     let untouchButton = GRInputButton(frame: CGRectMake(-1000, -1000, 0, 0))
@@ -232,24 +235,62 @@ class KeyboardView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
         self.nextKeyboardButton = GRInputButton()
-        self.nextKeyboardButton.captionLabel.text = "🌐"
         self.deleteButton = GRInputButton()
-        self.deleteButton.captionLabel.text = "⌫"
-        self.deleteButton.tag = 0x7f
         self.doneButton = GRInputButton()
-        self.doneButton.captionLabel.text = "다음문장"
-        self.doneButton.tag = 13
         self.toggleKeyboardButton = GRInputButton()
         self.shiftButton = GRInputButton()
         self.spaceButton = GRInputButton()
-        self.spaceButton.captionLabel.text = "간격"
-        self.spaceButton.tag = 32
 
+        self.preset()
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        func reset(button: GRInputButton?) -> GRInputButton {
+            if let button = button {
+                //button.setTitleColor(UIColor.clearColor(), forState: .Normal)
+                return button
+            } else {
+                return GRInputButton()
+            }
+        }
+
+        self.nextKeyboardButton = reset(self.nextKeyboardButton)
+        self.deleteButton = reset(self.deleteButton)
+        self.doneButton = reset(self.doneButton)
+        self.toggleKeyboardButton = reset(self.toggleKeyboardButton)
+        self.shiftButton = reset(self.shiftButton)
+        self.spaceButton = reset(self.spaceButton)
+
+        self.preset()
+    }
+
+    func preset() {
+        self.nextKeyboardButton.captionLabel.text = "🌐"
+        self.deleteButton.captionLabel.text = "⌫"
+        self.deleteButton.keycode = 0x7f
+        self.doneButton.captionLabel.text = "다음문장"
+        self.doneButton.keycode = UnicodeScalar("\n").value
+        self.spaceButton.captionLabel.text = "간격"
+        self.spaceButton.keycode = UnicodeScalar(" ").value
+
+        self.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
+        self.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
+        self.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
+        self.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
+        self.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
+
+        self.insertSubview(self.errorButton, atIndex: 0)
+        self.insertSubview(self.untouchButton, atIndex: 0)
+        self.errorButton.addTarget(nil, action: "error:", forControlEvents: .TouchUpInside)
+        self.untouchButton.addTarget(nil, action: "untouch:", forControlEvents: .TouchUpInside)
+
     }
 
     override func layoutSubviews() {
@@ -287,7 +328,7 @@ class KeyboardView: UIView {
 class NoKeyboardView: KeyboardView {
 }
 
-class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
+class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
     enum ShiftState {
         case Off
         case On
@@ -313,7 +354,11 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
     class var toggleCaption: String {
         get { return "123" }
     }
-    
+
+    func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton: ThemeCaptionConfiguration] {
+        return [:]
+    }
+
     var autocapitalized = false
 
     lazy var helper: GRKeyboardLayoutHelper = GRKeyboardLayoutHelper(delegate: self)
@@ -322,19 +367,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         let view = self.dynamicType.loadView()
         view.layout = self
 
-        assert(view.deleteButton != nil)
-        view.nextKeyboardButton.addTarget(nil, action: "mode:", forControlEvents: .TouchUpInside)
-        view.deleteButton.addTarget(nil, action: "inputDelete:", forControlEvents: .TouchUpInside)
-        view.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
         view.shiftButton.captionLabel.text = self.dynamicType.shiftCaption
-        view.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
-        view.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", forControlEvents: .TouchUpInside)
-
-        view.insertSubview(view.errorButton, atIndex: 0)
-        view.insertSubview(view.untouchButton, atIndex: 0)
-        view.errorButton.addTarget(nil, action: "error:", forControlEvents: .TouchUpInside)
-        view.untouchButton.addTarget(nil, action: "untouch:", forControlEvents: .TouchUpInside)
-
         self.context = self.dynamicType.loadContext()
 
         return view
@@ -365,7 +398,8 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         return nil
     }
 
-    init() {
+    override init() {
+        super.init()
         let view = self.view
         self.helper.createButtonsInView(view)
     }
@@ -407,20 +441,60 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         return self.view.errorButton
     }
 
-    func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
         assert(false)
+        return trait.defaultCaption
+    }
+
+    func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+        for subview in self.view.visibleButtons {
+            self.view.addSubview(subview)
+        }
     }
 
     func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        assert(false)
     }
 
-    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
-        assert(false)
+
+    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
+
+        for (position, button) in self.helper.buttons {
+            let captionTheme = self.captionThemeForTrait(trait, position: position)
+            captionTheme.appealButton(button)
+        }
+
+        let themeMap = self.themesForTrait(trait)
+        for button in self.view.visibleButtons {
+            if let theme = themeMap[button] {
+                theme.appealButton(button)
+            } else {
+                #if DEBUG
+                    assert(false)
+                #endif
+                trait.defaultCaption.appealButton(button)
+            }
+        }
     }
 
-    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
-        assert(false)
+    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
+        for (position, button) in self.helper.buttons {
+            let captionTheme = self.captionThemeForTrait(trait, position: position)
+            captionTheme.arrangeButton(button)
+        }
+
+        let themeMap = self.themesForTrait(trait)
+        for button in self.view.visibleButtons {
+            if let theme = themeMap[button] {
+                theme.arrangeButton(button)
+            } else {
+                #if DEBUG
+                    assert(false)
+                #endif
+                trait.defaultCaption.arrangeButton(button)
+            }
+        }
     }
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
@@ -543,7 +617,7 @@ class NoKeyboardLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as! GRInputButton
-        button.tag = Int(UnicodeScalar(" ").value)
+        button.keycode = UnicodeScalar(" ").value
         button.sizeToFit()
         //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         return button

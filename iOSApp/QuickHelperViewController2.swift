@@ -1,6 +1,6 @@
 //
 //  QuickHelperViewController2.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2015. 5. 21..
 //  Copyright (c) 2015년 youknowone.org. All rights reserved.

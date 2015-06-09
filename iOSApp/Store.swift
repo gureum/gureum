@@ -1,6 +1,6 @@
 //
 //  Store.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 29..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.

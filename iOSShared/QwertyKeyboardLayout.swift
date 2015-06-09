@@ -1,6 +1,6 @@
 //
 //  QwertyKeyboardLayout.swift
-//  iOS
+//  Gureum
 //
 //  Created by Jeong YunWon on 2014. 8. 6..
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
@@ -42,12 +42,57 @@ class QwertyKeyboardView: KeyboardView {
         }
     }
 
+    override var visibleButtons: [GRInputButton] {
+        get {
+            return [self.toggleKeyboardButton, self.shiftButton, self.nextKeyboardButton, self.spaceButton, self.deleteButton, self.doneButton] + self.URLButtons + self.emailButtons + self.twitterButtons
+        }
+    }
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        self.URLDotButton = GRInputButton()
+        self.URLDotButton.captionLabel.text = "."
+        self.URLDotButton.keycode = UnicodeScalar(".").value
+        self.URLSlashButton = GRInputButton()
+        self.URLSlashButton.captionLabel.text = "/"
+        self.URLSlashButton.keycode = UnicodeScalar("/").value
+        self.URLDotComButton = GRInputButton()
+        self.URLDotComButton.captionLabel.text = ".com"
+
+        self.emailSpaceButton = GRInputButton()
+        self.emailSpaceButton.captionLabel.text = self.spaceButton.captionLabel.text
+        self.emailSpaceButton.keycode = self.spaceButton.keycode
+        self.emailSnailButton = GRInputButton()
+        self.emailSnailButton.captionLabel.text = "@"
+        self.emailSnailButton.keycode = UnicodeScalar("@").value
+        self.emailDotButton = GRInputButton()
+        self.emailDotButton.captionLabel.text = "."
+        self.emailDotButton.keycode = UnicodeScalar(".").value
+
+        self.twitterSnailButton = GRInputButton()
+        self.twitterSnailButton.captionLabel.text = "@"
+        self.twitterSnailButton.keycode = UnicodeScalar("@").value
+        self.twitterHashButton = GRInputButton()
+        self.twitterHashButton.captionLabel.text = "#"
+        self.twitterHashButton.keycode = UnicodeScalar("#").value
+
+        self.leftSpaceButton = GRInputButton()
+        self.rightSpaceButton = GRInputButton()
+
+        for subview in self.URLButtons + self.emailButtons + self.twitterButtons {
+            subview.alpha = 0
+        }
+
+        self.spaceButton.addTarget(nil, action: "space:", forControlEvents: .TouchUpInside)
+        for button in [self.URLDotButton, self.URLSlashButton] + self.emailButtons + self.twitterButtons {
+            button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+        }
+        self.URLDotComButton.addTarget(nil, action: "dotcom:", forControlEvents: .TouchUpInside)
     }
 }
 
@@ -65,85 +110,8 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override class func loadView() -> QwertyKeyboardView {
-        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 200, 100))
-
-        view.URLDotButton = GRInputButton()
-        view.URLDotButton.captionLabel.text = "."
-        view.URLDotButton.tag = 46
-        view.URLSlashButton = GRInputButton()
-        view.URLSlashButton.captionLabel.text = "/"
-        view.URLSlashButton.tag = 47
-        view.URLDotComButton = GRInputButton()
-        view.URLDotComButton.captionLabel.text = ".com"
-        view.URLDotComButton.tag = -1
-
-        view.emailSpaceButton = GRInputButton()
-        view.emailSpaceButton.captionLabel.text = view.spaceButton.captionLabel.text
-        view.emailSpaceButton.tag = view.spaceButton.tag
-        view.emailSnailButton = GRInputButton()
-        view.emailSnailButton.captionLabel.text = "@"
-        view.emailSnailButton.tag = 64
-        view.emailDotButton = GRInputButton()
-        view.emailDotButton.captionLabel.text = "."
-        view.emailDotButton.tag = 46
-
-        view.twitterSnailButton = GRInputButton()
-        view.twitterSnailButton.captionLabel.text = "@"
-        view.twitterSnailButton.tag = 64
-        view.twitterHashButton = GRInputButton()
-        view.twitterHashButton.captionLabel.text = "#"
-        view.twitterHashButton.tag = 35
-
-        view.leftSpaceButton = GRInputButton()
-        view.rightSpaceButton = GRInputButton()
-
-        for subview in view.URLButtons + view.emailButtons + view.twitterButtons {
-            subview.alpha = 0
-        }
-
-        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] + view.URLButtons + view.emailButtons + view.twitterButtons {
-            view.addSubview(subview)
-        }
-        return view
-    }
-
-    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
-        assert(false)
-        return UnicodeScalar(0)
-    }
-
-    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position, shift: false)
-        let altkey = "key-\(chr)"
-        let theme1 = trait.qwertyCaptionForKey(altkey, fallback: trait.qwertyCaptionForKeyInRow(position.row + 1))
-        let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.qwertyCaptionForKey("key-" + title, fallback: theme1)
-        return theme2
-    }
-
-    override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-        self.qwertyView.spaceButton.addTarget(nil, action: "space:", forControlEvents: .TouchUpInside)
-
-        for button in [self.qwertyView.URLDotComButton, self.qwertyView.URLSlashButton] + self.view.emailButtons + self.view.twitterButtons {
-            button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
-        }
-        self.qwertyView.URLDotComButton.addTarget(nil, action: "dotcom:", forControlEvents: .TouchUpInside)
-    }
-
-    override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
-
-    }
-
-    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
-
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.appealButton(button)
-        }
-
-        let map = [
+    override func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton: ThemeCaptionConfiguration] {
+        return [
             self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
             self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
             self.qwertyView.toggleKeyboardButton!: trait.qwertyToggleCaption,
@@ -160,10 +128,33 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
             self.qwertyView.twitterSnailButton!: trait.qwertyFunctionCaption,
             self.qwertyView.twitterHashButton!: trait.qwertyFunctionCaption,
         ]
+    }
 
-        for (button, captionTheme) in map {
-            captionTheme.appealButton(button)
+    override class func loadView() -> QwertyKeyboardView {
+        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 200, 100))
+
+        for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] + view.URLButtons + view.emailButtons + view.twitterButtons {
+            view.addSubview(subview)
         }
+        return view
+    }
+
+    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+        assert(false)
+        return UnicodeScalar(0)
+    }
+
+    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+        let chr = self.keyForPosition(position, shift: false)
+        let altkey = "key-\(chr)"
+        let theme1 = trait.qwertyCaptionForKey(altkey, fallback: trait.qwertyCaptionForKeyInRow(position.row + 1))
+        let title = self.helper(self.helper, titleForPosition: position)
+        let theme2 = trait.qwertyCaptionForKey("key-" + title, fallback: theme1)
+        return theme2
+    }
+
+    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        super.layoutWillLayoutForHelper(helper, forRect: rect)
 
         let size = rect.size
         for button in [self.qwertyView.shiftButton!, self.qwertyView.deleteButton!] {
@@ -196,26 +187,6 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
     }
 
     override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.arrangeButton(button)
-        }
-
-        let map = [
-            self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
-            self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: trait.qwertyToggleCaption,
-            self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
-            self.qwertyView.doneButton!: trait.qwertyDoneCaption,
-        ]
-
-        for (button, captionTheme) in map {
-            captionTheme.arrangeButton(button)
-        }
-
-
         func step(rect: CGRect) -> CGRect {
             var newRect = rect
             newRect.origin.x += rect.size.width
@@ -247,20 +218,8 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         twitterRect = step(twitterRect)
         self.qwertyView.twitterHashButton.frame = twitterRect
 
-        let map2 = [
-            self.qwertyView.URLDotButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.URLSlashButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.URLDotComButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailSpaceButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailSnailButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailDotButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.twitterSnailButton!: trait.qwertyFunctionCaption,
-            self.qwertyView.twitterHashButton!: trait.qwertyFunctionCaption,
-        ]
 
-        for (button, captionTheme) in map2 {
-            captionTheme.arrangeButton(button)
-        }
+        super.layoutDidLayoutForHelper(helper, forRect: rect)
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
@@ -273,10 +232,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as! GRInputButton
-        let key1 =  self.keyForPosition(position, shift: false)
-        let key2 =  self.keyForPosition(position, shift: true)
-        button.tag = Int(((key2.value) << 15) + key1.value)
-        button.sizeToFit()
+        button.keycodes = [UInt(self.keyForPosition(position, shift: false).value), UInt(self.keyForPosition(position, shift: true).value)]
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         return button
     }
