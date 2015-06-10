@@ -48,13 +48,13 @@ class EmoticonKeyboardView: KeyboardView {
 }
 
 let EmoticonTable = [
-    "😀😁😂😃😄😅😆😇😈👿😉😊☺️😋😌😍😎😏😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟😠😡😢😣😤😥😦😧😨😩😪😫😬😭😮😯😰😱😲😳😴😵😶😷😸😹😺😻😼😽😾😿🙀👣👤👥👶👦👧👨👩👪👨‍👩‍👧👨‍👩‍👧‍👦👨‍👩‍👦‍👦👨‍👩‍👧‍👧👩‍👩‍👦👩‍👩‍👧👩‍👩‍👧‍👦👩‍👩‍👦‍👦👩‍👩‍👧‍👧👨‍👨‍👦👨‍👨‍👧👨‍👨‍👧‍👦👨‍👨‍👦‍👦👨‍👨‍👧‍👧👫👬👭👯👰👱👲👳👴👵👮👷👸💂👼🎅👻👹👺💩💀👽👾🙇💁🙅🙆🙋🙎🙍💆💇💑👩‍❤️‍👩👨‍❤️‍👨💏👩‍❤️‍💋‍👩👨‍❤️‍💋‍👨🙌👏👂👀👃👄💋👅💅👋👍👎☝👆👇👈👉👌✌👊✊✋💪👐🙏",
-    "🌱🌲🌳🌴🌵🌷🌸🌹🌺🌻🌼💐🌾🌿🍀🍁🍂🍃🍄🌰🐀🐁🐭🐹🐂🐃🐄🐮🐅🐆🐯🐇🐰🐈🐱🐎🐴🐏🐑🐐🐓🐔🐤🐣🐥🐦🐧🐘🐪🐫🐗🐖🐷🐽🐕🐩🐶🐺🐻🐨🐼🐵🙈🙉🙊🐒🐉🐲🐊🐍🐢🐸🐋🐳🐬🐙🐟🐠🐡🐚🐌🐛🐜🐝🐞🐾⚡️🔥🌙☀️⛅️☁️💧💦☔️💨❄️🌟⭐️🌠🌄🌅🌈🌊🌋🌌🗻🗾🌐🌍🌎🌏🌑🌒🌓🌔🌕🌖🌗🌘🌚🌝🌛🌜🌞",
-    "🍅🍆🌽🍠🍇🍈🍉🍊🍋🍌🍍🍎🍏🍐🍑🍒🍓🍔🍕🍖🍗🍘🍙🍚🍛🍜🍝🍞🍟🍡🍢🍣🍤🍥🍦🍧🍨🍩🍪🍫🍬🍭🍮🍯🍰🍱🍲🍳🍴🍵☕️🍶🍷🍸🍹🍺🍻🍼",
-    "🎀🎁🎂🎃🎄🎋🎍🎑🎆🎇🎉🎊🎈💫✨💥🎓👑🎎🎏🎐🎌🏮💍❤️💔💌💕💞💓💗💖💘💝💟💜💛💚💙",
-    "🏃🚶💃🚣🏊🏄🛀🏂🎿⛄️🚴🚵🏇⛺️🎣⚽️🏀🏈⚾️🎾🏉⛳️🏆🎽🏁🎹🎸🎻🎷🎺🎵🎶🎼🎧🎤🎭🎫🎩🎪🎬🎨🎯🎱🎳🎰🎲🎮🎴🃏🀄️🎠🎡🎢",
-    "🚃🚞🚂🚋🚝🚄🚅🚆🚇🚈🚉🚊🚌🚍🚎🚐🚑🚒🚓🚔🚨🚕🚖🚗🚘🚙🚚🚛🚜🚲🚏⛽️🚧🚦🚥🚀🚁✈️💺⚓️🚢🚤⛵️🚡🚠🚟🛂🛃🛄🛅💴💶💷💵🗽🗿🌁🗼⛲️🏰🏯🌇🌆🌃🌉🏠🏡🏢🏬🏭🏣🏤🏥🏦🏨🏩💒⛪️🏪🏫🇦🇺🇦🇹🇧🇪🇧🇷🇨🇦🇨🇱🇨🇳🇨🇴🇩🇰🇫🇮🇫🇷🇩🇪🇭🇰🇮🇳🇮🇩🇮🇪🇮🇱🇮🇹🇯🇵🇰🇷🇲🇴🇲🇾🇲🇽🇳🇱🇳🇿🇳🇴🇵🇭🇵🇱🇵🇹🇵🇷🇷🇺🇸🇦🇸🇬🇿🇦🇪🇸🇸🇪🇨🇭🇹🇷🇬🇧🇺🇸🇦🇪🇻🇳",
-    "⌚️📱📲💻⏰⏳⌛️📷📹🎥📺📻📟📞☎️📠💽💾💿📀📼🔋🔌💡🔦📡💳💸💰💎🌂👝👛👜💼🎒💄👓👒👡👠👢👞👟👙👗👘👚👕👔👖🚪🚿🛁🚽💈💉💊🔬🔭🔮🔧🔪🔩🔨💣🚬🔫🔖📰🔑✉️📩📨📧📥📤📦📯📮📪📫📬📭📄📃📑📈📉📊📅📆🔅🔆📜📋📖📓📔📒📕📗📘📙📚📇🔗📎📌✂️📐📍📏🚩📁📂✒️✏️📝🔏🔐🔒🔓📣📢🔈🔉🔊🔇💤🔔🔕💭💬🚸🔍🔎🚫⛔️📛🚷🚯🚳🚱📵🔞🉑🉐💮㊙️㊗️🈴🈵🈲🈶🈚️🈸🈺🈷🈹🈳🈂🈁🈯️💹❇️✳️❎✅✴️📳📴🆚🅰🅱🆎🆑🅾🆘🆔🅿️🚾🆒🆓🆕🆖🆗🆙🏧♈️♉️♊️♋️♌️♍️♎️♏️♐️♑️♒️♓️🚻🚹🚺🚼♿️🚰🚭🚮▶️◀️🔼🔽⏩⏪⏫⏬➡️⬅️⬆️⬇️↗️↘️↙️↖️↕️↔️🔄↪️↩️⤴️⤵️🔀🔁🔂#⃣0⃣1⃣2⃣3⃣4⃣5⃣6⃣7⃣8⃣9⃣🔟🔢🔤🔡🔠ℹ️📶🎦🔣➕➖〰➗✖️✔️🔃™©®💱💲➰➿〽️❗️❓❕❔‼️⁉️❌⭕️💯🔚🔙🔛🔝🔜🌀Ⓜ️⛎🔯🔰🔱⚠️♨️♻️💢💠♠️♣️♥️♦️☑️⚪️⚫️🔘🔴🔵🔺🔻🔸🔹🔶🔷▪️▫️⬛️⬜️◼️◻️◾️◽️🔲🔳🕐🕑🕒🕓🕔🕕🕖🕗🕘🕙🕚🕛🕜🕝🕞🕟🕠🕡🕢🕣🕤🕥🕦🕧"
+    ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😇", "😈", "👿", "😉", "😊", "☺️", "😋", "😌", "😍", "😎", "😏", "😐", "😑", "😒", "😓", "😔", "😕", "😖", "😗", "😘", "😙", "😚", "😛", "😜", "😝", "😞", "😟", "😠", "😡", "😢", "😣", "😤", "😥", "😦", "😧", "😨", "😩", "😪", "😫", "😬", "😭", "😮", "😯", "😰", "😱", "😲", "😳", "😴", "😵", "😶", "😷", "😸", "😹", "😺", "😻", "😼", "😽", "😾", "😿", "🙀", "👣", "👤", "👥", "👶", "👦", "👧", "👨", "👩", "👪", "👨‍👩‍👧", "👨‍👩‍👧‍👦", "👨‍👩‍👦‍👦", "👨‍👩‍👧‍👧", "👩‍👩‍👦", "👩‍👩‍👧", "👩‍👩‍👧‍👦", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👧", "👨‍👨‍👦", "👨‍👨‍👧", "👨‍👨‍👧‍👦", "👨‍👨‍👦‍👦", "👨‍👨‍👧‍👧", "👫", "👬", "👭", "👯", "👰", "👱", "👲", "👳", "👴", "👵", "👮", "👷", "👸", "💂", "👼", "🎅", "👻", "👹", "👺", "💩", "💀", "👽", "👾", "🙇", "💁", "🙅", "🙆", "🙋", "🙎", "🙍", "💆", "💇", "💑", "👩‍❤️‍👩", "👨‍❤️‍👨", "💏", "👩‍❤️‍💋‍👩", "👨‍❤️‍💋‍👨", "🙌", "👏", "👂", "👀", "👃", "👄", "💋", "👅", "💅", "👋", "👍", "👎", "☝", "👆", "👇", "👈", "👉", "👌", "✌", "👊", "✊", "✋", "💪", "👐", "🙏"],
+    ["🌱", "🌲", "🌳", "🌴", "🌵", "🌷", "🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🌾", "🌿", "🍀", "🍁", "🍂", "🍃", "🍄", "🌰", "🐀", "🐁", "🐭", "🐹", "🐂", "🐃", "🐄", "🐮", "🐅", "🐆", "🐯", "🐇", "🐰", "🐈", "🐱", "🐎", "🐴", "🐏", "🐑", "🐐", "🐓", "🐔", "🐤", "🐣", "🐥", "🐦", "🐧", "🐘", "🐪", "🐫", "🐗", "🐖", "🐷", "🐽", "🐕", "🐩", "🐶", "🐺", "🐻", "🐨", "🐼", "🐵", "🙈", "🙉", "🙊", "🐒", "🐉", "🐲", "🐊", "🐍", "🐢", "🐸", "🐋", "🐳", "🐬", "🐙", "🐟", "🐠", "🐡", "🐚", "🐌", "🐛", "🐜", "🐝", "🐞", "🐾", "⚡️", "🔥", "🌙", "☀️", "⛅️", "☁️", "💧", "💦", "☔️", "💨", "❄️", "🌟", "⭐️", "🌠", "🌄", "🌅", "🌈", "🌊", "🌋", "🌌", "🗻", "🗾", "🌐", "🌍", "🌎", "🌏", "🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘", "🌚", "🌝", "🌛", "🌜", "🌞"],
+    ["🍅", "🍆", "🌽", "🍠", "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🍎", "🍏", "🍐", "🍑", "🍒", "🍓", "🍔", "🍕", "🍖", "🍗", "🍘", "🍙", "🍚", "🍛", "🍜", "🍝", "🍞", "🍟", "🍡", "🍢", "🍣", "🍤", "🍥", "🍦", "🍧", "🍨", "🍩", "🍪", "🍫", "🍬", "🍭", "🍮", "🍯", "🍰", "🍱", "🍲", "🍳", "🍴", "🍵", "☕️", "🍶", "🍷", "🍸", "🍹", "🍺", "🍻", "🍼"],
+    ["🎀", "🎁", "🎂", "🎃", "🎄", "🎋", "🎍", "🎑", "🎆", "🎇", "🎉", "🎊", "🎈", "💫", "✨", "💥", "🎓", "👑", "🎎", "🎏", "🎐", "🎌", "🏮", "💍", "❤️", "💔", "💌", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💜", "💛", "💚", "💙"],
+    ["🏃", "🚶", "💃", "🚣", "🏊", "🏄", "🛀", "🏂", "🎿", "⛄️", "🚴", "🚵", "🏇", "⛺️", "🎣", "⚽️", "🏀", "🏈", "⚾️", "🎾", "🏉", "⛳️", "🏆", "🎽", "🏁", "🎹", "🎸", "🎻", "🎷", "🎺", "🎵", "🎶", "🎼", "🎧", "🎤", "🎭", "🎫", "🎩", "🎪", "🎬", "🎨", "🎯", "🎱", "🎳", "🎰", "🎲", "🎮", "🎴", "🃏", "🀄️", "🎠", "🎡", "🎢"],
+    ["🚃", "🚞", "🚂", "🚋", "🚝", "🚄", "🚅", "🚆", "🚇", "🚈", "🚉", "🚊", "🚌", "🚍", "🚎", "🚐", "🚑", "🚒", "🚓", "🚔", "🚨", "🚕", "🚖", "🚗", "🚘", "🚙", "🚚", "🚛", "🚜", "🚲", "🚏", "⛽️", "🚧", "🚦", "🚥", "🚀", "🚁", "✈️", "💺", "⚓️", "🚢", "🚤", "⛵️", "🚡", "🚠", "🚟", "🛂", "🛃", "🛄", "🛅", "💴", "💶", "💷", "💵", "🗽", "🗿", "🌁", "🗼", "⛲️", "🏰", "🏯", "🌇", "🌆", "🌃", "🌉", "🏠", "🏡", "🏢", "🏬", "🏭", "🏣", "🏤", "🏥", "🏦", "🏨", "🏩", "💒", "⛪️", "🏪", "🏫", "🇦🇺", "🇦🇹", "🇧🇪", "🇧🇷", "🇨🇦", "🇨🇱", "🇨🇳", "🇨🇴", "🇩🇰", "🇫🇮", "🇫🇷", "🇩🇪", "🇭🇰", "🇮🇳", "🇮🇩", "🇮🇪", "🇮🇱", "🇮🇹", "🇯🇵", "🇰🇷", "🇲🇴", "🇲🇾", "🇲🇽", "🇳🇱", "🇳🇿", "🇳🇴", "🇵🇭", "🇵🇱", "🇵🇹", "🇵🇷", "🇷🇺", "🇸🇦", "🇸🇬", "🇿🇦", "🇪🇸", "🇸🇪", "🇨🇭", "🇹🇷", "🇬🇧", "🇺🇸", "🇦🇪", "🇻🇳"],
+    ["⌚️", "📱", "📲", "💻", "⏰", "⏳", "⌛️", "📷", "📹", "🎥", "📺", "📻", "📟", "📞", "☎️", "📠", "💽", "💾", "💿", "📀", "📼", "🔋", "🔌", "💡", "🔦", "📡", "💳", "💸", "💰", "💎", "🌂", "👝", "👛", "👜", "💼", "🎒", "💄", "👓", "👒", "👡", "👠", "👢", "👞", "👟", "👙", "👗", "👘", "👚", "👕", "👔", "👖", "🚪", "🚿", "🛁", "🚽", "💈", "💉", "💊", "🔬", "🔭", "🔮", "🔧", "🔪", "🔩", "🔨", "💣", "🚬", "🔫", "🔖", "📰", "🔑", "✉️", "📩", "📨", "📧", "📥", "📤", "📦", "📯", "📮", "📪", "📫", "📬", "📭", "📄", "📃", "📑", "📈", "📉", "📊", "📅", "📆", "🔅", "🔆", "📜", "📋", "📖", "📓", "📔", "📒", "📕", "📗", "📘", "📙", "📚", "📇", "🔗", "📎", "📌", "✂️", "📐", "📍", "📏", "🚩", "📁", "📂", "✒️", "✏️", "📝", "🔏", "🔐", "🔒", "🔓", "📣", "📢", "🔈", "🔉", "🔊", "🔇", "💤", "🔔", "🔕", "💭", "💬", "🚸", "🔍", "🔎", "🚫", "⛔️", "📛", "🚷", "🚯", "🚳", "🚱", "📵", "🔞", "🉑", "🉐", "💮", "㊙️", "㊗️", "🈴", "🈵", "🈲", "🈶", "🈚️", "🈸", "🈺", "🈷", "🈹", "🈳", "🈂", "🈁", "🈯️", "💹", "❇️", "✳️", "❎", "✅", "✴️", "📳", "📴", "🆚", "🅰", "🅱", "🆎", "🆑", "🅾", "🆘", "🆔", "🅿️", "🚾", "🆒", "🆓", "🆕", "🆖", "🆗", "🆙", "🏧", "♈️", "♉️", "♊️", "♋️", "♌️", "♍️", "♎️", "♏️", "♐️", "♑️", "♒️", "♓️", "🚻", "🚹", "🚺", "🚼", "♿️", "🚰", "🚭", "🚮", "▶️", "◀️", "🔼", "🔽", "⏩", "⏪", "⏫", "⏬", "➡️", "⬅️", "⬆️", "⬇️", "↗️", "↘️", "↙️", "↖️", "↕️", "↔️", "🔄", "↪️", "↩️", "⤴️", "⤵️", "🔀", "🔁", "🔂", "#⃣", "0⃣", "1⃣", "2⃣", "3⃣", "4⃣", "5⃣", "6⃣", "7⃣", "8⃣", "9⃣", "🔟", "🔢", "🔤", "🔡", "🔠", "ℹ️", "📶", "🎦", "🔣", "➕", "➖", "〰", "➗", "✖️", "✔️", "🔃", "™", "©", "®", "💱", "💲", "➰", "➿", "〽️", "❗️", "❓", "❕", "❔", "‼️", "⁉️", "❌", "⭕️", "💯", "🔚", "🔙", "🔛", "🔝", "🔜", "🌀", "Ⓜ️", "⛎", "🔯", "🔰", "🔱", "⚠️", "♨️", "♻️", "💢", "💠", "♠️", "♣️", "♥️", "♦️", "☑️", "⚪️", "⚫️", "🔘", "🔴", "🔵", "🔺", "🔻", "🔸", "🔹", "🔶", "🔷", "▪️", "▫️", "⬛️", "⬜️", "◼️", "◻️", "◾️", "◽️", "🔲", "🔳", "🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕣", "🕤", "🕥", "🕦🕧"],
 ]
 
 let EmoticonTitles = [
@@ -64,15 +64,7 @@ let EmoticonTitles = [
 
 class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableViewDelegate {
     var emoticonButtons = [:]
-    let footerSectionViews: [UIView] = {
-        var views: [UIView] = []
-        for _ in EmoticonTable {
-            let view = UIView()
-            view.backgroundColor = UIColor.blackColor()
-            views.append(view)
-        }
-        return views
-    }()
+    var headerBackgroundViews: [Int:UIView] = [:]
 
     var emoticonView: EmoticonKeyboardView {
         get {
@@ -179,16 +171,31 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
             return cell
         }()
 
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
+
         let emoticons = EmoticonTable[indexPath.section]
         let length = count(emoticons)
-        let position = indexPath.row * 10
 
-        let button = GRInputButton(frame: CGRectMake(0, 0, 50, 50))
-        let title = String(emoticons[advance(emoticons.startIndex, position)])
-        button.keycode = title.unicodeScalars[title.unicodeScalars.startIndex].value
-        button.setTitle(title, forState: UIControlState.Normal)
-        cell.contentView.addSubview(button)
-        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+        let numberOfcolumns = 10
+        let margin: CGFloat = 8.0
+        let buttonWidth = (tableView.frame.size.width - 2 * margin) / CGFloat(numberOfcolumns)
+
+        for column in 0..<numberOfcolumns {
+            let position = indexPath.row * numberOfcolumns + column
+            if position >= length {
+                break
+            }
+            let button = GRInputButton(frame: CGRectMake(buttonWidth * CGFloat(column) + margin, 0, 28, buttonWidth))
+            let emoticon = emoticons[position]
+            button.sequence = emoticon
+            button.setTitle(emoticon, forState: UIControlState.Normal)
+            button.titleLabel?.font = button.titleLabel?.font.fontWithSize(30.0)
+            cell.contentView.addSubview(button)
+            button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+        }
+
         return cell
     }
 
@@ -198,20 +205,26 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
 
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
 
-        let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
-        let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
-        let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [transparentColor, medianColor, opaqueColor, opaqueColor, medianColor, transparentColor]
-        gradientLayer.locations = [0.0, 0.1, 0.3, 0.7, 0.9, 1.0]
-        gradientLayer.startPoint = CGPointMake(0.5, 0.0)
-        gradientLayer.endPoint = CGPointMake(0.5, 1.0)
-        blurView.layer.mask = gradientLayer
-        headerView.backgroundView = blurView
-        headerView.textLabel.textColor = UIColor.lightTextColor()
+        let backgroundView = self.headerBackgroundViews[section] ?? {
+            let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
+            let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
+            let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = view.bounds
+            gradientLayer.colors = [transparentColor, medianColor, opaqueColor, opaqueColor, medianColor, transparentColor]
+            gradientLayer.locations = [0.0, 0.1, 0.3, 0.7, 0.9, 1.0]
+            gradientLayer.startPoint = CGPointMake(0.5, 0.0)
+            gradientLayer.endPoint = CGPointMake(0.5, 1.0)
+            blurView.layer.mask = gradientLayer
+            self.headerBackgroundViews[section] = blurView
+            return blurView
+        }()
+
+        headerView.backgroundView = backgroundView
+        headerView.textLabel.font = self.view.spaceButton.captionLabel.font
+        headerView.textLabel.textColor = self.view.spaceButton.captionLabel.textColor
     }
 /*
     func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {

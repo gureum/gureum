@@ -63,6 +63,7 @@ class QwertyKeyboardView: KeyboardView {
         self.URLSlashButton.keycode = UnicodeScalar("/").value
         self.URLDotComButton = GRInputButton()
         self.URLDotComButton.captionLabel.text = ".com"
+        self.URLDotComButton.sequence = ".com"
 
         self.emailSpaceButton = GRInputButton()
         self.emailSpaceButton.captionLabel.text = self.spaceButton.captionLabel.text
@@ -89,10 +90,9 @@ class QwertyKeyboardView: KeyboardView {
         }
 
         self.spaceButton.addTarget(nil, action: "space:", forControlEvents: .TouchUpInside)
-        for button in [self.URLDotButton, self.URLSlashButton] + self.emailButtons + self.twitterButtons {
+        for button in self.URLButtons + self.emailButtons + self.twitterButtons {
             button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         }
-        self.URLDotComButton.addTarget(nil, action: "dotcom:", forControlEvents: .TouchUpInside)
     }
 }
 

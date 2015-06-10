@@ -21,6 +21,7 @@
 @property(nonatomic,strong) UIImage *effectBackgroundImage;
 @property(nonatomic,copy) NSArray *keycodes;
 @property(nonatomic,assign) UInt32 keycode;
+@property(nonatomic,copy) NSString *sequence;
 
 - (void)showEffect;
 - (void)hideEffect;

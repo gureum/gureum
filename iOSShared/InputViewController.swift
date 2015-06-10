@@ -296,6 +296,11 @@ class InputViewController: BasicInputViewController {
             }
         }
 
+        if sender.sequence != nil {
+            (self.textDocumentProxy as! UIKeyInput).insertText(sender.sequence)
+            return
+        }
+
         let context = selectedLayout.context
         let shiftButton = selectedLayout.view.shiftButton
 
@@ -460,17 +465,6 @@ class InputViewController: BasicInputViewController {
     func space(sender: GRInputButton) {
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.input(sender)
-    }
-
-    func dotcom(sender: GRInputButton) {
-        for collection in self.inputMethodView.collections {
-            for layout in collection.layouts {
-                if layout.context != nil {
-                    context_truncate(layout.context)
-                }
-            }
-        }
-        (self.textDocumentProxy as! UIKeyInput).insertText(".com")
     }
 
     func shift(sender: GRInputButton) {

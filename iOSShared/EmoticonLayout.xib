@@ -66,10 +66,10 @@
                     </state>
                 </button>
                 <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="nfM-X5-gfi">
-                    <rect key="frame" x="-5" y="170" width="331" height="46"/>
+                    <rect key="frame" x="0.0" y="170" width="320" height="46"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nsA-Wd-CyC">
-                        <rect key="frame" x="0.0" y="0.0" width="331" height="46"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <blurEffect style="light"/>

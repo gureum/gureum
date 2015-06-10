@@ -28,11 +28,6 @@ class PreviewInputViewController: InputViewController {
         super.inputDelete(sender)
         self.previewController.update()
     }
-
-    override func dotcom(sender: GRInputButton) {
-        super.dotcom(sender)
-        self.previewController.update() // huh...
-    }
 }
 
 class PreviewViewController: UIViewController {
