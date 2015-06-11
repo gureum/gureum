@@ -121,7 +121,26 @@ class Preferences {
         set {
             self.setObjectForKey("inglobe", value: newValue)
         }
+    }
 
+    var emoticonFrequencies: NSDictionary {
+        get {
+            return self.getDictionaryForKey("emoticon_frequency", defaultValue: [:])
+        }
+
+        set {
+            self.setObjectForKey("emoticon_frequency", value: newValue)
+        }
+    }
+
+    var emoticonHistory: NSArray {
+        get {
+            return self.getArrayForKey("emoticon_history", defaultValue: [])
+        }
+
+        set {
+            self.setObjectForKey("emoticon_history", value: newValue)
+        }
     }
 
     func setResourceCache(data: NSData, forKey key: String) {
@@ -151,17 +170,4 @@ class PreferencedTheme: Theme {
             return nil
         }
     }
-
-//    override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
-//        let key = name + "::\(Int(margin))"
-//        if let data = preferences.resourceCacheForKey(key) {
-//            return UIImage(data: data, scale: 2)
-//        }
-//        let image = super.imageForFilename(name, withTopMargin: margin)
-//        if image != nil {
-//            let data = UIImagePNGRepresentation(image)
-//            preferences.setResourceCache(data, forKey: key)
-//        }
-//        return image
-//    }
 }

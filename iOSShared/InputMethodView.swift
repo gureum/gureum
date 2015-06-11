@@ -277,7 +277,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
                     break;
                 }
                 layout.view.shiftButton?.selected = false
-                for button in layout.helper.buttons.values {
+                for button in layout.helper.buttons.values + layout.view.visibleButtons {
                     button.hideEffect()
                 }
             }

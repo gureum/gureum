@@ -9,12 +9,29 @@
 import UIKit
 
 class EmoticonKeyboardView: KeyboardView {
+    static let titleIcons = [
+        "🕓", "😀", "🌲", "🍴", "🎉", "🏃", "🚕", "🎵", "^^",
+    ]
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet var footerBlurView: UIVisualEffectView!
 
+    var frequencyMap: [String: UInt] = preferences.emoticonFrequencies as! [String: UInt]
+    var frequencyHistory: [String] = preferences.emoticonHistory as! [String]
+
+    lazy var sectionButtons: [GRInputButton] = {
+        return map(enumerate(self.dynamicType.titleIcons), {
+            let (index, title) = $0
+            let button = GRInputButton()
+            button.captionLabel.text = title
+            button.tag = index
+            return button
+        })
+    }()
+
     override var visibleButtons: [GRInputButton] {
         get {
-            return [self.nextKeyboardButton, self.spaceButton, self.deleteButton]
+            return [self.nextKeyboardButton, self.deleteButton] + self.sectionButtons
         }
     }
 
@@ -50,13 +67,12 @@ class EmoticonKeyboardView: KeyboardView {
 class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableViewDelegate {
     static let table = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: "res://emoticon.json".smartURL())!, options: NSJSONReadingOptions(0), error: nil) as! [[String]]
     static let titles = [
-        "사람", "자연", "음식 및 음료", "축하", "활동", "여행 및 장소", "사물 및 기호", "텍스트",
+        "자주 사용하는 항목", "사람", "자연", "음식 및 음료", "축하", "활동", "여행 및 장소", "사물 및 기호", "텍스트",
     ]
     static let numbersOfColumns = [
-        10, 10, 10, 10, 10, 10, 10, 5,
+        5, 10, 10, 10, 10, 10, 10, 10, 5,
     ]
 
-    var emoticonButtons = [:]
     var headerBackgroundViews: [Int:UIView] = [:]
 
     var emoticonView: EmoticonKeyboardView {
@@ -103,6 +119,10 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         super.layoutDidLoadForHelper(helper)
         self.emoticonView.tableView.dataSource = self
         self.emoticonView.tableView.delegate = self
+
+        for button in self.emoticonView.sectionButtons {
+            button.addTarget(self, action: "selectSection:", forControlEvents: .TouchUpInside)
+        }
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
@@ -121,7 +141,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         if row == 0 {
             return []
         } else {
-            return self.view.visibleButtons
+            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons + [self.view.deleteButton]
         }
     }
 
@@ -144,6 +164,20 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
 
     override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat {
         return 0
+    }
+
+    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        super.layoutWillLayoutForHelper(helper, forRect: rect)
+
+        let size = rect.size
+        let height = self.helper(self.helper, heightOfRow: 1, forSize: size)
+        for button in [self.view.nextKeyboardButton, self.view.deleteButton] {
+            let width = size.width / 6
+            button.frame.size = CGSizeMake(width, height)
+        }
+        for button in self.emoticonView.sectionButtons {
+            button.frame.size = CGSizeMake(size.width * 4 / 6 / CGFloat(self.dynamicType.titles.count), height)
+        }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -218,12 +252,14 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         }()
 
         headerView.backgroundView = backgroundView
-        headerView.textLabel.font = self.view.spaceButton.captionLabel.font
-        headerView.textLabel.textColor = self.view.spaceButton.captionLabel.textColor
+        headerView.textLabel.font = self.view.deleteButton.captionLabel.font
+        headerView.textLabel.textColor = self.view.deleteButton.captionLabel.textColor
     }
-/*
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return " - "
+
+    func selectSection(sender: GRInputButton) {
+        let section = sender.tag
+        let indexPath = NSIndexPath(forRow: 0, inSection: section) as NSIndexPath
+        let position = UITableViewScrollPosition.Top
+        self.emoticonView.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: position, animated: false)
     }
-*/
 }

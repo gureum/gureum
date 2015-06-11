@@ -66,7 +66,6 @@ class TenkeyKeyboardLayout: KeyboardLayout {
 
     override class func loadView() -> KeyboardView {
         let view = TenkeyKeyboardView(frame: CGRectMake(0, 0, 200, 100))
-
         return view
     }
 
