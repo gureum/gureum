@@ -198,7 +198,7 @@ class KeyboardViewEventView: UIView {
 }
 
 class KeyboardView: UIView {
-    var layout: KeyboardLayout! = nil
+    weak var layout: KeyboardLayout! = nil
 
     @IBOutlet var nextKeyboardButton: GRInputButton! = nil
     @IBOutlet var deleteButton: GRInputButton! = nil

@@ -47,7 +47,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         super.init(coder: aDecoder)
     }
 
-
     var selectedCollection: KeyboardLayoutCollection {
         get {
             assert(self.selectedCollectionIndex < self.collections.count)
@@ -213,7 +212,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             for layout in collection.layouts {
                 layout.view.frame.origin.x = CGFloat(i) * self.frame.width
             }
-            layoutsView.addSubview(collection.selectedLayout.view)
+            self.layoutsView.addSubview(collection.selectedLayout.view)
         }
 
         self.pageControl.numberOfPages = collections.count
@@ -239,7 +238,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         let viewBounds = CGRect(origin: CGPointZero, size: size)
         self.layoutsView.frame = viewBounds
         //self.backgroundImageView.frame = viewBounds
-        pageControl.center = CGPointMake(size.width / 2, size.height - 20.0)
+        self.pageControl.center = CGPointMake(size.width / 2, size.height - 20.0)
 
         for (i, collection) in enumerate(self.collections) {
             for layout in collection.layouts {
@@ -287,7 +286,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.pageControl.alpha = 1.0
         let animation = { self.pageControl.alpha = 0.0 }
         if animated {
-            UIView.animateWithDuration(0.36, animations: animation )
+            UIView.animateWithDuration(0.36, animations: animation)
         } else {
             animation()
         }

@@ -13,6 +13,7 @@ import Crashlytics
 var crashlyticsInitialized = false
 
 var globalInputViewController: InputViewController? = nil
+var sharedInputMethodView: InputMethodView? = nil
 var launchedDate: NSDate = NSDate()
 
 class BasicInputViewController: UIInputViewController {
@@ -90,7 +91,6 @@ class DebugInputViewController: BasicInputViewController {
     var modeDate = NSDate()
 
     override func loadView() {
-        //globalInputViewController = self
         self.view = self.inputMethodView
     }
 
@@ -149,7 +149,9 @@ class InputViewController: BasicInputViewController {
 
     override func viewDidLoad() {
         if !crashlyticsInitialized {
-            Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
+            //Crashlytics().debugMode = true
+//            Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
+            Fabric.with([Crashlytics()])
             crashlyticsInitialized = true
         }
         //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
@@ -282,8 +284,8 @@ class InputViewController: BasicInputViewController {
         //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
-
     override func input(sender: GRInputButton) {
+        //Crashlytics().crash()
         let proxy = self.textDocumentProxy as! UITextDocumentProxy
         self.log("before: \(proxy.documentContextBeforeInput)");
 

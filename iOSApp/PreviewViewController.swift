@@ -10,7 +10,7 @@ import UIKit
 
 
 class PreviewInputViewController: InputViewController {
-    var previewController: PreviewViewController! = nil
+    weak var previewController: PreviewViewController! = nil
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

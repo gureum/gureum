@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GRKeyboardLayoutHelperDelegate {
+protocol GRKeyboardLayoutHelperDelegate: class {
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper)
     func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper)
     func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
@@ -46,8 +46,7 @@ class GRKeyboardLayoutHelper {
         }
     }
 
-
-    var delegate: GRKeyboardLayoutHelperDelegate?
+    weak var delegate: GRKeyboardLayoutHelperDelegate?
     var buttons: Dictionary<Position, GRInputButton> = [:]
 
     init(delegate: GRKeyboardLayoutHelperDelegate?) {

@@ -102,7 +102,7 @@ class Theme {
         case 1024.0:
             return self.padLandscapeConfiguration
         default:
-            globalInputViewController?.log("unknown size: \(size)")
+            //globalInputViewController?.log("unknown size: \(size)")
             //assert(false, "no coverage")
             return self.phonePortraitConfiguration
         }
@@ -117,7 +117,7 @@ class Theme {
 
 class ThemeTraitConfiguration {
     let configuration: NSDictionary!
-    let owner: Theme
+    weak var owner: Theme!
     let topMargin: CGFloat
     var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
 
@@ -214,7 +214,7 @@ class ThemeCaptionConfiguration {
     let configuration: [String: AnyObject]
     let needsMargin: Bool
     let fallback: ThemeCaptionConfiguration!
-    let trait: ThemeTraitConfiguration
+    weak var trait: ThemeTraitConfiguration!
     lazy var topMargin: CGFloat = { return self.needsMargin ? self.trait.topMargin : 0 }()
 
     init(trait: ThemeTraitConfiguration, configuration: AnyObject?, needsMargin: Bool, fallback: ThemeCaptionConfiguration!) {
@@ -559,28 +559,29 @@ class CachedTheme: Theme {
     var _cache: [String: AnyObject?] = [:]
 
     init(theme: Theme) {
+        assert(!(theme.dynamicType is CachedTheme.Type))
         self.theme = theme
         super.init()
     }
 
     override func dataForFilename(name: String) -> NSData? {
         let key = name + "_"
-        if let data = _cache[key] as? NSData? {
+        let data: AnyObject? = _cache[key] ?? {
+            let data = self.theme.dataForFilename(name)
+            self._cache[key] = data
             return data
-        }
-        let data = self.theme.dataForFilename(name)
-        _cache[key] = data
-        return data
+        }()
+        return data as! NSData?
     }
 
     override func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
         let key = name + "_\(margin)"
-        if let data = _cache[key] as? UIImage? {
+        let data: AnyObject? = _cache[key] ?? {
+            let data = self.theme.imageForFilename(name, withTopMargin: margin)
+            self._cache[key] = data
             return data
-        }
-        let data = self.theme.imageForFilename(name, withTopMargin: margin)
-        _cache[key] = data
-        return data
+        }()
+        return data as! UIImage?
     }
 }
 
