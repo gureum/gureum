@@ -9,6 +9,7 @@
 import UIKit
 
 let QuickHelperResult: NSMutableDictionary = NSMutableDictionary()
+var QuickHelperJoined = false
 
 class QuickHelperTableViewController: UITableViewController {
     var doneButtonTitle: String? {
@@ -83,6 +84,7 @@ class MainLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTable
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView(self.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        QuickHelperJoined = true
     }
 
     override func helperKey() -> String {

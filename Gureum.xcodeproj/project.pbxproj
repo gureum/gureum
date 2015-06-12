@@ -282,6 +282,7 @@
 		3882BA0D193F9E6600076C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3882BA0E193F9E6600076C26 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		38904F7F1944F71400858B09 /* hangeul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hangeul.xcodeproj; path = hangeul/hangeul.xcodeproj; sourceTree = "<group>"; };
+		38981E421B2A8D1E00988790 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		389F0EF31B0D3DE80069DBEF /* QuickHelperViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickHelperViewController2.swift; sourceTree = "<group>"; };
 		38A849D91A4D7D6600A31A96 /* QuickHelperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickHelperViewController.swift; sourceTree = "<group>"; };
 		38A849DD1A5003A700A31A96 /* appstore_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore_1024.png; sourceTree = "<group>"; };
@@ -1233,6 +1234,7 @@
 			children = (
 				3882BA00193F9E6600076C26 /* Base */,
 				385BC6F21AE6355200184053 /* ko */,
+				38981E421B2A8D1E00988790 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
