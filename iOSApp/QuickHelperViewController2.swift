@@ -29,7 +29,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
                 let row = indexPath.row
-                let right = ["symbol", "cheonjiin"][row]
+                let right = ["emoticon", "symbol", "cheonjiin"][row]
                 rights.addObject(right)
             }
             result["right"] = rights
@@ -38,7 +38,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
                 let row = indexPath.row
-                let right = ["ksx5002", "danmoum", "qwerty", "symbol"][row]
+                let right = ["emoticon", "ksx5002", "danmoum", "qwerty", "symbol"][row]
                 rights.addObject(right)
             }
             result["right"] = rights

@@ -16,9 +16,6 @@ class EmoticonKeyboardView: KeyboardView {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var footerBlurView: UIVisualEffectView!
 
-    var frequencyMap: [String: UInt] = preferences.emoticonFrequencies as! [String: UInt]
-    var frequencyHistory: [String] = preferences.emoticonHistory as! [String]
-
     lazy var sectionButtons: [GRInputButton] = {
         return map(enumerate(self.dynamicType.titleIcons), {
             let (index, title) = $0
@@ -70,8 +67,37 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         "자주 사용하는 항목", "사람", "자연", "음식 및 음료", "축하", "활동", "여행 및 장소", "사물 및 기호", "텍스트",
     ]
     static let numbersOfColumns = [
-        5, 10, 10, 10, 10, 10, 10, 10, 5,
+        6, 10, 10, 10, 10, 10, 10, 10, 5,
     ]
+
+    var frequencyMap: [String: UInt] = preferences.emoticonFrequencies as! [String: UInt]
+    var frequencyHistory = preferences.emoticonHistory
+    lazy var favorites: [String] = self.populateFavorites()
+    func populateFavorites() -> [String] {
+        let scores = Array(self.frequencyMap.keys.map({ return ($0, self.frequencyMap[$0]!) }))
+        let sorted = scores.sorted({
+            let (text1, score1) = $0
+            let (text2, score2) = $1
+            if score1 == score2 {
+                return self.frequencyHistory.indexOfObject(text1) < self.frequencyHistory.indexOfObject(text2)
+            } else {
+                return score1 > score2
+            }
+        })
+
+        var emoticons: [String] = Array(sorted[0..<min(sorted.count, 24)].map({ (emoticon: String, score: UInt) -> String in return emoticon }))
+        for emoticon in self.frequencyHistory as! [String] {
+            if contains(emoticons, emoticon) {
+                continue
+            }
+            emoticons.append(emoticon)
+            if emoticons.count >= 30 {
+                break
+            }
+        }
+        return emoticons
+    }
+
 
     var headerBackgroundViews: [Int:UIView] = [:]
 
@@ -120,7 +146,13 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         self.emoticonView.tableView.dataSource = self
         self.emoticonView.tableView.delegate = self
 
+        let indexPath = NSIndexPath(forRow: 0, inSection: preferences.emoticonSection) as NSIndexPath
+        let position = UITableViewScrollPosition.Top
+        self.emoticonView.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: position, animated: false)
+
+        let modelLabel = self.view.deleteButton.titleLabel!
         for button in self.emoticonView.sectionButtons {
+            button.titleLabel?.textColor = modelLabel.textColor
             button.addTarget(self, action: "selectSection:", forControlEvents: .TouchUpInside)
         }
     }
@@ -185,44 +217,54 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let emoticons = self.dynamicType.table[section]
+        let emoticons = section == 0 ? self.favorites : self.dynamicType.table[section]
         let length = count(emoticons)
         let numberOfRow  = (length - 1) / self.dynamicType.numbersOfColumns[section] + 1
         return numberOfRow
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell?) ?? {
-            let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+        let section = indexPath.section
+        let identifier = "cell_\(section)"
+        let numberOfColumns = self.dynamicType.numbersOfColumns[indexPath.section]
+        let cell = (tableView.dequeueReusableCellWithIdentifier(identifier) as! UITableViewCell?) ?? {
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
             cell.backgroundColor = UIColor.clearColor()
+            for _ in 0..<numberOfColumns {
+                let button = GRInputButton(frame: CGRectMake(0, 0, 60, 28))
+                button.addTarget(self, action: "input:", forControlEvents: .TouchUpInside)
+                button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+
+                let font = button.titleLabel?.font.fontWithSize(section == 8 ? 12 : 28)
+                button.titleLabel?.font = font
+                button.titleLabel?.lineBreakMode = .ByClipping
+                button.titleLabel?.adjustsFontSizeToFitWidth = true
+                cell.contentView.addSubview(button)
+            }
             return cell
         }()
 
-        for subview in cell.contentView.subviews {
-            subview.removeFromSuperview()
-        }
-
-        let emoticons = self.dynamicType.table[indexPath.section]
+        let emoticons = section == 0 ? self.favorites : self.dynamicType.table[section]
         let length = count(emoticons)
 
-        let numberOfcolumns = self.dynamicType.numbersOfColumns[indexPath.section]
         let margin: CGFloat = 8.0
-        let buttonWidth = (tableView.frame.size.width - 2 * margin) / CGFloat(numberOfcolumns)
+        let buttonWidth = (tableView.frame.size.width - 2 * margin) / CGFloat(numberOfColumns)
 
-        for column in 0..<numberOfcolumns {
-            let position = indexPath.row * numberOfcolumns + column
+        for column in 0..<numberOfColumns {
+            let position = indexPath.row * numberOfColumns + column
             if position >= length {
                 break
             }
-            let button = GRInputButton(frame: CGRectMake(buttonWidth * CGFloat(column) + margin, 0, 28, buttonWidth))
+            let button = cell.contentView.subviews[column] as! GRInputButton
+            button.frame = CGRectMake(buttonWidth * CGFloat(column) + margin, 0, buttonWidth, 28)
             let emoticon = emoticons[position]
+            button.tag = section
             button.sequence = emoticon
-            button.setTitle(emoticon, forState: UIControlState.Normal)
-            let font = button.titleLabel?.font.fontWithSize(30.0)
-            let fontSize = (emoticon as NSString).boundingRectWithSize(CGSizeMake(30, 30), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font] as! [NSObject: AnyObject!], context: nil)
-            button.titleLabel?.font = button.titleLabel?.font.fontWithSize(30.0)
-            cell.contentView.addSubview(button)
-            button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+            button.setTitle(emoticon, forState: .Normal)
+            if section == 0 {
+                let font = button.titleLabel?.font.fontWithSize(contains(self.dynamicType.table[8], emoticon) ? 10 : 28)
+                button.titleLabel?.font = font
+            }
         }
 
         return cell
@@ -254,6 +296,21 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         headerView.backgroundView = backgroundView
         headerView.textLabel.font = self.view.deleteButton.captionLabel.font
         headerView.textLabel.textColor = self.view.deleteButton.captionLabel.textColor
+    }
+
+    func input(sender: GRInputButton) {
+        preferences.emoticonSection = sender.tag
+        self.frequencyMap[sender.sequence] = (self.frequencyMap[sender.sequence] ?? 0) + 1
+        preferences.emoticonFrequencies = self.frequencyMap
+
+        var history = (self.frequencyHistory as NSArray).mutableCopy() as! NSMutableArray
+        history.removeObject(sender.sequence)
+        history.insertObject(sender.sequence, atIndex: 0)
+        self.frequencyHistory = history.copy() as! NSArray as! [String]
+        preferences.emoticonHistory = history
+
+        self.favorites = self.populateFavorites()
+        self.emoticonView.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
     }
 
     func selectSection(sender: GRInputButton) {

@@ -135,11 +135,20 @@ class Preferences {
 
     var emoticonHistory: NSArray {
         get {
-            return self.getArrayForKey("emoticon_history", defaultValue: [])
+            return self.getArrayForKey("emoticon_history", defaultValue: ["😂", "❤️", "😍", "😒", "👌", "☺️", "😊", "😘", "😭", "😩", "💕", "😔", "😏", "😁", "😳", "👍", "✌", "😉", "😌", "💁", "🙈", "😎", "🎶", "👀", "😑", "😴", "😄", "😜", "😋", "👏"])
         }
 
         set {
             self.setObjectForKey("emoticon_history", value: newValue)
+        }
+    }
+
+    var emoticonSection: Int {
+        get {
+            return self.getObjectForKey("emoticon_section", defaultValue: 1) as! Int
+        }
+        set {
+            self.setObjectForKey("emoticon_section", value: newValue)
         }
     }
 

@@ -128,6 +128,11 @@ class TenKeyLeftLayoutQuickHelperTableViewController: SingleSelectableQuickHelpe
 
 class RightLayoutQuickHelperTableViewController: SelectableQuickHelperTableViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.selectedIndexPaths = [NSIndexPath(forRow: 0, inSection: 0)]
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.needsSelection = false
