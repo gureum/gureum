@@ -51,16 +51,49 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton : ThemeCaptionConfiguration] {
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
+
+        func layoutCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("tenkey-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.classByName("toggle") },
+                    { $0.row(row) },
+                    { $0.function },
+                    { $0.base },
+                ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+        func functionCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("tenkey-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.function },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+        func specialCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("tenkey-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.special },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+
         return [
-            self.tenkeyView.numberButton!: trait.tenkeyToggleCaption,
-            self.tenkeyView.alphabetButton!: trait.tenkeyAbcCaption,
-            self.tenkeyView.hangeulButton!: trait.tenkeyHangeulCaption,
-            self.tenkeyView.shiftButton!: trait.tenkeyShiftCaption,
-            self.tenkeyView.deleteButton!: trait.tenkeyDeleteCaption,
-            self.tenkeyView.nextKeyboardButton!: trait.tenkeyGlobeCaption,
-            self.tenkeyView.spaceButton!: trait.tenkeySpaceCaption,
-            self.tenkeyView.doneButton!: trait.tenkeyDoneCaption,
+            self.tenkeyView.numberButton!: layoutCaption("number", 1),
+            self.tenkeyView.alphabetButton!: layoutCaption("alphabet", 2),
+            self.tenkeyView.hangeulButton!: layoutCaption("hangeul", 3),
+            self.tenkeyView.nextKeyboardButton!: functionCaption("globe", 4),
+            self.tenkeyView.deleteButton!: functionCaption("delete", 1),
+            self.tenkeyView.shiftButton!: functionCaption("shift", 2),
+            self.tenkeyView.doneButton!: functionCaption("done", 3),
+            self.tenkeyView.spaceButton!: specialCaption("space", 4),
         ]
     }
 
@@ -77,13 +110,20 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         return position.row * 3 + position.column
     }
 
-    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let keycode = self.keycodeForPosition(position)
-        let altkey = "key-\(keycode)" // fixme
-        let theme1 = trait.tenkeyCaptionForKey(altkey, fallback: trait.tenkeyCaptionForKeyInRow(position.row + 1))
+    override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
+        let keycode = "\(self.keycodeForPosition(position))"
         let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.tenkeyCaptionForKey("key-" + title, fallback: theme1)
-        return theme2
+
+        let identifier = "\(self.dynamicType)-\(title)-\(keycode))"
+        return trait.captionForIdentifier(identifier, needsMargin: self.dynamicType.needsMargin, classes: {
+            trait.captionClassesForGetters([
+                { $0.caption(title) },
+                { $0.key(keycode) },
+                { $0.row(position.row + 1) },
+                { $0.key },
+                { $0.base },
+            ], inGroups: [trait.tenkey, trait.common])
+        })
     }
 
     override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {

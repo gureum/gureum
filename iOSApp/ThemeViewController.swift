@@ -206,21 +206,17 @@ func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
     }
 }
 
-
-class EmbeddedTheme: Theme {
-    let name: String
-
-    init(name: String) {
-        self.name = name
+public class URLTheme: Theme {
+    func URLForResource(name: String) -> NSURL? {
+        if name.hasSmartURLPrefix() {
+            return name.smartURL()
+        }
+        return nil
     }
 
-    func pathForResource(name: String?) -> String? {
-        return NSBundle.mainBundle().pathForResource(name, ofType: nil, inDirectory: self.name)
-    }
-
-    override func dataForFilename(name: String) -> NSData? {
-        if let path = self.pathForResource(name) {
-            let data: NSData? = NSData(contentsOfFile: path)
+    override public func dataForFilename(name: String) -> NSData? {
+        if let path = self.URLForResource(name) {
+            let data: NSData? = NSData(contentsOfURL: path)
             return data
         } else {
             return nil
@@ -228,33 +224,36 @@ class EmbeddedTheme: Theme {
     }
 }
 
-class HTTPTheme: Theme {
+public class EmbeddedTheme: URLTheme {
+    let name: String
+
+    public init(name: String) {
+        self.name = name
+    }
+
+    override func URLForResource(name: String) -> NSURL? {
+        return super.URLForResource(name) ?? NSBundle.mainBundle().URLForResource(name, withExtension: nil, subdirectory: self.name)
+    }
+}
+
+public class HTTPTheme: URLTheme {
     let URLString: String
 
     init(URLString: String) {
         self.URLString = URLString
     }
 
-    func URLForResource(name: String) -> NSURL? {
+    override func URLForResource(name: String) -> NSURL? {
         let URLString = self.URLString + name.stringByAddingPercentEscapesUsingEncoding(4)!
         let URL = NSURL(string: URLString)
-        return URL
-    }
-
-    override func dataForFilename(name: String) -> NSData? {
-        if let URL = self.URLForResource(name) {
-            let data: NSData? = NSData(contentsOfURL: URL)
-            return data
-        } else {
-            return nil
-        }
+        return super.URLForResource(name) ?? URL
     }
 }
 
 extension Theme {
     func encodedDataForFilename(filename: String) -> String! {
         if let data = self.dataForFilename(filename) {
-            println("case \"\(filename)\": return \"\(data.base64EncodedStringWithOptions(.allZeros))\"")
+            //println("case \"\(filename)\": return \"\(data.base64EncodedStringWithOptions(.allZeros))\"")
             let str = ThemeResourceCoder.defaultCoder().encodeFromData(data)
             return str
         } else {
@@ -262,7 +261,7 @@ extension Theme {
         }
     }
 
-    func dump() {
+    func dumpData() -> [String: String] {
         let traitsConfiguration = self.mainConfiguration["trait"] as? NSDictionary
         var resources = Dictionary<String, String>()
         assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
@@ -288,7 +287,15 @@ extension Theme {
             //println("dumped resources: \(resources)")
             assert(resources.count > 0)
         }
-        preferences.themeResources = resources
+        return resources
+    }
+
+    func dump() {
+        var baseData = EmbeddedTheme(name: "base").dumpData()
+        var data = self.dumpData()
+
+        preferences.baseThemeResources = baseData
+        preferences.themeResources = data
         preferences.resourceCaches = [:]
         assert(preferences.themeResources.count > 0)
     }
@@ -304,7 +311,7 @@ extension Theme {
                 return HTTPTheme(URLString: addr)
             default:
                 assert(false)
-                return PreferencedTheme()
+                return PreferencedTheme(resources: [:])
         }
     }
 }

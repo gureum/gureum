@@ -8,13 +8,13 @@
 
 import UIKit
 
-class Theme {
-    func dataForFilename(name: String) -> NSData? {
+public class Theme {
+    public func dataForFilename(name: String) -> NSData? {
         assert(false)
         return nil
     }
 
-    func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
+    public func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
         if let data = self.dataForFilename(name) {
             if let result: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: error) {
                 return result
@@ -28,11 +28,11 @@ class Theme {
         return nil
     }
 
-    func imageForFilename(name: String) -> UIImage? {
+    public func imageForFilename(name: String) -> UIImage? {
         return self.imageForFilename(name, withTopMargin: 0)
     }
 
-    func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
+    public func imageForFilename(name: String, withTopMargin margin: CGFloat) -> UIImage? {
         let parts = name.componentsSeparatedByString("::")
         let filename = parts[0]
 
@@ -72,13 +72,13 @@ class Theme {
         return JSONObject
     }()
 
-    func traitForName(traitName: String, topMargin: CGFloat) -> ThemeTraitConfiguration {
+    public func traitForName(traitName: String, topMargin: CGFloat) -> ThemeTrait {
         if let traits = self.mainConfiguration["trait"] as? NSDictionary {
             if let traitFilename = traits[traitName] as? String {
                 var error: NSError? = nil
                 let traitData: AnyObject! = self.JSONObjectForFilename(traitFilename, error: &error)
                 assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
-                return ThemeTraitConfiguration(owner: self, configuration: traitData, topMargin: topMargin)
+                return ThemeTrait(owner: self, configuration: traitData, topMargin: topMargin)
             } else {
                 assert(false, "지정한 trait에 대한 설정이 없습니다.")
             }
@@ -86,10 +86,10 @@ class Theme {
             assert(false, "주 설정 파일에 trait 키가 없습니다.")
         }
         // asserted
-        return ThemeTraitConfiguration(owner: self, configuration: nil, topMargin: 0.0)
+        return ThemeTrait(owner: self, configuration: nil, topMargin: 0.0)
     }
 
-    func traitForSize(size: CGSize) -> ThemeTraitConfiguration {
+    public func traitForSize(size: CGSize) -> ThemeTrait {
         switch size.width {
         case 320.0, 375.0, 414.0:
             return self.phonePortraitConfiguration
@@ -108,18 +108,19 @@ class Theme {
         }
     }
 
-    lazy var phonePortraitConfiguration: ThemeTraitConfiguration = self.traitForName("phone-portrait", topMargin: 6)
-    lazy var phoneLandscape480Configuration: ThemeTraitConfiguration = self.traitForName("phone-landscape480", topMargin: 3)
-    lazy var phoneLandscape568Configuration: ThemeTraitConfiguration = self.traitForName("phone-landscape568", topMargin: 3)
-    lazy var padPortraitConfiguration: ThemeTraitConfiguration = self.phonePortraitConfiguration
-    lazy var padLandscapeConfiguration: ThemeTraitConfiguration = self.phoneLandscape480Configuration
+    public lazy var phonePortraitConfiguration: ThemeTrait = self.traitForName("phone-portrait", topMargin: 6)
+    public lazy var phoneLandscape480Configuration: ThemeTrait = self.traitForName("phone-landscape480", topMargin: 3)
+    public lazy var phoneLandscape568Configuration: ThemeTrait = self.traitForName("phone-landscape568", topMargin: 3)
+    public lazy var padPortraitConfiguration: ThemeTrait = self.phonePortraitConfiguration
+    public lazy var padLandscapeConfiguration: ThemeTrait = self.phoneLandscape480Configuration
 }
 
-class ThemeTraitConfiguration {
+public class ThemeTrait {
     let configuration: NSDictionary!
     weak var owner: Theme!
     let topMargin: CGFloat
-    var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
+    var _captions: Dictionary<String, ThemeCaption> = [:]
+    var _captionClasses: Dictionary<String, ThemeCaptionClass> = [:]
 
     init(owner: Theme, configuration: AnyObject?, topMargin: CGFloat) {
         self.owner = owner
@@ -127,100 +128,77 @@ class ThemeTraitConfiguration {
         self.configuration = configuration as? NSDictionary
     }
 
-    lazy var backgroundImage: UIImage? = {
+    public lazy var backgroundImage: UIImage? = {
         let configFilename = self.configuration["background"] as? String
         let filename = configFilename ?? "background.png"
         return self.owner.imageForFilename(filename)
     }()
 
-    lazy var foregroundImage: UIImage? = {
+    public lazy var foregroundImage: UIImage? = {
         let configFilename = self.configuration["foreground"] as? String
         let filename = configFilename ?? "foreground.png"
         return self.owner.imageForFilename(filename)
     }()
 
-    func captionForKey(key: String, needsMargin: Bool, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
-        if let theme = self._captions[key] {
+    public func captionClassForKey(key: String) -> ThemeCaptionClass? {
+        if let theme = self._captionClasses[key] {
             return theme
         } else {
-            let theme: ThemeCaptionConfiguration = {
-                if let sub: AnyObject = self.configuration[key] {
-                    return ThemeCaptionConfiguration(trait: self, configuration: sub, needsMargin: needsMargin, fallback: fallback)
-                } else {
-                    return fallback
-                }
-            }()
-            self._captions[key] = theme
+            let theme: ThemeCaptionClass?
+            if let sub: AnyObject = self.configuration[key] {
+                theme = ThemeCaptionClass(trait: self, configuration: sub)
+            } else {
+                theme = nil
+            }
+            self._captionClasses[key] = theme
             return theme
         }
     }
 
-    func qwertyCaptionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
-        let newKey = "qwerty-" + key
-        return captionForKey(newKey, needsMargin: true, fallback: fallback)
+    public func hasCaptionForIdentifier(identifier: String) -> Bool {
+        return self._captions[identifier] != nil
     }
 
-    lazy var defaultCaption: ThemeCaptionConfiguration = ThemeDefaultCaptionConfiguration(trait: self)
-    lazy var qwertyCaption: ThemeCaptionConfiguration = self.captionForKey("qwerty", needsMargin: true, fallback: self.defaultCaption)
-    func qwertyCaptionForKeyInRow(row: Int) -> ThemeCaptionConfiguration {
-        return self.qwertyCaptionForKey("row\(row)", fallback: self.qwertyCaption)
+    public func captionForIdentifier(identifier: String) -> ThemeCaption? {
+        return self._captions[identifier]
     }
 
-    lazy var qwertyKeyCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("key", fallback: self.qwertyCaption)
-    lazy var qwertySpecialKeyCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("special", fallback: self.qwertyKeyCaption)
-    lazy var qwertyFunctionCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("function", fallback: self.qwertyCaption)
-
-    /*
-    lazy var qwerty1xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1x", fallback: self.qwertyKeyCaption)
-    lazy var qwerty1_25xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.25x", fallback: self.qwertyFunctionCaption)
-    lazy var qwerty1_5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("1.5x", fallback: self.qwertyFunctionCaption)
-    lazy var qwerty3xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("3x", fallback: self.qwertyFunctionCaption)
-    lazy var qwerty5xCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("5x", fallback: self.qwertyFunctionCaption)
-    */
-
-    lazy var qwertyShiftCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("shift", fallback: self.qwertyFunctionCaption)
-    lazy var qwertyDeleteCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("delete", fallback: self.qwertyFunctionCaption)
-    lazy var qwertyToggleCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("toggle", fallback: self.qwertyFunctionCaption)
-    lazy var qwertyGlobeCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("globe", fallback: self.qwertyFunctionCaption)
-    lazy var qwertySpaceCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("space", fallback: self.qwertySpecialKeyCaption)
-    lazy var qwertyDoneCaption: ThemeCaptionConfiguration = self.qwertyCaptionForKey("done", fallback: self.qwertyFunctionCaption)
-
-    func tenkeyCaptionForKey(key: String, fallback: ThemeCaptionConfiguration) -> ThemeCaptionConfiguration {
-        let newKey = "tenkey-" + key
-        return captionForKey(newKey, needsMargin: true, fallback: fallback)
+    public func captionForIdentifier(identifier: String, needsMargin: Bool, classes: () -> [ThemeCaptionClass?]) -> ThemeCaption {
+        let theme = self._captions[identifier] ?? {
+            let theme: ThemeCaption = {
+                return ThemeCaption(trait: self, needsMargin: needsMargin, classes: classes())
+                }()
+            self._captions[identifier] = theme
+            return theme
+        }()
+        return theme
     }
 
-    lazy var tenkeyCaption: ThemeCaptionConfiguration = self.captionForKey("tenkey", needsMargin: false, fallback: self.qwertyCaption) // FIXME: 'default'가 되어야 함
-    func tenkeyCaptionForKeyInRow(row: Int) -> ThemeCaptionConfiguration {
-        return self.captionForKey("tenkey-row\(row)", needsMargin: false, fallback: self.tenkeyCaption)
+    public lazy var common: ThemeCaptionGroup = ThemeCaptionGroup(trait: self, group: "common")
+    public lazy var qwerty: ThemeCaptionGroup = ThemeCaptionGroup(trait: self, group: "qwerty")
+    public lazy var tenkey: ThemeCaptionGroup = ThemeCaptionGroup(trait: self, group: "tenkey")
+    public lazy var numpad: ThemeCaptionGroup = ThemeCaptionGroup(trait: self, group: "numpad")
+    public lazy var emoticon: ThemeCaptionGroup = ThemeCaptionGroup(trait: self, group: "emoticon")
+
+    lazy var _baseCaption: ThemeCaption = self.captionForIdentifier("_base", needsMargin: false, classes: { [self.common.base] })
+
+    func captionClassesForGetters(getters: [ThemeCaptionGroup -> ThemeCaptionClass], inGroups groups: [ThemeCaptionGroup]) -> [ThemeCaptionClass?] {
+        var classes: [ThemeCaptionClass?] = []
+        for group in groups {
+            for getter in getters {
+                classes.append(getter(group))
+            }
+        }
+        return classes
     }
-    lazy var tenkeyKeyCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("key", fallback: self.tenkeyCaption)
-    lazy var tenkeySpecialKeyCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("special", fallback: self.tenkeyKeyCaption)
-    lazy var tenkeyFunctionCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("function", fallback: self.tenkeyCaption)
-
-    lazy var tenkeyShiftCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("shift", fallback: self.tenkeyCaptionForKeyInRow(2))
-    lazy var tenkeyDeleteCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("delete", fallback: self.tenkeyCaptionForKeyInRow(1))
-    lazy var tenkeyToggleCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("toggle", fallback: self.tenkeyCaptionForKeyInRow(1))
-    lazy var tenkeyAbcCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("abc", fallback: self.tenkeyCaptionForKeyInRow(2))
-    lazy var tenkeyHangeulCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("hangeul", fallback: self.tenkeyCaptionForKeyInRow(3))
-    lazy var tenkeyGlobeCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("globe", fallback: self.tenkeyCaptionForKeyInRow(4))
-    lazy var tenkeySpaceCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("space", fallback: self.tenkeyCaptionForKeyInRow(4))
-    lazy var tenkeyDoneCaption: ThemeCaptionConfiguration = self.tenkeyCaptionForKey("done", fallback: self.tenkeyCaptionForKeyInRow(3))
-
 }
 
-
-class ThemeCaptionConfiguration {
+public class ThemeCaptionClass {
     let configuration: [String: AnyObject]
-    let needsMargin: Bool
-    let fallback: ThemeCaptionConfiguration!
-    weak var trait: ThemeTraitConfiguration!
-    lazy var topMargin: CGFloat = { return self.needsMargin ? self.trait.topMargin : 0 }()
+    weak var trait: ThemeTrait!
 
-    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, needsMargin: Bool, fallback: ThemeCaptionConfiguration!) {
+    init(trait: ThemeTrait, configuration: AnyObject?) {
         self.trait = trait
-        self.needsMargin = needsMargin
-
         var given: AnyObject = configuration ?? Dictionary<String, AnyObject>()
 
         var full: [String: AnyObject] = [
@@ -243,7 +221,71 @@ class ThemeCaptionConfiguration {
         }
 
         self.configuration = full
-        self.fallback = fallback
+    }
+
+    func _imageNames() -> [String] {
+        if let sub: AnyObject = self.configuration["image"] {
+            return (sub is String ? [sub] : sub) as! [String]
+        } else {
+            return []
+        }
+    }
+
+    lazy var labelConfiguration: Dictionary<String, AnyObject> = {
+        return self.configuration["label"] as? Dictionary<String, AnyObject> ?? [:]
+    }()
+
+    lazy var fontConfiguration: Dictionary<String, AnyObject> = {
+        return self.labelConfiguration["font"] as? Dictionary<String, AnyObject> ?? [:]
+    }()
+
+    lazy var effectConfiguration: Dictionary<String, AnyObject> = {
+        return self.configuration["effect"] as? Dictionary<String, AnyObject> ?? [:]
+    }()
+}
+
+public class ThemeCaptionGroup {
+    weak var trait: ThemeTrait!
+    let group: String
+
+    init(trait: ThemeTrait, group: String) {
+        self.trait = trait
+        self.group = group
+    }
+
+    func classByName(key: String) -> ThemeCaptionClass {
+        return ThemeCaptionClass(trait: self.trait, configuration: self.trait.configuration[self.group + "-" + key])
+    }
+
+    public lazy var base: ThemeCaptionClass = ThemeCaptionClass(trait: self.trait, configuration: self.trait.configuration[self.group])
+
+    public lazy var key: ThemeCaptionClass = self.classByName("key")
+    public lazy var special: ThemeCaptionClass = self.classByName("special")
+    public lazy var function: ThemeCaptionClass = self.classByName("function")
+
+    public func row(row: Int) -> ThemeCaptionClass {
+        return self.classByName("row-\(row)")
+    }
+
+    public func key(key: String) -> ThemeCaptionClass {
+        return self.classByName("key-\(key)")
+    }
+
+    public func caption(key: String) -> ThemeCaptionClass {
+        return self.classByName("caption-\(key)")
+    }
+}
+
+public class ThemeCaption {
+    weak var trait: ThemeTrait!
+    let needsMargin: Bool
+    let classes: [ThemeCaptionClass?]
+    lazy var topMargin: CGFloat = { return self.needsMargin ? self.trait.topMargin : 0 }()
+
+    init(trait: ThemeTrait, needsMargin: Bool, classes: [ThemeCaptionClass?]) {
+        self.trait = trait
+        self.needsMargin = needsMargin
+        self.classes = classes
     }
 
     func appealButton(button: GRInputButton) {
@@ -335,50 +377,50 @@ class ThemeCaptionConfiguration {
         button.arrange()
     }
 
-    func _images() -> (UIImage?, UIImage?, UIImage?) {
-        let sub: AnyObject? = self.configuration["image"]
-        let imageConfiguration = sub as? Array<String!>
-        if imageConfiguration == nil || imageConfiguration!.count == 0 {
-            return self.fallback.images
+    func attributeByGetter(getter: (ThemeCaptionClass) -> AnyObject?, until: AnyObject? -> Bool = { $0 != nil }) -> AnyObject? {
+        for cls in self.classes {
+            if let cls = cls {
+                let value: AnyObject? = getter(cls)
+                if until(value) {
+                    return value
+                }
+            }
         }
-        var images: [UIImage?] = []
-        for imageName in imageConfiguration! {
-            let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.topMargin)
-            //assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
-            images.append(image)
-        }
-        while images.count < 3 {
-            let lastImage = images.last!
-            //assert(lastImage != nil)
-            images.append(lastImage)
-        }
-        return (images[0], images[1], images[2])
+        return nil
     }
 
-    lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
-
-    lazy var labelConfiguration: Dictionary<String, AnyObject> = {
-        if let sub = self.configuration["label"] as? Dictionary<String, AnyObject> {
-            return sub
+    func _images() -> (UIImage?, UIImage?, UIImage?) {
+        if let imageNames = self.attributeByGetter({ $0._imageNames() }, until: { $0!.count > 0 }) as?  [String] {
+            var images: [UIImage?] = []
+            for imageName in imageNames {
+                let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.topMargin)
+                //assert(image != nil, "캡션 이미지를 찾을 수 없습니다. \(imageName)")
+                images.append(image)
+            }
+            while images.count < 3 {
+                let lastImage = images.last!
+                //assert(lastImage != nil)
+                images.append(lastImage)
+            }
+            return (images[0], images[1], images[2])
         } else {
-            return self.fallback.labelConfiguration
+            return (nil, nil, nil)
         }
-    }()
+    }
 
-    lazy var text: String? = {
-        let subText: AnyObject? = self.labelConfiguration["text"]
-        if subText is String {
-            return subText as? String
+    public lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
+
+    public lazy var text: String? = {
+        if let text = self.attributeByGetter({ $0.labelConfiguration["text"] }) as? String {
+            return text
         } else {
             return nil
         }
     }()
 
-    lazy var glyph: UIImage? = {
-        let subText: AnyObject? = self.labelConfiguration["glyph"]
-        //println("glyph: \(subText)")
-        if subText is String {
-            let image = self.trait.owner.imageForFilename(subText as! String)
+    public lazy var glyph: UIImage? = {
+        if let text = self.attributeByGetter({ $0.labelConfiguration["glyph"] }) as! String? {
+            let image = self.trait.owner.imageForFilename(text)
             //println("glyph image: \(image)")
             return image
         } else {
@@ -386,172 +428,60 @@ class ThemeCaptionConfiguration {
         }
     }()
 
-    lazy var position: CGPoint = {
-        let sub: AnyObject? = self.labelConfiguration["position"]
-        if sub is Array<CGFloat> {
-            let rawPosition = sub as! Array<CGFloat>
-            let position = CGPointMake(rawPosition[0], rawPosition[1])
+    public lazy var position: CGPoint = {
+        if let array = self.attributeByGetter({
+            let value = $0.labelConfiguration["position"]
+            println("\(value) \($0.labelConfiguration)")
+            return value
+
+            }, until: { $0 is [CGFloat] }) as! [AnyObject]? {
+            let position = CGPointMake(array[0] as! CGFloat, array[1] as! CGFloat)
             return position
         } else {
-            return self.fallback.position
+            return CGPointZero
         }
     }()
 
-    lazy var font: (UIFont, UIColor) = {
-        func fallback() -> (UIFont, UIColor) {
-            return self.fallback.font
-        }
+    public lazy var font: (UIFont, UIColor) = {
+        let name = self.attributeByGetter({ $0.fontConfiguration["name"] }) as! String?
+        let size = self.attributeByGetter({ $0.fontConfiguration["size"] }) as? CGFloat ?? UIFont.systemFontSize()
+        let colorText = self.attributeByGetter({ $0.fontConfiguration["color"] }) as! String?
 
-        let subFont: AnyObject? = self.labelConfiguration["font"]
-        if subFont == nil {
-            return fallback()
-        }
-
-//        println("font1: \(subFont)")
-//        println("font2: \(subFont!)")
-
-        assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
-
-        let fontConfiguration = subFont as! Dictionary<String, AnyObject>
-        var font: UIFont?
-
-        let (fallbackFont, fallbackColor) = fallback()
-
-        let subFontName = fontConfiguration["name"] as? String
-        let subFontSize = fontConfiguration["size"] as? CGFloat
-        let fontSize = subFontSize ?? fallbackFont.pointSize
-        if subFontName != nil {
-            font = UIFont(name: subFontName!, size: fontSize)
+        let font: UIFont
+        if let name = name {
+            font = UIFont(name: name, size: size) ?? UIFont.systemFontOfSize(size)
         } else {
-            font = fallbackFont.fontWithSize(fontSize)
+            font = UIFont.systemFontOfSize(size)
         }
-        assert(font != nil, "올바른 폰트 이름이 아닙니다")
+        let color = colorText != nil ? UIColor(HTMLExpression: colorText) : UIColor.darkTextColor()
 
-        var fontColor: UIColor
-        if let subFontColorCode = fontConfiguration["color"] as? String {
-            fontColor = UIColor(HTMLExpression: subFontColorCode)
-        } else {
-            fontColor = fallbackColor
-        }
-        return (font!, fontColor)
+        return (font, color)
     }()
 
-    lazy var effectConfiguration: Dictionary<String, AnyObject> = {
-        if let sub: AnyObject = self.configuration["effect"] {
-            //println("effect: \(sub)")
-            assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
-            return sub as! Dictionary<String, AnyObject>
-        } else {
-            return self.fallback.effectConfiguration
-        }
-    }()
-
-    lazy var effectBackgroundImage: UIImage? = {
-        if let sub = self.effectConfiguration["background"] as? String {
-            if let image = self.trait.owner.imageForFilename(sub) {
+    public lazy var effectBackgroundImage: UIImage? = {
+        if let name = self.attributeByGetter({ $0.effectConfiguration["background"] }) as! String? {
+            if let image = self.trait.owner.imageForFilename(name) {
                 return image
             }
         }
-        return self.fallback.effectBackgroundImage
+        return nil
     }()
 
-    lazy var effectEdgeInsets: UIEdgeInsets = {
-        if let rawInsets = self.effectConfiguration["padding"] as? Array<CGFloat> {
+    public lazy var effectEdgeInsets: UIEdgeInsets = {
+        if let rawInsets = self.attributeByGetter({ $0.effectConfiguration["padding"] }) as! [CGFloat]? {
             let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
             return insets
         }
-        return self.fallback.effectEdgeInsets
+        return UIEdgeInsetsZero
     }()
 
-    lazy var effectPosition: CGPoint = {
-        if let rawPosition = self.effectConfiguration["position"] as? Array<CGFloat> {
+    public lazy var effectPosition: CGPoint = {
+        if let rawPosition = self.attributeByGetter({ $0.effectConfiguration["position"] }) as! [CGFloat]? {
             let position = CGPointMake(rawPosition[0], rawPosition[1])
             return position
         }
-        return self.fallback.effectPosition
+        return CGPointZero
     }()
-}
-
-let ThemeDefaultCaptionImage: UIImage? = {
-    let URL = NSBundle.mainBundle().URLForResource("9patch", withExtension: "png", subdirectory: "default/qwerty")!
-    let image = UIImage(contentsOfFile: URL.absoluteString!)
-    return image
-}()
-
-class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
-    init(trait: ThemeTraitConfiguration) {
-        super.init(trait: trait, configuration: nil, needsMargin: true, fallback: nil)
-    }
-
-    override var images: (UIImage?, UIImage?, UIImage?) {
-        get {
-            return (ThemeDefaultCaptionImage, ThemeDefaultCaptionImage, ThemeDefaultCaptionImage)
-        }
-        set {
-
-        }
-    }
-
-    override var labelConfiguration: Dictionary<String, AnyObject> {
-        get {
-            return [:]
-        }
-        set {
-
-        }
-    }
-
-    override var position: CGPoint {
-        get {
-            return CGPointZero
-        }
-        set {
-
-        }
-    }
-
-    override var font: (UIFont, UIColor) {
-        get {
-            return (UIFont.systemFontOfSize(UIFont.systemFontSize()), UIColor.blackColor())
-        }
-        set {
-
-        }
-    }
-
-    override var effectConfiguration: Dictionary<String, AnyObject> {
-        get {
-            return [:]
-        }
-        set {
-
-        }
-    }
-
-    override var effectPosition: CGPoint {
-        get {
-            return CGPointZero
-        }
-        set {
-        }
-    }
-
-    override var effectBackgroundImage: UIImage? {
-        get {
-            let image = self.trait.owner.imageForFilename("effect.png")
-            return image
-        }
-        set {
-        }
-    }
-
-    override var effectEdgeInsets: UIEdgeInsets {
-        get {
-            return UIEdgeInsetsZero
-        }
-        set {
-        }
-    }
 }
 
 class CachedTheme: Theme {

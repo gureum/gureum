@@ -21,14 +21,19 @@
 		38178B311B260FC500DB01C7 /* EmoticonKeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */; };
 		38178B331B26333A00DB01C7 /* EmoticonLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38178B321B26333A00DB01C7 /* EmoticonLayout.xib */; };
 		38178B341B26333A00DB01C7 /* EmoticonLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38178B321B26333A00DB01C7 /* EmoticonLayout.xib */; };
+		382078451B38294100918167 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3810A22F1B14D8D5004AE8FC /* libz.dylib */; };
+		382078471B38294D00918167 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 382078461B38294D00918167 /* libc++.dylib */; };
 		38324EAE199F476B0031888D /* test in Resources */ = {isa = PBXBuildFile; fileRef = 38324EAD199F476B0031888D /* test */; };
 		38326E411B072857007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
 		38326E431B072BF9007318BA /* NumberPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38326E401B072857007318BA /* NumberPadLayout.swift */; };
 		3836F2101A53529E0045EE0F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3836F20F1A53529E0045EE0F /* MainViewController.swift */; };
+		3838D0121B34F30700E0286C /* base in Resources */ = {isa = PBXBuildFile; fileRef = 38442C101B2FFD9300B39FFC /* base */; };
+		3838D0131B34F30B00E0286C /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
 		3838F99219A47AD700DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		3838F99519A47C3A00DFBFC8 /* GRInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3838F99119A47AD700DFBFC8 /* GRInputButton.m */; };
 		383B07EE19E70609004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
 		383B07EF19E7060A004046F5 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB7013193FA11000605583 /* InputViewController.swift */; };
+		38442C111B2FFD9300B39FFC /* base in Resources */ = {isa = PBXBuildFile; fileRef = 38442C101B2FFD9300B39FFC /* base */; };
 		384ADEC719C1B2D20007A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FB193F9E6600076C26 /* AppDelegate.swift */; };
 		384ADED019C1B3090007A993 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380136B6199CB4A700355D69 /* PreviewViewController.swift */; };
 		384ADED119C1B30F0007A993 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3882B9FD193F9E6600076C26 /* TestViewController.swift */; };
@@ -244,6 +249,7 @@
 		3810A2401B14FE84004AE8FC /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Version.xcconfig; path = iOSShared/Version.xcconfig; sourceTree = SOURCE_ROOT; };
 		38178B2F1B25FE1C00DB01C7 /* EmoticonKeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonKeyboardLayout.swift; sourceTree = "<group>"; };
 		38178B321B26333A00DB01C7 /* EmoticonLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmoticonLayout.xib; sourceTree = "<group>"; };
+		382078461B38294D00918167 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		38303652198A15DB00C1EE0C /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		38303654198A1F1E00C1EE0C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		38303668199059D500C1EE0C /* capi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = capi.cpp; path = ../hangeul/hangeul/capi.cpp; sourceTree = "<group>"; };
@@ -253,6 +259,7 @@
 		3836F20F1A53529E0045EE0F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
+		38442C101B2FFD9300B39FFC /* base */ = {isa = PBXFileReference; lastKnownFileType = folder; path = base; sourceTree = "<group>"; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		384D41F71B2909860069EF2A /* GRInputButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRInputButton.swift; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -423,6 +430,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				382078471B38294D00918167 /* libc++.dylib in Frameworks */,
+				382078451B38294100918167 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +460,7 @@
 		06F9C173477CBEDC2AFC968D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				382078461B38294D00918167 /* libc++.dylib */,
 				3810A22F1B14D8D5004AE8FC /* libz.dylib */,
 				2B977566168245B09DFDC6C1 /* libPods.a */,
 			);
@@ -727,6 +737,7 @@
 			children = (
 				380136B3199CAFC000355D69 /* README.md */,
 				380136B4199CAFC000355D69 /* shop.json */,
+				38442C101B2FFD9300B39FFC /* base */,
 				38D9A394199B7F8A0087A965 /* default */,
 				3861A76D1B0CB8A300FAC28A /* iOS */,
 				38324EAD199F476B0031888D /* test */,
@@ -923,6 +934,7 @@
 				3861A76E1B0CB8A300FAC28A /* iOS in Resources */,
 				38178B331B26333A00DB01C7 /* EmoticonLayout.xib in Resources */,
 				38D9A395199B7F8A0087A965 /* default in Resources */,
+				38442C111B2FFD9300B39FFC /* base in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
 				380D44E51AFA0F56007A2556 /* Localizable.strings in Resources */,
@@ -945,9 +957,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3838D0131B34F30B00E0286C /* default in Resources */,
 				38B0961D1B27E0DB00FC34EA /* emoticon.json in Resources */,
 				380D44E71AFA0FC8007A2556 /* InfoPlist.strings in Resources */,
 				38178B341B26333A00DB01C7 /* EmoticonLayout.xib in Resources */,
+				3838D0121B34F30700E0286C /* base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1406,6 +1420,7 @@
 		};
 		3882BA16193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFBCA8C38781C21C97255A12 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1426,6 +1441,7 @@
 		};
 		3882BA17193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 181B0E3CC63C8FB032DB12B8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
 				FRAMEWORK_SEARCH_PATHS = (

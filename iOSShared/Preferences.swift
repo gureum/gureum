@@ -10,7 +10,8 @@ import Foundation
 
 class Preferences {
     var defaults = NSUserDefaults(suiteName: "group.org.gureum")!
-    lazy var theme = PreferencedTheme()
+    lazy var baseTheme: PreferencedTheme = PreferencedTheme(resources: self.baseThemeResources)
+    lazy var theme: PreferencedTheme = PreferencedTheme(resources: self.themeResources)
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
         let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
@@ -78,6 +79,21 @@ class Preferences {
 
         set {
             setObjectForKey("theme_url", value: newValue)
+        }
+    }
+
+    var baseThemeResources: NSDictionary {
+        get {
+            return getDictionaryForKey("theme_resource_", defaultValue: [:])
+        }
+
+        set {
+            // FIXME: Dictionary to NSDictioanry
+            var dict: NSMutableDictionary = [:]
+            for (key, value) in newValue {
+                dict[key as! String] = value
+            }
+            self.setObjectForKey("theme_resource_", value: dict)
         }
     }
 
@@ -171,8 +187,14 @@ class Preferences {
 let preferences = Preferences()
 
 class PreferencedTheme: Theme {
+    let resources: NSDictionary
+
+    init(resources: NSDictionary) {
+        self.resources = resources
+    }
+
     override func dataForFilename(name: String) -> NSData? {
-        if let rawData = preferences.themeResources[name] as? String {
+        if let rawData = self.resources[name] as? String {
             let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)
             return data
         } else {

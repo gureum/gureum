@@ -111,11 +111,33 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         get { return "😀" }
     }
 
-    override func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton : ThemeCaptionConfiguration] {
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
+
+        func functionCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("emoticon-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.function },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+
+        func specialCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("emoticon-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.special },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+
         return [
-            self.view.nextKeyboardButton!: trait.tenkeySpecialKeyCaption,
-            self.view.spaceButton!: trait.tenkeySpecialKeyCaption,
-            self.view.deleteButton!: trait.tenkeySpecialKeyCaption,
+            self.view.nextKeyboardButton!: functionCaption("globe", 4),
+            self.view.deleteButton!: functionCaption("delete", 4)
         ]
     }
 
@@ -137,8 +159,8 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
 
     }
 
-    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        return trait.defaultCaption
+    override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
+        return trait._baseCaption
     }
 
     override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {

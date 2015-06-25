@@ -354,8 +354,11 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
     class var toggleCaption: String {
         get { return "123" }
     }
+    class var needsMargin: Bool {
+        get { return false }
+    }
 
-    func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton: ThemeCaptionConfiguration] {
+    func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
         return [:]
     }
 
@@ -441,9 +444,9 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         return self.view.errorButton
     }
 
-    func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+    func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
         assert(false)
-        return trait.defaultCaption
+        return trait._baseCaption
     }
 
     func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
@@ -472,7 +475,7 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
                 #if DEBUG
                     assert(false)
                 #endif
-                trait.defaultCaption.appealButton(button)
+                trait._baseCaption.appealButton(button)
             }
         }
     }
@@ -492,7 +495,7 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
                 #if DEBUG
                     assert(false)
                 #endif
-                trait.defaultCaption.arrangeButton(button)
+                trait._baseCaption.arrangeButton(button)
             }
         }
     }
@@ -545,7 +548,7 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         if let inputViewController = globalInputViewController {
             return inputViewController.inputMethodView.theme
         } else {
-            return PreferencedTheme()
+            return PreferencedTheme(resources: preferences.themeResources)
         }
     }
 

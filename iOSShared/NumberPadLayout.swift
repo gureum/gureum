@@ -39,66 +39,57 @@ class NumberPadLayout: KeyboardLayout {
         return [code + 48]
     }
 
-    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
+    override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
         let keycodes = self.keycodesForPosition(position)
-        let altkey = "key-\(keycodes[0])" // FIXME:
-        let theme1 = trait.tenkeyCaptionForKey(altkey, fallback: trait.tenkeyCaptionForKeyInRow(position.row + 1))
         let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.tenkeyCaptionForKey("key-" + title, fallback: theme1)
-        return theme2
+        let keycode = "\(keycodes[0])" // FIXME:
+
+        let identifier = "\(self.dynamicType)-\(title)-\(keycode))"
+        return trait.captionForIdentifier(identifier, needsMargin: self.dynamicType.needsMargin, classes: {
+            trait.captionClassesForGetters([
+                { $0.caption(title) },
+                { $0.key(keycode) },
+                { $0.row(position.row + 1) },
+                { $0.key },
+                { $0.base },
+            ], inGroups: [trait.numpad, trait.common])
+        })
     }
 
-    override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
-    }
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
 
-    override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
-    }
-
-    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
-
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.appealButton(button)
+        func functionCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("numpad-\(name)", needsMargin: false, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.function },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
+        }
+        func specialCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("numpad-\(name)", needsMargin: false, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.special },
+                    { $0.base },
+                    ], inGroups: [trait.tenkey, trait.common])
+            })
         }
 
         var map = [
-            self.padView.deleteButton!: trait.tenkeyDeleteCaption,
-            self.padView.toggleKeyboardButton!: trait.tenkeyToggleCaption,
-            self.padView.shiftButton!: trait.tenkeyShiftCaption,
+            self.padView.deleteButton!: functionCaption("delete", 4),
+            self.padView.toggleKeyboardButton!: functionCaption("toggle", 4),
+            self.padView.shiftButton!: functionCaption("shift", 4),
+            //self.padView.doneButton!: functionCaption("done", 4),
+            //self.padView.spaceButton!: specialCaption("space", 4),
         ]
         if !contains(map.keys, self.padView.leftButton) {
-            map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
+            map[self.padView.leftButton] = specialCaption("left", 4)
         }
-
-        for (button, captionTheme) in map {
-            captionTheme.appealButton(button)
-        }
-
-        let size = rect.size
-        for button in [self.padView.deleteButton, self.padView.toggleKeyboardButton, self.padView.leftButton] {
-            let width = self.helper(self.helper, columnWidthInRow: 3, forSize: size)
-            let height = self.helper(self.helper, columnWidthInRow: 3, forSize: size)
-            button.frame.size = CGSizeMake(width, height)
-        }
-    }
-
-    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.arrangeButton(button)
-        }
-
-        var map = [
-            self.padView.deleteButton!: trait.tenkeyDeleteCaption,
-            //self.padView.nextKeyboardButton!: trait.tenkeyGlobeCaption,
-        ]
-        map[self.padView.leftButton!] = trait.tenkeySpecialKeyCaption
-
-        for (button, captionTheme) in map {
-            captionTheme.arrangeButton(button)
-        }
+        return map
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {

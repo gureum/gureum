@@ -110,23 +110,61 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func themesForTrait(trait: ThemeTraitConfiguration) -> [GRInputButton: ThemeCaptionConfiguration] {
-        return [
-            self.qwertyView.shiftButton!: trait.qwertyShiftCaption,
-            self.qwertyView.deleteButton!: trait.qwertyDeleteCaption,
-            self.qwertyView.toggleKeyboardButton!: trait.qwertyToggleCaption,
-            self.qwertyView.nextKeyboardButton!: trait.qwertyGlobeCaption,
-            self.qwertyView.spaceButton!: trait.qwertySpaceCaption,
-            self.qwertyView.doneButton!: trait.qwertyDoneCaption,
+    override class var needsMargin: Bool {
+        get { return true }
+    }
 
-            self.qwertyView.URLDotButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.URLSlashButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.URLDotComButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailSpaceButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailSnailButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.emailDotButton!: trait.qwertySpecialKeyCaption,
-            self.qwertyView.twitterSnailButton!: trait.qwertyFunctionCaption,
-            self.qwertyView.twitterHashButton!: trait.qwertyFunctionCaption,
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
+
+        func functionCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("qwerty-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.function },
+                    { $0.base },
+                    ], inGroups: [trait.qwerty, trait.common])
+            })
+        }
+        func specialCaption(name: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("qwerty-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.row(row) },
+                    { $0.special },
+                    { $0.base },
+                    ], inGroups: [trait.qwerty, trait.common])
+            })
+        }
+
+        func specialCaptionWithCategory(name: String, category: String, row: Int) -> ThemeCaption {
+            return trait.captionForIdentifier("qwerty-\(name)", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName(name) },
+                    { $0.classByName(category) },
+                    { $0.row(row) },
+                    { $0.special },
+                    { $0.base },
+                    ], inGroups: [trait.qwerty, trait.common])
+            })
+        }
+
+        return [
+            self.qwertyView.shiftButton!: functionCaption("shift", 3),
+            self.qwertyView.deleteButton!: functionCaption("delete", 3),
+            self.qwertyView.toggleKeyboardButton!: functionCaption("toggle", 4),
+            self.qwertyView.nextKeyboardButton!: functionCaption("globe", 4),
+            self.qwertyView.spaceButton!: specialCaption("space", 4),
+            self.qwertyView.doneButton!: functionCaption("done", 4),
+
+            self.qwertyView.URLDotButton!: specialCaptionWithCategory("url-dot", "url", 4),
+            self.qwertyView.URLSlashButton!: specialCaptionWithCategory("url-slash", "url", 4),
+            self.qwertyView.URLDotComButton!: specialCaptionWithCategory("url-dotcom", "url", 4),
+            self.qwertyView.emailSpaceButton!: specialCaptionWithCategory("email-space", "email", 4),
+            self.qwertyView.emailSnailButton!: specialCaptionWithCategory("email-snail", "email", 4),
+            self.qwertyView.emailDotButton!: specialCaptionWithCategory("email-dot", "email", 4),
+            self.qwertyView.twitterSnailButton!: specialCaptionWithCategory("twitter-snail", "twitter", 4),
+            self.qwertyView.twitterHashButton!: specialCaptionWithCategory("twitter-hash", "twitter", 4),
         ]
     }
 
@@ -139,18 +177,26 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         return view
     }
 
-    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+    func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
         assert(false)
-        return UnicodeScalar(0)
+        return [0, 0]
     }
 
-    override func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position, shift: false)
-        let altkey = "key-\(chr)"
-        let theme1 = trait.qwertyCaptionForKey(altkey, fallback: trait.qwertyCaptionForKeyInRow(position.row + 1))
+    override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
+        let keycodes = self.keycodesForPosition(position)
         let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.qwertyCaptionForKey("key-" + title, fallback: theme1)
-        return theme2
+        let keycode = "\(UnicodeScalar(UInt32(keycodes[0])))" // FIXME:
+
+        let identifier = "\(self.dynamicType)-\(title)-\(keycode)"
+        return trait.captionForIdentifier(identifier, needsMargin: self.dynamicType.needsMargin, classes: {
+            trait.captionClassesForGetters([
+                { $0.caption(title) },
+                { $0.key(keycode) },
+                { $0.row(position.row + 1) },
+                { $0.key },
+                { $0.base },
+                ], inGroups: [trait.qwerty, trait.common])
+        })
     }
 
     override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
@@ -232,7 +278,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton.buttonWithType(.System) as! GRInputButton
-        button.keycodes = [UInt(self.keyForPosition(position, shift: false).value), UInt(self.keyForPosition(position, shift: true).value)]
+        button.keycodes = self.keycodesForPosition(position)
         button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
         return button
     }
@@ -300,14 +346,11 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
     }
 
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+    override func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let key = getKey(keylines, position)
-        if !shift || position.row == 3 {
-            return key
-        } else {
-            return UnicodeScalar(key.value - 32)
-        }
+        let keycode = UInt(getKey(keylines, position).value)
+
+        return [keycode, (position.row == 3) ? keycode : (keycode - 32)]
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
@@ -365,8 +408,8 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key =  self.keyForPosition(position, shift: true)
-        return "\(Character(key))"
+        let keycodes =  self.keycodesForPosition(position)
+        return "\(Character(UnicodeScalar(UInt32(keycodes[1]))))"
     }
 
     override func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
@@ -396,10 +439,12 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
     }
 
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
-        let keylines = !shift ? ["1234567890", "-/:;()₩&@\"", ".,?!'\"₩", " "] : ["[]{}#%^*+=", "_\\|~<>$€¥·", ".,?!'\"₩", " "]
-        let key = getKey(keylines, position)
-        return key
+    override func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
+        let keylines1 = ["1234567890", "-/:;()₩&@\"", ".,?!'\"₩", " "]
+        let keylines2 = ["[]{}#%^*+=", "_\\|~<>$€¥·", ".,?!'\"₩", " "]
+        let key1 = getKey(keylines1, position)
+        let key2 = getKey(keylines2, position)
+        return [UInt(key1.value), UInt(key2.value)]
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
@@ -459,8 +504,9 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key = self.keyForPosition(position, shift: self.qwertyView.shiftButton.selected)
-        let text = "\(Character(UnicodeScalar(key.value)))"
+        let keycodes = self.keycodesForPosition(position)
+        let keycode = self.qwertyView.shiftButton.selected ? keycodes[1] : keycodes[0]
+        let text = "\(Character(UnicodeScalar(UInt32(keycode))))"
         return text
     }
 }
@@ -477,19 +523,15 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
     }
 
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+    override func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let key = getKey(keylines, position)
-        if !shift || position.row == 3 {
-            return key
-        } else {
-            return UnicodeScalar(key.value - 32)
-        }
+        let keycode = UInt(getKey(keylines, position).value)
+        return [keycode, position.row == 3 ? keycode : (keycode - 32)]
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let key = self.keyForPosition(position, shift: self.qwertyView.shiftButton.selected)
-        let keycode = key.value
+        let keycodes = self.keycodesForPosition(position)
+        let keycode = keycodes[0]
         let label = ksx5002_label(Int8(keycode))
         let text = "\(Character(UnicodeScalar(label)))"
         return text
@@ -552,10 +594,13 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
 }
 
 class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
-    override func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
-        let keylines = !shift ? ["qwerthop", "asdfgjkl", "zxcvnm", " "] : ["QWERTyOP", "asdfguil", "zxcvbm", " "]
-        let key = getKey(keylines, position)
-        return key
+    override func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
+        let keylines1 = ["qwerthop", "asdfgjkl", "zxcvnm", " "]
+        let keylines2 = ["QWERTyOP", "asdfguil", "zxcvbm", " "]
+
+        let key1 = UInt(getKey(keylines1, position).value)
+        let key2 = UInt(getKey(keylines2, position).value)
+        return [key1, key2]
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
