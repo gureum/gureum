@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="1" id="BYD-6b-ClK">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="40" sectionFooterHeight="1" id="BYD-6b-ClK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -65,21 +65,17 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="nfM-X5-gfi">
-                    <rect key="frame" x="0.0" y="170" width="320" height="46"/>
+                <view alpha="0.80000000000000004" contentMode="scaleToFill" id="EwU-fh-3JE">
+                    <rect key="frame" x="0.0" y="176" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nsA-Wd-CyC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="light"/>
-                </visualEffectView>
+                    <color key="backgroundColor" white="0.8002525845864662" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.93290389521089212" green="1" blue="0.30695314822234521" alpha="0.0" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="deleteButton" destination="ZYd-Nn-XeZ" id="0RR-YL-jc4"/>
-                <outlet property="footerBlurView" destination="nfM-X5-gfi" id="qG9-b4-6ga"/>
+                <outlet property="footerBlurView" destination="EwU-fh-3JE" id="XLc-61-zeu"/>
                 <outlet property="nextKeyboardButton" destination="0pk-7q-hxg" id="oNt-db-nBa"/>
                 <outlet property="spaceButton" destination="IRp-Ff-sUq" id="RiC-OE-UI0"/>
                 <outlet property="tableView" destination="BYD-6b-ClK" id="kNV-2P-Jar"/>

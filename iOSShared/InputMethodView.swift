@@ -14,6 +14,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     var theme: Theme = {
         var theme: Theme = preferences.theme
         if theme.dataForFilename("config.json") == nil {
+            assert(false)
             theme = BuiltInTheme()
         }
         return CachedTheme(theme: theme)

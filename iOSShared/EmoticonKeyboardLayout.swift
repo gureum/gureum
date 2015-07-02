@@ -14,7 +14,8 @@ class EmoticonKeyboardView: KeyboardView {
     ]
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var footerBlurView: UIVisualEffectView!
+    @IBOutlet var footerBlurView: UIView!
+    let dummyLabelButton = GRInputButton()
 
     lazy var sectionButtons: [GRInputButton] = {
         return map(enumerate(self.dynamicType.titleIcons), {
@@ -28,7 +29,7 @@ class EmoticonKeyboardView: KeyboardView {
 
     override var visibleButtons: [GRInputButton] {
         get {
-            return [self.nextKeyboardButton, self.deleteButton] + self.sectionButtons
+            return [self.nextKeyboardButton, self.deleteButton, self.dummyLabelButton] + self.sectionButtons
         }
     }
 
@@ -38,7 +39,7 @@ class EmoticonKeyboardView: KeyboardView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        /*
         let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
         let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
         let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
@@ -49,6 +50,7 @@ class EmoticonKeyboardView: KeyboardView {
         gradientLayer.startPoint = CGPointMake(0.5, 0.0)
         gradientLayer.endPoint = CGPointMake(0.5, 1.0)
         self.footerBlurView.layer.mask = gradientLayer
+        */
     }
 
     override init(frame: CGRect) {
@@ -120,7 +122,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
                     { $0.row(row) },
                     { $0.function },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.emoticon, trait.common])
             })
         }
 
@@ -131,14 +133,24 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
                     { $0.row(row) },
                     { $0.special },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.emoticon, trait.common])
             })
         }
 
-        return [
+        var themeMap = [
             self.view.nextKeyboardButton!: functionCaption("globe", 4),
-            self.view.deleteButton!: functionCaption("delete", 4)
+            self.view.deleteButton!: functionCaption("delete", 4),
+            self.emoticonView.dummyLabelButton: trait.captionForIdentifier("emoticon-header", needsMargin: self.dynamicType.needsMargin, classes: {
+                trait.captionClassesForGetters([
+                    { $0.classByName("header") },
+                    { $0.base },
+                    ], inGroups: [trait.emoticon, trait.common])
+            })
         ]
+        for button in self.emoticonView.sectionButtons {
+            themeMap[button] = specialCaption("section", 4)
+        }
+        return themeMap
     }
 
     override class func loadContext() -> UnsafeMutablePointer<()> {
@@ -172,11 +184,16 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let position = UITableViewScrollPosition.Top
         self.emoticonView.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: position, animated: false)
 
-        let modelLabel = self.view.deleteButton.titleLabel!
         for button in self.emoticonView.sectionButtons {
-            button.titleLabel?.textColor = modelLabel.textColor
             button.addTarget(self, action: "selectSection:", forControlEvents: .TouchUpInside)
         }
+    }
+
+    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        super.layoutDidLayoutForHelper(helper, forRect: rect)
+
+        self.emoticonView.footerBlurView.backgroundColor = self.emoticonView.dummyLabelButton.backgroundColor
+        self.emoticonView.footerBlurView.alpha = 0.9
     }
 
     override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
@@ -238,15 +255,33 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         return self.dynamicType.table.count
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 || indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1 {
+            return 10
+        } else {
+            return tableView.rowHeight
+        }
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let emoticons = section == 0 ? self.favorites : self.dynamicType.table[section]
         let length = count(emoticons)
         let numberOfRow  = (length - 1) / self.dynamicType.numbersOfColumns[section] + 1
-        return numberOfRow
+        return numberOfRow + 2
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
+        if indexPath.row == 0 || indexPath.row == self.tableView(tableView, numberOfRowsInSection: section) - 1 {
+            let identifier = "margin"
+            let cell = (tableView.dequeueReusableCellWithIdentifier(identifier) as! UITableViewCell?) ?? {
+                let cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
+                cell.backgroundColor = UIColor.clearColor()
+                return cell
+            }()
+            return cell
+        }
+
         let identifier = "cell_\(section)"
         let numberOfColumns = self.dynamicType.numbersOfColumns[indexPath.section]
         let cell = (tableView.dequeueReusableCellWithIdentifier(identifier) as! UITableViewCell?) ?? {
@@ -272,8 +307,9 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let margin: CGFloat = 8.0
         let buttonWidth = (tableView.frame.size.width - 2 * margin) / CGFloat(numberOfColumns)
 
+        let row = indexPath.row - 1
         for column in 0..<numberOfColumns {
-            let position = indexPath.row * numberOfColumns + column
+            let position = row * numberOfColumns + column
             if position >= length {
                 break
             }
@@ -300,6 +336,11 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let headerView = view as! UITableViewHeaderFooterView
 
         let backgroundView = self.headerBackgroundViews[section] ?? {
+            let blurView = UIView()
+            blurView.backgroundColor = self.emoticonView.dummyLabelButton.backgroundColor
+            blurView.alpha = 0.9
+            return blurView
+            /*
             let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
             let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
             let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
@@ -313,11 +354,13 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
             blurView.layer.mask = gradientLayer
             self.headerBackgroundViews[section] = blurView
             return blurView
+            */
         }()
 
         headerView.backgroundView = backgroundView
-        headerView.textLabel.font = self.view.deleteButton.captionLabel.font
-        headerView.textLabel.textColor = self.view.deleteButton.captionLabel.textColor
+        let modelLabel = self.emoticonView.sectionButtons[0].captionLabel
+        headerView.textLabel.font = modelLabel.font
+        headerView.textLabel.textColor = modelLabel.textColor
     }
 
     func input(sender: GRInputButton) {

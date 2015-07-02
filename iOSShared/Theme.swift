@@ -223,25 +223,21 @@ public class ThemeCaptionClass {
         self.configuration = full
     }
 
-    func _imageNames() -> [String] {
-        if let sub: AnyObject = self.configuration["image"] {
+    func _backgroundImageNames() -> [String] {
+        if let sub: AnyObject = self.backgroundConfiguration["image"] {
             return (sub is String ? [sub] : sub) as! [String]
         } else {
             return []
         }
     }
 
-    lazy var labelConfiguration: Dictionary<String, AnyObject> = {
-        return self.configuration["label"] as? Dictionary<String, AnyObject> ?? [:]
-    }()
+    lazy var backgroundConfiguration: Dictionary<String, AnyObject> = self.configuration["background"] as? Dictionary<String, AnyObject> ?? [:]
 
-    lazy var fontConfiguration: Dictionary<String, AnyObject> = {
-        return self.labelConfiguration["font"] as? Dictionary<String, AnyObject> ?? [:]
-    }()
+    lazy var labelConfiguration: Dictionary<String, AnyObject> = self.configuration["label"] as? Dictionary<String, AnyObject> ?? [:]
 
-    lazy var effectConfiguration: Dictionary<String, AnyObject> = {
-        return self.configuration["effect"] as? Dictionary<String, AnyObject> ?? [:]
-    }()
+    lazy var fontConfiguration: Dictionary<String, AnyObject> = self.labelConfiguration["font"] as? Dictionary<String, AnyObject> ?? [:]
+
+    lazy var effectConfiguration: Dictionary<String, AnyObject> = self.configuration["effect"] as? Dictionary<String, AnyObject> ?? [:]
 }
 
 public class ThemeCaptionGroup {
@@ -289,12 +285,15 @@ public class ThemeCaption {
     }
 
     func appealButton(button: GRInputButton) {
-        let (image1, image2, image3) = self.images
+        let (image1, image2, image3) = self.backgroundImages
         //assert(image1 != nil)
         button.tintColor = UIColor.clearColor()
         button.setBackgroundImage(image1, forState: .Normal)
         button.setBackgroundImage(image2, forState: .Highlighted)
         button.setBackgroundImage(image3, forState: .Selected)
+
+        let color = self.backgroundColor
+        button.backgroundColor = color
 
         if let glyph = self.glyph {
             assert(button.glyphView.superview == button)
@@ -389,8 +388,8 @@ public class ThemeCaption {
         return nil
     }
 
-    func _images() -> (UIImage?, UIImage?, UIImage?) {
-        if let imageNames = self.attributeByGetter({ $0._imageNames() }, until: { $0!.count > 0 }) as?  [String] {
+    func _backgroundImages() -> (UIImage?, UIImage?, UIImage?) {
+        if let imageNames = self.attributeByGetter({ $0._backgroundImageNames() }, until: { $0!.count > 0 }) as?  [String] {
             var images: [UIImage?] = []
             for imageName in imageNames {
                 let image = self.trait.owner.imageForFilename(imageName, withTopMargin: self.topMargin)
@@ -408,7 +407,15 @@ public class ThemeCaption {
         }
     }
 
-    public lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
+    public lazy var backgroundImages: (UIImage?, UIImage?, UIImage?) = self._backgroundImages()
+
+    public lazy var backgroundColor: UIColor? = {
+        if let colorExpression = self.attributeByGetter({ $0.backgroundConfiguration["color"] }) as? String {
+            return UIColor(HTMLExpression: colorExpression)
+        } else {
+            return nil
+        }
+    }()
 
     public lazy var text: String? = {
         if let text = self.attributeByGetter({ $0.labelConfiguration["text"] }) as? String {
@@ -517,6 +524,8 @@ class CachedTheme: Theme {
 
 class BuiltInTheme: Theme {
     override func dataForFilename(name: String) -> NSData? {
+        return nil
+        /*
         if let dataString: String = {
             switch name {
                 case "landscape.json": return "ewogICAgIm5hbWUiOiAiYmx1ZXB1cnBsZSIsCgogICAgImJsdXIiOiBmYWxzZSwKICAgICJiYWNrZ3JvdW5kIjogImJnLnBuZyIsCiAgICAiZm9yZWdyb3VuZCI6ICJmb3JlZ3JvdW5kLnBuZyIsCgogICAgInF3ZXJ0eSI6IHsKICAgICAgICAiaW1hZ2UiOiBbInF3ZXJ0eS85cGF0Y2gucG5nOjoxMCAxMCAxMCAxMCIsICJxd2VydHkvc2VsZWN0ZWQucG5nOjoxMCAxMCAxMCAxMCJdLAogICAgICAgICJsYWJlbCI6IHsKICAgICAgICAgICAgImZvbnQiOiB7CiAgICAgICAgICAgICAgICAibmFtZSI6ICJBdmVuaXIgTGlnaHQiLAogICAgICAgICAgICAgICAgInNpemUiOiAxNSwKICAgICAgICAgICAgICAgICJjb2xvciI6ICIjZmZmIiwKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInRleHQiOiBudWxsLAogICAgICAgICAgICAicG9zaXRpb24iOiBbMCwgMl0KICAgICAgICB9LAogICAgfSwKICAgICJxd2VydHktc2hpZnQiOiB7CiAgICAgICJsYWJlbCI6eyJnbHlwaCI6InF3ZXJ0eS1nbHlwaC80OHB4LXNoaWZ0LnBuZyIsfSx9LAogICAgInF3ZXJ0eS1nbG9iZSI6IHsKICAgICAgImxhYmVsIjp7ImdseXBoIjoicXdlcnR5LWdseXBoLzQwcHgtZ2xvYmUucG5nIix9LH0sCiAgICAicXdlcnR5LWRlbGV0ZSI6IHsKICAgICAgImxhYmVsIjp7ImdseXBoIjoicXdlcnR5LWdseXBoLzQ4cHgtZGVsZXRlLnBuZyIsfSx9LAoKICAgICJ0ZW5rZXkiOiB7CiAgICAgICAgImltYWdlIjogWyJxd2VydHkvOXBhdGNoLnBuZzo6MTAgMTAgMTAgMTAiLCAicXdlcnR5L3NlbGVjdGVkLnBuZzo6MTAgMTAgMTAgMTAiXSwKICAgICAgICAibGFiZWwiOiB7CiAgICAgICAgICAgICJmb250IjogewogICAgICAgICAgICAgICAgIm5hbWUiOiAiQXZlbmlyIExpZ2h0IiwKICAgICAgICAgICAgICAgICJzaXplIjogMTYsCiAgICAgICAgICAgICAgICAiY29sb3IiOiAiI2ZmZiIsCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJ0ZXh0IjogbnVsbCwKICAgICAgICAgICAgInBvc2l0aW9uIjogWzAsIDBdLAogICAgICAgIH0sCiAgICB9LAogICAgInRlbmtleS1zaGlmdCI6IHsKICAgICAgImxhYmVsIjp7ImdseXBoIjoicXdlcnR5LWdseXBoLzQ4cHgtc2hpZnQucG5nIix9LH0sCiAgICAidGVua2V5LWdsb2JlIjogewogICAgICAibGFiZWwiOnsiZ2x5cGgiOiJxd2VydHktZ2x5cGgvNDBweC1nbG9iZS5wbmciLH0sfSwKICAgICJ0ZW5rZXktZGVsZXRlIjogewogICAgICAibGFiZWwiOnsiZ2x5cGgiOiJxd2VydHktZ2x5cGgvNDhweC1kZWxldGUucG5nIix9LH0KfQ=="
@@ -550,6 +559,7 @@ class BuiltInTheme: Theme {
         } else {
             return nil
         }
+        */
     }
 }
 

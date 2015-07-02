@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics()])
         crashlyticsInitialized = true
         sharedAppDelegate = self
+
+        if preferences.themeResources.count == 0 {
+            Theme.themeWithAddress(preferences.themePath).dump()
+        }
         //store // force lazy loading
 
         return true
