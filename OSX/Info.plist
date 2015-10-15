@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Gureum.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.youknowone.inputmethod.Gureum</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -469,12 +469,14 @@
 	<string>CIMInputController</string>
 	<key>InputMethodServerPreferencesWindowControllerClass</key>
 	<string>GureumPreferencesWindowController</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2011-2014 Jeong YunWon</string>
+	<string>Copyright 2011-2015 Jeong YunWon</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
