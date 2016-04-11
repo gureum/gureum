@@ -60,7 +60,7 @@
 		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
 		38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */; };
 		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
-		38F7007E1BD03C8900379EE7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F7007D1BD03C8900379EE7 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
+		38F7007E1BD03C8900379EE7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F7007D1BD03C8900379EE7 /* Fabric.framework */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
@@ -721,7 +721,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Pods/Fabric-OSX/Fabric.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
+			shellScript = "./Pods/Fabric/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
 		};
 		388FD025175ED98E00469B76 /* Run Version Script */ = {
 			isa = PBXShellScriptBuildPhase;

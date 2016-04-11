@@ -1,0 +1,8 @@
+language: objective-c
+sudo: false
+xcode_workspace: Gureum.xcworkspace
+osx_image: xcode7
+xcode_sdk:
+  - macosx
+xcode_scheme:
+  - OSX

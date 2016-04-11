@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${VERSION}, Copyright 2011-2014 Jeong YunWon</string>
+	<string>${VERSION}, Copyright 2011-2016 Jeong YunWon</string>
 	<key>CFBundleIconFile</key>
 	<string>Gureum.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -476,7 +476,7 @@
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2011-2015 Jeong YunWon</string>
+	<string>Copyright 2011-2014 Jeong YunWon</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
