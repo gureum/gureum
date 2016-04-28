@@ -7,4 +7,4 @@ xcode_sdk:
 xcode_scheme:
   - OSX
 before_install:
-  - gem install cocoapods -v '0.32.1'
+  - gem install cocoapods -v '1.0.0.beta.6'
