@@ -19,7 +19,8 @@ org.youknowone.inputmethod.Gureum.han3-2011loose = "Han 3set 2011 (Loose Combina
 org.youknowone.inputmethod.Gureum.han3-2012 = "Han 3set 2012";
 org.youknowone.inputmethod.Gureum.han3-2012loose = "Han 3set 2012 (Loose Combination)";
 org.youknowone.inputmethod.Gureum.han3finalnoshift = "Han 3set Final No shift (Compatible)";
-org.youknowone.inputmethod.Gureum.han3-2014 = "Han 3set Gathering 2014";
+org.youknowone.inputmethod.Gureum.han3-2014 = "Han 3set Moachigi 2015";
+org.youknowone.inputmethod.Gureum.han3-2015 = "Han 3set 2015";
 
 CFBundleName = "Gureum";
 CFBundleDisplayName = "Gureum Input Method";
