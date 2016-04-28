@@ -1,6 +1,6 @@
 platform :osx, "10.10"
 
-xcodeproj 'Gureum.xcodeproj'
+project 'Gureum.xcodeproj'
 target 'OSX' do
 	pod 'cdebug'
 	pod 'FoundationExtension', '>= 1.2.4'
