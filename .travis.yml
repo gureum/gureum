@@ -6,3 +6,5 @@ xcode_sdk:
   - macosx
 xcode_scheme:
   - OSX
+before_install:
+  - gem install cocoapods -v '0.32.1'
