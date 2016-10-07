@@ -39,8 +39,6 @@
 		384FDE66193F89C600114F48 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 38615D6E193F8868007F7686 /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3D1B0E7E7C00E2C16D /* Security.framework */; };
 		38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */; };
-		38531F451B0E7E7C00E2C16D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3F1B0E7E7C00E2C16D /* libc++.dylib */; };
-		38531F461B0E7E7C00E2C16D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F401B0E7E7C00E2C16D /* libz.dylib */; };
 		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
@@ -60,12 +58,11 @@
 		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
 		38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */; };
 		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
-		38F7007E1BD03C8900379EE7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F7007D1BD03C8900379EE7 /* Fabric.framework */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 		38FDDEE019F547170055731D /* RomanComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FDDEDF19F547170055731D /* RomanComposer.m */; };
-		F27AF12A9F12575DD84895F3 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEB1DB7DBA7981BD8CA8A2B /* libPods-OSX.a */; };
+		4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994C498AB6F1C414B12608 /* libPods-OSX.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,8 +158,7 @@
 		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		382BF23F1CD26D7100B039C8 /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
-		382BF2401CD26D7100B039C8 /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
+		381B32731DA826B100EA1975 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		382E68641A1314D900031D1D /* Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382E68681A1314D900031D1D /* Preferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -186,8 +182,6 @@
 		38475AF51412BC050062100D /* qwerty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qwerty.png; path = Icons/qwerty.png; sourceTree = "<group>"; };
 		38531F3D1B0E7E7C00E2C16D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		38531F3F1B0E7E7C00E2C16D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		38531F401B0E7E7C00E2C16D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		385ABBF5193F825500478DA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
@@ -224,16 +218,14 @@
 		38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hanroman@2x.png"; path = "Icons/hanroman@2x.png"; sourceTree = "<group>"; };
 		38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qwerty@2x.png"; path = "Icons/qwerty@2x.png"; sourceTree = "<group>"; };
 		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
-		38F7007D1BD03C8900379EE7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "Pods/Fabric-OSX/Fabric.framework"; sourceTree = SOURCE_ROOT; };
 		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 		38FDDEDE19F547170055731D /* RomanComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RomanComposer.h; sourceTree = "<group>"; };
 		38FDDEDF19F547170055731D /* RomanComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RomanComposer.m; sourceTree = "<group>"; };
-		54D81F97919D6DBD4B0C752A /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
-		5AAE9D2F4E79980024D00429 /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
-		5FEB1DB7DBA7981BD8CA8A2B /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		96531747FFE34C269FBF9A41 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B994C498AB6F1C414B12608 /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,17 +233,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38531F461B0E7E7C00E2C16D /* libz.dylib in Frameworks */,
 				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
-				38531F451B0E7E7C00E2C16D /* libc++.dylib in Frameworks */,
-				38F7007E1BD03C8900379EE7 /* Fabric.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
 				384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
-				F27AF12A9F12575DD84895F3 /* libPods-OSX.a in Frameworks */,
+				4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,27 +262,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		067DBCA6B52401C5434CDEA1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5AAE9D2F4E79980024D00429 /* Pods-OSX.debug.xcconfig */,
-				54D81F97919D6DBD4B0C752A /* Pods-OSX.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		38162DF6141263270077AA2D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
 				38531F3D1B0E7E7C00E2C16D /* Security.framework */,
 				38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */,
-				38531F3F1B0E7E7C00E2C16D /* libc++.dylib */,
-				38531F401B0E7E7C00E2C16D /* libz.dylib */,
-				38F7007D1BD03C8900379EE7 /* Fabric.framework */,
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
+				381B32731DA826B100EA1975 /* Bridge.h */,
 				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
 				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
@@ -416,7 +394,7 @@
 				382E68651A1314D900031D1D /* Preferences */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
-				067DBCA6B52401C5434CDEA1 /* Pods */,
+				8F621F5501ACAD707B61B6D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -439,8 +417,7 @@
 				38863C98140E677900A8ED76 /* InputMethodKit.framework */,
 				38BFE7FB18B45419004B2B2E /* XCTest.framework */,
 				38863C65140E64EB00A8ED76 /* Other Frameworks */,
-				96531747FFE34C269FBF9A41 /* libPods.a */,
-				5FEB1DB7DBA7981BD8CA8A2B /* libPods-OSX.a */,
+				3B994C498AB6F1C414B12608 /* libPods-OSX.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -498,6 +475,15 @@
 			name = Composers;
 			sourceTree = "<group>";
 		};
+		8F621F5501ACAD707B61B6D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */,
+				60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -516,15 +502,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
-				DB309AEB1CE918C6673885DB /* 📦 Check Pods Manifest.lock */,
+				D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */,
 				388FD025175ED98E00469B76 /* Run Version Script */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
-				86654D8F3D0CA20A6B75833A /* 📦 Copy Pods Resources */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
-				D35D8B30733E136C6CBCEED5 /* 📦 Embed Pods Frameworks */,
+				E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */,
+				77C24B9897603A19323E8A9D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -580,11 +566,12 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
 						DevelopmentTeam = RT8F3G27W8;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -741,14 +728,14 @@
 			shellPath = /bin/bash;
 			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
-		86654D8F3D0CA20A6B75833A /* 📦 Copy Pods Resources */ = {
+		77C24B9897603A19323E8A9D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,34 +743,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D35D8B30733E136C6CBCEED5 /* 📦 Embed Pods Frameworks */ = {
+		D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB309AEB1CE918C6673885DB /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -883,8 +870,9 @@
 /* Begin XCBuildConfiguration section */
 		38162E09141263280077AA2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AAE9D2F4E79980024D00429 /* Pods-OSX.debug.xcconfig */;
+			baseConfigurationReference = 4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -910,6 +898,7 @@
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
@@ -919,14 +908,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		38162E0A141263280077AA2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54D81F97919D6DBD4B0C752A /* Pods-OSX.release.xcconfig */;
+			baseConfigurationReference = 60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -948,6 +941,7 @@
 				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
@@ -956,6 +950,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1022,11 +1018,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1051,11 +1050,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
