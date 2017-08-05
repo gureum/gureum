@@ -50,7 +50,7 @@
         // 생성 실패 처리
         if (self->_inputContext == nil) {
             [self release];
-            return nil;   
+            return nil;
         }
         self->_commitString = [[NSMutableString alloc] init];
     }
@@ -297,7 +297,7 @@
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
     // TODO: 설정 추가
 //    if (candidateString.length == 0) {
-//        self.composedString = self.originalString;   
+//        self.composedString = self.originalString;
 //    } else {
 //        NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
 //        self.composedString = value;
@@ -413,7 +413,7 @@
         return result;
     }
     if (self.commitString.length == 0) {
-        return result == CIMInputTextProcessResultProcessed;   
+        return result == CIMInputTextProcessResultProcessed;
     } else {
         return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
     }
@@ -489,7 +489,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     if (!HGCharacterIsChoseong(UCSString[0])) {
         return [NSString stringWithUCSString:UCSString];
     }
-    
+
     if (UCSString[0] == 0x115f) return @"";
     /* if (UCSString[1] == 0x1160) */
     return [NSString stringWithUCSString:UCSString length:1];
@@ -500,16 +500,16 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     if (!HGCharacterIsChoseong(UCSString[0])) {
         return [NSString stringWithUCSString:UCSString];
     }
-    
+
     if (UCSString[0] == 0x115f) {
-        return [NSString stringWithUCSString:UCSString + 1];   
+        return [NSString stringWithUCSString:UCSString + 1];
     }
     /* if (UCSString[1] == 0x1160) */
     return [NSString stringWithUCSString:UCSString length:1];
 }
 
 + (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString {
-    // 초성이 채움문자일 때를 제외하면 항상 
+    // 초성이 채움문자일 때를 제외하면 항상
     if (UCSString[0] == 0x115f) {
         return [NSString stringWithUCSString:UCSString + 1];
     }

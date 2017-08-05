@@ -38,8 +38,8 @@ NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputm
 NSString *kGureumInputSourceIdentifierHan3_2014 = @"org.youknowone.inputmethod.Gureum.han3-2014";
 NSString *kGureumInputSourceIdentifierHan3_2015 = @"org.youknowone.inputmethod.Gureum.han3-2015";
 
-#import "RomanComposer.h"
 #import "HangulComposer.h"
+#import "Gureum-Swift.h"
 
 @implementation GureumComposer
 
