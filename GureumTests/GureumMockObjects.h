@@ -21,7 +21,7 @@
 
 @property(nonatomic,strong) CIMInputController *controller;
 @property(nonatomic,strong) CIMMockClient *client;
-- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSUInteger)flags;
+- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags;
 
 @end
 

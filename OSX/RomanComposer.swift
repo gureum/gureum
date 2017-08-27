@@ -1,5 +1,5 @@
 //
-//  DvorakComposer.swift
+//  RomanComposer.swift
 //  Gureum
 //
 //  Created by Jeong YunWon on 2017. 7. 12..
@@ -50,27 +50,97 @@ class RomanComposer: CIMComposer {
         }
     }
 
-    override var candidates: [Any]! {
+    override var candidates: [String]! {
         return nil
     }
 
-/*
-    #pragma -
+    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEventModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
 
-    - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    if (string.length > 0 && keyCode < 0x33 && !(flags & NSAlternateKeyMask)) {
-    unichar chr = [string characterAtIndex:0];
-    if (flags & NSAlphaShiftKeyMask && 'a' <= chr && chr <= 'z') {
-    chr -= 0x20;
-    string = [NSString stringWithCharacters:&chr length:1];
+        if !string.isEmpty && keyCode < 0x33 && !flags.contains(NSAlternateKeyMask) {
+            var newString = string
+            let chr = string.characters.first!
+            if flags.contains(NSAlphaShiftKeyMask) && "a" <= chr && chr <= "z" {
+                let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
+                newString = String(newChr)
+            }
+            self._commitString = newString
+            return CIMInputTextProcessResultProcessed
+        } else {
+            self._commitString = nil
+            return CIMInputTextProcessResultNotProcessed
+        }
     }
-    self._commitString = string;
-    return CIMInputTextProcessResultProcessed;
-    } else {
-    self._commitString = nil;
-    return CIMInputTextProcessResultNotProcessed;
+    
+}
+
+
+class DvorakComposer: CIMComposer {
+
+    var _commitString: String? = nil
+
+    override var composedString: String! {
+        get {
+            return "";
+        }
     }
+
+    override var originalString: String! {
+        get {
+            return self._commitString ?? "";
+        }
     }
-*/
+
+    override var commitString: String! {
+        get {
+            return self._commitString ?? "";
+        }
+    }
+
+    override func dequeueCommitString() -> String! {
+        let dequeued = self._commitString
+        self._commitString = nil
+        return dequeued ?? ""
+    }
+
+    override func cancelComposition() {
+    }
+
+    override func clearContext() {
+        self._commitString = nil
+    }
+
+    override var hasCandidates: Bool {
+        get {
+            return false
+        }
+    }
+
+    override var candidates: [String]! {
+        return nil
+    }
+
+    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEventModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+        let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
+        let dvorak = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
+        var map: [Character: Character] = [:]
+        zip(qwerty.characters, dvorak.characters).forEach {
+            map[$0] = $1
+        }
+
+        if !string.isEmpty && keyCode < 0x33 && !flags.contains(NSAlternateKeyMask) {
+            let newChr: Character
+            let chr = string.characters.first!
+            if flags.contains(NSAlphaShiftKeyMask) && "a" <= chr && chr <= "z" {
+                newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
+            } else {
+                newChr = chr
+            }
+            self._commitString = String(map[newChr]!)
+            return CIMInputTextProcessResultProcessed
+        } else {
+            self._commitString = nil
+            return CIMInputTextProcessResultNotProcessed
+        }
+    }
     
 }

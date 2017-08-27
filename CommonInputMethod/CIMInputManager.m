@@ -52,7 +52,7 @@
 #pragma - IMKServerInputTextData
 
 //  일단 받은 입력은 모두 핸들러로 넘겨준다.
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     assert([[controller className] hasSuffix:@"InputController"]);
     self.needsFakeComposedString = NO;
     CIMInputTextProcessResult handled = [self->handler inputController:controller inputText:string key:keyCode modifiers:flags client:sender];

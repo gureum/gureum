@@ -73,7 +73,7 @@
 
 #pragma - IMKInputServerTextData
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
     if (keyCode == kVK_Delete) {
         return [self->_inputContext backspace] ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessed;
@@ -99,7 +99,7 @@
     return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
 }
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     dassert(NO); // 한글입력 상태로 념겨져서 처리하는 명령은 없다
     return CIMInputTextProcessResultNotProcessed;
 }
@@ -150,6 +150,7 @@
 #endif
 
 @end
+
 
 @implementation HanjaComposer
 @synthesize mode=_mode;
@@ -364,7 +365,7 @@
     return sharedHanjaTable;
 }
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     CIMInputTextProcessResult result = [self.delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
     switch (keyCode) {
         // backspace

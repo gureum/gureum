@@ -33,7 +33,7 @@
 
 #pragma - IMKServerInputTextData
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     // 입력기용 특수 커맨드 처리
     CIMInputTextProcessResult result = [controller.composer inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
     if (result == CIMInputTextProcessResultNotProcessedAndNeedsCommit) {
