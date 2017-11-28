@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<combination id="0">
+    <!-- enhanced rules -->
+    <item first="0x1100" second="0x110b" result="0x1101"/>  <!-- ᄀ   + ᄀ   → ᄁ  -->
+    <item first="0x110b" second="0x1100" result="0x1101"/>  <!-- ᄀ   + ᄀ   → ᄁ  -->
+    <item first="0x1103" second="0x1106" result="0x1104"/>  <!-- ᄃ   + ᄃ   → ᄄ  -->
+    <item first="0x1106" second="0x1103" result="0x1104"/>  <!-- ᄃ   + ᄃ   → ᄄ  -->
+    <item first="0x1107" second="0x110c" result="0x1108"/>  <!-- ᄇ   + ᄇ   → ᄈ  -->
+    <item first="0x110c" second="0x1107" result="0x1108"/>  <!-- ᄇ   + ᄇ   → ᄈ  -->
+    <item first="0x1109" second="0x1112" result="0x110a"/>  <!-- ᄉ   + ᄉ   → ᄊ  -->
+    <item first="0x1112" second="0x1109" result="0x110a"/>  <!-- ᄉ   + ᄉ   → ᄊ  -->
+    <item first="0x110c" second="0x1100" result="0x110d"/>  <!-- ᄌ   + ᄌ   → ᄍ  -->
+    <item first="0x1100" second="0x110c" result="0x110d"/>  <!-- ᄌ   + ᄌ   → ᄍ  -->
+
+    <item first="0x1171" second="0x1175" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
+    <item first="0x1175" second="0x1171" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
+    <item first="0x116c" second="0x1161" result="0x116a"/>  <!-- ᅬ   + ᅡ   → ᅪ  -->
+    <item first="0x1161" second="0x116c" result="0x116a"/>  <!-- ᅬ   + ᅡ   → ᅪ  -->
+    <item first="0x116c" second="0x1162" result="0x116b"/>  <!-- ᅬ   + ᅢ   → ᅫ  -->
+    <item first="0x1162" second="0x116c" result="0x116b"/>  <!-- ᅬ   + ᅢ   → ᅫ  -->
+    <item first="0x116c" second="0x1175" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
+    <item first="0x1175" second="0x116c" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
+    <item first="0x116c" second="0x1165" result="0x116f"/>  <!-- ᅬ   + ᅥ   → ᅯ  -->
+    <item first="0x1165" second="0x116c" result="0x116f"/>  <!-- ᅬ   + ᅥ   → ᅯ  -->
+    <item first="0x116c" second="0x1166" result="0x1170"/>  <!-- ᅬ   + ᅦ   → ᅰ  -->
+    <item first="0x1166" second="0x116c" result="0x1170"/>  <!-- ᅬ   + ᅦ   → ᅰ  -->
+    <item first="0x116c" second="0x1173" result="0x1164"/>  <!-- ᅬ   + ㅡ  → ㅒ -->
+    <item first="0x1173" second="0x116c" result="0x1164"/>  <!-- ᅬ   + ㅡ  → ㅒ -->
+
+    <item first="0x116e" second="0x5b" result="0x3f"/>
+    <!-- autogen -->
+    <item first="0x1161" second="0x5b" result="0x11b1"/> <!-- ᅡ    ᆱ   autogen -->
+    <item first="0x1162" second="0x5b" result="0x11b6"/> <!-- ᅢ    ᆶ   autogen -->
+    <item first="0x1165" second="0x5b" result="0x11b3"/> <!-- ᅥ    ᆳ   autogen -->
+    <item first="0x1166" second="0x5b" result="0x11bf"/> <!-- ᅦ    ᆿ   autogen -->
+    <item first="0x1167" second="0x5b" result="0x11ac"/> <!-- ᅧ    ᆬ   autogen -->
+    <item first="0x1169" second="0x5b" result="0x11aa"/> <!-- ᅩ    ᆪ   autogen -->
+    <item first="0x116d" second="0x5b" result="0x11b5"/> <!-- ᅭ    ᆵ   autogen -->
+    <item first="0x1172" second="0x5b" result="0x11b4"/> <!-- ᅲ    ᆴ   autogen -->
+    <item first="0x1175" second="0x5b" result="0x11b2"/> <!-- ᅵ    ᆲ   autogen -->
+    <item first="0x11a8" second="0x5b" result="0x11b9"/> <!-- ᆨ    ᆹ   autogen -->
+    <item first="0x11ab" second="0x5b" result="0x11ad"/> <!-- ᆫ    ᆭ   autogen -->
+    <item first="0x11af" second="0x5b" result="0x11c0"/> <!-- ᆯ    ᇀ   autogen -->
+    <item first="0x11b7" second="0x5b" result="0x11be"/> <!-- ᆷ    ᆾ   autogen -->
+    <item first="0x11b8" second="0x5b" result="0x11bd"/> <!-- ᆸ    ᆽ   autogen -->
+    <item first="0x11ba" second="0x5b" result="0x11c1"/> <!-- ᆺ    ᇁ   autogen -->
+    <item first="0x11bb" second="0x5b" result="0x11b0"/> <!-- ᆻ    ᆰ   autogen -->
+    <item first="0x11bc" second="0x5b" result="0x11ae"/> <!-- ᆼ    ᆮ   autogen -->
+    <item first="0x11c2" second="0x5b" result="0x11a9"/> <!-- ᇂ    ᆩ   autogen -->
+</combination>
+
+<!--
+ㄱ, ㄲ, ㄳ, ㄴ, ㄵ, ㄶ, ㄷ, ㄹ, ㄺ, ㄻ, ㄼ, ㄽ, ㄾ, ㄿ, ㅀ, ㅁ, ㅂ, ㅄ, ㅅ, ㅆ, ㅇ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ = range(0x11a8, 0x11c3)
+ㅏ, ㅐ, ㅑ, ㅒ, ㅓ, ㅔ, ㅕ, ㅖ, ㅗ, ㅘ, ㅙ, ㅚ, ㅛ, ㅜ, ㅝ, ㅞ, ㅟ, ㅠ, ㅡ, ㅢ, ㅣ = range(0x1161, 0x1176)
+X = [0x5b]
+table = {
+    ㅛ: ㄿ,
+    ㅠ: ㄾ,
+    ㅕ: ㄵ,
+    ㅐ: ㅀ,
+    ㅓ: ㄽ,
+    ㅣ: ㄼ,
+    ㅏ: ㄻ,
+    ㅔ: ㅋ,
+    ㅗ: ㄳ,
+    ㅎ: ㄲ,
+    ㅆ: ㄺ,
+    ㅂ: ㅈ,
+    ㅅ: ㅍ,
+    ㄹ: ㅌ,
+    ㅇ: ㄷ,
+    ㄴ: ㄶ,
+    ㅁ: ㅊ,
+    ㄱ: ㅄ,
+}
+fulltable = {}
+for k, v in table.items():
+    for x in X:
+        fulltable[(k, x)] = v
+fkeys = list(fulltable.keys())
+fkeys.sort()
+line = '    <item first="0x{0:04x}" second="0x{1:04x}" result="0x{2:04x}"/>'
+comment = '<!-' '- {0}  {1}  {2}   autogen -' '->'
+def xchr(c):
+    if c in X:
+        return ''
+    else:
+        return chr(c)
+for k in fkeys:
+    args = k[0], k[1], fulltable[k]
+    print(line.format(*args), comment.format(*(map(xchr, args))))
+
+-->

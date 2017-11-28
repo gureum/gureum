@@ -28,6 +28,33 @@
 		383562F818B9F32E00F8B8B9 /* han.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F718B9F32E00F8B8B9 /* han.png */; };
 		383562FB18B9F34500F8B8B9 /* eng.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F918B9F34500F8B8B9 /* eng.png */; };
 		383562FC18B9F34500F8B8B9 /* eng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562FA18B9F34500F8B8B9 /* eng@2x.png */; };
+		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
+		3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E71F5DAA7100896BEC /* emoticon.txt */; };
+		3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E81F5DAA7100896BEC /* emoticonr.txt */; };
+		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
+		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
+		3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EE1F5DAA7100896BEC /* hanjaw.txt */; };
+		3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52B1F5DAB9600896BEC /* hanja.txt */; };
+		3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52C1F5DABA400896BEC /* mssymbol.txt */; };
+		3835B52F1F5DABCA00896BEC /* hangul-combination-3gc.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F51F5DAA7100896BEC /* hangul-combination-3gc.xml */; };
+		3835B5301F5DABCA00896BEC /* hangul-combination-3gs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F61F5DAA7100896BEC /* hangul-combination-3gs.xml */; };
+		3835B5311F5DABCA00896BEC /* hangul-keyboard-2.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */; };
+		3835B5321F5DABCA00896BEC /* hangul-keyboard-2y.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F81F5DAA7100896BEC /* hangul-keyboard-2y.xml */; };
+		3835B5331F5DABCA00896BEC /* hangul-keyboard-32.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F91F5DAA7100896BEC /* hangul-keyboard-32.xml */; };
+		3835B5341F5DABCA00896BEC /* hangul-keyboard-39.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FA1F5DAA7100896BEC /* hangul-keyboard-39.xml */; };
+		3835B5351F5DABCA00896BEC /* hangul-keyboard-39s.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FB1F5DAA7100896BEC /* hangul-keyboard-39s.xml */; };
+		3835B5361F5DABCA00896BEC /* hangul-keyboard-3f.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FC1F5DAA7100896BEC /* hangul-keyboard-3f.xml */; };
+		3835B5371F5DABCA00896BEC /* hangul-keyboard-3fs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FD1F5DAA7100896BEC /* hangul-keyboard-3fs.xml */; };
+		3835B5381F5DABCA00896BEC /* hangul-keyboard-3gc.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FE1F5DAA7100896BEC /* hangul-keyboard-3gc.xml */; };
+		3835B5391F5DABCA00896BEC /* hangul-keyboard-3gs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4FF1F5DAA7100896BEC /* hangul-keyboard-3gs.xml */; };
+		3835B53A1F5DABCA00896BEC /* hangul-keyboard-3s.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5001F5DAA7100896BEC /* hangul-keyboard-3s.xml */; };
+		3835B53B1F5DABCA00896BEC /* hangul-keyboard-3y.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */; };
+		3835B53C1F5DABCA00896BEC /* hangul-keyboard-ahn.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */; };
+		3835B53D1F5DABCA00896BEC /* hangul-keyboard-ro.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */; };
+		3835B5421F5DAC4400896BEC /* hangul-combination-3f.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B53E1F5DAC3500896BEC /* hangul-combination-3f.xml */; };
+		3835B5431F5DAC4400896BEC /* hangul-combination-39.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */; };
+		3835B5441F5DAC4400896BEC /* hangul-combination-default.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */; };
+		3835B5451F5DAC4400896BEC /* hangul-combination-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */; };
 		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
 		38475AF71412BC050062100D /* han3.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEF1412BC050062100D /* han3.png */; };
@@ -66,6 +93,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		382707F11F57475400658B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 382707E41F573F1D00658B6B;
+			remoteInfo = HangulTests;
+		};
 		382E68741A13153300031D1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
@@ -125,6 +159,53 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3835B5231F5DAADF00896BEC /* Copy Hanja Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = hanja;
+			dstSubfolderSpec = 7;
+			files = (
+				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
+				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
+				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
+				3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */,
+				3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */,
+				3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */,
+				3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */,
+				3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */,
+			);
+			name = "Copy Hanja Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3835B5241F5DAB2700896BEC /* Copy Keyboards Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = keyboards;
+			dstSubfolderSpec = 7;
+			files = (
+				3835B5421F5DAC4400896BEC /* hangul-combination-3f.xml in Copy Keyboards Files */,
+				3835B5431F5DAC4400896BEC /* hangul-combination-39.xml in Copy Keyboards Files */,
+				3835B5441F5DAC4400896BEC /* hangul-combination-default.xml in Copy Keyboards Files */,
+				3835B5451F5DAC4400896BEC /* hangul-combination-full.xml in Copy Keyboards Files */,
+				3835B52F1F5DABCA00896BEC /* hangul-combination-3gc.xml in Copy Keyboards Files */,
+				3835B5301F5DABCA00896BEC /* hangul-combination-3gs.xml in Copy Keyboards Files */,
+				3835B5311F5DABCA00896BEC /* hangul-keyboard-2.xml in Copy Keyboards Files */,
+				3835B5321F5DABCA00896BEC /* hangul-keyboard-2y.xml in Copy Keyboards Files */,
+				3835B5331F5DABCA00896BEC /* hangul-keyboard-32.xml in Copy Keyboards Files */,
+				3835B5341F5DABCA00896BEC /* hangul-keyboard-39.xml in Copy Keyboards Files */,
+				3835B5351F5DABCA00896BEC /* hangul-keyboard-39s.xml in Copy Keyboards Files */,
+				3835B5361F5DABCA00896BEC /* hangul-keyboard-3f.xml in Copy Keyboards Files */,
+				3835B5371F5DABCA00896BEC /* hangul-keyboard-3fs.xml in Copy Keyboards Files */,
+				3835B5381F5DABCA00896BEC /* hangul-keyboard-3gc.xml in Copy Keyboards Files */,
+				3835B5391F5DABCA00896BEC /* hangul-keyboard-3gs.xml in Copy Keyboards Files */,
+				3835B53A1F5DABCA00896BEC /* hangul-keyboard-3s.xml in Copy Keyboards Files */,
+				3835B53B1F5DABCA00896BEC /* hangul-keyboard-3y.xml in Copy Keyboards Files */,
+				3835B53C1F5DABCA00896BEC /* hangul-keyboard-ahn.xml in Copy Keyboards Files */,
+				3835B53D1F5DABCA00896BEC /* hangul-keyboard-ro.xml in Copy Keyboards Files */,
+			);
+			name = "Copy Keyboards Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		387736EB1423561F00DE50D6 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +252,33 @@
 		383562F718B9F32E00F8B8B9 /* han.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han.png; path = Icons/han.png; sourceTree = "<group>"; };
 		383562F918B9F34500F8B8B9 /* eng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eng.png; path = Icons/eng.png; sourceTree = "<group>"; };
 		383562FA18B9F34500F8B8B9 /* eng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eng@2x.png"; path = "Icons/eng@2x.png"; sourceTree = "<group>"; };
+		3835B4E51F5DAA7100896BEC /* all.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all.txt; sourceTree = "<group>"; };
+		3835B4E71F5DAA7100896BEC /* emoticon.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoticon.txt; sourceTree = "<group>"; };
+		3835B4E81F5DAA7100896BEC /* emoticonr.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoticonr.txt; sourceTree = "<group>"; };
+		3835B4EC1F5DAA7100896BEC /* hanjac.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjac.txt; sourceTree = "<group>"; };
+		3835B4ED1F5DAA7100896BEC /* hanjar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjar.txt; sourceTree = "<group>"; };
+		3835B4EE1F5DAA7100896BEC /* hanjaw.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjaw.txt; sourceTree = "<group>"; };
+		3835B4F51F5DAA7100896BEC /* hangul-combination-3gc.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-combination-3gc.xml"; sourceTree = "<group>"; };
+		3835B4F61F5DAA7100896BEC /* hangul-combination-3gs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-combination-3gs.xml"; sourceTree = "<group>"; };
+		3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-2.xml"; sourceTree = "<group>"; };
+		3835B4F81F5DAA7100896BEC /* hangul-keyboard-2y.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-2y.xml"; sourceTree = "<group>"; };
+		3835B4F91F5DAA7100896BEC /* hangul-keyboard-32.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-32.xml"; sourceTree = "<group>"; };
+		3835B4FA1F5DAA7100896BEC /* hangul-keyboard-39.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-39.xml"; sourceTree = "<group>"; };
+		3835B4FB1F5DAA7100896BEC /* hangul-keyboard-39s.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-39s.xml"; sourceTree = "<group>"; };
+		3835B4FC1F5DAA7100896BEC /* hangul-keyboard-3f.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3f.xml"; sourceTree = "<group>"; };
+		3835B4FD1F5DAA7100896BEC /* hangul-keyboard-3fs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3fs.xml"; sourceTree = "<group>"; };
+		3835B4FE1F5DAA7100896BEC /* hangul-keyboard-3gc.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3gc.xml"; sourceTree = "<group>"; };
+		3835B4FF1F5DAA7100896BEC /* hangul-keyboard-3gs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3gs.xml"; sourceTree = "<group>"; };
+		3835B5001F5DAA7100896BEC /* hangul-keyboard-3s.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3s.xml"; sourceTree = "<group>"; };
+		3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3y.xml"; sourceTree = "<group>"; };
+		3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ahn.xml"; sourceTree = "<group>"; };
+		3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ro.xml"; sourceTree = "<group>"; };
+		3835B52B1F5DAB9600896BEC /* hanja.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = hanja.txt; sourceTree = "<group>"; };
+		3835B52C1F5DABA400896BEC /* mssymbol.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = mssymbol.txt; sourceTree = "<group>"; };
+		3835B53E1F5DAC3500896BEC /* hangul-combination-3f.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3f.xml"; sourceTree = "<group>"; };
+		3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-39.xml"; sourceTree = "<group>"; };
+		3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-default.xml"; sourceTree = "<group>"; };
+		3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-full.xml"; sourceTree = "<group>"; };
 		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
 		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
@@ -279,6 +387,7 @@
 				383EF60B142B287F00013C0B /* Graphic Interface */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
+				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -314,6 +423,56 @@
 				382E68671A1314D900031D1D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3835B4E21F5DAA7100896BEC /* data */ = {
+			isa = PBXGroup;
+			children = (
+				3835B4E31F5DAA7100896BEC /* hanja */,
+				3835B4F41F5DAA7100896BEC /* keyboards */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		3835B4E31F5DAA7100896BEC /* hanja */ = {
+			isa = PBXGroup;
+			children = (
+				3835B4E51F5DAA7100896BEC /* all.txt */,
+				3835B4E71F5DAA7100896BEC /* emoticon.txt */,
+				3835B4E81F5DAA7100896BEC /* emoticonr.txt */,
+				3835B52B1F5DAB9600896BEC /* hanja.txt */,
+				3835B52C1F5DABA400896BEC /* mssymbol.txt */,
+				3835B4EC1F5DAA7100896BEC /* hanjac.txt */,
+				3835B4ED1F5DAA7100896BEC /* hanjar.txt */,
+				3835B4EE1F5DAA7100896BEC /* hanjaw.txt */,
+			);
+			path = hanja;
+			sourceTree = "<group>";
+		};
+		3835B4F41F5DAA7100896BEC /* keyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3835B4F51F5DAA7100896BEC /* hangul-combination-3gc.xml */,
+				3835B4F61F5DAA7100896BEC /* hangul-combination-3gs.xml */,
+				3835B53E1F5DAC3500896BEC /* hangul-combination-3f.xml */,
+				3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */,
+				3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */,
+				3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */,
+				3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */,
+				3835B4F81F5DAA7100896BEC /* hangul-keyboard-2y.xml */,
+				3835B4F91F5DAA7100896BEC /* hangul-keyboard-32.xml */,
+				3835B4FA1F5DAA7100896BEC /* hangul-keyboard-39.xml */,
+				3835B4FB1F5DAA7100896BEC /* hangul-keyboard-39s.xml */,
+				3835B4FC1F5DAA7100896BEC /* hangul-keyboard-3f.xml */,
+				3835B4FD1F5DAA7100896BEC /* hangul-keyboard-3fs.xml */,
+				3835B4FE1F5DAA7100896BEC /* hangul-keyboard-3gc.xml */,
+				3835B4FF1F5DAA7100896BEC /* hangul-keyboard-3gs.xml */,
+				3835B5001F5DAA7100896BEC /* hangul-keyboard-3s.xml */,
+				3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */,
+				3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */,
+				3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */,
+			);
+			path = keyboards;
 			sourceTree = "<group>";
 		};
 		383EF60B142B287F00013C0B /* Graphic Interface */ = {
@@ -436,6 +595,7 @@
 			children = (
 				389A387D1423477F00A2ED88 /* Hangul.framework */,
 				389A387F1423477F00A2ED88 /* libhangul.a */,
+				382707F21F57475400658B6B /* HangulTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -505,6 +665,9 @@
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
+				3835B4E11F59DDAF00896BEC /* Prepare libhangul data */,
+				3835B5231F5DAADF00896BEC /* Copy Hanja Files */,
+				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
 				E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */,
@@ -568,8 +731,8 @@
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
-						DevelopmentTeam = RT8F3G27W8;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = 9384JEL3M9;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -578,8 +741,11 @@
 					};
 					382E68631A1314D900031D1D = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 9384JEL3M9;
+						LastSwiftMigration = 0800;
 					};
 					38BFE7F918B45419004B2B2E = {
+						LastSwiftMigration = 0800;
 						TestTargetID = 38162DF2141263270077AA2D;
 					};
 				};
@@ -616,6 +782,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		382707F21F57475400658B6B /* HangulTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HangulTests.xctest;
+			remoteRef = 382707F11F57475400658B6B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		38615D6E193F8868007F7686 /* ShortcutRecorder.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -698,6 +871,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare libhangul data";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "for template_path in \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.template; do\n  template=${template_path##*/}\n  xml=${template%.template}\n  cp \"$template_path\" \"OSX/data/keyboards/$xml\"\ndone\n\ncp \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.xml \"OSX/data/keyboards/\"\n\ncp \"$SRCROOT/libhangul-objc/libhangul/data/hanja/\"*.txt \"OSX/data/hanja/\"";
+		};
 		388FB6471A12320E00DCB995 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -908,7 +1095,8 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -949,7 +1137,8 @@
 				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -982,6 +1171,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Debug;
@@ -1008,6 +1198,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Release;
@@ -1062,6 +1253,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9384JEL3M9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1115,6 +1307,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1153,6 +1347,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

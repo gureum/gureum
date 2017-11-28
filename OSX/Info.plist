@@ -303,12 +303,35 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smKorean</string>
 			</dict>
-			<key>org.youknowone.inputmethod.Gureum.han3finalnoshift</key>
+			<key>org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat</key>
 			<dict>
 				<key>KeyboardLayout</key>
 				<string>com.apple.inputmethod.Korean.3SetKorean</string>
 				<key>TISInputSourceID</key>
-				<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
+				<string>org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat</string>
+				<key>TISIntendedLanguage</key>
+				<string>ko</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<false/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>han3final.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>han3.png</string>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeScriptKey</key>
+				<string>smKorean</string>
+			</dict>
+			<key>org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol</key>
+			<dict>
+				<key>KeyboardLayout</key>
+				<string>com.apple.inputmethod.Korean.3SetKorean</string>
+				<key>TISInputSourceID</key>
+				<string>org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
 				<key>tsInputModeAlternateMenuIconFileKey</key>

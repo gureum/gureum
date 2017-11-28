@@ -10,6 +10,7 @@
 
 #import "GureumAppDelegate.h"
 
+
 @implementation CIMInputController (Gureum)
 
 - (IBAction)checkRecentVersion:(id)sender {

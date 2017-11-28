@@ -34,7 +34,8 @@ NSString *kGureumInputSourceIdentifierHan3_2011 = @"org.youknowone.inputmethod.G
 NSString *kGureumInputSourceIdentifierHan3_2011Loose = @"org.youknowone.inputmethod.Gureum.han3-2011loose";
 NSString *kGureumInputSourceIdentifierHan3_2012 = @"org.youknowone.inputmethod.Gureum.han3-2012";
 NSString *kGureumInputSourceIdentifierHan3_2012Loose = @"org.youknowone.inputmethod.Gureum.han3-2012loose";
-NSString *kGureumInputSourceIdentifierHan3FinalNoShift = @"org.youknowone.inputmethod.Gureum.han3finalnoshift";
+NSString *kGureumInputSourceIdentifierHan3FinalNoShiftCompat = @"org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat";
+NSString *kGureumInputSourceIdentifierHan3FinalNoShiftSymbol = @"org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol";
 NSString *kGureumInputSourceIdentifierHan3_2014 = @"org.youknowone.inputmethod.Gureum.han3-2014";
 NSString *kGureumInputSourceIdentifierHan3_2015 = @"org.youknowone.inputmethod.Gureum.han3-2015";
 
@@ -72,19 +73,16 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
                                                         @"2", kGureumInputSourceIdentifierHan2,
                                                         @"2y", kGureumInputSourceIdentifierHan2Classic,
                                                         @"3f", kGureumInputSourceIdentifierHan3Final,
-                                                        @"3fl", kGureumInputSourceIdentifierHan3FinalLoose,
                                                         @"39", kGureumInputSourceIdentifierHan390,
-                                                        @"39l", kGureumInputSourceIdentifierHan390Loose,
                                                         @"3s", kGureumInputSourceIdentifierHan3NoShift,
                                                         @"3y", kGureumInputSourceIdentifierHan3Classic,
                                                         @"32", kGureumInputSourceIdentifierHan3Layout2,
                                                         @"ro", kGureumInputSourceIdentifierHanRoman,
                                                         @"ahn", kGureumInputSourceIdentifierHanAhnmatae,
+                                                        @"3gc", kGureumInputSourceIdentifierHan3FinalNoShiftCompat,
+                                                        @"3gs", kGureumInputSourceIdentifierHan3FinalNoShiftSymbol,
                                                         @"3-2011", kGureumInputSourceIdentifierHan3_2011,
-                                                        @"3-2011l", kGureumInputSourceIdentifierHan3_2011Loose,
                                                         @"3-2012", kGureumInputSourceIdentifierHan3_2012,
-                                                        @"3-2012l", kGureumInputSourceIdentifierHan3_2012Loose,
-                                                        @"3fs", kGureumInputSourceIdentifierHan3FinalNoShift,
                                                         @"3-2014", kGureumInputSourceIdentifierHan3_2014,
                                                         @"3-2015", kGureumInputSourceIdentifierHan3_2015,
                                                         nil];

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<combination id="0">
+    <item first="0x1100" second="0x1100" result="0x1101"/>  <!-- ᄀ   + ᄀ   → ᄁ  -->
+    <item first="0x1103" second="0x1103" result="0x1104"/>  <!-- ᄃ   + ᄃ   → ᄄ  -->
+    <item first="0x1107" second="0x1107" result="0x1108"/>  <!-- ᄇ   + ᄇ   → ᄈ  -->
+    <item first="0x1109" second="0x1109" result="0x110a"/>  <!-- ᄉ   + ᄉ   → ᄊ  -->
+    <item first="0x110c" second="0x110c" result="0x110d"/>  <!-- ᄌ   + ᄌ   → ᄍ  -->
+    <item first="0x1169" second="0x1161" result="0x116a"/>  <!-- ᅩ   + ᅡ   → ᅪ  -->
+    <item first="0x1161" second="0x1169" result="0x116a"/>  <!-- ᅩ   + ᅡ   → ᅪ  -->
+    <item first="0x1169" second="0x1162" result="0x116b"/>  <!-- ᅩ   + ᅢ   → ᅫ  -->
+    <item first="0x1162" second="0x1169" result="0x116b"/>  <!-- ᅩ   + ᅢ   → ᅫ  -->
+    <item first="0x1169" second="0x1175" result="0x116c"/>  <!-- ᅩ   + ᅵ   → ᅬ  -->
+    <item first="0x1175" second="0x1169" result="0x116c"/>  <!-- ᅩ   + ᅵ   → ᅬ  -->
+    <item first="0x116e" second="0x1165" result="0x116f"/>  <!-- ᅮ   + ᅥ   → ᅯ  -->
+    <item first="0x1165" second="0x116e" result="0x116f"/>  <!-- ᅮ   + ᅥ   → ᅯ  -->
+    <item first="0x116e" second="0x1166" result="0x1170"/>  <!-- ᅮ   + ᅦ   → ᅰ  -->
+    <item first="0x1166" second="0x116e" result="0x1170"/>  <!-- ᅮ   + ᅦ   → ᅰ  -->
+    <item first="0x116e" second="0x1175" result="0x1171"/>  <!-- ᅮ   + ᅵ   → ᅱ  -->
+    <item first="0x1175" second="0x116e" result="0x1171"/>  <!-- ᅮ   + ᅵ   → ᅱ  -->
+</combination>

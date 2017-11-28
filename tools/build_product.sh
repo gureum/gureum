@@ -1,5 +1,10 @@
 #!/bin/bash
+#https://discuss.atom.io/t/sandbox-supposedly-enabled-but-application-loader-disagrees/26155
 . ready.sh
+
+APP_KEY="3rd Party Mac Developer Application: YunWon Jeong"
+INSTALLER_KEY="3rd Party Mac Developer Installer: YunWon Jeong"
+DEVELOPER_KEY="Developer ID Installer: YunWon Jeong"
 
 rm "build/$CONFIGURATION/$pkgname.pkg" "build/$CONFIGURATION/$pkgname.app.tar.gz"
 rm "build/$CONFIGURATION/Gureum.app/Contents/Info.plist"

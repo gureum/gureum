@@ -54,7 +54,7 @@ class RomanComposer: CIMComposer {
         return nil
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEventModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
 
         if !string.isEmpty && keyCode < 0x33 && !flags.contains(NSAlternateKeyMask) {
             var newString = string
@@ -119,7 +119,7 @@ class DvorakComposer: CIMComposer {
         return nil
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEventModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
         let dvorak = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
         var map: [Character: Character] = [:]

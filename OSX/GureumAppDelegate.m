@@ -16,11 +16,15 @@
 
 #import "GureumPreferencesWindowController.h"
 
+#import <Hangul/HGInputContext.h>
+
+
 @implementation GureumAppDelegate
 @synthesize menu;
 
 - (void)awakeFromNib {
     //[Fabric with:@[CrashlyticsKit]];
+    [HGKeyboard initialize];
 
     self->sharedInputManager = [[CIMInputManager alloc] init];
 

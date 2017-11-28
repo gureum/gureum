@@ -308,8 +308,8 @@
 - (HGHanjaTable *)characterTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"hanjac" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"hanjac" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
@@ -318,8 +318,8 @@
 - (HGHanjaTable *)wordTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"hanjaw" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"hanjaw" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
@@ -328,8 +328,8 @@
 - (HGHanjaTable *)reversedTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"hanjar" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"hanjar" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
@@ -338,8 +338,8 @@
 - (HGHanjaTable *)MSSymbolTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"mssymbol" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"mssymbol" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
@@ -348,8 +348,8 @@
 - (HGHanjaTable *)emoticonTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"emoticon" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"emoticon" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
@@ -358,8 +358,8 @@
 - (HGHanjaTable *)emoticonReversedTable {
     static HGHanjaTable *sharedHanjaTable = nil;
     if (sharedHanjaTable == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[HGHanjaTable class]];
-        NSString *path = [bundle pathForResource:@"emoticonr" ofType:@"txt"];
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *path = [bundle pathForResource:@"emoticonr" ofType:@"txt" inDirectory:@"hanja"];
         sharedHanjaTable = [[HGHanjaTable alloc] initWithContentOfFile:path];
     }
     return sharedHanjaTable;
