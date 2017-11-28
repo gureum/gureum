@@ -463,10 +463,6 @@ TISInputSource *_USSource() {
     [NSApp orderFrontStandardAboutPanel:sender];
 }
 
-- (void)showPreferences:(id)sender {
-    [super showPreferences:sender];
-}
-
 @end
 
 

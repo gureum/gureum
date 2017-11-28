@@ -46,7 +46,6 @@
 
 @interface CIMInputController (CIMMenu)
 
-- (IBAction)showPreferences:(id)sender;
 - (IBAction)showStandardAboutPanel:(id)sender;
 
 @end
