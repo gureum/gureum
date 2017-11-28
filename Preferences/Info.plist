@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2014년 youknowone.org. All rights reserved.</string>
+	<string>Copyright © 2011-2017 youknowone.org. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>Preferences</string>
 	<key>NSPrefPaneIconFile</key>

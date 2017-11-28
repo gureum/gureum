@@ -158,18 +158,18 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         dlog(DEBUG_SHORTCUT, @"**** Reset modifier ****");
         self->lastModifier = 0;
 
-        if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
-            need_exchange = YES;
-        }
-        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
-            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
-            need_exchange = YES;
-        }
-        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
-            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
-            need_exchange = YES;
-        }
+//        if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
+//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
+//            need_exchange = YES;
+//        }
+//        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
+//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
+//            need_exchange = YES;
+//        }
+//        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
+//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
+//            need_exchange = YES;
+//        }
 
         if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");

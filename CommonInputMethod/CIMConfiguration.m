@@ -71,8 +71,8 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { CIMRightCommandKeyShortcutBehavior, &self->rightCommandKeyShortcutBehavior, 1 },
             { CIMRightOptionKeyShortcutBehavior, &self->rightOptionKeyShortcutBehavior, 2 },
             { CIMRightControlKeyShortcutBehavior, &self->rightControlKeyShortcutBehavior, 0 },
-            { CIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, NSShiftKeyMask },
-            { CIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0x31 },
+            { CIMInputModeExchangeKeyModifier, &self->inputModeExchangeKeyModifier, 0 }, // NSShiftKeyMask
+            { CIMInputModeExchangeKeyCode, &self->inputModeExchangeKeyCode, 0 },  // 0x31
             { CIMInputModeHanjaKeyModifier, &self->inputModeHanjaKeyModifier, NSAlternateKeyMask },
             { CIMInputModeHanjaKeyCode, &self->inputModeHanjaKeyCode, 0x24 },
             { CIMInputModeEnglishKeyModifier, &self->inputModeEnglishKeyModifier, 0 },

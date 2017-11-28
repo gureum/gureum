@@ -17,8 +17,8 @@
 		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
-		382E68691A1314D900031D1D /* Preferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 382E68681A1314D900031D1D /* Preferences.h */; };
-		382E686B1A1314D900031D1D /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 382E686A1A1314D900031D1D /* Preferences.m */; };
+		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
+		381CA2F11FCE208A00DDB81D /* Example.png in Resources */ = {isa = PBXBuildFile; fileRef = 381CA2F01FCE208A00DDB81D /* Example.png */; };
 		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
@@ -216,10 +216,11 @@
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		381B32731DA826B100EA1975 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		381CA2ED1FCE16EA00DDB81D /* Preferences-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preferences-Bridging-Header.h"; sourceTree = "<group>"; };
+		381CA2EE1FCE16EA00DDB81D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		381CA2F01FCE208A00DDB81D /* Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Example.png; sourceTree = "<group>"; };
 		382E68641A1314D900031D1D /* Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		382E68681A1314D900031D1D /* Preferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
-		382E686A1A1314D900031D1D /* Preferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
 		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		383562EB18B9F2D900F8B8B9 /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
@@ -381,11 +382,12 @@
 		382E68651A1314D900031D1D /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				382E68681A1314D900031D1D /* Preferences.h */,
-				382E686A1A1314D900031D1D /* Preferences.m */,
+				381CA2EE1FCE16EA00DDB81D /* Preferences.swift */,
 				382E686C1A1314D900031D1D /* Preferences.tiff */,
 				382E686E1A1314D900031D1D /* Preferences.xib */,
+				381CA2F01FCE208A00DDB81D /* Example.png */,
 				382E68661A1314D900031D1D /* Supporting Files */,
+				381CA2ED1FCE16EA00DDB81D /* Preferences-Bridging-Header.h */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -613,7 +615,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382E68691A1314D900031D1D /* Preferences.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,7 +706,7 @@
 					382E68631A1314D900031D1D = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 9384JEL3M9;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					38BFE7F918B45419004B2B2E = {
 						LastSwiftMigration = 0800;
@@ -800,6 +801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				381CA2F11FCE208A00DDB81D /* Example.png in Resources */,
 				382E68701A1314D900031D1D /* Preferences.xib in Resources */,
 				382E686D1A1314D900031D1D /* Preferences.tiff in Resources */,
 			);
@@ -934,7 +936,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382E686B1A1314D900031D1D /* Preferences.m in Sources */,
+				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,10 +1110,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = Preferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = prefPane;
 			};
@@ -1135,10 +1140,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = Preferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = prefPane;
 			};

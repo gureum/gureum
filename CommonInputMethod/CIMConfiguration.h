@@ -34,7 +34,7 @@ FOUNDATION_EXTERN NSString *CIMOptionKeyBehavior;
 FOUNDATION_EXTERN NSString *CIMHangulCombinationModeComposing;
 FOUNDATION_EXTERN NSString *CIMHangulCombinationModeCommiting;
 
-#define CIMConfigurationBoolItemCount 5
+#define CIMConfigurationBoolItemCount 4
 /* Common */
 FOUNDATION_EXTERN NSString *CIMSharedInputManager;
 /* Gureum */
