@@ -56,10 +56,10 @@ class RomanComposer: CIMComposer {
 
     override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
 
-        if !string.isEmpty && keyCode < 0x33 && !flags.contains(NSAlternateKeyMask) {
+        if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             var newString = string
             let chr = string.characters.first!
-            if flags.contains(NSAlphaShiftKeyMask) && "a" <= chr && chr <= "z" {
+            if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
             }
@@ -127,10 +127,10 @@ class DvorakComposer: CIMComposer {
             map[$0] = $1
         }
 
-        if !string.isEmpty && keyCode < 0x33 && !flags.contains(NSAlternateKeyMask) {
+        if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             let newChr: Character
             let chr = string.characters.first!
-            if flags.contains(NSAlphaShiftKeyMask) && "a" <= chr && chr <= "z" {
+            if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
                 newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
             } else {
                 newChr = chr

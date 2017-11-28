@@ -6,8 +6,6 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import <ShortcutRecorder/ShortcutRecorder.h>
-
 #import "GureumPreferencesWindowController.h"
 
 #import "CIMConfiguration.h"
@@ -160,10 +158,10 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 //    self->rightCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightCommandKeyShortcutBehavior];
 //    self->rightOptionBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightOptionKeyShortcutBehavior];
 //    self->rightControlBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->rightControlKeyShortcutBehavior];
-    self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
-    self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
-    self->inputModeEnglishKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeEnglishKeyCode, configuration->inputModeEnglishKeyModifier);
-    self->inputModeKoreanKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeKoreanKeyCode, configuration->inputModeKoreanKeyModifier);
+//    self->inputModeExchangeKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeExchangeKeyCode, configuration->inputModeExchangeKeyModifier);
+//    self->inputModeHanjaKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeHanjaKeyCode, configuration->inputModeHanjaKeyModifier);
+//    self->inputModeEnglishKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeEnglishKeyCode, configuration->inputModeEnglishKeyModifier);
+//    self->inputModeKoreanKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeKoreanKeyCode, configuration->inputModeKoreanKeyModifier);
 
     // common
     dlog(DEBUG_PREFERENCE, @"default input mode: %d", configuration->autosaveDefaultInputMode);
@@ -192,14 +190,14 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 //    configuration->rightCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightCommandBehaviorComboBox.stringValue];
 //    configuration->rightOptionKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightOptionBehaviorComboBox.stringValue];
 //    configuration->rightControlKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->rightControlBehaviorComboBox.stringValue];
-    configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
-    configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
-    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
-    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
-    configuration->inputModeEnglishKeyCode = self->inputModeEnglishKeyRecorderCell.keyCombo.code;
-    configuration->inputModeEnglishKeyModifier = self->inputModeEnglishKeyRecorderCell.keyCombo.flags;
-    configuration->inputModeKoreanKeyCode = self->inputModeKoreanKeyRecorderCell.keyCombo.code;
-    configuration->inputModeKoreanKeyModifier = self->inputModeKoreanKeyRecorderCell.keyCombo.flags;
+//    configuration->inputModeExchangeKeyCode = self->inputModeExchangeKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeExchangeKeyModifier = self->inputModeExchangeKeyRecorderCell.keyCombo.flags;
+//    configuration->inputModeHanjaKeyCode = self->inputModeHanjaKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeHanjaKeyModifier = self->inputModeHanjaKeyRecorderCell.keyCombo.flags;
+//    configuration->inputModeEnglishKeyCode = self->inputModeEnglishKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeEnglishKeyModifier = self->inputModeEnglishKeyRecorderCell.keyCombo.flags;
+//    configuration->inputModeKoreanKeyCode = self->inputModeKoreanKeyRecorderCell.keyCombo.code;
+//    configuration->inputModeKoreanKeyModifier = self->inputModeKoreanKeyRecorderCell.keyCombo.flags;
 
     // common
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
@@ -224,7 +222,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)helpChangeShortcut:(id)sender {
     NSAlert *alert = [NSAlert alertWithMessageText:@"도움말" defaultButton:@"확인" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Space 또는 ⇧Space 로 초기화하고 새로 설정할 수 있습니다."];
-    [alert beginSheetModalForWindow:nil modalDelegate:nil didEndSelector:nil contextInfo:NULL];
+    [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:NULL];
 }
 
 #pragma NSWindow delegate

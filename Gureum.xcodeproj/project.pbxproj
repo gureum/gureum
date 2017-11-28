@@ -62,8 +62,6 @@
 		38475AFA1412BC050062100D /* han390.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF21412BC050062100D /* han390.png */; };
 		38475AFC1412BC050062100D /* hanroman.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF41412BC050062100D /* hanroman.png */; };
 		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
-		384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38615D6E193F8868007F7686 /* ShortcutRecorder.framework */; };
-		384FDE66193F89C600114F48 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 38615D6E193F8868007F7686 /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3D1B0E7E7C00E2C16D /* Security.framework */; };
 		38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */; };
 		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
@@ -106,27 +104,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 382E68631A1314D900031D1D;
 			remoteInfo = Preferences;
-		};
-		384FDE63193F898500114F48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9398377F0DA42965007F53F3;
-			remoteInfo = ShortcutRecorder.framework;
-		};
-		38615D6D193F8868007F7686 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 939837800DA42965007F53F3;
-			remoteInfo = ShortcutRecorder.framework;
-		};
-		38615D6F193F8868007F7686 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
-			remoteInfo = ShortcutRecorder_Tester;
 		};
 		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -213,7 +190,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
-				384FDE66193F89C600114F48 /* ShortcutRecorder.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,7 +280,6 @@
 		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
 		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
 		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
-		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = OSX/ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
@@ -345,7 +320,6 @@
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
-				384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
 				4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */,
 			);
@@ -376,7 +350,6 @@
 				38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */,
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
-				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				381B32731DA826B100EA1975 /* Bridge.h */,
 				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
@@ -509,15 +482,6 @@
 				38D6F1CB194003C7003F25EE /* command.png */,
 			);
 			name = Icons;
-			sourceTree = "<group>";
-		};
-		38615D69193F8868007F7686 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				38615D6E193F8868007F7686 /* ShortcutRecorder.framework */,
-				38615D70193F8868007F7686 /* ShortcutRecorder.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		387DFFFE1421F1E000DAE6F4 /* Common Input Method */ = {
@@ -677,7 +641,6 @@
 			);
 			dependencies = (
 				382E68751A13153300031D1D /* PBXTargetDependency */,
-				384FDE64193F898500114F48 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 			);
 			name = OSX;
@@ -727,7 +690,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
@@ -767,10 +730,6 @@
 					ProductGroup = 389A38781423477F00A2ED88 /* Products */;
 					ProjectRef = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
 				},
-				{
-					ProductGroup = 38615D69193F8868007F7686 /* Products */;
-					ProjectRef = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -787,20 +746,6 @@
 			fileType = wrapper.cfbundle;
 			path = HangulTests.xctest;
 			remoteRef = 382707F11F57475400658B6B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		38615D6E193F8868007F7686 /* ShortcutRecorder.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ShortcutRecorder.framework;
-			remoteRef = 38615D6D193F8868007F7686 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		38615D70193F8868007F7686 /* ShortcutRecorder.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ShortcutRecorder.app;
-			remoteRef = 38615D6F193F8868007F7686 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		389A387D1423477F00A2ED88 /* Hangul.framework */ = {
@@ -934,13 +879,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OSX-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */ = {
@@ -1006,11 +954,6 @@
 			isa = PBXTargetDependency;
 			target = 382E68631A1314D900031D1D /* Preferences */;
 			targetProxy = 382E68741A13153300031D1D /* PBXContainerItemProxy */;
-		};
-		384FDE64193F898500114F48 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ShortcutRecorder.framework;
-			targetProxy = 384FDE63193F898500114F48 /* PBXContainerItemProxy */;
 		};
 		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1095,7 +1038,6 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1137,7 +1079,6 @@
 				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1209,12 +1150,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1242,12 +1189,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1266,6 +1219,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};

@@ -21,4 +21,4 @@ Podfile.lock
 *.DS_Store
 
 build
-
+.python-version
