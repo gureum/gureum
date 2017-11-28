@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencesWindowController">
@@ -29,11 +30,10 @@
                 <outlet property="shortcutPreferenceView" destination="d3g-yd-5Pi" id="yGr-RR-7LO"/>
                 <outlet property="showsInputForHanjaCandidatesCheckbox" destination="kbw-KS-sBP" id="qlw-Vh-CVc"/>
                 <outlet property="window" destination="1" id="108"/>
-                <outlet property="zeroWidthSpaceForLayoutExchangeCheckbox" destination="ofO-Xf-tQi" id="VYd-af-BHG"/>
             </connections>
         </customObject>
         <window title="환경설정" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="1">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" unifiedTitleAndToolbar="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="1280" y="835" width="300" height="40"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
@@ -455,20 +455,9 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <button id="ofO-Xf-tQi">
-                    <rect key="frame" x="24" y="18" width="327" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="자판 전환 시 스페이스 입력 방지 (IntelliJ 등)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="pBf-dh-gwk">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="130">
+                <box verticalHuggingPriority="750" boxType="separator" id="130">
                     <rect key="frame" x="20" y="142" width="331" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField verticalHuggingPriority="750" id="148">
                     <rect key="frame" x="24" y="153" width="149" height="20"/>
@@ -591,12 +580,9 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="okz-lY-USR">
+                <box verticalHuggingPriority="750" boxType="separator" id="okz-lY-USR">
                     <rect key="frame" x="20" y="150" width="268" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
             </subviews>
         </customView>

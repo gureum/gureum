@@ -34,7 +34,6 @@ define_preference_key(CIMHangulCombinationModeCommiting);
 define_preference_key(CIMSharedInputManager);
 define_preference_key(CIMAutosaveDefaultInputMode);
 define_preference_key(CIMRomanModeByEscapeKey);
-define_preference_key(CIMZeroWidthSpaceForLayoutExchange);
 define_preference_key(CIMShowsInputForHanjaCandidates);
 
 CIMConfiguration *CIMDefaultUserConfiguration;
@@ -93,7 +92,6 @@ CIMConfiguration *CIMDefaultUserConfiguration;
             { CIMSharedInputManager, &self->sharedInputManager, NO },
             { CIMAutosaveDefaultInputMode, &self->autosaveDefaultInputMode, YES },
             { CIMRomanModeByEscapeKey, &self->romanModeByEscapeKey, NO },
-            { CIMZeroWidthSpaceForLayoutExchange, &self->zeroWidthSpaceForLayoutExchange, NO },
             { CIMShowsInputForHanjaCandidates, &self->showsInputForHanjaCandidates, NO },
         };
         for (NSInteger i = 0; i < CIMConfigurationBoolItemCount; i++) {

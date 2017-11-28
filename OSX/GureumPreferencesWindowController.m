@@ -170,7 +170,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = GureumPreferencesHangulLayoutLocalizedNames[index];
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
-    self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue = configuration->zeroWidthSpaceForLayoutExchange;
 
     // hangul
     [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
@@ -205,7 +204,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->lastHangulInputMode = GureumPreferencesHangulLayouts[index];
     configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
     configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
-    configuration->zeroWidthSpaceForLayoutExchange = self->zeroWidthSpaceForLayoutExchangeCheckbox.integerValue;
 
     // hangeul
     configuration->showsInputForHanjaCandidates = self->showsInputForHanjaCandidatesCheckbox.integerValue;

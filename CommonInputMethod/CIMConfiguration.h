@@ -40,7 +40,6 @@ FOUNDATION_EXTERN NSString *CIMSharedInputManager;
 /* Gureum */
 FOUNDATION_EXTERN NSString *CIMAutosaveDefaultInputMode;
 FOUNDATION_EXTERN NSString *CIMRomanModeByEscapeKey;
-FOUNDATION_EXTERN NSString *CIMZeroWidthSpaceForLayoutExchange;
 FOUNDATION_EXTERN NSString *CIMShowsInputForHanjaCandidates;
 
 #define defCIMConfigurationItem(NAME, TYPE) \
@@ -94,7 +93,6 @@ extern CIMConfiguration *CIMDefaultUserConfiguration;
     BOOL sharedInputManager;
     BOOL autosaveDefaultInputMode;
     BOOL romanModeByEscapeKey;
-    BOOL zeroWidthSpaceForLayoutExchange;
     BOOL showsInputForHanjaCandidates;
 }
 @property(nonatomic, retain) NSUserDefaults *userDefaults;

@@ -185,9 +185,6 @@ TISInputSource *_USSource() {
 
 - (NSString *)_internalComposedString {
     NSString *string = self.composer.composedString;
-    if (string.length == 0 && CIMSharedInputManager.needsFakeComposedString && CIMSharedInputManager.configuration->zeroWidthSpaceForLayoutExchange && !self.hasSelectionRange) {
-        string = @"\u200b";
-    }
     return string;
 }
 
