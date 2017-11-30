@@ -253,6 +253,9 @@ TISInputSource *_USSource() {
     }
 
     dlog(1, @"==== source");
+    return;
+
+    // 미국자판으로 기본자판 잡는 것도 임시로 포기
 
     TISInputSource *mainSource = _USSource();
     NSString *mainSourceID = mainSource.identifier;
