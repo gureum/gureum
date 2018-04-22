@@ -111,6 +111,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="48"/>
             </connections>
+            <point key="canvasLocation" x="211" y="-54"/>
         </window>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customView id="d3g-yd-5Pi">
@@ -412,6 +413,7 @@
                     </connections>
                 </button>
             </subviews>
+            <point key="canvasLocation" x="53" y="40"/>
         </customView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="82">
@@ -491,6 +493,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
+            <point key="canvasLocation" x="73" y="288"/>
         </customView>
         <customView id="93">
             <rect key="frame" x="0.0" y="0.0" width="308" height="197"/>

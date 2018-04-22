@@ -10,7 +10,8 @@
 
 #import "CIMApplicationDelegate.h"
 #import "CIMInputHandler.h"
-#import "CIMConfiguration.h"
+#import "Gureum-Swift.h"
+
 
 @implementation CIMInputManager
 @synthesize server, candidates, configuration, handler, sharedComposer;
@@ -18,17 +19,17 @@
 
 #define DEBUG_INPUTMANAGER FALSE
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     dlog(DEBUG_INPUTMANAGER, @"** CharmInputManager Init: %@", self);
     if (self) {
         NSBundle *mainBundle = [NSBundle mainBundle];
-        NSString *connectionName = [mainBundle infoDictionary][@"InputMethodConnectionName"];
-        self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:[mainBundle bundleIdentifier]];
+        NSString *connectionName = mainBundle.infoDictionary[@"InputMethodConnectionName"];
+        self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:mainBundle.bundleIdentifier];
         self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
         self->handler = [[CIMInputHandler alloc] initWithManager:self];
-        self->configuration = [CIMConfiguration userDefaultConfiguration];
+        self->configuration = [[GureumConfiguration alloc] init];
         self->sharedComposer = [CIMAppDelegate composerWithServer:nil client:nil];
         dlog(DEBUG_INPUTMANAGER, @"\tserver: %@ / candidates: %@ / handler: %@", self->server, self->candidates, self->handler);
        

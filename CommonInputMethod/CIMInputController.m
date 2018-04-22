@@ -16,7 +16,6 @@
 #import "CIMComposer.h"
 
 #import "CIMInputController.h"
-#import "CIMConfiguration.h"
 
 #import "TISInputSource.h"
 
@@ -46,7 +45,7 @@ TISInputSource *_USSource() {
 - (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
 - (void)updateCompositionEvent:(CIMInputController *)controller;
 - (void)cancelCompositionEvent:(CIMInputController *)controller;
-- (NSString *)_internalComposedString;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *_internalComposedString;
 
 @end
 
@@ -61,11 +60,11 @@ TISInputSource *_USSource() {
 @implementation CIMInputReceiver
 @synthesize composer=_composer, inputClient=_inputClient;
 
-- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+- (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
     self = [super init];
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
-        if (!CIMSharedInputManager.configuration->sharedInputManager) {
+        if (1) { // FIXME (!CIMSharedInputManager.configuration->sharedInputManager) {
             self->_composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
             self->_composer->manager = CIMSharedInputManager;
         }
@@ -159,7 +158,7 @@ TISInputSource *_USSource() {
     NSString *commitString = [self.composer dequeueCommitString];
 
     // 커밋할 문자가 없으면 중단
-    if ([commitString length] > 0) {
+    if (commitString.length > 0) {
         dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender, commitString);
         NSRange range = controller.selectionRange;
         dlog(DEBUG_LOGGING, @"LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
@@ -199,7 +198,7 @@ TISInputSource *_USSource() {
 
 - (NSAttributedString *)originalString:(id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString:");
-    NSAttributedString *string = [[[NSAttributedString alloc] initWithString:[self.composer originalString]] autorelease];
+    NSAttributedString *string = [[[NSAttributedString alloc] initWithString:(self.composer).originalString] autorelease];
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::ORIGINALSTRING::%@", string.string);
     return string;
 }
@@ -294,7 +293,7 @@ TISInputSource *_USSource() {
 
 @implementation CIMInputController
 
-- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+- (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
     self = [super initWithServer:server delegate:delegate client:inputClient];
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
@@ -337,7 +336,7 @@ TISInputSource *_USSource() {
 - (BOOL)handleEvent:(NSEvent *)event client:(id)sender {
     if (event.type == NSKeyDown) {
         dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, [event keyCode], [event modifierFlags], [event characters], [event charactersIgnoringModifiers], [[self client] bundleIdentifier]);
-        BOOL processed = [self->_receiver inputController:self inputText:[event characters] key:[event keyCode] modifiers:[event modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
+        BOOL processed = [self->_receiver inputController:self inputText:event.characters key:event.keyCode modifiers:event.modifierFlags client:sender] > CIMInputTextProcessResultNotProcessed;
         dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
         return processed;
     }
@@ -452,7 +451,7 @@ TISInputSource *_USSource() {
 @implementation CIMInputController (IMKCustomCommands)
 
 - (NSMenu *)menu {
-    return [CIMAppDelegate menu];
+    return CIMAppDelegate.menu;
 }
 
 @end

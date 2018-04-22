@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
-		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; };
+		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; };
-		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
-		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
 		381CA2F11FCE208A00DDB81D /* Example.png in Resources */ = {isa = PBXBuildFile; fileRef = 381CA2F01FCE208A00DDB81D /* Example.png */; };
@@ -64,29 +63,30 @@
 		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
 		38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3D1B0E7E7C00E2C16D /* Security.framework */; };
 		38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */; };
-		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
+		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38699DC21F36191500FD093E /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
-		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
+		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; };
+		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
+		38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
-		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
+		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524816ECF87E00FE1B4A /* han3final@2x.png */; };
 		38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524A16ECF87E00FE1B4A /* han390@2x.png */; };
 		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
 		38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */; };
 		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
-		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
-		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
-		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994C498AB6F1C414B12608 /* libPods-OSX.a */; };
 /* End PBXBuildFile section */
 
@@ -197,8 +197,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
-		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
 		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
 		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
 		380ECC8216ECF49F0063B881 /* Gureum.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Gureum.iconset; path = Icons/Gureum.iconset; sourceTree = "<group>"; };
@@ -293,6 +291,7 @@
 		38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumMockObjects.h; sourceTree = "<group>"; };
 		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
+		38C2AE4C208795E700FE211A /* GureumConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumConfiguration.swift; sourceTree = "<group>"; };
 		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanComposer.swift; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -352,6 +351,7 @@
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
+				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
 				381B32731DA826B100EA1975 /* Bridge.h */,
 				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
 				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
@@ -500,8 +500,6 @@
 				387D00051421FB6E00DAE6F4 /* CIMInputManager.m */,
 				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
 				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
-				3802E4631413A9FF00256B54 /* CIMConfiguration.h */,
-				3802E4641413A9FF00256B54 /* CIMConfiguration.m */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
 			);
@@ -915,13 +913,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */,
 				38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */,
 				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
-				3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */,
 				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
@@ -1003,6 +1001,7 @@
 			baseConfigurationReference = 4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1050,6 +1049,7 @@
 			baseConfigurationReference = 60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
