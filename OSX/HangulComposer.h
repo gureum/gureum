@@ -10,7 +10,7 @@
 #import <Hangul/HGHanja.h>
 #import "CIMComposer.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
     // 채움 문자는 모두 지우고 결합해 표현한다.
     HangulCharacterCombinationWithoutFiller = 0,
     // 없는 자소가 있더라도 모두 채움 문자와 결합해 표현한다.
@@ -21,7 +21,7 @@ typedef enum {
     HangulCharacterCombinationHiddenOnFiller = 3,
     // 중성 채움 문자 뒤는 숨긴다.
     HangulCharacterCombinationHiddenOnJungseongFiller = 4,
-} HangulCharacterCombinationMode;
+};
 #define HangulCharacterCombinationModeCount 5
 
 @class HGInputContext;
@@ -45,7 +45,7 @@ typedef enum {
     @brief  libhangul의 input context를 사용하는 합성기를 초기화한다.
     @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
 */
-- (id)initWithKeyboardIdentifier:(NSString *)identifier;
+- (instancetype)initWithKeyboardIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 /*!
     @brief  현재 context의 배열을 바꾼다.
     @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.

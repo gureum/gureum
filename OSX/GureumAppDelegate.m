@@ -106,7 +106,7 @@
 }
 
 + (GureumAppDelegate *)sharedAppDelegate {
-    return (id)[NSApp delegate];
+    return (id)NSApp.delegate;
 }
 
 @end

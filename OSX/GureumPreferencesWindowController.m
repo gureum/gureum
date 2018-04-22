@@ -8,8 +8,8 @@
 
 #import "GureumPreferencesWindowController.h"
 
-#import "CIMConfiguration.h"
 #import "HangulComposer.h"
+#import "Gureum-Swift.h"
 
 #define DEBUG_PREFERENCE FALSE
 
@@ -57,7 +57,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
                      @"org.youknowone.inputmethod.Gureum.han3-2015",
                      nil];
 
-    NSDictionary *info = [[NSBundle mainBundle] localizedInfoDictionary];
+    NSDictionary *info = [NSBundle mainBundle].localizedInfoDictionary;
     NSMutableArray *names = [NSMutableArray array];
     for (NSString *layout in GureumPreferencesHangulLayouts) {
         [names addObject:info[layout]];
@@ -73,7 +73,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
                                                     nil];
 }
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
@@ -103,7 +103,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 #pragma mark -
 
 - (void)selectPreferenceItem:(NSToolbarItem *)sender {
-    NSString *identifier = [sender itemIdentifier];
+    NSString *identifier = sender.itemIdentifier;
     dlog(DEBUG_PREFERENCE, @"preference identifier: %@", identifier);
     [self showPreferenceViewWithIdentifier:identifier animate:YES];
 }
@@ -121,14 +121,14 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     if (newPreferenceView == nil) return;
     
     NSArray *preferenceSubviews = self->preferenceContainerView.subviews;
-    NSView *oldPreferenceView = [preferenceSubviews count] > 0 ? preferenceSubviews[0] : nil;
+    NSView *oldPreferenceView = preferenceSubviews.count > 0 ? preferenceSubviews[0] : nil;
     
     // Remove old one
     if (oldPreferenceView == newPreferenceView) return;
     [oldPreferenceView removeFromSuperview];
 
     // Arrange
-    CGFloat toolbarHeight = NSHeight(self.window.frame) - NSHeight([self.window.contentView frame]);
+    CGFloat toolbarHeight = NSHeight(self.window.frame) - NSHeight((self.window.contentView).frame);
 
     NSRect containerRect = self->preferenceContainerView.frame;
     containerRect.size = newPreferenceView.frame.size;
@@ -149,7 +149,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 }
 
 - (void)loadFromConfiguration {
-    CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    GureumConfiguration *configuration = [[GureumConfiguration alloc] init];
 
     // shortcut
 //    self->leftCommandBehaviorComboBox.stringValue = GureumPreferencesShortcutBehaviors[configuration->leftCommandKeyShortcutBehavior];
@@ -165,22 +165,22 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
     // common
     dlog(DEBUG_PREFERENCE, @"default input mode: %d", configuration->autosaveDefaultInputMode);
-    self->autosaveDefaultInputModeCheckbox.integerValue = configuration->autosaveDefaultInputMode;
+    self->autosaveDefaultInputModeCheckbox.integerValue = configuration.autosaveDefaultInputMode;
     dlog(DEBUG_PREFERENCE, @"last hangul input mode: %@", configuration->lastHangulInputMode);
-    NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration->lastHangulInputMode];
+    NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration.lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = GureumPreferencesHangulLayoutLocalizedNames[index];
-    self->romanModeByEscapeKeyCheckbox.integerValue = configuration->romanModeByEscapeKey;
+    self->romanModeByEscapeKeyCheckbox.integerValue = configuration.romanModeByEscapeKey;
 
     // hangul
-    [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration->optionKeyBehavior];
-    self->showsInputForHanjaCandidatesCheckbox.integerValue = configuration->showsInputForHanjaCandidates;
+    [self->optionKeyBehaviorComboBox selectItemAtIndex:configuration.optionKeyBehavior];
+    self->showsInputForHanjaCandidatesCheckbox.integerValue = configuration.showsInputForHanjaCandidates;
 
-    self->hangulCombinationModeComposingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeComposing];
-    self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration->hangulCombinationModeCommiting];
+    self->hangulCombinationModeComposingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration.hangulCombinationModeComposing];
+    self->hangulCombinationModeCommitingComboBox.stringValue = GureumPreferencesHangulSyllablePresentations[configuration.hangulCombinationModeCommiting];
 }
 
 - (void)saveToConfiguration:(id)sender {
-    CIMConfiguration *configuration = [CIMConfiguration userDefaultConfiguration];
+    GureumConfiguration *configuration = [[GureumConfiguration alloc] init];
 
     // shortcut
 //    configuration->leftCommandKeyShortcutBehavior = [GureumPreferencesShortcutBehaviors indexOfObject:self->leftCommandBehaviorComboBox.stringValue];
@@ -199,10 +199,11 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 //    configuration->inputModeKoreanKeyModifier = self->inputModeKoreanKeyRecorderCell.keyCombo.flags;
 
     // common
+    /*
     configuration->autosaveDefaultInputMode = self->autosaveDefaultInputModeCheckbox.integerValue;
     NSInteger index = [GureumPreferencesHangulLayoutLocalizedNames indexOfObject:self->defaultHangulInputModeComboBox.stringValue];
     configuration->lastHangulInputMode = GureumPreferencesHangulLayouts[index];
-    configuration->optionKeyBehavior = [self->optionKeyBehaviorComboBox indexOfSelectedItem];
+    configuration->optionKeyBehavior = self->optionKeyBehaviorComboBox.indexOfSelectedItem;
     configuration->romanModeByEscapeKey = self->romanModeByEscapeKeyCheckbox.integerValue;
 
     // hangeul
@@ -211,6 +212,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     configuration->hangulCombinationModeCommiting = [GureumPreferencesHangulSyllablePresentations indexOfObject:self->hangulCombinationModeCommitingComboBox.stringValue];
 
     [configuration saveAllConfigurations];
+     */
 }
 
 - (void)cancelAndClose:(id)sender {

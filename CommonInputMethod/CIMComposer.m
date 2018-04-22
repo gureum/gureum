@@ -21,15 +21,15 @@
 #pragma - delegate
 
 - (NSString *)composedString {
-    return [_delegate composedString];
+    return _delegate.composedString;
 }
 
 - (NSString *)originalString {
-    return [_delegate originalString];
+    return _delegate.originalString;
 }
 
 - (NSString *)commitString {
-    return [_delegate commitString];
+    return _delegate.commitString;
 }
 
 - (NSString *)dequeueCommitString {
@@ -45,11 +45,11 @@
 }
 
 - (BOOL)hasCandidates {
-    return [_delegate hasCandidates];
+    return _delegate.hasCandidates;
 }
 
 - (NSArray *)candidates {
-    return [_delegate candidates];
+    return _delegate.candidates;
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {

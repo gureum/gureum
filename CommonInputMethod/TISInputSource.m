@@ -10,7 +10,7 @@
 
 @interface TISInputSourceError : NSError
 
-- (instancetype)initWithCode:(OSStatus)err;
+- (instancetype)initWithCode:(OSStatus)err NS_DESIGNATED_INITIALIZER;
 + (instancetype)errorWithCode:(OSStatus)err;
 
 @end

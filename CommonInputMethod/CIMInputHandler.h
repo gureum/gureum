@@ -25,6 +25,6 @@
 - (void)setManager:(CIMInputManager *)aManager;
 
 //! @brief  입력을 분배할 manager로 초기화
-- (id)initWithManager:(CIMInputManager *)manager;
+- (instancetype)initWithManager:(CIMInputManager *)manager NS_DESIGNATED_INITIALIZER;
 
 @end

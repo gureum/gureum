@@ -14,7 +14,7 @@
     IBOutlet NSMenu *menu;
 }
 
-- (NSDictionary *)getRecentVersion;
+@property (NS_NONATOMIC_IOSONLY, getter=getRecentVersion, readonly, copy) NSDictionary *recentVersion;
 + (GureumAppDelegate *)sharedAppDelegate;
 
 @end

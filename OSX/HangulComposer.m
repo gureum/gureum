@@ -9,9 +9,9 @@
 #import <Hangul/HGInputContext.h>
 #import "HangulComposer.h"
 
-#import "CIMConfiguration.h"
 #import "CIMInputController.h"
 #import "GureumAppDelegate.h"
+#import "Gureum-Swift.h"
 
 #define DEBUG_HANGULCOMPOSER FALSE
 #define DEBUG_HANJACOMPOSER FALSE
@@ -38,12 +38,12 @@
 @implementation HangulComposer
 @synthesize inputContext=_inputContext;
 
-- (id)init {
+- (instancetype)init {
     // 두벌식을 기본 값으로 갖는다.
     return  [self initWithKeyboardIdentifier:@"2"];
 }
 
-- (id)initWithKeyboardIdentifier:(NSString *)identifier {
+- (instancetype)initWithKeyboardIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
         self->_inputContext = [[HGInputContext alloc] initWithKeyboardIdentifier:identifier];
@@ -87,11 +87,11 @@
     // 한글 입력에서 캡스락 무시
     if (flags & NSAlphaShiftKeyMask) {
         if (!(flags & NSShiftKeyMask)) {
-            string = [string lowercaseString];
+            string = string.lowercaseString;
         }
     }
     BOOL handled = [self->_inputContext process:[string characterAtIndex:0]];
-    const HGUCSChar *UCSString = [self->_inputContext commitUCSString];
+    const HGUCSChar *UCSString = self->_inputContext.commitUCSString;
     dassert(UCSString);
     NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:UCSString];
     [self->_commitString appendString:recentCommitString];
@@ -107,12 +107,12 @@
 #pragma - CIMComposer
 
 - (NSString *)originalString {
-    const HGUCSChar *preedit = [self->_inputContext preeditUCSString];
+    const HGUCSChar *preedit = self->_inputContext.preeditUCSString;
     return [[self class] commitStringByCombinationModeWithUCSString:preedit];
 }
 
 - (NSString *)composedString {
-    const HGUCSChar *preedit = [self->_inputContext preeditUCSString];
+    const HGUCSChar *preedit = self->_inputContext.preeditUCSString;
     NSString *string = [[self class] composedStringByCombinationModeWithUCSString:preedit];
     return string;
 }
@@ -155,7 +155,7 @@
 @implementation HanjaComposer
 @synthesize mode=_mode;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self != nil) {
         self->bufferedString = [[NSMutableString alloc] init];
@@ -246,7 +246,7 @@
             }
         }
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates candidating");
-        if (candidates.count > 0 && CIMSharedConfiguration->showsInputForHanjaCandidates) {
+        if (candidates.count > 0 && CIMSharedConfiguration.showsInputForHanjaCandidates) {
             [candidates insertObject:keyword atIndex:0];
         }
         self.candidates = candidates;
@@ -260,7 +260,7 @@
     NSRange selectedRange = [controller.client selectedRange];
     dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
     if ((markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0) {
-        NSString *selectedString = [[controller.client attributedSubstringFromRange:selectedRange] string];
+        NSString *selectedString = [controller.client attributedSubstringFromRange:selectedRange].string;
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: selected string: %@", selectedString);
         [controller.client setMarkedText:selectedString selectionRange:selectedRange replacementRange:selectedRange];
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange([controller.client markedRange]), NSStringFromRange([controller.client selectedRange]));
@@ -288,7 +288,7 @@
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
-    NSString *value = [[candidateString string] componentsSeparatedByString:@":"][0];
+    NSString *value = [candidateString.string componentsSeparatedByString:@":"][0];
     self.composedString = @"";
     self.commitString = value;
     [self.hangulComposer cancelComposition];
@@ -436,7 +436,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     @brief  설정에 따라 조합 완료할 문자 최종처리
 */
 + (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = CIMSharedConfiguration->hangulCombinationModeCommiting;
+    NSInteger index = CIMSharedConfiguration.hangulCombinationModeCommiting;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
     NSString *name = HangulCombinationModefillers[index];
@@ -453,7 +453,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
 */
 + (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = CIMSharedConfiguration->hangulCombinationModeComposing;
+    NSInteger index = CIMSharedConfiguration.hangulCombinationModeComposing;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
     NSString *name = HangulCombinationModefillers[index];

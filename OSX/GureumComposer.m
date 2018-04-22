@@ -8,7 +8,6 @@
 
 #import "GureumComposer.h"
 
-#import "CIMConfiguration.h"
 #import "GureumAppDelegate.h"
 
 #define DEBUG_GUREUM FALSE
@@ -44,7 +43,7 @@ NSString *kGureumInputSourceIdentifierHan3_2015 = @"org.youknowone.inputmethod.G
 
 @implementation GureumComposer
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -99,11 +98,10 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         self.delegate = self->hangulComposer;
         // 단축키 지원을 위해 마지막 자판을 기억
         [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
-        CIMConfigurationSetObjectForField(CIMSharedConfiguration, newInputMode, lastHangulInputMode);
-        [CIMSharedConfiguration saveConfigurationForStringField:&CIMSharedConfiguration->lastHangulInputMode];
+        CIMSharedConfiguration.lastHangulInputMode = newInputMode;
     }
 
-    [super setInputMode:newInputMode];
+    super.inputMode = newInputMode;
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
@@ -171,7 +169,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 //            need_exchange = YES;
 //        }
 
-        if (inputModifier == CIMSharedConfiguration->inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration->inputModeHanjaKeyCode) {
+        if (inputModifier == CIMSharedConfiguration.inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration.inputModeHanjaKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");
             need_hanjamode = YES;
         }
@@ -182,7 +180,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self.delegate cancelComposition];
         if (self.delegate == self->romanComposer) {
-            NSString *lastHangulInputMode = CIMSharedConfiguration->lastHangulInputMode;
+            NSString *lastHangulInputMode = CIMSharedConfiguration.lastHangulInputMode;
             if (lastHangulInputMode == nil) lastHangulInputMode = kGureumInputSourceIdentifierHan2;
             [sender selectInputMode:lastHangulInputMode];
         } else {
@@ -211,7 +209,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
-        if (CIMSharedConfiguration->romanModeByEscapeKey && (keyCode == kVK_Escape || (0))) {
+        if (CIMSharedConfiguration.romanModeByEscapeKey && (keyCode == kVK_Escape || (0))) {
             dlog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
             [self.delegate cancelComposition];
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];

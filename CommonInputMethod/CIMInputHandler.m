@@ -11,14 +11,16 @@
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
 #import "CIMComposer.h"
-#import "CIMConfiguration.h"
+
+#import "Gureum-Swift.h"
+
 
 #define DEBUG_INPUTHANDLER FALSE
 
 @implementation CIMInputHandler
 @synthesize manager;
 
-- (id)initWithManager:(CIMInputManager *)aManager {
+- (instancetype)initWithManager:(CIMInputManager *)aManager {
     self = [super init];
     dlog(DEBUG_INPUTHANDLER, @"** CIMInputHandler inited: %@ / with manage: %@", self, aManager);
     if (self) {
@@ -45,7 +47,7 @@
 
     // 옵션 키 변환 처리
     if (flags & NSAlternateKeyMask) {
-        switch (self.manager.configuration->optionKeyBehavior) {
+        switch (self.manager.configuration.optionKeyBehavior) {
             case 0: {
                 // default
                 dlog(DEBUG_INPUTHANDLER, @" ** ESCAPE from option-key default behavior");
