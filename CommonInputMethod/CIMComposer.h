@@ -71,3 +71,4 @@
 @interface CIMBaseComposer : CIMComposer
 
 @end
+

@@ -64,10 +64,10 @@ class RomanComposer: CIMComposer {
                 newString = String(newChr)
             }
             self._commitString = newString
-            return CIMInputTextProcessResultProcessed
+            return CIMInputTextProcessResult.processed;
         } else {
             self._commitString = nil
-            return CIMInputTextProcessResultNotProcessed
+            return CIMInputTextProcessResult.notProcessed
         }
     }
     
@@ -136,10 +136,10 @@ class DvorakComposer: CIMComposer {
                 newChr = chr
             }
             self._commitString = String(map[newChr]!)
-            return CIMInputTextProcessResultProcessed
+            return CIMInputTextProcessResult.processed
         } else {
             self._commitString = nil
-            return CIMInputTextProcessResultNotProcessed
+            return CIMInputTextProcessResult.notProcessed
         }
     }
     
