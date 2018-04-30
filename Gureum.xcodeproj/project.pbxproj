@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
+		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -935,6 +936,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
+				381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

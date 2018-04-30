@@ -7,3 +7,7 @@ target 'OSX' do
 	pod 'Fabric'
 	pod 'Crashlytics'
 end
+target 'OSXTests' do
+	pod 'cdebug'
+	pod 'FoundationExtension', '>= 1.2.4'
+end

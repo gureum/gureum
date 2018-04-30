@@ -190,7 +190,7 @@ TISInputSource *_USSource() {
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender controller:(CIMInputController *)controller {
-    NSString *string = [self _internalComposedString];
+    NSString *string = self._internalComposedString;
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::COMPOSEDSTRING::(%@)", string);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -composedString: with return: '%@'", string);
     return string;

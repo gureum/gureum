@@ -63,7 +63,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
         [names addObject:info[layout]];
     }
     GureumPreferencesHangulLayoutLocalizedNames = [[NSArray alloc] initWithArray:names];
-    
+
     GureumPreferencesHangulSyllablePresentations = [[NSArray alloc] initWithObjects:
                                                     NSLocalizedStringFromTable(@"HangulPresentationRemoveFillers", @"Hangul", @""),
                                                     NSLocalizedStringFromTable(@"HangulPresentationAllFillers", @"Hangul", @""),
@@ -84,7 +84,7 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
+
     self->preferenceViews = [[NSDictionary alloc] initWithObjectsAndKeys:
                              shortcutPreferenceView, @"Shortcut",
                              gureumPreferenceView, @"Gureum",
@@ -119,10 +119,10 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 - (void)showPreferenceViewWithIdentifier:(id)identifier animate:(BOOL)animate {
     NSView *newPreferenceView = self->preferenceViews[identifier];
     if (newPreferenceView == nil) return;
-    
+
     NSArray *preferenceSubviews = self->preferenceContainerView.subviews;
     NSView *oldPreferenceView = preferenceSubviews.count > 0 ? preferenceSubviews[0] : nil;
-    
+
     // Remove old one
     if (oldPreferenceView == newPreferenceView) return;
     [oldPreferenceView removeFromSuperview];
@@ -141,9 +141,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     CGFloat heightDiff = windowFrame.size.height - self.window.frame.size.height;
     windowFrame.origin.y -= heightDiff; // keep origin y
     [self.window setFrame:windowFrame display:YES animate:animate];
-    
+
     self->preferenceContainerView.frame = containerRect;
-    
+
     // Add new one
     [self->preferenceContainerView addSubview:newPreferenceView];
 }

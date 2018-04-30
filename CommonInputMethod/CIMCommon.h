@@ -23,12 +23,12 @@ FOUNDATION_EXTERN const char CIMKeyMapUpper[CIMKeyMapSize];
     @enum
     @brief  최종적으로 CIMInputController가 처리할 결과
 */
-typedef enum {
+typedef NS_ENUM(int, CIMInputTextProcessResult) {
     CIMInputTextProcessResultNotProcessedAndNeedsCommit = -2,
     CIMInputTextProcessResultNotProcessedAndNeedsCancel = -1,
     CIMInputTextProcessResultNotProcessed = 0,
     CIMInputTextProcessResultProcessed = 1,
-} CIMInputTextProcessResult;
+};
 
 /*!
     @protocol
