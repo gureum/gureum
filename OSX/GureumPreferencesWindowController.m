@@ -164,9 +164,9 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
 //    self->inputModeKoreanKeyRecorderCell.keyCombo = SRMakeKeyCombo(configuration->inputModeKoreanKeyCode, configuration->inputModeKoreanKeyModifier);
 
     // common
-    dlog(DEBUG_PREFERENCE, @"default input mode: %d", configuration->autosaveDefaultInputMode);
+    dlog(DEBUG_PREFERENCE, @"default input mode: %d", configuration.autosaveDefaultInputMode);
     self->autosaveDefaultInputModeCheckbox.integerValue = configuration.autosaveDefaultInputMode;
-    dlog(DEBUG_PREFERENCE, @"last hangul input mode: %@", configuration->lastHangulInputMode);
+    dlog(DEBUG_PREFERENCE, @"last hangul input mode: %@", configuration.lastHangulInputMode);
     NSInteger index = [GureumPreferencesHangulLayouts indexOfObject:configuration.lastHangulInputMode];
     self->defaultHangulInputModeComboBox.stringValue = GureumPreferencesHangulLayoutLocalizedNames[index];
     self->romanModeByEscapeKeyCheckbox.integerValue = configuration.romanModeByEscapeKey;
