@@ -647,8 +647,6 @@
 				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
-				E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */,
-				77C24B9897603A19323E8A9D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -687,8 +685,6 @@
 				38BFE7F618B45419004B2B2E /* Sources */,
 				38BFE7F718B45419004B2B2E /* Frameworks */,
 				38BFE7F818B45419004B2B2E /* Resources */,
-				F9D7E8E913E6CB893A83A462 /* [CP] Embed Pods Frameworks */,
-				15652DE8C17454E88615006D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -833,21 +829,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		15652DE8C17454E88615006D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -890,21 +871,6 @@
 			shellPath = /bin/bash;
 			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
 		};
-		77C24B9897603A19323E8A9D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -939,36 +905,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E69004913AF640584BC91DEC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9D7E8E913E6CB893A83A462 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1335,7 +1271,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1376,7 +1312,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
