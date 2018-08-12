@@ -36,8 +36,6 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
     HGInputContext *_inputContext;
     NSMutableString *_commitString;
-
-    HGUCSChar buffer[64]; // hangulinputcontext.c
 }
 @property(nonatomic, readonly) HGInputContext *inputContext;
 

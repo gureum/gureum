@@ -30,7 +30,7 @@ class GureumPreferencePane: NSPreferencePane {
         if let scriptObject = NSAppleScript(source: myAppleScript) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
                 &error)
-            print(output.stringValue)
+            print("pref event descriptor: \(output.stringValue ?? "nil")")
         }
     }
 
