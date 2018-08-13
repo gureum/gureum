@@ -36,6 +36,7 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
     HGInputContext *_inputContext;
     NSMutableString *_commitString;
+    id bridge;
 }
 @property(nonatomic, readonly) HGInputContext *inputContext;
 

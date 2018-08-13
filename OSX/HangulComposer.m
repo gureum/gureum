@@ -46,6 +46,7 @@
 - (instancetype)initWithKeyboardIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
+        self->bridge = [[HangulComposerBridge alloc] initWithComposer:self];
         self->_inputContext = [[HGInputContext alloc] initWithKeyboardIdentifier:identifier];
         // 생성 실패 처리
         if (self->_inputContext == nil) {
