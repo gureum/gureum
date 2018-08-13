@@ -80,6 +80,7 @@
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
 		38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
+		38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
 		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -298,6 +299,7 @@
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38C2AE4C208795E700FE211A /* GureumConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumConfiguration.swift; sourceTree = "<group>"; };
 		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanComposer.swift; sourceTree = "<group>"; };
+		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				38FA21D914230E1000444D67 /* GureumComposer.m */,
 				38162D7A140F64B70077AA2D /* HangulComposer.h */,
 				38162D7B140F64B70077AA2D /* HangulComposer.m */,
+				38D3E42A21213E9700751191 /* HangulComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 			);
 			name = Composers;
@@ -917,6 +920,7 @@
 				38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */,
 				38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */,
 				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
+				38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
