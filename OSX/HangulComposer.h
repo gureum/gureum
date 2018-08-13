@@ -34,11 +34,14 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
     @coclass HGInputContext
 */
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
-    HGInputContext *_inputContext;
-    NSMutableString *_commitString;
+    HGInputContext *_Nonnull _inputContext;
+    NSMutableString *_Nonnull _commitString;
     id bridge;
 }
-@property(nonatomic, readonly) HGInputContext *inputContext;
+@property(nonatomic, retain) NSMutableString *commitString; // Swift bridge support
+
+@property(nonatomic, readonly, nonnull) HGInputContext *inputContext;
+- (HGInputContext *)inputContext;
 
 /*!
     @brief  libhangul의 input context를 사용하는 합성기를 초기화한다.
