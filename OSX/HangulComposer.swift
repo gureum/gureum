@@ -37,6 +37,7 @@ import Foundation
                 string = string.lowercased();
             }
         }
+            
         let handled = _self.inputContext.process(string.first!.unicodeScalars.first!.value)
         let UCSString = _self.inputContext.commitUCSString;
         // dassert(UCSString);
@@ -61,7 +62,9 @@ import Foundation
     }
     
     public func clearContext() {
-
+      let composer = self.composer as! HangulComposer
+      composer.inputContext.reset()
+      self.commitString = ""
     }
     
     public var hasCandidates: Bool = false
