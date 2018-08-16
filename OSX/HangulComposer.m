@@ -46,6 +46,7 @@
 - (instancetype)initWithKeyboardIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
+        self->bridge = [[HangulComposerBridge alloc] initWithComposer:self];
         self->_inputContext = [[HGInputContext alloc] initWithKeyboardIdentifier:identifier];
         // 생성 실패 처리
         if (self->_inputContext == nil) {
@@ -74,29 +75,7 @@
 #pragma - IMKInputServerTextData
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
-    if (keyCode == kVK_Delete) {
-        return self->_inputContext.backspace ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessed;
-    }
-
-    if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
-        dlog(DEBUG_HANGULCOMPOSER, @" ** ESCAPE from outbound keyCode: %lu", keyCode);
-        return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
-    }
-
-    // 한글 입력에서 캡스락 무시
-    if (flags & NSAlphaShiftKeyMask) {
-        if (!(flags & NSShiftKeyMask)) {
-            string = string.lowercaseString;
-        }
-    }
-    BOOL handled = [self->_inputContext process:[string characterAtIndex:0]];
-    const HGUCSChar *UCSString = self->_inputContext.commitUCSString;
-    dassert(UCSString);
-    NSString *recentCommitString = [[self class] commitStringByCombinationModeWithUCSString:UCSString];
-    [self->_commitString appendString:recentCommitString];
-    dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
-    return handled ? CIMInputTextProcessResultProcessed : CIMInputTextProcessResultNotProcessedAndNeedsCancel;
+    return [(HangulComposerBridge *)self->bridge inputController:inputController inputText:string key:keyCode modifiers:flags client:sender];
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
