@@ -105,8 +105,7 @@
 }
 
 - (void)cancelComposition {
-    NSString *flushedString = [[self class] commitStringByCombinationModeWithUCSString:self->_inputContext.flushUCSString];
-    [self->_commitString appendString:flushedString];
+    [(HangulComposerBridge *)self->bridge cancelComposition];
 }
 
 - (void)clearContext {
