@@ -86,8 +86,7 @@
 #pragma - CIMComposer
 
 - (NSString *)originalString {
-    const HGUCSChar *preedit = self->_inputContext.preeditUCSString;
-    return [[self class] commitStringByCombinationModeWithUCSString:preedit];
+    return [(HangulComposerBridge *)self->bridge originalString];
 }
 
 - (NSString *)composedString {
