@@ -69,10 +69,11 @@
 }
 
 - (void)setKeyboardWithIdentifier:(NSString *)identifier {
-    [self->_inputContext setKeyboardWithIdentifier:identifier];
+    return [(HangulComposerBridge *)self->bridge setKeyboardWithIdentifier:identifier];
 }
 
 #pragma - IMKInputServerTextData
+
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     return [(HangulComposerBridge *)self->bridge inputController:inputController inputText:string key:keyCode modifiers:flags client:sender];
