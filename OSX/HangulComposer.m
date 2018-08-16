@@ -101,9 +101,7 @@
 }
 
 - (NSString *)dequeueCommitString {
-    NSString *queuedCommitString = [NSString stringWithString:self->_commitString];
-    [self->_commitString setString:@""];
-    return queuedCommitString;
+    return [(HangulComposerBridge *)self->bridge dequeueCommitString];
 }
 
 - (void)cancelComposition {
