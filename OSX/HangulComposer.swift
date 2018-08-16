@@ -37,7 +37,6 @@ import Foundation
                 string = string.lowercased();
             }
         }
-            
         let handled = _self.inputContext.process(string.first!.unicodeScalars.first!.value)
         let UCSString = _self.inputContext.commitUCSString;
         // dassert(UCSString);
@@ -60,7 +59,8 @@ import Foundation
     public func cancelComposition() {
 
     }
-    
+  
+    // FIXME: - 원래 _commitString임. 수정이 필요함
     public func clearContext() {
       let composer = self.composer as! HangulComposer
       composer.inputContext.reset()
