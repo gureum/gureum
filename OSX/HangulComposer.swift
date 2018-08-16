@@ -60,7 +60,6 @@ import Foundation
 
     }
   
-    // FIXME: - 원래 _commitString임. 수정이 필요함
     public func clearContext() {
       let _self = self.composer as! HangulComposer
       _self.inputContext.reset()
