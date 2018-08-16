@@ -71,8 +71,6 @@ import Foundation
     
     public var hasCandidates: Bool = false
     
-    
-    
     public func inputController(_ controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         return CIMInputTextProcessResult.notProcessed
     }
