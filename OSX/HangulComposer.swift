@@ -48,7 +48,11 @@ import Foundation
     
     public var composedString: String!
     
-    public var originalString: String!
+    public func originalString() -> String! {
+        let _self = self.composer as! HangulComposer
+        let preedit = _self.inputContext.preeditUCSString
+        return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
+    }
     
     public var commitString: String!
     
