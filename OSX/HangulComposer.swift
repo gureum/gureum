@@ -62,9 +62,9 @@ import Foundation
   
     // FIXME: - 원래 _commitString임. 수정이 필요함
     public func clearContext() {
-      let composer = self.composer as! HangulComposer
-      composer.inputContext.reset()
-      self.commitString = ""
+      let _self = self.composer as! HangulComposer
+      _self.inputContext.reset()
+      _self.commitString.setString("")
     }
     
     public var hasCandidates: Bool = false
