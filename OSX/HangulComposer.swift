@@ -10,7 +10,7 @@ import Foundation
 
 @objcMembers public class HangulComposerBridge: NSObject {
     unowned let composer: CIMComposerDelegate
-
+    
     public init(composer: CIMComposerDelegate) {
         self.composer = composer
         super.init()
@@ -53,7 +53,9 @@ import Foundation
     public var commitString: String!
     
     public func dequeueCommitString() -> String! {
-        return ""
+        let queuedCommitString = commitString
+        commitString = ""
+        return queuedCommitString
     }
     
     public func cancelComposition() {
