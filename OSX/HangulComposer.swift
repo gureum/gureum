@@ -59,7 +59,10 @@ import Foundation
     }
     
     public func cancelComposition() {
-
+        let _self = self.composer as! HangulComposer
+        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: _self.inputContext.flushUCSString())
+        
+        _self.commitString.append(flushedString)    // 기본 _commitString 입니다.
     }
     
     public func clearContext() {
