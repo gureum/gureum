@@ -69,7 +69,7 @@
 }
 
 - (void)setKeyboardWithIdentifier:(NSString *)identifier {
-    [self->_inputContext setKeyboardWithIdentifier:identifier];
+    return [(HangulComposerBridge *)self->bridge setKeyboardWithIdentifier:identifier];
 }
 
 #pragma - IMKInputServerTextData
