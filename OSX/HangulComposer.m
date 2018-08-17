@@ -59,7 +59,7 @@
 }
 
 - (BOOL)hasCandidates {
-    return NO;
+    return [(HangulComposerBridge *)self->bridge hasCandidates];
 }
 
 - (void)dealloc {
