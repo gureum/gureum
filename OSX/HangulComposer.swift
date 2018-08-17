@@ -15,6 +15,11 @@ import Foundation
         self.composer = composer
         super.init()
     }
+    
+    public func setKeyboardWithIdentifier(identifier :String){
+        let _self = self.composer as! HangulComposer
+        _self.inputContext.setKeyboardWithIdentifier(identifier)
+    }
 
     // CIMComposerDelegate
 
