@@ -16,7 +16,7 @@ import Foundation
         super.init()
     }
     
-    public func setKeyboardWithIdentifier(identifier :String){
+    public func setKeyboardWithIdentifier(_ identifier :String) {
         let _self = self.composer as! HangulComposer
         _self.inputContext.setKeyboardWithIdentifier(identifier)
     }
@@ -62,8 +62,9 @@ import Foundation
     public var commitString: String!
     
     public func dequeueCommitString() -> String! {
-        let queuedCommitString = commitString
-        commitString = ""
+        let _self = self.composer as! HangulComposer
+        let queuedCommitString = _self.commitString as String
+        _self.commitString.setString("")
         return queuedCommitString
     }
     
