@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,9 +12,6 @@
                 <outlet property="commonButtonsView" destination="53" id="60"/>
                 <outlet property="defaultHangulInputModeComboBox" destination="87" id="105"/>
                 <outlet property="gureumPreferenceView" destination="82" id="98"/>
-                <outlet property="hangulCombinationModeCommitingComboBox" destination="115" id="119"/>
-                <outlet property="hangulCombinationModeComposingComboBox" destination="110" id="120"/>
-                <outlet property="hangulPreferenceView" destination="93" id="99"/>
                 <outlet property="inputModeEnglishKeyRecorderCell" destination="fZ6-A9-nXK" id="0sv-uz-t8W"/>
                 <outlet property="inputModeExchangeKeyRecorderCell" destination="101" id="132"/>
                 <outlet property="inputModeHanjaKeyRecorderCell" destination="125" id="133"/>
@@ -28,7 +25,6 @@
                 <outlet property="rightOptionBehaviorComboBox" destination="Iyi-C8-FRX" id="v3s-Gk-BP8"/>
                 <outlet property="romanModeByEscapeKeyCheckbox" destination="128" id="131"/>
                 <outlet property="shortcutPreferenceView" destination="d3g-yd-5Pi" id="yGr-RR-7LO"/>
-                <outlet property="showsInputForHanjaCandidatesCheckbox" destination="kbw-KS-sBP" id="qlw-Vh-CVc"/>
                 <outlet property="window" destination="1" id="108"/>
             </connections>
         </customObject>
@@ -111,7 +107,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="48"/>
             </connections>
-            <point key="canvasLocation" x="211" y="-54"/>
+            <point key="canvasLocation" x="354" y="114"/>
         </window>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customView id="d3g-yd-5Pi">
@@ -413,7 +409,7 @@
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="53" y="40"/>
+            <point key="canvasLocation" x="-22" y="-18"/>
         </customView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="82">
@@ -493,101 +489,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="73" y="288"/>
-        </customView>
-        <customView id="93">
-            <rect key="frame" x="0.0" y="0.0" width="308" height="197"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="109">
-                    <rect key="frame" x="18" y="92" width="105" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="미완성 문자 조합:" id="112">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <comboBox verticalHuggingPriority="750" id="110">
-                    <rect key="frame" x="129" y="88" width="162" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="111">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <objectValues>
-                            <string>채움 문자 제거</string>
-                            <string>채움 문자 보임</string>
-                            <string>중성 채움 문자만 보임</string>
-                            <string>채움 문자부터 숨김</string>
-                            <string>중성 채움 문자부터 숨김</string>
-                        </objectValues>
-                    </comboBoxCell>
-                </comboBox>
-                <textField verticalHuggingPriority="750" id="114">
-                    <rect key="frame" x="18" y="64" width="105" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="미완성 문자 완료:" id="117">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <comboBox verticalHuggingPriority="750" id="115">
-                    <rect key="frame" x="128" y="60" width="163" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="116">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <objectValues>
-                            <string>채움 문자 제거</string>
-                            <string>채움 문자 보임</string>
-                            <string>중성 채움 문자만 보임</string>
-                            <string>채움 문자부터 숨김</string>
-                            <string>중성 채움 문자부터 숨김</string>
-                        </objectValues>
-                    </comboBoxCell>
-                </comboBox>
-                <textField verticalHuggingPriority="750" id="eUM-9q-JXv">
-                    <rect key="frame" x="18" y="120" width="105" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="rtS-ux-wdY">
-                        <font key="font" metaFont="systemBold"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button hidden="YES" id="qS6-9b-zpa">
-                    <rect key="frame" x="18" y="38" width="327" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="호환성 확장 (시험중)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cc4-vj-TQP">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button id="kbw-KS-sBP">
-                    <rect key="frame" x="18" y="159" width="327" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="한자 후보에 내 입력 표시" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Pef-yV-bjP">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7Vi-ot-AUK">
-                    <rect key="frame" x="30" y="20" width="233" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(더 많은 앱에서 정상 동작 / 커서 이상 동작)" id="GgH-ug-S6J">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <box verticalHuggingPriority="750" boxType="separator" id="okz-lY-USR">
-                    <rect key="frame" x="20" y="150" width="268" height="5"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </box>
-            </subviews>
+            <point key="canvasLocation" x="-3" y="298"/>
         </customView>
     </objects>
     <resources>
