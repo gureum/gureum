@@ -59,7 +59,7 @@
 }
 
 - (BOOL)hasCandidates {
-    return NO;
+    return [(HangulComposerBridge *)self->bridge hasCandidates];
 }
 
 - (void)dealloc {
@@ -86,8 +86,7 @@
 #pragma - CIMComposer
 
 - (NSString *)originalString {
-    const HGUCSChar *preedit = self->_inputContext.preeditUCSString;
-    return [[self class] commitStringByCombinationModeWithUCSString:preedit];
+    return [(HangulComposerBridge *)self->bridge originalString];
 }
 
 - (NSString *)composedString {
@@ -101,14 +100,11 @@
 }
 
 - (NSString *)dequeueCommitString {
-    NSString *queuedCommitString = [NSString stringWithString:self->_commitString];
-    [self->_commitString setString:@""];
-    return queuedCommitString;
+    return [(HangulComposerBridge *)self->bridge dequeueCommitString];
 }
 
 - (void)cancelComposition {
-    NSString *flushedString = [[self class] commitStringByCombinationModeWithUCSString:self->_inputContext.flushUCSString];
-    [self->_commitString appendString:flushedString];
+    [(HangulComposerBridge *)self->bridge cancelComposition];
 }
 
 - (void)clearContext {

@@ -10,7 +10,7 @@ import Foundation
 
 @objcMembers public class HangulComposerBridge: NSObject {
     unowned let composer: CIMComposerDelegate
-
+    
     public init(composer: CIMComposerDelegate) {
         self.composer = composer
         super.init()
@@ -53,23 +53,34 @@ import Foundation
     
     public var composedString: String!
     
-    public var originalString: String!
+    public func originalString() -> String! {
+        let _self = self.composer as! HangulComposer
+        let preedit = _self.inputContext.preeditUCSString
+        return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
+    }
     
     public var commitString: String!
     
     public func dequeueCommitString() -> String! {
-        return ""
+        let queuedCommitString = commitString
+        commitString = ""
+        return queuedCommitString
     }
     
     public func cancelComposition() {
-
+        let _self = self.composer as! HangulComposer
+        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: _self.inputContext.flushUCSString())
+        
+        _self.commitString.append(flushedString)    // 기본 _commitString 입니다.
     }
     
     public func clearContext() {
 
     }
     
-    public var hasCandidates: Bool = false
+    public func hasCandidates() -> Bool {
+        return false
+    }
     
     public func inputController(_ controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         return CIMInputTextProcessResult.notProcessed
