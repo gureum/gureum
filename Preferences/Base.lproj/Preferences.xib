@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane" customModule="Preferences" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane">
             <connections>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="KJ8-tk-g3I"/>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="mYa-Fu-R5F"/>
