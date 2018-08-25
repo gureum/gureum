@@ -1,6 +1,6 @@
 #!/bin/bash
 . ready.sh
-if [ $? ]; then
+if [ $? -ne 0 ]; then
     exit 255
 fi
 
