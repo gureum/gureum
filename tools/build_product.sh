@@ -1,7 +1,7 @@
 #!/bin/bash
 #https://discuss.atom.io/t/sandbox-supposedly-enabled-but-application-loader-disagrees/26155
 . ready.sh
-if [ $? ]; then
+if [ $? -ne 0 ]; then
     exit 255
 fi
 
