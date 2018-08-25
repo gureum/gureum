@@ -10,7 +10,7 @@ import Foundation
 import PreferencePanes
 import Cocoa
 
-class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
+@objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
     
     var configuration: UserDefaults = UserDefaults(suiteName: "org.youknowone.Gureum")!
     var gureumPreferencesHangulLayouts = [
