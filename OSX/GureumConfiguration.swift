@@ -84,7 +84,9 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 
     @objc public var inputModeHanjaKeyCode: Int {
         get {
-            return self.integer(forKey: CIMInputModeHanjaKeyCode)
+            return -1
+//            한자 키코드가 기본 값인 0 ("a" 키에 해당)으로 설정되어 임시로 주석 처리했습니다.
+//            return self.integer(forKey: CIMInputModeHanjaKeyCode)
         }
     }
 
