@@ -16,7 +16,6 @@
 
 @class CIMInputHandler;
 @class CIMComposer;
-@class GureumConfiguration;
 
 /*!
     @brief  공통적인 OSX의 입력기 구조를 다룬다.
@@ -32,7 +31,7 @@
     IMKServer *server;
     IMKCandidates *candidates;
     CIMInputHandler *handler;
-    GureumConfiguration *configuration;
+    NSUserDefaults *configuration;
     CIMComposer *sharedComposer;
     
     BOOL inputting;
@@ -43,7 +42,7 @@
 //! @property
 @property(nonatomic,readonly) IMKCandidates *candidates;
 //! @property
-@property(nonatomic,retain) GureumConfiguration *configuration;
+@property(nonatomic,retain) NSUserDefaults *configuration;
 //! @brief  공용 입력 핸들러
 @property(nonatomic,retain) CIMInputHandler *handler;
 //! @brief  공용 합성기

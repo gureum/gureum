@@ -34,7 +34,7 @@ var CIMRomanModeByEscapeKey = "CIMRomanModeByEscapeKey"
 var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 
 
-@objc class GureumConfiguration: UserDefaults {
+@objc extension UserDefaults {
 
     @objc public var lastHangulInputMode: String? {
         get {
@@ -83,12 +83,6 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         
         set {
             return self.set(newValue, forKey: CIMHangulCombinationModeComposing)
-        }
-    }
-
-    public var inputModeHanjaKey: (Int, Int) {
-        get {
-            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
         }
     }
 

@@ -8,6 +8,7 @@
 
 #import "CIMCommon.h"
 #import "CIMInputController.h"
+#import "CIMInputHandler.h"
 //#import "CIMConfiguration.h"
 #import "GureumComposer.h"
 

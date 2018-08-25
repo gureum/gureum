@@ -11,8 +11,8 @@ import PreferencePanes
 import Cocoa
 
 class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
-
-    var configuration: GureumConfiguration = GureumConfiguration()
+    
+    var configuration: UserDefaults = UserDefaults(suiteName: "org.youknowone.Gureum")!
     var gureumPreferencesHangulLayouts = [
         "org.youknowone.inputmethod.Gureum.han2",
         "org.youknowone.inputmethod.Gureum.han2classic",
@@ -54,7 +54,6 @@ class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
     }
     
     @IBAction func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
-        NSLog("sender item: \(sender.indexOfSelectedItem)")
         configuration.optionKeyBehavior = sender.indexOfSelectedItem
     }
     
@@ -79,6 +78,8 @@ class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
         for layout in gureumPreferencesHangulLayouts {
             names.add(info![layout] as Any)
         }
+        NSLog("\(names)")
+        NSLog("\(gureumPreferencesHangulLayoutLocalizedNames)")
         gureumPreferencesHangulLayoutLocalizedNames = names
         
         return gureumPreferencesHangulLayoutLocalizedNames.index(of: string)
