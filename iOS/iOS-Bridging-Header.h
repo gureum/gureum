@@ -4,6 +4,6 @@
 
 #include <hangeul/capi.h>
 #include <FoundationExtension/FoundationExtension.h>
-#include <UIKitExtension/UIKitExtension.h>
-#include "NSACommonCrypto.h"
+//#include <UIKitExtension/UIKitExtension.h>
+//#include "NSACommonCrypto.h"
 #include "GRInputButton.h"

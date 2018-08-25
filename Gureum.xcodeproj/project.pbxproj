@@ -1,2457 +1,898 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>092EFC8424837A08CF2CC5BC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>96531747FFE34C269FBF9A41</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>3802E4631413A9FF00256B54</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMConfiguration.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3802E4641413A9FF00256B54</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMConfiguration.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3802E4661413AA0000256B54</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3802E4641413A9FF00256B54</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>380E1C6114B7F5D800289EE7</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMInputControllerGureum.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>380E1C6214B7F5D800289EE7</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMInputControllerGureum.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>380E1C6314B7F5D800289EE7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>380E1C6214B7F5D800289EE7</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>380ECC8216ECF49F0063B881</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.iconset</string>
-			<key>name</key>
-			<string>Gureum.iconset</string>
-			<key>path</key>
-			<string>Icons/Gureum.iconset</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>380ECC8316ECF49F0063B881</key>
-		<dict>
-			<key>fileRef</key>
-			<string>380ECC8216ECF49F0063B881</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162D7A140F64B70077AA2D</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>HangulComposer.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162D7B140F64B70077AA2D</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>HangulComposer.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DCA1410A4A50077AA2D</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMComposer.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DCE1410A95A0077AA2D</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMCommon.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DEF141263270077AA2D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38162E04141263280077AA2D</string>
-				<string>38162E0E141264EB0077AA2D</string>
-				<string>38162E0F141264EB0077AA2D</string>
-				<string>38162E1514126ACE0077AA2D</string>
-				<string>3802E4661413AA0000256B54</string>
-				<string>38FA21D71422DBBF00444D67</string>
-				<string>38FA21DA14230E1000444D67</string>
-				<string>38FA21DD14230E2E00444D67</string>
-				<string>389A9D55142F82EA0087F074</string>
-				<string>380E1C6314B7F5D800289EE7</string>
-				<string>385ABBF6193F825500478DA8</string>
-				<string>387A47461688419800EB5943</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38162DF0141263270077AA2D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38162DF5141263270077AA2D</string>
-				<string>38162E0C141264C00077AA2D</string>
-				<string>389A39A414234D6500A2ED88</string>
-				<string>384FDE65193F89B300114F48</string>
-				<string>FB451439A105F524D5BCEEC8</string>
-				<string>092EFC8424837A08CF2CC5BC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38162DF1141263270077AA2D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38162DFB141263280077AA2D</string>
-				<string>383562F818B9F32E00F8B8B9</string>
-				<string>383562F618B9F30D00F8B8B9</string>
-				<string>38162E4814128A740077AA2D</string>
-				<string>38475AF61412BC050062100D</string>
-				<string>383562EC18B9F2D900F8B8B9</string>
-				<string>38475AF71412BC050062100D</string>
-				<string>38475AF91412BC050062100D</string>
-				<string>38475AFA1412BC050062100D</string>
-				<string>38475AFC1412BC050062100D</string>
-				<string>38475AFD1412BC050062100D</string>
-				<string>383562F218B9F2DF00F8B8B9</string>
-				<string>383EF60D142B28B600013C0B</string>
-				<string>38F220A4142C79710064FAC3</string>
-				<string>388E2A611469249700ADBDA5</string>
-				<string>383562FC18B9F34500F8B8B9</string>
-				<string>383562FB18B9F34500F8B8B9</string>
-				<string>380ECC8316ECF49F0063B881</string>
-				<string>38D6F1CC194003C7003F25EE</string>
-				<string>38F1525116ECF87E00FE1B4A</string>
-				<string>38F1525316ECF87E00FE1B4A</string>
-				<string>38F1525516ECF87E00FE1B4A</string>
-				<string>38F1525616ECF87E00FE1B4A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38162DF2141263270077AA2D</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>38162E08141263280077AA2D</string>
-			<key>buildPhases</key>
-			<array>
-				<string>76D67EB60590499E8DFDCD0D</string>
-				<string>388FD025175ED98E00469B76</string>
-				<string>38162DEF141263270077AA2D</string>
-				<string>38162DF0141263270077AA2D</string>
-				<string>38162DF1141263270077AA2D</string>
-				<string>387736EB1423561F00DE50D6</string>
-				<string>7D0AD86BF73D34982D3826A7</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>384FDE64193F898500114F48</string>
-				<string>389A398414234B5600A2ED88</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>OSX</string>
-			<key>productName</key>
-			<string>OSX</string>
-			<key>productReference</key>
-			<string>38162DF3141263270077AA2D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>38162DF3141263270077AA2D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Gureum.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>38162DF5141263270077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38863C63140E64EB00A8ED76</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162DF6141263270077AA2D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38FA220114233FD900444D67</string>
-				<string>388C5D6D154D88FC00B4F3E1</string>
-				<string>388FD02A175EDB5500469B76</string>
-				<string>380E1C6114B7F5D800289EE7</string>
-				<string>380E1C6214B7F5D800289EE7</string>
-				<string>38162E02141263280077AA2D</string>
-				<string>38162E03141263280077AA2D</string>
-				<string>38FA21DF14231BCC00444D67</string>
-				<string>383EF60B142B287F00013C0B</string>
-				<string>38475AEB14129BAA0062100D</string>
-				<string>38162DF7141263280077AA2D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>OSX</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DF7141263280077AA2D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38162DF8141263280077AA2D</string>
-				<string>38162DF9141263280077AA2D</string>
-				<string>38162DFC141263280077AA2D</string>
-				<string>38162E4914128A740077AA2D</string>
-				<string>388E2A601469249700ADBDA5</string>
-				<string>385ABBF5193F825500478DA8</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DF8141263280077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DF9141263280077AA2D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38162DFA141263280077AA2D</string>
-				<string>38162E451412866F0077AA2D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DFA141263280077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162DFB141263280077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38162DF9141263280077AA2D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162DFC141263280077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162E02141263280077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GureumAppDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162E03141263280077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GureumAppDelegate.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162E04141263280077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38162E03141263280077AA2D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E08141263280077AA2D</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>38162E09141263280077AA2D</string>
-				<string>38162E0A141263280077AA2D</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>38162E09141263280077AA2D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>A10A3C3ECCD005940C1E6BC2</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)"</string>
-					<string>"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)"</string>
-				</array>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
-				<string>YES</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>OSX/Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<string>DEBUG</string>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IBC_PLUGIN_SEARCH_PATHS</key>
-				<string>ShortcutRecorder/build/$(CONFIGURATION)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>OSX/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Input Methods</string>
-				<key>LIBRARY_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>"$(SRCROOT)/Pods/build/$(CONFIGURATION)"</string>
-				</array>
-				<key>MACOSX_DEPLOYMENT_TARGET</key>
-				<string>10.6.8</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Gureum</string>
-				<key>SDKROOT</key>
-				<string>macosx</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>38162E0A141263280077AA2D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>891772650203286226A519A9</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)"</string>
-					<string>"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)"</string>
-				</array>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
-				<string>YES</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>OSX/Prefix.pch</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IBC_PLUGIN_SEARCH_PATHS</key>
-				<string>ShortcutRecorder/build/$(CONFIGURATION)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>OSX/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Input Methods</string>
-				<key>LIBRARY_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>"$(SRCROOT)/Pods/build/$(CONFIGURATION)"</string>
-				</array>
-				<key>MACOSX_DEPLOYMENT_TARGET</key>
-				<string>10.6.8</string>
-				<key>PRODUCT_NAME</key>
-				<string>Gureum</string>
-				<key>SDKROOT</key>
-				<string>macosx</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>38162E0C141264C00077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38863C98140E677900A8ED76</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E0E141264EB0077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38863D30140F282000A8ED76</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E0F141264EB0077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38162D7B140F64B70077AA2D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E1314126ACE0077AA2D</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMComposer.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162E1514126ACE0077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38162E1314126ACE0077AA2D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E451412866F0077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>ko</string>
-			<key>path</key>
-			<string>ko.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38162E4814128A740077AA2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38162E4914128A740077AA2D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38162E4914128A740077AA2D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.xib</string>
-			<key>path</key>
-			<string>MainMenu.xib</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562EB18B9F2D900F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han2@2x.png</string>
-			<key>path</key>
-			<string>Icons/han2@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562EC18B9F2D900F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562EB18B9F2D900F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383562F118B9F2DF00F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han3@2x.png</string>
-			<key>path</key>
-			<string>Icons/han3@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562F218B9F2DF00F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562F118B9F2DF00F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383562F518B9F30D00F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han@2x.png</string>
-			<key>path</key>
-			<string>Icons/han@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562F618B9F30D00F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562F518B9F30D00F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383562F718B9F32E00F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han.png</string>
-			<key>path</key>
-			<string>Icons/han.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562F818B9F32E00F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562F718B9F32E00F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383562F918B9F34500F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>eng.png</string>
-			<key>path</key>
-			<string>Icons/eng.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562FA18B9F34500F8B8B9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>eng@2x.png</string>
-			<key>path</key>
-			<string>Icons/eng@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383562FB18B9F34500F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562F918B9F34500F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383562FC18B9F34500F8B8B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383562FA18B9F34500F8B8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383EF60B142B287F00013C0B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>383EF60E142B28EB00013C0B</string>
-				<string>383EF60F142B28EB00013C0B</string>
-				<string>383EF60C142B28B600013C0B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Graphic Interface</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383EF60C142B28B600013C0B</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.xib</string>
-			<key>path</key>
-			<string>preferences.xib</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383EF60D142B28B600013C0B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383EF60C142B28B600013C0B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>383EF60E142B28EB00013C0B</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GureumPreferencesWindowController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>383EF60F142B28EB00013C0B</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GureumPreferencesWindowController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AEB14129BAA0062100D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>380ECC8216ECF49F0063B881</string>
-				<string>383562F718B9F32E00F8B8B9</string>
-				<string>383562F518B9F30D00F8B8B9</string>
-				<string>38475AEE1412BC050062100D</string>
-				<string>383562EB18B9F2D900F8B8B9</string>
-				<string>38475AEF1412BC050062100D</string>
-				<string>383562F118B9F2DF00F8B8B9</string>
-				<string>38475AF11412BC050062100D</string>
-				<string>38F1524816ECF87E00FE1B4A</string>
-				<string>38475AF21412BC050062100D</string>
-				<string>38F1524A16ECF87E00FE1B4A</string>
-				<string>38475AF41412BC050062100D</string>
-				<string>38F1524C16ECF87E00FE1B4A</string>
-				<string>383562F918B9F34500F8B8B9</string>
-				<string>383562FA18B9F34500F8B8B9</string>
-				<string>38475AF51412BC050062100D</string>
-				<string>38F1524D16ECF87E00FE1B4A</string>
-				<string>38F220A3142C79710064FAC3</string>
-				<string>38D6F1CB194003C7003F25EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Icons</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AEE1412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han2.png</string>
-			<key>path</key>
-			<string>Icons/han2.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AEF1412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han3.png</string>
-			<key>path</key>
-			<string>Icons/han3.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AF11412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han3final.png</string>
-			<key>path</key>
-			<string>Icons/han3final.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AF21412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han390.png</string>
-			<key>path</key>
-			<string>Icons/han390.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AF41412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>hanroman.png</string>
-			<key>path</key>
-			<string>Icons/hanroman.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AF51412BC050062100D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>qwerty.png</string>
-			<key>path</key>
-			<string>Icons/qwerty.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38475AF61412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AEE1412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38475AF71412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AEF1412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38475AF91412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AF11412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38475AFA1412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AF21412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38475AFC1412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AF41412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38475AFD1412BC050062100D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38475AF51412BC050062100D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>384FDE63193F898500114F48</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>388C5D6D154D88FC00B4F3E1</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>9398377F0DA42965007F53F3</string>
-			<key>remoteInfo</key>
-			<string>ShortcutRecorder.framework</string>
-		</dict>
-		<key>384FDE64193F898500114F48</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>ShortcutRecorder.framework</string>
-			<key>targetProxy</key>
-			<string>384FDE63193F898500114F48</string>
-		</dict>
-		<key>384FDE65193F89B300114F48</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38615D6E193F8868007F7686</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>384FDE66193F89C600114F48</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38615D6E193F8868007F7686</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>CodeSignOnCopy</string>
-				</array>
-			</dict>
-		</dict>
-		<key>385ABBF5193F825500478DA8</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>main.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>385ABBF6193F825500478DA8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>385ABBF5193F825500478DA8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38615D69193F8868007F7686</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38615D6E193F8868007F7686</string>
-				<string>38615D70193F8868007F7686</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38615D6D193F8868007F7686</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>388C5D6D154D88FC00B4F3E1</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>939837800DA42965007F53F3</string>
-			<key>remoteInfo</key>
-			<string>ShortcutRecorder.framework</string>
-		</dict>
-		<key>38615D6E193F8868007F7686</key>
-		<dict>
-			<key>fileType</key>
-			<string>wrapper.framework</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>ShortcutRecorder.framework</string>
-			<key>remoteRef</key>
-			<string>38615D6D193F8868007F7686</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>38615D6F193F8868007F7686</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>388C5D6D154D88FC00B4F3E1</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>93983B220DA43C4E007F53F3</string>
-			<key>remoteInfo</key>
-			<string>ShortcutRecorder_Tester</string>
-		</dict>
-		<key>38615D70193F8868007F7686</key>
-		<dict>
-			<key>fileType</key>
-			<string>wrapper.application</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>ShortcutRecorder.app</string>
-			<key>remoteRef</key>
-			<string>38615D6F193F8868007F7686</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>387736EB1423561F00DE50D6</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>dstPath</key>
-			<string></string>
-			<key>dstSubfolderSpec</key>
-			<string>10</string>
-			<key>files</key>
-			<array>
-				<string>389A39ED142356E900A2ED88</string>
-				<string>384FDE66193F89C600114F48</string>
-			</array>
-			<key>isa</key>
-			<string>PBXCopyFilesBuildPhase</string>
-			<key>name</key>
-			<string>Copy Frameworks</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>387A47441688415500EB5943</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMCommon.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>387A47461688419800EB5943</key>
-		<dict>
-			<key>fileRef</key>
-			<string>387A47441688415500EB5943</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>387D00041421FB6D00DAE6F4</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMInputManager.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>387D00051421FB6E00DAE6F4</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMInputManager.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>387DFFFE1421F1E000DAE6F4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38162DCE1410A95A0077AA2D</string>
-				<string>387A47441688415500EB5943</string>
-				<string>38863D34140F421800A8ED76</string>
-				<string>38863C95140E669000A8ED76</string>
-				<string>38863C96140E669000A8ED76</string>
-				<string>38162DCA1410A4A50077AA2D</string>
-				<string>38162E1314126ACE0077AA2D</string>
-				<string>387D00041421FB6D00DAE6F4</string>
-				<string>387D00051421FB6E00DAE6F4</string>
-				<string>38863D2F140F282000A8ED76</string>
-				<string>38863D30140F282000A8ED76</string>
-				<string>3802E4631413A9FF00256B54</string>
-				<string>3802E4641413A9FF00256B54</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Common Input Method</string>
-			<key>path</key>
-			<string>CommonInputMethod</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C4E140E62D100A8ED76</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>387DFFFE1421F1E000DAE6F4</string>
-				<string>38162DF6141263270077AA2D</string>
-				<string>38BFE7FD18B45419004B2B2E</string>
-				<string>38863C62140E64EB00A8ED76</string>
-				<string>38863C60140E64EB00A8ED76</string>
-				<string>A679D10AABF12E32A8FD9F9D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C50140E62D100A8ED76</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0600</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>youknowone.org</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>38162DF2141263270077AA2D</key>
-					<dict>
-						<key>DevelopmentTeam</key>
-						<string>3BUWX63W7M</string>
-					</dict>
-					<key>38BFE7F918B45419004B2B2E</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>38162DF2141263270077AA2D</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>38863C53140E62D100A8ED76</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>ko</string>
-			</array>
-			<key>mainGroup</key>
-			<string>38863C4E140E62D100A8ED76</string>
-			<key>productRefGroup</key>
-			<string>38863C60140E64EB00A8ED76</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array>
-				<dict>
-					<key>ProductGroup</key>
-					<string>389A38781423477F00A2ED88</string>
-					<key>ProjectRef</key>
-					<string>38FA220114233FD900444D67</string>
-				</dict>
-				<dict>
-					<key>ProductGroup</key>
-					<string>38615D69193F8868007F7686</string>
-					<key>ProjectRef</key>
-					<string>388C5D6D154D88FC00B4F3E1</string>
-				</dict>
-			</array>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>38162DF2141263270077AA2D</string>
-				<string>38BFE7F918B45419004B2B2E</string>
-			</array>
-		</dict>
-		<key>38863C53140E62D100A8ED76</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>38863C55140E62D100A8ED76</string>
-				<string>38863C56140E62D100A8ED76</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>38863C55140E62D100A8ED76</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>388FD02A175EDB5500469B76</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_VERSION</key>
-				<string>com.apple.compilers.llvm.clang.1_0</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>HEADER_SEARCH_PATHS</key>
-				<string>$(PROJECT_DIR)</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>STRINGS_FILE_OUTPUT_ENCODING</key>
-				<string>UTF-8</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>38863C56140E62D100A8ED76</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>388FD02A175EDB5500469B76</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>Developer ID Application</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_VERSION</key>
-				<string>com.apple.compilers.llvm.clang.1_0</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>HEADER_SEARCH_PATHS</key>
-				<string>$(PROJECT_DIR)</string>
-				<key>STRINGS_FILE_OUTPUT_ENCODING</key>
-				<string>UTF-8</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>38863C60140E64EB00A8ED76</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38162DF3141263270077AA2D</string>
-				<string>38BFE7FA18B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C62140E64EB00A8ED76</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38863C63140E64EB00A8ED76</string>
-				<string>38863C98140E677900A8ED76</string>
-				<string>38BFE7FB18B45419004B2B2E</string>
-				<string>38863C65140E64EB00A8ED76</string>
-				<string>96531747FFE34C269FBF9A41</string>
-				<string>4B8B92F237406797FBB5F1B7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C63140E64EB00A8ED76</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Cocoa.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Cocoa.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>38863C65140E64EB00A8ED76</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38863C66140E64EB00A8ED76</string>
-				<string>38863C67140E64EB00A8ED76</string>
-				<string>38863C68140E64EB00A8ED76</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Other Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C66140E64EB00A8ED76</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>AppKit.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/AppKit.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>38863C67140E64EB00A8ED76</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreData.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreData.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>38863C68140E64EB00A8ED76</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>38863C95140E669000A8ED76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMInputController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C96140E669000A8ED76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMInputController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863C98140E677900A8ED76</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>InputMethodKit.framework</string>
-			<key>path</key>
-			<string>SDKs/MacOSX10.6.sdk/System/Library/Frameworks/InputMethodKit.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>38863D2F140F282000A8ED76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMInputHandler.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863D30140F282000A8ED76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CIMInputHandler.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38863D34140F421800A8ED76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CIMApplicationDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>388C5D6D154D88FC00B4F3E1</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.pb-project</string>
-			<key>name</key>
-			<string>ShortcutRecorder.xcodeproj</string>
-			<key>path</key>
-			<string>OSX/ShortcutRecorder/ShortcutRecorder.xcodeproj</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-		</dict>
-		<key>388E2A601469249700ADBDA5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>path</key>
-			<string>Hangul.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>388E2A611469249700ADBDA5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>388E2A601469249700ADBDA5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>388FD025175ED98E00469B76</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Version</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/bash</string>
-			<key>shellScript</key>
-			<string>cd $PROJECT_DIR/OSX
-tag=`git describe --tags`
-tag=${tag#OSX-}
-echo "VERSION = $tag" &gt; Version.xcconfig</string>
-		</dict>
-		<key>388FD02A175EDB5500469B76</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Version.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>389A38781423477F00A2ED88</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>389A387D1423477F00A2ED88</string>
-				<string>389A387F1423477F00A2ED88</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>389A387C1423477F00A2ED88</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>38FA220114233FD900444D67</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>38FA21EC1423219E00444D67</string>
-			<key>remoteInfo</key>
-			<string>Hangul</string>
-		</dict>
-		<key>389A387D1423477F00A2ED88</key>
-		<dict>
-			<key>fileType</key>
-			<string>wrapper.framework</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>Hangul.framework</string>
-			<key>remoteRef</key>
-			<string>389A387C1423477F00A2ED88</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>389A387E1423477F00A2ED88</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>38FA220114233FD900444D67</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>3890A8BE1423245500067337</string>
-			<key>remoteInfo</key>
-			<string>hangul</string>
-		</dict>
-		<key>389A387F1423477F00A2ED88</key>
-		<dict>
-			<key>fileType</key>
-			<string>archive.ar</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>libhangul.a</string>
-			<key>remoteRef</key>
-			<string>389A387E1423477F00A2ED88</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>389A398314234B5600A2ED88</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>38FA220114233FD900444D67</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>38FA21EB1423219E00444D67</string>
-			<key>remoteInfo</key>
-			<string>Hangul</string>
-		</dict>
-		<key>389A398414234B5600A2ED88</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>Hangul</string>
-			<key>targetProxy</key>
-			<string>389A398314234B5600A2ED88</string>
-		</dict>
-		<key>389A39A414234D6500A2ED88</key>
-		<dict>
-			<key>fileRef</key>
-			<string>389A387D1423477F00A2ED88</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>389A39ED142356E900A2ED88</key>
-		<dict>
-			<key>fileRef</key>
-			<string>389A387D1423477F00A2ED88</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>CodeSignOnCopy</string>
-				</array>
-			</dict>
-		</dict>
-		<key>389A9D55142F82EA0087F074</key>
-		<dict>
-			<key>fileRef</key>
-			<string>383EF60F142B28EB00013C0B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38BFE7F618B45419004B2B2E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38BFE80418B45419004B2B2E</string>
-				<string>38BFE82118B4F181004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38BFE7F718B45419004B2B2E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38BFE7FC18B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38BFE7F818B45419004B2B2E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>38BFE80218B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>38BFE7F918B45419004B2B2E</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>38BFE80818B45419004B2B2E</string>
-			<key>buildPhases</key>
-			<array>
-				<string>38BFE7F618B45419004B2B2E</string>
-				<string>38BFE7F718B45419004B2B2E</string>
-				<string>38BFE7F818B45419004B2B2E</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>38BFE80718B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>OSXTests</string>
-			<key>productName</key>
-			<string>GureumTests</string>
-			<key>productReference</key>
-			<string>38BFE7FA18B45419004B2B2E</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>38BFE7FA18B45419004B2B2E</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>OSXTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>38BFE7FB18B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>XCTest.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/XCTest.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>38BFE7FC18B45419004B2B2E</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38BFE7FB18B45419004B2B2E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38BFE7FD18B45419004B2B2E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38BFE81F18B4F181004B2B2E</string>
-				<string>38BFE82018B4F181004B2B2E</string>
-				<string>38BFE80318B45419004B2B2E</string>
-				<string>38BFE7FE18B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>GureumTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE7FE18B45419004B2B2E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38BFE7FF18B45419004B2B2E</string>
-				<string>38BFE80018B45419004B2B2E</string>
-				<string>38BFE80518B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE7FF18B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>GureumTests-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE80018B45419004B2B2E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38BFE80118B45419004B2B2E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE80118B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE80218B45419004B2B2E</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38BFE80018B45419004B2B2E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38BFE80318B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GureumTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE80418B45419004B2B2E</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38BFE80318B45419004B2B2E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38BFE80518B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GureumTests-Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE80618B45419004B2B2E</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>38863C50140E62D100A8ED76</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>38162DF2141263270077AA2D</string>
-			<key>remoteInfo</key>
-			<string>Gureum</string>
-		</dict>
-		<key>38BFE80718B45419004B2B2E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>38162DF2141263270077AA2D</string>
-			<key>targetProxy</key>
-			<string>38BFE80618B45419004B2B2E</string>
-		</dict>
-		<key>38BFE80818B45419004B2B2E</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>38BFE80918B45419004B2B2E</string>
-				<string>38BFE80A18B45419004B2B2E</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>38BFE80918B45419004B2B2E</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
-				<string>YES</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>GureumTests/GureumTests-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>INFOPLIST_FILE</key>
-				<string>GureumTests/GureumTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>macosx</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>38BFE80A18B45419004B2B2E</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
-				<string>YES</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>GureumTests/GureumTests-Prefix.pch</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>INFOPLIST_FILE</key>
-				<string>GureumTests/GureumTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>macosx</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>38BFE81F18B4F181004B2B2E</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GureumMockObjects.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE82018B4F181004B2B2E</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GureumMockObjects.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38BFE82118B4F181004B2B2E</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38BFE82018B4F181004B2B2E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38D6F1CB194003C7003F25EE</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>command.png</string>
-			<key>path</key>
-			<string>Icons/command.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38D6F1CC194003C7003F25EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38D6F1CB194003C7003F25EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38F1524816ECF87E00FE1B4A</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han3final@2x.png</string>
-			<key>path</key>
-			<string>Icons/han3final@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38F1524A16ECF87E00FE1B4A</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>han390@2x.png</string>
-			<key>path</key>
-			<string>Icons/han390@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38F1524C16ECF87E00FE1B4A</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>hanroman@2x.png</string>
-			<key>path</key>
-			<string>Icons/hanroman@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38F1524D16ECF87E00FE1B4A</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>qwerty@2x.png</string>
-			<key>path</key>
-			<string>Icons/qwerty@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38F1525116ECF87E00FE1B4A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38F1524816ECF87E00FE1B4A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38F1525316ECF87E00FE1B4A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38F1524A16ECF87E00FE1B4A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38F1525516ECF87E00FE1B4A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38F1524C16ECF87E00FE1B4A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38F1525616ECF87E00FE1B4A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38F1524D16ECF87E00FE1B4A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38F220A3142C79710064FAC3</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>name</key>
-			<string>libhangul_logo.png</string>
-			<key>path</key>
-			<string>Icons/libhangul_logo.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38F220A4142C79710064FAC3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38F220A3142C79710064FAC3</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38FA21D71422DBBF00444D67</key>
-		<dict>
-			<key>fileRef</key>
-			<string>387D00051421FB6E00DAE6F4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38FA21D814230E1000444D67</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GureumComposer.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38FA21D914230E1000444D67</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GureumComposer.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38FA21DA14230E1000444D67</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38FA21D914230E1000444D67</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38FA21DD14230E2E00444D67</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38863C96140E669000A8ED76</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>38FA21DF14231BCC00444D67</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38FA21D814230E1000444D67</string>
-				<string>38FA21D914230E1000444D67</string>
-				<string>38162D7A140F64B70077AA2D</string>
-				<string>38162D7B140F64B70077AA2D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Composers</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38FA220114233FD900444D67</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.pb-project</string>
-			<key>name</key>
-			<string>Hangul.xcodeproj</string>
-			<key>path</key>
-			<string>../libhangul-objc/Hangul.xcodeproj</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4B8B92F237406797FBB5F1B7</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-OSX.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>76D67EB60590499E8DFDCD0D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>7D0AD86BF73D34982D3826A7</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>891772650203286226A519A9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-OSX.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>96531747FFE34C269FBF9A41</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>A10A3C3ECCD005940C1E6BC2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-OSX.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A679D10AABF12E32A8FD9F9D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>A10A3C3ECCD005940C1E6BC2</string>
-				<string>891772650203286226A519A9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FB451439A105F524D5BCEEC8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4B8B92F237406797FBB5F1B7</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>38863C50140E62D100A8ED76</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28F06BF6CE0486227BACCA48 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D546D86B02DE2B73F1BCC31 /* libPods-OSX.a */; };
+		3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802E4641413A9FF00256B54 /* CIMConfiguration.m */; };
+		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; };
+		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
+		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
+		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
+		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; };
+		38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C98140E677900A8ED76 /* InputMethodKit.framework */; };
+		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
+		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; };
+		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
+		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
+		383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562EB18B9F2D900F8B8B9 /* han2@2x.png */; };
+		383562F218B9F2DF00F8B8B9 /* han3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F118B9F2DF00F8B8B9 /* han3@2x.png */; };
+		383562F618B9F30D00F8B8B9 /* han@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F518B9F30D00F8B8B9 /* han@2x.png */; };
+		383562F818B9F32E00F8B8B9 /* han.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F718B9F32E00F8B8B9 /* han.png */; };
+		383562FB18B9F34500F8B8B9 /* eng.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562F918B9F34500F8B8B9 /* eng.png */; };
+		383562FC18B9F34500F8B8B9 /* eng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383562FA18B9F34500F8B8B9 /* eng@2x.png */; };
+		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
+		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
+		38475AF71412BC050062100D /* han3.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEF1412BC050062100D /* han3.png */; };
+		38475AF91412BC050062100D /* han3final.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF11412BC050062100D /* han3final.png */; };
+		38475AFA1412BC050062100D /* han390.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF21412BC050062100D /* han390.png */; };
+		38475AFC1412BC050062100D /* hanroman.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF41412BC050062100D /* hanroman.png */; };
+		38475AFD1412BC050062100D /* qwerty.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF51412BC050062100D /* qwerty.png */; };
+		384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38615D6E193F8868007F7686 /* ShortcutRecorder.framework */; };
+		384FDE66193F89C600114F48 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 38615D6E193F8868007F7686 /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
+		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
+		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
+		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; };
+		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
+		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
+		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; };
+		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; };
+		38D6F1CC194003C7003F25EE /* command.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6F1CB194003C7003F25EE /* command.png */; };
+		38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524816ECF87E00FE1B4A /* han3final@2x.png */; };
+		38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524A16ECF87E00FE1B4A /* han390@2x.png */; };
+		38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */; };
+		38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */; };
+		38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F220A3142C79710064FAC3 /* libhangul_logo.png */; };
+		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
+		38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FA21D914230E1000444D67 /* GureumComposer.m */; };
+		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		384FDE63193F898500114F48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
+		};
+		38615D6D193F8868007F7686 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 939837800DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
+		};
+		38615D6F193F8868007F7686 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93983B220DA43C4E007F53F3;
+			remoteInfo = ShortcutRecorder_Tester;
+		};
+		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 38FA21EC1423219E00444D67;
+			remoteInfo = Hangul;
+		};
+		389A387E1423477F00A2ED88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3890A8BE1423245500067337;
+			remoteInfo = hangul;
+		};
+		389A398314234B5600A2ED88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 38FA21EB1423219E00444D67;
+			remoteInfo = Hangul;
+		};
+		38BFE80618B45419004B2B2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38162DF2141263270077AA2D;
+			remoteInfo = Gureum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		387736EB1423561F00DE50D6 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
+				384FDE66193F89C600114F48 /* ShortcutRecorder.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3802E4631413A9FF00256B54 /* CIMConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMConfiguration.h; sourceTree = "<group>"; };
+		3802E4641413A9FF00256B54 /* CIMConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMConfiguration.m; sourceTree = "<group>"; };
+		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
+		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
+		380ECC8216ECF49F0063B881 /* Gureum.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Gureum.iconset; path = Icons/Gureum.iconset; sourceTree = "<group>"; };
+		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
+		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
+		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
+		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
+		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		38162E02141263280077AA2D /* GureumAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GureumAppDelegate.h; sourceTree = "<group>"; };
+		38162E03141263280077AA2D /* GureumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumAppDelegate.m; sourceTree = "<group>"; };
+		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
+		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		383562EB18B9F2D900F8B8B9 /* han2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han2@2x.png"; path = "Icons/han2@2x.png"; sourceTree = "<group>"; };
+		383562F118B9F2DF00F8B8B9 /* han3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3@2x.png"; path = "Icons/han3@2x.png"; sourceTree = "<group>"; };
+		383562F518B9F30D00F8B8B9 /* han@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han@2x.png"; path = "Icons/han@2x.png"; sourceTree = "<group>"; };
+		383562F718B9F32E00F8B8B9 /* han.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han.png; path = Icons/han.png; sourceTree = "<group>"; };
+		383562F918B9F34500F8B8B9 /* eng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eng.png; path = Icons/eng.png; sourceTree = "<group>"; };
+		383562FA18B9F34500F8B8B9 /* eng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eng@2x.png"; path = "Icons/eng@2x.png"; sourceTree = "<group>"; };
+		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
+		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
+		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
+		38475AEE1412BC050062100D /* han2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2.png; path = Icons/han2.png; sourceTree = "<group>"; };
+		38475AEF1412BC050062100D /* han3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3.png; path = Icons/han3.png; sourceTree = "<group>"; };
+		38475AF11412BC050062100D /* han3final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3final.png; path = Icons/han3final.png; sourceTree = "<group>"; };
+		38475AF21412BC050062100D /* han390.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han390.png; path = Icons/han390.png; sourceTree = "<group>"; };
+		38475AF41412BC050062100D /* hanroman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hanroman.png; path = Icons/hanroman.png; sourceTree = "<group>"; };
+		38475AF51412BC050062100D /* qwerty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qwerty.png; path = Icons/qwerty.png; sourceTree = "<group>"; };
+		385ABBF5193F825500478DA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
+		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
+		387D00051421FB6E00DAE6F4 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
+		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		38863C95140E669000A8ED76 /* CIMInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputController.h; sourceTree = "<group>"; };
+		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
+		38863C98140E677900A8ED76 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = SDKs/MacOSX10.6.sdk/System/Library/Frameworks/InputMethodKit.framework; sourceTree = DEVELOPER_DIR; };
+		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
+		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
+		38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMApplicationDelegate.h; sourceTree = "<group>"; };
+		388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = OSX/ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = SOURCE_ROOT; };
+		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
+		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BFE7FB18B45419004B2B2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
+		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38BFE80318B45419004B2B2E /* GureumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumTests.m; sourceTree = "<group>"; };
+		38BFE80518B45419004B2B2E /* GureumTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GureumTests-Prefix.pch"; sourceTree = "<group>"; };
+		38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumMockObjects.h; sourceTree = "<group>"; };
+		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
+		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
+		38F1524816ECF87E00FE1B4A /* han3final@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han3final@2x.png"; path = "Icons/han3final@2x.png"; sourceTree = "<group>"; };
+		38F1524A16ECF87E00FE1B4A /* han390@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "han390@2x.png"; path = "Icons/han390@2x.png"; sourceTree = "<group>"; };
+		38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hanroman@2x.png"; path = "Icons/hanroman@2x.png"; sourceTree = "<group>"; };
+		38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qwerty@2x.png"; path = "Icons/qwerty@2x.png"; sourceTree = "<group>"; };
+		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
+		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
+		38FA21D914230E1000444D67 /* GureumComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumComposer.m; sourceTree = "<group>"; };
+		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
+		6D546D86B02DE2B73F1BCC31 /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B1CF7F2BA36EE1C0350CD6C /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		AAF672043932717A04B3EB94 /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		38162DF0141263270077AA2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
+				38162E0C141264C00077AA2D /* InputMethodKit.framework in Frameworks */,
+				389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */,
+				384FDE65193F89B300114F48 /* ShortcutRecorder.framework in Frameworks */,
+				28F06BF6CE0486227BACCA48 /* libPods-OSX.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BFE7F718B45419004B2B2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29977B6D3368ABBFCE5B4294 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B1CF7F2BA36EE1C0350CD6C /* Pods-OSX.debug.xcconfig */,
+				AAF672043932717A04B3EB94 /* Pods-OSX.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		38162DF6141263270077AA2D /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
+				388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */,
+				388FD02A175EDB5500469B76 /* Version.xcconfig */,
+				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
+				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
+				38162E02141263280077AA2D /* GureumAppDelegate.h */,
+				38162E03141263280077AA2D /* GureumAppDelegate.m */,
+				38FA21DF14231BCC00444D67 /* Composers */,
+				383EF60B142B287F00013C0B /* Graphic Interface */,
+				38475AEB14129BAA0062100D /* Icons */,
+				38162DF7141263280077AA2D /* Supporting Files */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
+		38162DF7141263280077AA2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38162DF8141263280077AA2D /* Info.plist */,
+				38162DF9141263280077AA2D /* InfoPlist.strings */,
+				38162DFC141263280077AA2D /* Prefix.pch */,
+				38162E4914128A740077AA2D /* MainMenu.xib */,
+				388E2A601469249700ADBDA5 /* Hangul.strings */,
+				385ABBF5193F825500478DA8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		383EF60B142B287F00013C0B /* Graphic Interface */ = {
+			isa = PBXGroup;
+			children = (
+				383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */,
+				383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */,
+				383EF60C142B28B600013C0B /* preferences.xib */,
+			);
+			name = "Graphic Interface";
+			sourceTree = "<group>";
+		};
+		38475AEB14129BAA0062100D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				380ECC8216ECF49F0063B881 /* Gureum.iconset */,
+				383562F718B9F32E00F8B8B9 /* han.png */,
+				383562F518B9F30D00F8B8B9 /* han@2x.png */,
+				38475AEE1412BC050062100D /* han2.png */,
+				383562EB18B9F2D900F8B8B9 /* han2@2x.png */,
+				38475AEF1412BC050062100D /* han3.png */,
+				383562F118B9F2DF00F8B8B9 /* han3@2x.png */,
+				38475AF11412BC050062100D /* han3final.png */,
+				38F1524816ECF87E00FE1B4A /* han3final@2x.png */,
+				38475AF21412BC050062100D /* han390.png */,
+				38F1524A16ECF87E00FE1B4A /* han390@2x.png */,
+				38475AF41412BC050062100D /* hanroman.png */,
+				38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */,
+				383562F918B9F34500F8B8B9 /* eng.png */,
+				383562FA18B9F34500F8B8B9 /* eng@2x.png */,
+				38475AF51412BC050062100D /* qwerty.png */,
+				38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */,
+				38F220A3142C79710064FAC3 /* libhangul_logo.png */,
+				38D6F1CB194003C7003F25EE /* command.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		38615D69193F8868007F7686 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38615D6E193F8868007F7686 /* ShortcutRecorder.framework */,
+				38615D70193F8868007F7686 /* ShortcutRecorder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		387DFFFE1421F1E000DAE6F4 /* Common Input Method */ = {
+			isa = PBXGroup;
+			children = (
+				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
+				387A47441688415500EB5943 /* CIMCommon.m */,
+				38863D34140F421800A8ED76 /* CIMApplicationDelegate.h */,
+				38863C95140E669000A8ED76 /* CIMInputController.h */,
+				38863C96140E669000A8ED76 /* CIMInputController.m */,
+				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
+				38162E1314126ACE0077AA2D /* CIMComposer.m */,
+				387D00041421FB6D00DAE6F4 /* CIMInputManager.h */,
+				387D00051421FB6E00DAE6F4 /* CIMInputManager.m */,
+				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
+				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
+				3802E4631413A9FF00256B54 /* CIMConfiguration.h */,
+				3802E4641413A9FF00256B54 /* CIMConfiguration.m */,
+			);
+			name = "Common Input Method";
+			path = CommonInputMethod;
+			sourceTree = "<group>";
+		};
+		38863C4E140E62D100A8ED76 = {
+			isa = PBXGroup;
+			children = (
+				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
+				38162DF6141263270077AA2D /* OSX */,
+				38BFE7FD18B45419004B2B2E /* GureumTests */,
+				38863C62140E64EB00A8ED76 /* Frameworks */,
+				38863C60140E64EB00A8ED76 /* Products */,
+				29977B6D3368ABBFCE5B4294 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		38863C60140E64EB00A8ED76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38162DF3141263270077AA2D /* Gureum.app */,
+				38BFE7FA18B45419004B2B2E /* OSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38863C62140E64EB00A8ED76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
+				38863C98140E677900A8ED76 /* InputMethodKit.framework */,
+				38BFE7FB18B45419004B2B2E /* XCTest.framework */,
+				38863C65140E64EB00A8ED76 /* Other Frameworks */,
+				6D546D86B02DE2B73F1BCC31 /* libPods-OSX.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38863C65140E64EB00A8ED76 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38863C66140E64EB00A8ED76 /* AppKit.framework */,
+				38863C67140E64EB00A8ED76 /* CoreData.framework */,
+				38863C68140E64EB00A8ED76 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		389A38781423477F00A2ED88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				389A387D1423477F00A2ED88 /* Hangul.framework */,
+				389A387F1423477F00A2ED88 /* libhangul.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38BFE7FD18B45419004B2B2E /* GureumTests */ = {
+			isa = PBXGroup;
+			children = (
+				38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */,
+				38BFE82018B4F181004B2B2E /* GureumMockObjects.m */,
+				38BFE80318B45419004B2B2E /* GureumTests.m */,
+				38BFE7FE18B45419004B2B2E /* Supporting Files */,
+			);
+			path = GureumTests;
+			sourceTree = "<group>";
+		};
+		38BFE7FE18B45419004B2B2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */,
+				38BFE80018B45419004B2B2E /* InfoPlist.strings */,
+				38BFE80518B45419004B2B2E /* GureumTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38FA21DF14231BCC00444D67 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				38FA21D814230E1000444D67 /* GureumComposer.h */,
+				38FA21D914230E1000444D67 /* GureumComposer.m */,
+				38162D7A140F64B70077AA2D /* HangulComposer.h */,
+				38162D7B140F64B70077AA2D /* HangulComposer.m */,
+			);
+			name = Composers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		38162DF2141263270077AA2D /* OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
+			buildPhases = (
+				718B87B211272EE39CEE3F17 /* [CP] Check Pods Manifest.lock */,
+				388FD025175ED98E00469B76 /* Version */,
+				38162DEF141263270077AA2D /* Sources */,
+				38162DF0141263270077AA2D /* Frameworks */,
+				38162DF1141263270077AA2D /* Resources */,
+				387736EB1423561F00DE50D6 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				384FDE64193F898500114F48 /* PBXTargetDependency */,
+				389A398414234B5600A2ED88 /* PBXTargetDependency */,
+			);
+			name = OSX;
+			productName = OSX;
+			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
+			productType = "com.apple.product-type.application";
+		};
+		38BFE7F918B45419004B2B2E /* OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */;
+			buildPhases = (
+				38BFE7F618B45419004B2B2E /* Sources */,
+				38BFE7F718B45419004B2B2E /* Frameworks */,
+				38BFE7F818B45419004B2B2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38BFE80718B45419004B2B2E /* PBXTargetDependency */,
+			);
+			name = OSXTests;
+			productName = GureumTests;
+			productReference = 38BFE7FA18B45419004B2B2E /* OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		38863C50140E62D100A8ED76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = youknowone.org;
+				TargetAttributes = {
+					38162DF2141263270077AA2D = {
+						DevelopmentTeam = 3BUWX63W7M;
+					};
+					38BFE7F918B45419004B2B2E = {
+						TestTargetID = 38162DF2141263270077AA2D;
+					};
+				};
+			};
+			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ko,
+			);
+			mainGroup = 38863C4E140E62D100A8ED76;
+			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 389A38781423477F00A2ED88 /* Products */;
+					ProjectRef = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+				},
+				{
+					ProductGroup = 38615D69193F8868007F7686 /* Products */;
+					ProjectRef = 388C5D6D154D88FC00B4F3E1 /* ShortcutRecorder.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				38162DF2141263270077AA2D /* OSX */,
+				38BFE7F918B45419004B2B2E /* OSXTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		38615D6E193F8868007F7686 /* ShortcutRecorder.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShortcutRecorder.framework;
+			remoteRef = 38615D6D193F8868007F7686 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38615D70193F8868007F7686 /* ShortcutRecorder.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ShortcutRecorder.app;
+			remoteRef = 38615D6F193F8868007F7686 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		389A387D1423477F00A2ED88 /* Hangul.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Hangul.framework;
+			remoteRef = 389A387C1423477F00A2ED88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		389A387F1423477F00A2ED88 /* libhangul.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libhangul.a;
+			remoteRef = 389A387E1423477F00A2ED88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38162DF1141263270077AA2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162DFB141263280077AA2D /* InfoPlist.strings in Resources */,
+				383562F818B9F32E00F8B8B9 /* han.png in Resources */,
+				383562F618B9F30D00F8B8B9 /* han@2x.png in Resources */,
+				38162E4814128A740077AA2D /* MainMenu.xib in Resources */,
+				38475AF61412BC050062100D /* han2.png in Resources */,
+				383562EC18B9F2D900F8B8B9 /* han2@2x.png in Resources */,
+				38475AF71412BC050062100D /* han3.png in Resources */,
+				38475AF91412BC050062100D /* han3final.png in Resources */,
+				38475AFA1412BC050062100D /* han390.png in Resources */,
+				38475AFC1412BC050062100D /* hanroman.png in Resources */,
+				38475AFD1412BC050062100D /* qwerty.png in Resources */,
+				383562F218B9F2DF00F8B8B9 /* han3@2x.png in Resources */,
+				383EF60D142B28B600013C0B /* preferences.xib in Resources */,
+				38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */,
+				388E2A611469249700ADBDA5 /* Hangul.strings in Resources */,
+				383562FC18B9F34500F8B8B9 /* eng@2x.png in Resources */,
+				383562FB18B9F34500F8B8B9 /* eng.png in Resources */,
+				380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */,
+				38D6F1CC194003C7003F25EE /* command.png in Resources */,
+				38F1525116ECF87E00FE1B4A /* han3final@2x.png in Resources */,
+				38F1525316ECF87E00FE1B4A /* han390@2x.png in Resources */,
+				38F1525516ECF87E00FE1B4A /* hanroman@2x.png in Resources */,
+				38F1525616ECF87E00FE1B4A /* qwerty@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BFE7F818B45419004B2B2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		388FD025175ED98E00469B76 /* Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Version;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#OSX-}\necho \"VERSION = $tag\" > Version.xcconfig";
+		};
+		718B87B211272EE39CEE3F17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OSX-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38162DEF141263270077AA2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
+				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
+				38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */,
+				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
+				3802E4661413AA0000256B54 /* CIMConfiguration.m in Sources */,
+				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
+				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
+				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
+				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
+				380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */,
+				385ABBF6193F825500478DA8 /* main.m in Sources */,
+				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BFE7F618B45419004B2B2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38BFE80418B45419004B2B2E /* GureumTests.m in Sources */,
+				38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		384FDE64193F898500114F48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShortcutRecorder.framework;
+			targetProxy = 384FDE63193F898500114F48 /* PBXContainerItemProxy */;
+		};
+		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Hangul;
+			targetProxy = 389A398314234B5600A2ED88 /* PBXContainerItemProxy */;
+		};
+		38BFE80718B45419004B2B2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38162DF2141263270077AA2D /* OSX */;
+			targetProxy = 38BFE80618B45419004B2B2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		38162DF9141263280077AA2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38162DFA141263280077AA2D /* en */,
+				38162E451412866F0077AA2D /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		38BFE80018B45419004B2B2E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38BFE80118B45419004B2B2E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		38162E09141263280077AA2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B1CF7F2BA36EE1C0350CD6C /* Pods-OSX.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OSX/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
+				INFOPLIST_FILE = OSX/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Gureum;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		38162E0A141263280077AA2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAF672043932717A04B3EB94 /* Pods-OSX.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/libhangul-objc/build/$(CONFIGURATION)\"",
+					"\"$(PROJECT_DIR)/OSX/ShortcutRecorder/build/$(CONFIGURATION)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OSX/Prefix.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBC_PLUGIN_SEARCH_PATHS = "ShortcutRecorder/build/$(CONFIGURATION)";
+				INFOPLIST_FILE = OSX/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
+				PRODUCT_NAME = Gureum;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		38863C55140E62D100A8ED76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
+				ONLY_ACTIVE_ARCH = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+			};
+			name = Debug;
+		};
+		38863C56140E62D100A8ED76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 388FD02A175EDB5500469B76 /* Version.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+			};
+			name = Release;
+		};
+		38BFE80918B45419004B2B2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		38BFE80A18B45419004B2B2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38162E09141263280077AA2D /* Debug */,
+				38162E0A141263280077AA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38863C55140E62D100A8ED76 /* Debug */,
+				38863C56140E62D100A8ED76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38BFE80918B45419004B2B2E /* Debug */,
+				38BFE80A18B45419004B2B2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 38863C50140E62D100A8ED76 /* Project object */;
+}

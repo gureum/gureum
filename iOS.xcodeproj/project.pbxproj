@@ -50,7 +50,8 @@
 		38A37EFA19E7256500A9C83B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E37EF8199A44EB00BA7F0C /* Theme.swift */; };
 		38BB7017193FA11000605583 /* inputmethod.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38BB700F193FA11000605583 /* inputmethod.appex */; };
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
-		6A7138B903B1579BF011CBEC /* libPods-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2ABC13449F37B818356FB /* libPods-iOS.a */; };
+		5123E1CFEF75B630AC0D7BF3 /* libPods-App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD09AF72CCF3F86C421EF3FF /* libPods-App.a */; };
+		90BCF10EB608311D966A6F98 /* libPods-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98EEA72D7670DC6FAEE9B2E /* libPods-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +131,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		35C2ABC13449F37B818356FB /* libPods-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36BC736812A2D2738BF37824 /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		380136AA199C651A00355D69 /* StaticWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticWebViewController.swift; path = ../iOSCore/StaticWebViewController.swift; sourceTree = "<group>"; };
 		380136AD199C67F200355D69 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		380136AF199C68BC00355D69 /* GlobalActivicyIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalActivicyIndicatorView.swift; sourceTree = "<group>"; };
@@ -178,13 +177,18 @@
 		38BB700F193FA11000605583 /* inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
-		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		38D26F641A1D36A6001E0F51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		38D26F681A1D36FD001E0F51 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		38D9A394199B7F8A0087A965 /* default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = default; sourceTree = "<group>"; };
 		38E37EF8199A44EB00BA7F0C /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		3FA3F3D250893137147B209E /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
+		7A81E31B94AB3A7E3D5D7DDF /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7D1F3ED1266694BD441611D7 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		8395526EE9D8DAF4200A5B40 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
+		D98EEA72D7670DC6FAEE9B2E /* libPods-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD09AF72CCF3F86C421EF3FF /* libPods-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,7 @@
 			files = (
 				383B07F119E71482004046F5 /* StoreKit.framework in Frameworks */,
 				386308FC199143800039369C /* libhangeul.a in Frameworks */,
+				5123E1CFEF75B630AC0D7BF3 /* libPods-App.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,30 +214,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				386308FD1991438B0039369C /* libhangeul.a in Frameworks */,
-				6A7138B903B1579BF011CBEC /* libPods-iOS.a in Frameworks */,
+				90BCF10EB608311D966A6F98 /* libPods-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		000D6A29AD0FBC72C3EFA096 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				35C2ABC13449F37B818356FB /* libPods-iOS.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		21175C480B66C9B6680163D4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				36BC736812A2D2738BF37824 /* Pods-iOS.debug.xcconfig */,
-				3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		38630898199132210039369C /* iOSCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,8 +282,8 @@
 				38D9A398199B7F8E0087A965 /* iOSTheme */,
 				386308A5199132210039369C /* GureumCoreTests */,
 				3882B9F7193F9E6600076C26 /* Products */,
-				21175C480B66C9B6680163D4 /* Pods */,
-				000D6A29AD0FBC72C3EFA096 /* Frameworks */,
+				F98215E1D3C4FAFA74650D13 /* Pods */,
+				CCCF83EB06C64C542D45D4B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,6 +386,26 @@
 			path = iOSTheme;
 			sourceTree = "<group>";
 		};
+		CCCF83EB06C64C542D45D4B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD09AF72CCF3F86C421EF3FF /* libPods-App.a */,
+				D98EEA72D7670DC6FAEE9B2E /* libPods-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F98215E1D3C4FAFA74650D13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FA3F3D250893137147B209E /* Pods-App.debug.xcconfig */,
+				8395526EE9D8DAF4200A5B40 /* Pods-App.release.xcconfig */,
+				7A81E31B94AB3A7E3D5D7DDF /* Pods-iOS.debug.xcconfig */,
+				7D1F3ED1266694BD441611D7 /* Pods-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -405,6 +413,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3882BA12193F9E6600076C26 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
+				45316F04CD315F0BD61240E5 /* [CP] Check Pods Manifest.lock */,
 				3882B9F2193F9E6600076C26 /* Sources */,
 				3882B9F3193F9E6600076C26 /* Frameworks */,
 				3882B9F4193F9E6600076C26 /* Resources */,
@@ -446,11 +455,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38BB701C193FA11000605583 /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
-				A489B7427DE407E2C50061A8 /* Check Pods Manifest.lock */,
+				DCA8AB10D2E796EEEDD025D2 /* [CP] Check Pods Manifest.lock */,
 				38BB700B193FA11000605583 /* Sources */,
 				38BB700C193FA11000605583 /* Frameworks */,
 				38BB700D193FA11000605583 /* Resources */,
-				E0FD6D67178B2742B458EEB3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -468,12 +476,12 @@
 		3882B9EE193F9E6600076C26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					3882B9F5193F9E6600076C26 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = RT8F3G27W8;
+						DevelopmentTeam = 9384JEL3M9;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -587,34 +595,40 @@
 			shellPath = /bin/sh;
 			shellScript = "./Pods/CrashlyticsFramework/Crashlytics.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
 		};
-		A489B7427DE407E2C50061A8 /* Check Pods Manifest.lock */ = {
+		45316F04CD315F0BD61240E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-App-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E0FD6D67178B2742B458EEB3 /* Copy Pods Resources */ = {
+		DCA8AB10D2E796EEEDD025D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS/Pods-iOS-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -720,24 +734,37 @@
 		3882BA10193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Youknowone Jeong (34H26YK9J8)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -755,11 +782,12 @@
 					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					hangeul,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -767,17 +795,28 @@
 		3882BA11193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Youknowone Jeong (34H26YK9J8)";
@@ -785,6 +824,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -796,9 +836,11 @@
 					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					hangeul,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -806,13 +848,14 @@
 		};
 		3882BA13193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36BC736812A2D2738BF37824 /* Pods-iOS.debug.xcconfig */;
+			baseConfigurationReference = 3FA3F3D250893137147B209E /* Pods-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9384JEL3M9;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -820,6 +863,7 @@
 				);
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum;
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
@@ -828,13 +872,14 @@
 		};
 		3882BA14193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */;
+			baseConfigurationReference = 8395526EE9D8DAF4200A5B40 /* Pods-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9384JEL3M9;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "SWIFT_HEADER=\\\"Gureum-Swift.h\\\"";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -842,6 +887,7 @@
 				);
 				INFOPLIST_FILE = iOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum;
 				PRODUCT_NAME = Gureum;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS/iOS-Bridging-Header.h";
@@ -850,7 +896,6 @@
 		};
 		3882BA16193F9E6600076C26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36BC736812A2D2738BF37824 /* Pods-iOS.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -864,6 +909,7 @@
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -871,7 +917,6 @@
 		};
 		3882BA17193F9E6600076C26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Gureum";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -881,6 +926,7 @@
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -888,7 +934,7 @@
 		};
 		38BB701A193FA11000605583 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36BC736812A2D2738BF37824 /* Pods-iOS.debug.xcconfig */;
+			baseConfigurationReference = 7A81E31B94AB3A7E3D5D7DDF /* Pods-iOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "";
@@ -906,6 +952,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum.inputmethod;
 				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -916,7 +963,7 @@
 		};
 		38BB701B193FA11000605583 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C8C1135ECCE14AEE85A34F8 /* Pods-iOS.release.xcconfig */;
+			baseConfigurationReference = 7D1F3ED1266694BD441611D7 /* Pods-iOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "";
@@ -932,6 +979,7 @@
 				LLVM_LTO = YES;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum.inputmethod;
 				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;

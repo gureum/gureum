@@ -9,9 +9,17 @@ target :'OSX' do
     xcodeproj 'Gureum.xcodeproj'
 end
 
+target :'App' do
+    platform :ios, "8.0"
+    xcodeproj 'iOS.xcodeproj'
+#pod 'FoundationExtension/UIKitExtension'
+    pod 'Fabric'
+    pod 'Crashlytics'
+end
 target :'iOS' do
     platform :ios, "8.0"
     xcodeproj 'iOS.xcodeproj'
-    pod 'FoundationExtension/UIKitExtension'
-    pod 'CrashlyticsFramework'
+#pod 'FoundationExtension/UIKitExtension'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
