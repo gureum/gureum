@@ -10,9 +10,7 @@ import Foundation
 import PreferencePanes
 import Cocoa
 
-@objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
-    
-    var configuration: UserDefaults = UserDefaults(suiteName: "org.youknowone.Gureum")!
+@objc class GureumLayoutTable: NSObject {
     var gureumPreferencesHangulLayouts = [
         "org.youknowone.inputmethod.Gureum.han2",
         "org.youknowone.inputmethod.Gureum.han2classic",
@@ -28,13 +26,46 @@ import Cocoa
         "org.youknowone.inputmethod.Gureum.han3-2011loose",
         "org.youknowone.inputmethod.Gureum.han3-2012",
         "org.youknowone.inputmethod.Gureum.han3-2012loose",
-        "org.youknowone.inputmethod.Gureum.han3finalnoshift",
+        "org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol",
         "org.youknowone.inputmethod.Gureum.han3-2014",
         "org.youknowone.inputmethod.Gureum.han3-2015" ]
-    var info = Bundle.main.localizedInfoDictionary
-    var names: NSMutableArray = []
-    var gureumPreferencesHangulLayoutLocalizedNames: NSArray = []
+    
+    let layoutNames: [String]
+    
+    override init() {
+        let bundle = Bundle(identifier: "org.youknowone.inputmethod.Gureum")!
+        let info = bundle.localizedInfoDictionary!
+        var names: [String] = []
+        for layout in gureumPreferencesHangulLayouts {
+            names.append(info[layout] as! String)
+        }
+        layoutNames = names
+        super.init()
+    }
+    
+    @objc convenience init(bundle: Bundle) {
+        self.init()
+    }
+    
+}
 
+
+@objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
+    
+    @IBOutlet weak var defaultInputHangulComboBox: NSComboBox!
+    var configuration: UserDefaults = UserDefaults(suiteName: "org.youknowone.Gureum")!
+    let layoutTable: GureumLayoutTable = GureumLayoutTable()
+
+//    override func mainViewDidLoad() {
+//        super.mainViewDidLoad()
+//        NSLog("mainView did load")
+//        for layout in gureumPreferencesHangulLayouts {
+//            names.add(info![layout] as Any)
+//        }
+//        gureumPreferencesHangulLayoutLocalizedNames = names
+//        defaultInputHangulComboBox.addItems(withObjectValues: gureumPreferencesHangulLayoutLocalizedNames as! [Any])
+//    }
+    
     func loadFromData() {
 
     }
@@ -62,8 +93,8 @@ import Cocoa
     }
     
     @IBAction func defaultHangulInputModeComboBoxValueChanged(_ sender: NSComboBox) {
-        let index = gureumPreferencesHangulLayoutLocalizedNames.index(of: sender.stringValue)
-        configuration.lastHangulInputMode = gureumPreferencesHangulLayouts[index]
+        let index = layoutTable.layoutNames.index(of: defaultInputHangulComboBox.stringValue)!
+        configuration.lastHangulInputMode = layoutTable.gureumPreferencesHangulLayouts[index]
     }
     
     @IBAction func didTapRomanModeByEscapeKey(_ sender: NSButton) {
@@ -71,22 +102,15 @@ import Cocoa
     }
     
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return gureumPreferencesHangulLayouts.count
+        return layoutTable.gureumPreferencesHangulLayouts.count
     }
     
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        for layout in gureumPreferencesHangulLayouts {
-            names.add(info![layout] as Any)
-        }
-        NSLog("\(names)")
-        NSLog("\(gureumPreferencesHangulLayoutLocalizedNames)")
-        gureumPreferencesHangulLayoutLocalizedNames = names
-        
-        return gureumPreferencesHangulLayoutLocalizedNames.index(of: string)
+        return layoutTable.layoutNames.index(of: string)!
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return gureumPreferencesHangulLayoutLocalizedNames[index]
+        return layoutTable.layoutNames[index]
     }
 }
 

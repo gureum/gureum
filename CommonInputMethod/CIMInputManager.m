@@ -29,7 +29,7 @@
         self->server = [[IMKServer alloc] initWithName:connectionName bundleIdentifier:mainBundle.bundleIdentifier];
         self->candidates = [[IMKCandidates alloc] initWithServer:self->server panelType:kIMKSingleColumnScrollingCandidatePanel];
         self->handler = [[CIMInputHandler alloc] initWithManager:self];
-        self->configuration = [NSUserDefaults standardUserDefaults];
+        self->configuration = [[NSUserDefaults alloc] initWithSuiteName:@"org.youknowone.Gureum"];
         self->sharedComposer = [CIMAppDelegate composerWithServer:nil client:nil];
         dlog(DEBUG_INPUTMANAGER, @"\tserver: %@ / candidates: %@ / handler: %@", self->server, self->candidates, self->handler);
        
