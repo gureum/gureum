@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */ = {isa = PBXBuildFile; fileRef = 380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
 		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
@@ -204,8 +203,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputControllerGureum.h; sourceTree = "<group>"; };
-		380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputControllerGureum.m; sourceTree = "<group>"; };
 		380ECC8216ECF49F0063B881 /* Gureum.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Gureum.iconset; path = Icons/Gureum.iconset; sourceTree = "<group>"; };
 		38162D7A140F64B70077AA2D /* HangulComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HangulComposer.h; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* HangulComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HangulComposer.m; sourceTree = "<group>"; };
@@ -368,8 +365,6 @@
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
 				381B32731DA826B100EA1975 /* Bridge.h */,
-				380E1C6114B7F5D800289EE7 /* CIMInputControllerGureum.h */,
-				380E1C6214B7F5D800289EE7 /* CIMInputControllerGureum.m */,
 				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
 				38162E03141263280077AA2D /* GureumAppDelegate.m */,
@@ -933,7 +928,6 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
-				380E1C6314B7F5D800289EE7 /* CIMInputControllerGureum.m in Sources */,
 				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);
