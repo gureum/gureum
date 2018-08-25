@@ -1,5 +1,8 @@
 #!/bin/bash
 . ready.sh
+if [ $? ]; then
+    exit 255
+fi
 
 xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration 'Debug' && \
 cd 'build/Debug' && \
