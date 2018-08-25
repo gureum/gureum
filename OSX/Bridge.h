@@ -13,6 +13,8 @@
 
 #import "HangulComposer.h"
 
+#import "GureumAppDelegate.h"
+
 @interface HangulComposer (HangulCharacterCombinationMode)
 
 + (NSString * _Nonnull)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
