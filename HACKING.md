@@ -15,8 +15,8 @@ Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 �
 # 테스트
 디버그 모드로 빌드한 입력기를 설치합니다.
 
-    cd OSX/tools
-    ./installtest.sh
+    cd tools
+    ./install_debug.sh
 
 설치 후에는 구름 입력기가 사라질 수 있습니다.
 언어 및 입력기 설정을 다시 열고 입력기를 설정해 줍니다.
