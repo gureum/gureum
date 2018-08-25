@@ -23,31 +23,32 @@ class QwertyKeyboardView: KeyboardView {
 }
 
 func getKey(keylines: [String], position: GRKeyboardLayoutHelper.Position) -> UnicodeScalar {
-    let keyline = keylines[position.row].unicodeScalars
-    let idx = advance(keyline.startIndex, position.column)
+    let keyline = keylines[position.row]
+   // let idx = advance(keyline.startIndex, position.column)
+    let idx = keyline.index(keyline.startIndex, offsetBy: position.column)
     let key = keyline[idx]
-    return key
+    return key.unicodeScalars.first!
 }
 
 class QwertyKeyboardLayout: KeyboardLayout {
     var qwertyView: QwertyKeyboardView {
         get {
-            return self.view as QwertyKeyboardView
+            return self.view as! QwertyKeyboardView
         }
     }
 
     func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
         let keylines = ["qwertyuiop", "asdfghjkl", "zxcvbnm", " "]
-        let key = getKey(keylines, position)
+        let key = getKey(keylines: keylines, position: position)
         if !shift || position.row == 3 {
             return key
         } else {
-            return UnicodeScalar(key.value - 32)
+            return UnicodeScalar(key.value - 32)!
         }
     }
 
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position, shift: false)
+        let chr = self.keyForPosition(position: position, shift: false)
         let altkey = "qwerty-key-\(chr)"
         let theme1 = trait.captionForKey(altkey, fallback: trait.qwertyCaptionForRow(position.row + 1))
         let title = self.helper(self.helper, titleForPosition: position)
@@ -56,7 +57,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
     }
 
     override class func loadView() -> QwertyKeyboardView {
-        let view = QwertyKeyboardView(frame: CGRectMake(0, 0, 320, 216))
+        let view = QwertyKeyboardView(frame: CGRect(x : 0, y : 0, width : 320, height : 216))
 
         view.nextKeyboardButton = GRInputButton()
         view.nextKeyboardButton.captionLabel.text = "🌐"
@@ -74,7 +75,7 @@ class QwertyKeyboardLayout: KeyboardLayout {
 
         for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton/*, view.spaceButton*/] {
 
-            view.addSubview(subview)
+            view.addSubview(subview!)
         }
         return view
     }
