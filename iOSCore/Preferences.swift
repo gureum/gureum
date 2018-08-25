@@ -9,7 +9,7 @@
 import Foundation
 
 class Preferences {
-    var defaults = NSUserDefaults(suiteName: "group.org.youknowone.Gureum")!
+    var defaults = UserDefaults(suiteName: "group.org.youknowone.Gureum")!
     lazy var theme = PreferencedTheme()
 
     func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
