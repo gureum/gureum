@@ -76,7 +76,9 @@ import Foundation
     }
     
     public func clearContext() {
-
+        let _self = self.composer as! HangulComposer
+        _self.inputContext.reset()
+        _self.commitString.setString("")
     }
     
     public func hasCandidates() -> Bool {
