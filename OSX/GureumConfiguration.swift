@@ -36,6 +36,10 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 
 @objc class GureumConfiguration: UserDefaults {
 
+    init() {
+        super.init(suiteName: "org.youknowone.Gureum")!
+    }
+
     @objc public var lastHangulInputMode: String? {
         get {
             return self.string(forKey: CIMLastHangulInputMode)
@@ -83,12 +87,6 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         
         set {
             return self.set(newValue, forKey: CIMHangulCombinationModeComposing)
-        }
-    }
-
-    public var inputModeHanjaKey: (Int, Int) {
-        get {
-            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
         }
     }
 

@@ -16,144 +16,183 @@
         <window title="≪ do not localize ≫" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="176" y="715" width="400" height="315"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="contentRect" x="176" y="715" width="400" height="350"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="315"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7">
-                        <rect key="frame" x="18" y="224" width="341" height="51"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 -&gt; 키보드 -&gt; 단축키 -&gt; 인풋 소스 에서 설정 ⇧스페이스 와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요.  (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
-                            <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-UC-GBP">
-                        <rect key="frame" x="262" y="274" width="134" height="32"/>
+                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="6I9-vn-Dbb">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-UC-GBP">
+                                            <rect key="frame" x="247" y="309" width="134" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="00c-IC-7IF"/>
+                                                <constraint firstAttribute="width" constant="122" id="tGn-n0-cSc"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="push" title="설정하러 이동하기" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OPL-eq-ykB">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="openKeyboardPreferenceWithSender:" target="-2" id="c3x-ba-1Q5"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7">
+                                            <rect key="frame" x="23" y="250" width="341" height="51"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 -&gt; 키보드 -&gt; 단축키 -&gt; 인풋 소스 에서 설정 ⇧스페이스 와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요.  (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
+                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-fI-Ly1">
+                                            <rect key="frame" x="23" y="114" width="83" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기본 한글 자판:" id="gKb-ot-itV">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="qIw-na-Nz1">
+                                            <rect key="frame" x="23" y="149" width="277" height="18"/>
+                                            <buttonCell key="cell" type="check" title="자판을 선택하면 기본 자판으로 자동으로 지정하기" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="RxT-GE-eXq">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didTapAutoSaveDefaultInputModeCheckBox:" target="-2" id="skN-e1-Mxy"/>
+                                            </connections>
+                                        </button>
+                                        <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
+                                            <rect key="frame" x="196" y="108" width="163" height="26"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="qgD-W9-Xqp">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <action selector="defaultHangulInputModeComboBoxValueChanged:" target="-2" id="cFZ-Wx-IcL"/>
+                                                <outlet property="dataSource" destination="-2" id="2MN-wW-j9r"/>
+                                            </connections>
+                                        </comboBox>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
+                                            <rect key="frame" x="23" y="186" width="110" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe">
+                                            <rect key="frame" x="196" y="181" width="163" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
+                                                <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
+                                            </constraints>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="l2R-fW-dqw">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <objectValues>
+                                                    <string>기본 특수 문자</string>
+                                                    <string>무시</string>
+                                                </objectValues>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <action selector="optionKeyComboBoxValueChanged:" target="-2" id="Ru6-RL-EXA"/>
+                                            </connections>
+                                        </comboBox>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
+                                            <rect key="frame" x="18" y="218" width="53" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="HIp-u9-CIf">
+                                                <font key="font" metaFont="systemBold"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
+                                            <rect key="frame" x="23" y="76" width="231" height="18"/>
+                                            <buttonCell key="cell" type="check" title="esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didTapRomanModeByEscapeKey:" target="-2" id="dhF-ay-k2h"/>
+                                            </connections>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
+                                            <rect key="frame" x="18" y="318" width="64" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="단축키 설정" id="45X-EX-BbZ">
+                                                <font key="font" metaFont="systemBold"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="centerY" secondItem="k0S-fI-Ly1" secondAttribute="centerY" id="0Te-K8-lNc"/>
+                                        <constraint firstItem="k0S-fI-Ly1" firstAttribute="top" secondItem="qIw-na-Nz1" secondAttribute="bottom" constant="20" id="57O-DJ-35f"/>
+                                        <constraint firstItem="F1x-Bk-yYe" firstAttribute="leading" secondItem="yjR-ur-FpL" secondAttribute="trailing" constant="127" id="6aB-Xo-xAu"/>
+                                        <constraint firstItem="tMq-UC-GBP" firstAttribute="centerY" secondItem="DRr-ZG-wMG" secondAttribute="centerY" id="6op-VP-qXp"/>
+                                        <constraint firstAttribute="trailing" secondItem="tMq-UC-GBP" secondAttribute="trailing" constant="25" id="7Dz-hI-Rub"/>
+                                        <constraint firstItem="DRr-ZG-wMG" firstAttribute="top" secondItem="Mwx-RP-qRv" secondAttribute="top" constant="15" id="FHf-Pb-bI9"/>
+                                        <constraint firstItem="DRr-ZG-wMG" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="20" id="QDY-2R-DUr"/>
+                                        <constraint firstItem="kC8-kH-2z7" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="25" id="R7P-58-bCO"/>
+                                        <constraint firstItem="Wjk-Ru-yFr" firstAttribute="leading" secondItem="k0S-fI-Ly1" secondAttribute="leading" id="S1d-h5-DJa"/>
+                                        <constraint firstAttribute="height" constant="350" id="Vvm-rZ-vgV"/>
+                                        <constraint firstItem="yjR-ur-FpL" firstAttribute="leading" secondItem="DRr-ZG-wMG" secondAttribute="leading" id="akz-aO-3go"/>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="width" secondItem="F1x-Bk-yYe" secondAttribute="width" id="cY6-xh-Boc"/>
+                                        <constraint firstItem="YGK-Vi-f1X" firstAttribute="leading" secondItem="kC8-kH-2z7" secondAttribute="leading" id="ccQ-wN-e9r"/>
+                                        <constraint firstItem="qIw-na-Nz1" firstAttribute="leading" secondItem="YGK-Vi-f1X" secondAttribute="leading" id="ctx-3Q-q9m"/>
+                                        <constraint firstItem="F1x-Bk-yYe" firstAttribute="centerY" secondItem="YGK-Vi-f1X" secondAttribute="centerY" id="ew1-Ny-pJU"/>
+                                        <constraint firstItem="qIw-na-Nz1" firstAttribute="top" secondItem="F1x-Bk-yYe" secondAttribute="bottom" constant="20" id="jp1-Zd-tum"/>
+                                        <constraint firstItem="kC8-kH-2z7" firstAttribute="top" secondItem="tMq-UC-GBP" secondAttribute="bottom" constant="15" id="lPc-J7-au1"/>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="mfb-BC-6vA"/>
+                                        <constraint firstItem="yjR-ur-FpL" firstAttribute="top" secondItem="kC8-kH-2z7" secondAttribute="bottom" constant="15" id="oFh-Gk-Imw"/>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="height" secondItem="F1x-Bk-yYe" secondAttribute="height" id="tL3-9T-oNf"/>
+                                        <constraint firstItem="Wjk-Ru-yFr" firstAttribute="top" secondItem="X51-4X-EIq" secondAttribute="bottom" constant="20" id="tuO-ez-ybx"/>
+                                        <constraint firstItem="YGK-Vi-f1X" firstAttribute="top" secondItem="yjR-ur-FpL" secondAttribute="bottom" constant="15" id="wFz-zO-Wzu"/>
+                                        <constraint firstItem="k0S-fI-Ly1" firstAttribute="leading" secondItem="qIw-na-Nz1" secondAttribute="leading" id="xpn-A0-yA7"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Mwx-RP-qRv" secondAttribute="trailing" id="TQh-R0-eaN"/>
+                                <constraint firstItem="Mwx-RP-qRv" firstAttribute="top" secondItem="Psn-Uh-zb1" secondAttribute="top" id="U1k-lP-oJz"/>
+                                <constraint firstItem="Mwx-RP-qRv" firstAttribute="leading" secondItem="Psn-Uh-zb1" secondAttribute="leading" id="t9u-wY-Zxh"/>
+                                <constraint firstAttribute="bottom" secondItem="Mwx-RP-qRv" secondAttribute="bottom" priority="750" id="z2F-Id-1mk"/>
+                            </constraints>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </clipView>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="00c-IC-7IF"/>
-                            <constraint firstAttribute="width" constant="122" id="tGn-n0-cSc"/>
+                            <constraint firstAttribute="height" constant="350" id="Jso-1l-2z0"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="설정하러 이동하기" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OPL-eq-ykB">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="openKeyboardPreferenceWithSender:" target="-2" id="c3x-ba-1Q5"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-fI-Ly1">
-                        <rect key="frame" x="18" y="88" width="83" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기본 한글 자판:" id="gKb-ot-itV">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qIw-na-Nz1">
-                        <rect key="frame" x="18" y="123" width="277" height="18"/>
-                        <buttonCell key="cell" type="check" title="자판을 선택하면 기본 자판으로 자동으로 지정하기" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="RxT-GE-eXq">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="didTapAutoSaveDefaultInputModeCheckBox:" target="-2" id="skN-e1-Mxy"/>
-                        </connections>
-                    </button>
-                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
-                        <rect key="frame" x="188" y="83" width="163" height="26"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="qgD-W9-Xqp">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </comboBoxCell>
-                        <connections>
-                            <action selector="defaultHangulInputModeComboBoxValueChanged:" target="-2" id="cFZ-Wx-IcL"/>
-                            <outlet property="dataSource" destination="-2" id="2MN-wW-j9r"/>
-                        </connections>
-                    </comboBox>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
-                        <rect key="frame" x="18" y="160" width="110" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe">
-                        <rect key="frame" x="188" y="155" width="163" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
-                            <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
-                        </constraints>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="l2R-fW-dqw">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            <objectValues>
-                                <string>기본 특수 문자</string>
-                                <string>무시</string>
-                            </objectValues>
-                        </comboBoxCell>
-                        <connections>
-                            <action selector="optionKeyComboBoxValueChanged:" target="-2" id="Ru6-RL-EXA"/>
-                        </connections>
-                    </comboBox>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
-                        <rect key="frame" x="10" y="192" width="53" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="HIp-u9-CIf">
-                            <font key="font" metaFont="systemBold"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
-                        <rect key="frame" x="10" y="283" width="64" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="단축키 설정" id="45X-EX-BbZ">
-                            <font key="font" metaFont="systemBold"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
-                        <rect key="frame" x="18" y="51" width="231" height="18"/>
-                        <buttonCell key="cell" type="check" title="esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="didTapRomanModeByEscapeKey:" target="-2" id="dhF-ay-k2h"/>
-                        </connections>
-                    </button>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
+                            <rect key="frame" x="0.0" y="334" width="400" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
+                            <rect key="frame" x="384" y="0.0" width="16" height="350"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yjR-ur-FpL" firstAttribute="leading" secondItem="DRr-ZG-wMG" secondAttribute="leading" id="375-XI-JMS"/>
-                    <constraint firstItem="k0S-fI-Ly1" firstAttribute="top" secondItem="qIw-na-Nz1" secondAttribute="bottom" constant="20" id="54J-oO-1hi"/>
-                    <constraint firstItem="DRr-ZG-wMG" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="12" id="6YK-V9-AYV"/>
-                    <constraint firstItem="YGK-Vi-f1X" firstAttribute="leading" secondItem="kC8-kH-2z7" secondAttribute="leading" id="8qt-q2-1Z8"/>
-                    <constraint firstItem="YGK-Vi-f1X" firstAttribute="top" secondItem="yjR-ur-FpL" secondAttribute="bottom" constant="15" id="A7S-en-qRi"/>
-                    <constraint firstAttribute="trailing" secondItem="tMq-UC-GBP" secondAttribute="trailing" constant="10" id="BQe-zg-3oa"/>
-                    <constraint firstItem="Wjk-Ru-yFr" firstAttribute="leading" secondItem="k0S-fI-Ly1" secondAttribute="leading" id="Baq-PF-kTR"/>
-                    <constraint firstItem="F1x-Bk-yYe" firstAttribute="centerY" secondItem="YGK-Vi-f1X" secondAttribute="centerY" id="EuO-WF-2s8"/>
-                    <constraint firstItem="X51-4X-EIq" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="Gdr-bt-ap7"/>
-                    <constraint firstItem="yjR-ur-FpL" firstAttribute="top" secondItem="kC8-kH-2z7" secondAttribute="bottom" constant="15" id="Nfo-kH-tca"/>
-                    <constraint firstItem="X51-4X-EIq" firstAttribute="centerY" secondItem="k0S-fI-Ly1" secondAttribute="centerY" id="WVo-OA-9Mv"/>
-                    <constraint firstItem="DRr-ZG-wMG" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="15" id="b2y-3l-oxq"/>
-                    <constraint firstItem="kC8-kH-2z7" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="cY2-ah-qbj"/>
-                    <constraint firstItem="X51-4X-EIq" firstAttribute="height" secondItem="F1x-Bk-yYe" secondAttribute="height" id="drk-sa-a0h"/>
-                    <constraint firstItem="qIw-na-Nz1" firstAttribute="leading" secondItem="YGK-Vi-f1X" secondAttribute="leading" id="hIz-MB-K4D"/>
-                    <constraint firstItem="F1x-Bk-yYe" firstAttribute="leading" secondItem="yjR-ur-FpL" secondAttribute="trailing" constant="127" id="id1-SO-6fQ"/>
-                    <constraint firstItem="X51-4X-EIq" firstAttribute="width" secondItem="F1x-Bk-yYe" secondAttribute="width" id="jMS-Px-SSW"/>
-                    <constraint firstItem="kC8-kH-2z7" firstAttribute="top" secondItem="tMq-UC-GBP" secondAttribute="bottom" constant="6" id="lGN-g3-8vy"/>
-                    <constraint firstItem="qIw-na-Nz1" firstAttribute="top" secondItem="F1x-Bk-yYe" secondAttribute="bottom" constant="20" id="mHN-EY-3tB"/>
-                    <constraint firstItem="k0S-fI-Ly1" firstAttribute="leading" secondItem="qIw-na-Nz1" secondAttribute="leading" id="psr-RG-wa3"/>
-                    <constraint firstItem="Wjk-Ru-yFr" firstAttribute="top" secondItem="X51-4X-EIq" secondAttribute="bottom" constant="20" id="uqX-PM-nNg"/>
-                    <constraint firstItem="tMq-UC-GBP" firstAttribute="centerY" secondItem="DRr-ZG-wMG" secondAttribute="centerY" id="yBf-r0-sCS"/>
+                    <constraint firstAttribute="trailing" secondItem="6I9-vn-Dbb" secondAttribute="trailing" id="CDf-wm-jPQ"/>
+                    <constraint firstItem="6I9-vn-Dbb" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="aQd-R1-bdB"/>
+                    <constraint firstItem="6I9-vn-Dbb" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="bme-0x-334"/>
+                    <constraint firstAttribute="bottom" secondItem="6I9-vn-Dbb" secondAttribute="bottom" priority="750" id="vQr-aN-hTw"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="48" y="165.5"/>
+            <point key="canvasLocation" x="10" y="140"/>
         </window>
     </objects>
 </document>
