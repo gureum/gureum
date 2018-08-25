@@ -1,6 +1,9 @@
 #!/bin/bash
 #https://discuss.atom.io/t/sandbox-supposedly-enabled-but-application-loader-disagrees/26155
 . ready.sh
+if [ $? ]; then
+    exit 255
+fi
 
 APP_KEY="3rd Party Mac Developer Application: YunWon Jeong"
 INSTALLER_KEY="3rd Party Mac Developer Installer: YunWon Jeong"
