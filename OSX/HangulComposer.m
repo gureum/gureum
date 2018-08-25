@@ -108,8 +108,7 @@
 }
 
 - (void)clearContext {
-    [self->_inputContext reset];
-    [self->_commitString setString:@""];
+    [(HangulComposerBridge *)self->bridge clearContext];
 }
 
 #ifdef DEBUG
