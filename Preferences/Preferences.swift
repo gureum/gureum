@@ -10,9 +10,10 @@ import Foundation
 import PreferencePanes
 import Cocoa
 
-class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
 
+@objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
     var configuration: GureumConfiguration = GureumConfiguration()
+
     var gureumPreferencesHangulLayouts = [
         "org.youknowone.inputmethod.Gureum.han2",
         "org.youknowone.inputmethod.Gureum.han2classic",
