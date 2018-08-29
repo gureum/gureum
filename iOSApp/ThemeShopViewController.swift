@@ -34,9 +34,9 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sub: AnyObject? = store.entries[section]["items"]
+        let sub: Any? = store.entries[section]["items"]
         assert(sub != nil)
-        let items = sub! as Array<AnyObject>
+        let items = sub! as Array<Any>
         return items.count
     }
 
