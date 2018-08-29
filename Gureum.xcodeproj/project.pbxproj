@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		38E9024821344637005DF76A /* ScriptSupport */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 38E9024D21344637005DF76A /* Build configuration list for PBXAggregateTarget "ScriptSupport" */;
+			buildPhases = (
+				38E9024E21344640005DF76A /* Print environment variables */,
+			);
+			dependencies = (
+			);
+			name = ScriptSupport;
+			productName = ScriptSupport;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		380ECC8316ECF49F0063B881 /* Gureum.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 380ECC8216ECF49F0063B881 /* Gureum.iconset */; };
 		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
@@ -724,6 +738,10 @@
 						LastSwiftMigration = 0800;
 						TestTargetID = 38162DF2141263270077AA2D;
 					};
+					38E9024821344637005DF76A = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */;
@@ -749,6 +767,7 @@
 				38162DF2141263270077AA2D /* OSX */,
 				38BFE7F918B45419004B2B2E /* OSXTests */,
 				382E68631A1314D900031D1D /* Preferences */,
+				38E9024821344637005DF76A /* ScriptSupport */,
 			);
 		};
 /* End PBXProject section */
@@ -871,6 +890,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
+		};
+		38E9024E21344640005DF76A /* Print environment variables */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Print environment variables";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 		D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1326,6 +1359,24 @@
 			};
 			name = Release;
 		};
+		38E9024921344637005DF76A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INSTALL_PATH = "/Library/Input Methods";
+				PRODUCT_NAME = Gureum;
+			};
+			name = Debug;
+		};
+		38E9024A21344637005DF76A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INSTALL_PATH = "/Library/Input Methods";
+				PRODUCT_NAME = Gureum;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1361,6 +1412,15 @@
 			buildConfigurations = (
 				38BFE80918B45419004B2B2E /* Debug */,
 				38BFE80A18B45419004B2B2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38E9024D21344637005DF76A /* Build configuration list for PBXAggregateTarget "ScriptSupport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38E9024921344637005DF76A /* Debug */,
+				38E9024A21344637005DF76A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
