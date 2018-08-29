@@ -12,21 +12,24 @@ class Preferences {
     var defaults = UserDefaults(suiteName: "group.org.youknowone.Gureum")!
     lazy var theme = PreferencedTheme()
 
-    func getObjectForKey(key: String, defaultValue: AnyObject) -> AnyObject {
-        let result: AnyObject = self.defaults.objectForKey(key) ?? defaultValue
+    func object(forKey key: String, defaultValue: Any) -> Any {
+        let result: Any = self.defaults.object(forKey: key) ?? defaultValue
         return result
     }
 
-    func getArrayForKey(key: String, defaultValue: Array<AnyObject>) -> Array<AnyObject> {
-        let object = self.defaults.arrayForKey(key) as Array!
-        if object == nil || object.count == 0 {
+    func getArrayForKey(key: String, defaultValue: Array<Any>) -> Array<Any> {
+        if let object = self.defaults.array(forKey: key) {
+            if object.count == 0 {
+                return defaultValue
+            }
+            return object
+        } else {
             return defaultValue
         }
-        return object
     }
 
     func getDictionaryForKey(key: String, defaultValue: NSDictionary) -> NSDictionary {
-        let object = self.defaults.dictionaryForKey(key)
+        let object = self.defaults.dictionary(forKey: key)
         if object == nil {
             return defaultValue
         }
@@ -36,29 +39,29 @@ class Preferences {
         return object!
     }
 
-    func setObjectForKey(key: String, value: AnyObject) {
-        self.defaults.setObject(value, forKey: key)
-        assert(self.defaults.objectForKey(key) != nil)
+    func setObject(_ value: Any, forKey key: String) {
+        self.defaults.set(value, forKey: key)
+        assert(self.defaults.object(forKey: key) != nil)
         self.defaults.synchronize()
     }
 
-    var layouts: Array<String> {
+    var layouts: [String] {
         get {
-            let defaultValue: Array<AnyObject> = ["qwerty", "danmoum", "ksx5002"/*, "numpad", "cheonjiin"*/]
-            let result = getArrayForKey("layouts", defaultValue: defaultValue)
-            return result as AnyObject as Array<String>
+            let defaultValue: [String] = ["qwerty", "danmoum", "ksx5002"/*, "numpad", "cheonjiin"*/]
+            let result = getArrayForKey(key: "layouts", defaultValue: defaultValue)
+            return result as! [String]
         }
 
         set {
-            setObjectForKey("layouts", value: newValue)
+            self.setObject(newValue, forKey: "layouts")
         }
     }
 
     var defaultLayoutIndex: Int {
         get {
-            let defaultValue: AnyObject = NSNumber(integer: 1)
-            let rawIndex = getObjectForKey("layoutindex", defaultValue: defaultValue) as NSNumber
-            let index: Int = rawIndex.integerValue
+            let defaultValue = NSNumber(value: 1)
+            let rawIndex = self.object(forKey: "layoutindex", defaultValue: defaultValue) as! NSNumber
+            let index: Int = rawIndex.intValue
             if index >= self.layouts.count {
                 return self.layouts.count - 1
             } else {
@@ -67,55 +70,55 @@ class Preferences {
         }
 
         set {
-            setObjectForKey("layoutindex", value: newValue)
+            self.setObject(newValue, forKey: "layoutindex")
         }
     }
 
     var themeAddress: String {
         get {
-            let result = self.getObjectForKey("themeaddr", defaultValue: "res://default") as NSString
+            let result = self.object(forKey: "themeaddr", defaultValue: "res://default") as! NSString
             return result as String
         }
 
         set {
-            setObjectForKey("themeaddr", value: newValue)
+            self.setObject(newValue, forKey: "themeaddr")
         }
     }
 
     var themeResources: NSDictionary {
         get {
-            return getDictionaryForKey("themeresource", defaultValue: [:])
+            return getDictionaryForKey(key: "themeresource", defaultValue: [:])
         }
 
         set {
             // FIXME: Dictionary to NSDictioanry
             var dict: NSMutableDictionary = [:]
             for (key, value) in newValue {
-                dict[key as String] = value
+                dict[key as! String] = value
             }
-            self.setObjectForKey("themeresource", value: dict)
+            self.setObject(dict, forKey: "themeresource")
         }
     }
 
     var resourceCaches: NSDictionary {
         get {
-            return self.getDictionaryForKey("rcache", defaultValue: [:])
+            return self.getDictionaryForKey(key: "rcache", defaultValue: [:])
         }
         set {
-            return self.setObjectForKey("rcache", value: newValue)
+            return self.setObject(newValue, forKey: "rcache")
         }
     }
 
     func setResourceCache(data: NSData, forKey key: String) {
-        let caches = self.resourceCaches.mutableCopy() as NSMutableDictionary
-        let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data)
+        let caches = self.resourceCaches.mutableCopy() as! NSMutableDictionary
+        let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data: data)
         caches.setObject(encoded, forKey: key)
-        self.setObjectForKey("rcache", value: caches)
+        self.setObject(caches, forKey: "rcache")
     }
 
     func resourceCacheForKey(key: String) -> NSData! {
-        if let encoded = self.resourceCaches[key] as String? {
-            return ThemeResourceCoder.defaultCoder().decodeToData(encoded)
+        if let encoded = self.resourceCaches[key] as! String? {
+            return ThemeResourceCoder.defaultCoder().decodeToData(data: encoded)
         } else {
             return nil
         }
@@ -126,8 +129,8 @@ let preferences = Preferences()
 
 class PreferencedTheme: Theme {
     override func dataForFilename(name: String) -> NSData? {
-        if let rawData = preferences.themeResources[name] as String? {
-            let data = ThemeResourceCoder.defaultCoder().decodeToData(rawData)
+        if let rawData = preferences.themeResources[name] as! String? {
+            let data = ThemeResourceCoder.defaultCoder().decodeToData(data: rawData)
             return data
         } else {
             return nil

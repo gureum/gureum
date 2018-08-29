@@ -12,14 +12,14 @@ class StoreCategory {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: AnyObject) {
+    init(owner: Store, data: Any) {
         self.owner = owner
         self.data = data as NSDictionary
     }
 
     lazy var title: String = self.data["section"] as String
     func itemForRow(row: Int) -> StoreItem {
-        let items: AnyObject? = self.data["items"]
+        let items: Any? = self.data["items"]
         assert(items != nil)
         return StoreItem(owner: self.owner, data: (items as NSArray)[row])
     }
@@ -29,7 +29,7 @@ class StoreItem {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: AnyObject) {
+    init(owner: Store, data: Any) {
         self.owner = owner
         self.data = data as NSDictionary
     }
@@ -79,7 +79,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 assert(items != nil)
                 for ritem in items as NSArray {
                     let item = ritem as NSDictionary
-                    if let pid: AnyObject = item["id"] {
+                    if let pid: Any = item["id"] {
                         names.addObject(pid)
                     }
                 }
@@ -98,7 +98,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func categoryForSection(section: Int) -> StoreCategory {
-        let sub: AnyObject? = self.entries[section]
+        let sub: Any? = self.entries[section]
         assert(sub != nil)
         return StoreCategory(owner: self, data: sub!)
     }
@@ -117,7 +117,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
     }
 
-    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [Any]!) {
         for rawTransaction in transactions {
             let transaction = rawTransaction as SKPaymentTransaction
             println("transaction: \(transaction)")

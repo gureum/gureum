@@ -16,7 +16,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     var themeAddress = preferences.themeAddress
 
-    var entries: Array<Dictionary<String, AnyObject>> = []
+    var entries: Array<Dictionary<String, Any>> = []
 
     func loadEntries() {
         let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")!
@@ -24,7 +24,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
         if let data = data {
             var error: NSError? = nil
-            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, AnyObject>>
+            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, Any>>
             assert(error == nil)
             entries = items
         }
@@ -55,9 +55,9 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sub: AnyObject? = self.entries[section]["items"]
+        let sub: Any? = self.entries[section]["items"]
         assert(sub != nil)
-        let items = sub! as Array<AnyObject>
+        let items = sub! as Array<Any>
         return items.count
     }
 
@@ -82,7 +82,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let sub: AnyObject? = self.entries[indexPath.section]["items"]
+        let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub! as Array<Dictionary<String, String>>)[indexPath.row]
 
@@ -98,13 +98,13 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
         let category = self.entries[section]
-        let sub: AnyObject? = category["section"]
+        let sub: Any? = category["section"]
         assert(sub != nil)
         return sub! as String
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let sub: AnyObject? = self.entries[indexPath.section]["items"]
+        let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
         self.themeAddress = item["addr"]!
@@ -122,15 +122,15 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
 
 // nested function cause swiftc fault
-func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
+func collectResources(node: Any!) -> Dictionary<String, Bool> {
     //println("\(node)")
     if node is String {
         let str = node as String
         return [str: true]
     }
-    else if node is Dictionary<String, AnyObject> {
+    else if node is Dictionary<String, Any> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in (node as Dictionary<String, AnyObject>).values {
+        for subnode in (node as Dictionary<String, Any>).values {
             let collection = collectResources(subnode)
             for collected in collection.keys {
                 resources[collected] = true
@@ -138,9 +138,9 @@ func collectResources(node: AnyObject!) -> Dictionary<String, Bool> {
         }
         return resources
     }
-    else if node is Array<AnyObject> {
+    else if node is Array<Any> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in node as Array<AnyObject> {
+        for subnode in node as Array<Any> {
             let collection = collectResources(subnode)
             for collected in collection.keys {
                 resources[collected] = true
@@ -221,7 +221,7 @@ extension Theme {
             assert(datastr != nil)
             resources[traitFilename as String] = datastr!
             var error: NSError? = nil
-            let root: AnyObject? = self.JSONObjectForFilename(traitFilename as String, error: &error)
+            let root: Any? = self.JSONObjectForFilename(traitFilename as String, error: &error)
             assert(error == nil, "trait 파일이 올바른 JSON 파일이 아닙니다. \(traitFilename)")
             var collection = collectResources(root)
             collection["config.json"] = true
