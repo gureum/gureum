@@ -99,7 +99,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
             var layouts = preferences.layouts
             layouts.removeAtIndex(indexPath.row)
             preferences.layouts = layouts
-            let indexPaths: Array<AnyObject> = [indexPath]
+            let indexPaths: Array<Any> = [indexPath]
             tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Top)
         case .Insert:
             assert(indexPath.section == 1)

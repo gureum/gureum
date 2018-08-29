@@ -14,9 +14,9 @@ class Theme {
         return nil
     }
 
-    func JSONObjectForFilename(name: String, error: NSErrorPointer) -> AnyObject! {
+    func JSONObjectForFilename(name: String, error: NSErrorPointer) -> Any! {
         if let data = self.dataForFilename(name: name) {
-            if let result: AnyObject = JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0), error: error) {
+            if let result: Any = JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0), error: error) {
                 return result
             } else {
                 let dataString = data.stringUsingUTF8Encoding
@@ -77,7 +77,7 @@ class Theme {
         if let traits = self.mainConfiguration["trait"] as! NSDictionary? {
             if let traitFilename = traits[traitName] as! String? {
                 var error: NSError? = nil
-                let traitData: AnyObject! = self.JSONObjectForFilename(name: traitFilename, error: &error)
+                let traitData: Any! = self.JSONObjectForFilename(name: traitFilename, error: &error)
                 assert(error == nil, "trait 설정이 올바르지 않은 JSON파일입니다.")
                 return ThemeTraitConfiguration(owner: self, configuration: traitData, topMargin: topMargin)
             } else {
@@ -135,7 +135,7 @@ class ThemeTraitConfiguration {
     let topMargin: CGFloat
     var _captions: Dictionary<String, ThemeCaptionConfiguration> = [:]
 
-    init(owner: Theme, configuration: AnyObject?, topMargin: CGFloat) {
+    init(owner: Theme, configuration: Any?, topMargin: CGFloat) {
         self.owner = owner
         self.topMargin = topMargin
         self.configuration = configuration as! NSDictionary?
@@ -158,7 +158,7 @@ class ThemeTraitConfiguration {
             return theme
         } else {
             let theme: ThemeCaptionConfiguration = {
-                if let sub: AnyObject = self.configuration[key] {
+                if let sub: Any = self.configuration[key] {
                     return ThemeCaptionConfiguration(trait: self, configuration: sub, fallback: fallback)
                 } else {
                     return fallback
@@ -197,32 +197,32 @@ class ThemeTraitConfiguration {
 
 
 class ThemeCaptionConfiguration {
-    let configuration: [String: AnyObject]
+    let configuration: [String: Any]
     let fallback: ThemeCaptionConfiguration!
     let trait: ThemeTraitConfiguration
 
-    init(trait: ThemeTraitConfiguration, configuration: AnyObject?, fallback: ThemeCaptionConfiguration!) {
+    init(trait: ThemeTraitConfiguration, configuration: Any?, fallback: ThemeCaptionConfiguration!) {
         self.trait = trait
 
-        var given: AnyObject = configuration ?? Dictionary<String, AnyObject>() as AnyObject
+        var given: Any = configuration ?? Dictionary<String, Any>() as Any
 
-        var full: [String: AnyObject] = [
-            "image": Array<String>() as AnyObject,
-            "label": Dictionary<String, AnyObject>() as AnyObject,
+        var full: [String: Any] = [
+            "image": Array<String>() as Any,
+            "label": Dictionary<String, Any>() as Any,
         ]
 
         if given is String {
-            var sub: AnyObject? = full["image"]
+            var sub: Any? = full["image"]
             var image = sub as! Array<String>
             image.append((given as? String)!)
         }
         else if given is Array<String?> {
             full["image"] = configuration
-            var sub: AnyObject? = full["image"]
+            var sub: Any? = full["image"]
             var image = sub as! Array<String>
         }
         else {
-            full = given as! Dictionary<String, AnyObject>
+            full = given as! Dictionary<String, Any>
         }
 
         self.configuration = full
@@ -319,7 +319,7 @@ class ThemeCaptionConfiguration {
     }
 
     func _images() -> (UIImage?, UIImage?, UIImage?) {
-        let sub: AnyObject? = self.configuration["image"]
+        let sub: Any? = self.configuration["image"]
         let imageConfiguration = sub as! Array<String!>?
         if imageConfiguration == nil || imageConfiguration!.count == 0 {
             return self.fallback.images
@@ -340,8 +340,8 @@ class ThemeCaptionConfiguration {
 
     lazy var images: (UIImage?, UIImage?, UIImage?) = self._images()
 
-    lazy var labelConfiguration: Dictionary<String, AnyObject> = {
-        if let sub = self.configuration["label"] as! Dictionary<String, AnyObject>? {
+    lazy var labelConfiguration: Dictionary<String, Any> = {
+        if let sub = self.configuration["label"] as! Dictionary<String, Any>? {
             return sub
         } else {
             return self.fallback.labelConfiguration
@@ -349,7 +349,7 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var text: String? = {
-        let subText: AnyObject? = self.labelConfiguration["text"]
+        let subText: Any? = self.labelConfiguration["text"]
         if subText is String {
             return subText as? String
         } else {
@@ -358,7 +358,7 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var glyph: UIImage? = {
-        let subText: AnyObject? = self.labelConfiguration["glyph"]
+        let subText: Any? = self.labelConfiguration["glyph"]
         //println("glyph: \(subText)")
         if subText is String {
             let image = self.trait.owner.imageForFilename(name: subText as! String)
@@ -370,7 +370,7 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var position: CGPoint = {
-        let sub: AnyObject? = self.labelConfiguration["position"]
+        let sub: Any? = self.labelConfiguration["position"]
         if sub is Array<CGFloat> {
             let rawPosition = sub as! Array<CGFloat>
             let position = CGPointMake(rawPosition[0], rawPosition[1])
@@ -385,7 +385,7 @@ class ThemeCaptionConfiguration {
             return self.fallback.font
         }
 
-        let subFont: AnyObject? = self.labelConfiguration["font"]
+        let subFont: Any? = self.labelConfiguration["font"]
         if subFont == nil {
             return fallback()
         }
@@ -393,15 +393,15 @@ class ThemeCaptionConfiguration {
 //        println("font1: \(subFont)")
 //        println("font2: \(subFont!)")
 
-        assert(subFont is Dictionary<String, AnyObject>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
+        assert(subFont is Dictionary<String, Any>, "'font' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다.")
 
-        let fontConfiguration = subFont! as! Dictionary<String, AnyObject>
+        let fontConfiguration = subFont! as! Dictionary<String, Any>
         var font: UIFont?
 
         let (fallbackFont, fallbackColor) = fallback()
 
-        let subFontName: AnyObject? = fontConfiguration["name"]
-        let subFontSize: AnyObject? = fontConfiguration["size"]
+        let subFontName: Any? = fontConfiguration["name"]
+        let subFontSize: Any? = fontConfiguration["size"]
         let fontSize = subFontSize as! CGFloat? ?? fallbackFont.pointSize
         if subFontName != nil {
             font = UIFont(name: subFontName as! String, size: fontSize)
@@ -410,7 +410,7 @@ class ThemeCaptionConfiguration {
         }
         assert(font != nil, "올바른 폰트 이름이 아닙니다")
 
-        let subFontColorCode: AnyObject? = fontConfiguration["color"]
+        let subFontColorCode: Any? = fontConfiguration["color"]
         var fontColor: UIColor
         if subFontColorCode == nil {
             fontColor = fallbackColor
@@ -420,18 +420,18 @@ class ThemeCaptionConfiguration {
         return (font!, fontColor)
     }()
 
-    lazy var effectConfiguration: Dictionary<String, AnyObject> = {
-        if let sub: AnyObject = self.configuration["effect"] {
+    lazy var effectConfiguration: Dictionary<String, Any> = {
+        if let sub: Any = self.configuration["effect"] {
             //println("effect: \(sub)")
-            assert(sub is Dictionary<String, AnyObject>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
-            return sub as! Dictionary<String, AnyObject>
+            assert(sub is Dictionary<String, Any>, "'effect' 설정 값의 서식이 맞지 않습니다. 딕셔너리가 필요합니다. 현재 값: \(sub)")
+            return sub as! Dictionary<String, Any>
         } else {
             return self.fallback.effectConfiguration
         }
     }()
 
     lazy var effectBackgroundImage: UIImage? = {
-        if let sub: AnyObject = self.effectConfiguration["background"] {
+        if let sub: Any = self.effectConfiguration["background"] {
             if let image = self.trait.owner.imageForFilename(name: sub as! String) {
                 return image
             }
@@ -440,7 +440,7 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var effectEdgeInsets: UIEdgeInsets = {
-        if let sub: AnyObject? = self.effectConfiguration["padding"] {
+        if let sub: Any? = self.effectConfiguration["padding"] {
             if sub is Array<CGFloat> {
                 let rawInsets = sub as! Array<CGFloat>
                 let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
@@ -451,7 +451,7 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var effectPosition: CGPoint = {
-        if let sub: AnyObject? = self.effectConfiguration["position"] {
+        if let sub: Any? = self.effectConfiguration["position"] {
             if sub is Array<CGFloat> {
                 let rawPosition = sub as! Array<CGFloat>
                 let position = CGPointMake(rawPosition[0], rawPosition[1])
@@ -482,7 +482,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
         }
     }
 
-    override var labelConfiguration: Dictionary<String, AnyObject> {
+    override var labelConfiguration: Dictionary<String, Any> {
         get {
             return [:]
         }
@@ -509,7 +509,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
         }
     }
 
-    override var effectConfiguration: Dictionary<String, AnyObject> {
+    override var effectConfiguration: Dictionary<String, Any> {
         get {
             return [:]
         }
@@ -546,7 +546,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
 
 class CachedTheme: Theme {
     let theme: Theme
-    var _cache: [String: AnyObject?] = [:]
+    var _cache: [String: Any?] = [:]
 
     init(theme: Theme) {
         self.theme = theme
