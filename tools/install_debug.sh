@@ -1,11 +1,13 @@
 #!/bin/bash
-. ready.sh
-if [ $? -ne 0 ]; then
-    exit 255
-fi
 
-xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration 'Debug' && \
-cd 'build/Debug' && \
-sudo rm -rf "$INSTDIR/$appname" && \
-sudo cp -R "$appname" "$INSTDIR/"
-sudo killall -15 Gureum
+SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
+. "${SCRIPT_DIR}/ready.sh" || exit $?
+
+xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" || exit $?
+
+cmd="sudo rm -rf \"${INSTALL_PATH}/${PRODUCT_NAME}.app\""
+echo ${cmd} && eval ${cmd} || exit $?
+cmd="sudo cp -R \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" \"${INSTALL_PATH}/\""
+echo ${cmd} && eval ${cmd} || exit $?
+cmd="sudo killall -15 \"${PRODUCT_NAME}\""
+echo ${cmd} && eval ${cmd} || exit $?
