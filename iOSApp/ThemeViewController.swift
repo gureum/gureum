@@ -157,7 +157,8 @@ func collectResources(node: Any!) -> Dictionary<String, Bool> {
         return [:]
     }
     else {
-        assert(false)
+        // TODO: assert 살리기
+        // assert(false)
         return [:]
     }
 }

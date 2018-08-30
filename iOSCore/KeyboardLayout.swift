@@ -49,7 +49,7 @@ class KeyboardViewEventView: UIView {
         self.stopTouching()
         self.untouchingTimer.invalidate()
         self.touchingButtons = self.touchedButtons.copy() as! NSArray
-        self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: Selector(("checkTouchingTimer:")), userInfo: nil, repeats: true)
+        self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: #selector(KeyboardViewEventView.checkTouchingTimer(_:)), userInfo: nil, repeats: true)
     }
 
     func stopTouching() {
@@ -58,7 +58,7 @@ class KeyboardViewEventView: UIView {
         self.touchingTimer.invalidate()
     }
 
-    func checkTouchingTimer(timer: Timer) {
+    @objc func checkTouchingTimer(_ timer: Timer) {
         if self.touchedButtons.count != 1 {
             self.stopTouching()
             return
