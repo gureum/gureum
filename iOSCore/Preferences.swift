@@ -28,7 +28,7 @@ class Preferences {
         }
     }
 
-    func getDictionaryForKey(key: String, defaultValue: NSDictionary) -> NSDictionary {
+    func getDictionaryForKey(key: String, defaultValue: [String: Any]) -> [String: Any] {
         let object = self.defaults.dictionary(forKey: key)
         if object == nil {
             return defaultValue
@@ -85,22 +85,21 @@ class Preferences {
         }
     }
 
-    var themeResources: NSDictionary {
+    var themeResources: [String: Any] {
         get {
-            return getDictionaryForKey(key: "themeresource", defaultValue: [:])
+            return getDictionaryForKey(key: "themeresource", defaultValue: [:]) 
         }
 
         set {
-            // FIXME: Dictionary to NSDictioanry
-            var dict: NSMutableDictionary = [:]
+            var dict: [String: Any] = [:]
             for (key, value) in newValue {
-                dict[key as! String] = value
+                dict[key] = value
             }
             self.setObject(dict, forKey: "themeresource")
         }
     }
 
-    var resourceCaches: NSDictionary {
+    var resourceCaches: [String: Any] {
         get {
             return self.getDictionaryForKey(key: "rcache", defaultValue: [:])
         }
@@ -110,9 +109,9 @@ class Preferences {
     }
 
     func setResourceCache(data: NSData, forKey key: String) {
-        let caches = self.resourceCaches.mutableCopy() as! NSMutableDictionary
+        var caches = self.resourceCaches // copy
         let encoded = ThemeResourceCoder.defaultCoder().encodeFromData(data: data)
-        caches.setObject(encoded, forKey: key)
+        caches[key] = encoded
         self.setObject(caches, forKey: "rcache")
     }
 
