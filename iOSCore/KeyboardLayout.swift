@@ -49,7 +49,7 @@ class KeyboardViewEventView: UIView {
         self.stopTouching()
         self.untouchingTimer.invalidate()
         self.touchingButtons = self.touchedButtons.copy() as! NSArray
-        self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: Selector("checkTouchingTimer:"), userInfo: nil, repeats: true)
+        self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: Selector(("checkTouchingTimer:")), userInfo: nil, repeats: true)
     }
 
     func stopTouching() {
@@ -173,7 +173,7 @@ class KeyboardViewEventView: UIView {
         
         self.stopTouching()
         if self.touchedButtons.count == 0 {
-            self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.36, target: self, selector: "checkUntouchingTimer:", userInfo: nil, repeats: false)
+            self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.36, target: self, selector: Selector(("checkUntouchingTimer:")), userInfo: nil, repeats: false)
         }
         
         //        for spot in self.touchedSpots {
@@ -271,13 +271,13 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
 
         assert(view.nextKeyboardButton != nil)
         assert(view.deleteButton != nil)
-        view.nextKeyboardButton.addTarget(nil, action: Selector("mode:"), for: .touchUpInside)
-        view.deleteButton.addTarget(nil, action: Selector("inputDelete:"), for: .touchUpInside)
+        view.nextKeyboardButton.addTarget(nil, action: Selector(("mode:")), for: .touchUpInside)
+        view.deleteButton.addTarget(nil, action: Selector(("inputDelete:")), for: .touchUpInside)
 
         view.insertSubview(view.errorButton, at: 0)
         view.insertSubview(view.untouchButton, at: 0)
-        view.errorButton.addTarget(nil, action: Selector("error:"), for: .touchUpInside)
-        view.untouchButton.addTarget(nil, action: Selector("untouch:"), for: .touchUpInside)
+        view.errorButton.addTarget(nil, action: Selector(("error:")), for: .touchUpInside)
+        view.untouchButton.addTarget(nil, action: Selector(("untouch:")), for: .touchUpInside)
 
         self.context = type(of: self).loadContext()
 
@@ -332,19 +332,19 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         return self.view.errorButton
     }
 
-    func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
         assert(false)
     }
 
-    func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    func layoutDidLoad(helper: GRKeyboardLayoutHelper) {
         assert(false)
     }
 
-    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+    func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
         assert(false)
     }
 
-    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+    func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
         assert(false)
     }
 
@@ -392,7 +392,7 @@ class KeyboardLayout: GRKeyboardLayoutHelperDelegate {
         return ""
     }
 
-    func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme {
+    func theme(helper: GRKeyboardLayoutHelper) -> Theme {
         return globalInputViewController!.inputMethodView.theme
     }
 }
@@ -418,16 +418,16 @@ class NoKeyboardLayout: KeyboardLayout {
         return nil
     }
 
-    override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    override func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
     }
 
-    override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    override func layoutDidLoad(helper: GRKeyboardLayoutHelper) {
     }
 
-    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+    override func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
     }
 
-    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
+    override func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
     }
 
     override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {

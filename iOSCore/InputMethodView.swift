@@ -24,10 +24,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.backgroundColor = UIColor.clear
         self.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin , .flexibleTopMargin , .flexibleBottomMargin , .flexibleHeight , .flexibleWidth]
 
-        let leftRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("leftForSwipeRecognizer:"))
+        let leftRecognizer = UISwipeGestureRecognizer(target: self, action: Selector(("leftForSwipeRecognizer:")))
         leftRecognizer.direction = .left
         self.addGestureRecognizer(leftRecognizer)
-        let rightRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("rightForSwipeRecognizer:"))
+        let rightRecognizer = UISwipeGestureRecognizer(target: self, action: Selector(("rightForSwipeRecognizer:")))
         rightRecognizer.direction = .right
         self.addGestureRecognizer(rightRecognizer)
 
