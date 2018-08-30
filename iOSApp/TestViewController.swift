@@ -14,7 +14,7 @@ class TestViewController: PreviewViewController {
     override func update() {
         super.update()
         let proxy = self.inputPreviewController.textDocumentProxy as UITextDocumentProxy
-        self.previewField.text = "\(proxy.documentContextBeforeInput)"
+        self.previewField.text = "\(String(describing: proxy.documentContextBeforeInput))"
     }
 
     override func didReceiveMemoryWarning() {

@@ -13,12 +13,12 @@ class PreviewInputViewController: InputViewController {
     var previewController: PreviewViewController! = nil
 
     override func input(sender: UIButton) {
-        super.input(sender)
+        super.input(sender: sender)
         self.previewController.update()
     }
 
     override func inputDelete(sender: UIButton) {
-        super.inputDelete(sender)
+        super.inputDelete(sender: sender)
         self.previewController.update()
     }
 }
@@ -34,17 +34,17 @@ class PreviewViewController: UIViewController {
 
         self.inputPreviewController.view.frame = self.preview.bounds
         //println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
-        self.inputPreviewController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.inputPreviewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.inputPreviewController.previewController = self
         self.preview.addSubview(self.inputPreviewController.view)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.inputPreviewController.viewWillAppear(animated)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.loaded = true
         super.viewDidAppear(animated)
         self.inputPreviewController.viewDidAppear(animated)
@@ -65,7 +65,7 @@ class PreviewViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         //print out the previousTrait's info
         //println("previous tarit collection: \(previousTraitCollection)")
         //println("current tarit collection: \(self.traitCollection)")

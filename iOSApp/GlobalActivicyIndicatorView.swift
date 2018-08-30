@@ -27,7 +27,7 @@ extension UIActivityIndicatorView {
 
     func pushAnimating() {
         if let superview = self.superview {
-            superview.bringSubviewToFront(self)
+            superview.bringSubview(toFront: self)
         }
         self._animatingCount += 1
     }
@@ -44,7 +44,7 @@ func UIActivitiIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorVi
     if let indicator = indicator_ {
         return indicator
     } else {
-        let newIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        let newIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         newIndicator.center = window.center
         window.addSubview(newIndicator)
         _UIWindowActivityIndicatorViews[window] = newIndicator
@@ -55,7 +55,7 @@ func UIActivitiIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorVi
 extension UIWindow {
     var activityIndicatorView: UIActivityIndicatorView {
         get {
-            return UIActivitiIndicatorViewForWindow(self)
+            return UIActivitiIndicatorViewForWindow(window: self)
         }
     }
 }

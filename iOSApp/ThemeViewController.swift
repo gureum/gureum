@@ -20,18 +20,18 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     func loadEntries() {
         let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")!
-        let data: NSData? = NSData(contentsOfURL: URL)
+        let data: NSData? = NSData(contentsOfURL: URL as URL)
 
         if let data = data {
             var error: NSError? = nil
-            let items = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as Array<Dictionary<String, Any>>
+            let items = try! JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0)) as Array<Dictionary<String, Any>>
             assert(error == nil)
             entries = items
         }
     }
 
     @IBAction func applyTheme(sender: UIButton!) {
-        Theme.themeWithAddress(self.themeAddress).dump()
+        Theme.themeWithAddress(addr: self.themeAddress).dump()
         preferences.themeAddress = self.themeAddress
         preferences.resourceCaches = [:]
         self.navigationItem.leftBarButtonItem = nil;
@@ -40,7 +40,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     @IBAction func cancelTheme(sender: UIButton!) {
         self.themeAddress = preferences.themeAddress
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(addr: self.themeAddress))
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = restoreButton;
         self.tableView.reloadData()
@@ -54,15 +54,15 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         return self.entries.count
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sub: Any? = self.entries[section]["items"]
         assert(sub != nil)
-        let items = sub! as Array<Any>
+        let items = sub! as! Array<Any>
         return items.count
     }
 
     override func viewDidLoad() {
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(addr: self.themeAddress))
         super.viewDidLoad()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
             self.loadEntries()
@@ -76,19 +76,19 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         })
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.inputPreviewController.reloadInputMethodView()
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub! as Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub! as! Array<Dictionary<String, String>>)[indexPath.row]
 
-        if let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell? {
-            cell.textLabel.text = item["title"]
-            cell.accessoryType = item["addr"] == self.themeAddress ? .Checkmark : .None
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? {
+            cell.textLabel?.text = item["title"]
+            cell.accessoryType = item["addr"] == self.themeAddress ? .checkmark : .none
             return cell
         } else {
             assert(false);
@@ -96,26 +96,26 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         }
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let category = self.entries[section]
         let sub: Any? = category["section"]
         assert(sub != nil)
-        return sub! as String
+        return sub! as? String
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath!) {
         let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub as Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
         self.themeAddress = item["addr"]!
 
         self.navigationItem.rightBarButtonItem = self.doneButton
         self.navigationItem.leftBarButtonItem = self.cancelButton
 
         tableView.reloadData()
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 
-        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(self.themeAddress))
+        self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(addr: self.themeAddress))
         self.inputPreviewController.reloadInputMethodView()
     }
 }
@@ -125,13 +125,13 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 func collectResources(node: Any!) -> Dictionary<String, Bool> {
     //println("\(node)")
     if node is String {
-        let str = node as String
+        let str = node as! String
         return [str: true]
     }
     else if node is Dictionary<String, Any> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in (node as Dictionary<String, Any>).values {
-            let collection = collectResources(subnode)
+        for subnode in (node as! Dictionary<String, Any>).values {
+            let collection = collectResources(node: subnode)
             for collected in collection.keys {
                 resources[collected] = true
             }
@@ -140,8 +140,8 @@ func collectResources(node: Any!) -> Dictionary<String, Bool> {
     }
     else if node is Array<Any> {
         var resources: Dictionary<String, Bool> = [:]
-        for subnode in node as Array<Any> {
-            let collection = collectResources(subnode)
+        for subnode in node as! Array<Any> {
+            let collection = collectResources(node: subnode)
             for collected in collection.keys {
                 resources[collected] = true
             }
@@ -166,13 +166,12 @@ class EmbeddedTheme: Theme {
     }
 
     func pathForResource(name: String?) -> String? {
-        return NSBundle.mainBundle().pathForResource(name, ofType: nil, inDirectory: self.name)
+        return Bundle.main.path(forResource: name, ofType: nil, inDirectory: self.name)
     }
 
-    override func dataForFilename(name: String) -> NSData? {
-        if let path = self.pathForResource(name) {
-            let data: NSData? = NSData(contentsOfFile: path)
-            return data
+    override func dataForFilename(name: String) -> Data? {
+        if let path = self.pathForResource(name: name) {
+            return try? Data(contentsOfFile: path)
         } else {
             return nil
         }
@@ -192,10 +191,9 @@ class HTTPTheme: Theme {
         return URL
     }
 
-    override func dataForFilename(name: String) -> NSData? {
-        if let URL = self.URLForResource(name) {
-            let data: NSData? = NSData(contentsOfURL: URL)
-            return data
+    override func dataForFilename(name: String) -> Data? {
+        if let URL = self.URLForResource(name: name) {
+            return try Data(contentsOf: URL as URL)
         } else {
             return nil
         }
@@ -204,8 +202,8 @@ class HTTPTheme: Theme {
 
 extension Theme {
     func encodedDataForFilename(filename: String) -> String! {
-        if let data = self.dataForFilename(filename) {
-            let str = ThemeResourceCoder.defaultCoder().encodeFromData(data)
+        if let data = self.dataForFilename(name: filename) {
+            let str = ThemeResourceCoder.defaultCoder().encodeFromData(data: data as NSData)
             return str
         } else {
             return nil
@@ -213,24 +211,24 @@ extension Theme {
     }
 
     func dump() {
-        let traitsConfiguration = self.mainConfiguration["trait"] as NSDictionary?
+        let traitsConfiguration = self.mainConfiguration["trait"] as! NSDictionary?
         var resources = Dictionary<String, String>()
         assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
         for traitFilename in traitsConfiguration!.allValues {
-            let datastr = self.encodedDataForFilename(traitFilename as String)
+            let datastr = self.encodedDataForFilename(filename: traitFilename as! String)
             assert(datastr != nil)
-            resources[traitFilename as String] = datastr!
+            resources[traitFilename as! String] = datastr!
             var error: NSError? = nil
-            let root: Any? = self.JSONObjectForFilename(traitFilename as String, error: &error)
+            let root: Any? = self.JSONObjectForFilename(name: traitFilename as! String, error: &error)
             assert(error == nil, "trait 파일이 올바른 JSON 파일이 아닙니다. \(traitFilename)")
-            var collection = collectResources(root)
+            var collection = collectResources(node: root)
             collection["config.json"] = true
             for collected in collection.keys {
-                let filename = collected.componentsSeparatedByString("::")[0]
-                if let datastr = self.encodedDataForFilename(filename) {
+                let filename = collected.components(separatedBy: "::")[0]
+                if let datastr = self.encodedDataForFilename(filename: filename) {
                     resources[filename] = datastr
                 } else {
-                    println("파일이 존재하지 않습니다: \(filename)")
+                    print("파일이 존재하지 않습니다: \(filename)")
                     continue
                 }
                 //println("파일을 저장했습니다: \(collected) \(collected.dynamicType)")
@@ -244,7 +242,7 @@ extension Theme {
     }
 
     class func themeWithAddress(addr: String) -> Theme {
-        let components = addr.componentsSeparatedByString("://")
+        let components = addr.components(separatedBy: "://")
         assert(components.count > 1)
         let type = components[0]
         switch type {

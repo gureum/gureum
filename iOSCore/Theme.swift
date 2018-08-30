@@ -9,7 +9,7 @@
 import UIKit
 
 class Theme {
-    func dataForFilename(name: String) -> NSData? {
+    func dataForFilename(name: String) -> Data? {
         assert(false)
         return nil
     }
@@ -20,7 +20,7 @@ class Theme {
                 let result = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                 return result
             } catch {
-                let dataString = data.stringUsingUTF8Encoding
+                let dataString = (data as NSData).stringUsingUTF8Encoding
                 assert(false, "JSON 파일의 서식이 올바르지 않습니다.\(String(describing: error))\n\(data)\n\(String(describing: dataString))")
             }
         } else {
@@ -542,9 +542,9 @@ class CachedTheme: Theme {
         super.init()
     }
 
-    override func dataForFilename(name: String) -> NSData? {
+    override func dataForFilename(name: String) -> Data? {
         let key = name + "_"
-        if let data = _cache[key] as! NSData?? {
+        if let data = _cache[key] as! Data?? {
             return data
         }
         let data = self.theme.dataForFilename(name: name)

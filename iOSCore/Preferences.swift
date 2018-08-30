@@ -127,10 +127,9 @@ class Preferences {
 let preferences = Preferences()
 
 class PreferencedTheme: Theme {
-    override func dataForFilename(name: String) -> NSData? {
+    override func dataForFilename(name: String) -> Data? {
         if let rawData = preferences.themeResources[name] as! String? {
-            let data = ThemeResourceCoder.defaultCoder().decodeToData(data: rawData)
-            return data
+            return ThemeResourceCoder.defaultCoder().decodeToData(data: rawData) as Data
         } else {
             return nil
         }
