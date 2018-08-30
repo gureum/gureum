@@ -2,6 +2,7 @@
 Generate a emotionr.txt from a emoji-test.txt
 """
 from typing import Iterable
+import logging
 
 import unittest
 
@@ -121,4 +122,14 @@ class TestGenerateEmoticonr(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(exit=False)
-    generate_emoticonr()
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s %(levelname)-8s %(message)s'
+    )
+
+    try:
+        generate_emoticonr()
+        logging.info('emoticonr.txt has been created')
+    except Exception as e:
+        logging.error(e)
