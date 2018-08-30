@@ -16,11 +16,12 @@ class Theme {
 
     func JSONObjectForFilename(name: String, error: NSErrorPointer) -> Any! {
         if let data = self.dataForFilename(name: name) {
-            if let result: Any = JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0), error: error) {
+            do {
+                let result = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                 return result
-            } else {
+            } catch {
                 let dataString = data.stringUsingUTF8Encoding
-                assert(false, "JSON 파일의 서식이 올바르지 않습니다.\(error)\n\(data)\n\(dataString)")
+                assert(false, "JSON 파일의 서식이 올바르지 않습니다.\(String(describing: error))\n\(data)\n\(String(describing: dataString))")
             }
         } else {
             assert(false, "지정한 JSON 데이터 파일이 없습니다. \(name)")
@@ -36,30 +37,29 @@ class Theme {
         let parts = name.components(separatedBy: "::")
         let filename = parts[0]
 
-        let data = self.dataForFilename(filename)
-        if data == nil {
+        guard let data = self.dataForFilename(name: filename) else {
             return nil
         }
-
-        var image = UIImage(data: data!, scale: 2)
-        if image == nil {
+        
+        guard var image = UIImage(data: data as Data, scale: 2) else {
             return nil
         }
 
         if margin != 0 {
-            var size = image!.size
+            var size = image.size
             size.height += margin
             UIGraphicsBeginImageContextWithOptions(size, false, 2)
-            var rect = CGRectMake(0, margin, size.width, image!.size.height)
-            image!.drawInRect(rect)
-            image = UIGraphicsGetImageFromCurrentImageContext()
+            let rect = CGRect(x: 0, y: margin, width: size.width, height: image.size.height)
+            image.draw(in: rect)
+            image = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
         }
         if parts.count > 1 {
-            let valueStrings = parts[1].componentsSeparatedByString(" ")
+            let valueStrings = parts[1].components(separatedBy: " ")
             let (s1, s2, s3, s4) = (valueStrings[0], valueStrings[1], valueStrings[2], valueStrings[3])
-            let insets = UIEdgeInsetsMake(CGFloat(s1.toInt()!) + margin, CGFloat(s2.toInt()!), CGFloat(s3.toInt()!), CGFloat(s4.toInt()!))
-            image = image!.resizableImageWithCapInsets(insets)
+            
+            let insets = UIEdgeInsetsMake(CGFloat(Int(s1)!) + margin, CGFloat(Int(s2)!), CGFloat(Int(s3)!), CGFloat(Int(s4)!))
+            image = image.resizableImage(withCapInsets: insets)
         }
 
         return image
@@ -204,7 +204,7 @@ class ThemeCaptionConfiguration {
     init(trait: ThemeTraitConfiguration, configuration: Any?, fallback: ThemeCaptionConfiguration!) {
         self.trait = trait
 
-        var given: Any = configuration ?? Dictionary<String, Any>() as Any
+        let given = configuration ?? Dictionary<String, Any>() as Any
 
         var full: [String: Any] = [
             "image": Array<String>() as Any,
@@ -212,16 +212,12 @@ class ThemeCaptionConfiguration {
         ]
 
         if given is String {
-            var sub: Any? = full["image"]
-            var image = sub as! Array<String>
+            var image = full["image"] as! [String]
             image.append((given as? String)!)
-        }
-        else if given is Array<String?> {
+        } else if given is [String?] {
             full["image"] = configuration
-            var sub: Any? = full["image"]
-            var image = sub as! Array<String>
-        }
-        else {
+            var image = configuration as! [String]
+        } else {
             full = given as! Dictionary<String, Any>
         }
 
@@ -264,7 +260,7 @@ class ThemeCaptionConfiguration {
     func arrangeButton(button: GRInputButton) {
         let position = self.position
         //println("pos: \(position)")
-        let center = CGPointMake(button.frame.width / 2 + position.x, button.frame.height / 2 + position.y)
+        let center = CGPoint(x: button.frame.width / 2 + position.x, y: button.frame.height / 2 + position.y)
 
         button.glyphView.sizeToFit()
         button.glyphView.center = center
@@ -286,7 +282,7 @@ class ThemeCaptionConfiguration {
         let insets = self.effectEdgeInsets
         var frame = button.frame
         frame.size.height -= self.trait.topMargin
-        frame.origin = CGPointMake(insets.left, insets.top)
+        frame.origin = CGPoint(x: insets.left, y: insets.top)
         button.effectView!.textLabel!.frame = frame
 
         frame.size.width *= 1.4
@@ -319,8 +315,7 @@ class ThemeCaptionConfiguration {
     }
 
     func _images() -> (UIImage?, UIImage?, UIImage?) {
-        let sub: Any? = self.configuration["image"]
-        let imageConfiguration = sub as! Array<String!>?
+        let imageConfiguration = self.configuration["image"] as! [String]?
         if imageConfiguration == nil || imageConfiguration!.count == 0 {
             return self.fallback.images
         }
@@ -373,7 +368,7 @@ class ThemeCaptionConfiguration {
         let sub: Any? = self.labelConfiguration["position"]
         if sub is Array<CGFloat> {
             let rawPosition = sub as! Array<CGFloat>
-            let position = CGPointMake(rawPosition[0], rawPosition[1])
+            let position = CGPoint(x: rawPosition[0], y: rawPosition[1])
             return position
         } else {
             return self.fallback.position
@@ -415,7 +410,7 @@ class ThemeCaptionConfiguration {
         if subFontColorCode == nil {
             fontColor = fallbackColor
         } else {
-            fontColor = UIColor(HTMLExpression: subFontColorCode as! String)
+            fontColor = UIColor(htmlExpression: subFontColorCode as! String)
         }
         return (font!, fontColor)
     }()
@@ -440,31 +435,25 @@ class ThemeCaptionConfiguration {
     }()
 
     lazy var effectEdgeInsets: UIEdgeInsets = {
-        if let sub: Any? = self.effectConfiguration["padding"] {
-            if sub is Array<CGFloat> {
-                let rawInsets = sub as! Array<CGFloat>
-                let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
-                return insets
-            }
+        if let rawInsets: [CGFloat] = self.effectConfiguration["padding"] as? [CGFloat] {
+            let insets = UIEdgeInsetsMake(rawInsets[0], rawInsets[1], rawInsets[2], rawInsets[3])
+            return insets
         }
         return self.fallback.effectEdgeInsets
     }()
 
     lazy var effectPosition: CGPoint = {
-        if let sub: Any? = self.effectConfiguration["position"] {
-            if sub is Array<CGFloat> {
-                let rawPosition = sub as! Array<CGFloat>
-                let position = CGPointMake(rawPosition[0], rawPosition[1])
-                return position
-            }
+        if let rawPosition: [CGFloat] = self.effectConfiguration["position"] as? [CGFloat] {
+            let position = CGPoint(x: rawPosition[0], y: rawPosition[1])
+            return position
         }
         return self.fallback.effectPosition
     }()
 }
 
 let ThemeDefaultCaptionImage: UIImage? = {
-    let URL = Bundle.mainBundle().URLForResource("9patch", withExtension: "png", subdirectory: "default/qwerty")!
-    let image = UIImage(contentsOfFile: URL.absoluteString!)
+    let URL = Bundle.main.url(forResource: "9patch", withExtension: "png", subdirectory: "default/qwerty")!
+    let image = UIImage(contentsOfFile: URL.absoluteString)
     return image
 }()
 
@@ -493,7 +482,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
 
     override var position: CGPoint {
         get {
-            return CGPointZero
+            return CGPoint.zero
         }
         set {
 
@@ -502,7 +491,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
 
     override var font: (UIFont, UIColor) {
         get {
-            return (UIFont.systemFontOfSize(UIFont.systemFontSize), UIColor.blackColor())
+            return (UIFont.systemFont(ofSize: UIFont.systemFontSize), UIColor.black)
         }
         set {
 
@@ -520,7 +509,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
 
     override var effectPosition: CGPoint {
         get {
-            return CGPointZero
+            return CGPoint.zero
         }
         set {
         }
@@ -537,7 +526,7 @@ class ThemeDefaultCaptionConfiguration: ThemeCaptionConfiguration {
 
     override var effectEdgeInsets: UIEdgeInsets {
         get {
-            return UIEdgeInsetsZero
+            return UIEdgeInsets.zero
         }
         set {
         }
@@ -576,17 +565,16 @@ class CachedTheme: Theme {
 
 class ThemeResourceCoder {
     func key() -> NSData {
-        let identifier = UIDevice.current.identifierForVendor
-        var UUIDBytes = UnsafeMutablePointer<UInt8>(malloc(16))
-        identifier.getUUIDBytes(UUIDBytes as UnsafeMutablePointer<UInt8>)
+        let identifier = UIDevice.current.identifierForVendor!
+        var UUIDBytes = [UInt8](repeating: 0, count: 16)
+        // identifier.getUUIDBytes(&UUIDBytes)  // FIXME: objc wrapper?
         let result = NSData(bytes: UUIDBytes, length: 16)
-        free(UUIDBytes)
         return result
     }
 
     func encodeFromData(data: NSData) -> String {
-        let encoded = data.encryptedAES256Data(withKey: self.key() as Data?)
-        return encoded.base64EncodedStringWithOptions(NSData.Base64EncodingOptions(0))
+        let encoded = data.encryptedAES256Data(withKey: self.key() as Data)!
+        return encoded.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
     }
 
     func decodeToData(data: String) -> NSData {

@@ -27,12 +27,12 @@ class NumpadKeyboardView: KeyboardView {
 class NumpadKeyboardLayout: KeyboardLayout {
     var numpadView: NumpadKeyboardView {
         get {
-            return self.view as NumpadKeyboardView
+            return self.view as! NumpadKeyboardView
         }
     }
 
     override class func loadView() -> KeyboardView {
-        let view = NumpadKeyboardView(frame: CGRectMake(0, 0, 320, 216))
+        let view = NumpadKeyboardView(frame: CGRect(x: 0, y: 0, width: 320, height: 216))
 
         view.numberButton = GRInputButton()
         view.numberButton.captionLabel.text = "123"
@@ -54,56 +54,58 @@ class NumpadKeyboardLayout: KeyboardLayout {
 
         for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton/*, view.spaceButton*/] {
 
-            view.addSubview(subview)
+            view.addSubview(subview!)
         }
         return view
     }
 
-    override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(bypass_phase(), bypass_decoder())
+    override class func loadContext() -> UnsafeMutableRawPointer {
+        // FIXME: fix to bypass context
+        return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
+        // return context_create(bypass_phase(), bypass_decoder())
     }
 
     func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
         let keylines = ["123", "456", "789", " 0."]
-        let key = getKey(keylines, position)
+        let key = getKey(keylines: keylines, position: position)
         if !shift {
             return key
         } else {
-            return UnicodeScalar(key.value - 32)
+            return UnicodeScalar(key.value - 32)!
         }
     }
 
     func captionThemeForTrait(trait: ThemeTraitConfiguration, position: GRKeyboardLayoutHelper.Position) -> ThemeCaptionConfiguration {
-        let chr = self.keyForPosition(position, shift: false)
+        let chr = self.keyForPosition(position: position, shift: false)
         let altkey = "numpad-key-\(chr)"
-        let theme1 = trait.captionForKey(altkey, fallback: trait.numpadCaptionForRow(position.row + 1))
-        let title = self.helper(self.helper, titleForPosition: position)
-        let theme2 = trait.captionForKey("numpad-key-" + title, fallback: theme1)
+        let theme1 = trait.captionForKey(key: altkey, fallback: trait.numpadCaptionForRow(row: position.row + 1))
+        let title = self.helper(helper: self.helper, titleForPosition: position)
+        let theme2 = trait.captionForKey(key: "numpad-key-" + title, fallback: theme1)
         return theme2
     }
 
-    override func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    override func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
         //        self.qwertyView.spaceButton.tag = 32
         //        self.qwertyView.spaceButton.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
 
         self.numpadView.doneButton.tag = 13
-        self.numpadView.doneButton.addTarget(nil, action: "done:", forControlEvents: .TouchUpInside)
+        self.numpadView.doneButton.addTarget(nil, action: Selector(("done:")), for: .touchUpInside)
 
-        self.numpadView.shiftButton.addTarget(nil, action: "shift:", forControlEvents: .TouchUpInside)
+        self.numpadView.shiftButton.addTarget(nil, action: Selector(("shift:")), for: .touchUpInside)
 
-        self.numpadView.toggleKeyboardButton.addTarget(nil, action: "toggle:", forControlEvents: .TouchUpInside)
+        self.numpadView.toggleKeyboardButton.addTarget(nil, action: Selector(("toggle:")), for: .touchUpInside)
     }
 
-    override func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper) {
+    override func layoutDidLoad(helper: GRKeyboardLayoutHelper) {
 
     }
 
-    override func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
+    override func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = self.theme(helper: self.helper).traitForSize(size: rect.size)
 
         for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.appealButton(button)
+            let captionTheme = self.captionThemeForTrait(trait: trait, position: position)
+            captionTheme.appealButton(button: button)
         }
 
         let map = [
@@ -116,29 +118,29 @@ class NumpadKeyboardLayout: KeyboardLayout {
         ]
 
         for (button, captionTheme) in map {
-            captionTheme.appealButton(button)
+            captionTheme.appealButton(button: button)
         }
 
         let size = rect.size
         for button in [self.numpadView.shiftButton!, self.numpadView.deleteButton!] {
-            button.frame.size = CGSizeMake(size.width * 3 / 20, size.height / 4)
+            button.frame.size = CGSize(width: size.width * 3 / 20, height: size.height / 4)
         }
         for button in [self.numpadView.toggleKeyboardButton!, self.numpadView.nextKeyboardButton!] {
-            button.frame.size = CGSizeMake(size.width / 8, size.height / 4)
+            button.frame.size = CGSize(width: size.width / 8, height: size.height / 4)
         }
         //        for button in [self.qwertyView.spaceButton!] {
         //            button.frame.size = CGSizeMake(size.width / 2, size.height / 4)
         //        }
         for button in [self.numpadView.doneButton!] {
-            button.frame.size = CGSizeMake(size.width / 4, size.height / 4)
+            button.frame.size = CGSize(width: size.width / 4, height: size.height / 4)
         }
     }
 
-    override func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.themeForHelper(self.helper).traitForSize(rect.size)
+    override func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = self.theme(helper: self.helper).traitForSize(size: rect.size)
         for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait, position: position)
-            captionTheme.arrangeButton(button)
+            let captionTheme = self.captionThemeForTrait(trait: trait, position: position)
+            captionTheme.arrangeButton(button: button)
         }
 
         let map = [
@@ -151,7 +153,7 @@ class NumpadKeyboardLayout: KeyboardLayout {
         ]
         
         for (button, captionTheme) in map {
-            captionTheme.arrangeButton(button)
+            captionTheme.arrangeButton(button: button)
         }
     }
 
@@ -221,19 +223,19 @@ class NumpadKeyboardLayout: KeyboardLayout {
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", "*0#"]
         let keyline = keylines[position.row].unicodeScalars
-        let idx = advance(keyline.startIndex, position.column)
+        let idx = keyline.index(keyline.startIndex, offsetBy: position.column)
         let key = keyline[idx]
 
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let button = GRInputButton(type: .system) as GRInputButton
         button.tag = Int(key.value)
         if position.row == 3 {
-            button.setTitle("간격", forState: .Normal)
+            button.setTitle("간격", for: .normal)
         } else {
-            button.setTitle("\(Character(UnicodeScalar(key)))", forState: .Normal)
+            button.setTitle("\(Character(UnicodeScalar(key)))", for: .normal)
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: Selector(("input:")), for: .touchUpInside)
 
         return button
     }
@@ -245,27 +247,27 @@ class NumpadKeyboardLayout: KeyboardLayout {
 
 class CheonjiinKeyboardLayout: NumpadKeyboardLayout {
 
-    override class func loadContext() -> UnsafeMutablePointer<()> {
-        return context_create(ksx5002_from_qwerty_phase(), ksx5002_decoder())
+    override class func loadContext() -> UnsafeMutableRawPointer {
+        return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
     }
 
     override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let keylines = ["123", "456", "789", ">0."]
         let keyline = keylines[position.row].unicodeScalars
-        let idx = advance(keyline.startIndex, position.column)
+        let idx = keyline.index(keyline.startIndex, offsetBy: position.column)
         let key = keyline[idx]
 
-        let button = GRInputButton.buttonWithType(.System) as GRInputButton
+        let button = GRInputButton(type: .system) as GRInputButton
         button.tag = Int(key.value)
         if position.row == 3 {
-            button.setTitle("간격", forState: .Normal)
+            button.setTitle("간격", for: .normal)
         } else {
             let label = key.value // ksx5002_label(Int8(key.value))
-            button.setTitle("\(Character(UnicodeScalar(label)))", forState: .Normal)
+            button.setTitle("\(Character(UnicodeScalar(label)!))", for: .normal)
         }
         button.sizeToFit()
         button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
-        button.addTarget(nil, action: "input:", forControlEvents: .TouchUpInside)
+        button.addTarget(nil, action: Selector(("input:")), for: .touchUpInside)
         
         return button
     }
