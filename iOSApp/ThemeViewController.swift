@@ -19,15 +19,16 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     var entries: Array<Dictionary<String, Any>> = []
 
     func loadEntries() {
-        let URL = NSURL(string: "http://w.youknowone.org/gureum/shop.json")!
-        let data: NSData? = NSData(contentsOfURL: URL as URL)
-
-        if let data = data {
-            var error: NSError? = nil
-            let items = try! JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0)) as Array<Dictionary<String, Any>>
-            assert(error == nil)
-            entries = items
+        let url = NSURL(string: "http://w.youknowone.org/gureum/shop.json")!
+        guard let data = try? Data(contentsOf: url as URL) else {
+            return
         }
+
+        guard let items = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! Array<Dictionary<String, Any>> else {
+            assert(false)
+            return
+        }
+        entries = items
     }
 
     @IBAction func applyTheme(sender: UIButton!) {
@@ -85,7 +86,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         self.inputPreviewController.reloadInputMethodView()
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub! as! Array<Dictionary<String, String>>)[indexPath.row]
@@ -107,7 +108,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         return sub! as? String
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath!) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sub: Any? = self.entries[indexPath.section]["items"]
         assert(sub != nil)
         let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
@@ -175,7 +176,7 @@ class EmbeddedTheme: Theme {
 
     override func dataForFilename(name: String) -> Data? {
         if let path = self.pathForResource(name: name) {
-            return try? Data(contentsOfFile: path)
+            return try? Data(contentsOf: URL(fileURLWithPath: path))
         } else {
             return nil
         }
@@ -190,14 +191,14 @@ class HTTPTheme: Theme {
     }
 
     func URLForResource(name: String) -> NSURL? {
-        let URLString = self.URLString + name.stringByAddingPercentEscapesUsingEncoding(4)!
+        let URLString = self.URLString + (name as NSString).addingPercentEscapes(using: 4)!
         let URL = NSURL(string: URLString)
         return URL
     }
 
     override func dataForFilename(name: String) -> Data? {
         if let URL = self.URLForResource(name: name) {
-            return try Data(contentsOf: URL as URL)
+            return try? Data(contentsOf: URL as URL)
         } else {
             return nil
         }

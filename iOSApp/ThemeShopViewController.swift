@@ -26,7 +26,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
                 if previousCount > store.entries.count {
                     self.tableView.reloadData()
                 }
-                UIActivitiIndicatorViewForWindow(window).popAnimating()
+                UIActivitiIndicatorViewForWindow(window: window).popAnimating()
                 
             }
         }
@@ -74,7 +74,7 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
             return
         }
 
-        let item = store.itemForIndexPath(indexPath: indexPath)
+        let item = store.itemForIndexPath(indexPath: indexPath as NSIndexPath)
         if item.product == nil {
             let alertView = UIAlertView(title: "구매 불가한 상품입니다.", message: "안돼", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
             alertView.show()
@@ -89,6 +89,6 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         let (section, row) = (alertView.tag >> 15, alertView.tag & 0xffff)
         let item = store.categoryForSection(section: section).itemForRow(row: row)
         let payment = SKPayment(product: item.product)
-        SKPaymentQueue.defaultQueue().add(payment)
+        SKPaymentQueue.default().add(payment)
     }
 }

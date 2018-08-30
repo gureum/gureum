@@ -67,12 +67,13 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
             return
         }
 
-        guard let items: [[String: Any]] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [[String : Any]] else {
+        guard let items: [[String: Any]] = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [[String : Any]] else {
             print("FIXME: store not available")
+            return
         }
         self.entries = items
 
-        var names = NSMutableSet()
+        let names = NSMutableSet()
         for category in entries {
             let items = category["items"]
             assert(items != nil)
@@ -133,7 +134,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 print("InAppPurchase SKPaymentTransactionStateFailed");
                 let alertView = UIAlertView(title: "구매 실패", message: (transaction.error?.localizedDescription)!, delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
                     alertView.show()
-                print("error code: \(transaction.error)")
+                print("error code: \(String(describing: transaction.error))")
                 SKPaymentQueue.default().finishTransaction(transaction)
 
                     ///< 재구매
