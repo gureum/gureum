@@ -43,7 +43,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             var cell = tableView.dequeueReusableCell(withIdentifier: "add") as UITableViewCell?
             return cell!
@@ -80,7 +80,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         return indexPath.section == 0
     }
 
-    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool  {
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
@@ -92,7 +92,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             assert(indexPath.section == 0)
@@ -111,19 +111,19 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         self.inputPreviewController.reloadInputMethodView()
     }
 
-    func tableView(_ tableView: UITableView!, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath!, toProposedIndexPath proposedDestinationIndexPath: IndexPath!) -> IndexPath! {
+    public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         if proposedDestinationIndexPath.section > 0 {
             let layoutCount = preferences.layouts.count
-            return NSIndexPath(forRow: layoutCount - 1, inSection: 0) as IndexPath?
+            return IndexPath(row: layoutCount - 1, section: 0)
         } else {
             return proposedDestinationIndexPath
         }
     }
 
-    func tableView(tableView: UITableView!, moveRowAtIndexPath sourceIndexPath: NSIndexPath!, toIndexPath destinationIndexPath: NSIndexPath!) {
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         var layouts = preferences.layouts
-        let removed = layouts.removeAtIndex(sourceIndexPath.row)
-        layouts.insert(removed, atIndex: destinationIndexPath.row)// - (sourceIndexPath.row > destinationIndexPath.row ? 1 : 0))
+        let removed = layouts.remove(at: sourceIndexPath.row)
+        layouts.insert(removed, at: destinationIndexPath.row)// - (sourceIndexPath.row > destinationIndexPath.row ? 1 : 0))
         preferences.layouts = layouts
 
         self.inputPreviewController.reloadInputMethodView()
@@ -133,8 +133,8 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
 
 
 class AddLayoutTableViewController: UITableViewController {
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath as IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
             selectedLayoutInAddLayoutView = cell.detailTextLabel!.text
             self.navigationController!.popViewController(animated: true)
         } else {
