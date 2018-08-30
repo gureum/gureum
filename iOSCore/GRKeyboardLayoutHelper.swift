@@ -9,11 +9,11 @@
 import UIKit
 
 protocol GRKeyboardLayoutHelperDelegate {
-    func layoutWillLoadForHelper(helper: GRKeyboardLayoutHelper)
-    func layoutDidLoadForHelper(helper: GRKeyboardLayoutHelper)
-    func layoutWillLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
-    func layoutDidLayoutForHelper(helper: GRKeyboardLayoutHelper, forRect: CGRect)
-    func themeForHelper(helper: GRKeyboardLayoutHelper) -> Theme
+    func layoutWillLoad(helper: GRKeyboardLayoutHelper)
+    func layoutDidLoad(helper: GRKeyboardLayoutHelper)
+    func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect)
+    func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect)
+    func theme(helper: GRKeyboardLayoutHelper) -> Theme
 
     func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets
     func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int
@@ -69,60 +69,60 @@ class GRKeyboardLayoutHelper {
         self.buttons.removeAll()
 
         if let delegate = self.delegate {
-            delegate.layoutWillLoadForHelper(self)
+            delegate.layoutWillLoad(helper: self)
 
-            let rowCount = delegate.numberOfRowsForHelper(self)
+            let rowCount = delegate.numberOfRowsForHelper(helper: self)
             for row in 0..<rowCount {
-                let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
-                let leftButtons = delegate.helper(self, leftButtonsForRow: row)
-                let rightButtons = delegate.helper(self, rightButtonsForRow: row)
+                let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
+                let leftButtons = delegate.helper(helper: self, leftButtonsForRow: row)
+                let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
 
-                for button in delegate.helper(self, leftButtonsForRow: row) {
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                for button in delegate.helper(helper: self, leftButtonsForRow: row) {
+                    view.insertSubview(button, belowSubview: view.subviews.last!)
+                    button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                     //button.preload()
                 }
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
-                    var button = delegate.helper(self, buttonForPosition: position)
+                    var button = delegate.helper(helper: self, buttonForPosition: position)
                     self.buttons[position] = button
                     assert(view.subviews.count > 0)
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                    view.insertSubview(button, belowSubview: view.subviews.last!)
+                    button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                 }
-                for button in delegate.helper(self, rightButtonsForRow: row) {
-                    view.insertSubview(button, belowSubview: view.subviews.last as UIView)
-                    button.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin
+                for button in delegate.helper(helper: self, rightButtonsForRow: row) {
+                    view.insertSubview(button, belowSubview: view.subviews.last!)
+                    button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                     //button.preload()
                 }
             }
-            delegate.layoutDidLoadForHelper(self)
+            delegate.layoutDidLoad(helper: self)
         }
         self.updateCaptionLabel()
     }
 
     func layoutButtonsInRect(rect: CGRect) {
         if let delegate = self.delegate {
-            delegate.layoutWillLayoutForHelper(self, forRect: rect)
-            let theme = delegate.themeForHelper(self)
+            delegate.layoutWillLayout(helper: self, forRect: rect)
+            let theme = delegate.theme(helper: self)
 
             var rowHeightSum: CGFloat = 0.0
             var columnWidthSums = Array<CGFloat>()
 
-            let insets = delegate.insetsForHelper(self)
+            let insets = delegate.insetsForHelper(helper: self)
             let insetFrame = UIEdgeInsetsInsetRect(rect, insets)
-            let rowCount = delegate.numberOfRowsForHelper(self)
+            let rowCount = delegate.numberOfRowsForHelper(helper: self)
             for row in 0..<rowCount {
-                let rowHeight = delegate.helper(self, heightOfRow: row, forSize: rect.size)
-                let columnWidth = delegate.helper(self, columnWidthInRow: row, forSize: rect.size)
-                let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
-                let leftButtons = delegate.helper(self, leftButtonsForRow: row)
-                let rightButtons = delegate.helper(self, rightButtonsForRow: row)
+                let rowHeight = delegate.helper(helper: self, heightOfRow: row, forSize: rect.size)
+                let columnWidth = delegate.helper(helper: self, columnWidthInRow: row, forSize: rect.size)
+                let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
+                let leftButtons = delegate.helper(helper: self, leftButtonsForRow: row)
+                let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
 
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     let button = self.buttons[position]!
-                    button.bounds = CGRectMake(0, 0, columnWidth, rowHeight)
+                    button.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: columnWidth, height: rowHeight));
                 }
 
                 var columnWidthSum = CGFloat(columnCount) * columnWidth
@@ -144,41 +144,41 @@ class GRKeyboardLayoutHelper {
             let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
             //println("\(rowHeightSum) \(rowSpace)")
             for row in 0..<rowCount {
-                let rowHeight = delegate.helper(self, heightOfRow: row, forSize: rect.size)
-                let columnWidth = delegate.helper(self, columnWidthInRow: row, forSize: rect.size)
-                let columnCount = delegate.helper(self, numberOfColumnsInRow: row)
-                let leftButtons = delegate.helper(self, leftButtonsForRow: row)
-                let rightButtons = delegate.helper(self, rightButtonsForRow: row)
+                let rowHeight = delegate.helper(helper: self, heightOfRow: row, forSize: rect.size)
+                let columnWidth = delegate.helper(helper: self, columnWidthInRow: row, forSize: rect.size)
+                let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
+                let leftButtons = delegate.helper(helper: self, leftButtonsForRow: row)
+                let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
 
                 let columnSpace = (insetFrame.size.width - columnWidthSums[row]) / CGFloat(columnCount + leftButtons.count + rightButtons.count - 1)
                 let rowTop = insets.top + (rowHeight + rowSpace) * CGFloat(row)
                 var left = insets.left
                 for button in leftButtons {
                     let width = button.frame.size.width
-                    button.frame = CGRectMake(left, rowTop, width, rowHeight)
+                    button.frame = CGRect(x: left, y: rowTop, width: width, height: rowHeight)
                     left += width + columnSpace
                 }
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     var button = self.buttons[position]!
-                    button.frame.origin = CGPointMake(left, rowTop)
+                    button.frame.origin = CGPoint(x: left, y: rowTop)
                     left += columnWidth + columnSpace
                 }
                 for button in rightButtons {
                     let width = button.frame.size.width
-                    button.frame = CGRectMake(left, rowTop, width, rowHeight)
+                    button.frame = CGRect(x: left, y: rowTop, width: width, height: rowHeight)
                     left += width + columnSpace
                 }
             }
-            delegate.layoutDidLayoutForHelper(self, forRect: rect)
+            delegate.layoutDidLayout(helper: self, forRect: rect)
         }
     }
 
     func updateCaptionLabel() {
         if let delegate = self.delegate {
             for (position, button) in self.buttons {
-                if button.titleForState(.Normal) == nil {
-                    let label = delegate.helper(self, titleForPosition: position)
+                if button.title(for: .normal) == nil {
+                    let label = delegate.helper(helper: self, titleForPosition: position)
                     button.captionLabel.text = label
                     button.effectView.textLabel.text = label;
                 }
