@@ -51,7 +51,11 @@ import Foundation
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
     
-    public var composedString: String!
+    public func composedString() -> String! {
+        let _self = self.composer as! HangulComposer
+        let preedit = _self.inputContext.preeditUCSString
+        return HangulComposer.composedStringByCombinationMode(withUCSString: preedit)
+    }
     
     public func originalString() -> String! {
         let _self = self.composer as! HangulComposer
