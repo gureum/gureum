@@ -64,16 +64,20 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         self.inputPreviewController.inputMethodView.theme = CachedTheme(theme: Theme.themeWithAddress(addr: self.themeAddress))
         super.viewDidLoad()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+        
+        let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
+        let mainQueue = DispatchQueue.main
+        
+        backgroundQueue.async {
             self.loadEntries()
-            dispatch_async(dispatch_get_main_queue(), {
+            mainQueue.async {
                 if self.entries.count > 0 {
                     self.tableView.reloadData()
                 } else {
                     UIAlertView(title: "네트워크 오류", message: "테마 목록을 불러올 수 없습니다. LTE 또는 Wi-Fi 연결을 확인하고 잠시 후에 다시 시도해 주세요.", delegate: nil, cancelButtonTitle: "확인").show()
                 }
-            })
-        })
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
