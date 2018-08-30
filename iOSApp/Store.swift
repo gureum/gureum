@@ -47,7 +47,7 @@ class StoreItem {
 }
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
-    let backgroundQueue = DispatchQueue.global (DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+    let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
     var entries: [Any] = []
     var products: Dictionary<String, SKProduct> = [:]
 
@@ -55,9 +55,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         super.init()
         SKPaymentQueue.default().add(self)
 
-        dispatch_async(self.backgroundQueue, {
-            self.refresh()
-        })
+        backgroundQueue.async {
+             self.refresh()
+        }
     }
 
     func refresh() {
