@@ -12,7 +12,7 @@ class StaticWebViewController: UIViewController {
     @IBOutlet var webView: UIWebView!
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
 
     class func URL() -> NSURL {
@@ -21,17 +21,17 @@ class StaticWebViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        let URL = self.dynamicType.URL()
-        let request = NSURLRequest(URL: URL)
+        let url = type(of: self).URL()
+        let request = NSURLRequest(url: url as URL)
         assert(self.webView != nil)
-        self.webView.loadRequest(request)
+        self.webView.loadRequest(request as URLRequest)
     }
 }
 
 class InstallHelpViewController: StaticWebViewController {
     override class func URL() -> NSURL {
-        let URL = NSBundle.mainBundle().URLForResource("install", withExtension: "html", subdirectory: "help")
+        let URL = Bundle.main.url(forResource: "install", withExtension: "html", subdirectory: "help")
         assert(URL != nil)
-        return URL!
+        return URL! as NSURL
     }
 }

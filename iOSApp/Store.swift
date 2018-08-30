@@ -12,12 +12,12 @@ class StoreCategory {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: Any) {
+    init(owner: Store, data: NSDictionary) {
         self.owner = owner
-        self.data = data as NSDictionary
+        self.data = data
     }
 
-    lazy var title: String = self.data["section"] as String
+    lazy var title = self.data["section"] as! String
     func itemForRow(row: Int) -> StoreItem {
         let items: Any? = self.data["items"]
         assert(items != nil)
@@ -48,7 +48,7 @@ class StoreItem {
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
-    var entries: [Any] = []
+    var entries: [[String: Any]] = []
     var products: Dictionary<String, SKProduct> = [:]
 
     override init() {
@@ -61,15 +61,13 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func refresh() {
-        let url =  NSURL(string: "http://w.youknowone.org/gureum/store.json")!
-        var error: NSError? = nil
-
-        guard let data = try? Data(contentsOf: url as URL, options: Data.ReadingOptions(rawValue: 0)) else {
+        let url =  NSURL(string: "http://w.youknowone.org/gureum/store.json")
+        guard let data = try? Data(contentsOf: url! as URL, options: Data.ReadingOptions(rawValue: 0)) else {
             print("fixme: internet not availble")
             return
         }
 
-        guard let items: [Any] = JSONSerialization.JSONObjectWithData(data, options: JSONSerialization.ReadingOptions(0)) {
+        guard let items: [[String: Any]] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [[String : Any]] else {
             print("FIXME: store not available")
         }
         self.entries = items
@@ -78,10 +76,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         for category in entries {
             let items = category["items"]
             assert(items != nil)
-            for ritem in items as NSArray {
-                let item = ritem as NSDictionary
+            for ritem in items as! NSArray {
+                let item = ritem as! NSDictionary
                 if let pid: Any = item["id"] {
-                    names.addObject(pid)
+                    names.add(pid)
                 }
             }
         }
@@ -96,9 +94,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func categoryForSection(section: Int) -> StoreCategory {
-        let sub: Any? = self.entries[section]
-        assert(sub != nil)
-        return StoreCategory(owner: self, data: sub!)
+        let data = self.entries[section] as NSDictionary
+        return StoreCategory(owner: self, data: data)
     }
 
     func itemForIndexPath(indexPath: NSIndexPath) -> StoreItem {

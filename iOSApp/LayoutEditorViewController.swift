@@ -16,13 +16,13 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
     @IBOutlet var doneBarButtonItem: UIBarButtonItem!
 
     @IBAction func editButtonTouched(sender: UIBarButtonItem!) {
-        self.tableView.editing = !self.tableView.editing
-        if self.tableView.editing {
+        self.tableView.isEditing = !self.tableView.isEditing
+        if self.tableView.isEditing {
             self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
-            self.tableView.insertSections(NSIndexSet(index: 1), withRowAnimation: .Bottom)
+            self.tableView.insertSections(NSIndexSet(index: 1) as IndexSet, with: .bottom)
         } else {
             self.navigationItem.rightBarButtonItem = self.editBarButtonItem
-            self.tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Top)
+            self.tableView.deleteSections(NSIndexSet(index: 1) as IndexSet, with: .top)
         }
     }
 
@@ -34,7 +34,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         //}
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             let number = preferences.layouts.count;
             return number
@@ -43,32 +43,32 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("add") as UITableViewCell?
+            var cell = tableView.dequeueReusableCell(withIdentifier: "add") as UITableViewCell?
             return cell!
         }
 
-        let cell = (tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?)!
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
 
         let layoutNames = preferences.layouts
         let row = indexPath.row
         let title = layoutNames[row]
         //println("names: \(layoutNames) / row: \(row) / title: \(title)")
-        cell.textLabel.text = title
+        cell.textLabel?.text = title
 
         let defaultLayoutIndex = preferences.defaultLayoutIndex
         if indexPath.row == defaultLayoutIndex {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         } else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
 
         return cell
     }
 
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)  {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         if indexPath.section == 0 {
             preferences.defaultLayoutIndex = indexPath.row
             tableView.reloadData()
@@ -76,7 +76,7 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         }
     }
 
-    func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section == 0
     }
 
@@ -84,37 +84,37 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
         return true
     }
 
-    func tableView(tableView: UITableView!, editingStyleForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if indexPath.section == 0 {
-            return .Delete
+            return .delete
         } else {
-            return .Insert
+            return .insert
         }
     }
 
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         switch editingStyle {
-        case .Delete:
+        case .delete:
             assert(indexPath.section == 0)
             var layouts = preferences.layouts
-            layouts.removeAtIndex(indexPath.row)
+            layouts.remove(at: indexPath.row)
             preferences.layouts = layouts
             let indexPaths: Array<Any> = [indexPath]
-            tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Top)
-        case .Insert:
+            tableView.deleteRows(at: indexPaths as! [IndexPath], with: .top)
+        case .insert:
             assert(indexPath.section == 1)
-            self.performSegueWithIdentifier("add", sender: self)
-        case .None:
+            self.performSegue(withIdentifier: "add", sender: self)
+        case .none:
             assert(false)
         }
 
         self.inputPreviewController.reloadInputMethodView()
     }
 
-    func tableView(tableView: UITableView!, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath!, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath!) -> NSIndexPath! {
+    func tableView(_ tableView: UITableView!, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath!, toProposedIndexPath proposedDestinationIndexPath: IndexPath!) -> IndexPath! {
         if proposedDestinationIndexPath.section > 0 {
             let layoutCount = preferences.layouts.count
-            return NSIndexPath(forRow: layoutCount - 1, inSection: 0)
+            return NSIndexPath(forRow: layoutCount - 1, inSection: 0) as IndexPath?
         } else {
             return proposedDestinationIndexPath
         }
@@ -134,9 +134,9 @@ class LayoutEditorViewController: PreviewViewController, UITableViewDataSource, 
 
 class AddLayoutTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath as IndexPath) {
             selectedLayoutInAddLayoutView = cell.detailTextLabel!.text
-            self.navigationController!.popViewControllerAnimated(true)
+            self.navigationController!.popViewController(animated: true)
         } else {
             assert(false);
         }
