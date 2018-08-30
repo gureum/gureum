@@ -16,17 +16,20 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         let window = sharedAppDelegate.window!
         UIActivitiIndicatorViewForWindow(window: window).pushAnimating()
 
-        dispatch_async(store.backgroundQueue, {
+        
+        store.backgroundQueue.async {
             let previousCount = store.entries.count
             store.refresh()
-
-            dispatch_async(dispatch_get_main_queue(), {
+            
+            let mainQueue = DispatchQueue.main
+            mainQueue.async {
                 if previousCount > store.entries.count {
                     self.tableView.reloadData()
                 }
                 UIActivitiIndicatorViewForWindow(window).popAnimating()
-            })
-        })
+                
+            }
+        }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
