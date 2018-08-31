@@ -1,845 +1,2623 @@
-# 기호
-건물:⛪:건물
-건물:⛺:건물
-건물:🌆:건물
-건물:🌇:건물
-건물:🏠:건물
-건물:🏡:건물
-건물:🏢:건물
-건물:🏣:건물
-건물:🏤:건물
-건물:🏥:건물
-건물:🏦:건물
-건물:🏨:건물
-건물:🏩:건물
-건물:🏪:건물
-건물:🏫:건물
-건물:🏬:건물
-건물:🏭:건물
-건물:🏯:건물
-건물:🏰:건물
-건물:💒:건물
-건물:🗼:건물
-경고 표지판:⚠️:경고 표지판
-고양이:😸:고양이
-고양이:😹:고양이
-고양이:😺:고양이
-고양이:😻:고양이
-고양이:😼:고양이
-고양이:😽:고양이
-고양이:😾:고양이
-고양이:😿:고양이
-고양이:🙀:고양이
-곱셈:✖️:곱셈
-공사 표지판:🚧:공사 표지판
-공연 예술:🎭:공연 예술
-관람차:🎡:관람차
-귀:👂:귀
-기모노:👘:기모노
-기호:#️⃣:기호
-기호:©:기호
-기호:®:기호
-기호:‼️:기호
-기호:⁉️:기호
-기호:™:기호
-기호:ℹ️:기호
-기호:↩️:기호
-기호:↪️:기호
-기호:⏩:기호
-기호:⏪:기호
-기호:⏫:기호
-기호:⏬:기호
-기호:Ⓜ️:기호
-기호:▪️:기호
-기호:▶️:기호
-기호:◀️:기호
-기호:◻️:기호
-기호:◼️:기호
-기호:◽️:기호
-기호:☑️:기호
-기호:♈️:기호
-기호:♉️:기호
-기호:♊️:기호
-기호:♋️:기호
-기호:♌️:기호
-기호:♍️:기호
-기호:♎️:기호
-기호:♏️:기호
-기호:♐️:기호
-기호:♑️:기호
-기호:♒️:기호
-기호:♓️:기호
-기호:♨️:기호
-기호:♻️:기호
-기호:♿️:기호
-기호:⚪:기호
-기호:⚫:기호
-기호:⛎:기호
-기호:⛔:기호
-기호:⛽:기호
-기호:✅:기호
-기호:✔️:기호
-기호:✳️:기호
-기호:✴️:기호
-기호:❇️:기호
-기호:❌:기호
-기호:❎:기호
-기호:❓:기호
-기호:❔:기호
-기호:❕:기호
-기호:❗:기호
-기호:➰:기호
-기호:➿:기호
-기호:⤴️:기호
-기호:⤵️:기호
-기호:⬛:기호
-기호:⬜:기호
-기호:⭕:기호
-기호:〰:기호
-기호:〽️:기호
-기호:㊗️:기호
-기호:㊙️:기호
-기호:️▫️:기호
-기호:️◾️:기호
-기호:🅰:기호
-기호:🅱:기호
-기호:🅾:기호
-기호:🅿️:기호
-기호:🆎:기호
-기호:🆑:기호
-기호:🆒:기호
-기호:🆓:기호
-기호:🆔:기호
-기호:🆕:기호
-기호:🆖:기호
-기호:🆗:기호
-기호:🆘:기호
-기호:🆙:기호
-기호:🆚:기호
-기호:🈁:기호
-기호:🈂:기호
-기호:🈚:기호
-기호:🈯:기호
-기호:🈲:기호
-기호:🈳:기호
-기호:🈴:기호
-기호:🈵:기호
-기호:🈶:기호
-기호:🈷:기호
-기호:🈸:기호
-기호:🈹:기호
-기호:🈺:기호
-기호:🉐:기호
-기호:🉑:기호
-기호:🎦:기호
-기호:🎰:기호
-기호:🏧:기호
-기호:🏮:기호
-기호:💟:기호
-기호:💠:기호
-기호:💮:기호
-기호:💱:기호
-기호:💲:기호
-기호:💹:기호
-기호:📳:기호
-기호:📴:기호
-기호:📵:기호
-기호:📶:기호
-기호:🔀:기호
-기호:🔁:기호
-기호:🔂:기호
-기호:🔃:기호
-기호:🔄:기호
-기호:🔗:기호
-기호:🔘:기호
-기호:🔙:기호
-기호:🔚:기호
-기호:🔛:기호
-기호:🔜:기호
-기호:🔝:기호
-기호:🔞:기호
-기호:🔠:기호
-기호:🔡:기호
-기호:🔣:기호
-기호:🔤:기호
-기호:🔯:기호
-기호:🔰:기호
-기호:🔱:기호
-기호:🔲:기호
-기호:🔳:기호
-기호:🔴:기호
-기호:🔵:기호
-기호:🔶:기호
-기호:🔷:기호
-기호:🔸:기호
-기호:🔹:기호기호:🔺:기호
-기호:🔻:기호
-기호:🔼:기호
-기호:🔽:기호
-기호:🚫:기호
-기호:🚭:기호
-기호:🚮:기호
-기호:🚯:기호
-기호:🚰:기호
-기호:🚱:기호
-기호:🚳:기호
-기호:🚷:기호
-기호:🚸:기호
-기호:🚹:기호
-기호:🚺:기호
-기호:🚻:기호
-기호:🚼:기호
-기호:🚾:기호
-기호:🛂:기호
-기호:🛃:기호
-기호:🛄:기호
-기호:🛅:기호
-깨진 하트:💔:깨진 하트
-나눗셈:➗:나눗셈
-날씨:☀️:날씨
-날씨:☁️:날씨
-날씨:☔️:날씨
-날씨:⚡️:날씨
-날씨:⛄:날씨
-날씨:⛅:날씨
-날씨:❄️:날씨
-날씨:🌀:날씨
-날씨:🌁:날씨
-날씨:🌈:날씨
-날씨:🌊:날씨
-남자 구두:👞:남자 구두
-내지른 주먹:👊:내지른 주먹
-네시:🕓:네시
-네시 삼십분:🕟:네시 삼십분
-넥타이:👔:넥타이
-눈:👀:눈
-다리 야경:🌉:다리 야경
-다섯시:🕔:다섯시
-다섯시 삼십분:🕠:다섯시 삼십분
-다이아몬드:♦️:다이아몬드
-달리기:💨:달리기
-덧셈:➕:덧셈
-독일 국기:🇩🇪:독일 국기
-동물:🐀:동물
-동물:🐁:동물
-동물:🐂:동물
-동물:🐃:동물
-동물:🐄:동물
-동물:🐅:동물
-동물:🐆:동물
-동물:🐇:동물
-동물:🐈:동물
-동물:🐉:동물
-동물:🐊:동물
-동물:🐋:동물
-동물:🐌:동물
-동물:🐍:동물
-동물:🐎:동물
-동물:🐏:동물
-동물:🐐:동물
-동물:🐑:동물
-동물:🐒:동물
-동물:🐓:동물
-동물:🐔:동물
-동물:🐕:동물
-동물:🐖:동물
-동물:🐗:동물
-동물:🐘:동물
-동물:🐙:동물
-동물:🐚:동물
-동물:🐛:동물
-동물:🐜:동물
-동물:🐝:동물
-동물:🐞:동물
-동물:🐟:동물
-동물:🐠:동물
-동물:🐡:동물
-동물:🐢:동물
-동물:🐣:동물
-동물:🐤:동물
-동물:🐥:동물
-동물:🐦:동물
-동물:🐧:동물
-동물:🐨:동물
-동물:🐩:동물
-동물:🐪:동물
-동물:🐫:동물
-동물:🐬:동물
-동물:🐭:동물
-동물:🐮:동물
-동물:🐯:동물
-동물:🐰:동물
-동물:🐱:동물
-동물:🐲:동물
-동물:🐳:동물
-동물:🐴:동물
-동물:🐵:동물
-동물:🐶:동물
-동물:🐷:동물
-동물:🐸:동물
-동물:🐹:동물
-동물:🐺:동물
-동물:🐻:동물
-동물:🐼:동물
-동물:🐽:동물
-두시:🕑:두시
-두시 삼십분:🕝:두시 삼십분
-둥근 핀:📍:둥근 핀
-들어올린 손:✋:들어올린 손
-들어올린 주먹:✊:들어올린 주먹
-똥무더기:💩:똥무더기
-러브레터:💌:러브레터
-러시아 국기:🇷🇺:러시아 국기
-롤러코스터:🎢:롤러코스터
-리본:🎀:리본
-립스틱:💄:립스틱
-말풍선:💬:말풍선
-모아이 석상:🗿:모아이 석상
-물방울:💧:물방울
-미국 국기:🇺🇸:미국 국기
-반지:💍:반지
-발자국:🐾:발자국
-발자국:👣:발자국
-밤:🌰:밤
-방향 기호:↔️:방향 기호
-방향 기호:↕️:방향 기호
-방향 기호:↖️:방향 기호
-방향 기호:↗️:방향 기호
-방향 기호:↘️:방향 기호
-방향 기호:↙️:방향 기호
-방향 기호:➡️:방향 기호
-방향 기호:⬅️:방향 기호
-방향 기호:⬆️:방향 기호
-방향 기호:⬇️:방향 기호
-백점:💯:백점
-버스 정류장:🚏:버스 정류장
-별:🌟:별
-별 뜬 야경:🌃:별 뜬 야경
-보석:💎:보석
-부인 모자:👒:부인 모자
-분수:⛲:분수
-불:🔥:불
-비키니:👙:비키니
-비행:✈️:비행
-비행:💺:비행
-비행:🚀:비행
-비행:🚁:비행
-빛:✨:빛
-뺄셈:➖:뺄셈
-사람:🏃:사람
-사람:👤:사람
-사람:👥:사람
-사람:👦:사람
-사람:👧:사람
-사람:👨:사람
-사람:👩:사람
-사람:👪:사람
-사람:👫:사람
-사람:👬:사람
-사람:👭:사람
-사람:👮:사람
-사람:👯:사람
-사람:👰:사람
-사람:👱:사람
-사람:👲:사람
-사람:👳:사람
-사람:👴:사람
-사람:👵:사람
-사람:👶:사람
-사람:👷:사람
-사람:👸:사람
-사람:👼:사람
-사람:💁:사람
-사람:💂:사람
-사람:💃:사람
-사람:💅:사람
-사람:💆:사람
-사람:💇:사람
-사람:💏:사람
-사람:💑:사람
-사람:🙅:사람
-사람:🙆:사람
-사람:🙇:사람
-사람:🙋:사람
-사람:🙍:사람
-사람:🙎:사람
-사람:🚶:사람
-사물:⌚:사물
-사물:⌛:사물
-사물:⏰:사물
-사물:⏳:사물
-사물:☎:사물
-사물:☕:사물
-사물:⚽:사물
-사물:⚾:사물
-사물:⛳:사물
-사물:✂:사물
-사물:✉:사물
-사물:✏:사물
-사물:✒:사물
-사물:🀄:사물
-사물:🃏:사물
-사물:🌽:사물
-사물:🍅:사물
-사물:🍆:사물
-사물:🍇:사물
-사물:🍈:사물
-사물:🍉:사물
-사물:🍊:사물
-사물:🍋:사물
-사물:🍌:사물
-사물:🍍:사물
-사물:🍎:사물
-사물:🍏:사물
-사물:🍐:사물
-사물:🍑:사물
-사물:🍒:사물
-사물:🍓:사물
-사물:🍔:사물
-사물:🍕:사물
-사물:🍖:사물
-사물:🍗:사물
-사물:🍘:사물
-사물:🍙:사물
-사물:🍚:사물
-사물:🍛:사물
-사물:🍜:사물
-사물:🍝:사물
-사물:🍞:사물
-사물:🍟:사물
-사물:🍠:사물
-사물:🍡:사물
-사물:🍢:사물
-사물:🍣:사물
-사물:🍤:사물
-사물:🍥:사물
-사물:🍦:사물
-사물:🍧:사물
-사물:🍨:사물
-사물:🍩:사물
-사물:🍪:사물
-사물:🍫:사물
-사물:🍬:사물
-사물:🍭:사물
-사물:🍮:사물
-사물:🍯:사물
-사물:🍰:사물
-사물:🍱:사물
-사물:🍲:사물
-사물:🍳:사물
-사물:🍴:사물
-사물:🍵:사물
-사물:🍶:사물
-사물:🍷:사물
-사물:🍸:사물
-사물:🍹:사물
-사물:🍺:사물
-사물:🍻:사물
-사물:🍼:사물
-사물:🎁:사물
-사물:🎂:사물
-사물:🎃:사물
-사물:🎄:사물
-사물:🎅:사물
-사물:🎆:사물
-사물:🎇:사물
-사물:🎈:사물
-사물:🎉:사물
-사물:🎊:사물
-사물:🎋:사물
-사물:🎌:사물
-사물:🎍:사물
-사물:🎎:사물
-사물:🎏:사물
-사물:🎐:사물
-사물:🎑:사물
-사물:🎒:사물
-사물:🎓:사물
-사물:🎣:사물
-사물:🎤:사물
-사물:🎥:사물
-사물:🎧:사물
-사물:🎨:사물
-사물:🎬:사물
-사물:🎮:사물
-사물:🎯:사물
-사물:🎱:사물
-사물:🎲:사물
-사물:🎳:사물
-사물:🎴:사물
-사물:🎵:사물
-사물:🎶:사물
-사물:🎷:사물
-사물:🎸:사물
-사물:🎹:사물
-사물:🎺:사물
-사물:🎻:사물
-사물:🎼:사물
-사물:🎾:사물
-사물:🎿:사물
-사물:🏀:사물
-사물:🏁:사물
-사물:🏂:사물
-사물:🏄:사물
-사물:🏆:사물
-사물:🏇:사물
-사물:🏈:사물
-사물:🏉:사물
-사물:🏊:사물
-사물:👻:사물
-사물:👾:사물
-사물:💉:사물
-사물:💊:사물
-사물:💝:사물
-사물:💡:사물
-사물:💣:사물
-사물:💰:사물
-사물:💳:사물
-사물:💴:사물
-사물:💵:사물
-사물:💶:사물
-사물:💷:사물
-사물:💸:사물
-사물:💻:사물
-사물:💽:사물
-사물:💾:사물
-사물:💿:사물
-사물:📀:사물
-사물:📁:사물
-사물:📂:사물
-사물:📃:사물
-사물:📄:사물
-사물:📅:사물
-사물:📆:사물
-사물:📇:사물
-사물:📈:사물
-사물:📉:사물
-사물:📊:사물
-사물:📋:사물
-사물:📌:사물
-사물:📎:사물
-사물:📏:사물
-사물:📐:사물
-사물:📑:사물
-사물:📒:사물
-사물:📓:사물
-사물:📔:사물
-사물:📕:사물
-사물:📖:사물
-사물:📗:사물
-사물:📘:사물
-사물:📙:사물
-사물:📚:사물
-사물:📛:사물
-사물:📜:사물
-사물:📝:사물
-사물:📞:사물
-사물:📟:사물
-사물:📠:사물
-사물:📡:사물
-사물:📢:사물
-사물:📣:사물
-사물:📤:사물
-사물:📥:사물
-사물:📦:사물
-사물:📧:사물
-사물:📨:사물
-사물:📩:사물
-사물:📪:사물
-사물:📫:사물
-사물:📬:사물
-사물:📭:사물
-사물:📮:사물
-사물:📯:사물
-사물:📰:사물
-사물:📱:사물
-사물:📲:사물
-사물:📷:사물
-사물:📹:사물
-사물:📺:사물
-사물:📻:사물
-사물:📼:사물
-사물:🔅:사물
-사물:🔆:사물
-사물:🔇:사물
-사물:🔈:사물
-사물:🔉:사물
-사물:🔊:사물
-사물:🔋:사물
-사물:🔌:사물
-사물:🔍:사물
-사물:🔎:사물
-사물:🔏:사물
-사물:🔐:사물
-사물:🔑:사물
-사물:🔒:사물
-사물:🔓:사물
-사물:🔔:사물
-사물:🔕:사물
-사물:🔖:사물
-사물:🔦:사물
-사물:🔧:사물
-사물:🔨:사물
-사물:🔩:사물
-사물:🔪:사물
-사물:🔫:사물
-사물:🔬:사물
-사물:🔭:사물
-사물:🔮:사물
-사물:🚪:사물
-사물:🚬:사물
-사물:🚴:사물
-사물:🚵:사물
-사물:🚽:사물
-사물:🚿:사물
-사물:🛀:사물
-사물:🛁:사물
-삭도차:🚟:삭도차
-삭도차:🚠:삭도차
-삭도차:🚡:삭도차
-삼각 깃발:🚩:삼각 깃발
-상기된 표정:😳:상기된 표정
-새싹:🌱:새싹
-생각에 잠긴 표정:😔:생각에 잠긴 표정
-생각풍선:💭:생각풍선
-서류가방:💼:서류가방
-서커스 천막:🎪:서커스 천막
-세시:🕒:세시
-세시 삼십분:🕞:세시 삼십분
-손가락 내림:👎:손가락 내림
-손가락 올림:👍:손가락 올림
-손가방:👜:손가방
-손뼉 신호:👏:손뼉 신호
-손뼉치는사람:🙏:손뼉치는사람
-손흔드는 신호:👋:손흔드는 신호
-숫자 기호:0️⃣:숫자 기호
-숫자 기호:1️⃣:숫자 기호
-숫자 기호:2️⃣:숫자 기호
-숫자 기호:3️⃣:숫자 기호
-숫자 기호:4️⃣:숫자 기호
-숫자 기호:5️⃣:숫자 기호
-숫자 기호:6️⃣:숫자 기호
-숫자 기호:7️⃣:숫자 기호
-숫자 기호:8️⃣:숫자 기호
-숫자 기호:9️⃣:숫자 기호
-숫자 기호:🔟:숫자 기호
-숫자 기호:🔢:숫자 기호
-스페이드:♠️:스페이드
-스페인 국기:🇪🇸:스페인 국기
-승리 수신호:✌️:승리 수신호
-시끄럽게 우는 표정:😭:시끄럽게 우는 표정
-식물:🌲:식물
-식물:🌳:식물
-식물:🌴:식물
-식물:🌵:식물
-식물:🌷:식물
-식물:🌸:식물
-식물:🌹:식물
-식물:🌺:식물
-식물:🌻:식물
-식물:🌾:식물
-식물:🌿:식물
-식물:🍀:식물
-식물:🍁:식물
-식물:🍂:식물
-식물:🍃:식물
-식물:🍄:식물
-식물:💐:식물
-식은땀 흘리는 표정:😓:식은땀 흘리는 표정
-식은땀 흘리며 웃는 표정:😅:식은땀 흘리며 웃는 표정
-신호등:🚥:신호등
-신호등:🚦:신호등
-실망한 표정:😞:실망한 표정
-실망했지만 편안한 표정:😥:실망했지만 편안한 표정
-아래를 가리키는손등:👇:아래를 가리키는손등
-아홉시:🕘:아홉시
-아홉시 삼십분:🕤:아홉시 삼십분
-안경:👓:안경
-양손 만세:🙌:양손 만세
-어깨끈 달린 운동복:🎽:어깨끈 달린 운동복
-어지러움:💫:어지러움
-여덟시:🕗:여덟시
-여덟시 삼십분:🕣:여덟시 삼십분
-여섯시:🕕:여섯시
-여섯시 삼십분:🕡:여섯시 삼십분
-여자 부츠:👢:여자 부츠
-여자 샌달:👡:여자 샌달
-여자옷:👚:여자옷
-열두시:🕛:열두시
-열두시 삼십분:🕧:열두시 삼십분
-열시:🕙:열시
-열시 삼십분:🕥:열시 삼십분
-열한시:🕚:열한시
-열한시 삼십분:🕦:열한시 삼십분
-영국 국기:🇬🇧:영국 국기
-영국 모자:🎩:영국 모자
-오른쪽을 가리키는 손등:👉:오른쪽을 가리키는 손등
-왕관:👑:왕관
-외계인:👽:외계인
-왼쪽을 가리키는 손등:👈:왼쪽을 가리키는 손등
-우는 표정:😢:우는 표정
-우산:🌂:우산
-운동화:👟:운동화
-웃겨서 눈물나는 표정:😂:웃겨서 눈물나는 표정
-웃는 표정:☺️:웃는 표정
-웃는 표정:😀:웃는 표정
-웃는 표정:😃:웃는 표정
-웃는 표정:😄:웃는 표정
-웃는 표정:😊:웃는 표정
-원숭이:🙈:원숭이
-원숭이:🙉:원숭이
-원숭이:🙊:원숭이
-위를 가리키는 손:☝️:위를 가리키는 손
-위를 가리키는 손등:👆:위를 가리키는 손등
-윙크하는 표정:😉:윙크하는 표정
-이 보이며 웃는 표정:😁:이 보이며 웃는 표정
-이두박근:💪:이두박근
-이발소:💈:이발소
-이탈리아 국기:🇮🇹:이탈리아 국기
-일곱시:🕖:일곱시
-일곱시 삼십분:🕢:일곱시 삼십분
-일본 국기:🇯🇵:일본 국기
-일본 도깨비:👹:일본 도깨비
-일본 도깨비:👺:일본 도깨비
-일본 지도:🗾:일본 지도
-입 벌리고 식은땀 흘리는 표정:😰:입 벌리고 식은땀 흘리는 표정
-입술:👄:입술
-자동차:🚌:자동차
-자동차:🚍:자동차
-자동차:🚐:자동차
-자동차:🚑:자동차
-자동차:🚒:자동차
-자동차:🚓:자동차
-자동차:🚔:자동차
-자동차:🚕:자동차
-자동차:🚖:자동차
-자동차:🚗:자동차
-자동차:🚘:자동차
-자동차:🚙:자동차
-자동차:🚚:자동차
-자동차:🚛:자동차
-자동차:🚨:자동차
-자유의 여신상:🗽:자유의 여신상
-자전거:🚲:자전거
-작은 손가방:👝:작은 손가방
-잠자는 중:💤:잠자는 중
-졸리는 표정:😪:졸리는 표정
-중국 국기:🇨🇳:중국 국기
-지갑:👛:지갑
-지루한 표정:😒:지루한 표정
-차표:🎫:차표
-참는 표정:😣:참는 표정
-천체:⭐:천체
-천체:🌋:천체
-천체:🌌:천체
-천체:🌍:천체
-천체:🌎:천체
-천체:🌏:천체
-천체:🌐:천체
-천체:🌑:천체
-천체:🌒:천체
-천체:🌓:천체
-천체:🌔:천체
-천체:🌕:천체
-천체:🌖:천체
-천체:🌗:천체
-천체:🌘:천체
-천체:🌙:천체
-천체:🌚:천체
-천체:🌛:천체
-천체:🌜:천체
-천체:🌝:천체
-천체:🌞:천체
-천체:🌠:천체
-철도:🚂:철도
-철도:🚃:철도
-철도:🚄:철도
-철도:🚅:철도
-철도:🚆:철도
-철도:🚇:철도
-철도:🚈:철도
-철도:🚉:철도
-철도:🚊:철도
-철도:🚋:철도
-철도:🚎:철도
-철도:🚝:철도
-철도:🚞:철도
-청바지:👖:청바지
-충돌:💥:충돌
-치마:👗:치마
-코:👃:코
-클럽:♣️:클럽
-키스 날리는 표정:😘:키스 날리는 표정
-키스마크:💋:키스마크
-키스하는 표정:😗:키스하는 표정
-키스하는 표정:😙:키스하는 표정
-키스하는 표정:😚:키스하는 표정
-트랙터:🚜:트랙터
-티셔츠:👕:티셔츠
-편안한 표정:😌:편안한 표정
-표정:👿:표정 
-표정:😆:표정
-표정:😇:표정 
-표정:😈:표정 
-표정:😋:표정
-표정:😎:표정
-표정:😏:표정 
-표정:😐:표정 
-표정:😑:표정 
-표정:😕:표정 
-표정:😖:표정
-표정:😟:표정
-표정:😠:표정
-표정:😡:표정
-표정:😤:표정
-표정:😦:표정
-표정:😧:표정 
-표정:😨:표정
-표정:😫:표정
-표정:😬:표정 
-표정:😮:표정 
-표정:😯:표정 
-표정:😱:표정
-표정:😲:표정
-표정:😴:표정
-표정:😵:표정
-표정:😶:표정 
-표정:😷:표정
-프랑스 국기:🇫🇷:프랑스 국기
-피곤한 표정:😩:피곤한 표정
-하이힐:👠:하이힐
-하트:♥️:하트
-하트:❤️:하트
-하트:💓:하트
-하트:💕:하트
-하트:💖:하트
-하트:💗:하트
-하트:💘:하트
-하트:💙:하트
-하트:💚:하트
-하트:💛:하트
-하트:💜:하트
-하트:💞:하트
-하트모양 눈 표정:😍:하트모양 눈 표정
-한국 국기:🇰🇷:한국 국기
-한시:🕐:한시
-한시 삼십분:🕜:한시 삼십분
-항해:⚓️:항해
-항해:⛵:항해
-항해:🚢:항해
-항해:🚣:항해
-항해:🚤:항해
-해골:💀:해골
-해돋이:🌄:해돋이
-해몰이:🌅:해몰이
-혀:👅:혀
-혀 빼고 눈 꼭 감은 표정:😝:혀 빼고 눈 꼭 감은 표정
-혀 빼고 윙크하는 표정:😜:혀 빼고 윙크하는 표정
-혀 빼고 있는 표정:😛:혀 빼고 있는 표정
-화남:💢:화남
-확인 수신호:👌:확인 수신호
-활짝 벌린 손:👐:활짝 벌린 손
-활짝 핀 꽃:🌼:활짝 핀 꽃
-회전목마:🎠:회전목마
-후지산:🗻:후지산
-흐르는 땀:💦:흐르는 땀
+grinning face:😀:grinning face
+beaming face with smiling eyes:😁:beaming face with smiling eyes
+face with tears of joy:😂:face with tears of joy
+rolling on the floor laughing:🤣:rolling on the floor laughing
+grinning face with big eyes:😃:grinning face with big eyes
+grinning face with smiling eyes:😄:grinning face with smiling eyes
+grinning face with sweat:😅:grinning face with sweat
+grinning squinting face:😆:grinning squinting face
+winking face:😉:winking face
+smiling face with smiling eyes:😊:smiling face with smiling eyes
+face savoring food:😋:face savoring food
+smiling face with sunglasses:😎:smiling face with sunglasses
+smiling face with heart-eyes:😍:smiling face with heart-eyes
+face blowing a kiss:😘:face blowing a kiss
+kissing face:😗:kissing face
+kissing face with smiling eyes:😙:kissing face with smiling eyes
+kissing face with closed eyes:😚:kissing face with closed eyes
+smiling face:☺️:smiling face
+slightly smiling face:🙂:slightly smiling face
+hugging face:🤗:hugging face
+star-struck:🤩:star-struck
+thinking face:🤔:thinking face
+face with raised eyebrow:🤨:face with raised eyebrow
+neutral face:😐:neutral face
+expressionless face:😑:expressionless face
+face without mouth:😶:face without mouth
+face with rolling eyes:🙄:face with rolling eyes
+smirking face:😏:smirking face
+persevering face:😣:persevering face
+sad but relieved face:😥:sad but relieved face
+face with open mouth:😮:face with open mouth
+zipper-mouth face:🤐:zipper-mouth face
+hushed face:😯:hushed face
+sleepy face:😪:sleepy face
+tired face:😫:tired face
+sleeping face:😴:sleeping face
+relieved face:😌:relieved face
+face with tongue:😛:face with tongue
+winking face with tongue:😜:winking face with tongue
+squinting face with tongue:😝:squinting face with tongue
+drooling face:🤤:drooling face
+unamused face:😒:unamused face
+downcast face with sweat:😓:downcast face with sweat
+pensive face:😔:pensive face
+confused face:😕:confused face
+upside-down face:🙃:upside-down face
+money-mouth face:🤑:money-mouth face
+astonished face:😲:astonished face
+frowning face:☹️:frowning face
+slightly frowning face:🙁:slightly frowning face
+confounded face:😖:confounded face
+disappointed face:😞:disappointed face
+worried face:😟:worried face
+face with steam from nose:😤:face with steam from nose
+crying face:😢:crying face
+loudly crying face:😭:loudly crying face
+frowning face with open mouth:😦:frowning face with open mouth
+anguished face:😧:anguished face
+fearful face:😨:fearful face
+weary face:😩:weary face
+exploding head:🤯:exploding head
+grimacing face:😬:grimacing face
+anxious face with sweat:😰:anxious face with sweat
+face screaming in fear:😱:face screaming in fear
+flushed face:😳:flushed face
+crazy face:🤪:crazy face
+dizzy face:😵:dizzy face
+pouting face:😡:pouting face
+angry face:😠:angry face
+face with symbols on mouth:🤬:face with symbols on mouth
+face with medical mask:😷:face with medical mask
+face with thermometer:🤒:face with thermometer
+face with head-bandage:🤕:face with head-bandage
+nauseated face:🤢:nauseated face
+face vomiting:🤮:face vomiting
+sneezing face:🤧:sneezing face
+smiling face with halo:😇:smiling face with halo
+cowboy hat face:🤠:cowboy hat face
+clown face:🤡:clown face
+lying face:🤥:lying face
+shushing face:🤫:shushing face
+face with hand over mouth:🤭:face with hand over mouth
+face with monocle:🧐:face with monocle
+nerd face:🤓:nerd face
+smiling face with horns:😈:smiling face with horns
+angry face with horns:👿:angry face with horns
+ogre:👹:ogre
+goblin:👺:goblin
+skull:💀:skull
+skull and crossbones:☠️:skull and crossbones
+ghost:👻:ghost
+alien:👽:alien
+alien monster:👾:alien monster
+robot face:🤖:robot face
+pile of poo:💩:pile of poo
+grinning cat face:😺:grinning cat face
+grinning cat face with smiling eyes:😸:grinning cat face with smiling eyes
+cat face with tears of joy:😹:cat face with tears of joy
+smiling cat face with heart-eyes:😻:smiling cat face with heart-eyes
+cat face with wry smile:😼:cat face with wry smile
+kissing cat face:😽:kissing cat face
+weary cat face:🙀:weary cat face
+crying cat face:😿:crying cat face
+pouting cat face:😾:pouting cat face
+see-no-evil monkey:🙈:see-no-evil monkey
+hear-no-evil monkey:🙉:hear-no-evil monkey
+speak-no-evil monkey:🙊:speak-no-evil monkey
+baby:👶:baby
+baby: light skin tone:👶🏻:baby: light skin tone
+baby: medium-light skin tone:👶🏼:baby: medium-light skin tone
+baby: medium skin tone:👶🏽:baby: medium skin tone
+baby: medium-dark skin tone:👶🏾:baby: medium-dark skin tone
+baby: dark skin tone:👶🏿:baby: dark skin tone
+child:🧒:child
+child: light skin tone:🧒🏻:child: light skin tone
+child: medium-light skin tone:🧒🏼:child: medium-light skin tone
+child: medium skin tone:🧒🏽:child: medium skin tone
+child: medium-dark skin tone:🧒🏾:child: medium-dark skin tone
+child: dark skin tone:🧒🏿:child: dark skin tone
+boy:👦:boy
+boy: light skin tone:👦🏻:boy: light skin tone
+boy: medium-light skin tone:👦🏼:boy: medium-light skin tone
+boy: medium skin tone:👦🏽:boy: medium skin tone
+boy: medium-dark skin tone:👦🏾:boy: medium-dark skin tone
+boy: dark skin tone:👦🏿:boy: dark skin tone
+girl:👧:girl
+girl: light skin tone:👧🏻:girl: light skin tone
+girl: medium-light skin tone:👧🏼:girl: medium-light skin tone
+girl: medium skin tone:👧🏽:girl: medium skin tone
+girl: medium-dark skin tone:👧🏾:girl: medium-dark skin tone
+girl: dark skin tone:👧🏿:girl: dark skin tone
+adult:🧑:adult
+adult: light skin tone:🧑🏻:adult: light skin tone
+adult: medium-light skin tone:🧑🏼:adult: medium-light skin tone
+adult: medium skin tone:🧑🏽:adult: medium skin tone
+adult: medium-dark skin tone:🧑🏾:adult: medium-dark skin tone
+adult: dark skin tone:🧑🏿:adult: dark skin tone
+man:👨:man
+man: light skin tone:👨🏻:man: light skin tone
+man: medium-light skin tone:👨🏼:man: medium-light skin tone
+man: medium skin tone:👨🏽:man: medium skin tone
+man: medium-dark skin tone:👨🏾:man: medium-dark skin tone
+man: dark skin tone:👨🏿:man: dark skin tone
+woman:👩:woman
+woman: light skin tone:👩🏻:woman: light skin tone
+woman: medium-light skin tone:👩🏼:woman: medium-light skin tone
+woman: medium skin tone:👩🏽:woman: medium skin tone
+woman: medium-dark skin tone:👩🏾:woman: medium-dark skin tone
+woman: dark skin tone:👩🏿:woman: dark skin tone
+older adult:🧓:older adult
+older adult: light skin tone:🧓🏻:older adult: light skin tone
+older adult: medium-light skin tone:🧓🏼:older adult: medium-light skin tone
+older adult: medium skin tone:🧓🏽:older adult: medium skin tone
+older adult: medium-dark skin tone:🧓🏾:older adult: medium-dark skin tone
+older adult: dark skin tone:🧓🏿:older adult: dark skin tone
+old man:👴:old man
+old man: light skin tone:👴🏻:old man: light skin tone
+old man: medium-light skin tone:👴🏼:old man: medium-light skin tone
+old man: medium skin tone:👴🏽:old man: medium skin tone
+old man: medium-dark skin tone:👴🏾:old man: medium-dark skin tone
+old man: dark skin tone:👴🏿:old man: dark skin tone
+old woman:👵:old woman
+old woman: light skin tone:👵🏻:old woman: light skin tone
+old woman: medium-light skin tone:👵🏼:old woman: medium-light skin tone
+old woman: medium skin tone:👵🏽:old woman: medium skin tone
+old woman: medium-dark skin tone:👵🏾:old woman: medium-dark skin tone
+old woman: dark skin tone:👵🏿:old woman: dark skin tone
+man health worker:👨‍⚕️:man health worker
+man health worker: light skin tone:👨🏻‍⚕️:man health worker: light skin tone
+man health worker: medium-light skin tone:👨🏼‍⚕️:man health worker: medium-light skin tone
+man health worker: medium skin tone:👨🏽‍⚕️:man health worker: medium skin tone
+man health worker: medium-dark skin tone:👨🏾‍⚕️:man health worker: medium-dark skin tone
+man health worker: dark skin tone:👨🏿‍⚕️:man health worker: dark skin tone
+woman health worker:👩‍⚕️:woman health worker
+woman health worker: light skin tone:👩🏻‍⚕️:woman health worker: light skin tone
+woman health worker: medium-light skin tone:👩🏼‍⚕️:woman health worker: medium-light skin tone
+woman health worker: medium skin tone:👩🏽‍⚕️:woman health worker: medium skin tone
+woman health worker: medium-dark skin tone:👩🏾‍⚕️:woman health worker: medium-dark skin tone
+woman health worker: dark skin tone:👩🏿‍⚕️:woman health worker: dark skin tone
+man student:👨‍🎓:man student
+man student: light skin tone:👨🏻‍🎓:man student: light skin tone
+man student: medium-light skin tone:👨🏼‍🎓:man student: medium-light skin tone
+man student: medium skin tone:👨🏽‍🎓:man student: medium skin tone
+man student: medium-dark skin tone:👨🏾‍🎓:man student: medium-dark skin tone
+man student: dark skin tone:👨🏿‍🎓:man student: dark skin tone
+woman student:👩‍🎓:woman student
+woman student: light skin tone:👩🏻‍🎓:woman student: light skin tone
+woman student: medium-light skin tone:👩🏼‍🎓:woman student: medium-light skin tone
+woman student: medium skin tone:👩🏽‍🎓:woman student: medium skin tone
+woman student: medium-dark skin tone:👩🏾‍🎓:woman student: medium-dark skin tone
+woman student: dark skin tone:👩🏿‍🎓:woman student: dark skin tone
+man teacher:👨‍🏫:man teacher
+man teacher: light skin tone:👨🏻‍🏫:man teacher: light skin tone
+man teacher: medium-light skin tone:👨🏼‍🏫:man teacher: medium-light skin tone
+man teacher: medium skin tone:👨🏽‍🏫:man teacher: medium skin tone
+man teacher: medium-dark skin tone:👨🏾‍🏫:man teacher: medium-dark skin tone
+man teacher: dark skin tone:👨🏿‍🏫:man teacher: dark skin tone
+woman teacher:👩‍🏫:woman teacher
+woman teacher: light skin tone:👩🏻‍🏫:woman teacher: light skin tone
+woman teacher: medium-light skin tone:👩🏼‍🏫:woman teacher: medium-light skin tone
+woman teacher: medium skin tone:👩🏽‍🏫:woman teacher: medium skin tone
+woman teacher: medium-dark skin tone:👩🏾‍🏫:woman teacher: medium-dark skin tone
+woman teacher: dark skin tone:👩🏿‍🏫:woman teacher: dark skin tone
+man judge:👨‍⚖️:man judge
+man judge: light skin tone:👨🏻‍⚖️:man judge: light skin tone
+man judge: medium-light skin tone:👨🏼‍⚖️:man judge: medium-light skin tone
+man judge: medium skin tone:👨🏽‍⚖️:man judge: medium skin tone
+man judge: medium-dark skin tone:👨🏾‍⚖️:man judge: medium-dark skin tone
+man judge: dark skin tone:👨🏿‍⚖️:man judge: dark skin tone
+woman judge:👩‍⚖️:woman judge
+woman judge: light skin tone:👩🏻‍⚖️:woman judge: light skin tone
+woman judge: medium-light skin tone:👩🏼‍⚖️:woman judge: medium-light skin tone
+woman judge: medium skin tone:👩🏽‍⚖️:woman judge: medium skin tone
+woman judge: medium-dark skin tone:👩🏾‍⚖️:woman judge: medium-dark skin tone
+woman judge: dark skin tone:👩🏿‍⚖️:woman judge: dark skin tone
+man farmer:👨‍🌾:man farmer
+man farmer: light skin tone:👨🏻‍🌾:man farmer: light skin tone
+man farmer: medium-light skin tone:👨🏼‍🌾:man farmer: medium-light skin tone
+man farmer: medium skin tone:👨🏽‍🌾:man farmer: medium skin tone
+man farmer: medium-dark skin tone:👨🏾‍🌾:man farmer: medium-dark skin tone
+man farmer: dark skin tone:👨🏿‍🌾:man farmer: dark skin tone
+woman farmer:👩‍🌾:woman farmer
+woman farmer: light skin tone:👩🏻‍🌾:woman farmer: light skin tone
+woman farmer: medium-light skin tone:👩🏼‍🌾:woman farmer: medium-light skin tone
+woman farmer: medium skin tone:👩🏽‍🌾:woman farmer: medium skin tone
+woman farmer: medium-dark skin tone:👩🏾‍🌾:woman farmer: medium-dark skin tone
+woman farmer: dark skin tone:👩🏿‍🌾:woman farmer: dark skin tone
+man cook:👨‍🍳:man cook
+man cook: light skin tone:👨🏻‍🍳:man cook: light skin tone
+man cook: medium-light skin tone:👨🏼‍🍳:man cook: medium-light skin tone
+man cook: medium skin tone:👨🏽‍🍳:man cook: medium skin tone
+man cook: medium-dark skin tone:👨🏾‍🍳:man cook: medium-dark skin tone
+man cook: dark skin tone:👨🏿‍🍳:man cook: dark skin tone
+woman cook:👩‍🍳:woman cook
+woman cook: light skin tone:👩🏻‍🍳:woman cook: light skin tone
+woman cook: medium-light skin tone:👩🏼‍🍳:woman cook: medium-light skin tone
+woman cook: medium skin tone:👩🏽‍🍳:woman cook: medium skin tone
+woman cook: medium-dark skin tone:👩🏾‍🍳:woman cook: medium-dark skin tone
+woman cook: dark skin tone:👩🏿‍🍳:woman cook: dark skin tone
+man mechanic:👨‍🔧:man mechanic
+man mechanic: light skin tone:👨🏻‍🔧:man mechanic: light skin tone
+man mechanic: medium-light skin tone:👨🏼‍🔧:man mechanic: medium-light skin tone
+man mechanic: medium skin tone:👨🏽‍🔧:man mechanic: medium skin tone
+man mechanic: medium-dark skin tone:👨🏾‍🔧:man mechanic: medium-dark skin tone
+man mechanic: dark skin tone:👨🏿‍🔧:man mechanic: dark skin tone
+woman mechanic:👩‍🔧:woman mechanic
+woman mechanic: light skin tone:👩🏻‍🔧:woman mechanic: light skin tone
+woman mechanic: medium-light skin tone:👩🏼‍🔧:woman mechanic: medium-light skin tone
+woman mechanic: medium skin tone:👩🏽‍🔧:woman mechanic: medium skin tone
+woman mechanic: medium-dark skin tone:👩🏾‍🔧:woman mechanic: medium-dark skin tone
+woman mechanic: dark skin tone:👩🏿‍🔧:woman mechanic: dark skin tone
+man factory worker:👨‍🏭:man factory worker
+man factory worker: light skin tone:👨🏻‍🏭:man factory worker: light skin tone
+man factory worker: medium-light skin tone:👨🏼‍🏭:man factory worker: medium-light skin tone
+man factory worker: medium skin tone:👨🏽‍🏭:man factory worker: medium skin tone
+man factory worker: medium-dark skin tone:👨🏾‍🏭:man factory worker: medium-dark skin tone
+man factory worker: dark skin tone:👨🏿‍🏭:man factory worker: dark skin tone
+woman factory worker:👩‍🏭:woman factory worker
+woman factory worker: light skin tone:👩🏻‍🏭:woman factory worker: light skin tone
+woman factory worker: medium-light skin tone:👩🏼‍🏭:woman factory worker: medium-light skin tone
+woman factory worker: medium skin tone:👩🏽‍🏭:woman factory worker: medium skin tone
+woman factory worker: medium-dark skin tone:👩🏾‍🏭:woman factory worker: medium-dark skin tone
+woman factory worker: dark skin tone:👩🏿‍🏭:woman factory worker: dark skin tone
+man office worker:👨‍💼:man office worker
+man office worker: light skin tone:👨🏻‍💼:man office worker: light skin tone
+man office worker: medium-light skin tone:👨🏼‍💼:man office worker: medium-light skin tone
+man office worker: medium skin tone:👨🏽‍💼:man office worker: medium skin tone
+man office worker: medium-dark skin tone:👨🏾‍💼:man office worker: medium-dark skin tone
+man office worker: dark skin tone:👨🏿‍💼:man office worker: dark skin tone
+woman office worker:👩‍💼:woman office worker
+woman office worker: light skin tone:👩🏻‍💼:woman office worker: light skin tone
+woman office worker: medium-light skin tone:👩🏼‍💼:woman office worker: medium-light skin tone
+woman office worker: medium skin tone:👩🏽‍💼:woman office worker: medium skin tone
+woman office worker: medium-dark skin tone:👩🏾‍💼:woman office worker: medium-dark skin tone
+woman office worker: dark skin tone:👩🏿‍💼:woman office worker: dark skin tone
+man scientist:👨‍🔬:man scientist
+man scientist: light skin tone:👨🏻‍🔬:man scientist: light skin tone
+man scientist: medium-light skin tone:👨🏼‍🔬:man scientist: medium-light skin tone
+man scientist: medium skin tone:👨🏽‍🔬:man scientist: medium skin tone
+man scientist: medium-dark skin tone:👨🏾‍🔬:man scientist: medium-dark skin tone
+man scientist: dark skin tone:👨🏿‍🔬:man scientist: dark skin tone
+woman scientist:👩‍🔬:woman scientist
+woman scientist: light skin tone:👩🏻‍🔬:woman scientist: light skin tone
+woman scientist: medium-light skin tone:👩🏼‍🔬:woman scientist: medium-light skin tone
+woman scientist: medium skin tone:👩🏽‍🔬:woman scientist: medium skin tone
+woman scientist: medium-dark skin tone:👩🏾‍🔬:woman scientist: medium-dark skin tone
+woman scientist: dark skin tone:👩🏿‍🔬:woman scientist: dark skin tone
+man technologist:👨‍💻:man technologist
+man technologist: light skin tone:👨🏻‍💻:man technologist: light skin tone
+man technologist: medium-light skin tone:👨🏼‍💻:man technologist: medium-light skin tone
+man technologist: medium skin tone:👨🏽‍💻:man technologist: medium skin tone
+man technologist: medium-dark skin tone:👨🏾‍💻:man technologist: medium-dark skin tone
+man technologist: dark skin tone:👨🏿‍💻:man technologist: dark skin tone
+woman technologist:👩‍💻:woman technologist
+woman technologist: light skin tone:👩🏻‍💻:woman technologist: light skin tone
+woman technologist: medium-light skin tone:👩🏼‍💻:woman technologist: medium-light skin tone
+woman technologist: medium skin tone:👩🏽‍💻:woman technologist: medium skin tone
+woman technologist: medium-dark skin tone:👩🏾‍💻:woman technologist: medium-dark skin tone
+woman technologist: dark skin tone:👩🏿‍💻:woman technologist: dark skin tone
+man singer:👨‍🎤:man singer
+man singer: light skin tone:👨🏻‍🎤:man singer: light skin tone
+man singer: medium-light skin tone:👨🏼‍🎤:man singer: medium-light skin tone
+man singer: medium skin tone:👨🏽‍🎤:man singer: medium skin tone
+man singer: medium-dark skin tone:👨🏾‍🎤:man singer: medium-dark skin tone
+man singer: dark skin tone:👨🏿‍🎤:man singer: dark skin tone
+woman singer:👩‍🎤:woman singer
+woman singer: light skin tone:👩🏻‍🎤:woman singer: light skin tone
+woman singer: medium-light skin tone:👩🏼‍🎤:woman singer: medium-light skin tone
+woman singer: medium skin tone:👩🏽‍🎤:woman singer: medium skin tone
+woman singer: medium-dark skin tone:👩🏾‍🎤:woman singer: medium-dark skin tone
+woman singer: dark skin tone:👩🏿‍🎤:woman singer: dark skin tone
+man artist:👨‍🎨:man artist
+man artist: light skin tone:👨🏻‍🎨:man artist: light skin tone
+man artist: medium-light skin tone:👨🏼‍🎨:man artist: medium-light skin tone
+man artist: medium skin tone:👨🏽‍🎨:man artist: medium skin tone
+man artist: medium-dark skin tone:👨🏾‍🎨:man artist: medium-dark skin tone
+man artist: dark skin tone:👨🏿‍🎨:man artist: dark skin tone
+woman artist:👩‍🎨:woman artist
+woman artist: light skin tone:👩🏻‍🎨:woman artist: light skin tone
+woman artist: medium-light skin tone:👩🏼‍🎨:woman artist: medium-light skin tone
+woman artist: medium skin tone:👩🏽‍🎨:woman artist: medium skin tone
+woman artist: medium-dark skin tone:👩🏾‍🎨:woman artist: medium-dark skin tone
+woman artist: dark skin tone:👩🏿‍🎨:woman artist: dark skin tone
+man pilot:👨‍✈️:man pilot
+man pilot: light skin tone:👨🏻‍✈️:man pilot: light skin tone
+man pilot: medium-light skin tone:👨🏼‍✈️:man pilot: medium-light skin tone
+man pilot: medium skin tone:👨🏽‍✈️:man pilot: medium skin tone
+man pilot: medium-dark skin tone:👨🏾‍✈️:man pilot: medium-dark skin tone
+man pilot: dark skin tone:👨🏿‍✈️:man pilot: dark skin tone
+woman pilot:👩‍✈️:woman pilot
+woman pilot: light skin tone:👩🏻‍✈️:woman pilot: light skin tone
+woman pilot: medium-light skin tone:👩🏼‍✈️:woman pilot: medium-light skin tone
+woman pilot: medium skin tone:👩🏽‍✈️:woman pilot: medium skin tone
+woman pilot: medium-dark skin tone:👩🏾‍✈️:woman pilot: medium-dark skin tone
+woman pilot: dark skin tone:👩🏿‍✈️:woman pilot: dark skin tone
+man astronaut:👨‍🚀:man astronaut
+man astronaut: light skin tone:👨🏻‍🚀:man astronaut: light skin tone
+man astronaut: medium-light skin tone:👨🏼‍🚀:man astronaut: medium-light skin tone
+man astronaut: medium skin tone:👨🏽‍🚀:man astronaut: medium skin tone
+man astronaut: medium-dark skin tone:👨🏾‍🚀:man astronaut: medium-dark skin tone
+man astronaut: dark skin tone:👨🏿‍🚀:man astronaut: dark skin tone
+woman astronaut:👩‍🚀:woman astronaut
+woman astronaut: light skin tone:👩🏻‍🚀:woman astronaut: light skin tone
+woman astronaut: medium-light skin tone:👩🏼‍🚀:woman astronaut: medium-light skin tone
+woman astronaut: medium skin tone:👩🏽‍🚀:woman astronaut: medium skin tone
+woman astronaut: medium-dark skin tone:👩🏾‍🚀:woman astronaut: medium-dark skin tone
+woman astronaut: dark skin tone:👩🏿‍🚀:woman astronaut: dark skin tone
+man firefighter:👨‍🚒:man firefighter
+man firefighter: light skin tone:👨🏻‍🚒:man firefighter: light skin tone
+man firefighter: medium-light skin tone:👨🏼‍🚒:man firefighter: medium-light skin tone
+man firefighter: medium skin tone:👨🏽‍🚒:man firefighter: medium skin tone
+man firefighter: medium-dark skin tone:👨🏾‍🚒:man firefighter: medium-dark skin tone
+man firefighter: dark skin tone:👨🏿‍🚒:man firefighter: dark skin tone
+woman firefighter:👩‍🚒:woman firefighter
+woman firefighter: light skin tone:👩🏻‍🚒:woman firefighter: light skin tone
+woman firefighter: medium-light skin tone:👩🏼‍🚒:woman firefighter: medium-light skin tone
+woman firefighter: medium skin tone:👩🏽‍🚒:woman firefighter: medium skin tone
+woman firefighter: medium-dark skin tone:👩🏾‍🚒:woman firefighter: medium-dark skin tone
+woman firefighter: dark skin tone:👩🏿‍🚒:woman firefighter: dark skin tone
+police officer:👮:police officer
+police officer: light skin tone:👮🏻:police officer: light skin tone
+police officer: medium-light skin tone:👮🏼:police officer: medium-light skin tone
+police officer: medium skin tone:👮🏽:police officer: medium skin tone
+police officer: medium-dark skin tone:👮🏾:police officer: medium-dark skin tone
+police officer: dark skin tone:👮🏿:police officer: dark skin tone
+man police officer:👮‍♂️:man police officer
+man police officer: light skin tone:👮🏻‍♂️:man police officer: light skin tone
+man police officer: medium-light skin tone:👮🏼‍♂️:man police officer: medium-light skin tone
+man police officer: medium skin tone:👮🏽‍♂️:man police officer: medium skin tone
+man police officer: medium-dark skin tone:👮🏾‍♂️:man police officer: medium-dark skin tone
+man police officer: dark skin tone:👮🏿‍♂️:man police officer: dark skin tone
+woman police officer:👮‍♀️:woman police officer
+woman police officer: light skin tone:👮🏻‍♀️:woman police officer: light skin tone
+woman police officer: medium-light skin tone:👮🏼‍♀️:woman police officer: medium-light skin tone
+woman police officer: medium skin tone:👮🏽‍♀️:woman police officer: medium skin tone
+woman police officer: medium-dark skin tone:👮🏾‍♀️:woman police officer: medium-dark skin tone
+woman police officer: dark skin tone:👮🏿‍♀️:woman police officer: dark skin tone
+detective:🕵️:detective
+detective: light skin tone:🕵🏻:detective: light skin tone
+detective: medium-light skin tone:🕵🏼:detective: medium-light skin tone
+detective: medium skin tone:🕵🏽:detective: medium skin tone
+detective: medium-dark skin tone:🕵🏾:detective: medium-dark skin tone
+detective: dark skin tone:🕵🏿:detective: dark skin tone
+man detective:🕵️‍♂️:man detective
+man detective: light skin tone:🕵🏻‍♂️:man detective: light skin tone
+man detective: medium-light skin tone:🕵🏼‍♂️:man detective: medium-light skin tone
+man detective: medium skin tone:🕵🏽‍♂️:man detective: medium skin tone
+man detective: medium-dark skin tone:🕵🏾‍♂️:man detective: medium-dark skin tone
+man detective: dark skin tone:🕵🏿‍♂️:man detective: dark skin tone
+woman detective:🕵️‍♀️:woman detective
+woman detective: light skin tone:🕵🏻‍♀️:woman detective: light skin tone
+woman detective: medium-light skin tone:🕵🏼‍♀️:woman detective: medium-light skin tone
+woman detective: medium skin tone:🕵🏽‍♀️:woman detective: medium skin tone
+woman detective: medium-dark skin tone:🕵🏾‍♀️:woman detective: medium-dark skin tone
+woman detective: dark skin tone:🕵🏿‍♀️:woman detective: dark skin tone
+guard:💂:guard
+guard: light skin tone:💂🏻:guard: light skin tone
+guard: medium-light skin tone:💂🏼:guard: medium-light skin tone
+guard: medium skin tone:💂🏽:guard: medium skin tone
+guard: medium-dark skin tone:💂🏾:guard: medium-dark skin tone
+guard: dark skin tone:💂🏿:guard: dark skin tone
+man guard:💂‍♂️:man guard
+man guard: light skin tone:💂🏻‍♂️:man guard: light skin tone
+man guard: medium-light skin tone:💂🏼‍♂️:man guard: medium-light skin tone
+man guard: medium skin tone:💂🏽‍♂️:man guard: medium skin tone
+man guard: medium-dark skin tone:💂🏾‍♂️:man guard: medium-dark skin tone
+man guard: dark skin tone:💂🏿‍♂️:man guard: dark skin tone
+woman guard:💂‍♀️:woman guard
+woman guard: light skin tone:💂🏻‍♀️:woman guard: light skin tone
+woman guard: medium-light skin tone:💂🏼‍♀️:woman guard: medium-light skin tone
+woman guard: medium skin tone:💂🏽‍♀️:woman guard: medium skin tone
+woman guard: medium-dark skin tone:💂🏾‍♀️:woman guard: medium-dark skin tone
+woman guard: dark skin tone:💂🏿‍♀️:woman guard: dark skin tone
+construction worker:👷:construction worker
+construction worker: light skin tone:👷🏻:construction worker: light skin tone
+construction worker: medium-light skin tone:👷🏼:construction worker: medium-light skin tone
+construction worker: medium skin tone:👷🏽:construction worker: medium skin tone
+construction worker: medium-dark skin tone:👷🏾:construction worker: medium-dark skin tone
+construction worker: dark skin tone:👷🏿:construction worker: dark skin tone
+man construction worker:👷‍♂️:man construction worker
+man construction worker: light skin tone:👷🏻‍♂️:man construction worker: light skin tone
+man construction worker: medium-light skin tone:👷🏼‍♂️:man construction worker: medium-light skin tone
+man construction worker: medium skin tone:👷🏽‍♂️:man construction worker: medium skin tone
+man construction worker: medium-dark skin tone:👷🏾‍♂️:man construction worker: medium-dark skin tone
+man construction worker: dark skin tone:👷🏿‍♂️:man construction worker: dark skin tone
+woman construction worker:👷‍♀️:woman construction worker
+woman construction worker: light skin tone:👷🏻‍♀️:woman construction worker: light skin tone
+woman construction worker: medium-light skin tone:👷🏼‍♀️:woman construction worker: medium-light skin tone
+woman construction worker: medium skin tone:👷🏽‍♀️:woman construction worker: medium skin tone
+woman construction worker: medium-dark skin tone:👷🏾‍♀️:woman construction worker: medium-dark skin tone
+woman construction worker: dark skin tone:👷🏿‍♀️:woman construction worker: dark skin tone
+prince:🤴:prince
+prince: light skin tone:🤴🏻:prince: light skin tone
+prince: medium-light skin tone:🤴🏼:prince: medium-light skin tone
+prince: medium skin tone:🤴🏽:prince: medium skin tone
+prince: medium-dark skin tone:🤴🏾:prince: medium-dark skin tone
+prince: dark skin tone:🤴🏿:prince: dark skin tone
+princess:👸:princess
+princess: light skin tone:👸🏻:princess: light skin tone
+princess: medium-light skin tone:👸🏼:princess: medium-light skin tone
+princess: medium skin tone:👸🏽:princess: medium skin tone
+princess: medium-dark skin tone:👸🏾:princess: medium-dark skin tone
+princess: dark skin tone:👸🏿:princess: dark skin tone
+person wearing turban:👳:person wearing turban
+person wearing turban: light skin tone:👳🏻:person wearing turban: light skin tone
+person wearing turban: medium-light skin tone:👳🏼:person wearing turban: medium-light skin tone
+person wearing turban: medium skin tone:👳🏽:person wearing turban: medium skin tone
+person wearing turban: medium-dark skin tone:👳🏾:person wearing turban: medium-dark skin tone
+person wearing turban: dark skin tone:👳🏿:person wearing turban: dark skin tone
+man wearing turban:👳‍♂️:man wearing turban
+man wearing turban: light skin tone:👳🏻‍♂️:man wearing turban: light skin tone
+man wearing turban: medium-light skin tone:👳🏼‍♂️:man wearing turban: medium-light skin tone
+man wearing turban: medium skin tone:👳🏽‍♂️:man wearing turban: medium skin tone
+man wearing turban: medium-dark skin tone:👳🏾‍♂️:man wearing turban: medium-dark skin tone
+man wearing turban: dark skin tone:👳🏿‍♂️:man wearing turban: dark skin tone
+woman wearing turban:👳‍♀️:woman wearing turban
+woman wearing turban: light skin tone:👳🏻‍♀️:woman wearing turban: light skin tone
+woman wearing turban: medium-light skin tone:👳🏼‍♀️:woman wearing turban: medium-light skin tone
+woman wearing turban: medium skin tone:👳🏽‍♀️:woman wearing turban: medium skin tone
+woman wearing turban: medium-dark skin tone:👳🏾‍♀️:woman wearing turban: medium-dark skin tone
+woman wearing turban: dark skin tone:👳🏿‍♀️:woman wearing turban: dark skin tone
+man with Chinese cap:👲:man with Chinese cap
+man with Chinese cap: light skin tone:👲🏻:man with Chinese cap: light skin tone
+man with Chinese cap: medium-light skin tone:👲🏼:man with Chinese cap: medium-light skin tone
+man with Chinese cap: medium skin tone:👲🏽:man with Chinese cap: medium skin tone
+man with Chinese cap: medium-dark skin tone:👲🏾:man with Chinese cap: medium-dark skin tone
+man with Chinese cap: dark skin tone:👲🏿:man with Chinese cap: dark skin tone
+woman with headscarf:🧕:woman with headscarf
+woman with headscarf: light skin tone:🧕🏻:woman with headscarf: light skin tone
+woman with headscarf: medium-light skin tone:🧕🏼:woman with headscarf: medium-light skin tone
+woman with headscarf: medium skin tone:🧕🏽:woman with headscarf: medium skin tone
+woman with headscarf: medium-dark skin tone:🧕🏾:woman with headscarf: medium-dark skin tone
+woman with headscarf: dark skin tone:🧕🏿:woman with headscarf: dark skin tone
+bearded person:🧔:bearded person
+bearded person: light skin tone:🧔🏻:bearded person: light skin tone
+bearded person: medium-light skin tone:🧔🏼:bearded person: medium-light skin tone
+bearded person: medium skin tone:🧔🏽:bearded person: medium skin tone
+bearded person: medium-dark skin tone:🧔🏾:bearded person: medium-dark skin tone
+bearded person: dark skin tone:🧔🏿:bearded person: dark skin tone
+blond-haired person:👱:blond-haired person
+blond-haired person: light skin tone:👱🏻:blond-haired person: light skin tone
+blond-haired person: medium-light skin tone:👱🏼:blond-haired person: medium-light skin tone
+blond-haired person: medium skin tone:👱🏽:blond-haired person: medium skin tone
+blond-haired person: medium-dark skin tone:👱🏾:blond-haired person: medium-dark skin tone
+blond-haired person: dark skin tone:👱🏿:blond-haired person: dark skin tone
+blond-haired man:👱‍♂️:blond-haired man
+blond-haired man: light skin tone:👱🏻‍♂️:blond-haired man: light skin tone
+blond-haired man: medium-light skin tone:👱🏼‍♂️:blond-haired man: medium-light skin tone
+blond-haired man: medium skin tone:👱🏽‍♂️:blond-haired man: medium skin tone
+blond-haired man: medium-dark skin tone:👱🏾‍♂️:blond-haired man: medium-dark skin tone
+blond-haired man: dark skin tone:👱🏿‍♂️:blond-haired man: dark skin tone
+blond-haired woman:👱‍♀️:blond-haired woman
+blond-haired woman: light skin tone:👱🏻‍♀️:blond-haired woman: light skin tone
+blond-haired woman: medium-light skin tone:👱🏼‍♀️:blond-haired woman: medium-light skin tone
+blond-haired woman: medium skin tone:👱🏽‍♀️:blond-haired woman: medium skin tone
+blond-haired woman: medium-dark skin tone:👱🏾‍♀️:blond-haired woman: medium-dark skin tone
+blond-haired woman: dark skin tone:👱🏿‍♀️:blond-haired woman: dark skin tone
+man in tuxedo:🤵:man in tuxedo
+man in tuxedo: light skin tone:🤵🏻:man in tuxedo: light skin tone
+man in tuxedo: medium-light skin tone:🤵🏼:man in tuxedo: medium-light skin tone
+man in tuxedo: medium skin tone:🤵🏽:man in tuxedo: medium skin tone
+man in tuxedo: medium-dark skin tone:🤵🏾:man in tuxedo: medium-dark skin tone
+man in tuxedo: dark skin tone:🤵🏿:man in tuxedo: dark skin tone
+bride with veil:👰:bride with veil
+bride with veil: light skin tone:👰🏻:bride with veil: light skin tone
+bride with veil: medium-light skin tone:👰🏼:bride with veil: medium-light skin tone
+bride with veil: medium skin tone:👰🏽:bride with veil: medium skin tone
+bride with veil: medium-dark skin tone:👰🏾:bride with veil: medium-dark skin tone
+bride with veil: dark skin tone:👰🏿:bride with veil: dark skin tone
+pregnant woman:🤰:pregnant woman
+pregnant woman: light skin tone:🤰🏻:pregnant woman: light skin tone
+pregnant woman: medium-light skin tone:🤰🏼:pregnant woman: medium-light skin tone
+pregnant woman: medium skin tone:🤰🏽:pregnant woman: medium skin tone
+pregnant woman: medium-dark skin tone:🤰🏾:pregnant woman: medium-dark skin tone
+pregnant woman: dark skin tone:🤰🏿:pregnant woman: dark skin tone
+breast-feeding:🤱:breast-feeding
+breast-feeding: light skin tone:🤱🏻:breast-feeding: light skin tone
+breast-feeding: medium-light skin tone:🤱🏼:breast-feeding: medium-light skin tone
+breast-feeding: medium skin tone:🤱🏽:breast-feeding: medium skin tone
+breast-feeding: medium-dark skin tone:🤱🏾:breast-feeding: medium-dark skin tone
+breast-feeding: dark skin tone:🤱🏿:breast-feeding: dark skin tone
+baby angel:👼:baby angel
+baby angel: light skin tone:👼🏻:baby angel: light skin tone
+baby angel: medium-light skin tone:👼🏼:baby angel: medium-light skin tone
+baby angel: medium skin tone:👼🏽:baby angel: medium skin tone
+baby angel: medium-dark skin tone:👼🏾:baby angel: medium-dark skin tone
+baby angel: dark skin tone:👼🏿:baby angel: dark skin tone
+Santa Claus:🎅:Santa Claus
+Santa Claus: light skin tone:🎅🏻:Santa Claus: light skin tone
+Santa Claus: medium-light skin tone:🎅🏼:Santa Claus: medium-light skin tone
+Santa Claus: medium skin tone:🎅🏽:Santa Claus: medium skin tone
+Santa Claus: medium-dark skin tone:🎅🏾:Santa Claus: medium-dark skin tone
+Santa Claus: dark skin tone:🎅🏿:Santa Claus: dark skin tone
+Mrs. Claus:🤶:Mrs. Claus
+Mrs. Claus: light skin tone:🤶🏻:Mrs. Claus: light skin tone
+Mrs. Claus: medium-light skin tone:🤶🏼:Mrs. Claus: medium-light skin tone
+Mrs. Claus: medium skin tone:🤶🏽:Mrs. Claus: medium skin tone
+Mrs. Claus: medium-dark skin tone:🤶🏾:Mrs. Claus: medium-dark skin tone
+Mrs. Claus: dark skin tone:🤶🏿:Mrs. Claus: dark skin tone
+mage:🧙:mage
+mage: light skin tone:🧙🏻:mage: light skin tone
+mage: medium-light skin tone:🧙🏼:mage: medium-light skin tone
+mage: medium skin tone:🧙🏽:mage: medium skin tone
+mage: medium-dark skin tone:🧙🏾:mage: medium-dark skin tone
+mage: dark skin tone:🧙🏿:mage: dark skin tone
+woman mage:🧙‍♀️:woman mage
+woman mage: light skin tone:🧙🏻‍♀️:woman mage: light skin tone
+woman mage: medium-light skin tone:🧙🏼‍♀️:woman mage: medium-light skin tone
+woman mage: medium skin tone:🧙🏽‍♀️:woman mage: medium skin tone
+woman mage: medium-dark skin tone:🧙🏾‍♀️:woman mage: medium-dark skin tone
+woman mage: dark skin tone:🧙🏿‍♀️:woman mage: dark skin tone
+man mage:🧙‍♂️:man mage
+man mage: light skin tone:🧙🏻‍♂️:man mage: light skin tone
+man mage: medium-light skin tone:🧙🏼‍♂️:man mage: medium-light skin tone
+man mage: medium skin tone:🧙🏽‍♂️:man mage: medium skin tone
+man mage: medium-dark skin tone:🧙🏾‍♂️:man mage: medium-dark skin tone
+man mage: dark skin tone:🧙🏿‍♂️:man mage: dark skin tone
+fairy:🧚:fairy
+fairy: light skin tone:🧚🏻:fairy: light skin tone
+fairy: medium-light skin tone:🧚🏼:fairy: medium-light skin tone
+fairy: medium skin tone:🧚🏽:fairy: medium skin tone
+fairy: medium-dark skin tone:🧚🏾:fairy: medium-dark skin tone
+fairy: dark skin tone:🧚🏿:fairy: dark skin tone
+woman fairy:🧚‍♀️:woman fairy
+woman fairy: light skin tone:🧚🏻‍♀️:woman fairy: light skin tone
+woman fairy: medium-light skin tone:🧚🏼‍♀️:woman fairy: medium-light skin tone
+woman fairy: medium skin tone:🧚🏽‍♀️:woman fairy: medium skin tone
+woman fairy: medium-dark skin tone:🧚🏾‍♀️:woman fairy: medium-dark skin tone
+woman fairy: dark skin tone:🧚🏿‍♀️:woman fairy: dark skin tone
+man fairy:🧚‍♂️:man fairy
+man fairy: light skin tone:🧚🏻‍♂️:man fairy: light skin tone
+man fairy: medium-light skin tone:🧚🏼‍♂️:man fairy: medium-light skin tone
+man fairy: medium skin tone:🧚🏽‍♂️:man fairy: medium skin tone
+man fairy: medium-dark skin tone:🧚🏾‍♂️:man fairy: medium-dark skin tone
+man fairy: dark skin tone:🧚🏿‍♂️:man fairy: dark skin tone
+vampire:🧛:vampire
+vampire: light skin tone:🧛🏻:vampire: light skin tone
+vampire: medium-light skin tone:🧛🏼:vampire: medium-light skin tone
+vampire: medium skin tone:🧛🏽:vampire: medium skin tone
+vampire: medium-dark skin tone:🧛🏾:vampire: medium-dark skin tone
+vampire: dark skin tone:🧛🏿:vampire: dark skin tone
+woman vampire:🧛‍♀️:woman vampire
+woman vampire: light skin tone:🧛🏻‍♀️:woman vampire: light skin tone
+woman vampire: medium-light skin tone:🧛🏼‍♀️:woman vampire: medium-light skin tone
+woman vampire: medium skin tone:🧛🏽‍♀️:woman vampire: medium skin tone
+woman vampire: medium-dark skin tone:🧛🏾‍♀️:woman vampire: medium-dark skin tone
+woman vampire: dark skin tone:🧛🏿‍♀️:woman vampire: dark skin tone
+man vampire:🧛‍♂️:man vampire
+man vampire: light skin tone:🧛🏻‍♂️:man vampire: light skin tone
+man vampire: medium-light skin tone:🧛🏼‍♂️:man vampire: medium-light skin tone
+man vampire: medium skin tone:🧛🏽‍♂️:man vampire: medium skin tone
+man vampire: medium-dark skin tone:🧛🏾‍♂️:man vampire: medium-dark skin tone
+man vampire: dark skin tone:🧛🏿‍♂️:man vampire: dark skin tone
+merperson:🧜:merperson
+merperson: light skin tone:🧜🏻:merperson: light skin tone
+merperson: medium-light skin tone:🧜🏼:merperson: medium-light skin tone
+merperson: medium skin tone:🧜🏽:merperson: medium skin tone
+merperson: medium-dark skin tone:🧜🏾:merperson: medium-dark skin tone
+merperson: dark skin tone:🧜🏿:merperson: dark skin tone
+mermaid:🧜‍♀️:mermaid
+mermaid: light skin tone:🧜🏻‍♀️:mermaid: light skin tone
+mermaid: medium-light skin tone:🧜🏼‍♀️:mermaid: medium-light skin tone
+mermaid: medium skin tone:🧜🏽‍♀️:mermaid: medium skin tone
+mermaid: medium-dark skin tone:🧜🏾‍♀️:mermaid: medium-dark skin tone
+mermaid: dark skin tone:🧜🏿‍♀️:mermaid: dark skin tone
+merman:🧜‍♂️:merman
+merman: light skin tone:🧜🏻‍♂️:merman: light skin tone
+merman: medium-light skin tone:🧜🏼‍♂️:merman: medium-light skin tone
+merman: medium skin tone:🧜🏽‍♂️:merman: medium skin tone
+merman: medium-dark skin tone:🧜🏾‍♂️:merman: medium-dark skin tone
+merman: dark skin tone:🧜🏿‍♂️:merman: dark skin tone
+elf:🧝:elf
+elf: light skin tone:🧝🏻:elf: light skin tone
+elf: medium-light skin tone:🧝🏼:elf: medium-light skin tone
+elf: medium skin tone:🧝🏽:elf: medium skin tone
+elf: medium-dark skin tone:🧝🏾:elf: medium-dark skin tone
+elf: dark skin tone:🧝🏿:elf: dark skin tone
+woman elf:🧝‍♀️:woman elf
+woman elf: light skin tone:🧝🏻‍♀️:woman elf: light skin tone
+woman elf: medium-light skin tone:🧝🏼‍♀️:woman elf: medium-light skin tone
+woman elf: medium skin tone:🧝🏽‍♀️:woman elf: medium skin tone
+woman elf: medium-dark skin tone:🧝🏾‍♀️:woman elf: medium-dark skin tone
+woman elf: dark skin tone:🧝🏿‍♀️:woman elf: dark skin tone
+man elf:🧝‍♂️:man elf
+man elf: light skin tone:🧝🏻‍♂️:man elf: light skin tone
+man elf: medium-light skin tone:🧝🏼‍♂️:man elf: medium-light skin tone
+man elf: medium skin tone:🧝🏽‍♂️:man elf: medium skin tone
+man elf: medium-dark skin tone:🧝🏾‍♂️:man elf: medium-dark skin tone
+man elf: dark skin tone:🧝🏿‍♂️:man elf: dark skin tone
+genie:🧞:genie
+woman genie:🧞‍♀️:woman genie
+man genie:🧞‍♂️:man genie
+zombie:🧟:zombie
+woman zombie:🧟‍♀️:woman zombie
+man zombie:🧟‍♂️:man zombie
+person frowning:🙍:person frowning
+person frowning: light skin tone:🙍🏻:person frowning: light skin tone
+person frowning: medium-light skin tone:🙍🏼:person frowning: medium-light skin tone
+person frowning: medium skin tone:🙍🏽:person frowning: medium skin tone
+person frowning: medium-dark skin tone:🙍🏾:person frowning: medium-dark skin tone
+person frowning: dark skin tone:🙍🏿:person frowning: dark skin tone
+man frowning:🙍‍♂️:man frowning
+man frowning: light skin tone:🙍🏻‍♂️:man frowning: light skin tone
+man frowning: medium-light skin tone:🙍🏼‍♂️:man frowning: medium-light skin tone
+man frowning: medium skin tone:🙍🏽‍♂️:man frowning: medium skin tone
+man frowning: medium-dark skin tone:🙍🏾‍♂️:man frowning: medium-dark skin tone
+man frowning: dark skin tone:🙍🏿‍♂️:man frowning: dark skin tone
+woman frowning:🙍‍♀️:woman frowning
+woman frowning: light skin tone:🙍🏻‍♀️:woman frowning: light skin tone
+woman frowning: medium-light skin tone:🙍🏼‍♀️:woman frowning: medium-light skin tone
+woman frowning: medium skin tone:🙍🏽‍♀️:woman frowning: medium skin tone
+woman frowning: medium-dark skin tone:🙍🏾‍♀️:woman frowning: medium-dark skin tone
+woman frowning: dark skin tone:🙍🏿‍♀️:woman frowning: dark skin tone
+person pouting:🙎:person pouting
+person pouting: light skin tone:🙎🏻:person pouting: light skin tone
+person pouting: medium-light skin tone:🙎🏼:person pouting: medium-light skin tone
+person pouting: medium skin tone:🙎🏽:person pouting: medium skin tone
+person pouting: medium-dark skin tone:🙎🏾:person pouting: medium-dark skin tone
+person pouting: dark skin tone:🙎🏿:person pouting: dark skin tone
+man pouting:🙎‍♂️:man pouting
+man pouting: light skin tone:🙎🏻‍♂️:man pouting: light skin tone
+man pouting: medium-light skin tone:🙎🏼‍♂️:man pouting: medium-light skin tone
+man pouting: medium skin tone:🙎🏽‍♂️:man pouting: medium skin tone
+man pouting: medium-dark skin tone:🙎🏾‍♂️:man pouting: medium-dark skin tone
+man pouting: dark skin tone:🙎🏿‍♂️:man pouting: dark skin tone
+woman pouting:🙎‍♀️:woman pouting
+woman pouting: light skin tone:🙎🏻‍♀️:woman pouting: light skin tone
+woman pouting: medium-light skin tone:🙎🏼‍♀️:woman pouting: medium-light skin tone
+woman pouting: medium skin tone:🙎🏽‍♀️:woman pouting: medium skin tone
+woman pouting: medium-dark skin tone:🙎🏾‍♀️:woman pouting: medium-dark skin tone
+woman pouting: dark skin tone:🙎🏿‍♀️:woman pouting: dark skin tone
+person gesturing NO:🙅:person gesturing NO
+person gesturing NO: light skin tone:🙅🏻:person gesturing NO: light skin tone
+person gesturing NO: medium-light skin tone:🙅🏼:person gesturing NO: medium-light skin tone
+person gesturing NO: medium skin tone:🙅🏽:person gesturing NO: medium skin tone
+person gesturing NO: medium-dark skin tone:🙅🏾:person gesturing NO: medium-dark skin tone
+person gesturing NO: dark skin tone:🙅🏿:person gesturing NO: dark skin tone
+man gesturing NO:🙅‍♂️:man gesturing NO
+man gesturing NO: light skin tone:🙅🏻‍♂️:man gesturing NO: light skin tone
+man gesturing NO: medium-light skin tone:🙅🏼‍♂️:man gesturing NO: medium-light skin tone
+man gesturing NO: medium skin tone:🙅🏽‍♂️:man gesturing NO: medium skin tone
+man gesturing NO: medium-dark skin tone:🙅🏾‍♂️:man gesturing NO: medium-dark skin tone
+man gesturing NO: dark skin tone:🙅🏿‍♂️:man gesturing NO: dark skin tone
+woman gesturing NO:🙅‍♀️:woman gesturing NO
+woman gesturing NO: light skin tone:🙅🏻‍♀️:woman gesturing NO: light skin tone
+woman gesturing NO: medium-light skin tone:🙅🏼‍♀️:woman gesturing NO: medium-light skin tone
+woman gesturing NO: medium skin tone:🙅🏽‍♀️:woman gesturing NO: medium skin tone
+woman gesturing NO: medium-dark skin tone:🙅🏾‍♀️:woman gesturing NO: medium-dark skin tone
+woman gesturing NO: dark skin tone:🙅🏿‍♀️:woman gesturing NO: dark skin tone
+person gesturing OK:🙆:person gesturing OK
+person gesturing OK: light skin tone:🙆🏻:person gesturing OK: light skin tone
+person gesturing OK: medium-light skin tone:🙆🏼:person gesturing OK: medium-light skin tone
+person gesturing OK: medium skin tone:🙆🏽:person gesturing OK: medium skin tone
+person gesturing OK: medium-dark skin tone:🙆🏾:person gesturing OK: medium-dark skin tone
+person gesturing OK: dark skin tone:🙆🏿:person gesturing OK: dark skin tone
+man gesturing OK:🙆‍♂️:man gesturing OK
+man gesturing OK: light skin tone:🙆🏻‍♂️:man gesturing OK: light skin tone
+man gesturing OK: medium-light skin tone:🙆🏼‍♂️:man gesturing OK: medium-light skin tone
+man gesturing OK: medium skin tone:🙆🏽‍♂️:man gesturing OK: medium skin tone
+man gesturing OK: medium-dark skin tone:🙆🏾‍♂️:man gesturing OK: medium-dark skin tone
+man gesturing OK: dark skin tone:🙆🏿‍♂️:man gesturing OK: dark skin tone
+woman gesturing OK:🙆‍♀️:woman gesturing OK
+woman gesturing OK: light skin tone:🙆🏻‍♀️:woman gesturing OK: light skin tone
+woman gesturing OK: medium-light skin tone:🙆🏼‍♀️:woman gesturing OK: medium-light skin tone
+woman gesturing OK: medium skin tone:🙆🏽‍♀️:woman gesturing OK: medium skin tone
+woman gesturing OK: medium-dark skin tone:🙆🏾‍♀️:woman gesturing OK: medium-dark skin tone
+woman gesturing OK: dark skin tone:🙆🏿‍♀️:woman gesturing OK: dark skin tone
+person tipping hand:💁:person tipping hand
+person tipping hand: light skin tone:💁🏻:person tipping hand: light skin tone
+person tipping hand: medium-light skin tone:💁🏼:person tipping hand: medium-light skin tone
+person tipping hand: medium skin tone:💁🏽:person tipping hand: medium skin tone
+person tipping hand: medium-dark skin tone:💁🏾:person tipping hand: medium-dark skin tone
+person tipping hand: dark skin tone:💁🏿:person tipping hand: dark skin tone
+man tipping hand:💁‍♂️:man tipping hand
+man tipping hand: light skin tone:💁🏻‍♂️:man tipping hand: light skin tone
+man tipping hand: medium-light skin tone:💁🏼‍♂️:man tipping hand: medium-light skin tone
+man tipping hand: medium skin tone:💁🏽‍♂️:man tipping hand: medium skin tone
+man tipping hand: medium-dark skin tone:💁🏾‍♂️:man tipping hand: medium-dark skin tone
+man tipping hand: dark skin tone:💁🏿‍♂️:man tipping hand: dark skin tone
+woman tipping hand:💁‍♀️:woman tipping hand
+woman tipping hand: light skin tone:💁🏻‍♀️:woman tipping hand: light skin tone
+woman tipping hand: medium-light skin tone:💁🏼‍♀️:woman tipping hand: medium-light skin tone
+woman tipping hand: medium skin tone:💁🏽‍♀️:woman tipping hand: medium skin tone
+woman tipping hand: medium-dark skin tone:💁🏾‍♀️:woman tipping hand: medium-dark skin tone
+woman tipping hand: dark skin tone:💁🏿‍♀️:woman tipping hand: dark skin tone
+person raising hand:🙋:person raising hand
+person raising hand: light skin tone:🙋🏻:person raising hand: light skin tone
+person raising hand: medium-light skin tone:🙋🏼:person raising hand: medium-light skin tone
+person raising hand: medium skin tone:🙋🏽:person raising hand: medium skin tone
+person raising hand: medium-dark skin tone:🙋🏾:person raising hand: medium-dark skin tone
+person raising hand: dark skin tone:🙋🏿:person raising hand: dark skin tone
+man raising hand:🙋‍♂️:man raising hand
+man raising hand: light skin tone:🙋🏻‍♂️:man raising hand: light skin tone
+man raising hand: medium-light skin tone:🙋🏼‍♂️:man raising hand: medium-light skin tone
+man raising hand: medium skin tone:🙋🏽‍♂️:man raising hand: medium skin tone
+man raising hand: medium-dark skin tone:🙋🏾‍♂️:man raising hand: medium-dark skin tone
+man raising hand: dark skin tone:🙋🏿‍♂️:man raising hand: dark skin tone
+woman raising hand:🙋‍♀️:woman raising hand
+woman raising hand: light skin tone:🙋🏻‍♀️:woman raising hand: light skin tone
+woman raising hand: medium-light skin tone:🙋🏼‍♀️:woman raising hand: medium-light skin tone
+woman raising hand: medium skin tone:🙋🏽‍♀️:woman raising hand: medium skin tone
+woman raising hand: medium-dark skin tone:🙋🏾‍♀️:woman raising hand: medium-dark skin tone
+woman raising hand: dark skin tone:🙋🏿‍♀️:woman raising hand: dark skin tone
+person bowing:🙇:person bowing
+person bowing: light skin tone:🙇🏻:person bowing: light skin tone
+person bowing: medium-light skin tone:🙇🏼:person bowing: medium-light skin tone
+person bowing: medium skin tone:🙇🏽:person bowing: medium skin tone
+person bowing: medium-dark skin tone:🙇🏾:person bowing: medium-dark skin tone
+person bowing: dark skin tone:🙇🏿:person bowing: dark skin tone
+man bowing:🙇‍♂️:man bowing
+man bowing: light skin tone:🙇🏻‍♂️:man bowing: light skin tone
+man bowing: medium-light skin tone:🙇🏼‍♂️:man bowing: medium-light skin tone
+man bowing: medium skin tone:🙇🏽‍♂️:man bowing: medium skin tone
+man bowing: medium-dark skin tone:🙇🏾‍♂️:man bowing: medium-dark skin tone
+man bowing: dark skin tone:🙇🏿‍♂️:man bowing: dark skin tone
+woman bowing:🙇‍♀️:woman bowing
+woman bowing: light skin tone:🙇🏻‍♀️:woman bowing: light skin tone
+woman bowing: medium-light skin tone:🙇🏼‍♀️:woman bowing: medium-light skin tone
+woman bowing: medium skin tone:🙇🏽‍♀️:woman bowing: medium skin tone
+woman bowing: medium-dark skin tone:🙇🏾‍♀️:woman bowing: medium-dark skin tone
+woman bowing: dark skin tone:🙇🏿‍♀️:woman bowing: dark skin tone
+person facepalming:🤦:person facepalming
+person facepalming: light skin tone:🤦🏻:person facepalming: light skin tone
+person facepalming: medium-light skin tone:🤦🏼:person facepalming: medium-light skin tone
+person facepalming: medium skin tone:🤦🏽:person facepalming: medium skin tone
+person facepalming: medium-dark skin tone:🤦🏾:person facepalming: medium-dark skin tone
+person facepalming: dark skin tone:🤦🏿:person facepalming: dark skin tone
+man facepalming:🤦‍♂️:man facepalming
+man facepalming: light skin tone:🤦🏻‍♂️:man facepalming: light skin tone
+man facepalming: medium-light skin tone:🤦🏼‍♂️:man facepalming: medium-light skin tone
+man facepalming: medium skin tone:🤦🏽‍♂️:man facepalming: medium skin tone
+man facepalming: medium-dark skin tone:🤦🏾‍♂️:man facepalming: medium-dark skin tone
+man facepalming: dark skin tone:🤦🏿‍♂️:man facepalming: dark skin tone
+woman facepalming:🤦‍♀️:woman facepalming
+woman facepalming: light skin tone:🤦🏻‍♀️:woman facepalming: light skin tone
+woman facepalming: medium-light skin tone:🤦🏼‍♀️:woman facepalming: medium-light skin tone
+woman facepalming: medium skin tone:🤦🏽‍♀️:woman facepalming: medium skin tone
+woman facepalming: medium-dark skin tone:🤦🏾‍♀️:woman facepalming: medium-dark skin tone
+woman facepalming: dark skin tone:🤦🏿‍♀️:woman facepalming: dark skin tone
+person shrugging:🤷:person shrugging
+person shrugging: light skin tone:🤷🏻:person shrugging: light skin tone
+person shrugging: medium-light skin tone:🤷🏼:person shrugging: medium-light skin tone
+person shrugging: medium skin tone:🤷🏽:person shrugging: medium skin tone
+person shrugging: medium-dark skin tone:🤷🏾:person shrugging: medium-dark skin tone
+person shrugging: dark skin tone:🤷🏿:person shrugging: dark skin tone
+man shrugging:🤷‍♂️:man shrugging
+man shrugging: light skin tone:🤷🏻‍♂️:man shrugging: light skin tone
+man shrugging: medium-light skin tone:🤷🏼‍♂️:man shrugging: medium-light skin tone
+man shrugging: medium skin tone:🤷🏽‍♂️:man shrugging: medium skin tone
+man shrugging: medium-dark skin tone:🤷🏾‍♂️:man shrugging: medium-dark skin tone
+man shrugging: dark skin tone:🤷🏿‍♂️:man shrugging: dark skin tone
+woman shrugging:🤷‍♀️:woman shrugging
+woman shrugging: light skin tone:🤷🏻‍♀️:woman shrugging: light skin tone
+woman shrugging: medium-light skin tone:🤷🏼‍♀️:woman shrugging: medium-light skin tone
+woman shrugging: medium skin tone:🤷🏽‍♀️:woman shrugging: medium skin tone
+woman shrugging: medium-dark skin tone:🤷🏾‍♀️:woman shrugging: medium-dark skin tone
+woman shrugging: dark skin tone:🤷🏿‍♀️:woman shrugging: dark skin tone
+person getting massage:💆:person getting massage
+person getting massage: light skin tone:💆🏻:person getting massage: light skin tone
+person getting massage: medium-light skin tone:💆🏼:person getting massage: medium-light skin tone
+person getting massage: medium skin tone:💆🏽:person getting massage: medium skin tone
+person getting massage: medium-dark skin tone:💆🏾:person getting massage: medium-dark skin tone
+person getting massage: dark skin tone:💆🏿:person getting massage: dark skin tone
+man getting massage:💆‍♂️:man getting massage
+man getting massage: light skin tone:💆🏻‍♂️:man getting massage: light skin tone
+man getting massage: medium-light skin tone:💆🏼‍♂️:man getting massage: medium-light skin tone
+man getting massage: medium skin tone:💆🏽‍♂️:man getting massage: medium skin tone
+man getting massage: medium-dark skin tone:💆🏾‍♂️:man getting massage: medium-dark skin tone
+man getting massage: dark skin tone:💆🏿‍♂️:man getting massage: dark skin tone
+woman getting massage:💆‍♀️:woman getting massage
+woman getting massage: light skin tone:💆🏻‍♀️:woman getting massage: light skin tone
+woman getting massage: medium-light skin tone:💆🏼‍♀️:woman getting massage: medium-light skin tone
+woman getting massage: medium skin tone:💆🏽‍♀️:woman getting massage: medium skin tone
+woman getting massage: medium-dark skin tone:💆🏾‍♀️:woman getting massage: medium-dark skin tone
+woman getting massage: dark skin tone:💆🏿‍♀️:woman getting massage: dark skin tone
+person getting haircut:💇:person getting haircut
+person getting haircut: light skin tone:💇🏻:person getting haircut: light skin tone
+person getting haircut: medium-light skin tone:💇🏼:person getting haircut: medium-light skin tone
+person getting haircut: medium skin tone:💇🏽:person getting haircut: medium skin tone
+person getting haircut: medium-dark skin tone:💇🏾:person getting haircut: medium-dark skin tone
+person getting haircut: dark skin tone:💇🏿:person getting haircut: dark skin tone
+man getting haircut:💇‍♂️:man getting haircut
+man getting haircut: light skin tone:💇🏻‍♂️:man getting haircut: light skin tone
+man getting haircut: medium-light skin tone:💇🏼‍♂️:man getting haircut: medium-light skin tone
+man getting haircut: medium skin tone:💇🏽‍♂️:man getting haircut: medium skin tone
+man getting haircut: medium-dark skin tone:💇🏾‍♂️:man getting haircut: medium-dark skin tone
+man getting haircut: dark skin tone:💇🏿‍♂️:man getting haircut: dark skin tone
+woman getting haircut:💇‍♀️:woman getting haircut
+woman getting haircut: light skin tone:💇🏻‍♀️:woman getting haircut: light skin tone
+woman getting haircut: medium-light skin tone:💇🏼‍♀️:woman getting haircut: medium-light skin tone
+woman getting haircut: medium skin tone:💇🏽‍♀️:woman getting haircut: medium skin tone
+woman getting haircut: medium-dark skin tone:💇🏾‍♀️:woman getting haircut: medium-dark skin tone
+woman getting haircut: dark skin tone:💇🏿‍♀️:woman getting haircut: dark skin tone
+person walking:🚶:person walking
+person walking: light skin tone:🚶🏻:person walking: light skin tone
+person walking: medium-light skin tone:🚶🏼:person walking: medium-light skin tone
+person walking: medium skin tone:🚶🏽:person walking: medium skin tone
+person walking: medium-dark skin tone:🚶🏾:person walking: medium-dark skin tone
+person walking: dark skin tone:🚶🏿:person walking: dark skin tone
+man walking:🚶‍♂️:man walking
+man walking: light skin tone:🚶🏻‍♂️:man walking: light skin tone
+man walking: medium-light skin tone:🚶🏼‍♂️:man walking: medium-light skin tone
+man walking: medium skin tone:🚶🏽‍♂️:man walking: medium skin tone
+man walking: medium-dark skin tone:🚶🏾‍♂️:man walking: medium-dark skin tone
+man walking: dark skin tone:🚶🏿‍♂️:man walking: dark skin tone
+woman walking:🚶‍♀️:woman walking
+woman walking: light skin tone:🚶🏻‍♀️:woman walking: light skin tone
+woman walking: medium-light skin tone:🚶🏼‍♀️:woman walking: medium-light skin tone
+woman walking: medium skin tone:🚶🏽‍♀️:woman walking: medium skin tone
+woman walking: medium-dark skin tone:🚶🏾‍♀️:woman walking: medium-dark skin tone
+woman walking: dark skin tone:🚶🏿‍♀️:woman walking: dark skin tone
+person running:🏃:person running
+person running: light skin tone:🏃🏻:person running: light skin tone
+person running: medium-light skin tone:🏃🏼:person running: medium-light skin tone
+person running: medium skin tone:🏃🏽:person running: medium skin tone
+person running: medium-dark skin tone:🏃🏾:person running: medium-dark skin tone
+person running: dark skin tone:🏃🏿:person running: dark skin tone
+man running:🏃‍♂️:man running
+man running: light skin tone:🏃🏻‍♂️:man running: light skin tone
+man running: medium-light skin tone:🏃🏼‍♂️:man running: medium-light skin tone
+man running: medium skin tone:🏃🏽‍♂️:man running: medium skin tone
+man running: medium-dark skin tone:🏃🏾‍♂️:man running: medium-dark skin tone
+man running: dark skin tone:🏃🏿‍♂️:man running: dark skin tone
+woman running:🏃‍♀️:woman running
+woman running: light skin tone:🏃🏻‍♀️:woman running: light skin tone
+woman running: medium-light skin tone:🏃🏼‍♀️:woman running: medium-light skin tone
+woman running: medium skin tone:🏃🏽‍♀️:woman running: medium skin tone
+woman running: medium-dark skin tone:🏃🏾‍♀️:woman running: medium-dark skin tone
+woman running: dark skin tone:🏃🏿‍♀️:woman running: dark skin tone
+woman dancing:💃:woman dancing
+woman dancing: light skin tone:💃🏻:woman dancing: light skin tone
+woman dancing: medium-light skin tone:💃🏼:woman dancing: medium-light skin tone
+woman dancing: medium skin tone:💃🏽:woman dancing: medium skin tone
+woman dancing: medium-dark skin tone:💃🏾:woman dancing: medium-dark skin tone
+woman dancing: dark skin tone:💃🏿:woman dancing: dark skin tone
+man dancing:🕺:man dancing
+man dancing: light skin tone:🕺🏻:man dancing: light skin tone
+man dancing: medium-light skin tone:🕺🏼:man dancing: medium-light skin tone
+man dancing: medium skin tone:🕺🏽:man dancing: medium skin tone
+man dancing: medium-dark skin tone:🕺🏾:man dancing: medium-dark skin tone
+man dancing: dark skin tone:🕺🏿:man dancing: dark skin tone
+people with bunny ears:👯:people with bunny ears
+men with bunny ears:👯‍♂️:men with bunny ears
+women with bunny ears:👯‍♀️:women with bunny ears
+person in steamy room:🧖:person in steamy room
+person in steamy room: light skin tone:🧖🏻:person in steamy room: light skin tone
+person in steamy room: medium-light skin tone:🧖🏼:person in steamy room: medium-light skin tone
+person in steamy room: medium skin tone:🧖🏽:person in steamy room: medium skin tone
+person in steamy room: medium-dark skin tone:🧖🏾:person in steamy room: medium-dark skin tone
+person in steamy room: dark skin tone:🧖🏿:person in steamy room: dark skin tone
+woman in steamy room:🧖‍♀️:woman in steamy room
+woman in steamy room: light skin tone:🧖🏻‍♀️:woman in steamy room: light skin tone
+woman in steamy room: medium-light skin tone:🧖🏼‍♀️:woman in steamy room: medium-light skin tone
+woman in steamy room: medium skin tone:🧖🏽‍♀️:woman in steamy room: medium skin tone
+woman in steamy room: medium-dark skin tone:🧖🏾‍♀️:woman in steamy room: medium-dark skin tone
+woman in steamy room: dark skin tone:🧖🏿‍♀️:woman in steamy room: dark skin tone
+man in steamy room:🧖‍♂️:man in steamy room
+man in steamy room: light skin tone:🧖🏻‍♂️:man in steamy room: light skin tone
+man in steamy room: medium-light skin tone:🧖🏼‍♂️:man in steamy room: medium-light skin tone
+man in steamy room: medium skin tone:🧖🏽‍♂️:man in steamy room: medium skin tone
+man in steamy room: medium-dark skin tone:🧖🏾‍♂️:man in steamy room: medium-dark skin tone
+man in steamy room: dark skin tone:🧖🏿‍♂️:man in steamy room: dark skin tone
+person climbing:🧗:person climbing
+person climbing: light skin tone:🧗🏻:person climbing: light skin tone
+person climbing: medium-light skin tone:🧗🏼:person climbing: medium-light skin tone
+person climbing: medium skin tone:🧗🏽:person climbing: medium skin tone
+person climbing: medium-dark skin tone:🧗🏾:person climbing: medium-dark skin tone
+person climbing: dark skin tone:🧗🏿:person climbing: dark skin tone
+woman climbing:🧗‍♀️:woman climbing
+woman climbing: light skin tone:🧗🏻‍♀️:woman climbing: light skin tone
+woman climbing: medium-light skin tone:🧗🏼‍♀️:woman climbing: medium-light skin tone
+woman climbing: medium skin tone:🧗🏽‍♀️:woman climbing: medium skin tone
+woman climbing: medium-dark skin tone:🧗🏾‍♀️:woman climbing: medium-dark skin tone
+woman climbing: dark skin tone:🧗🏿‍♀️:woman climbing: dark skin tone
+man climbing:🧗‍♂️:man climbing
+man climbing: light skin tone:🧗🏻‍♂️:man climbing: light skin tone
+man climbing: medium-light skin tone:🧗🏼‍♂️:man climbing: medium-light skin tone
+man climbing: medium skin tone:🧗🏽‍♂️:man climbing: medium skin tone
+man climbing: medium-dark skin tone:🧗🏾‍♂️:man climbing: medium-dark skin tone
+man climbing: dark skin tone:🧗🏿‍♂️:man climbing: dark skin tone
+person in lotus position:🧘:person in lotus position
+person in lotus position: light skin tone:🧘🏻:person in lotus position: light skin tone
+person in lotus position: medium-light skin tone:🧘🏼:person in lotus position: medium-light skin tone
+person in lotus position: medium skin tone:🧘🏽:person in lotus position: medium skin tone
+person in lotus position: medium-dark skin tone:🧘🏾:person in lotus position: medium-dark skin tone
+person in lotus position: dark skin tone:🧘🏿:person in lotus position: dark skin tone
+woman in lotus position:🧘‍♀️:woman in lotus position
+woman in lotus position: light skin tone:🧘🏻‍♀️:woman in lotus position: light skin tone
+woman in lotus position: medium-light skin tone:🧘🏼‍♀️:woman in lotus position: medium-light skin tone
+woman in lotus position: medium skin tone:🧘🏽‍♀️:woman in lotus position: medium skin tone
+woman in lotus position: medium-dark skin tone:🧘🏾‍♀️:woman in lotus position: medium-dark skin tone
+woman in lotus position: dark skin tone:🧘🏿‍♀️:woman in lotus position: dark skin tone
+man in lotus position:🧘‍♂️:man in lotus position
+man in lotus position: light skin tone:🧘🏻‍♂️:man in lotus position: light skin tone
+man in lotus position: medium-light skin tone:🧘🏼‍♂️:man in lotus position: medium-light skin tone
+man in lotus position: medium skin tone:🧘🏽‍♂️:man in lotus position: medium skin tone
+man in lotus position: medium-dark skin tone:🧘🏾‍♂️:man in lotus position: medium-dark skin tone
+man in lotus position: dark skin tone:🧘🏿‍♂️:man in lotus position: dark skin tone
+person taking bath:🛀:person taking bath
+person taking bath: light skin tone:🛀🏻:person taking bath: light skin tone
+person taking bath: medium-light skin tone:🛀🏼:person taking bath: medium-light skin tone
+person taking bath: medium skin tone:🛀🏽:person taking bath: medium skin tone
+person taking bath: medium-dark skin tone:🛀🏾:person taking bath: medium-dark skin tone
+person taking bath: dark skin tone:🛀🏿:person taking bath: dark skin tone
+person in bed:🛌:person in bed
+person in bed: light skin tone:🛌🏻:person in bed: light skin tone
+person in bed: medium-light skin tone:🛌🏼:person in bed: medium-light skin tone
+person in bed: medium skin tone:🛌🏽:person in bed: medium skin tone
+person in bed: medium-dark skin tone:🛌🏾:person in bed: medium-dark skin tone
+person in bed: dark skin tone:🛌🏿:person in bed: dark skin tone
+man in suit levitating:🕴️:man in suit levitating
+man in suit levitating: light skin tone:🕴🏻:man in suit levitating: light skin tone
+man in suit levitating: medium-light skin tone:🕴🏼:man in suit levitating: medium-light skin tone
+man in suit levitating: medium skin tone:🕴🏽:man in suit levitating: medium skin tone
+man in suit levitating: medium-dark skin tone:🕴🏾:man in suit levitating: medium-dark skin tone
+man in suit levitating: dark skin tone:🕴🏿:man in suit levitating: dark skin tone
+speaking head:🗣️:speaking head
+bust in silhouette:👤:bust in silhouette
+busts in silhouette:👥:busts in silhouette
+person fencing:🤺:person fencing
+horse racing:🏇:horse racing
+horse racing: light skin tone:🏇🏻:horse racing: light skin tone
+horse racing: medium-light skin tone:🏇🏼:horse racing: medium-light skin tone
+horse racing: medium skin tone:🏇🏽:horse racing: medium skin tone
+horse racing: medium-dark skin tone:🏇🏾:horse racing: medium-dark skin tone
+horse racing: dark skin tone:🏇🏿:horse racing: dark skin tone
+skier:⛷️:skier
+snowboarder:🏂:snowboarder
+snowboarder: light skin tone:🏂🏻:snowboarder: light skin tone
+snowboarder: medium-light skin tone:🏂🏼:snowboarder: medium-light skin tone
+snowboarder: medium skin tone:🏂🏽:snowboarder: medium skin tone
+snowboarder: medium-dark skin tone:🏂🏾:snowboarder: medium-dark skin tone
+snowboarder: dark skin tone:🏂🏿:snowboarder: dark skin tone
+person golfing:🏌️:person golfing
+person golfing: light skin tone:🏌🏻:person golfing: light skin tone
+person golfing: medium-light skin tone:🏌🏼:person golfing: medium-light skin tone
+person golfing: medium skin tone:🏌🏽:person golfing: medium skin tone
+person golfing: medium-dark skin tone:🏌🏾:person golfing: medium-dark skin tone
+person golfing: dark skin tone:🏌🏿:person golfing: dark skin tone
+man golfing:🏌️‍♂️:man golfing
+man golfing: light skin tone:🏌🏻‍♂️:man golfing: light skin tone
+man golfing: medium-light skin tone:🏌🏼‍♂️:man golfing: medium-light skin tone
+man golfing: medium skin tone:🏌🏽‍♂️:man golfing: medium skin tone
+man golfing: medium-dark skin tone:🏌🏾‍♂️:man golfing: medium-dark skin tone
+man golfing: dark skin tone:🏌🏿‍♂️:man golfing: dark skin tone
+woman golfing:🏌️‍♀️:woman golfing
+woman golfing: light skin tone:🏌🏻‍♀️:woman golfing: light skin tone
+woman golfing: medium-light skin tone:🏌🏼‍♀️:woman golfing: medium-light skin tone
+woman golfing: medium skin tone:🏌🏽‍♀️:woman golfing: medium skin tone
+woman golfing: medium-dark skin tone:🏌🏾‍♀️:woman golfing: medium-dark skin tone
+woman golfing: dark skin tone:🏌🏿‍♀️:woman golfing: dark skin tone
+person surfing:🏄:person surfing
+person surfing: light skin tone:🏄🏻:person surfing: light skin tone
+person surfing: medium-light skin tone:🏄🏼:person surfing: medium-light skin tone
+person surfing: medium skin tone:🏄🏽:person surfing: medium skin tone
+person surfing: medium-dark skin tone:🏄🏾:person surfing: medium-dark skin tone
+person surfing: dark skin tone:🏄🏿:person surfing: dark skin tone
+man surfing:🏄‍♂️:man surfing
+man surfing: light skin tone:🏄🏻‍♂️:man surfing: light skin tone
+man surfing: medium-light skin tone:🏄🏼‍♂️:man surfing: medium-light skin tone
+man surfing: medium skin tone:🏄🏽‍♂️:man surfing: medium skin tone
+man surfing: medium-dark skin tone:🏄🏾‍♂️:man surfing: medium-dark skin tone
+man surfing: dark skin tone:🏄🏿‍♂️:man surfing: dark skin tone
+woman surfing:🏄‍♀️:woman surfing
+woman surfing: light skin tone:🏄🏻‍♀️:woman surfing: light skin tone
+woman surfing: medium-light skin tone:🏄🏼‍♀️:woman surfing: medium-light skin tone
+woman surfing: medium skin tone:🏄🏽‍♀️:woman surfing: medium skin tone
+woman surfing: medium-dark skin tone:🏄🏾‍♀️:woman surfing: medium-dark skin tone
+woman surfing: dark skin tone:🏄🏿‍♀️:woman surfing: dark skin tone
+person rowing boat:🚣:person rowing boat
+person rowing boat: light skin tone:🚣🏻:person rowing boat: light skin tone
+person rowing boat: medium-light skin tone:🚣🏼:person rowing boat: medium-light skin tone
+person rowing boat: medium skin tone:🚣🏽:person rowing boat: medium skin tone
+person rowing boat: medium-dark skin tone:🚣🏾:person rowing boat: medium-dark skin tone
+person rowing boat: dark skin tone:🚣🏿:person rowing boat: dark skin tone
+man rowing boat:🚣‍♂️:man rowing boat
+man rowing boat: light skin tone:🚣🏻‍♂️:man rowing boat: light skin tone
+man rowing boat: medium-light skin tone:🚣🏼‍♂️:man rowing boat: medium-light skin tone
+man rowing boat: medium skin tone:🚣🏽‍♂️:man rowing boat: medium skin tone
+man rowing boat: medium-dark skin tone:🚣🏾‍♂️:man rowing boat: medium-dark skin tone
+man rowing boat: dark skin tone:🚣🏿‍♂️:man rowing boat: dark skin tone
+woman rowing boat:🚣‍♀️:woman rowing boat
+woman rowing boat: light skin tone:🚣🏻‍♀️:woman rowing boat: light skin tone
+woman rowing boat: medium-light skin tone:🚣🏼‍♀️:woman rowing boat: medium-light skin tone
+woman rowing boat: medium skin tone:🚣🏽‍♀️:woman rowing boat: medium skin tone
+woman rowing boat: medium-dark skin tone:🚣🏾‍♀️:woman rowing boat: medium-dark skin tone
+woman rowing boat: dark skin tone:🚣🏿‍♀️:woman rowing boat: dark skin tone
+person swimming:🏊:person swimming
+person swimming: light skin tone:🏊🏻:person swimming: light skin tone
+person swimming: medium-light skin tone:🏊🏼:person swimming: medium-light skin tone
+person swimming: medium skin tone:🏊🏽:person swimming: medium skin tone
+person swimming: medium-dark skin tone:🏊🏾:person swimming: medium-dark skin tone
+person swimming: dark skin tone:🏊🏿:person swimming: dark skin tone
+man swimming:🏊‍♂️:man swimming
+man swimming: light skin tone:🏊🏻‍♂️:man swimming: light skin tone
+man swimming: medium-light skin tone:🏊🏼‍♂️:man swimming: medium-light skin tone
+man swimming: medium skin tone:🏊🏽‍♂️:man swimming: medium skin tone
+man swimming: medium-dark skin tone:🏊🏾‍♂️:man swimming: medium-dark skin tone
+man swimming: dark skin tone:🏊🏿‍♂️:man swimming: dark skin tone
+woman swimming:🏊‍♀️:woman swimming
+woman swimming: light skin tone:🏊🏻‍♀️:woman swimming: light skin tone
+woman swimming: medium-light skin tone:🏊🏼‍♀️:woman swimming: medium-light skin tone
+woman swimming: medium skin tone:🏊🏽‍♀️:woman swimming: medium skin tone
+woman swimming: medium-dark skin tone:🏊🏾‍♀️:woman swimming: medium-dark skin tone
+woman swimming: dark skin tone:🏊🏿‍♀️:woman swimming: dark skin tone
+person bouncing ball:⛹️:person bouncing ball
+person bouncing ball: light skin tone:⛹🏻:person bouncing ball: light skin tone
+person bouncing ball: medium-light skin tone:⛹🏼:person bouncing ball: medium-light skin tone
+person bouncing ball: medium skin tone:⛹🏽:person bouncing ball: medium skin tone
+person bouncing ball: medium-dark skin tone:⛹🏾:person bouncing ball: medium-dark skin tone
+person bouncing ball: dark skin tone:⛹🏿:person bouncing ball: dark skin tone
+man bouncing ball:⛹️‍♂️:man bouncing ball
+man bouncing ball: light skin tone:⛹🏻‍♂️:man bouncing ball: light skin tone
+man bouncing ball: medium-light skin tone:⛹🏼‍♂️:man bouncing ball: medium-light skin tone
+man bouncing ball: medium skin tone:⛹🏽‍♂️:man bouncing ball: medium skin tone
+man bouncing ball: medium-dark skin tone:⛹🏾‍♂️:man bouncing ball: medium-dark skin tone
+man bouncing ball: dark skin tone:⛹🏿‍♂️:man bouncing ball: dark skin tone
+woman bouncing ball:⛹️‍♀️:woman bouncing ball
+woman bouncing ball: light skin tone:⛹🏻‍♀️:woman bouncing ball: light skin tone
+woman bouncing ball: medium-light skin tone:⛹🏼‍♀️:woman bouncing ball: medium-light skin tone
+woman bouncing ball: medium skin tone:⛹🏽‍♀️:woman bouncing ball: medium skin tone
+woman bouncing ball: medium-dark skin tone:⛹🏾‍♀️:woman bouncing ball: medium-dark skin tone
+woman bouncing ball: dark skin tone:⛹🏿‍♀️:woman bouncing ball: dark skin tone
+person lifting weights:🏋️:person lifting weights
+person lifting weights: light skin tone:🏋🏻:person lifting weights: light skin tone
+person lifting weights: medium-light skin tone:🏋🏼:person lifting weights: medium-light skin tone
+person lifting weights: medium skin tone:🏋🏽:person lifting weights: medium skin tone
+person lifting weights: medium-dark skin tone:🏋🏾:person lifting weights: medium-dark skin tone
+person lifting weights: dark skin tone:🏋🏿:person lifting weights: dark skin tone
+man lifting weights:🏋️‍♂️:man lifting weights
+man lifting weights: light skin tone:🏋🏻‍♂️:man lifting weights: light skin tone
+man lifting weights: medium-light skin tone:🏋🏼‍♂️:man lifting weights: medium-light skin tone
+man lifting weights: medium skin tone:🏋🏽‍♂️:man lifting weights: medium skin tone
+man lifting weights: medium-dark skin tone:🏋🏾‍♂️:man lifting weights: medium-dark skin tone
+man lifting weights: dark skin tone:🏋🏿‍♂️:man lifting weights: dark skin tone
+woman lifting weights:🏋️‍♀️:woman lifting weights
+woman lifting weights: light skin tone:🏋🏻‍♀️:woman lifting weights: light skin tone
+woman lifting weights: medium-light skin tone:🏋🏼‍♀️:woman lifting weights: medium-light skin tone
+woman lifting weights: medium skin tone:🏋🏽‍♀️:woman lifting weights: medium skin tone
+woman lifting weights: medium-dark skin tone:🏋🏾‍♀️:woman lifting weights: medium-dark skin tone
+woman lifting weights: dark skin tone:🏋🏿‍♀️:woman lifting weights: dark skin tone
+person biking:🚴:person biking
+person biking: light skin tone:🚴🏻:person biking: light skin tone
+person biking: medium-light skin tone:🚴🏼:person biking: medium-light skin tone
+person biking: medium skin tone:🚴🏽:person biking: medium skin tone
+person biking: medium-dark skin tone:🚴🏾:person biking: medium-dark skin tone
+person biking: dark skin tone:🚴🏿:person biking: dark skin tone
+man biking:🚴‍♂️:man biking
+man biking: light skin tone:🚴🏻‍♂️:man biking: light skin tone
+man biking: medium-light skin tone:🚴🏼‍♂️:man biking: medium-light skin tone
+man biking: medium skin tone:🚴🏽‍♂️:man biking: medium skin tone
+man biking: medium-dark skin tone:🚴🏾‍♂️:man biking: medium-dark skin tone
+man biking: dark skin tone:🚴🏿‍♂️:man biking: dark skin tone
+woman biking:🚴‍♀️:woman biking
+woman biking: light skin tone:🚴🏻‍♀️:woman biking: light skin tone
+woman biking: medium-light skin tone:🚴🏼‍♀️:woman biking: medium-light skin tone
+woman biking: medium skin tone:🚴🏽‍♀️:woman biking: medium skin tone
+woman biking: medium-dark skin tone:🚴🏾‍♀️:woman biking: medium-dark skin tone
+woman biking: dark skin tone:🚴🏿‍♀️:woman biking: dark skin tone
+person mountain biking:🚵:person mountain biking
+person mountain biking: light skin tone:🚵🏻:person mountain biking: light skin tone
+person mountain biking: medium-light skin tone:🚵🏼:person mountain biking: medium-light skin tone
+person mountain biking: medium skin tone:🚵🏽:person mountain biking: medium skin tone
+person mountain biking: medium-dark skin tone:🚵🏾:person mountain biking: medium-dark skin tone
+person mountain biking: dark skin tone:🚵🏿:person mountain biking: dark skin tone
+man mountain biking:🚵‍♂️:man mountain biking
+man mountain biking: light skin tone:🚵🏻‍♂️:man mountain biking: light skin tone
+man mountain biking: medium-light skin tone:🚵🏼‍♂️:man mountain biking: medium-light skin tone
+man mountain biking: medium skin tone:🚵🏽‍♂️:man mountain biking: medium skin tone
+man mountain biking: medium-dark skin tone:🚵🏾‍♂️:man mountain biking: medium-dark skin tone
+man mountain biking: dark skin tone:🚵🏿‍♂️:man mountain biking: dark skin tone
+woman mountain biking:🚵‍♀️:woman mountain biking
+woman mountain biking: light skin tone:🚵🏻‍♀️:woman mountain biking: light skin tone
+woman mountain biking: medium-light skin tone:🚵🏼‍♀️:woman mountain biking: medium-light skin tone
+woman mountain biking: medium skin tone:🚵🏽‍♀️:woman mountain biking: medium skin tone
+woman mountain biking: medium-dark skin tone:🚵🏾‍♀️:woman mountain biking: medium-dark skin tone
+woman mountain biking: dark skin tone:🚵🏿‍♀️:woman mountain biking: dark skin tone
+racing car:🏎️:racing car
+motorcycle:🏍️:motorcycle
+person cartwheeling:🤸:person cartwheeling
+person cartwheeling: light skin tone:🤸🏻:person cartwheeling: light skin tone
+person cartwheeling: medium-light skin tone:🤸🏼:person cartwheeling: medium-light skin tone
+person cartwheeling: medium skin tone:🤸🏽:person cartwheeling: medium skin tone
+person cartwheeling: medium-dark skin tone:🤸🏾:person cartwheeling: medium-dark skin tone
+person cartwheeling: dark skin tone:🤸🏿:person cartwheeling: dark skin tone
+man cartwheeling:🤸‍♂️:man cartwheeling
+man cartwheeling: light skin tone:🤸🏻‍♂️:man cartwheeling: light skin tone
+man cartwheeling: medium-light skin tone:🤸🏼‍♂️:man cartwheeling: medium-light skin tone
+man cartwheeling: medium skin tone:🤸🏽‍♂️:man cartwheeling: medium skin tone
+man cartwheeling: medium-dark skin tone:🤸🏾‍♂️:man cartwheeling: medium-dark skin tone
+man cartwheeling: dark skin tone:🤸🏿‍♂️:man cartwheeling: dark skin tone
+woman cartwheeling:🤸‍♀️:woman cartwheeling
+woman cartwheeling: light skin tone:🤸🏻‍♀️:woman cartwheeling: light skin tone
+woman cartwheeling: medium-light skin tone:🤸🏼‍♀️:woman cartwheeling: medium-light skin tone
+woman cartwheeling: medium skin tone:🤸🏽‍♀️:woman cartwheeling: medium skin tone
+woman cartwheeling: medium-dark skin tone:🤸🏾‍♀️:woman cartwheeling: medium-dark skin tone
+woman cartwheeling: dark skin tone:🤸🏿‍♀️:woman cartwheeling: dark skin tone
+people wrestling:🤼:people wrestling
+men wrestling:🤼‍♂️:men wrestling
+women wrestling:🤼‍♀️:women wrestling
+person playing water polo:🤽:person playing water polo
+person playing water polo: light skin tone:🤽🏻:person playing water polo: light skin tone
+person playing water polo: medium-light skin tone:🤽🏼:person playing water polo: medium-light skin tone
+person playing water polo: medium skin tone:🤽🏽:person playing water polo: medium skin tone
+person playing water polo: medium-dark skin tone:🤽🏾:person playing water polo: medium-dark skin tone
+person playing water polo: dark skin tone:🤽🏿:person playing water polo: dark skin tone
+man playing water polo:🤽‍♂️:man playing water polo
+man playing water polo: light skin tone:🤽🏻‍♂️:man playing water polo: light skin tone
+man playing water polo: medium-light skin tone:🤽🏼‍♂️:man playing water polo: medium-light skin tone
+man playing water polo: medium skin tone:🤽🏽‍♂️:man playing water polo: medium skin tone
+man playing water polo: medium-dark skin tone:🤽🏾‍♂️:man playing water polo: medium-dark skin tone
+man playing water polo: dark skin tone:🤽🏿‍♂️:man playing water polo: dark skin tone
+woman playing water polo:🤽‍♀️:woman playing water polo
+woman playing water polo: light skin tone:🤽🏻‍♀️:woman playing water polo: light skin tone
+woman playing water polo: medium-light skin tone:🤽🏼‍♀️:woman playing water polo: medium-light skin tone
+woman playing water polo: medium skin tone:🤽🏽‍♀️:woman playing water polo: medium skin tone
+woman playing water polo: medium-dark skin tone:🤽🏾‍♀️:woman playing water polo: medium-dark skin tone
+woman playing water polo: dark skin tone:🤽🏿‍♀️:woman playing water polo: dark skin tone
+person playing handball:🤾:person playing handball
+person playing handball: light skin tone:🤾🏻:person playing handball: light skin tone
+person playing handball: medium-light skin tone:🤾🏼:person playing handball: medium-light skin tone
+person playing handball: medium skin tone:🤾🏽:person playing handball: medium skin tone
+person playing handball: medium-dark skin tone:🤾🏾:person playing handball: medium-dark skin tone
+person playing handball: dark skin tone:🤾🏿:person playing handball: dark skin tone
+man playing handball:🤾‍♂️:man playing handball
+man playing handball: light skin tone:🤾🏻‍♂️:man playing handball: light skin tone
+man playing handball: medium-light skin tone:🤾🏼‍♂️:man playing handball: medium-light skin tone
+man playing handball: medium skin tone:🤾🏽‍♂️:man playing handball: medium skin tone
+man playing handball: medium-dark skin tone:🤾🏾‍♂️:man playing handball: medium-dark skin tone
+man playing handball: dark skin tone:🤾🏿‍♂️:man playing handball: dark skin tone
+woman playing handball:🤾‍♀️:woman playing handball
+woman playing handball: light skin tone:🤾🏻‍♀️:woman playing handball: light skin tone
+woman playing handball: medium-light skin tone:🤾🏼‍♀️:woman playing handball: medium-light skin tone
+woman playing handball: medium skin tone:🤾🏽‍♀️:woman playing handball: medium skin tone
+woman playing handball: medium-dark skin tone:🤾🏾‍♀️:woman playing handball: medium-dark skin tone
+woman playing handball: dark skin tone:🤾🏿‍♀️:woman playing handball: dark skin tone
+person juggling:🤹:person juggling
+person juggling: light skin tone:🤹🏻:person juggling: light skin tone
+person juggling: medium-light skin tone:🤹🏼:person juggling: medium-light skin tone
+person juggling: medium skin tone:🤹🏽:person juggling: medium skin tone
+person juggling: medium-dark skin tone:🤹🏾:person juggling: medium-dark skin tone
+person juggling: dark skin tone:🤹🏿:person juggling: dark skin tone
+man juggling:🤹‍♂️:man juggling
+man juggling: light skin tone:🤹🏻‍♂️:man juggling: light skin tone
+man juggling: medium-light skin tone:🤹🏼‍♂️:man juggling: medium-light skin tone
+man juggling: medium skin tone:🤹🏽‍♂️:man juggling: medium skin tone
+man juggling: medium-dark skin tone:🤹🏾‍♂️:man juggling: medium-dark skin tone
+man juggling: dark skin tone:🤹🏿‍♂️:man juggling: dark skin tone
+woman juggling:🤹‍♀️:woman juggling
+woman juggling: light skin tone:🤹🏻‍♀️:woman juggling: light skin tone
+woman juggling: medium-light skin tone:🤹🏼‍♀️:woman juggling: medium-light skin tone
+woman juggling: medium skin tone:🤹🏽‍♀️:woman juggling: medium skin tone
+woman juggling: medium-dark skin tone:🤹🏾‍♀️:woman juggling: medium-dark skin tone
+woman juggling: dark skin tone:🤹🏿‍♀️:woman juggling: dark skin tone
+man and woman holding hands:👫:man and woman holding hands
+two men holding hands:👬:two men holding hands
+two women holding hands:👭:two women holding hands
+kiss:💏:kiss
+kiss: woman, man:👩‍❤️‍💋‍👨:kiss: woman, man
+kiss: man, man:👨‍❤️‍💋‍👨:kiss: man, man
+kiss: woman, woman:👩‍❤️‍💋‍👩:kiss: woman, woman
+couple with heart:💑:couple with heart
+couple with heart: woman, man:👩‍❤️‍👨:couple with heart: woman, man
+couple with heart: man, man:👨‍❤️‍👨:couple with heart: man, man
+couple with heart: woman, woman:👩‍❤️‍👩:couple with heart: woman, woman
+family:👪:family
+family: man, woman, boy:👨‍👩‍👦:family: man, woman, boy
+family: man, woman, girl:👨‍👩‍👧:family: man, woman, girl
+family: man, woman, girl, boy:👨‍👩‍👧‍👦:family: man, woman, girl, boy
+family: man, woman, boy, boy:👨‍👩‍👦‍👦:family: man, woman, boy, boy
+family: man, woman, girl, girl:👨‍👩‍👧‍👧:family: man, woman, girl, girl
+family: man, man, boy:👨‍👨‍👦:family: man, man, boy
+family: man, man, girl:👨‍👨‍👧:family: man, man, girl
+family: man, man, girl, boy:👨‍👨‍👧‍👦:family: man, man, girl, boy
+family: man, man, boy, boy:👨‍👨‍👦‍👦:family: man, man, boy, boy
+family: man, man, girl, girl:👨‍👨‍👧‍👧:family: man, man, girl, girl
+family: woman, woman, boy:👩‍👩‍👦:family: woman, woman, boy
+family: woman, woman, girl:👩‍👩‍👧:family: woman, woman, girl
+family: woman, woman, girl, boy:👩‍👩‍👧‍👦:family: woman, woman, girl, boy
+family: woman, woman, boy, boy:👩‍👩‍👦‍👦:family: woman, woman, boy, boy
+family: woman, woman, girl, girl:👩‍👩‍👧‍👧:family: woman, woman, girl, girl
+family: man, boy:👨‍👦:family: man, boy
+family: man, boy, boy:👨‍👦‍👦:family: man, boy, boy
+family: man, girl:👨‍👧:family: man, girl
+family: man, girl, boy:👨‍👧‍👦:family: man, girl, boy
+family: man, girl, girl:👨‍👧‍👧:family: man, girl, girl
+family: woman, boy:👩‍👦:family: woman, boy
+family: woman, boy, boy:👩‍👦‍👦:family: woman, boy, boy
+family: woman, girl:👩‍👧:family: woman, girl
+family: woman, girl, boy:👩‍👧‍👦:family: woman, girl, boy
+family: woman, girl, girl:👩‍👧‍👧:family: woman, girl, girl
+selfie:🤳:selfie
+selfie: light skin tone:🤳🏻:selfie: light skin tone
+selfie: medium-light skin tone:🤳🏼:selfie: medium-light skin tone
+selfie: medium skin tone:🤳🏽:selfie: medium skin tone
+selfie: medium-dark skin tone:🤳🏾:selfie: medium-dark skin tone
+selfie: dark skin tone:🤳🏿:selfie: dark skin tone
+flexed biceps:💪:flexed biceps
+flexed biceps: light skin tone:💪🏻:flexed biceps: light skin tone
+flexed biceps: medium-light skin tone:💪🏼:flexed biceps: medium-light skin tone
+flexed biceps: medium skin tone:💪🏽:flexed biceps: medium skin tone
+flexed biceps: medium-dark skin tone:💪🏾:flexed biceps: medium-dark skin tone
+flexed biceps: dark skin tone:💪🏿:flexed biceps: dark skin tone
+backhand index pointing left:👈:backhand index pointing left
+backhand index pointing left: light skin tone:👈🏻:backhand index pointing left: light skin tone
+backhand index pointing left: medium-light skin tone:👈🏼:backhand index pointing left: medium-light skin tone
+backhand index pointing left: medium skin tone:👈🏽:backhand index pointing left: medium skin tone
+backhand index pointing left: medium-dark skin tone:👈🏾:backhand index pointing left: medium-dark skin tone
+backhand index pointing left: dark skin tone:👈🏿:backhand index pointing left: dark skin tone
+backhand index pointing right:👉:backhand index pointing right
+backhand index pointing right: light skin tone:👉🏻:backhand index pointing right: light skin tone
+backhand index pointing right: medium-light skin tone:👉🏼:backhand index pointing right: medium-light skin tone
+backhand index pointing right: medium skin tone:👉🏽:backhand index pointing right: medium skin tone
+backhand index pointing right: medium-dark skin tone:👉🏾:backhand index pointing right: medium-dark skin tone
+backhand index pointing right: dark skin tone:👉🏿:backhand index pointing right: dark skin tone
+index pointing up:☝️:index pointing up
+index pointing up: light skin tone:☝🏻:index pointing up: light skin tone
+index pointing up: medium-light skin tone:☝🏼:index pointing up: medium-light skin tone
+index pointing up: medium skin tone:☝🏽:index pointing up: medium skin tone
+index pointing up: medium-dark skin tone:☝🏾:index pointing up: medium-dark skin tone
+index pointing up: dark skin tone:☝🏿:index pointing up: dark skin tone
+backhand index pointing up:👆:backhand index pointing up
+backhand index pointing up: light skin tone:👆🏻:backhand index pointing up: light skin tone
+backhand index pointing up: medium-light skin tone:👆🏼:backhand index pointing up: medium-light skin tone
+backhand index pointing up: medium skin tone:👆🏽:backhand index pointing up: medium skin tone
+backhand index pointing up: medium-dark skin tone:👆🏾:backhand index pointing up: medium-dark skin tone
+backhand index pointing up: dark skin tone:👆🏿:backhand index pointing up: dark skin tone
+middle finger:🖕:middle finger
+middle finger: light skin tone:🖕🏻:middle finger: light skin tone
+middle finger: medium-light skin tone:🖕🏼:middle finger: medium-light skin tone
+middle finger: medium skin tone:🖕🏽:middle finger: medium skin tone
+middle finger: medium-dark skin tone:🖕🏾:middle finger: medium-dark skin tone
+middle finger: dark skin tone:🖕🏿:middle finger: dark skin tone
+backhand index pointing down:👇:backhand index pointing down
+backhand index pointing down: light skin tone:👇🏻:backhand index pointing down: light skin tone
+backhand index pointing down: medium-light skin tone:👇🏼:backhand index pointing down: medium-light skin tone
+backhand index pointing down: medium skin tone:👇🏽:backhand index pointing down: medium skin tone
+backhand index pointing down: medium-dark skin tone:👇🏾:backhand index pointing down: medium-dark skin tone
+backhand index pointing down: dark skin tone:👇🏿:backhand index pointing down: dark skin tone
+victory hand:✌️:victory hand
+victory hand: light skin tone:✌🏻:victory hand: light skin tone
+victory hand: medium-light skin tone:✌🏼:victory hand: medium-light skin tone
+victory hand: medium skin tone:✌🏽:victory hand: medium skin tone
+victory hand: medium-dark skin tone:✌🏾:victory hand: medium-dark skin tone
+victory hand: dark skin tone:✌🏿:victory hand: dark skin tone
+crossed fingers:🤞:crossed fingers
+crossed fingers: light skin tone:🤞🏻:crossed fingers: light skin tone
+crossed fingers: medium-light skin tone:🤞🏼:crossed fingers: medium-light skin tone
+crossed fingers: medium skin tone:🤞🏽:crossed fingers: medium skin tone
+crossed fingers: medium-dark skin tone:🤞🏾:crossed fingers: medium-dark skin tone
+crossed fingers: dark skin tone:🤞🏿:crossed fingers: dark skin tone
+vulcan salute:🖖:vulcan salute
+vulcan salute: light skin tone:🖖🏻:vulcan salute: light skin tone
+vulcan salute: medium-light skin tone:🖖🏼:vulcan salute: medium-light skin tone
+vulcan salute: medium skin tone:🖖🏽:vulcan salute: medium skin tone
+vulcan salute: medium-dark skin tone:🖖🏾:vulcan salute: medium-dark skin tone
+vulcan salute: dark skin tone:🖖🏿:vulcan salute: dark skin tone
+sign of the horns:🤘:sign of the horns
+sign of the horns: light skin tone:🤘🏻:sign of the horns: light skin tone
+sign of the horns: medium-light skin tone:🤘🏼:sign of the horns: medium-light skin tone
+sign of the horns: medium skin tone:🤘🏽:sign of the horns: medium skin tone
+sign of the horns: medium-dark skin tone:🤘🏾:sign of the horns: medium-dark skin tone
+sign of the horns: dark skin tone:🤘🏿:sign of the horns: dark skin tone
+call me hand:🤙:call me hand
+call me hand: light skin tone:🤙🏻:call me hand: light skin tone
+call me hand: medium-light skin tone:🤙🏼:call me hand: medium-light skin tone
+call me hand: medium skin tone:🤙🏽:call me hand: medium skin tone
+call me hand: medium-dark skin tone:🤙🏾:call me hand: medium-dark skin tone
+call me hand: dark skin tone:🤙🏿:call me hand: dark skin tone
+hand with fingers splayed:🖐️:hand with fingers splayed
+hand with fingers splayed: light skin tone:🖐🏻:hand with fingers splayed: light skin tone
+hand with fingers splayed: medium-light skin tone:🖐🏼:hand with fingers splayed: medium-light skin tone
+hand with fingers splayed: medium skin tone:🖐🏽:hand with fingers splayed: medium skin tone
+hand with fingers splayed: medium-dark skin tone:🖐🏾:hand with fingers splayed: medium-dark skin tone
+hand with fingers splayed: dark skin tone:🖐🏿:hand with fingers splayed: dark skin tone
+raised hand:✋:raised hand
+raised hand: light skin tone:✋🏻:raised hand: light skin tone
+raised hand: medium-light skin tone:✋🏼:raised hand: medium-light skin tone
+raised hand: medium skin tone:✋🏽:raised hand: medium skin tone
+raised hand: medium-dark skin tone:✋🏾:raised hand: medium-dark skin tone
+raised hand: dark skin tone:✋🏿:raised hand: dark skin tone
+OK hand:👌:OK hand
+OK hand: light skin tone:👌🏻:OK hand: light skin tone
+OK hand: medium-light skin tone:👌🏼:OK hand: medium-light skin tone
+OK hand: medium skin tone:👌🏽:OK hand: medium skin tone
+OK hand: medium-dark skin tone:👌🏾:OK hand: medium-dark skin tone
+OK hand: dark skin tone:👌🏿:OK hand: dark skin tone
+thumbs up:👍:thumbs up
+thumbs up: light skin tone:👍🏻:thumbs up: light skin tone
+thumbs up: medium-light skin tone:👍🏼:thumbs up: medium-light skin tone
+thumbs up: medium skin tone:👍🏽:thumbs up: medium skin tone
+thumbs up: medium-dark skin tone:👍🏾:thumbs up: medium-dark skin tone
+thumbs up: dark skin tone:👍🏿:thumbs up: dark skin tone
+thumbs down:👎:thumbs down
+thumbs down: light skin tone:👎🏻:thumbs down: light skin tone
+thumbs down: medium-light skin tone:👎🏼:thumbs down: medium-light skin tone
+thumbs down: medium skin tone:👎🏽:thumbs down: medium skin tone
+thumbs down: medium-dark skin tone:👎🏾:thumbs down: medium-dark skin tone
+thumbs down: dark skin tone:👎🏿:thumbs down: dark skin tone
+raised fist:✊:raised fist
+raised fist: light skin tone:✊🏻:raised fist: light skin tone
+raised fist: medium-light skin tone:✊🏼:raised fist: medium-light skin tone
+raised fist: medium skin tone:✊🏽:raised fist: medium skin tone
+raised fist: medium-dark skin tone:✊🏾:raised fist: medium-dark skin tone
+raised fist: dark skin tone:✊🏿:raised fist: dark skin tone
+oncoming fist:👊:oncoming fist
+oncoming fist: light skin tone:👊🏻:oncoming fist: light skin tone
+oncoming fist: medium-light skin tone:👊🏼:oncoming fist: medium-light skin tone
+oncoming fist: medium skin tone:👊🏽:oncoming fist: medium skin tone
+oncoming fist: medium-dark skin tone:👊🏾:oncoming fist: medium-dark skin tone
+oncoming fist: dark skin tone:👊🏿:oncoming fist: dark skin tone
+left-facing fist:🤛:left-facing fist
+left-facing fist: light skin tone:🤛🏻:left-facing fist: light skin tone
+left-facing fist: medium-light skin tone:🤛🏼:left-facing fist: medium-light skin tone
+left-facing fist: medium skin tone:🤛🏽:left-facing fist: medium skin tone
+left-facing fist: medium-dark skin tone:🤛🏾:left-facing fist: medium-dark skin tone
+left-facing fist: dark skin tone:🤛🏿:left-facing fist: dark skin tone
+right-facing fist:🤜:right-facing fist
+right-facing fist: light skin tone:🤜🏻:right-facing fist: light skin tone
+right-facing fist: medium-light skin tone:🤜🏼:right-facing fist: medium-light skin tone
+right-facing fist: medium skin tone:🤜🏽:right-facing fist: medium skin tone
+right-facing fist: medium-dark skin tone:🤜🏾:right-facing fist: medium-dark skin tone
+right-facing fist: dark skin tone:🤜🏿:right-facing fist: dark skin tone
+raised back of hand:🤚:raised back of hand
+raised back of hand: light skin tone:🤚🏻:raised back of hand: light skin tone
+raised back of hand: medium-light skin tone:🤚🏼:raised back of hand: medium-light skin tone
+raised back of hand: medium skin tone:🤚🏽:raised back of hand: medium skin tone
+raised back of hand: medium-dark skin tone:🤚🏾:raised back of hand: medium-dark skin tone
+raised back of hand: dark skin tone:🤚🏿:raised back of hand: dark skin tone
+waving hand:👋:waving hand
+waving hand: light skin tone:👋🏻:waving hand: light skin tone
+waving hand: medium-light skin tone:👋🏼:waving hand: medium-light skin tone
+waving hand: medium skin tone:👋🏽:waving hand: medium skin tone
+waving hand: medium-dark skin tone:👋🏾:waving hand: medium-dark skin tone
+waving hand: dark skin tone:👋🏿:waving hand: dark skin tone
+love-you gesture:🤟:love-you gesture
+love-you gesture: light skin tone:🤟🏻:love-you gesture: light skin tone
+love-you gesture: medium-light skin tone:🤟🏼:love-you gesture: medium-light skin tone
+love-you gesture: medium skin tone:🤟🏽:love-you gesture: medium skin tone
+love-you gesture: medium-dark skin tone:🤟🏾:love-you gesture: medium-dark skin tone
+love-you gesture: dark skin tone:🤟🏿:love-you gesture: dark skin tone
+writing hand:✍️:writing hand
+writing hand: light skin tone:✍🏻:writing hand: light skin tone
+writing hand: medium-light skin tone:✍🏼:writing hand: medium-light skin tone
+writing hand: medium skin tone:✍🏽:writing hand: medium skin tone
+writing hand: medium-dark skin tone:✍🏾:writing hand: medium-dark skin tone
+writing hand: dark skin tone:✍🏿:writing hand: dark skin tone
+clapping hands:👏:clapping hands
+clapping hands: light skin tone:👏🏻:clapping hands: light skin tone
+clapping hands: medium-light skin tone:👏🏼:clapping hands: medium-light skin tone
+clapping hands: medium skin tone:👏🏽:clapping hands: medium skin tone
+clapping hands: medium-dark skin tone:👏🏾:clapping hands: medium-dark skin tone
+clapping hands: dark skin tone:👏🏿:clapping hands: dark skin tone
+open hands:👐:open hands
+open hands: light skin tone:👐🏻:open hands: light skin tone
+open hands: medium-light skin tone:👐🏼:open hands: medium-light skin tone
+open hands: medium skin tone:👐🏽:open hands: medium skin tone
+open hands: medium-dark skin tone:👐🏾:open hands: medium-dark skin tone
+open hands: dark skin tone:👐🏿:open hands: dark skin tone
+raising hands:🙌:raising hands
+raising hands: light skin tone:🙌🏻:raising hands: light skin tone
+raising hands: medium-light skin tone:🙌🏼:raising hands: medium-light skin tone
+raising hands: medium skin tone:🙌🏽:raising hands: medium skin tone
+raising hands: medium-dark skin tone:🙌🏾:raising hands: medium-dark skin tone
+raising hands: dark skin tone:🙌🏿:raising hands: dark skin tone
+palms up together:🤲:palms up together
+palms up together: light skin tone:🤲🏻:palms up together: light skin tone
+palms up together: medium-light skin tone:🤲🏼:palms up together: medium-light skin tone
+palms up together: medium skin tone:🤲🏽:palms up together: medium skin tone
+palms up together: medium-dark skin tone:🤲🏾:palms up together: medium-dark skin tone
+palms up together: dark skin tone:🤲🏿:palms up together: dark skin tone
+folded hands:🙏:folded hands
+folded hands: light skin tone:🙏🏻:folded hands: light skin tone
+folded hands: medium-light skin tone:🙏🏼:folded hands: medium-light skin tone
+folded hands: medium skin tone:🙏🏽:folded hands: medium skin tone
+folded hands: medium-dark skin tone:🙏🏾:folded hands: medium-dark skin tone
+folded hands: dark skin tone:🙏🏿:folded hands: dark skin tone
+handshake:🤝:handshake
+nail polish:💅:nail polish
+nail polish: light skin tone:💅🏻:nail polish: light skin tone
+nail polish: medium-light skin tone:💅🏼:nail polish: medium-light skin tone
+nail polish: medium skin tone:💅🏽:nail polish: medium skin tone
+nail polish: medium-dark skin tone:💅🏾:nail polish: medium-dark skin tone
+nail polish: dark skin tone:💅🏿:nail polish: dark skin tone
+ear:👂:ear
+ear: light skin tone:👂🏻:ear: light skin tone
+ear: medium-light skin tone:👂🏼:ear: medium-light skin tone
+ear: medium skin tone:👂🏽:ear: medium skin tone
+ear: medium-dark skin tone:👂🏾:ear: medium-dark skin tone
+ear: dark skin tone:👂🏿:ear: dark skin tone
+nose:👃:nose
+nose: light skin tone:👃🏻:nose: light skin tone
+nose: medium-light skin tone:👃🏼:nose: medium-light skin tone
+nose: medium skin tone:👃🏽:nose: medium skin tone
+nose: medium-dark skin tone:👃🏾:nose: medium-dark skin tone
+nose: dark skin tone:👃🏿:nose: dark skin tone
+footprints:👣:footprints
+eyes:👀:eyes
+eye:👁️:eye
+eye in speech bubble:👁️‍🗨️:eye in speech bubble
+brain:🧠:brain
+tongue:👅:tongue
+mouth:👄:mouth
+kiss mark:💋:kiss mark
+heart with arrow:💘:heart with arrow
+red heart:❤️:red heart
+beating heart:💓:beating heart
+broken heart:💔:broken heart
+two hearts:💕:two hearts
+sparkling heart:💖:sparkling heart
+growing heart:💗:growing heart
+blue heart:💙:blue heart
+green heart:💚:green heart
+yellow heart:💛:yellow heart
+orange heart:🧡:orange heart
+purple heart:💜:purple heart
+black heart:🖤:black heart
+heart with ribbon:💝:heart with ribbon
+revolving hearts:💞:revolving hearts
+heart decoration:💟:heart decoration
+heavy heart exclamation:❣️:heavy heart exclamation
+love letter:💌:love letter
+zzz:💤:zzz
+anger symbol:💢:anger symbol
+bomb:💣:bomb
+collision:💥:collision
+sweat droplets:💦:sweat droplets
+dashing away:💨:dashing away
+dizzy:💫:dizzy
+speech balloon:💬:speech balloon
+left speech bubble:🗨️:left speech bubble
+right anger bubble:🗯️:right anger bubble
+thought balloon:💭:thought balloon
+hole:🕳️:hole
+glasses:👓:glasses
+sunglasses:🕶️:sunglasses
+necktie:👔:necktie
+t-shirt:👕:t-shirt
+jeans:👖:jeans
+scarf:🧣:scarf
+gloves:🧤:gloves
+coat:🧥:coat
+socks:🧦:socks
+dress:👗:dress
+kimono:👘:kimono
+bikini:👙:bikini
+woman’s clothes:👚:woman’s clothes
+purse:👛:purse
+handbag:👜:handbag
+clutch bag:👝:clutch bag
+shopping bags:🛍️:shopping bags
+school backpack:🎒:school backpack
+man’s shoe:👞:man’s shoe
+running shoe:👟:running shoe
+high-heeled shoe:👠:high-heeled shoe
+woman’s sandal:👡:woman’s sandal
+woman’s boot:👢:woman’s boot
+crown:👑:crown
+woman’s hat:👒:woman’s hat
+top hat:🎩:top hat
+graduation cap:🎓:graduation cap
+billed cap:🧢:billed cap
+rescue worker’s helmet:⛑️:rescue worker’s helmet
+prayer beads:📿:prayer beads
+lipstick:💄:lipstick
+ring:💍:ring
+gem stone:💎:gem stone
+monkey face:🐵:monkey face
+monkey:🐒:monkey
+gorilla:🦍:gorilla
+dog face:🐶:dog face
+dog:🐕:dog
+poodle:🐩:poodle
+wolf face:🐺:wolf face
+fox face:🦊:fox face
+cat face:🐱:cat face
+cat:🐈:cat
+lion face:🦁:lion face
+tiger face:🐯:tiger face
+tiger:🐅:tiger
+leopard:🐆:leopard
+horse face:🐴:horse face
+horse:🐎:horse
+unicorn face:🦄:unicorn face
+zebra:🦓:zebra
+deer:🦌:deer
+cow face:🐮:cow face
+ox:🐂:ox
+water buffalo:🐃:water buffalo
+cow:🐄:cow
+pig face:🐷:pig face
+pig:🐖:pig
+boar:🐗:boar
+pig nose:🐽:pig nose
+ram:🐏:ram
+ewe:🐑:ewe
+goat:🐐:goat
+camel:🐪:camel
+two-hump camel:🐫:two-hump camel
+giraffe:🦒:giraffe
+elephant:🐘:elephant
+rhinoceros:🦏:rhinoceros
+mouse face:🐭:mouse face
+mouse:🐁:mouse
+rat:🐀:rat
+hamster face:🐹:hamster face
+rabbit face:🐰:rabbit face
+rabbit:🐇:rabbit
+chipmunk:🐿️:chipmunk
+hedgehog:🦔:hedgehog
+bat:🦇:bat
+bear face:🐻:bear face
+koala:🐨:koala
+panda face:🐼:panda face
+paw prints:🐾:paw prints
+turkey:🦃:turkey
+chicken:🐔:chicken
+rooster:🐓:rooster
+hatching chick:🐣:hatching chick
+baby chick:🐤:baby chick
+front-facing baby chick:🐥:front-facing baby chick
+bird:🐦:bird
+penguin:🐧:penguin
+dove:🕊️:dove
+eagle:🦅:eagle
+duck:🦆:duck
+owl:🦉:owl
+frog face:🐸:frog face
+crocodile:🐊:crocodile
+turtle:🐢:turtle
+lizard:🦎:lizard
+snake:🐍:snake
+dragon face:🐲:dragon face
+dragon:🐉:dragon
+sauropod:🦕:sauropod
+T-Rex:🦖:T-Rex
+spouting whale:🐳:spouting whale
+whale:🐋:whale
+dolphin:🐬:dolphin
+fish:🐟:fish
+tropical fish:🐠:tropical fish
+blowfish:🐡:blowfish
+shark:🦈:shark
+octopus:🐙:octopus
+spiral shell:🐚:spiral shell
+crab:🦀:crab
+shrimp:🦐:shrimp
+squid:🦑:squid
+snail:🐌:snail
+butterfly:🦋:butterfly
+bug:🐛:bug
+ant:🐜:ant
+honeybee:🐝:honeybee
+lady beetle:🐞:lady beetle
+cricket:🦗:cricket
+spider:🕷️:spider
+spider web:🕸️:spider web
+scorpion:🦂:scorpion
+bouquet:💐:bouquet
+cherry blossom:🌸:cherry blossom
+white flower:💮:white flower
+rosette:🏵️:rosette
+rose:🌹:rose
+wilted flower:🥀:wilted flower
+hibiscus:🌺:hibiscus
+sunflower:🌻:sunflower
+blossom:🌼:blossom
+tulip:🌷:tulip
+seedling:🌱:seedling
+evergreen tree:🌲:evergreen tree
+deciduous tree:🌳:deciduous tree
+palm tree:🌴:palm tree
+cactus:🌵:cactus
+sheaf of rice:🌾:sheaf of rice
+herb:🌿:herb
+shamrock:☘️:shamrock
+four leaf clover:🍀:four leaf clover
+maple leaf:🍁:maple leaf
+fallen leaf:🍂:fallen leaf
+leaf fluttering in wind:🍃:leaf fluttering in wind
+grapes:🍇:grapes
+melon:🍈:melon
+watermelon:🍉:watermelon
+tangerine:🍊:tangerine
+lemon:🍋:lemon
+banana:🍌:banana
+pineapple:🍍:pineapple
+red apple:🍎:red apple
+green apple:🍏:green apple
+pear:🍐:pear
+peach:🍑:peach
+cherries:🍒:cherries
+strawberry:🍓:strawberry
+kiwi fruit:🥝:kiwi fruit
+tomato:🍅:tomato
+coconut:🥥:coconut
+avocado:🥑:avocado
+eggplant:🍆:eggplant
+potato:🥔:potato
+carrot:🥕:carrot
+ear of corn:🌽:ear of corn
+hot pepper:🌶️:hot pepper
+cucumber:🥒:cucumber
+broccoli:🥦:broccoli
+mushroom:🍄:mushroom
+peanuts:🥜:peanuts
+chestnut:🌰:chestnut
+bread:🍞:bread
+croissant:🥐:croissant
+baguette bread:🥖:baguette bread
+pretzel:🥨:pretzel
+pancakes:🥞:pancakes
+cheese wedge:🧀:cheese wedge
+meat on bone:🍖:meat on bone
+poultry leg:🍗:poultry leg
+cut of meat:🥩:cut of meat
+bacon:🥓:bacon
+hamburger:🍔:hamburger
+french fries:🍟:french fries
+pizza:🍕:pizza
+hot dog:🌭:hot dog
+sandwich:🥪:sandwich
+taco:🌮:taco
+burrito:🌯:burrito
+stuffed flatbread:🥙:stuffed flatbread
+egg:🥚:egg
+cooking:🍳:cooking
+shallow pan of food:🥘:shallow pan of food
+pot of food:🍲:pot of food
+bowl with spoon:🥣:bowl with spoon
+green salad:🥗:green salad
+popcorn:🍿:popcorn
+canned food:🥫:canned food
+bento box:🍱:bento box
+rice cracker:🍘:rice cracker
+rice ball:🍙:rice ball
+cooked rice:🍚:cooked rice
+curry rice:🍛:curry rice
+steaming bowl:🍜:steaming bowl
+spaghetti:🍝:spaghetti
+roasted sweet potato:🍠:roasted sweet potato
+oden:🍢:oden
+sushi:🍣:sushi
+fried shrimp:🍤:fried shrimp
+fish cake with swirl:🍥:fish cake with swirl
+dango:🍡:dango
+dumpling:🥟:dumpling
+fortune cookie:🥠:fortune cookie
+takeout box:🥡:takeout box
+soft ice cream:🍦:soft ice cream
+shaved ice:🍧:shaved ice
+ice cream:🍨:ice cream
+doughnut:🍩:doughnut
+cookie:🍪:cookie
+birthday cake:🎂:birthday cake
+shortcake:🍰:shortcake
+pie:🥧:pie
+chocolate bar:🍫:chocolate bar
+candy:🍬:candy
+lollipop:🍭:lollipop
+custard:🍮:custard
+honey pot:🍯:honey pot
+baby bottle:🍼:baby bottle
+glass of milk:🥛:glass of milk
+hot beverage:☕:hot beverage
+teacup without handle:🍵:teacup without handle
+sake:🍶:sake
+bottle with popping cork:🍾:bottle with popping cork
+wine glass:🍷:wine glass
+cocktail glass:🍸:cocktail glass
+tropical drink:🍹:tropical drink
+beer mug:🍺:beer mug
+clinking beer mugs:🍻:clinking beer mugs
+clinking glasses:🥂:clinking glasses
+tumbler glass:🥃:tumbler glass
+cup with straw:🥤:cup with straw
+chopsticks:🥢:chopsticks
+fork and knife with plate:🍽️:fork and knife with plate
+fork and knife:🍴:fork and knife
+spoon:🥄:spoon
+kitchen knife:🔪:kitchen knife
+amphora:🏺:amphora
+globe showing Europe-Africa:🌍:globe showing Europe-Africa
+globe showing Americas:🌎:globe showing Americas
+globe showing Asia-Australia:🌏:globe showing Asia-Australia
+globe with meridians:🌐:globe with meridians
+world map:🗺️:world map
+map of Japan:🗾:map of Japan
+snow-capped mountain:🏔️:snow-capped mountain
+mountain:⛰️:mountain
+volcano:🌋:volcano
+mount fuji:🗻:mount fuji
+camping:🏕️:camping
+beach with umbrella:🏖️:beach with umbrella
+desert:🏜️:desert
+desert island:🏝️:desert island
+national park:🏞️:national park
+stadium:🏟️:stadium
+classical building:🏛️:classical building
+building construction:🏗️:building construction
+houses:🏘️:houses
+cityscape:🏙️:cityscape
+derelict house:🏚️:derelict house
+house:🏠:house
+house with garden:🏡:house with garden
+office building:🏢:office building
+Japanese post office:🏣:Japanese post office
+post office:🏤:post office
+hospital:🏥:hospital
+bank:🏦:bank
+hotel:🏨:hotel
+love hotel:🏩:love hotel
+convenience store:🏪:convenience store
+school:🏫:school
+department store:🏬:department store
+factory:🏭:factory
+Japanese castle:🏯:Japanese castle
+castle:🏰:castle
+wedding:💒:wedding
+Tokyo tower:🗼:Tokyo tower
+Statue of Liberty:🗽:Statue of Liberty
+church:⛪:church
+mosque:🕌:mosque
+synagogue:🕍:synagogue
+shinto shrine:⛩️:shinto shrine
+kaaba:🕋:kaaba
+fountain:⛲:fountain
+tent:⛺:tent
+foggy:🌁:foggy
+night with stars:🌃:night with stars
+sunrise over mountains:🌄:sunrise over mountains
+sunrise:🌅:sunrise
+cityscape at dusk:🌆:cityscape at dusk
+sunset:🌇:sunset
+bridge at night:🌉:bridge at night
+hot springs:♨️:hot springs
+milky way:🌌:milky way
+carousel horse:🎠:carousel horse
+ferris wheel:🎡:ferris wheel
+roller coaster:🎢:roller coaster
+barber pole:💈:barber pole
+circus tent:🎪:circus tent
+performing arts:🎭:performing arts
+framed picture:🖼️:framed picture
+artist palette:🎨:artist palette
+slot machine:🎰:slot machine
+locomotive:🚂:locomotive
+railway car:🚃:railway car
+high-speed train:🚄:high-speed train
+bullet train:🚅:bullet train
+train:🚆:train
+metro:🚇:metro
+light rail:🚈:light rail
+station:🚉:station
+tram:🚊:tram
+monorail:🚝:monorail
+mountain railway:🚞:mountain railway
+tram car:🚋:tram car
+bus:🚌:bus
+oncoming bus:🚍:oncoming bus
+trolleybus:🚎:trolleybus
+minibus:🚐:minibus
+ambulance:🚑:ambulance
+fire engine:🚒:fire engine
+police car:🚓:police car
+oncoming police car:🚔:oncoming police car
+taxi:🚕:taxi
+oncoming taxi:🚖:oncoming taxi
+automobile:🚗:automobile
+oncoming automobile:🚘:oncoming automobile
+sport utility vehicle:🚙:sport utility vehicle
+delivery truck:🚚:delivery truck
+articulated lorry:🚛:articulated lorry
+tractor:🚜:tractor
+bicycle:🚲:bicycle
+kick scooter:🛴:kick scooter
+motor scooter:🛵:motor scooter
+bus stop:🚏:bus stop
+motorway:🛣️:motorway
+railway track:🛤️:railway track
+fuel pump:⛽:fuel pump
+police car light:🚨:police car light
+horizontal traffic light:🚥:horizontal traffic light
+vertical traffic light:🚦:vertical traffic light
+construction:🚧:construction
+stop sign:🛑:stop sign
+anchor:⚓:anchor
+sailboat:⛵:sailboat
+canoe:🛶:canoe
+speedboat:🚤:speedboat
+passenger ship:🛳️:passenger ship
+ferry:⛴️:ferry
+motor boat:🛥️:motor boat
+ship:🚢:ship
+airplane:✈️:airplane
+small airplane:🛩️:small airplane
+airplane departure:🛫:airplane departure
+airplane arrival:🛬:airplane arrival
+seat:💺:seat
+helicopter:🚁:helicopter
+suspension railway:🚟:suspension railway
+mountain cableway:🚠:mountain cableway
+aerial tramway:🚡:aerial tramway
+satellite:🛰️:satellite
+rocket:🚀:rocket
+flying saucer:🛸:flying saucer
+bellhop bell:🛎️:bellhop bell
+door:🚪:door
+bed:🛏️:bed
+couch and lamp:🛋️:couch and lamp
+toilet:🚽:toilet
+shower:🚿:shower
+bathtub:🛁:bathtub
+hourglass done:⌛:hourglass done
+hourglass not done:⏳:hourglass not done
+watch:⌚:watch
+alarm clock:⏰:alarm clock
+stopwatch:⏱️:stopwatch
+timer clock:⏲️:timer clock
+mantelpiece clock:🕰️:mantelpiece clock
+twelve o’clock:🕛:twelve o’clock
+twelve-thirty:🕧:twelve-thirty
+one o’clock:🕐:one o’clock
+one-thirty:🕜:one-thirty
+two o’clock:🕑:two o’clock
+two-thirty:🕝:two-thirty
+three o’clock:🕒:three o’clock
+three-thirty:🕞:three-thirty
+four o’clock:🕓:four o’clock
+four-thirty:🕟:four-thirty
+five o’clock:🕔:five o’clock
+five-thirty:🕠:five-thirty
+six o’clock:🕕:six o’clock
+six-thirty:🕡:six-thirty
+seven o’clock:🕖:seven o’clock
+seven-thirty:🕢:seven-thirty
+eight o’clock:🕗:eight o’clock
+eight-thirty:🕣:eight-thirty
+nine o’clock:🕘:nine o’clock
+nine-thirty:🕤:nine-thirty
+ten o’clock:🕙:ten o’clock
+ten-thirty:🕥:ten-thirty
+eleven o’clock:🕚:eleven o’clock
+eleven-thirty:🕦:eleven-thirty
+new moon:🌑:new moon
+waxing crescent moon:🌒:waxing crescent moon
+first quarter moon:🌓:first quarter moon
+waxing gibbous moon:🌔:waxing gibbous moon
+full moon:🌕:full moon
+waning gibbous moon:🌖:waning gibbous moon
+last quarter moon:🌗:last quarter moon
+waning crescent moon:🌘:waning crescent moon
+crescent moon:🌙:crescent moon
+new moon face:🌚:new moon face
+first quarter moon face:🌛:first quarter moon face
+last quarter moon face:🌜:last quarter moon face
+thermometer:🌡️:thermometer
+sun:☀️:sun
+full moon face:🌝:full moon face
+sun with face:🌞:sun with face
+white medium star:⭐:white medium star
+glowing star:🌟:glowing star
+shooting star:🌠:shooting star
+cloud:☁️:cloud
+sun behind cloud:⛅:sun behind cloud
+cloud with lightning and rain:⛈️:cloud with lightning and rain
+sun behind small cloud:🌤️:sun behind small cloud
+sun behind large cloud:🌥️:sun behind large cloud
+sun behind rain cloud:🌦️:sun behind rain cloud
+cloud with rain:🌧️:cloud with rain
+cloud with snow:🌨️:cloud with snow
+cloud with lightning:🌩️:cloud with lightning
+tornado:🌪️:tornado
+fog:🌫️:fog
+wind face:🌬️:wind face
+cyclone:🌀:cyclone
+rainbow:🌈:rainbow
+closed umbrella:🌂:closed umbrella
+umbrella:☂️:umbrella
+umbrella with rain drops:☔:umbrella with rain drops
+umbrella on ground:⛱️:umbrella on ground
+high voltage:⚡:high voltage
+snowflake:❄️:snowflake
+snowman:☃️:snowman
+snowman without snow:⛄:snowman without snow
+comet:☄️:comet
+fire:🔥:fire
+droplet:💧:droplet
+water wave:🌊:water wave
+jack-o-lantern:🎃:jack-o-lantern
+Christmas tree:🎄:Christmas tree
+fireworks:🎆:fireworks
+sparkler:🎇:sparkler
+sparkles:✨:sparkles
+balloon:🎈:balloon
+party popper:🎉:party popper
+confetti ball:🎊:confetti ball
+tanabata tree:🎋:tanabata tree
+pine decoration:🎍:pine decoration
+Japanese dolls:🎎:Japanese dolls
+carp streamer:🎏:carp streamer
+wind chime:🎐:wind chime
+moon viewing ceremony:🎑:moon viewing ceremony
+ribbon:🎀:ribbon
+wrapped gift:🎁:wrapped gift
+reminder ribbon:🎗️:reminder ribbon
+admission tickets:🎟️:admission tickets
+ticket:🎫:ticket
+military medal:🎖️:military medal
+trophy:🏆:trophy
+sports medal:🏅:sports medal
+1st place medal:🥇:1st place medal
+2nd place medal:🥈:2nd place medal
+3rd place medal:🥉:3rd place medal
+soccer ball:⚽:soccer ball
+baseball:⚾:baseball
+basketball:🏀:basketball
+volleyball:🏐:volleyball
+american football:🏈:american football
+rugby football:🏉:rugby football
+tennis:🎾:tennis
+pool 8 ball:🎱:pool 8 ball
+bowling:🎳:bowling
+cricket game:🏏:cricket game
+field hockey:🏑:field hockey
+ice hockey:🏒:ice hockey
+ping pong:🏓:ping pong
+badminton:🏸:badminton
+boxing glove:🥊:boxing glove
+martial arts uniform:🥋:martial arts uniform
+goal net:🥅:goal net
+direct hit:🎯:direct hit
+flag in hole:⛳:flag in hole
+ice skate:⛸️:ice skate
+fishing pole:🎣:fishing pole
+running shirt:🎽:running shirt
+skis:🎿:skis
+sled:🛷:sled
+curling stone:🥌:curling stone
+video game:🎮:video game
+joystick:🕹️:joystick
+game die:🎲:game die
+spade suit:♠️:spade suit
+heart suit:♥️:heart suit
+diamond suit:♦️:diamond suit
+club suit:♣️:club suit
+joker:🃏:joker
+mahjong red dragon:🀄:mahjong red dragon
+flower playing cards:🎴:flower playing cards
+muted speaker:🔇:muted speaker
+speaker low volume:🔈:speaker low volume
+speaker medium volume:🔉:speaker medium volume
+speaker high volume:🔊:speaker high volume
+loudspeaker:📢:loudspeaker
+megaphone:📣:megaphone
+postal horn:📯:postal horn
+bell:🔔:bell
+bell with slash:🔕:bell with slash
+musical score:🎼:musical score
+musical note:🎵:musical note
+musical notes:🎶:musical notes
+studio microphone:🎙️:studio microphone
+level slider:🎚️:level slider
+control knobs:🎛️:control knobs
+microphone:🎤:microphone
+headphone:🎧:headphone
+radio:📻:radio
+saxophone:🎷:saxophone
+guitar:🎸:guitar
+musical keyboard:🎹:musical keyboard
+trumpet:🎺:trumpet
+violin:🎻:violin
+drum:🥁:drum
+mobile phone:📱:mobile phone
+mobile phone with arrow:📲:mobile phone with arrow
+telephone:☎️:telephone
+telephone receiver:📞:telephone receiver
+pager:📟:pager
+fax machine:📠:fax machine
+battery:🔋:battery
+electric plug:🔌:electric plug
+laptop computer:💻:laptop computer
+desktop computer:🖥️:desktop computer
+printer:🖨️:printer
+keyboard:⌨️:keyboard
+computer mouse:🖱️:computer mouse
+trackball:🖲️:trackball
+computer disk:💽:computer disk
+floppy disk:💾:floppy disk
+optical disk:💿:optical disk
+dvd:📀:dvd
+movie camera:🎥:movie camera
+film frames:🎞️:film frames
+film projector:📽️:film projector
+clapper board:🎬:clapper board
+television:📺:television
+camera:📷:camera
+camera with flash:📸:camera with flash
+video camera:📹:video camera
+videocassette:📼:videocassette
+magnifying glass tilted left:🔍:magnifying glass tilted left
+magnifying glass tilted right:🔎:magnifying glass tilted right
+microscope:🔬:microscope
+telescope:🔭:telescope
+satellite antenna:📡:satellite antenna
+candle:🕯️:candle
+light bulb:💡:light bulb
+flashlight:🔦:flashlight
+red paper lantern:🏮:red paper lantern
+notebook with decorative cover:📔:notebook with decorative cover
+closed book:📕:closed book
+open book:📖:open book
+green book:📗:green book
+blue book:📘:blue book
+orange book:📙:orange book
+books:📚:books
+notebook:📓:notebook
+ledger:📒:ledger
+page with curl:📃:page with curl
+scroll:📜:scroll
+page facing up:📄:page facing up
+newspaper:📰:newspaper
+rolled-up newspaper:🗞️:rolled-up newspaper
+bookmark tabs:📑:bookmark tabs
+bookmark:🔖:bookmark
+label:🏷️:label
+money bag:💰:money bag
+yen banknote:💴:yen banknote
+dollar banknote:💵:dollar banknote
+euro banknote:💶:euro banknote
+pound banknote:💷:pound banknote
+money with wings:💸:money with wings
+credit card:💳:credit card
+chart increasing with yen:💹:chart increasing with yen
+currency exchange:💱:currency exchange
+heavy dollar sign:💲:heavy dollar sign
+envelope:✉️:envelope
+e-mail:📧:e-mail
+incoming envelope:📨:incoming envelope
+envelope with arrow:📩:envelope with arrow
+outbox tray:📤:outbox tray
+inbox tray:📥:inbox tray
+package:📦:package
+closed mailbox with raised flag:📫:closed mailbox with raised flag
+closed mailbox with lowered flag:📪:closed mailbox with lowered flag
+open mailbox with raised flag:📬:open mailbox with raised flag
+open mailbox with lowered flag:📭:open mailbox with lowered flag
+postbox:📮:postbox
+ballot box with ballot:🗳️:ballot box with ballot
+pencil:✏️:pencil
+black nib:✒️:black nib
+fountain pen:🖋️:fountain pen
+pen:🖊️:pen
+paintbrush:🖌️:paintbrush
+crayon:🖍️:crayon
+memo:📝:memo
+briefcase:💼:briefcase
+file folder:📁:file folder
+open file folder:📂:open file folder
+card index dividers:🗂️:card index dividers
+calendar:📅:calendar
+tear-off calendar:📆:tear-off calendar
+spiral notepad:🗒️:spiral notepad
+spiral calendar:🗓️:spiral calendar
+card index:📇:card index
+chart increasing:📈:chart increasing
+chart decreasing:📉:chart decreasing
+bar chart:📊:bar chart
+clipboard:📋:clipboard
+pushpin:📌:pushpin
+round pushpin:📍:round pushpin
+paperclip:📎:paperclip
+linked paperclips:🖇️:linked paperclips
+straight ruler:📏:straight ruler
+triangular ruler:📐:triangular ruler
+scissors:✂️:scissors
+card file box:🗃️:card file box
+file cabinet:🗄️:file cabinet
+wastebasket:🗑️:wastebasket
+locked:🔒:locked
+unlocked:🔓:unlocked
+locked with pen:🔏:locked with pen
+locked with key:🔐:locked with key
+key:🔑:key
+old key:🗝️:old key
+hammer:🔨:hammer
+pick:⛏️:pick
+hammer and pick:⚒️:hammer and pick
+hammer and wrench:🛠️:hammer and wrench
+dagger:🗡️:dagger
+crossed swords:⚔️:crossed swords
+pistol:🔫:pistol
+bow and arrow:🏹:bow and arrow
+shield:🛡️:shield
+wrench:🔧:wrench
+nut and bolt:🔩:nut and bolt
+gear:⚙️:gear
+clamp:🗜️:clamp
+alembic:⚗️:alembic
+balance scale:⚖️:balance scale
+link:🔗:link
+chains:⛓️:chains
+syringe:💉:syringe
+pill:💊:pill
+cigarette:🚬:cigarette
+coffin:⚰️:coffin
+funeral urn:⚱️:funeral urn
+moai:🗿:moai
+oil drum:🛢️:oil drum
+crystal ball:🔮:crystal ball
+shopping cart:🛒:shopping cart
+ATM sign:🏧:ATM sign
+litter in bin sign:🚮:litter in bin sign
+potable water:🚰:potable water
+wheelchair symbol:♿:wheelchair symbol
+men’s room:🚹:men’s room
+women’s room:🚺:women’s room
+restroom:🚻:restroom
+baby symbol:🚼:baby symbol
+water closet:🚾:water closet
+passport control:🛂:passport control
+customs:🛃:customs
+baggage claim:🛄:baggage claim
+left luggage:🛅:left luggage
+warning:⚠️:warning
+children crossing:🚸:children crossing
+no entry:⛔:no entry
+prohibited:🚫:prohibited
+no bicycles:🚳:no bicycles
+no smoking:🚭:no smoking
+no littering:🚯:no littering
+non-potable water:🚱:non-potable water
+no pedestrians:🚷:no pedestrians
+no mobile phones:📵:no mobile phones
+no one under eighteen:🔞:no one under eighteen
+radioactive:☢️:radioactive
+biohazard:☣️:biohazard
+up arrow:⬆️:up arrow
+up-right arrow:↗️:up-right arrow
+right arrow:➡️:right arrow
+down-right arrow:↘️:down-right arrow
+down arrow:⬇️:down arrow
+down-left arrow:↙️:down-left arrow
+left arrow:⬅️:left arrow
+up-left arrow:↖️:up-left arrow
+up-down arrow:↕️:up-down arrow
+left-right arrow:↔️:left-right arrow
+right arrow curving left:↩️:right arrow curving left
+left arrow curving right:↪️:left arrow curving right
+right arrow curving up:⤴️:right arrow curving up
+right arrow curving down:⤵️:right arrow curving down
+clockwise vertical arrows:🔃:clockwise vertical arrows
+counterclockwise arrows button:🔄:counterclockwise arrows button
+BACK arrow:🔙:BACK arrow
+END arrow:🔚:END arrow
+ON! arrow:🔛:ON! arrow
+SOON arrow:🔜:SOON arrow
+TOP arrow:🔝:TOP arrow
+place of worship:🛐:place of worship
+atom symbol:⚛️:atom symbol
+om:🕉️:om
+star of David:✡️:star of David
+wheel of dharma:☸️:wheel of dharma
+yin yang:☯️:yin yang
+latin cross:✝️:latin cross
+orthodox cross:☦️:orthodox cross
+star and crescent:☪️:star and crescent
+peace symbol:☮️:peace symbol
+menorah:🕎:menorah
+dotted six-pointed star:🔯:dotted six-pointed star
+Aries:♈:Aries
+Taurus:♉:Taurus
+Gemini:♊:Gemini
+Cancer:♋:Cancer
+Leo:♌:Leo
+Virgo:♍:Virgo
+Libra:♎:Libra
+Scorpius:♏:Scorpius
+Sagittarius:♐:Sagittarius
+Capricorn:♑:Capricorn
+Aquarius:♒:Aquarius
+Pisces:♓:Pisces
+Ophiuchus:⛎:Ophiuchus
+shuffle tracks button:🔀:shuffle tracks button
+repeat button:🔁:repeat button
+repeat single button:🔂:repeat single button
+play button:▶️:play button
+fast-forward button:⏩:fast-forward button
+next track button:⏭️:next track button
+play or pause button:⏯️:play or pause button
+reverse button:◀️:reverse button
+fast reverse button:⏪:fast reverse button
+last track button:⏮️:last track button
+up button:🔼:up button
+fast up button:⏫:fast up button
+down button:🔽:down button
+fast down button:⏬:fast down button
+pause button:⏸️:pause button
+stop button:⏹️:stop button
+record button:⏺️:record button
+eject button:⏏️:eject button
+cinema:🎦:cinema
+dim button:🔅:dim button
+bright button:🔆:bright button
+antenna bars:📶:antenna bars
+vibration mode:📳:vibration mode
+mobile phone off:📴:mobile phone off
+female sign:♀️:female sign
+male sign:♂️:male sign
+medical symbol:⚕️:medical symbol
+recycling symbol:♻️:recycling symbol
+fleur-de-lis:⚜️:fleur-de-lis
+trident emblem:🔱:trident emblem
+name badge:📛:name badge
+Japanese symbol for beginner:🔰:Japanese symbol for beginner
+heavy large circle:⭕:heavy large circle
+white heavy check mark:✅:white heavy check mark
+ballot box with check:☑️:ballot box with check
+heavy check mark:✔️:heavy check mark
+heavy multiplication x:✖️:heavy multiplication x
+cross mark:❌:cross mark
+cross mark button:❎:cross mark button
+heavy plus sign:➕:heavy plus sign
+heavy minus sign:➖:heavy minus sign
+heavy division sign:➗:heavy division sign
+curly loop:➰:curly loop
+double curly loop:➿:double curly loop
+part alternation mark:〽️:part alternation mark
+eight-spoked asterisk:✳️:eight-spoked asterisk
+eight-pointed star:✴️:eight-pointed star
+sparkle:❇️:sparkle
+double exclamation mark:‼️:double exclamation mark
+exclamation question mark:⁉️:exclamation question mark
+question mark:❓:question mark
+white question mark:❔:white question mark
+white exclamation mark:❕:white exclamation mark
+exclamation mark:❗:exclamation mark
+wavy dash:〰️:wavy dash
+copyright:©️:copyright
+registered:®️:registered
+trade mark:™️:trade mark
+keycap: #:#️⃣:keycap: #
+keycap: *:*️⃣:keycap: *
+keycap: 0:0️⃣:keycap: 0
+keycap: 1:1️⃣:keycap: 1
+keycap: 2:2️⃣:keycap: 2
+keycap: 3:3️⃣:keycap: 3
+keycap: 4:4️⃣:keycap: 4
+keycap: 5:5️⃣:keycap: 5
+keycap: 6:6️⃣:keycap: 6
+keycap: 7:7️⃣:keycap: 7
+keycap: 8:8️⃣:keycap: 8
+keycap: 9:9️⃣:keycap: 9
+keycap 10:🔟:keycap 10
+hundred points:💯:hundred points
+input latin uppercase:🔠:input latin uppercase
+input latin lowercase:🔡:input latin lowercase
+input numbers:🔢:input numbers
+input symbols:🔣:input symbols
+input latin letters:🔤:input latin letters
+A button (blood type):🅰️:A button (blood type)
+AB button (blood type):🆎:AB button (blood type)
+B button (blood type):🅱️:B button (blood type)
+CL button:🆑:CL button
+COOL button:🆒:COOL button
+FREE button:🆓:FREE button
+information:ℹ️:information
+ID button:🆔:ID button
+circled M:Ⓜ️:circled M
+NEW button:🆕:NEW button
+NG button:🆖:NG button
+O button (blood type):🅾️:O button (blood type)
+OK button:🆗:OK button
+P button:🅿️:P button
+SOS button:🆘:SOS button
+UP! button:🆙:UP! button
+VS button:🆚:VS button
+Japanese “here” button:🈁:Japanese “here” button
+Japanese “service charge” button:🈂️:Japanese “service charge” button
+Japanese “monthly amount” button:🈷️:Japanese “monthly amount” button
+Japanese “not free of charge” button:🈶:Japanese “not free of charge” button
+Japanese “reserved” button:🈯:Japanese “reserved” button
+Japanese “bargain” button:🉐:Japanese “bargain” button
+Japanese “discount” button:🈹:Japanese “discount” button
+Japanese “free of charge” button:🈚:Japanese “free of charge” button
+Japanese “prohibited” button:🈲:Japanese “prohibited” button
+Japanese “acceptable” button:🉑:Japanese “acceptable” button
+Japanese “application” button:🈸:Japanese “application” button
+Japanese “passing grade” button:🈴:Japanese “passing grade” button
+Japanese “vacancy” button:🈳:Japanese “vacancy” button
+Japanese “congratulations” button:㊗️:Japanese “congratulations” button
+Japanese “secret” button:㊙️:Japanese “secret” button
+Japanese “open for business” button:🈺:Japanese “open for business” button
+Japanese “no vacancy” button:🈵:Japanese “no vacancy” button
+black small square:▪️:black small square
+white small square:▫️:white small square
+white medium square:◻️:white medium square
+black medium square:◼️:black medium square
+white medium-small square:◽:white medium-small square
+black medium-small square:◾:black medium-small square
+black large square:⬛:black large square
+white large square:⬜:white large square
+large orange diamond:🔶:large orange diamond
+large blue diamond:🔷:large blue diamond
+small orange diamond:🔸:small orange diamond
+small blue diamond:🔹:small blue diamond
+red triangle pointed up:🔺:red triangle pointed up
+red triangle pointed down:🔻:red triangle pointed down
+diamond with a dot:💠:diamond with a dot
+radio button:🔘:radio button
+black square button:🔲:black square button
+white square button:🔳:white square button
+white circle:⚪:white circle
+black circle:⚫:black circle
+red circle:🔴:red circle
+blue circle:🔵:blue circle
+chequered flag:🏁:chequered flag
+triangular flag:🚩:triangular flag
+crossed flags:🎌:crossed flags
+black flag:🏴:black flag
+white flag:🏳️:white flag
+rainbow flag:🏳️‍🌈:rainbow flag
+Ascension Island:🇦🇨:Ascension Island
+Andorra:🇦🇩:Andorra
+United Arab Emirates:🇦🇪:United Arab Emirates
+Afghanistan:🇦🇫:Afghanistan
+Antigua & Barbuda:🇦🇬:Antigua & Barbuda
+Anguilla:🇦🇮:Anguilla
+Albania:🇦🇱:Albania
+Armenia:🇦🇲:Armenia
+Angola:🇦🇴:Angola
+Antarctica:🇦🇶:Antarctica
+Argentina:🇦🇷:Argentina
+American Samoa:🇦🇸:American Samoa
+Austria:🇦🇹:Austria
+Australia:🇦🇺:Australia
+Aruba:🇦🇼:Aruba
+Åland Islands:🇦🇽:Åland Islands
+Azerbaijan:🇦🇿:Azerbaijan
+Bosnia & Herzegovina:🇧🇦:Bosnia & Herzegovina
+Barbados:🇧🇧:Barbados
+Bangladesh:🇧🇩:Bangladesh
+Belgium:🇧🇪:Belgium
+Burkina Faso:🇧🇫:Burkina Faso
+Bulgaria:🇧🇬:Bulgaria
+Bahrain:🇧🇭:Bahrain
+Burundi:🇧🇮:Burundi
+Benin:🇧🇯:Benin
+St. Barthélemy:🇧🇱:St. Barthélemy
+Bermuda:🇧🇲:Bermuda
+Brunei:🇧🇳:Brunei
+Bolivia:🇧🇴:Bolivia
+Caribbean Netherlands:🇧🇶:Caribbean Netherlands
+Brazil:🇧🇷:Brazil
+Bahamas:🇧🇸:Bahamas
+Bhutan:🇧🇹:Bhutan
+Bouvet Island:🇧🇻:Bouvet Island
+Botswana:🇧🇼:Botswana
+Belarus:🇧🇾:Belarus
+Belize:🇧🇿:Belize
+Canada:🇨🇦:Canada
+Cocos (Keeling) Islands:🇨🇨:Cocos (Keeling) Islands
+Congo - Kinshasa:🇨🇩:Congo - Kinshasa
+Central African Republic:🇨🇫:Central African Republic
+Congo - Brazzaville:🇨🇬:Congo - Brazzaville
+Switzerland:🇨🇭:Switzerland
+Côte d’Ivoire:🇨🇮:Côte d’Ivoire
+Cook Islands:🇨🇰:Cook Islands
+Chile:🇨🇱:Chile
+Cameroon:🇨🇲:Cameroon
+China:🇨🇳:China
+Colombia:🇨🇴:Colombia
+Clipperton Island:🇨🇵:Clipperton Island
+Costa Rica:🇨🇷:Costa Rica
+Cuba:🇨🇺:Cuba
+Cape Verde:🇨🇻:Cape Verde
+Curaçao:🇨🇼:Curaçao
+Christmas Island:🇨🇽:Christmas Island
+Cyprus:🇨🇾:Cyprus
+Czechia:🇨🇿:Czechia
+Germany:🇩🇪:Germany
+Diego Garcia:🇩🇬:Diego Garcia
+Djibouti:🇩🇯:Djibouti
+Denmark:🇩🇰:Denmark
+Dominica:🇩🇲:Dominica
+Dominican Republic:🇩🇴:Dominican Republic
+Algeria:🇩🇿:Algeria
+Ceuta & Melilla:🇪🇦:Ceuta & Melilla
+Ecuador:🇪🇨:Ecuador
+Estonia:🇪🇪:Estonia
+Egypt:🇪🇬:Egypt
+Western Sahara:🇪🇭:Western Sahara
+Eritrea:🇪🇷:Eritrea
+Spain:🇪🇸:Spain
+Ethiopia:🇪🇹:Ethiopia
+European Union:🇪🇺:European Union
+Finland:🇫🇮:Finland
+Fiji:🇫🇯:Fiji
+Falkland Islands:🇫🇰:Falkland Islands
+Micronesia:🇫🇲:Micronesia
+Faroe Islands:🇫🇴:Faroe Islands
+France:🇫🇷:France
+Gabon:🇬🇦:Gabon
+United Kingdom:🇬🇧:United Kingdom
+Grenada:🇬🇩:Grenada
+Georgia:🇬🇪:Georgia
+French Guiana:🇬🇫:French Guiana
+Guernsey:🇬🇬:Guernsey
+Ghana:🇬🇭:Ghana
+Gibraltar:🇬🇮:Gibraltar
+Greenland:🇬🇱:Greenland
+Gambia:🇬🇲:Gambia
+Guinea:🇬🇳:Guinea
+Guadeloupe:🇬🇵:Guadeloupe
+Equatorial Guinea:🇬🇶:Equatorial Guinea
+Greece:🇬🇷:Greece
+South Georgia & South Sandwich Islands:🇬🇸:South Georgia & South Sandwich Islands
+Guatemala:🇬🇹:Guatemala
+Guam:🇬🇺:Guam
+Guinea-Bissau:🇬🇼:Guinea-Bissau
+Guyana:🇬🇾:Guyana
+Hong Kong SAR China:🇭🇰:Hong Kong SAR China
+Heard & McDonald Islands:🇭🇲:Heard & McDonald Islands
+Honduras:🇭🇳:Honduras
+Croatia:🇭🇷:Croatia
+Haiti:🇭🇹:Haiti
+Hungary:🇭🇺:Hungary
+Canary Islands:🇮🇨:Canary Islands
+Indonesia:🇮🇩:Indonesia
+Ireland:🇮🇪:Ireland
+Israel:🇮🇱:Israel
+Isle of Man:🇮🇲:Isle of Man
+India:🇮🇳:India
+British Indian Ocean Territory:🇮🇴:British Indian Ocean Territory
+Iraq:🇮🇶:Iraq
+Iran:🇮🇷:Iran
+Iceland:🇮🇸:Iceland
+Italy:🇮🇹:Italy
+Jersey:🇯🇪:Jersey
+Jamaica:🇯🇲:Jamaica
+Jordan:🇯🇴:Jordan
+Japan:🇯🇵:Japan
+Kenya:🇰🇪:Kenya
+Kyrgyzstan:🇰🇬:Kyrgyzstan
+Cambodia:🇰🇭:Cambodia
+Kiribati:🇰🇮:Kiribati
+Comoros:🇰🇲:Comoros
+St. Kitts & Nevis:🇰🇳:St. Kitts & Nevis
+North Korea:🇰🇵:North Korea
+South Korea:🇰🇷:South Korea
+Kuwait:🇰🇼:Kuwait
+Cayman Islands:🇰🇾:Cayman Islands
+Kazakhstan:🇰🇿:Kazakhstan
+Laos:🇱🇦:Laos
+Lebanon:🇱🇧:Lebanon
+St. Lucia:🇱🇨:St. Lucia
+Liechtenstein:🇱🇮:Liechtenstein
+Sri Lanka:🇱🇰:Sri Lanka
+Liberia:🇱🇷:Liberia
+Lesotho:🇱🇸:Lesotho
+Lithuania:🇱🇹:Lithuania
+Luxembourg:🇱🇺:Luxembourg
+Latvia:🇱🇻:Latvia
+Libya:🇱🇾:Libya
+Morocco:🇲🇦:Morocco
+Monaco:🇲🇨:Monaco
+Moldova:🇲🇩:Moldova
+Montenegro:🇲🇪:Montenegro
+St. Martin:🇲🇫:St. Martin
+Madagascar:🇲🇬:Madagascar
+Marshall Islands:🇲🇭:Marshall Islands
+Macedonia:🇲🇰:Macedonia
+Mali:🇲🇱:Mali
+Myanmar (Burma):🇲🇲:Myanmar (Burma)
+Mongolia:🇲🇳:Mongolia
+Macau SAR China:🇲🇴:Macau SAR China
+Northern Mariana Islands:🇲🇵:Northern Mariana Islands
+Martinique:🇲🇶:Martinique
+Mauritania:🇲🇷:Mauritania
+Montserrat:🇲🇸:Montserrat
+Malta:🇲🇹:Malta
+Mauritius:🇲🇺:Mauritius
+Maldives:🇲🇻:Maldives
+Malawi:🇲🇼:Malawi
+Mexico:🇲🇽:Mexico
+Malaysia:🇲🇾:Malaysia
+Mozambique:🇲🇿:Mozambique
+Namibia:🇳🇦:Namibia
+New Caledonia:🇳🇨:New Caledonia
+Niger:🇳🇪:Niger
+Norfolk Island:🇳🇫:Norfolk Island
+Nigeria:🇳🇬:Nigeria
+Nicaragua:🇳🇮:Nicaragua
+Netherlands:🇳🇱:Netherlands
+Norway:🇳🇴:Norway
+Nepal:🇳🇵:Nepal
+Nauru:🇳🇷:Nauru
+Niue:🇳🇺:Niue
+New Zealand:🇳🇿:New Zealand
+Oman:🇴🇲:Oman
+Panama:🇵🇦:Panama
+Peru:🇵🇪:Peru
+French Polynesia:🇵🇫:French Polynesia
+Papua New Guinea:🇵🇬:Papua New Guinea
+Philippines:🇵🇭:Philippines
+Pakistan:🇵🇰:Pakistan
+Poland:🇵🇱:Poland
+St. Pierre & Miquelon:🇵🇲:St. Pierre & Miquelon
+Pitcairn Islands:🇵🇳:Pitcairn Islands
+Puerto Rico:🇵🇷:Puerto Rico
+Palestinian Territories:🇵🇸:Palestinian Territories
+Portugal:🇵🇹:Portugal
+Palau:🇵🇼:Palau
+Paraguay:🇵🇾:Paraguay
+Qatar:🇶🇦:Qatar
+Réunion:🇷🇪:Réunion
+Romania:🇷🇴:Romania
+Serbia:🇷🇸:Serbia
+Russia:🇷🇺:Russia
+Rwanda:🇷🇼:Rwanda
+Saudi Arabia:🇸🇦:Saudi Arabia
+Solomon Islands:🇸🇧:Solomon Islands
+Seychelles:🇸🇨:Seychelles
+Sudan:🇸🇩:Sudan
+Sweden:🇸🇪:Sweden
+Singapore:🇸🇬:Singapore
+St. Helena:🇸🇭:St. Helena
+Slovenia:🇸🇮:Slovenia
+Svalbard & Jan Mayen:🇸🇯:Svalbard & Jan Mayen
+Slovakia:🇸🇰:Slovakia
+Sierra Leone:🇸🇱:Sierra Leone
+San Marino:🇸🇲:San Marino
+Senegal:🇸🇳:Senegal
+Somalia:🇸🇴:Somalia
+Suriname:🇸🇷:Suriname
+South Sudan:🇸🇸:South Sudan
+São Tomé & Príncipe:🇸🇹:São Tomé & Príncipe
+El Salvador:🇸🇻:El Salvador
+Sint Maarten:🇸🇽:Sint Maarten
+Syria:🇸🇾:Syria
+Swaziland:🇸🇿:Swaziland
+Tristan da Cunha:🇹🇦:Tristan da Cunha
+Turks & Caicos Islands:🇹🇨:Turks & Caicos Islands
+Chad:🇹🇩:Chad
+French Southern Territories:🇹🇫:French Southern Territories
+Togo:🇹🇬:Togo
+Thailand:🇹🇭:Thailand
+Tajikistan:🇹🇯:Tajikistan
+Tokelau:🇹🇰:Tokelau
+Timor-Leste:🇹🇱:Timor-Leste
+Turkmenistan:🇹🇲:Turkmenistan
+Tunisia:🇹🇳:Tunisia
+Tonga:🇹🇴:Tonga
+Turkey:🇹🇷:Turkey
+Trinidad & Tobago:🇹🇹:Trinidad & Tobago
+Tuvalu:🇹🇻:Tuvalu
+Taiwan:🇹🇼:Taiwan
+Tanzania:🇹🇿:Tanzania
+Ukraine:🇺🇦:Ukraine
+Uganda:🇺🇬:Uganda
+U.S. Outlying Islands:🇺🇲:U.S. Outlying Islands
+United Nations:🇺🇳:United Nations
+United States:🇺🇸:United States
+Uruguay:🇺🇾:Uruguay
+Uzbekistan:🇺🇿:Uzbekistan
+Vatican City:🇻🇦:Vatican City
+St. Vincent & Grenadines:🇻🇨:St. Vincent & Grenadines
+Venezuela:🇻🇪:Venezuela
+British Virgin Islands:🇻🇬:British Virgin Islands
+U.S. Virgin Islands:🇻🇮:U.S. Virgin Islands
+Vietnam:🇻🇳:Vietnam
+Vanuatu:🇻🇺:Vanuatu
+Wallis & Futuna:🇼🇫:Wallis & Futuna
+Samoa:🇼🇸:Samoa
+Kosovo:🇽🇰:Kosovo
+Yemen:🇾🇪:Yemen
+Mayotte:🇾🇹:Mayotte
+South Africa:🇿🇦:South Africa
+Zambia:🇿🇲:Zambia
+Zimbabwe:🇿🇼:Zimbabwe
+England:🏴󠁧󠁢󠁥󠁮󠁧󠁿:England
+Scotland:🏴󠁧󠁢󠁳󠁣󠁴󠁿:Scotland
+Wales:🏴󠁧󠁢󠁷󠁬󠁳󠁿:Wales

@@ -1,5 +1,6 @@
 #!/bin/bash
-. ready.sh
+SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
+. "${SCRIPT_DIR}/ready.sh" || exit $?
 
-installer -pkg "build/$CONFIGURATION/$pkgname.pkg" -target '/'
+installer -pkg ~/Downloads"/$PACKAGE_NAME.pkg" -target '/'
 sudo killall Gureum
