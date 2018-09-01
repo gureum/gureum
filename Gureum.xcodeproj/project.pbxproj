@@ -94,6 +94,7 @@
 		4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994C498AB6F1C414B12608 /* libPods-OSX.a */; };
 		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
+		FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -317,6 +318,7 @@
 		AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputControllerGureum.swift; sourceTree = "<group>"; };
 		E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMBaseComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -513,6 +515,7 @@
 				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
+				FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */,
 			);
 			name = "Common Input Method";
 			path = CommonInputMethod;
@@ -927,6 +930,7 @@
 				38FA21DA14230E1000444D67 /* GureumComposer.m in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
+				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
