@@ -8,6 +8,7 @@
 
 #import "CIMApplicationDelegate.h"
 
+/*
 @interface GureumAppDelegate : NSObject<NSApplicationDelegate, CIMApplicationDelegate> {
   @private
     CIMInputManager *sharedInputManager;
@@ -18,5 +19,5 @@
 + (GureumAppDelegate *)sharedAppDelegate;
 
 @end
-
+*/
 #define CIMSharedConfiguration CIMAppDelegate.sharedInputManager.configuration
