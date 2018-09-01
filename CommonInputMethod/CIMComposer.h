@@ -64,11 +64,3 @@
 @property(nonatomic, retain) NSString *inputMode;
 
 @end
-
-/*!
-    @brief 아무 일도 하지 않는 합성기
-*/
-@interface CIMBaseComposer : CIMComposer
-
-@end
-
