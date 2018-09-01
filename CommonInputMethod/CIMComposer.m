@@ -69,37 +69,3 @@
 }
 
 @end
-
-@implementation CIMBaseComposer
-
-- (NSString *)composedString {
-    return @"";
-}
-
-- (NSString *)originalString {
-    return @"";
-}
-
-- (NSString *)commitString {
-    return @"";
-}
-
-- (NSString *)dequeueCommitString {
-    return @"";
-}
-
-- (void)cancelComposition { }
-
-- (void)clearContext { }
-
-- (BOOL)hasCandidates { return NO; }
-
-- (NSArray *)candidates { return nil; }
-
-#pragma -
-
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    return CIMInputTextProcessResultNotProcessed;
-}
-
-@end
