@@ -36,7 +36,6 @@
 @end
 
 @implementation HangulComposer
-@synthesize inputContext=_inputContext;
 
 - (instancetype)init {
     // 두벌식을 기본 값으로 갖는다.
@@ -46,13 +45,7 @@
 - (instancetype)initWithKeyboardIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
-        self->bridge = [[HangulComposerBridge alloc] initWithComposer:self];
-        self->_inputContext = [[HGInputContext alloc] initWithKeyboardIdentifier:identifier];
-        // 생성 실패 처리
-        if (self->_inputContext == nil) {
-            [self release];
-            return nil;
-        }
+        self->bridge = [[HangulComposerBridge alloc] initWithComposer:self identifier:identifier];
     }
     return self;
 }
@@ -62,7 +55,6 @@
 }
 
 - (void)dealloc {
-    [self->_inputContext release];
     [super dealloc];
 }
 
