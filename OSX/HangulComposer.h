@@ -35,10 +35,8 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
 */
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
     HGInputContext *_Nonnull _inputContext;
-    NSMutableString *_Nonnull _commitString;
     id bridge;
 }
-@property(nonatomic, retain) NSMutableString *commitString; // Swift bridge support
 
 @property(nonatomic, readonly, nonnull) HGInputContext *inputContext;
 - (HGInputContext *)inputContext;
