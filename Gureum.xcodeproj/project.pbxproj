@@ -102,6 +102,7 @@
 		E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
 		FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
+		A30112CF213822F70008CAC3 /* EmojiComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30112CE213822F70008CAC3 /* EmojiComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -336,6 +337,7 @@
 		8837333857ED65F9D5DAD88B /* Pods-PreferencesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.release.xcconfig"; sourceTree = "<group>"; };
 		8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
 		AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
+		A30112CE213822F70008CAC3 /* EmojiComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiComposer.swift; sourceTree = "<group>"; };
 		AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
+				A30112CE213822F70008CAC3 /* EmojiComposer.swift */,
 			);
 			name = Composers;
 			sourceTree = "<group>";
@@ -1124,6 +1127,8 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
+				A30112CF213822F70008CAC3 /* EmojiComposer.swift in Sources */,
+				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);
