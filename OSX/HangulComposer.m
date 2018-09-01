@@ -90,9 +90,7 @@
 }
 
 - (NSString *)composedString {
-    const HGUCSChar *preedit = self->_inputContext.preeditUCSString;
-    NSString *string = [[self class] composedStringByCombinationModeWithUCSString:preedit];
-    return string;
+    return [(HangulComposerBridge *)self->bridge composedString];
 }
 
 - (NSString *)commitString {
