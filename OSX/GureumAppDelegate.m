@@ -18,7 +18,7 @@
 
 #import <Hangul/HGInputContext.h>
 
-
+/*
 @implementation GureumAppDelegate
 @synthesize menu;
 
@@ -52,7 +52,6 @@
     }
     [download release];
 }
-
 
 - (void)dealloc {
     [self->sharedInputManager release];
@@ -110,3 +109,4 @@
 }
 
 @end
+ */
