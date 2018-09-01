@@ -10,9 +10,11 @@ import Foundation
 
 @objcMembers public class HangulComposerBridge: NSObject {
     unowned let composer: CIMComposerDelegate
+    var _commitString: String
     
     public init(composer: CIMComposerDelegate) {
         self.composer = composer
+        self._commitString = String()
         super.init()
     }
     
@@ -46,7 +48,7 @@ import Foundation
         let UCSString = _self.inputContext.commitUCSString;
         // dassert(UCSString);
         let recentCommitString = HangulComposer.commitStringByCombinationMode(withUCSString: UCSString)
-        _self.commitString.append(recentCommitString)
+        self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
@@ -63,26 +65,28 @@ import Foundation
         return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
     }
     
-    public var commitString: String!
+    var commitString: String {
+        get{
+            return self._commitString;
+        }
+    }
     
     public func dequeueCommitString() -> String! {
-        let _self = self.composer as! HangulComposer
-        let queuedCommitString = _self.commitString as String
-        _self.commitString.setString("")
+        let queuedCommitString = self._commitString
+        self._commitString = ""
         return queuedCommitString
     }
     
     public func cancelComposition() {
         let _self = self.composer as! HangulComposer
         let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: _self.inputContext.flushUCSString())
-        
-        _self.commitString.append(flushedString)    // 기본 _commitString 입니다.
+        self._commitString += flushedString
     }
     
     public func clearContext() {
         let _self = self.composer as! HangulComposer
         _self.inputContext.reset()
-        _self.commitString.setString("")
+        self._commitString = ""
     }
     
     public func hasCandidates() -> Bool {

@@ -53,7 +53,6 @@
             [self release];
             return nil;
         }
-        self->_commitString = [[NSMutableString alloc] init];
     }
     return self;
 }
@@ -63,7 +62,6 @@
 }
 
 - (void)dealloc {
-    [self->_commitString release];
     [self->_inputContext release];
     [super dealloc];
 }
@@ -91,10 +89,6 @@
 
 - (NSString *)composedString {
     return [(HangulComposerBridge *)self->bridge composedString];
-}
-
-- (NSString *)commitString {
-    return self->_commitString;
 }
 
 - (NSString *)dequeueCommitString {
