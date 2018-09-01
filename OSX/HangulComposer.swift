@@ -10,26 +10,38 @@ import Foundation
 
 @objcMembers public class HangulComposerBridge: NSObject {
     unowned let composer: CIMComposerDelegate
+    let _inputContext: HGInputContext
     var _commitString: String
     
-    public init(composer: CIMComposerDelegate) {
+    var inputContext: HGInputContext{
+        get{
+            return self._inputContext;
+        }
+    }
+
+    var commitString: String {
+        get{
+            return self._commitString;
+        }
+    }
+
+    public init(composer: CIMComposerDelegate, identifier: String) {
         self.composer = composer
         self._commitString = String()
+        self._inputContext = /* try! */ HGInputContext(keyboardIdentifier: identifier)
         super.init()
     }
-    
+
     public func setKeyboardWithIdentifier(_ identifier :String) {
-        let _self = self.composer as! HangulComposer
-        _self.inputContext.setKeyboardWithIdentifier(identifier)
+        self._inputContext.setKeyboardWithIdentifier(identifier)
     }
 
     // CIMComposerDelegate
 
     public func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
-        let _self = self.composer as! HangulComposer
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
-            return _self.inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
+            return self._inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
@@ -44,8 +56,8 @@ import Foundation
                 string = string.lowercased();
             }
         }
-        let handled = _self.inputContext.process(string.first!.unicodeScalars.first!.value)
-        let UCSString = _self.inputContext.commitUCSString;
+        let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
+        let UCSString = self._inputContext.commitUCSString;
         // dassert(UCSString);
         let recentCommitString = HangulComposer.commitStringByCombinationMode(withUCSString: UCSString)
         self._commitString += recentCommitString
@@ -54,21 +66,13 @@ import Foundation
     }
     
     public func composedString() -> String! {
-        let _self = self.composer as! HangulComposer
-        let preedit = _self.inputContext.preeditUCSString
+        let preedit = self._inputContext.preeditUCSString
         return HangulComposer.composedStringByCombinationMode(withUCSString: preedit)
     }
     
     public func originalString() -> String! {
-        let _self = self.composer as! HangulComposer
-        let preedit = _self.inputContext.preeditUCSString
+        let preedit = self._inputContext.preeditUCSString
         return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
-    }
-    
-    var commitString: String {
-        get{
-            return self._commitString;
-        }
     }
     
     public func dequeueCommitString() -> String! {
@@ -78,14 +82,12 @@ import Foundation
     }
     
     public func cancelComposition() {
-        let _self = self.composer as! HangulComposer
-        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: _self.inputContext.flushUCSString())
+        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: self._inputContext.flushUCSString())
         self._commitString += flushedString
     }
     
     public func clearContext() {
-        let _self = self.composer as! HangulComposer
-        _self.inputContext.reset()
+        self._inputContext.reset()
         self._commitString = ""
     }
     

@@ -34,17 +34,9 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
     @coclass HGInputContext
 */
 @interface HangulComposer : NSObject<CIMComposerDelegate> {
-    HGInputContext *_Nonnull _inputContext;
     id bridge;
 }
 
-@property(nonatomic, readonly, nonnull) HGInputContext *inputContext;
-- (HGInputContext *)inputContext;
-
-/*!
-    @brief  libhangul의 input context를 사용하는 합성기를 초기화한다.
-    @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
-*/
 - (instancetype)initWithKeyboardIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 /*!
     @brief  현재 context의 배열을 바꾼다.
