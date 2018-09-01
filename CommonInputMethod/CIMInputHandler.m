@@ -8,6 +8,7 @@
 
 #import "CIMInputManager.h"
 
+#import "CIMApplicationDelegate.h"
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
 #import "CIMComposer.h"
@@ -49,6 +50,7 @@
     if (flags & NSAlternateKeyMask) {
         switch (self.manager.configuration.optionKeyBehavior) {
             case 0: {
+                dlog(1, @"option key: 0");
                 // default
                 dlog(DEBUG_INPUTHANDLER, @" ** ESCAPE from option-key default behavior");
                 return CIMInputTextProcessResultNotProcessedAndNeedsCommit;
@@ -56,6 +58,7 @@
             case 1: {
                 // ignore
                 if (keyCode < 0x33) {
+                    dlog(1, @"option key: 1");
                     char key[2] = {0, 0};
                     key[0] = (flags & NSAlphaShiftKeyMask || flags & NSShiftKeyMask) ? CIMKeyMapUpper[keyCode] : CIMKeyMapLower[keyCode];
                     string = @(key);
