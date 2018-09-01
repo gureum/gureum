@@ -80,6 +80,7 @@
 		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38699DC21F36191500FD093E /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		388534F4213A636B00885C87 /* IOKitUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 388534F3213A636B00885C87 /* IOKitUtility.m */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
@@ -287,6 +288,8 @@
 		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		387D00041421FB6D00DAE6F4 /* CIMInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputManager.h; sourceTree = "<group>"; };
 		387D00051421FB6E00DAE6F4 /* CIMInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputManager.m; sourceTree = "<group>"; };
+		388534F2213A636B00885C87 /* IOKitUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOKitUtility.h; sourceTree = "<group>"; };
+		388534F3213A636B00885C87 /* IOKitUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOKitUtility.m; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -387,6 +390,8 @@
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 				3835B4E21F5DAA7100896BEC /* data */,
+				388534F2213A636B00885C87 /* IOKitUtility.h */,
+				388534F3213A636B00885C87 /* IOKitUtility.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
+				388534F4213A636B00885C87 /* IOKitUtility.m in Sources */,
 				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);

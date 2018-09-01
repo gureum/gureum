@@ -18,6 +18,7 @@
 #import "CIMInputController.h"
 
 #import "TISInputSource.h"
+#import "IOKitUtility.h"
 
 #define DEBUG_INPUTCONTROLLER FALSE
 #define DEBUG_LOGGING FALSE
@@ -341,10 +342,12 @@ TISInputSource *_USSource() {
         return processed;
     }
     else if (event.type == NSFlagsChanged) {
-//        dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, [NSEvent modifierFlags], nil, nil, [[self client] bundleIdentifier]);
-//        BOOL processed = [self->_receiver inputController:self inputText:nil key:-1 modifiers:[NSEvent modifierFlags] client:sender] > CIMInputTextProcessResultNotProcessed;
-//        dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
-//        return processed;
+        NSEventModifierFlags modifierFlags = CurrentModifierFlags();
+        NSLog(@"modifierFlags: %lx", modifierFlags);
+        //dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
+        //BOOL processed = [self->_receiver inputController:self inputText:nil key:-1 modifiers:modifierFlags client:sender] > CIMInputTextProcessResultNotProcessed;
+        //dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
+        //return processed;
     }
 
     dlog(DEBUG_LOGGING, @"LOGGING::UNHANDLED::%@/%@", event, sender);
