@@ -47,6 +47,7 @@
 
     // 옵션 키 변환 처리
     if (flags & NSAlternateKeyMask) {
+        dlog(DEBUG_INPUTHANDLER, @"option key: %ld", self.manager.configuration.optionKeyBehavior);
         switch (self.manager.configuration.optionKeyBehavior) {
             case 0: {
                 // default

@@ -9,6 +9,7 @@
 
 #import "CIMCommon.h"
 #import "CIMInputController.h"
+#import "CIMInputHandler.h"
 #import "GureumComposer.h"
 #import "HangulComposer.h"
 #import "GureumAppDelegate.h"
