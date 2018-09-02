@@ -36,6 +36,10 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 
 @objc class GureumConfiguration: UserDefaults {
 
+    init() {
+        super.init(suiteName: "org.youknowone.Gureum")!
+    }
+
     @objc public var lastHangulInputMode: String? {
         get {
             return self.string(forKey: CIMLastHangulInputMode)
@@ -50,11 +54,19 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         get {
             return self.integer(forKey: CIMOptionKeyBehavior)
         }
+        
+        set {
+            return self.set(newValue, forKey: CIMOptionKeyBehavior)
+        }
     }
 
     @objc public var showsInputForHanjaCandidates: Int {
         get {
             return self.integer(forKey: CIMShowsInputForHanjaCandidates)
+        }
+        
+        set {
+            return self.set(newValue, forKey: CIMShowsInputForHanjaCandidates)
         }
     }
 
@@ -62,23 +74,29 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         get {
             return self.integer(forKey: CIMHangulCombinationModeCommiting)
         }
+        
+        set {
+            return self.set(newValue, forKey: CIMHangulCombinationModeCommiting)
+        }
     }
 
     @objc public var hangulCombinationModeComposing: Int {
         get {
             return self.integer(forKey: CIMHangulCombinationModeComposing)
         }
-    }
-
-    public var inputModeHanjaKey: (Int, Int) {
-        get {
-            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
+        
+        set {
+            return self.set(newValue, forKey: CIMHangulCombinationModeComposing)
         }
     }
 
     @objc public var inputModeHanjaKeyModifier: Int {
         get {
             return self.integer(forKey: CIMInputModeHanjaKeyModifier)
+        }
+        
+        set {
+            return self.set(newValue, forKey: CIMInputModeHanjaKeyModifier)
         }
     }
 
@@ -88,17 +106,29 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 //            한자 키코드가 기본 값인 0 ("a" 키에 해당)으로 설정되어 임시로 주석 처리했습니다.
 //            return self.integer(forKey: CIMInputModeHanjaKeyCode)
         }
+        
+        set {
+            return self.set(newValue, forKey: CIMInputModeHanjaKeyCode)
+        }
     }
 
     @objc public var romanModeByEscapeKey: Int {
         get {
             return self.integer(forKey: CIMRomanModeByEscapeKey);
         }
+        
+        set {
+            return self.set(newValue, forKey: CIMRomanModeByEscapeKey)
+        }
     }
 
     @objc public var autosaveDefaultInputMode: Int {
         get {
             return self.integer(forKey: CIMAutosaveDefaultInputMode);
+        }
+        
+        set {
+            return self.set(newValue, forKey: CIMAutosaveDefaultInputMode)
         }
     }
 }
