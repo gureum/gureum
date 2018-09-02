@@ -1,0 +1,111 @@
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "1Tb-B5-FzH"; */
+"1Tb-B5-FzH.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "3Xq-PY-sfT"; */
+"3Xq-PY-sfT.text" = "Title";
+
+/* Class = "IBUILabel"; text = "ksx5002"; ObjectID = "45N-CO-KRl"; */
+"45N-CO-KRl.text" = "ksx5002";
+
+/* Class = "IBUILabel"; text = "cheonjiin"; ObjectID = "4Qk-f3-a6u"; */
+"4Qk-f3-a6u.text" = "cheonjiin";
+
+/* Class = "IBUILabel"; text = "10키 (iOS 내장, 천지인)"; ObjectID = "4lO-iC-XZh"; */
+"4lO-iC-XZh.text" = "10키 (iOS 내장, 천지인)";
+
+/* Class = "IBUITableViewSection"; headerTitle = "한글"; ObjectID = "5py-io-2G6"; */
+"5py-io-2G6.headerTitle" = "한글";
+
+/* Class = "IBUILabel"; text = "처음 설치하기"; ObjectID = "8kv-f5-cXP"; */
+"8kv-f5-cXP.text" = "처음 설치하기";
+
+/* Class = "IBUINavigationItem"; title = "처음 설치하기"; ObjectID = "BUE-1q-Dti"; */
+"BUE-1q-Dti.title" = "처음 설치하기";
+
+/* Class = "IBUILabel"; text = "자판 설정 (쿼티, 두벌식, 이모티콘)"; ObjectID = "EWt-r6-MGU"; */
+"EWt-r6-MGU.text" = "자판 설정 (쿼티, 두벌식, 이모티콘)";
+
+/* Class = "IBUILabel"; text = "기능 활용법"; ObjectID = "JMw-We-j9y"; */
+"JMw-We-j9y.text" = "기능 활용법";
+
+/* Class = "IBUINavigationItem"; title = "테마"; ObjectID = "Jr1-0l-XcV"; */
+"Jr1-0l-XcV.title" = "테마";
+
+/* Class = "IBUILabel"; text = "좌우로 쓸어 다른 자판 이용하기"; ObjectID = "KbC-1U-4qy"; */
+"KbC-1U-4qy.text" = "좌우로 쓸어 다른 자판 이용하기";
+
+/* Class = "IBUITableViewSection"; headerTitle = "빠른 설정"; ObjectID = "MFq-Nj-UTZ"; */
+"MFq-Nj-UTZ.headerTitle" = "빠른 설정";
+
+/* Class = "IBUILabel"; text = "한손자판"; ObjectID = "Mlu-6V-wFU"; */
+"Mlu-6V-wFU.text" = "한손자판";
+
+/* Class = "IBUITableViewSection"; headerTitle = "고급 설정"; ObjectID = "O9b-4q-G0c"; */
+"O9b-4q-G0c.headerTitle" = "고급 설정";
+
+/* Class = "IBUIBarButtonItem"; title = "구매 복원"; ObjectID = "Q6T-La-nLe"; */
+"Q6T-La-nLe.title" = "구매 복원";
+
+/* Class = "IBUILabel"; text = "새 자판 추가"; ObjectID = "Qrr-p3-yCB"; */
+"Qrr-p3-yCB.text" = "새 자판 추가";
+
+/* Class = "IBUILabel"; text = "제목"; ObjectID = "R0l-Nt-F8a"; */
+"R0l-Nt-F8a.text" = "제목";
+
+/* Class = "IBUILabel"; text = "현재 설정 시험하기"; ObjectID = "RY6-Vo-U5z"; */
+"RY6-Vo-U5z.text" = "현재 설정 시험하기";
+
+/* Class = "IBUILabel"; text = "3"; ObjectID = "Ror-Uc-2Hh"; */
+"Ror-Uc-2Hh.text" = "3";
+
+/* Class = "IBUINavigationItem"; title = "자판 추가"; ObjectID = "SHJ-7Q-stJ"; */
+"SHJ-7Q-stJ.title" = "자판 추가";
+
+/* Class = "IBUILabel"; text = "두벌식 (쿼티형, iOS 기본)"; ObjectID = "Zih-dB-dvG"; */
+"Zih-dB-dvG.text" = "두벌식 (쿼티형, iOS 기본)";
+
+/* Class = "IBUILabel"; text = "qwerty"; ObjectID = "Zsg-n6-x7R"; */
+"Zsg-n6-x7R.text" = "qwerty";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "dIz-Zq-cJm"; */
+"dIz-Zq-cJm.text" = "Detail";
+
+/* Class = "IBUITableViewSection"; headerTitle = "도움말"; ObjectID = "dl2-C0-do0"; */
+"dl2-C0-do0.headerTitle" = "도움말";
+
+/* Class = "IBUILabel"; text = "10키"; ObjectID = "eAp-PP-ihN"; */
+"eAp-PP-ihN.text" = "10키";
+
+/* Class = "IBUINavigationItem"; title = "구름 입력기"; ObjectID = "gCw-RU-vHX"; */
+"gCw-RU-vHX.title" = "구름 입력기";
+
+/* Class = "IBUILabel"; text = "10key"; ObjectID = "gDq-Un-bSO"; */
+"gDq-Un-bSO.text" = "10key";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "hWK-LO-wDK"; */
+"hWK-LO-wDK.text" = "Detail";
+
+/* Class = "IBUITableViewSection"; headerTitle = "로마자"; ObjectID = "kq8-KH-upK"; */
+"kq8-KH-upK.headerTitle" = "로마자";
+
+/* Class = "IBUILabel"; text = "세벌식"; ObjectID = "lLG-UJ-ZlX"; */
+"lLG-UJ-ZlX.text" = "세벌식";
+
+/* Class = "IBUILabel"; text = "테마 고르기"; ObjectID = "m3z-Og-CsD"; */
+"m3z-Og-CsD.text" = "테마 고르기";
+
+/* Class = "IBUILabel"; text = "QWERTY (iOS 기본)"; ObjectID = "qRl-lq-5a4"; */
+"qRl-lq-5a4.text" = "QWERTY (iOS 기본)";
+
+/* Class = "IBUIBarButtonItem"; title = "뒤로"; ObjectID = "uNQ-vx-o2V"; */
+"uNQ-vx-o2V.title" = "뒤로";
+
+/* Class = "IBUINavigationItem"; title = "자판 설정"; ObjectID = "ulc-F6-i5X"; */
+"ulc-F6-i5X.title" = "자판 설정";
+
+/* Class = "IBUILabel"; text = "테마 샵 (임시)"; ObjectID = "xIj-p9-gTt"; */
+"xIj-p9-gTt.text" = "테마 샵 (임시)";
+
+/* Class = "IBUILabel"; text = "표준 (iOS 기본)"; ObjectID = "y9X-aw-dFr"; */
+"y9X-aw-dFr.text" = "표준 (iOS 기본)";
