@@ -5,14 +5,12 @@
 #import <InputMethodKit/InputMethodKit.h>
 
 #import <Hangul/HGInputContext.h>
+#import "NSAlert+Workaround.h"
 
 #import "CIMCommon.h"
 #import "CIMInputController.h"
-//#import "CIMConfiguration.h"
 #import "GureumComposer.h"
-
 #import "HangulComposer.h"
-
 #import "GureumAppDelegate.h"
 
 @interface HangulComposer (HangulCharacterCombinationMode)
