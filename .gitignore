@@ -20,5 +20,6 @@ Podfile.lock
 # Junk files on Mac OS X
 *.DS_Store
 
-build
 .python-version
+*.playground
+Crashlytics.framework
