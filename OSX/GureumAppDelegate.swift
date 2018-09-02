@@ -36,7 +36,9 @@ import Foundation
             
             assert(NSApp.windows.count > 0)
             let window = NSApp.windows[0]
-            alert.beginSheetModal(for: window)
+            alert.beginSheetModalForEmptyWindow(completionHandler: {response in
+                NSLog("alert done")
+            })
             
         }
     }
