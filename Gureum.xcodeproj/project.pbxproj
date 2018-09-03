@@ -25,7 +25,6 @@
 		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E03141263280077AA2D /* GureumAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38162E0F141264EB0077AA2D /* HangulComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HangulComposer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -231,7 +230,6 @@
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		38162E02141263280077AA2D /* GureumAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GureumAppDelegate.h; sourceTree = "<group>"; };
-		38162E03141263280077AA2D /* GureumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumAppDelegate.m; sourceTree = "<group>"; };
 		38162E1314126ACE0077AA2D /* CIMComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMComposer.m; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 				381B32731DA826B100EA1975 /* Bridge.h */,
 				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
 				38162E02141263280077AA2D /* GureumAppDelegate.h */,
-				38162E03141263280077AA2D /* GureumAppDelegate.m */,
 				38E90261213BB6F2005DF76A /* NSAlert+Workaround.h */,
 				38E90262213BB6F2005DF76A /* NSAlert+Workaround.m */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
@@ -973,7 +970,6 @@
 				38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */,
 				38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */,
 				38E90263213BB6F2005DF76A /* NSAlert+Workaround.m in Sources */,
-				38162E04141263280077AA2D /* GureumAppDelegate.m in Sources */,
 				E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */,
 				38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
