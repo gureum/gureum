@@ -35,21 +35,12 @@ import Foundation
             alert.addButton(withTitle: "취소")
             alert.informativeText = fmt
             
-            assert(NSApp.windows.count > 0)
-            let window = NSApp.windows[0]
             alert.beginSheetModalForEmptyWindow(completionHandler: {(modalResponse: NSApplication.ModalResponse) -> Void in
                 if(modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn){
-                    self.alertDidEnd(contextInfo: download!)
+                    NSWorkspace.shared.open(URL(string: download!)!)
                 }
-                NSLog("alert done")
             })
             
-        }
-    }
-    
-    @objc func alertDidEnd(contextInfo: String){
-        if let downloadUrl = URL(string: contextInfo) {
-            NSWorkspace.shared.open(downloadUrl)
         }
     }
     
@@ -66,21 +57,21 @@ import Foundation
         let url = URL(string: "http://gureum.io/version.txt")!
         var request = URLRequest(url: url)
         request.timeoutInterval = 0.5
+        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         guard let data = try? NSData(contentsOf: request, error: ()) else {
             return [:]
         }
-        let verstring = try! String(data: data as Data, encoding: String.Encoding.utf8)
-        var components = verstring?.components(separatedBy: "::")
-        let recentVersion = components![0]
-        let recentDownload = components![1]
+        let verstring = try! String(data: data as Data, encoding: String.Encoding.utf8)!
+        var components = verstring.components(separatedBy: "::")
+        let recentVersion = components[0]
+        let recentDownload = components[1]
         let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-        if (components?.count)! >= 3 {
-            let releaseNote = components?[2]
-            return ["recent": recentVersion, "current": currentVersion, "download": recentDownload, "note": releaseNote ?? ""]
+        if components.count >= 3 {
+            let releaseNote = components[2]
+            return ["recent": recentVersion, "current": currentVersion, "download": recentDownload, "note": releaseNote]
         }
         else{
             return ["recent": recentVersion, "current": currentVersion, "download": recentDownload]
-            
         }
     }
 }
