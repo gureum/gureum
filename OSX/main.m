@@ -10,7 +10,8 @@ int main(int argc, char *argv[]) {
     @autoreleasepool {
         dlog(TRUE, @"******* CharmIM initialized! *******");
         NSString *mainNibName = [NSBundle mainBundle].infoDictionary[@"NSMainNibFile"];
-        if ([NSBundle loadNibNamed:mainNibName owner:[NSApplication sharedApplication]] == NO) {
+        NSApplication *app = [NSApplication sharedApplication];
+        if ([NSBundle loadNibNamed:mainNibName owner:app] == NO) {
             NSLog(@"!! CharmIM fails to load Main Nib File !!");
         }
         dlog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName);

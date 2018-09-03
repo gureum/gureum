@@ -11,16 +11,12 @@ import Cocoa
 
 extension CIMInputController {
     @IBAction func checkRecentVersion(_ sender: Any) {
-        let versionInfo = GureumAppDelegate.shared().recentVersion
-        if versionInfo == nil {
-            return
-        }
-        
-        let recent = versionInfo!["recent"] as? String
-        let current = versionInfo!["current"] as? String
-        let download = versionInfo!["download"] as? String
-        let note = versionInfo!["note"] as? String
-        
+        let versionInfo = (NSApp.delegate as! GureumAppDelegate).getRecentVersion()
+        let recent = versionInfo["recent"]
+        let current = versionInfo["current"]
+        let download = versionInfo["download"]
+        let note: String? = versionInfo["note"]
+ 
         if (recent == current) {
             let fmt = "현재 사용하고 있는 구름 입력기 \(current ?? "") 는 최신 버전입니다."
             let alert = NSAlert()
