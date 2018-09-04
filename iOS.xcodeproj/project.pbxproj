@@ -147,14 +147,11 @@
 		3838F99119A47AD700DFBFC8 /* GRInputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInputButton.m; sourceTree = "<group>"; };
 		3838F99419A47AEC00DFBFC8 /* GRInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRInputButton.h; sourceTree = "<group>"; };
 		383B07F019E71482004046F5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		383C036C19EBA5B000CFE876 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3844B239198930BF007A2287 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = SOURCE_ROOT; };
 		3844B23A19893144007A2287 /* org.youknowone.Gureum.inputmethod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = org.youknowone.Gureum.inputmethod.entitlements; sourceTree = "<group>"; };
 		3852354619B06009001B8E3E /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3852354A19B07B41001B8E3E /* ThemeShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeShopViewController.swift; sourceTree = "<group>"; };
 		3863089A199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		386308A7199132210039369C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		386308A8199132210039369C /* GureumCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumCoreTests.swift; sourceTree = "<group>"; };
 		386308BD199133140039369C /* Hangeul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hangeul.swift; path = iOSCore/Hangeul.swift; sourceTree = SOURCE_ROOT; };
 		386308BF199133140039369C /* InputMethodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMethodView.swift; sourceTree = "<group>"; };
 		386308C0199133140039369C /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 		38BB700F193FA11000605583 /* inputmethod.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = inputmethod.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BB7012193FA11000605583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BB7013193FA11000605583 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
-		38BB7024193FA29100605583 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38CA6AE5194297E800C6CEE1 /* iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		38D26F641A1D36A6001E0F51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		38D26F681A1D36FD001E0F51 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -253,34 +249,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		386308A5199132210039369C /* GureumCoreTests */ = {
-			isa = PBXGroup;
-			children = (
-				386308A8199132210039369C /* GureumCoreTests.swift */,
-				386308A6199132210039369C /* Supporting Files */,
-			);
-			path = GureumCoreTests;
-			sourceTree = "<group>";
-		};
-		386308A6199132210039369C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				386308A7199132210039369C /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		3882B9ED193F9E6600076C26 = {
 			isa = PBXGroup;
 			children = (
-				38BB7024193FA29100605583 /* Playground.playground */,
 				38904F7F1944F71400858B09 /* hangeul.xcodeproj */,
 				3882B9F8193F9E6600076C26 /* App */,
 				3882BA0B193F9E6600076C26 /* Tests */,
 				38BB7010193FA11000605583 /* iOS */,
 				38630898199132210039369C /* iOSCore */,
 				38D9A398199B7F8E0087A965 /* iOSTheme */,
-				386308A5199132210039369C /* GureumCoreTests */,
 				3882B9F7193F9E6600076C26 /* Products */,
 				F98215E1D3C4FAFA74650D13 /* Pods */,
 				CCCF83EB06C64C542D45D4B2 /* Frameworks */,
@@ -301,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				383B07F019E71482004046F5 /* StoreKit.framework */,
-				383C036C19EBA5B000CFE876 /* Crashlytics.framework */,
 				3844B239198930BF007A2287 /* Gureum.entitlements */,
 				38303656198D9FA000C1EE0C /* icon_512x512@2x.png */,
 				3882B9FF193F9E6600076C26 /* Main.storyboard */,
@@ -419,7 +395,6 @@
 				3882B9F4193F9E6600076C26 /* Resources */,
 				38BB701D193FA11000605583 /* Embed App Extensions */,
 				386308B3199132210039369C /* Embed Frameworks */,
-				383C036E19EC3D3100CFE876 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -582,19 +557,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		383C036E19EC3D3100CFE876 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Pods/CrashlyticsFramework/Crashlytics.framework/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
-		};
 		45316F04CD315F0BD61240E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -951,7 +913,10 @@
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"${inherited}",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum.inputmethod;
 				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
@@ -978,7 +943,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LLVM_LTO = YES;
 				METAL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"${inherited}",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.Gureum.inputmethod;
 				PRODUCT_NAME = inputmethod;
 				PROVISIONING_PROFILE = "";
