@@ -103,6 +103,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 }
 
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
+    GureumConfiguration *configuration = [GureumConfiguration shared];
     NSInteger inputModifier = flags & NSDeviceIndependentModifierFlagsMask & ~NSAlphaShiftKeyMask;
     BOOL need_exchange = NO;
     BOOL need_hanjamode = NO;
@@ -167,7 +168,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             dlog(1, @"%s input modifier : %lx", __func__, inputModifier);
         }
 
-        if (inputModifier == [GureumConfiguration shared].inputModeExchangeKeyModifier && keyCode == [GureumConfiguration shared].inputModeExchangeKeyCode) {
+        if (inputModifier == configuration.inputModeExchangeKeyModifier && keyCode == configuration.inputModeExchangeKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
             need_exchange = YES;
         }
@@ -180,7 +181,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 //            need_exchange = YES;
 //        }
 
-        if (inputModifier == [GureumConfiguration shared].inputModeHanjaKeyModifier && keyCode == [GureumConfiguration shared].inputModeHanjaKeyCode) {
+        if (inputModifier == configuration.inputModeHanjaKeyModifier && keyCode == configuration.inputModeHanjaKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");
             need_hanjamode = YES;
         }

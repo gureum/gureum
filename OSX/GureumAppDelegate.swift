@@ -23,7 +23,6 @@ import Foundation
         HGKeyboard.initialize()
         
         _sharedInputManager = CIMInputManager()
-       
         guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
             return
         }
