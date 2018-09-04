@@ -58,7 +58,7 @@ class RomanComposer: CIMComposer {
 
         if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             var newString = string
-            let chr = string.characters.first!
+            let chr = string.first!
             if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
@@ -123,13 +123,13 @@ class DvorakComposer: CIMComposer {
         let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
         let dvorak = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
         var map: [Character: Character] = [:]
-        zip(qwerty.characters, dvorak.characters).forEach {
+        zip(qwerty, dvorak).forEach {
             map[$0] = $1
         }
 
         if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             let newChr: Character
-            let chr = string.characters.first!
+            let chr = string.first!
             if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
                 newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
             } else {
