@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import Fabric
 import Crashlytics
 
 var sharedAppDelegate: AppDelegate! = nil
