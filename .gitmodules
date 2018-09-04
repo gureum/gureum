@@ -7,3 +7,6 @@
 [submodule "FoundationExtension"]
 	path = FoundationExtension
 	url = https://github.com/youknowone/FoundationExtension.git
+[submodule "iOSTheme"]
+	path = iOSTheme
+	url = https://github.com/gureum/ios-theme
