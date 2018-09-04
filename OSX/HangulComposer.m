@@ -372,7 +372,7 @@
 
 @end
 
-@implementation HangulComposer (HangulCharacterCombinationMode)
+@implementation HangulComposerCombination
 
 static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCount] = {
     @"stringByRemovingFillerWithUCSString:",

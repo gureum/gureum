@@ -25,10 +25,13 @@ import Foundation
         }
     }
 
-    public init(composer: CIMComposerDelegate, identifier: String) {
+    init?(composer: CIMComposerDelegate, identifier: String) {
         self.composer = composer
         self._commitString = String()
-        self._inputContext = /* try! */ HGInputContext(keyboardIdentifier: identifier)
+        guard let inputContext = HGInputContext(keyboardIdentifier: identifier) else {
+            return nil
+        }
+        self._inputContext = inputContext
         super.init()
     }
 
@@ -59,7 +62,7 @@ import Foundation
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
         let UCSString = self._inputContext.commitUCSString;
         // dassert(UCSString);
-        let recentCommitString = HangulComposer.commitStringByCombinationMode(withUCSString: UCSString)
+        let recentCommitString = HangulComposerCombination.commitStringByCombinationMode(withUCSString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
@@ -67,12 +70,12 @@ import Foundation
     
     public func composedString() -> String! {
         let preedit = self._inputContext.preeditUCSString
-        return HangulComposer.composedStringByCombinationMode(withUCSString: preedit)
+        return HangulComposerCombination.composedStringByCombinationMode(withUCSString: preedit)
     }
     
     public func originalString() -> String! {
         let preedit = self._inputContext.preeditUCSString
-        return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
+        return HangulComposerCombination.commitStringByCombinationMode(withUCSString: preedit)
     }
     
     public func dequeueCommitString() -> String! {
@@ -82,7 +85,7 @@ import Foundation
     }
     
     public func cancelComposition() {
-        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: self._inputContext.flushUCSString())
+        let flushedString: String! = HangulComposerCombination.commitStringByCombinationMode(withUCSString: self._inputContext.flushUCSString())
         self._commitString += flushedString
     }
     
