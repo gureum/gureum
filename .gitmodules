@@ -1,3 +1,12 @@
 [submodule "libhangul-objc"]
 	path = libhangul-objc
 	url = git://github.com/gureum/libhangul-objc.git
+[submodule "hangeul"]
+	path = hangeul
+	url = https://github.com/youknowone/hangeul.git
+[submodule "FoundationExtension"]
+	path = FoundationExtension
+	url = https://github.com/youknowone/FoundationExtension.git
+[submodule "iOSTheme"]
+	path = iOSTheme
+	url = https://github.com/gureum/ios-theme

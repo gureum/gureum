@@ -44,7 +44,48 @@
     [super tearDown];
 }
 
-- (void)testEvent {
+- (void)test2 {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:kGureumInputSourceIdentifierHan2 forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"g" key:5 modifiers:0];
+        [app inputText:@"k" key:40 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"r" key:15 modifiers:0];
+        XCTAssertEqualObjects(@"한ㄱ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"f" key:3 modifiers:0];
+        XCTAssertEqualObjects(@"한글", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@" " key:49 modifiers:0];
+        XCTAssertEqualObjects(@"한글 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+
+        [app inputText:@"g" key:5 modifiers:0];
+        XCTAssertEqualObjects(@"한글 ㅎ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"ㅎ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"k" key:40 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"r" key:15 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한ㄱ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"m" key:46 modifiers:0];
+        [app inputText:@"f" key:3 modifiers:0];
+        XCTAssertEqualObjects(@"한글 한글", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"\n" key:36 modifiers:0];
+        if (app != self.terminal) {
+            XCTAssertEqualObjects(@"한글 한글\n", app.client.string,@"buffer: %@ app: (%@)", app.client.string, app);
+        }
+    }
+}
+
+- (void)test3final {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
@@ -171,7 +212,7 @@
     }
 }
 
-- (void)testNumber {
+- (void)test3Number {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];

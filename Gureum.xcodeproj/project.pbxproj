@@ -1399,6 +1399,7 @@
 		38E9024921344637005DF76A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INSTALL_PATH = "/Library/Input Methods";
 				PRODUCT_NAME = Gureum;
@@ -1408,6 +1409,7 @@
 		38E9024A21344637005DF76A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INSTALL_PATH = "/Library/Input Methods";
 				PRODUCT_NAME = Gureum;
