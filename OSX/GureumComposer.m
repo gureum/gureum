@@ -46,7 +46,7 @@ NSString *kGureumInputSourceIdentifierHan3_2015 = @"org.youknowone.inputmethod.G
     self = [super init];
     if (self) {
         self->romanComposer = [[RomanComposer alloc] init];
-        self->hangulComposer = [[HangulComposer alloc] init];
+        self->hangulComposer = [[HangulComposer alloc] initWithKeyboardIdentifier:@"2"];
         self->hanjaComposer = [[HanjaComposer alloc] init];
         self->hanjaComposer.delegate = self->hangulComposer;
         self.delegate = self->romanComposer;

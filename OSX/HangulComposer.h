@@ -24,29 +24,6 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
 };
 #define HangulCharacterCombinationModeCount 5
 
-@class HGInputContext;
-
-/*!
-    @brief  libhangul을 사용하는 합성기
-
-    libhangul의 input context를 사용하는 합성기이다. -init 로는 두벌식 합성기가 설정된다.
-
-    @coclass HGInputContext
-*/
-@interface HangulComposer : NSObject<CIMComposerDelegate> {
-    id bridge;
-}
-
-- (instancetype)initWithKeyboardIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
-/*!
-    @brief  현재 context의 배열을 바꾼다.
-    @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
-*/
-- (void)setKeyboardWithIdentifier:(NSString *)identifier;
-
-@end
-
-
 @class GureumConfiguration;
 
 @interface HanjaComposer : CIMComposer {

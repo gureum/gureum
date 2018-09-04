@@ -27,80 +27,6 @@
 
 @end
 
-@implementation HangulComposer
-
-- (instancetype)init {
-    // 두벌식을 기본 값으로 갖는다.
-    return  [self initWithKeyboardIdentifier:@"2"];
-}
-
-- (instancetype)initWithKeyboardIdentifier:(NSString *)identifier {
-    self = [super init];
-    if (self) {
-        self->bridge = [[HangulComposerBridge alloc] initWithComposer:self identifier:identifier];
-    }
-    return self;
-}
-
-- (BOOL)hasCandidates {
-    return [(HangulComposerBridge *)self->bridge hasCandidates];
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
-
-- (void)setKeyboardWithIdentifier:(NSString *)identifier {
-    return [(HangulComposerBridge *)self->bridge setKeyboardWithIdentifier:identifier];
-}
-
-#pragma - IMKInputServerTextData
-
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)inputController inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    return [(HangulComposerBridge *)self->bridge inputController:inputController inputText:string key:keyCode modifiers:flags client:sender];
-}
-
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    dassert(NO); // 한글입력 상태로 념겨져서 처리하는 명령은 없다
-    return CIMInputTextProcessResultNotProcessed;
-}
-
-#pragma - CIMComposer
-
-- (NSString *)originalString {
-    return [(HangulComposerBridge *)self->bridge originalString];
-}
-
-- (NSString *)composedString {
-    return [(HangulComposerBridge *)self->bridge composedString];
-}
-
-- (NSString *)dequeueCommitString {
-    return [(HangulComposerBridge *)self->bridge dequeueCommitString];
-}
-
-- (void)cancelComposition {
-    [(HangulComposerBridge *)self->bridge cancelComposition];
-}
-
-- (void)clearContext {
-    [(HangulComposerBridge *)self->bridge clearContext];
-}
-
-#ifdef DEBUG
-
-- (void)candidateSelected:(NSAttributedString *)candidateString {
-    dassert(NO);
-}
-
-- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    dassert(NO);
-}
-
-#endif
-
-@end
-
 
 @implementation HanjaComposer
 @synthesize mode=_mode;
@@ -372,7 +298,7 @@
 
 @end
 
-@implementation HangulComposer (HangulCharacterCombinationMode)
+@implementation HangulComposerCombination
 
 static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCount] = {
     @"stringByRemovingFillerWithUCSString:",
