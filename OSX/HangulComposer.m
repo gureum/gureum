@@ -19,13 +19,6 @@
 
 @class CIMInputController;
 
-@interface HangulComposer (HangulCharacterCombinationMode)
-
-+ (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-
-@end
-
 @interface NSString (HangulCharacterCombinationMode)
 
 + (NSString *)stringByRemovingFillerWithUCSString:(const HGUCSChar *)UCSString;
@@ -380,7 +373,7 @@
 
 @end
 
-@implementation HangulComposer (HangulCharacterCombinationMode)
+@implementation HangulComposerCombination
 
 static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCount] = {
     @"stringByRemovingFillerWithUCSString:",
