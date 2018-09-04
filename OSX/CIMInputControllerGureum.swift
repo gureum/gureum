@@ -11,25 +11,23 @@ import Cocoa
 
 extension CIMInputController {
     @IBAction func checkRecentVersion(_ sender: Any) {
-        let versionInfo = (NSApp.delegate as! GureumAppDelegate).getRecentVersion()
-        let recent = versionInfo["recent"]
-        let current = versionInfo["current"]
-        let download = versionInfo["download"]
-        let note: String? = versionInfo["note"]
- 
-        if (recent == current) {
-            let fmt = "현재 사용하고 있는 구름 입력기 \(current ?? "") 는 최신 버전입니다."
+        guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
+            return
+        }
+        
+        if (info.recent == info.current) {
+            let fmt = "현재 사용하고 있는 구름 입력기 \(info.current) 는 최신 버전입니다."
             let alert = NSAlert()
             alert.messageText = "구름 입력기 업데이트 확인"
             alert.addButton(withTitle: "확인")
             alert.informativeText = fmt
             alert.runModal()
         } else {
-            var fmt = "현재 사용하고 있는 구름 입력기는 \(current ?? "") 이고 최신 버전은 \(recent ?? "") 입니다. 업데이트는 로그아웃하거나 " + "재부팅해야 적용됩니다."
-            if note?.count != 0 {
-                fmt = fmt + " 업데이트 요약은 '\(note ?? "")' 입니다."
+            var fmt = "현재 사용하고 있는 구름 입력기는 \(info.current) 이고 최신 버전은 \(info.recent) 입니다. 업데이트는 로그아웃하거나 " + "재부팅해야 적용됩니다."
+            if info.note.count != 0 {
+                fmt = fmt + " 업데이트 요약은 '\(info.note)' 입니다."
             }
-            if download?.count == 0 {
+            if info.download.count == 0 {
                 fmt = fmt + " 곧 업데이트 링크가 준비될 예정입니다."
             }
             let alert = NSAlert()
@@ -37,8 +35,8 @@ extension CIMInputController {
             alert.addButton(withTitle: "확인")
             alert.informativeText = fmt
             alert.runModal()
-            if (download?.count)! > 0 {
-                if let downloadUrl = URL(string: download ?? "") {
+            if info.download.count > 0 {
+                if let downloadUrl = URL(string: info.download) {
                     NSWorkspace.shared.open(downloadUrl)
                 }
             }
