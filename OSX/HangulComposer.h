@@ -46,6 +46,9 @@ typedef NS_ENUM(unsigned int, HangulCharacterCombinationMode) {
 
 @end
 
+
+@class GureumConfiguration;
+
 @interface HanjaComposer : CIMComposer {
     NSMutableArray *_candidates;
     NSMutableString *bufferedString;

@@ -131,4 +131,10 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
             return self.set(newValue, forKey: CIMAutosaveDefaultInputMode)
         }
     }
+
+    static let _shared = GureumConfiguration()
+
+    @objc class func shared() -> GureumConfiguration {
+        return _shared
+    }
 }

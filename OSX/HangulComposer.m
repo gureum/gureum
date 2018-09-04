@@ -10,7 +10,6 @@
 #import "HangulComposer.h"
 
 #import "CIMInputController.h"
-#import "GureumAppDelegate.h"
 #import "Gureum-Swift.h"
 
 #define DEBUG_HANGULCOMPOSER FALSE
@@ -18,13 +17,6 @@
 
 
 @class CIMInputController;
-
-@interface HangulComposer (HangulCharacterCombinationMode)
-
-+ (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-
-@end
 
 @interface NSString (HangulCharacterCombinationMode)
 
@@ -121,6 +113,12 @@
     return self;
 }
 
+- (void)dealloc {
+    self.composedString = nil;
+    self.commitString = nil;
+    [super dealloc];
+}
+
 - (HangulComposer *)hangulComposer {
     return (id)self.delegate;
 }
@@ -146,12 +144,6 @@
 - (void)setCommitString:(NSString *)string {
     [self->commitString autorelease];
     self->commitString = [string retain];
-}
-
-- (void)dealloc {
-    self.composedString = nil;
-    self.commitString = nil;
-    [super dealloc];
 }
 
 - (NSString *)dequeueCommitString {
@@ -204,7 +196,7 @@
             }
         }
         dlog(DEBUG_HANJACOMPOSER, @"HanjaComposer -updateHanjaCandidates candidating");
-        if (candidates.count > 0 && CIMSharedConfiguration.showsInputForHanjaCandidates) {
+        if (candidates.count > 0 && [GureumConfiguration shared].showsInputForHanjaCandidates) {
             [candidates insertObject:keyword atIndex:0];
         }
         self.candidates = candidates;
@@ -394,7 +386,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     @brief  설정에 따라 조합 완료할 문자 최종처리
 */
 + (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = CIMSharedConfiguration.hangulCombinationModeCommiting;
+    NSInteger index = [GureumConfiguration shared].hangulCombinationModeCommiting;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
     NSString *name = HangulCombinationModefillers[index];
@@ -411,7 +403,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
 */
 + (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = CIMSharedConfiguration.hangulCombinationModeComposing;
+    NSInteger index = [GureumConfiguration shared].hangulCombinationModeComposing;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
     NSString *name = HangulCombinationModefillers[index];
