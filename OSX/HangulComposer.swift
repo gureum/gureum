@@ -10,12 +10,12 @@ import Foundation
 
 @objcMembers public class HangulComposerBridge: NSObject {
     unowned let composer: CIMComposerDelegate
-    let _inputContext: HGInputContext
+    let _inputContext: HGInputContext?
     var _commitString: String
     
     var inputContext: HGInputContext{
         get{
-            return self._inputContext;
+            return self._inputContext!;
         }
     }
 
@@ -25,15 +25,18 @@ import Foundation
         }
     }
 
-    public init(composer: CIMComposerDelegate, identifier: String) {
+    init?(composer: CIMComposerDelegate, identifier: String) {
         self.composer = composer
         self._commitString = String()
-        self._inputContext = /* try! */ HGInputContext(keyboardIdentifier: identifier)
+        self._inputContext = HGInputContext(keyboardIdentifier: identifier)
+        if (self._inputContext == nil){
+            return nil
+        }
         super.init()
     }
 
     public func setKeyboardWithIdentifier(_ identifier :String) {
-        self._inputContext.setKeyboardWithIdentifier(identifier)
+        self._inputContext!.setKeyboardWithIdentifier(identifier)
     }
 
     // CIMComposerDelegate
@@ -41,7 +44,7 @@ import Foundation
     public func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
-            return self._inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
+            return self._inputContext!.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
@@ -56,23 +59,23 @@ import Foundation
                 string = string.lowercased();
             }
         }
-        let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
-        let UCSString = self._inputContext.commitUCSString;
+        let handled = self._inputContext!.process(string.first!.unicodeScalars.first!.value)
+        let UCSString = self._inputContext!.commitUCSString;
         // dassert(UCSString);
-        let recentCommitString = HangulComposer.commitStringByCombinationMode(withUCSString: UCSString)
+        let recentCommitString = HangulComposerCombination.commitStringByCombinationMode(withUCSString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
     
     public func composedString() -> String! {
-        let preedit = self._inputContext.preeditUCSString
-        return HangulComposer.composedStringByCombinationMode(withUCSString: preedit)
+        let preedit = self._inputContext!.preeditUCSString
+        return HangulComposerCombination.composedStringByCombinationMode(withUCSString: preedit)
     }
     
     public func originalString() -> String! {
-        let preedit = self._inputContext.preeditUCSString
-        return HangulComposer.commitStringByCombinationMode(withUCSString: preedit)
+        let preedit = self._inputContext!.preeditUCSString
+        return HangulComposerCombination.commitStringByCombinationMode(withUCSString: preedit)
     }
     
     public func dequeueCommitString() -> String! {
@@ -82,12 +85,12 @@ import Foundation
     }
     
     public func cancelComposition() {
-        let flushedString: String! = HangulComposer.commitStringByCombinationMode(withUCSString: self._inputContext.flushUCSString())
+        let flushedString: String! = HangulComposerCombination.commitStringByCombinationMode(withUCSString: self._inputContext!.flushUCSString())
         self._commitString += flushedString
     }
     
     public func clearContext() {
-        self._inputContext.reset()
+        self._inputContext!.reset()
         self._commitString = ""
     }
     
