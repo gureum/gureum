@@ -8,8 +8,6 @@
 
 #import "GureumComposer.h"
 
-#import "GureumAppDelegate.h"
-
 #define DEBUG_GUREUM FALSE
 #define DEBUG_SHORTCUT FALSE
 
@@ -98,7 +96,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         self.delegate = self->hangulComposer;
         // 단축키 지원을 위해 마지막 자판을 기억
         [self->hangulComposer setKeyboardWithIdentifier:keyboardIdentifier];
-        CIMSharedConfiguration.lastHangulInputMode = newInputMode;
+        [GureumConfiguration shared].lastHangulInputMode = newInputMode;
     }
 
     super.inputMode = newInputMode;
@@ -169,7 +167,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
 //            need_exchange = YES;
 //        }
 
-        if (inputModifier == CIMSharedConfiguration.inputModeHanjaKeyModifier && keyCode == CIMSharedConfiguration.inputModeHanjaKeyCode) {
+        if (inputModifier == [GureumConfiguration shared].inputModeHanjaKeyModifier && keyCode == [GureumConfiguration shared].inputModeHanjaKeyCode) {
             dlog(DEBUG_SHORTCUT, @"**** Layout exchange by hanja shortcut ****");
             need_hanjamode = YES;
         }
@@ -180,7 +178,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         // 한영전환을 위해 현재 입력 중인 문자 합성 취소
         [self.delegate cancelComposition];
         if (self.delegate == self->romanComposer) {
-            NSString *lastHangulInputMode = CIMSharedConfiguration.lastHangulInputMode;
+            NSString *lastHangulInputMode = [GureumConfiguration shared].lastHangulInputMode;
             if (lastHangulInputMode == nil) lastHangulInputMode = kGureumInputSourceIdentifierHan2;
             [sender selectInputMode:lastHangulInputMode];
         } else {
@@ -209,7 +207,7 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
             return CIMInputTextProcessResultProcessed;
         }
         // Vi-mode: esc로 로마자 키보드로 전환
-        if (CIMSharedConfiguration.romanModeByEscapeKey && (keyCode == kVK_Escape || (0))) {
+        if ([GureumConfiguration shared].romanModeByEscapeKey && (keyCode == kVK_Escape || (0))) {
             dlog(DEBUG_GUREUM, @"**** Keyboard Changed by Vi-mode");
             [self.delegate cancelComposition];
             [sender selectInputMode:kGureumInputSourceIdentifierQwerty];

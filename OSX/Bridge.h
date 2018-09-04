@@ -13,7 +13,6 @@
 #import "CIMInputHandler.h"
 #import "GureumComposer.h"
 #import "HangulComposer.h"
-#import "GureumAppDelegate.h"
 
 @interface HangulComposer (HangulCharacterCombinationMode)
 
