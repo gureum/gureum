@@ -196,8 +196,8 @@
         [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:nil key:-1 modifiers:NSAlphaShiftKeyMask];
 
-        [app inputText:@" " key:49 modifiers:131072];
-        [app inputText:@" " key:49 modifiers:131072];
+        [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
+        [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
         XCTAssertEqualObjects(@"", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
