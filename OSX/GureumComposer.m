@@ -153,11 +153,24 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
     {
         dlog(DEBUG_SHORTCUT, @"**** Reset modifier ****");
         self->lastModifier = 0;
+        
+        dlog(1, @"version 1");
 
-//        if (inputModifier == CIMSharedConfiguration->inputModeExchangeKeyModifier && keyCode == CIMSharedConfiguration->inputModeExchangeKeyCode) {
-//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
-//            need_exchange = YES;
-//        }
+        if (keyCode == -1) {
+            if ((flags & NSAlphaShiftKeyMask) && self.delegate == self->romanComposer) {
+                need_exchange = YES;
+            } else if (flags == 0 && self.delegate == self->hangulComposer){
+                need_exchange = YES;
+            } else {
+                return CIMInputTextProcessResultProcessed;
+            }
+            dlog(1, @"%s input modifier : %lx", __func__, inputModifier);
+        }
+
+        if (inputModifier == [GureumConfiguration shared].inputModeExchangeKeyModifier && keyCode == [GureumConfiguration shared].inputModeExchangeKeyCode) {
+            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange shortcut ****");
+            need_exchange = YES;
+        }
 //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
 //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
 //            need_exchange = YES;

@@ -84,9 +84,33 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         get {
             return self.integer(forKey: CIMHangulCombinationModeComposing)
         }
-        
+
         set {
             return self.set(newValue, forKey: CIMHangulCombinationModeComposing)
+        }
+    }
+
+    public var inputModeExchangeKey: (Int, Int) {
+        get {
+            return (self.inputModeExchangeKeyModifier, self.inputModeExchangeKeyCode)
+        }
+    }
+
+    @objc public var inputModeExchangeKeyModifier: Int {
+        get {
+            return 0
+        }
+    }
+    
+    @objc public var inputModeExchangeKeyCode: Int {
+        get {
+            return 50
+        }
+    }
+
+    public var inputModeHanjaKey: (Int, Int) {
+        get {
+            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
         }
     }
 
@@ -102,7 +126,7 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
 
     @objc public var inputModeHanjaKeyCode: Int {
         get {
-            return -1
+            return -9
 //            한자 키코드가 기본 값인 0 ("a" 키에 해당)으로 설정되어 임시로 주석 처리했습니다.
 //            return self.integer(forKey: CIMInputModeHanjaKeyCode)
         }

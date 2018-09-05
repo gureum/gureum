@@ -194,6 +194,8 @@
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:nil key:-1 modifiers:NSAlphaShiftKeyMask];
+
         [app inputText:@" " key:49 modifiers:131072];
         [app inputText:@" " key:49 modifiers:131072];
         XCTAssertEqualObjects(@"", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -221,6 +223,7 @@
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
+/*
 
 - (void)testHanjaSyllable {
     for (VirtualApp *app in self.apps) {
@@ -320,5 +323,5 @@
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
-
+*/
 @end
