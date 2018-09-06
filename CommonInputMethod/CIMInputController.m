@@ -10,7 +10,6 @@
 #import <Carbon/Carbon.h>
 
 #import "CIMCommon.h"
-#import "CIMApplicationDelegate.h"
 
 #import "CIMInputManager.h"
 #import "CIMComposer.h"
@@ -24,7 +23,7 @@
 #define DEBUG_LOGGING FALSE
 
 #define CIMSharedInputManager CIMAppDelegate.sharedInputManager
-
+#define CIMAppDelegate ((NSObject<CIMApplicationDelegate> *)[[NSApplication sharedApplication] delegate])
 
 TISInputSource *_USSource() {
     static NSString *mainSourceID = @"com.apple.keylayout.US";

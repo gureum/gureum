@@ -8,7 +8,6 @@
 
 #import "CIMInputManager.h"
 
-#import "CIMApplicationDelegate.h"
 #import "CIMInputHandler.h"
 #import "Gureum-Swift.h"
 
@@ -18,7 +17,7 @@
 @synthesize inputting;
 
 #define DEBUG_INPUTMANAGER FALSE
-
+#define CIMAppDelegate ((NSObject<CIMApplicationDelegate> *)[[NSApplication sharedApplication] delegate])
 - (instancetype)init
 {
     self = [super init];
