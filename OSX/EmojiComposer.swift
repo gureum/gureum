@@ -46,7 +46,7 @@ class EmojiComposer: CIMComposer {
     // ???: Why there is no setter?
     override var originalString: String! {
         get {
-            return self._commitString
+            return self._bufferedString
         }
     }
 
@@ -191,7 +191,11 @@ class EmojiComposer: CIMComposer {
         case 51:
             if result == CIMInputTextProcessResult.notProcessed {
                 if self.originalString.count > 0 {
-                    self._bufferedString.remove(at: self._bufferedString.endIndex)
+                    NSLog("DEBUG 4, [inputController] MSG: buffer (%@)", self._bufferedString)
+                    NSLog("DEBUG 7, [inputController] MSG: length is %d", self._bufferedString.count)
+                    let lastIndex: String.Index = self._bufferedString.index(before: self._bufferedString.endIndex)
+                    self._bufferedString.remove(at: lastIndex)
+                    NSLog("DEBUG 5, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
                     self.composedString = self.originalString
                     result = CIMInputTextProcessResult.processed
                 } else {
