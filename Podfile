@@ -20,6 +20,8 @@ target :'App' do
     pod 'FoundationExtension/UIKitExtension'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'GoogleMobileAds'
+    pod 'GlobalActivityIndicatorView'
 end
 target :'iOS' do
     platform :ios, "9.0"

@@ -9,21 +9,21 @@
 import UIKit
 
 
-class PreviewInputViewController: InputViewController {
+@objc class PreviewInputViewController: InputViewController {
     var previewController: PreviewViewController! = nil
 
-    override func input(sender: UIButton) {
-        super.input(sender: sender)
+    override func input(_ sender: GRInputButton) {
+        super.input(sender)
         self.previewController.update()
     }
 
-    override func inputDelete(sender: UIButton) {
-        super.inputDelete(sender: sender)
+    override func inputDelete(_ sender: GRInputButton) {
+        super.inputDelete(sender)
         self.previewController.update()
     }
 }
 
-class PreviewViewController: UIViewController {
+@objc class PreviewViewController: UIViewController {
     @IBOutlet var preview: UIView!
 
     let inputPreviewController = PreviewInputViewController()
