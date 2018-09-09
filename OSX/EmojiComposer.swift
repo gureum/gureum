@@ -214,6 +214,18 @@ class EmojiComposer: CIMComposer {
                 result = CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
             break
+        // ESC
+        case 53:
+            self.mode = false
+            // step 1. get all composing characters
+            self.romanComposer.cancelComposition()
+            self._bufferedString.append(self.romanComposer.dequeueCommitString())
+            // step 2. commit all
+            self.composedString = self.originalString
+            self.cancelComposition()
+            // step 3. cancel candidates
+            self.candidates = nil
+            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
         default:
             break
         }
