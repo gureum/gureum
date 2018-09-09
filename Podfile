@@ -21,7 +21,7 @@ target :'App' do
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'GoogleMobileAds'
-    pod 'GlobalActivityIndicatorView'
+    pod 'GlobalActivityIndicatorView', '>= 0.1.1'
 end
 target :'iOS' do
     platform :ios, "9.0"
