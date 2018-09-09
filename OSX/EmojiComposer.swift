@@ -69,6 +69,11 @@ class EmojiComposer: CIMComposer {
 
     // ???: remove the given chars while composing
     override func cancelComposition() {
+        self.romanComposer.cancelComposition()
+        self.romanComposer.dequeueCommitString()
+        self._commitString.append(self._composedString)
+        self._bufferedString = ""
+        self._composedString = ""
     }
 
     // ???: remove all commit string
