@@ -159,17 +159,20 @@ class EmojiComposer: CIMComposer {
     }
 
     func updateFromController(_ controller: CIMInputController) {
+        NSLog("DEBUG 1, [updateFromController] MSG: function called")
         let markedRange: NSRange = controller.client().markedRange()
         let selectedRange: NSRange = controller.client().selectedRange()
 
         let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.length == NSNotFound
 
+        NSLog("DEBUG 2, [updateFromController] MSG: DEBUG POINT 1")
         if isInvalidMarkedRange && selectedRange.length > 0 {
             let selectedString: String = controller.client().attributedSubstring(from: selectedRange).string
 
             controller.client().setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
 
             self._bufferedString = selectedString
+            NSLog("DEBUG 3, [updateFromController] MSG: %@", self._bufferedString)
 
             self.mode = false
         }
