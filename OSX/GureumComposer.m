@@ -155,8 +155,6 @@ NSDictionary *GureumInputSourceToHangulKeyboardIdentifierTable = nil;
         dlog(DEBUG_SHORTCUT, @"**** Reset modifier ****");
         self->lastModifier = 0;
         
-        dlog(1, @"version 1");
-
         if (keyCode == -1) {
             if ((flags & NSAlphaShiftKeyMask) && self.delegate == self->romanComposer) {
                 need_exchange = YES;
