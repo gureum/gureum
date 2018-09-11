@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import Fabric
 import Crashlytics
+import GoogleMobileAds
 
 var sharedAppDelegate: AppDelegate! = nil
 
@@ -18,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //if preferences.themeResources.count == 0 {
-        Crashlytics.start(withAPIKey: "1b5d8443c3eabba778b0d97bff234647af846181")
-
-        Theme.themeWithAddress(addr: preferences.themeAddress).dump() // FIXME: more sane initializer
-        //}
+        Fabric.with([Crashlytics()])
+        crashlyticsInitialized = true
         sharedAppDelegate = self
-        store // force lazy loading
+
+        if preferences.themeResources.count == 0 {
+            Theme.themeWithAddress(addr: preferences.themePath).dump()
+        }
+        // store // force lazy loading
 
         return true
     }

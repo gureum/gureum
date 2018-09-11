@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GRKeyboardLayoutHelperDelegate {
+protocol GRKeyboardLayoutHelperDelegate: class {
     func layoutWillLoad(helper: GRKeyboardLayoutHelper)
     func layoutDidLoad(helper: GRKeyboardLayoutHelper)
     func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect)
@@ -46,9 +46,8 @@ class GRKeyboardLayoutHelper {
         }
     }
 
-
-    var delegate: GRKeyboardLayoutHelperDelegate?
-    var buttons: Dictionary<Position, GRInputButton> = [:]
+    weak var delegate: GRKeyboardLayoutHelperDelegate?
+    var buttons: [Position: GRInputButton] = [:]
 
     init(delegate: GRKeyboardLayoutHelperDelegate?) {
         self.delegate = delegate;
@@ -91,7 +90,7 @@ class GRKeyboardLayoutHelper {
                     button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                 }
                 for button in delegate.helper(helper: self, rightButtonsForRow: row) {
-                    view.insertSubview(button, belowSubview: view.subviews.last!)
+                    view.insertSubview(button, belowSubview: view.subviews.last as! UIView)
                     button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                     //button.preload()
                 }
@@ -122,7 +121,7 @@ class GRKeyboardLayoutHelper {
                 for column in 0..<columnCount {
                     let position = Position(tuple: (row, column))
                     let button = self.buttons[position]!
-                    button.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: columnWidth, height: rowHeight));
+                    button.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: columnWidth, height: rowHeight))
                 }
 
                 var columnWidthSum = CGFloat(columnCount) * columnWidth
@@ -143,6 +142,7 @@ class GRKeyboardLayoutHelper {
 
             let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
             //println("\(rowHeightSum) \(rowSpace)")
+            var rowHeightSum2: CGFloat = 0.0
             for row in 0..<rowCount {
                 let rowHeight = delegate.helper(helper: self, heightOfRow: row, forSize: rect.size)
                 let columnWidth = delegate.helper(helper: self, columnWidthInRow: row, forSize: rect.size)
@@ -151,7 +151,7 @@ class GRKeyboardLayoutHelper {
                 let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
 
                 let columnSpace = (insetFrame.size.width - columnWidthSums[row]) / CGFloat(columnCount + leftButtons.count + rightButtons.count - 1)
-                let rowTop = insets.top + (rowHeight + rowSpace) * CGFloat(row)
+                let rowTop = insets.top + rowHeightSum2 + rowSpace * CGFloat(row)
                 var left = insets.left
                 for button in leftButtons {
                     let width = button.frame.size.width
@@ -169,6 +169,7 @@ class GRKeyboardLayoutHelper {
                     button.frame = CGRect(x: left, y: rowTop, width: width, height: rowHeight)
                     left += width + columnSpace
                 }
+                rowHeightSum2 += rowHeight
             }
             delegate.layoutDidLayout(helper: self, forRect: rect)
         }
@@ -179,8 +180,7 @@ class GRKeyboardLayoutHelper {
             for (position, button) in self.buttons {
                 if button.title(for: .normal) == nil {
                     let label = delegate.helper(helper: self, titleForPosition: position)
-                    button.captionLabel.text = label
-                    button.effectView.textLabel.text = label;
+                    button.title = label
                 }
             }
         }

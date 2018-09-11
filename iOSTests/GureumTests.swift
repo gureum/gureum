@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Gureum
 
 class GureumTests: XCTestCase {
     
@@ -20,9 +21,15 @@ class GureumTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testBaseTheme() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        let theme = EmbeddedTheme(name: "base")
+        let trait = theme.phonePortraitConfiguration
+        let caption = trait.captionForIdentifier("test1", needsMargin: true, classes: { [trait.qwerty.key("q"), trait.qwerty.key, trait.qwerty.base, trait.common.key("q"), trait.common.key, trait.common.base ] })
+        XCTAssert(caption.position == CGPointMake(0, 4), "")
+
+        let function = trait.captionForIdentifier("test2", needsMargin: true, classes: { [trait.qwerty.caption("delete"), trait.qwerty.function, trait.qwerty.base, trait.common.key("delete"), trait.common.function, trait.common.base ] })
+        XCTAssert(caption.position == CGPointMake(0, 4), "")
     }
     
     func testPerformanceExample() {

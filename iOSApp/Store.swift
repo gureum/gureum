@@ -21,7 +21,7 @@ class StoreCategory {
     func itemForRow(row: Int) -> StoreItem {
         let items: Any? = self.data["items"]
         assert(items != nil)
-        return StoreItem(owner: self.owner, data: (items as! NSArray)[row])
+        return StoreItem(owner: self.owner, data: (items as! NSArray)[row] as! NSDictionary)
     }
 }
 
@@ -29,9 +29,9 @@ class StoreItem {
     let owner: Store
     let data: NSDictionary
 
-    init(owner: Store, data: Any) {
+    init(owner: Store, data: NSDictionary) {
         self.owner = owner
-        self.data = data as! NSDictionary
+        self.data = data
     }
 
     lazy var title: String = self.data["title"] as! String
@@ -73,18 +73,18 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
         self.entries = items
 
-        let names = NSMutableSet()
+        var names = Set<String>()
         for category in entries {
             let items = category["items"]
             assert(items != nil)
             for ritem in items as! NSArray {
                 let item = ritem as! NSDictionary
-                if let pid: Any = item["id"] {
-                    names.add(pid)
+                if let pid: String = item["id"] as? String {
+                    names.insert(pid)
                 }
             }
         }
-        let req = SKProductsRequest(productIdentifiers: names as! Set<String>)
+        let req = SKProductsRequest(productIdentifiers: names)
         req.delegate = self
         req.start()
     }
