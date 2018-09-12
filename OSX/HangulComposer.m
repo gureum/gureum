@@ -20,7 +20,6 @@
 
 @interface NSString (HangulCharacterCombinationMode)
 
-+ (NSString *)stringByRemovingFillerWithUCSString:(const HGUCSChar *)UCSString;
 + (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
 + (NSString *)stringByHidingJungseongFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
 + (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString;
@@ -345,21 +344,6 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
 @end
 
 @implementation NSString (HangulCharacterCombinationMode)
-
-+ (NSString *)stringByRemovingFillerWithUCSString:(const HGUCSChar *)UCSString {
-    // 채움문자로 조합 중 판별
-    if (!HGCharacterIsChoseong(UCSString[0])) {
-        return [NSString stringWithUCSString:UCSString];
-    }
-    if (UCSString[0] == 0x115f) {
-        return [NSString stringWithUCSString:UCSString + 1];
-    }
-    /* if (UCSString[1] == 0x1160) */ {
-        NSMutableString *fill = [[NSMutableString alloc] initWithUCSString:UCSString length:1];
-        [fill appendString:[NSString stringWithUCSString:UCSString + 2 length:1]];
-        return [fill autorelease];
-    }
-}
 
 + (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString {
     // 채움문자로 조합 중 판별
