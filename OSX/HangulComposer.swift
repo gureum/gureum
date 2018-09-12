@@ -15,7 +15,7 @@ import Foundation
 
  @coclass HGInputContext
  */
-@objcMembers public class HangulComposer: NSObject {
+@objcMembers public class HangulComposer: NSObject, CIMComposerDelegate {
     let _inputContext: HGInputContext
     var _commitString: String
     
@@ -42,7 +42,7 @@ import Foundation
         }
     }
 
-    var commitString: String {
+    public var commitString: String {
         get{
             return self._commitString;
         }
@@ -77,19 +77,23 @@ import Foundation
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
 
-    public func inputController(_ controller: CIMInputController!, commandString string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController!, command string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed;
     }
 
-    public func composedString() -> String! {
-        let preedit = self._inputContext.preeditUCSString
-        return HangulComposerCombination.composedStringByCombinationMode(withUCSString: preedit)
+    public var composedString: String! {
+        get {
+            let preedit = self._inputContext.preeditUCSString
+            return HangulComposerCombination.composedStringByCombinationMode(withUCSString: preedit)
+        }
     }
 
-    public func originalString() -> String! {
-        let preedit = self._inputContext.preeditUCSString
-        return HangulComposerCombination.commitStringByCombinationMode(withUCSString: preedit)
+    public var originalString: String! {
+        get {
+            let preedit = self._inputContext.preeditUCSString
+            return HangulComposerCombination.commitStringByCombinationMode(withUCSString: preedit)
+        }
     }
 
     public func dequeueCommitString() -> String! {
@@ -108,8 +112,10 @@ import Foundation
         self._commitString = ""
     }
 
-    public func hasCandidates() -> Bool {
-        return false
+    public var hasCandidates: Bool {
+        get {
+            return false
+        }
     }
 
     public func inputController(_ controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
