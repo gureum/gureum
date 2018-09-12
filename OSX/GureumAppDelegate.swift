@@ -67,6 +67,9 @@ import Foundation
         guard let data = try? NSData(contentsOf: request, error: ()) else {
             return nil
         }
+        if data.length == 0 { // 위에서 제대로 안걸림
+            return nil
+        }
         let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         let verstring = String(data: data as Data, encoding: String.Encoding.utf8)!
         var components = verstring.components(separatedBy: "::")
