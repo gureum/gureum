@@ -18,15 +18,6 @@
 
 @class CIMInputController;
 
-@interface NSString (HangulCharacterCombinationMode)
-
-+ (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)stringByHidingJungseongFillerFollowersWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString;
-
-@end
-
-
 @implementation HanjaComposer
 @synthesize mode=_mode;
 
@@ -299,14 +290,6 @@
 
 @implementation HangulComposerCombination
 
-static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCount] = {
-    @"stringByRemovingFillerWithUCSString:",
-    @"stringWithUCSString:",
-    @"stringByRemovingNonJungseongFillerWithUCSString:",
-    @"stringByHidingFillerFollowersWithUCSString:",
-    @"stringByHidingJungseongFillerFollowersWithUCSString:",
-};
-
 /*!
     @brief  설정에 따라 조합 완료할 문자 최종처리
 */
@@ -314,14 +297,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     NSInteger index = [GureumConfiguration shared].hangulCombinationModeCommiting;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
-    NSString *name = HangulCombinationModefillers[index];
-    dassert(name);
-    dassert(name.length);
-    SEL selector = NSSelectorFromString(name);
-    if (selector == nil) {
-        selector = @selector(stringByRemovingFillerWithUCSString:);
-    }
-    return [NSString performSelector:selector withObject:(__bridge id)UCSString];
+    return [NSString stringByRemovingFillerWithUCSString:UCSString];
 }
 
 /*!
@@ -331,50 +307,7 @@ static NSString *HangulCombinationModefillers[HangulCharacterCombinationModeCoun
     NSInteger index = [GureumConfiguration shared].hangulCombinationModeComposing;
     dassert(0 <= index);
     dassert(index < HangulCharacterCombinationModeCount);
-    NSString *name = HangulCombinationModefillers[index];
-    dassert(name);
-    dassert(name.length > 0);
-    SEL selector = NSSelectorFromString(name);
-    if (selector == nil) {
-        selector = @selector(stringByRemovingFillerWithUCSString:);
-    }
-    return [NSString performSelector:selector withObject:(id)UCSString];
-}
-
-@end
-
-@implementation NSString (HangulCharacterCombinationMode)
-
-+ (NSString *)stringByHidingFillerFollowersWithUCSString:(const HGUCSChar *)UCSString {
-    // 채움문자로 조합 중 판별
-    if (!HGCharacterIsChoseong(UCSString[0])) {
-        return [NSString stringWithUCSString:UCSString];
-    }
-
-    if (UCSString[0] == 0x115f) return @"";
-    /* if (UCSString[1] == 0x1160) */
-    return [NSString stringWithUCSString:UCSString length:1];
-}
-
-+ (NSString *)stringByHidingJungseongFillerFollowersWithUCSString:(const HGUCSChar *)UCSString {
-    // 채움문자로 조합 중 판별
-    if (!HGCharacterIsChoseong(UCSString[0])) {
-        return [NSString stringWithUCSString:UCSString];
-    }
-
-    if (UCSString[0] == 0x115f) {
-        return [NSString stringWithUCSString:UCSString + 1];
-    }
-    /* if (UCSString[1] == 0x1160) */
-    return [NSString stringWithUCSString:UCSString length:1];
-}
-
-+ (NSString *)stringByRemovingNonJungseongFillerWithUCSString:(const HGUCSChar *)UCSString {
-    // 초성이 채움문자일 때를 제외하면 항상
-    if (UCSString[0] == 0x115f) {
-        return [NSString stringWithUCSString:UCSString + 1];
-    }
-    return [NSString stringWithUCSString:UCSString];
+    return [NSString stringByRemovingFillerWithUCSString:UCSString];
 }
 
 @end
