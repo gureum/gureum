@@ -8,6 +8,22 @@
 
 import Foundation
 
+class HangulComposerCombination {
+    /*!
+     @brief  설정에 따라 조합 완료할 문자 최종처리
+     */
+    public class func commitString(ucsString: UnsafePointer<HGUCSChar>) -> String {
+        return NSString.stringByRemovingFillerWithUCSString(ucsString) as String
+    }
+
+    /*!
+     @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
+     */
+    public class func composedString(ucsString: UnsafePointer<HGUCSChar>) -> String {
+        return NSString.stringByRemovingFillerWithUCSString(ucsString) as String
+    }
+}
+
 /*!
  @brief  libhangul을 사용하는 합성기
 
@@ -69,9 +85,9 @@ import Foundation
             }
         }
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
-        let UCSString = self._inputContext.commitUCSString;
+        let UCSString = self._inputContext.commitUCSString!
         // dassert(UCSString);
-        let recentCommitString = HangulComposerCombination.commitStringByCombinationMode(withUCSString: UCSString)
+        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
@@ -84,15 +100,15 @@ import Foundation
 
     public var composedString: String! {
         get {
-            let preedit = self._inputContext.preeditUCSString
-            return HangulComposerCombination.composedStringByCombinationMode(withUCSString: preedit)
+            let preedit = self._inputContext.preeditUCSString!
+            return HangulComposerCombination.composedString(ucsString: preedit)
         }
     }
 
     public var originalString: String! {
         get {
-            let preedit = self._inputContext.preeditUCSString
-            return HangulComposerCombination.commitStringByCombinationMode(withUCSString: preedit)
+            let preedit = self._inputContext.preeditUCSString!
+            return HangulComposerCombination.commitString(ucsString: preedit)
         }
     }
 
@@ -103,7 +119,7 @@ import Foundation
     }
 
     public func cancelComposition() {
-        let flushedString: String! = HangulComposerCombination.commitStringByCombinationMode(withUCSString: self._inputContext.flushUCSString())
+        let flushedString: String! = HangulComposerCombination.commitString(ucsString: self._inputContext.flushUCSString())
         self._commitString += flushedString
     }
 

@@ -39,9 +39,6 @@
 
     /* Hangul Preferences */
     IBOutlet NSButton *showsInputForHanjaCandidatesCheckbox;
-
-    IBOutlet NSComboBox *hangulCombinationModeComposingComboBox;
-    IBOutlet NSComboBox *hangulCombinationModeCommitingComboBox;
 }
 
 - (IBAction)saveToConfiguration:(id)sender;

@@ -182,9 +182,6 @@ static NSArray *GureumPreferencesHangulSyllablePresentations = nil;
     if (aComboBox == defaultHangulInputModeComboBox) {
         return GureumPreferencesHangulLayoutLocalizedNames[index];
     }
-    if (aComboBox == hangulCombinationModeComposingComboBox || aComboBox == hangulCombinationModeCommitingComboBox) {
-        return GureumPreferencesHangulSyllablePresentations[index];
-    }
     assert(NO);
     return nil;
 }

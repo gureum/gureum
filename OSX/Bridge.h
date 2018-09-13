@@ -13,11 +13,3 @@
 #import "CIMInputHandler.h"
 #import "GureumComposer.h"
 #import "HangulComposer.h"
-
-@interface HangulComposerCombination: NSObject
-
-+ (NSString * _Nonnull)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-+ (NSString * _Nonnull)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString;
-
-@end
-
