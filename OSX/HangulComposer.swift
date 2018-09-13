@@ -143,7 +143,7 @@ extension NSString {
             return NSString(ucsString: ucsString + 1)
         }
         /* if (UCSString[1] == 0x1160) */
-        var fill: NSMutableString = NSMutableString(ucsString: ucsString, length: 1)
+        let fill: NSMutableString = NSMutableString(ucsString: ucsString, length: 1)
         fill.append(NSString(ucsString: ucsString + 2, length: 1) as String)
         return fill
     }
