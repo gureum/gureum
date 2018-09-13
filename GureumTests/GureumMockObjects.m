@@ -9,6 +9,8 @@
 #import "CIMInputController.h"
 #import "GureumMockObjects.h"
 
+#import "Gureum-Swift.h"
+
 #define DEBUG_INPUTCONTROLLER TRUE
 
 
