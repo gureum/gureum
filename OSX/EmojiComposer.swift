@@ -13,27 +13,17 @@ class EmojiComposer: CIMComposer {
     // FIXME: How can i use static with _sharedEmojiTable?
     var _sharedEmojiTable: HGHanjaTable? = nil
 
-    // ???: commit string is the final output of Composer
-    // ???: How about nullable?
     var _commitString: String = ""
-    // ???: candidates are searched emoticon list of given keyword
-    // ???: How about nullable?
-    var _candidates: [String]? = nil
-    // ???: composed string is for the Korean
+    var _candidates: [String] = []
     var _composedString: String = ""
-    // ???: _buffered string for storing the given input
     var _bufferedString: String = ""
-    // ???: where is original string?
 
-    // ???: What is mode for?
     var mode: Bool = true
 
-    // ???: Main composer, How to use both roman and hangul
     var romanComposer: CIMComposerDelegate {
         return self.delegate
     }
 
-    // ???: Why wrap composedString?
     override var composedString: String! {
         get {
             return self._composedString
@@ -43,14 +33,12 @@ class EmojiComposer: CIMComposer {
         }
     }
 
-    // ???: Why there is no setter?
     override var originalString: String! {
         get {
             return self._bufferedString
         }
     }
 
-    // ???: Why wrapped and do this need setter?
     override var commitString: String! {
         get {
             return self._commitString
@@ -60,14 +48,12 @@ class EmojiComposer: CIMComposer {
         }
     }
 
-    // ???: use commit string
     override func dequeueCommitString() -> String! {
         let dequeued = self._commitString
         self._commitString = ""
         return dequeued
     }
 
-    // ???: remove the given chars while composing
     override func cancelComposition() {
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
@@ -76,19 +62,17 @@ class EmojiComposer: CIMComposer {
         self._composedString = ""
     }
 
-    // ???: remove all commit string
     override func clearContext() {
         self._commitString = ""
     }
 
     override var hasCandidates: Bool {
         get {
-            let candidates = self._candidates ?? []
+            let candidates = self._candidates
             return candidates.count > 0 ? true : false
         }
     }
 
-    // ???: Why wrap candidates????
     override var candidates: [String]! {
         get {
             return self._candidates
@@ -132,7 +116,7 @@ class EmojiComposer: CIMComposer {
 
         NSLog("DEBUG 1, [updateEmojiCandidates] MSG: %@", originalString)
         if keyword.count == 0 {
-            self._candidates = nil
+            self._candidates = []
         } else {
             self._candidates = []
             for table: HGHanjaTable in [emojiTable()!] {
@@ -150,7 +134,7 @@ class EmojiComposer: CIMComposer {
                             NSLog("DEBUG 7, [updateEmojiCandidates] MSG: hanja is nil!")
                         }
                         NSLog("DEBUG 6, [updateEmojiCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        self._candidates!.append(emoji!.value as String + ": " + emoji!.comment as String)
+                        self._candidates.append(emoji!.value as String + ": " + emoji!.comment as String)
                     }
                 }
             }
