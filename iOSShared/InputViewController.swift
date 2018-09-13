@@ -347,7 +347,7 @@ class InputViewController: BasicInputViewController {
             self.inputMethodView.resetContext()
             
             if let code = UnicodeScalar(keycode) {
-                proxy.insertText("\(UnicodeScalar(keycode)!)")
+                proxy.insertText("\(code)")
             } else {
                 print("Optional clear fail!")
             }
