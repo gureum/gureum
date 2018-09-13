@@ -345,8 +345,14 @@ class InputViewController: BasicInputViewController {
 
         if processed == 0 {
             self.inputMethodView.resetContext()
-            proxy.insertText("\(UnicodeScalar(keycode))")
+            
+            if let code = UnicodeScalar(keycode) {
+                proxy.insertText("\(code)")
+            } else {
+                print("Optional clear fail!")
+            }
             //self.log("truncate and insert: \(UnicodeScalar(keycode))")
+            
         } else {
             let commited = context_get_commited_unicodes(context: context!)
             let composed = context_get_composed_unicodes(context: context!)
