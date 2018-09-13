@@ -346,7 +346,7 @@ class InputViewController: BasicInputViewController {
         if processed == 0 {
             self.inputMethodView.resetContext()
             
-            if let opForced = UnicodeScalar(keycode) {
+            if let code = UnicodeScalar(keycode) {
                 proxy.insertText("\(UnicodeScalar(keycode)!)")
             } else {
                 print("Optional clear fail!")
