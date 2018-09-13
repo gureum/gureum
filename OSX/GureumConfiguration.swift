@@ -26,8 +26,6 @@ var CIMInputModeEnglishKeyCode = "CIMInputModeEnglishKeyCode"
 var CIMInputModeKoreanKeyModifier = "CIMInputModeKoreanKeyModifier"
 var CIMInputModeKoreanKeyCode = "CIMInputModeKoreanKeyCode"
 var CIMOptionKeyBehavior = "CIMOptionKeyBehavior"
-var CIMHangulCombinationModeComposing = "CIMHangulCombinationModeComposing"
-var CIMHangulCombinationModeCommiting = "CIMHangulCombinationModeCommiting"
 
 var CIMSharedInputManager = "CIMSharedInputManager"
 var CIMAutosaveDefaultInputMode = "CIMAutosaveDefaultInputMode"
@@ -72,24 +70,6 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         }
         set {
             return self.set(newValue, forKey: CIMShowsInputForHanjaCandidates)
-        }
-    }
-
-    @objc public var hangulCombinationModeCommiting: Int {
-        get {
-            return self.integer(forKey: CIMHangulCombinationModeCommiting)
-        }
-        set {
-            return self.set(newValue, forKey: CIMHangulCombinationModeCommiting)
-        }
-    }
-
-    @objc public var hangulCombinationModeComposing: Int {
-        get {
-            return self.integer(forKey: CIMHangulCombinationModeComposing)
-        }
-        set {
-            return self.set(newValue, forKey: CIMHangulCombinationModeComposing)
         }
     }
 

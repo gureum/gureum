@@ -287,27 +287,3 @@
 }
 
 @end
-
-@implementation HangulComposerCombination
-
-/*!
-    @brief  설정에 따라 조합 완료할 문자 최종처리
-*/
-+ (NSString *)commitStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = [GureumConfiguration shared].hangulCombinationModeCommiting;
-    dassert(0 <= index);
-    dassert(index < HangulCharacterCombinationModeCount);
-    return [NSString stringByRemovingFillerWithUCSString:UCSString];
-}
-
-/*!
-    @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
-*/
-+ (NSString *)composedStringByCombinationModeWithUCSString:(const HGUCSChar *)UCSString {
-    NSInteger index = [GureumConfiguration shared].hangulCombinationModeComposing;
-    dassert(0 <= index);
-    dassert(index < HangulCharacterCombinationModeCount);
-    return [NSString stringByRemovingFillerWithUCSString:UCSString];
-}
-
-@end
