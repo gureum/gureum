@@ -477,51 +477,12 @@ TISInputSource *_USSource() {
 
 #if DEBUG
 
-@implementation CIMMockInputController
-
-- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
-    self = [super init];
-    if (self != nil) {
-        self->_receiver = [[CIMInputReceiver alloc] initWithServer:server delegate:delegate client:inputClient];
-    }
-    return self;
-}
-
-- (void)repoduceTextLog:(NSString *)text {
-    for (NSString *row in [text componentsSeparatedByString:@"\n"]) {
-        NSError *error = nil;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"LOGGING::([A-Z]+)::(.*)" options:0 error:&error];
-        if (error) {
-            @throw [NSException exceptionWithName:@"CIMMockInputControllerLogParserError" reason:@"Log is not readable format" userInfo:nil];
-        }
-        NSArray *matches = [regex matchesInString:row options:0 range:NSRangeFromString(row)];
-        NSString *type = matches[1];
-        NSString *data = matches[2];
-        NSLog(@"test: %@ %@", type, data);
-    }
-}
-
-- (id)client {
-    return self->_receiver.inputClient;
-}
-
-- (CIMComposer *)composer {
-    return self->_receiver.composer;
-}
-
-- (NSRange)selectionRange {
-    return [self->_receiver.inputClient selectedRange];
-}
-
-@end
-
-
 @implementation CIMMockInputController (IMKServerInputTextData)
 
 - (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
 
-    BOOL processed = [self->_receiver inputController:(id)self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
+    BOOL processed = [self._receiver inputController:(id)self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
     if (!processed) {
         //[self cancelComposition];
     }
@@ -531,16 +492,16 @@ TISInputSource *_USSource() {
 // Committing a Composition
 // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
 - (void)commitComposition:(id)sender {
-    [self->_receiver commitCompositionEvent:sender controller:(id)self];
+    [self._receiver commitCompositionEvent:sender controller:(id)self];
     { // COMMIT triggered
 
     }
 }
 
 - (void)updateComposition {
-    [self->_receiver updateCompositionEvent:(id)self];
+    [self._receiver updateCompositionEvent:(id)self];
     { // super
-        NSTextView *client = self->_receiver.inputClient;
+        NSTextView *client = self._receiver.inputClient;
         dassert(client);
         NSString *composed = [self composedString:client];
         NSRange markedRange = [client markedRange];
@@ -556,9 +517,9 @@ TISInputSource *_USSource() {
 }
 
 - (void)cancelComposition {
-    [self->_receiver cancelCompositionEvent:(id)self];
+    [self._receiver cancelCompositionEvent:(id)self];
     { // CANCEL triggered
-        id client = self->_receiver.inputClient;
+        id client = self._receiver.inputClient;
         NSRange markedRange = [client markedRange];
         [client setMarkedText:@"" selectedRange:NSMakeRange(markedRange.location, 0) replacementRange:markedRange];
     }
@@ -567,23 +528,23 @@ TISInputSource *_USSource() {
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
 - (id)composedString:(id)sender {
-    return [self->_receiver composedString:sender controller:(id)self];
+    return [self._receiver composedString:sender controller:(id)self];
 }
 
 - (NSAttributedString *)originalString:(id)sender {
-    return [self->_receiver originalString:sender controller:(id)self];
+    return [self._receiver originalString:sender controller:(id)self];
 }
 
 - (NSArray *)candidates:(id)sender {
-    return [self->_receiver candidates:sender controller:(id)self];
+    return [self._receiver candidates:sender controller:(id)self];
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {
-    [self->_receiver candidateSelected:candidateString controller:(id)self];
+    [self._receiver candidateSelected:candidateString controller:(id)self];
 }
 
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    [self->_receiver candidateSelectionChanged:candidateString controller:(id)self];
+    [self._receiver candidateSelectionChanged:candidateString controller:(id)self];
 }
 
 @end
@@ -593,12 +554,12 @@ TISInputSource *_USSource() {
 
 //! @brief  마우스 이벤트를 잡을 수 있게 한다.
 - (NSUInteger)recognizedEvents:(id)sender {
-    return [self->_receiver recognizedEvents:sender];
+    return [self._receiver recognizedEvents:sender];
 }
 
 //! @brief 자판 전환을 감지한다.
 - (void)setValue:(id)value forTag:(long)tag client:(id)sender {
-    [self->_receiver setValue:value forTag:tag client:sender controller:(id)self];
+    [self._receiver setValue:value forTag:tag client:sender controller:(id)self];
 }
 
 @end

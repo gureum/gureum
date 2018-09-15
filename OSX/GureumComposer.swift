@@ -13,48 +13,50 @@
 
 import Foundation
 
-let kGureumInputSourceIdentifierQwerty = "org.youknowone.inputmethod.Gureum.qwerty"
-let kGureumInputSourceIdentifierDvorak = "org.youknowone.inputmethod.Gureum.dvorak"
-let kGureumInputSourceIdentifierDvorakQwertyCommand = "org.youknowone.inputmethod.Gureum.dvorakq"
-let kGureumInputSourceIdentifierColemak = "org.youknowone.inputmethod.Gureum.colemak"
-let kGureumInputSourceIdentifierColemakQwertyCommand = "org.youknowone.inputmethod.Gureum.colemakq"
-let kGureumInputSourceIdentifierHan2 = "org.youknowone.inputmethod.Gureum.han2"
-let kGureumInputSourceIdentifierHan2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
-let kGureumInputSourceIdentifierHan3Final = "org.youknowone.inputmethod.Gureum.han3final"
-let kGureumInputSourceIdentifierHan3FinalLoose = "org.youknowone.inputmethod.Gureum.han3finalloose"
-let kGureumInputSourceIdentifierHan390 = "org.youknowone.inputmethod.Gureum.han390"
-let kGureumInputSourceIdentifierHan390Loose = "org.youknowone.inputmethod.Gureum.han390loose"
-let kGureumInputSourceIdentifierHan3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
-let kGureumInputSourceIdentifierHan3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
-let kGureumInputSourceIdentifierHan3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
-let kGureumInputSourceIdentifierHanAhnmatae = "org.youknowone.inputmethod.Gureum.han3ahnmatae"
-let kGureumInputSourceIdentifierHanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
-let kGureumInputSourceIdentifierHan3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
-let kGureumInputSourceIdentifierHan3_2011Loose = "org.youknowone.inputmethod.Gureum.han3-2011loose"
-let kGureumInputSourceIdentifierHan3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
-let kGureumInputSourceIdentifierHan3_2012Loose = "org.youknowone.inputmethod.Gureum.han3-2012loose"
-let kGureumInputSourceIdentifierHan3FinalNoShiftCompat = "org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat"
-let kGureumInputSourceIdentifierHan3FinalNoShiftSymbol = "org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol"
-let kGureumInputSourceIdentifierHan3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
-let kGureumInputSourceIdentifierHan3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+@objc class GureumInputSourceIdentifier: NSObject {
+    @objc static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
+    @objc static let dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
+    @objc static let dvorakQwertyCommand = "org.youknowone.inputmethod.Gureum.dvorakq"
+    @objc static let colemak = "org.youknowone.inputmethod.Gureum.colemak"
+    @objc static let colemakQwertyCommand = "org.youknowone.inputmethod.Gureum.colemakq"
+    @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
+    @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
+    @objc static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    @objc static let han3FinalLoose = "org.youknowone.inputmethod.Gureum.han3finalloose"
+    @objc static let han390 = "org.youknowone.inputmethod.Gureum.han390"
+    @objc static let han390Loose = "org.youknowone.inputmethod.Gureum.han390loose"
+    @objc static let han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    @objc static let han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
+    @objc static let han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
+    @objc static let hanAhnmatae = "org.youknowone.inputmethod.Gureum.han3ahnmatae"
+    @objc static let hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
+    @objc static let han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
+    @objc static let han3_2011Loose = "org.youknowone.inputmethod.Gureum.han3-2011loose"
+    @objc static let han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
+    @objc static let han3_2012Loose = "org.youknowone.inputmethod.Gureum.han3-2012loose"
+    @objc static let han3FinalNoShiftCompat = "org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat"
+    @objc static let han3FinalNoShiftSymbol = "org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol"
+    @objc static let han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
+    @objc static let han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+}
 
 let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
-    kGureumInputSourceIdentifierQwerty : "",
-    kGureumInputSourceIdentifierHan2 : "2",
-    kGureumInputSourceIdentifierHan2Classic : "2y",
-    kGureumInputSourceIdentifierHan3Final : "3f",
-    kGureumInputSourceIdentifierHan390 : "39",
-    kGureumInputSourceIdentifierHan3NoShift : "3s",
-    kGureumInputSourceIdentifierHan3Classic : "3y",
-    kGureumInputSourceIdentifierHan3Layout2 : "32",
-    kGureumInputSourceIdentifierHanRoman : "ro",
-    kGureumInputSourceIdentifierHanAhnmatae : "ahn",
-    kGureumInputSourceIdentifierHan3FinalNoShiftCompat: "3gc",
-    kGureumInputSourceIdentifierHan3FinalNoShiftSymbol : "3gs",
-    kGureumInputSourceIdentifierHan3_2011 : "3-2011",
-    kGureumInputSourceIdentifierHan3_2012 : "3-2012",
-    kGureumInputSourceIdentifierHan3_2014 : "3-2014",
-    kGureumInputSourceIdentifierHan3_2015 : "3-2015",
+    GureumInputSourceIdentifier.qwerty : "",
+    GureumInputSourceIdentifier.han2 : "2",
+    GureumInputSourceIdentifier.han2Classic : "2y",
+    GureumInputSourceIdentifier.han3Final : "3f",
+    GureumInputSourceIdentifier.han390 : "39",
+    GureumInputSourceIdentifier.han3NoShift : "3s",
+    GureumInputSourceIdentifier.han3Classic : "3y",
+    GureumInputSourceIdentifier.han3Layout2 : "32",
+    GureumInputSourceIdentifier.hanRoman : "ro",
+    GureumInputSourceIdentifier.hanAhnmatae : "ahn",
+    GureumInputSourceIdentifier.han3FinalNoShiftCompat: "3gc",
+    GureumInputSourceIdentifier.han3FinalNoShiftSymbol : "3gs",
+    GureumInputSourceIdentifier.han3_2011 : "3-2011",
+    GureumInputSourceIdentifier.han3_2012 : "3-2012",
+    GureumInputSourceIdentifier.han3_2014 : "3-2014",
+    GureumInputSourceIdentifier.han3_2015 : "3-2015",
 ]
 
 @objcMembers class GureumComposer: CIMComposer {
@@ -181,11 +183,11 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             if self.delegate === romanComposer {
                 var lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
                 if lastHangulInputMode == nil {
-                    lastHangulInputMode = kGureumInputSourceIdentifierHan2
+                    lastHangulInputMode = GureumInputSourceIdentifier.han2
                 }
                 (sender as AnyObject).selectMode(lastHangulInputMode)
             } else {
-                (sender as AnyObject).selectMode(kGureumInputSourceIdentifierQwerty)
+                (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
             }
             manager.needsFakeComposedString = true
             return CIMInputTextProcessResult.processed
@@ -211,7 +213,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             // Vi-mode: esc로 로마자 키보드로 전환
             if GureumConfiguration.shared().romanModeByEscapeKey != 0 && (keyCode == kVK_Escape || false) {
                 self.delegate.cancelComposition()
-                (sender as AnyObject).selectMode(kGureumInputSourceIdentifierQwerty)
+                (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
         }

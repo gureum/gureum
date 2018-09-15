@@ -108,6 +108,7 @@
 		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		E54B8382214299EB00527218 /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
+		E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
 		E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
 		FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
@@ -324,7 +325,6 @@
 		38F1524C16ECF87E00FE1B4A /* hanroman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hanroman@2x.png"; path = "Icons/hanroman@2x.png"; sourceTree = "<group>"; };
 		38F1524D16ECF87E00FE1B4A /* qwerty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qwerty@2x.png"; path = "Icons/qwerty@2x.png"; sourceTree = "<group>"; };
 		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
-		38FA21D814230E1000444D67 /* GureumComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumComposer.h; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 		3B994C498AB6F1C414B12608 /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
@@ -333,6 +333,7 @@
 		AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
+		E5BB72CC214A788100E35558 /* CIMInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputController.swift; sourceTree = "<group>"; };
 		E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMApplicationDelegate.swift; sourceTree = "<group>"; };
 		E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputControllerGureum.swift; sourceTree = "<group>"; };
 		E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -527,6 +528,7 @@
 				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
 				38863C95140E669000A8ED76 /* CIMInputController.h */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
+				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
 				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
 				38162E1314126ACE0077AA2D /* CIMComposer.m */,
 				387D00041421FB6D00DAE6F4 /* CIMInputManager.h */,
@@ -631,7 +633,6 @@
 		38FA21DF14231BCC00444D67 /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				38FA21D814230E1000444D67 /* GureumComposer.h */,
 				38162D7A140F64B70077AA2D /* HangulComposer.h */,
 				38162D7B140F64B70077AA2D /* HangulComposer.m */,
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
@@ -988,6 +989,7 @@
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
 				38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */,
+				E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */,
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
@@ -1335,6 +1337,10 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${CONFIGURATION_TEMP_DIR}/OSX.build/DerivedSources",
+				);
 				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1377,6 +1383,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GureumTests/GureumTests-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${CONFIGURATION_TEMP_DIR}/OSX.build/DerivedSources",
+				);
 				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

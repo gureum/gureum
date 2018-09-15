@@ -9,9 +9,10 @@
 #import <objc/runtime.h>
 #import <XCTest/XCTest.h>
 #import "CIMCommon.h"
-#import "GureumComposer.h"
 #import "CIMInputController.h"
 #import "GureumMockObjects.h"
+
+#import "Gureum-Swift.h"
 
 
 @interface GureumTests : XCTestCase
@@ -47,7 +48,7 @@
 - (void)test2 {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan2 forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"g" key:5 modifiers:0];
         [app inputText:@"k" key:40 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -88,7 +89,7 @@
 - (void)test3final {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -129,7 +130,7 @@
 - (void)testCapslockRoman {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
 
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"r" key:15 modifiers:0];
@@ -147,7 +148,7 @@
 - (void)testCapslockHangul {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
 
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"r" key:15 modifiers:0];
@@ -169,7 +170,7 @@
 - (void)testBlock {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -193,7 +194,7 @@
 - (void)testLayoutChange {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierQwerty forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:nil key:-1 modifiers:NSAlphaShiftKeyMask];
 
         [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
@@ -217,18 +218,17 @@
 - (void)test3Number {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"K" key:40 modifiers:131072];
         XCTAssertEqualObjects(@"2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
-/*
 
 - (void)testHanjaSyllable {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -252,7 +252,7 @@
             continue; // 터미널은 한자 모드 진입이 불가
         }
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
         // hanja search mode
         [app inputText:@"\n" key:36 modifiers:524288];
         [app inputText:@"i" key:34 modifiers:0];
@@ -309,7 +309,7 @@
             continue; // 터미널은 한자 모드 진입이 불가
         }
         app.client.string = @"물 수";
-        [app.controller setValue:kGureumInputSourceIdentifierHan3Final forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
         // hanja search mode
         [app.client setSelectedRange:NSMakeRange(0, 3)];
         XCTAssertEqualObjects(@"물 수", app.client.selectedString, @"");
@@ -323,5 +323,5 @@
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
-*/
+
 @end
