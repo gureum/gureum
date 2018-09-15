@@ -30,22 +30,3 @@ FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2012Loose;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2014;
 FOUNDATION_EXTERN NSString *kGureumInputSourceIdentifierHan3_2015;
-
-@class RomanComposer;
-@class HangulComposer;
-@class HanjaComposer;
-/*!
-    @brief  구름 입력기의 합성기
-
-    입력 모드에 따라 libhangul을 이용하여 문자를 합성해 준다.
-*/
-@interface GureumComposer : CIMComposer {
-  @private
-    RomanComposer *romanComposer;
-    HangulComposer *hangulComposer;
-    HanjaComposer *hanjaComposer;
-
-    NSUInteger lastModifier;
-}
-
-@end

@@ -60,7 +60,8 @@
 @public
     CIMInputManager *manager;
 }
+@property(nonatomic, retain) CIMInputManager *manager;
 @property(nonatomic, retain) id<CIMComposerDelegate> delegate;
-@property(nonatomic, retain) NSString *inputMode;
+@property(nonatomic, retain, nonnull) NSString *inputMode;
 
 @end
