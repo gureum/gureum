@@ -11,10 +11,11 @@
 @implementation CIMComposer
 @synthesize delegate = _delegate;
 @synthesize inputMode = _inputMode;
+@synthesize manager = manager;
 
 - (void)dealloc {
     self.delegate = nil;
-    self.inputMode = nil;
+    [self->_inputMode release];
     [super dealloc];
 }
 

@@ -24,7 +24,6 @@
 - (void)updateHanjaCandidates;
 - (void)updateFromController:(id)controller;
 
-@property(nonatomic, readonly) HangulComposer *hangulComposer;
 @property(nonatomic, readonly) HGHanjaTable *characterTable, *wordTable, *reversedTable, *MSSymbolTable, *emoticonTable, *emoticonReversedTable;
 @property(nonatomic, retain) NSArray *candidates;
 @property(nonatomic, assign) BOOL mode;
