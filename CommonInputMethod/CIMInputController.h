@@ -33,6 +33,8 @@
 @property(nonatomic, readonly) id inputClient;
 @property(nonatomic, readonly) CIMComposer *composer;
 
+- (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient;
+
 @end
 
 
@@ -83,18 +85,6 @@
 //commitPendingInlineSession
 - (NSString *)markedRangeValue; // string representation of marked text
 //isTextPlaceholderAwareInputContext
-
-@end
-
-
-@interface CIMMockInputController : NSObject {
-    CIMInputReceiver *_receiver;
-}
-
-@property(readonly) CIMComposer *composer; // temp bridge
-
-- (id)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient;
-- (void)repoduceTextLog:(NSString *)text;
 
 @end
 
