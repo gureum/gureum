@@ -10,7 +10,7 @@ import Foundation
 
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
-    @objc static var _sharedInputManager = CIMInputManager()
+    @objc var _sharedInputManager: CIMInputManager?
     
     struct VersionInfo {
         var recent: String
@@ -22,6 +22,7 @@ import Foundation
     @objc override func awakeFromNib(){
         HGKeyboard.initialize()
         
+        _sharedInputManager = CIMInputManager()
         guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
             return
         }
@@ -50,7 +51,7 @@ import Foundation
     }
     
     @objc func sharedInputManager() -> CIMInputManager! {
-        return GureumAppDelegate._sharedInputManager
+        return self._sharedInputManager
     }
     
     @objc func composer(server: IMKServer, client: Any) -> CIMComposer {
