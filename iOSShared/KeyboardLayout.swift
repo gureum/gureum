@@ -281,16 +281,16 @@ class KeyboardView: UIView {
         self.spaceButton.captionLabel.text = "간격"
         self.spaceButton.keycode = UnicodeScalar(" ").value
 
-        self.nextKeyboardButton.addTarget(nil, action: "mode:", for: .touchUpInside)
-        self.deleteButton.addTarget(nil, action: "inputDelete:", for: .touchUpInside)
-        self.shiftButton.addTarget(nil, action: "shift:", for: .touchUpInside)
-        self.doneButton.addTarget(nil, action: "done:", for: .touchUpInside)
-        self.toggleKeyboardButton.addTarget(nil, action: "toggleLayout:", for: .touchUpInside)
+        self.nextKeyboardButton.addTarget(nil, action: Selector("mode:"), for: .touchUpInside)
+        self.deleteButton.addTarget(nil, action: Selector("inputDelete:"), for: .touchUpInside)
+        self.shiftButton.addTarget(nil, action: Selector("shift:"), for: .touchUpInside)
+        self.doneButton.addTarget(nil, action: Selector("done:"), for: .touchUpInside)
+        self.toggleKeyboardButton.addTarget(nil, action: Selector("toggleLayout:"), for: .touchUpInside)
 
         self.insertSubview(self.errorButton, at: 0)
         self.insertSubview(self.untouchButton, at: 0)
-        self.errorButton.addTarget(nil, action: "error:", for: .touchUpInside)
-        self.untouchButton.addTarget(nil, action: "untouch:", for: .touchUpInside)
+        self.errorButton.addTarget(nil, action: Selector("error:"), for: .touchUpInside)
+        self.untouchButton.addTarget(nil, action: Selector("untouch:"), for: .touchUpInside)
 
     }
 

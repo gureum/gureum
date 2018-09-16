@@ -568,9 +568,9 @@ class BuiltInTheme: Theme {
 class ThemeResourceCoder {
     func key() -> NSData {
         let identifier = UIDevice.current.identifierForVendor!
-        var UUIDBytes = [UInt8](repeating: 0, count: 16)
-        //identifier.getUUIDBytes(UUIDBytes as UnsafeMutablePointer<UInt8>)
-        let result = NSData(bytes: UUIDBytes, length: 16)
+        var uuidBytes = [UInt8](repeating: 0, count: 16)
+        (identifier as NSUUID).getBytes(&uuidBytes)
+        let result = NSData(bytes: uuidBytes, length: 16)
         return result
     }
 
