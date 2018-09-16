@@ -73,15 +73,10 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         }
     }
 
-    public var inputModeExchangeKey: (Int, Int) {
+    @objc public var inputModeExchangeKeyModifier: NSEvent.ModifierFlags {
         get {
-            return (self.inputModeExchangeKeyModifier, self.inputModeExchangeKeyCode)
-        }
-    }
-
-    @objc public var inputModeExchangeKeyModifier: Int {
-        get {
-            return self.integer(forKey: CIMInputModeExchangeKeyModifier)
+            let value = self.integer(forKey: CIMInputModeExchangeKeyModifier)
+            return NSEvent.ModifierFlags(rawValue: UInt(value))
         }
     }
     
@@ -90,16 +85,17 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
             return self.integer(forKey: CIMInputModeExchangeKeyCode)
         }
     }
-
-    public var inputModeHanjaKey: (Int, Int) {
+    
+    public var inputModeExchangeKey: (NSEvent.ModifierFlags, Int) {
         get {
-            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
+            return (self.inputModeExchangeKeyModifier, self.inputModeExchangeKeyCode)
         }
     }
 
-    @objc public var inputModeHanjaKeyModifier: Int {
+    @objc public var inputModeHanjaKeyModifier: NSEvent.ModifierFlags {
         get {
-            return self.integer(forKey: CIMInputModeHanjaKeyModifier)
+            let value = self.integer(forKey: CIMInputModeHanjaKeyModifier)
+            return NSEvent.ModifierFlags(rawValue: UInt(value))
         }
         set {
             return self.set(newValue, forKey: CIMInputModeHanjaKeyModifier)
@@ -112,6 +108,12 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         }
         set {
             return self.set(newValue, forKey: CIMInputModeHanjaKeyCode)
+        }
+    }
+    
+    public var inputModeHanjaKey: (NSEvent.ModifierFlags, Int) {
+        get{
+            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
         }
     }
 

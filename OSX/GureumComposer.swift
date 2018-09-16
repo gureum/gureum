@@ -159,8 +159,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return CIMInputTextProcessResult.processed
             }
         }
-       
-        if Int(inputModifier.rawValue) == configuration.inputModeExchangeKeyModifier && keyCode == configuration.inputModeExchangeKeyCode {
+
+        if inputModifier == configuration.inputModeExchangeKeyModifier && keyCode == configuration.inputModeExchangeKeyCode {
             need_exchange = true
         }
 //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
@@ -172,7 +172,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //            need_exchange = YES;
 //        }
         
-        if Int(inputModifier.rawValue) == configuration.inputModeHanjaKeyModifier && keyCode == configuration.inputModeHanjaKeyCode {
+        if inputModifier == configuration.inputModeHanjaKeyModifier && keyCode == configuration.inputModeHanjaKeyCode {
             need_hanjamode = true
         }
 //    }
