@@ -1,8 +1,16 @@
 language: objective-c
 sudo: false
 xcode_workspace: Gureum.xcworkspace
-osx_image: xcode9
+osx_image: xcode9.4
 install:
   - pod install --repo-update
-script:
-  - xcodebuild -workspace Gureum.xcworkspace -scheme OSX
+matrix:
+  include:
+    - osx_image: xcode9.4
+      xcode_sdk: macosx
+      xcode_scheme: OSX
+      xcode_destination: platform=macOS
+    #- osx_image: xcode9.4
+    # xcode_sdk: iphonesimulator
+    # xcode_scheme: App
+    # xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
