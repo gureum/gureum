@@ -63,12 +63,14 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
     @objc var romanComposer: RomanComposer
     @objc var hangulComposer: HangulComposer
     @objc var hanjaComposer: HanjaComposer
+    @objc var emoticonComposer: EmoticonComposer
 
     override init() {
         romanComposer = RomanComposer()
         hangulComposer = HangulComposer(keyboardIdentifier: "2")!
         hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
+        emoticonComposer = EmoticonComposer()
         super.init()
         self.delegate = romanComposer
     }
@@ -102,7 +104,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         let configuration = GureumConfiguration.shared()
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
-        var need_hanjamode = false
+        var delegatedComposer: CIMComposerDelegate? = nil
 //    if (string == nil) {
 //        NSUInteger modifierKey = flags & 0xff;
 //        if (self->lastModifier != 0 && modifierKey == 0) {
@@ -171,7 +173,6 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
 //            need_exchange = YES;
 //        }
-        
         if (inputModifier, keyCode) == configuration.inputModeHanjaKey {
             need_hanjamode = true
         }
@@ -201,7 +202,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         }
         
         if self.delegate === hangulComposer {
-            if need_hanjamode {
+            if delegatedComposer === hanjaComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = hangulComposer.composedString.count > 0
                 hanjaComposer.mode = !isComposing // 조합 중이 아니면 1회만 사전을 띄운다
@@ -216,6 +217,13 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
+        }
+        if delegatedComposer === emoticonComposer {
+            emoticonComposer.delegate = self.delegate
+            self.delegate = emoticonComposer
+            self.delegate.composerSelected!(self)
+            emoticonComposer.updateFromController(controller)
+            return CIMInputTextProcessResult.processed
         }
         return CIMInputTextProcessResult.notProcessed
     }
