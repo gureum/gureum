@@ -9,9 +9,9 @@
 import Foundation
 
 
-class EmojiComposer: CIMComposer {
-    // FIXME: How can i use static with _sharedEmojiTable?
-    var _sharedEmojiTable: HGHanjaTable? = nil
+class EmoticonComposer: CIMComposer {
+    // FIXME: How can i use static with _sharedEmoticonTable?
+    var _sharedEmoticonTable: HGHanjaTable? = nil
 
     var _commitString: String = ""
     var _candidates: [String] = []
@@ -24,7 +24,7 @@ class EmojiComposer: CIMComposer {
         return self.delegate
     }
 
-    override var composedString: String! {
+    override var composedString: String {
         get {
             return self._composedString
         }
@@ -33,13 +33,13 @@ class EmojiComposer: CIMComposer {
         }
     }
 
-    override var originalString: String! {
+    override var originalString: String {
         get {
             return self._bufferedString
         }
     }
 
-    override var commitString: String! {
+    override var commitString: String {
         get {
             return self._commitString
         }
@@ -48,7 +48,7 @@ class EmojiComposer: CIMComposer {
         }
     }
 
-    override func dequeueCommitString() -> String! {
+    override func dequeueCommitString() -> String {
         let dequeued = self._commitString
         self._commitString = ""
         return dequeued
@@ -104,7 +104,7 @@ class EmojiComposer: CIMComposer {
         NSLog("DEBUG 3, [candidateSelectionChanged] MSG: composedString == %@", self.composedString)
     }
 
-    func updateEmojiCandidates() {
+    func updateEmoticonCandidates() {
         // Step 1: Get string from romanComposer
         let x: String = self.romanComposer.dequeueCommitString()
         // Step 2: Show the string
@@ -114,32 +114,32 @@ class EmojiComposer: CIMComposer {
         self.composedString = originalString
         let keyword: String = originalString
 
-        NSLog("DEBUG 1, [updateEmojiCandidates] MSG: %@", originalString)
+        NSLog("DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
         if keyword.count == 0 {
             self._candidates = []
         } else {
             self._candidates = []
-            for table: HGHanjaTable in [emojiTable()!] {
-                NSLog("DEBUG 3, [updateEmojiCandidates] MSG: before hanjasByPrefixSearching")
-                NSLog("DEBUG 4, [updateEmojiCandidates] MSG: [keyword: %@]", keyword)
-                NSLog("DEBUG 14, [updateEmojiCandidates] MSG: %@", self._sharedEmojiTable.debugDescription)
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
-                NSLog("DEBUG 5, [updateEmojiCandidates] MSG: after hanjasByPrefixSearching")
+            for table: HGHanjaTable in [emoticonTable()!] {
+                NSLog("DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
+                NSLog("DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", keyword)
+                NSLog("DEBUG 14, [updateEmoticonCandidates] MSG: %@", self._sharedEmoticonTable.debugDescription)
+                let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword)
+                NSLog("DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
 
-                NSLog("DEBUG 9, [updateEmojiCandidates] MSG: count is %d", list.count)
+                NSLog("DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
                 if list.count > 0 {
                     for idx in 0...list.count-1 {
-                        let emoji = list.hanja(at: idx)
-                        if emoji == nil {
-                            NSLog("DEBUG 7, [updateEmojiCandidates] MSG: hanja is nil!")
-                        }
-                        NSLog("DEBUG 6, [updateEmojiCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        self._candidates.append(emoji!.value as String + ": " + emoji!.comment as String)
+                        let emoticon = list.hanja(at: idx)
+//                        if emoticon == nil {
+//                            NSLog("DEBUG 7, [updateEmoticonCandidates] MSG: hanja is nil!")
+//                        }
+                        NSLog("DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
+                        self._candidates.append(emoticon.value as String + ": " + emoticon.comment as String)
                     }
                 }
             }
         }
-        NSLog("DEBUG 2, [updateEmojiCandidates] MSG: %@", self.candidates)
+        NSLog("DEBUG 2, [updateEmoticonCandidates] MSG: %@", self.candidates)
     }
 
     func updateFromController(_ controller: CIMInputController) {
@@ -161,20 +161,20 @@ class EmojiComposer: CIMComposer {
             self.mode = false
         }
 
-        self.updateEmojiCandidates()
+        self.updateEmoticonCandidates()
     }
 
-    func emojiTable() -> HGHanjaTable? {
-        if self._sharedEmojiTable == nil {
+    func emoticonTable() -> HGHanjaTable? {
+        if self._sharedEmoticonTable == nil {
             let bundle: Bundle = Bundle.main
-            let path: String? = bundle.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")
+            let path: String = bundle.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")!
 
-            self._sharedEmojiTable = HGHanjaTable.init(contentOfFile: path)
+            self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path)
         }
-        return self._sharedEmojiTable
+        return self._sharedEmoticonTable
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         NSLog("DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result: CIMInputTextProcessResult = self.delegate.inputController(controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
 
@@ -224,8 +224,8 @@ class EmojiComposer: CIMComposer {
 
         NSLog("DEBUG 2, [inputController] MSG: %@", string)
         // switch for some keyCodes
-        // updateEmojiCandidates
-        self.updateEmojiCandidates()
+        // updateEmoticonCandidates
+        self.updateEmoticonCandidates()
 
         NSLog("DEBUG 3, [inputController] MSG: %@", string)
 
