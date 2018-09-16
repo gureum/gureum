@@ -13,7 +13,7 @@ import Cocoa
     /*!
      @brief  공용 입력 처리기
      */
-    @objc var sharedInputManager: CIMInputManager { get }
+    @objc var sharedInputManager: CIMInputManager! { get }
     /*!
      @brief  합성기 생성
      
@@ -21,5 +21,5 @@ import Cocoa
      */
     @objc func composer(server: IMKServer, client: Any) -> CIMComposer
     //! @brief  언어 설정에 추가될 메뉴
-    @objc var menu: NSMenu { get }
+    @objc var menu: NSMenu! { get }
 }

@@ -8,10 +8,14 @@
 
 import Foundation
 
-@objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate {
+@objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
     @objc var _sharedInputManager: CIMInputManager?
-    
+
+    @objc var sharedInputManager: CIMInputManager! {
+        return self._sharedInputManager
+    }
+
     struct VersionInfo {
         var recent: String
         var current: String
@@ -49,11 +53,7 @@ import Foundation
             }
         })
     }
-    
-    @objc func sharedInputManager() -> CIMInputManager! {
-        return self._sharedInputManager
-    }
-    
+
     @objc func composer(server: IMKServer, client: Any) -> CIMComposer {
         let composer: CIMComposer = GureumComposer()
         return composer
