@@ -25,16 +25,16 @@ class GureumTests: XCTestCase {
         // This is an example of a functional test case.
         let theme = EmbeddedTheme(name: "base")
         let trait = theme.phonePortraitConfiguration
-        let caption = trait.captionForIdentifier("test1", needsMargin: true, classes: { [trait.qwerty.key("q"), trait.qwerty.key, trait.qwerty.base, trait.common.key("q"), trait.common.key, trait.common.base ] })
-        XCTAssert(caption.position == CGPointMake(0, 4), "")
+        let caption = trait.captionForIdentifier(identifier: "test1", needsMargin: true, classes: { [trait.qwerty.key(key: "q"), trait.qwerty.key, trait.qwerty.base, trait.common.key(key: "q"), trait.common.key, trait.common.base ] })
+        XCTAssert(caption.position == CGPoint(x: 0, y: 4), "")
 
-        let function = trait.captionForIdentifier("test2", needsMargin: true, classes: { [trait.qwerty.caption("delete"), trait.qwerty.function, trait.qwerty.base, trait.common.key("delete"), trait.common.function, trait.common.base ] })
-        XCTAssert(caption.position == CGPointMake(0, 4), "")
+        let function = trait.captionForIdentifier(identifier: "test2", needsMargin: true, classes: { [trait.qwerty.caption(key: "delete"), trait.qwerty.function, trait.qwerty.base, trait.common.key(key: "delete"), trait.common.function, trait.common.base ] })
+        XCTAssert(caption.position == CGPoint(x: 0, y: 4), "")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }

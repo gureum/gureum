@@ -170,9 +170,9 @@ class InputViewController: BasicInputViewController {
             self.inputMethodView.loadCollections(traits: traits)
 
             if preferences.swipe {
-                let leftRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("leftForSwipeRecognizer:"))
+                let leftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(InputViewController.leftForSwipeRecognizer(_:)))
                 leftRecognizer.direction = .left
-                let rightRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("rightForSwipeRecognizer:"))
+                let rightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(InputViewController.rightForSwipeRecognizer(_:)))
                 rightRecognizer.direction = .right
                 self.view.addGestureRecognizer(leftRecognizer)
                 self.view.addGestureRecognizer(rightRecognizer)
