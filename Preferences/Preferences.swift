@@ -43,6 +43,17 @@ import Cocoa
         configuration.romanModeByEscapeKey = sender.integerValue
     }
     
+    @IBAction func didTapHelpShortCut(_ sender: NSButton) {
+        let helpAlert: NSAlert = {
+            let alert = NSAlert()
+            alert.messageText = "도움말"
+            alert.addButton(withTitle: "확인")
+            alert.informativeText = "Space 또는 ⇧Space 로 초기화하고 새로 설정할 수 있습니다."
+            return alert
+        }()
+        helpAlert.beginSheetModal(for: self.mainView.window!, completionHandler: nil)
+    }
+    
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return layoutTable.gureumPreferencesHangulLayouts.count
     }
