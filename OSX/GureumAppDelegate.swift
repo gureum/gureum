@@ -10,11 +10,7 @@ import Foundation
 
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
-    @objc var _sharedInputManager: CIMInputManager?
-
-    @objc var sharedInputManager: CIMInputManager! {
-        return self._sharedInputManager
-    }
+    @objc var sharedInputManager: CIMInputManager!
 
     struct VersionInfo {
         var recent: String
@@ -25,8 +21,16 @@ import Foundation
     
     @objc override func awakeFromNib(){
         HGKeyboard.initialize()
-        
-        _sharedInputManager = CIMInputManager()
+        sharedInputManager = CIMInputManager()
+        checkUpdate()
+    }
+
+    @objc func composer(server: IMKServer, client: Any) -> CIMComposer {
+        let composer: CIMComposer = GureumComposer()
+        return composer
+    }
+
+    func checkUpdate() {
         guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
             return
         }
@@ -53,17 +57,12 @@ import Foundation
             }
         })
     }
-
-    @objc func composer(server: IMKServer, client: Any) -> CIMComposer {
-        let composer: CIMComposer = GureumComposer()
-        return composer
-    }
     
     func getRecentVersion() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version.txt")!
         var request = URLRequest(url: url)
         request.timeoutInterval = 0.5
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+        request.cachePolicy = .reloadIgnoringCacheData
         guard let data = try? NSData(contentsOf: request, error: ()) else {
             return nil
         }
