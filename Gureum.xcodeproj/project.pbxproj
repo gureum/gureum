@@ -1055,7 +1055,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-framework/MASShortcut.framework",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework",
 			);
 			name = "Copy MASShortcut from Pods";
 			outputPaths = (
@@ -1063,7 +1063,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-framework/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"";
+			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
@@ -1126,7 +1126,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1135,7 +1135,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
