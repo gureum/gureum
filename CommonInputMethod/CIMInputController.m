@@ -11,7 +11,6 @@
 
 #import "CIMCommon.h"
 
-#import "CIMInputManager.h"
 #import "CIMComposer.h"
 
 #import "CIMInputController.h"
