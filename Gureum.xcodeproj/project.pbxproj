@@ -733,7 +733,6 @@
 				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
-				8A3D8D1C9CB40042C727B583 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -755,6 +754,7 @@
 				382E68601A1314D900031D1D /* Frameworks */,
 				382E68611A1314D900031D1D /* Headers */,
 				382E68621A1314D900031D1D /* Resources */,
+				8A3D8D1C9CB40042C727B583 /* Copy MASShortcut from Pods */,
 			);
 			buildRules = (
 			);
@@ -1049,22 +1049,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A3D8D1C9CB40042C727B583 /* [CP] Copy Pods Resources */ = {
+		8A3D8D1C9CB40042C727B583 /* Copy MASShortcut from Pods */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-library/MASShortcut.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-framework/MASShortcut.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "Copy MASShortcut from Pods";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh\"\n";
+			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-framework/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"";
 			showEnvVarsInLog = 0;
 		};
 		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
@@ -1072,15 +1071,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PreferencesApp-checkManifestLockResult.txt",
 			);
@@ -1130,15 +1125,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MASShortcut-framework/MASShortcut.framework",
+				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
 			);
