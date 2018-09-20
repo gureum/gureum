@@ -11,7 +11,12 @@ import PreferencePanes
 import Cocoa
 import MASShortcut
 
-@objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
+@objcMembers class GureumPreferencePane: NSPreferencePane {
+
+
+}
+
+@objcMembers class PreferenceWindowDelegate: NSObject, NSWindowDelegate, NSComboBoxDataSource {
     @IBOutlet weak var defaultInputHangulComboBox: NSComboBox!
     @IBOutlet weak var inputModeExchangeShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeHanjaShortcutView: MASShortcutView!
@@ -20,7 +25,10 @@ import MASShortcut
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
-
+    let pane: GureumPreferencePane! = nil
+    
+//    @IBOutlet var _window: NSWindow!
+    
     @IBAction func openKeyboardPreference(sender: NSControl) {
         let myAppleScript = "reveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\""
         var error: NSDictionary?
@@ -56,7 +64,7 @@ import MASShortcut
             alert.informativeText = "Space 또는 ⇧Space 로 초기화하고 새로 설정할 수 있습니다."
             return alert
         }()
-        helpAlert.beginSheetModal(for: self.mainView.window!, completionHandler: nil)
+        helpAlert.beginSheetModal(for: self.pane.mainView.window!, completionHandler: nil)
     }
     
     func numberOfItems(in comboBox: NSComboBox) -> Int {

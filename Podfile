@@ -15,6 +15,12 @@ target 'Preferences' do
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
 end
+target 'PreferencesApp' do
+    use_frameworks!
+    platform :osx, "10.10"
+    project 'Gureum.xcodeproj'
+    pod 'MASShortcut'
+end
 target 'OSXTests' do
     platform :osx, "10.10"
     project 'Gureum.xcodeproj'
