@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) CIMComposer *composer;
 
 - (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient;
-
+- (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
 @end
 
 
