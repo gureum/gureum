@@ -11,6 +11,7 @@ import Foundation
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
     @objc var sharedInputManager: CIMInputManager!
+    let configuration = GureumConfiguration.shared()
 
     struct VersionInfo {
         var recent: String
@@ -40,6 +41,9 @@ import Foundation
         guard info.download.count > 0 else {
             return
         }
+        guard info.recent != configuration.skippedVersion else {
+            return
+        }
         
         var fmt = "현재 사용하고 있는 구름 입력기는 \(info.current) 이고 최신 버전은 \(info.recent) 입니다. 업데이트는 로그아웃하거나 재부팅해야 적용됩니다."
         if info.note.count != 0 {
@@ -50,8 +54,13 @@ import Foundation
         alert.addButton(withTitle: "확인")
         alert.addButton(withTitle: "취소")
         alert.informativeText = fmt
+        alert.showsSuppressionButton = true
+        alert.suppressionButton?.title = "새로운 버전이 나올 때까지 이 메시지를 보지 않음"
         
         alert.beginSheetModalForEmptyWindow(completionHandler: {(modalResponse: NSApplication.ModalResponse) -> Void in
+            if alert.suppressionButton?.state == .on {
+                self.configuration.skippedVersion = info.recent
+            }
             if(modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn){
                 NSWorkspace.shared.open(URL(string: info.download)!)
             }
