@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane">
+        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="KJ8-tk-g3I"/>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="mYa-Fu-R5F"/>
@@ -22,7 +22,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="548"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="548"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -47,7 +47,7 @@
                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="openKeyboardPreferenceWithSender:" target="-2" id="c3x-ba-1Q5"/>
+                                                <action selector="openKeyboardPreferenceWithSender:" target="DMm-2g-KCR" id="6Ub-WI-1T5"/>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7">
@@ -73,7 +73,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapAutoSaveDefaultInputModeCheckBox:" target="-2" id="skN-e1-Mxy"/>
+                                                <action selector="didTapAutoSaveDefaultInputModeCheckBox:" target="DMm-2g-KCR" id="GE6-EJ-E6w"/>
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
@@ -84,8 +84,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </comboBoxCell>
                                             <connections>
-                                                <action selector="defaultHangulInputModeComboBoxValueChanged:" target="-2" id="cFZ-Wx-IcL"/>
-                                                <outlet property="dataSource" destination="-2" id="fZU-iH-htT"/>
+                                                <action selector="defaultHangulInputModeComboBoxValueChanged:" target="DMm-2g-KCR" id="pTd-Rx-iRd"/>
+                                                <outlet property="dataSource" destination="DMm-2g-KCR" id="zsl-GK-sqo"/>
                                             </connections>
                                         </comboBox>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
@@ -112,7 +112,7 @@
                                                 </objectValues>
                                             </comboBoxCell>
                                             <connections>
-                                                <action selector="optionKeyComboBoxValueChanged:" target="-2" id="Ru6-RL-EXA"/>
+                                                <action selector="optionKeyComboBoxValueChanged:" target="DMm-2g-KCR" id="AAm-WX-QJf"/>
                                             </connections>
                                         </comboBox>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
@@ -130,7 +130,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapRomanModeByEscapeKey:" target="-2" id="dhF-ay-k2h"/>
+                                                <action selector="didTapRomanModeByEscapeKey:" target="DMm-2g-KCR" id="CNF-QS-ke4"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
@@ -200,7 +200,7 @@
                                                 <font key="font" metaFont="systemBold" size="14"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapHelpShortCut:" target="-2" id="YVf-aH-1dp"/>
+                                                <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="Ybq-YZ-MiA"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Th5-A5-nW2">
@@ -214,7 +214,7 @@
                                                 <font key="font" metaFont="systemBold" size="14"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapHelpShortCut:" target="-2" id="vbB-8l-4ax"/>
+                                                <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="317-oa-Dh3"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K9Y-NE-xf1">
@@ -228,7 +228,7 @@
                                                 <font key="font" metaFont="systemBold" size="14"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapHelpShortCut:" target="-2" id="4CK-5P-hiD"/>
+                                                <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="mHs-pn-lTo"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xGW-W9-NIo">
@@ -242,7 +242,7 @@
                                                 <font key="font" metaFont="systemBold" size="14"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="didTapHelpShortCut:" target="-2" id="mpZ-dR-9QO"/>
+                                                <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="fS1-OB-ypB"/>
                                             </connections>
                                         </button>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="XiY-Tt-T3F" customClass="MASShortcutView">
@@ -344,7 +344,7 @@
                             <rect key="frame" x="0.0" y="284" width="400" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.064999999999999947" horizontal="NO" id="E1U-9N-bFJ">
                             <rect key="frame" x="384" y="0.0" width="16" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -359,5 +359,11 @@
             </view>
             <point key="canvasLocation" x="-214" y="33"/>
         </window>
+        <customObject id="DMm-2g-KCR" customClass="PreferenceWindowDelegate" customModule="GureumPreferences" customModuleProvider="target">
+            <connections>
+                <outlet property="_window" destination="F0z-JX-Cv5" id="Eiz-kR-boc"/>
+                <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
+            </connections>
+        </customObject>
     </objects>
 </document>
