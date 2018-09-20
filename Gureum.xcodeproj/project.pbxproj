@@ -105,6 +105,7 @@
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4566647A80A740283CE070C9 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994C498AB6F1C414B12608 /* libPods-OSX.a */; };
+		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
 		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		E54B8382214299EB00527218 /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
@@ -327,9 +328,12 @@
 		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 		3B994C498AB6F1C414B12608 /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		4F1238C7C58357731B8AE5B9 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
+		8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
+		AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
 		AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +590,7 @@
 				38863C65140E64EB00A8ED76 /* Other Frameworks */,
 				3B994C498AB6F1C414B12608 /* libPods-OSX.a */,
 				E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */,
+				44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -649,6 +655,8 @@
 				60EF36B9B3B06EE1D160329E /* Pods-OSX.release.xcconfig */,
 				AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */,
 				4F1238C7C58357731B8AE5B9 /* Pods-OSXTests.release.xcconfig */,
+				AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */,
+				8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -680,6 +688,7 @@
 				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
+				8A3D8D1C9CB40042C727B583 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -696,6 +705,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382E68711A1314D900031D1D /* Build configuration list for PBXNativeTarget "Preferences" */;
 			buildPhases = (
+				7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */,
 				382E685F1A1314D900031D1D /* Sources */,
 				382E68601A1314D900031D1D /* Frameworks */,
 				382E68611A1314D900031D1D /* Headers */,
@@ -739,7 +749,6 @@
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
-						DevelopmentTeam = 9384JEL3M9;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -752,7 +761,6 @@
 					};
 					382E68631A1314D900031D1D = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 9384JEL3M9;
 						LastSwiftMigration = "";
 					};
 					38BFE7F918B45419004B2B2E = {
@@ -918,7 +926,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig";
+			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig\n";
 		};
 		38E9024E21344640005DF76A /* Print environment variables */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -933,6 +941,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "";
+		};
+		7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Preferences-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A3D8D1C9CB40042C727B583 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut-library/MASShortcut.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSX/Pods-OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1117,8 +1161,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1154,6 +1200,7 @@
 		};
 		382E68721A1314D900031D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1191,6 +1238,7 @@
 		};
 		382E68731A1314D900031D1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1202,6 +1250,7 @@
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

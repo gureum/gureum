@@ -7,6 +7,13 @@ target 'OSX' do
     pod 'FoundationExtension', '>= 1.3.1'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'MASShortcut'
+end
+target 'Preferences' do
+    use_frameworks!
+    platform :osx, "10.10"
+    project 'Gureum.xcodeproj'
+    pod 'MASShortcut'
 end
 target 'OSXTests' do
     platform :osx, "10.10"

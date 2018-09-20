@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,11 +10,15 @@
             <connections>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="KJ8-tk-g3I"/>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="mYa-Fu-R5F"/>
+                <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="DEA-qu-oKO"/>
+                <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="P94-Zj-7ft"/>
+                <outlet property="inputModeHanjaShortcutView" destination="H7u-hL-ncz" id="exc-2d-l3Z"/>
+                <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="B8V-7t-gJe"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="≪ do not localize ≫" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="PrefPane">
+        <window title="≪ do not localize ≫" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="548"/>
@@ -161,58 +165,12 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nDT-hU-PYh">
-                                            <rect key="frame" x="176" y="160" width="150" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="2mW-BG-RPd"/>
-                                                <constraint firstAttribute="height" constant="22" id="NlN-GY-eji"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="9Yp-U6-kmh">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="allowedFlags">
-                                                        <real key="value" value="10354688"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="requiredFlags">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Whp-xY-Myz">
                                             <rect key="frame" x="33" y="132" width="68" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한자 단축키:" id="xOE-ud-vbw">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-qv-gT8">
-                                            <rect key="frame" x="176" y="130" width="150" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="S9S-AC-k64"/>
-                                                <constraint firstAttribute="height" constant="22" id="egN-BK-lsH"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="ghR-JZ-0cW">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="allowedFlags">
-                                                        <real key="value" value="10354688"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="requiredFlags">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-87-FKK">
@@ -223,58 +181,12 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xEj-z8-tUI">
-                                            <rect key="frame" x="176" y="98" width="150" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="OyQ-R0-qru"/>
-                                                <constraint firstAttribute="width" constant="150" id="wp8-yT-56j"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="JLO-Sm-cQE">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="allowedFlags">
-                                                        <real key="value" value="10354688"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="requiredFlags">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BHm-Gy-NR7">
                                             <rect key="frame" x="33" y="66" width="127" height="20"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한국어로 바꾸기 단축키:" id="TQ3-aV-8d6">
                                                 <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7AT-mW-xaP">
-                                            <rect key="frame" x="176" y="65" width="150" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="BSj-6e-6tB"/>
-                                                <constraint firstAttribute="width" constant="150" id="FSQ-9C-9PX"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="oLw-ub-moF">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="allowedFlags">
-                                                        <real key="value" value="10354688"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="requiredFlags">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QYr-aQ-b5O">
@@ -333,24 +245,52 @@
                                                 <action selector="didTapHelpShortCut:" target="-2" id="mpZ-dR-9QO"/>
                                             </connections>
                                         </button>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="XiY-Tt-T3F" customClass="MASShortcutView">
+                                            <rect key="frame" x="176" y="160" width="150" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="33S-IG-6rH"/>
+                                                <constraint firstAttribute="width" constant="150" id="RPf-wI-A0W"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="H7u-hL-ncz" customClass="MASShortcutView">
+                                            <rect key="frame" x="176" y="130" width="150" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="red-Et-F2U"/>
+                                                <constraint firstAttribute="height" constant="22" id="xak-t4-2LT"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="fCD-Cp-FQV" customClass="MASShortcutView">
+                                            <rect key="frame" x="176" y="98" width="150" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="lj8-e3-oz2"/>
+                                                <constraint firstAttribute="width" constant="150" id="sCI-eM-pKc"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZkS-XC-ybl" customClass="MASShortcutView">
+                                            <rect key="frame" x="176" y="65" width="150" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="UvI-vJ-gJa"/>
+                                                <constraint firstAttribute="width" constant="150" id="uwV-7f-e2L"/>
+                                            </constraints>
+                                        </customView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="centerY" secondItem="k0S-fI-Ly1" secondAttribute="centerY" id="0Te-K8-lNc"/>
-                                        <constraint firstItem="8Et-qv-gT8" firstAttribute="centerY" secondItem="Whp-xY-Myz" secondAttribute="centerY" id="2cf-es-Htr"/>
-                                        <constraint firstItem="QYr-aQ-b5O" firstAttribute="leading" secondItem="nDT-hU-PYh" secondAttribute="trailing" constant="6" id="41Q-AU-qSX"/>
-                                        <constraint firstItem="nDT-hU-PYh" firstAttribute="leading" secondItem="0Hf-Gu-mlf" secondAttribute="trailing" constant="40" id="4vj-w1-INi"/>
                                         <constraint firstItem="k0S-fI-Ly1" firstAttribute="top" secondItem="qIw-na-Nz1" secondAttribute="bottom" constant="20" id="57O-DJ-35f"/>
+                                        <constraint firstItem="xGW-W9-NIo" firstAttribute="centerY" secondItem="H7u-hL-ncz" secondAttribute="centerY" id="5RJ-4a-JbQ"/>
                                         <constraint firstItem="F1x-Bk-yYe" firstAttribute="leading" secondItem="yjR-ur-FpL" secondAttribute="trailing" constant="127" id="6aB-Xo-xAu"/>
                                         <constraint firstItem="0Hf-Gu-mlf" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="35" id="6cg-ry-FXC"/>
                                         <constraint firstItem="BHm-Gy-NR7" firstAttribute="top" secondItem="BnJ-87-FKK" secondAttribute="bottom" constant="13" id="6mv-aD-AID"/>
                                         <constraint firstItem="tMq-UC-GBP" firstAttribute="centerY" secondItem="DRr-ZG-wMG" secondAttribute="centerY" id="6op-VP-qXp"/>
+                                        <constraint firstItem="QYr-aQ-b5O" firstAttribute="centerY" secondItem="XiY-Tt-T3F" secondAttribute="centerY" id="6xs-VK-Htk"/>
                                         <constraint firstAttribute="trailing" secondItem="tMq-UC-GBP" secondAttribute="trailing" constant="25" id="7Dz-hI-Rub"/>
                                         <constraint firstItem="BnJ-87-FKK" firstAttribute="top" secondItem="Whp-xY-Myz" secondAttribute="bottom" constant="13" id="8s9-Kj-NxS"/>
+                                        <constraint firstItem="ZkS-XC-ybl" firstAttribute="centerY" secondItem="BHm-Gy-NR7" secondAttribute="centerY" id="CdO-y5-PKa"/>
                                         <constraint firstItem="xGW-W9-NIo" firstAttribute="leading" secondItem="QYr-aQ-b5O" secondAttribute="leading" id="DtR-zP-B2A"/>
                                         <constraint firstItem="DRr-ZG-wMG" firstAttribute="top" secondItem="Mwx-RP-qRv" secondAttribute="top" constant="15" id="FHf-Pb-bI9"/>
-                                        <constraint firstItem="nDT-hU-PYh" firstAttribute="centerY" secondItem="0Hf-Gu-mlf" secondAttribute="centerY" id="FUR-9K-kNU"/>
                                         <constraint firstItem="BHm-Gy-NR7" firstAttribute="leading" secondItem="BnJ-87-FKK" secondAttribute="leading" id="GCi-0Z-dgU"/>
-                                        <constraint firstItem="xGW-W9-NIo" firstAttribute="centerY" secondItem="8Et-qv-gT8" secondAttribute="centerY" id="HYz-td-Vp3"/>
+                                        <constraint firstItem="fCD-Cp-FQV" firstAttribute="leading" secondItem="H7u-hL-ncz" secondAttribute="leading" id="GdN-hT-W9e"/>
+                                        <constraint firstItem="K9Y-NE-xf1" firstAttribute="centerY" secondItem="ZkS-XC-ybl" secondAttribute="centerY" id="Oht-bc-TX2"/>
                                         <constraint firstItem="DRr-ZG-wMG" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="20" id="QDY-2R-DUr"/>
                                         <constraint firstItem="BnJ-87-FKK" firstAttribute="leading" secondItem="Whp-xY-Myz" secondAttribute="leading" id="QNk-Tu-erb"/>
                                         <constraint firstItem="Whp-xY-Myz" firstAttribute="top" secondItem="0Hf-Gu-mlf" secondAttribute="bottom" constant="13" id="QuN-4v-afr"/>
@@ -359,10 +299,10 @@
                                         <constraint firstItem="Th5-A5-nW2" firstAttribute="leading" secondItem="xGW-W9-NIo" secondAttribute="leading" id="Su8-Vo-CfM"/>
                                         <constraint firstItem="K9Y-NE-xf1" firstAttribute="leading" secondItem="Th5-A5-nW2" secondAttribute="leading" id="V27-NH-XuN"/>
                                         <constraint firstAttribute="height" constant="500" id="Vvm-rZ-vgV"/>
-                                        <constraint firstItem="xEj-z8-tUI" firstAttribute="centerY" secondItem="BnJ-87-FKK" secondAttribute="centerY" id="Y9h-FK-tD7"/>
-                                        <constraint firstItem="7AT-mW-xaP" firstAttribute="leading" secondItem="xEj-z8-tUI" secondAttribute="leading" id="YUS-LS-41R"/>
+                                        <constraint firstItem="fCD-Cp-FQV" firstAttribute="centerY" secondItem="BnJ-87-FKK" secondAttribute="centerY" id="X6j-zG-cDO"/>
+                                        <constraint firstItem="ZkS-XC-ybl" firstAttribute="leading" secondItem="fCD-Cp-FQV" secondAttribute="leading" id="YB4-re-dpO"/>
                                         <constraint firstItem="0Hf-Gu-mlf" firstAttribute="top" secondItem="a8y-l9-yXh" secondAttribute="bottom" constant="12" id="ZDx-2z-uIw"/>
-                                        <constraint firstItem="xEj-z8-tUI" firstAttribute="leading" secondItem="8Et-qv-gT8" secondAttribute="leading" id="Zrq-Fd-Zha"/>
+                                        <constraint firstItem="QYr-aQ-b5O" firstAttribute="leading" secondItem="XiY-Tt-T3F" secondAttribute="trailing" constant="6" id="ZUN-AS-2tV"/>
                                         <constraint firstItem="yjR-ur-FpL" firstAttribute="leading" secondItem="DRr-ZG-wMG" secondAttribute="leading" id="akz-aO-3go"/>
                                         <constraint firstItem="a8y-l9-yXh" firstAttribute="top" secondItem="Wjk-Ru-yFr" secondAttribute="bottom" constant="20" id="biz-35-eBA"/>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="width" secondItem="F1x-Bk-yYe" secondAttribute="width" id="cY6-xh-Boc"/>
@@ -370,22 +310,22 @@
                                         <constraint firstItem="qIw-na-Nz1" firstAttribute="leading" secondItem="YGK-Vi-f1X" secondAttribute="leading" id="ctx-3Q-q9m"/>
                                         <constraint firstItem="F1x-Bk-yYe" firstAttribute="centerY" secondItem="YGK-Vi-f1X" secondAttribute="centerY" id="ew1-Ny-pJU"/>
                                         <constraint firstItem="a8y-l9-yXh" firstAttribute="leading" secondItem="yjR-ur-FpL" secondAttribute="leading" id="fFJ-g1-pXA"/>
-                                        <constraint firstItem="QYr-aQ-b5O" firstAttribute="centerY" secondItem="nDT-hU-PYh" secondAttribute="centerY" id="fo2-qz-XYX"/>
                                         <constraint firstItem="JId-gg-7RS" firstAttribute="leading" secondItem="BHm-Gy-NR7" secondAttribute="leading" id="gGM-x0-M7L"/>
+                                        <constraint firstItem="XiY-Tt-T3F" firstAttribute="centerY" secondItem="0Hf-Gu-mlf" secondAttribute="centerY" id="gWE-Rr-RbF"/>
                                         <constraint firstItem="qIw-na-Nz1" firstAttribute="top" secondItem="F1x-Bk-yYe" secondAttribute="bottom" constant="20" id="jp1-Zd-tum"/>
-                                        <constraint firstItem="8Et-qv-gT8" firstAttribute="leading" secondItem="nDT-hU-PYh" secondAttribute="leading" id="kmG-Ly-9Mi"/>
                                         <constraint firstItem="Whp-xY-Myz" firstAttribute="leading" secondItem="0Hf-Gu-mlf" secondAttribute="leading" id="kqv-Wg-Y65"/>
                                         <constraint firstItem="kC8-kH-2z7" firstAttribute="top" secondItem="tMq-UC-GBP" secondAttribute="bottom" constant="15" id="lPc-J7-au1"/>
                                         <constraint firstItem="JId-gg-7RS" firstAttribute="top" secondItem="BHm-Gy-NR7" secondAttribute="bottom" constant="13" id="ly6-pW-uPc"/>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="mfb-BC-6vA"/>
-                                        <constraint firstItem="Th5-A5-nW2" firstAttribute="centerY" secondItem="xEj-z8-tUI" secondAttribute="centerY" id="nYi-2P-4iJ"/>
                                         <constraint firstItem="yjR-ur-FpL" firstAttribute="top" secondItem="kC8-kH-2z7" secondAttribute="bottom" constant="15" id="oFh-Gk-Imw"/>
+                                        <constraint firstItem="Th5-A5-nW2" firstAttribute="centerY" secondItem="fCD-Cp-FQV" secondAttribute="centerY" id="qw7-bG-iKh"/>
+                                        <constraint firstItem="H7u-hL-ncz" firstAttribute="leading" secondItem="XiY-Tt-T3F" secondAttribute="leading" id="sSO-6O-DhT"/>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="height" secondItem="F1x-Bk-yYe" secondAttribute="height" id="tL3-9T-oNf"/>
                                         <constraint firstItem="Wjk-Ru-yFr" firstAttribute="top" secondItem="X51-4X-EIq" secondAttribute="bottom" constant="20" id="tuO-ez-ybx"/>
-                                        <constraint firstItem="K9Y-NE-xf1" firstAttribute="centerY" secondItem="7AT-mW-xaP" secondAttribute="centerY" id="vpP-52-Wvg"/>
+                                        <constraint firstItem="XiY-Tt-T3F" firstAttribute="leading" secondItem="0Hf-Gu-mlf" secondAttribute="trailing" constant="40" id="u6R-iQ-oC7"/>
+                                        <constraint firstItem="H7u-hL-ncz" firstAttribute="centerY" secondItem="Whp-xY-Myz" secondAttribute="centerY" id="v5B-Ol-hkn"/>
                                         <constraint firstItem="YGK-Vi-f1X" firstAttribute="top" secondItem="yjR-ur-FpL" secondAttribute="bottom" constant="15" id="wFz-zO-Wzu"/>
                                         <constraint firstItem="k0S-fI-Ly1" firstAttribute="leading" secondItem="qIw-na-Nz1" secondAttribute="leading" id="xpn-A0-yA7"/>
-                                        <constraint firstItem="7AT-mW-xaP" firstAttribute="centerY" secondItem="BHm-Gy-NR7" secondAttribute="centerY" id="yl4-Hw-FsX"/>
                                     </constraints>
                                 </view>
                             </subviews>

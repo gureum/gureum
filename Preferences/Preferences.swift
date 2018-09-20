@@ -9,10 +9,15 @@
 import Foundation
 import PreferencePanes
 import Cocoa
-
+import MASShortcut
 
 @objcMembers class GureumPreferencePane: NSPreferencePane, NSComboBoxDataSource {
     @IBOutlet weak var defaultInputHangulComboBox: NSComboBox!
+    @IBOutlet weak var inputModeExchangeShortcutView: MASShortcutView!
+    @IBOutlet weak var inputModeHanjaShortcutView: MASShortcutView!
+    @IBOutlet weak var inputModeEnglishShortcutView: MASShortcutView!
+    @IBOutlet weak var inputModeKoreanShortcutView: MASShortcutView!
+    
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
 

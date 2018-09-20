@@ -23,6 +23,7 @@ PODS:
   - GlobalActivityIndicatorView (0.1.1):
     - cdebug (~> 1.0)
   - GoogleMobileAds (7.8.0)
+  - MASShortcut (2.3.6)
 
 DEPENDENCIES:
   - cdebug
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - FoundationExtension (>= 1.3.1)
   - GlobalActivityIndicatorView (>= 0.1.1)
   - GoogleMobileAds
+  - MASShortcut
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -40,6 +42,7 @@ SPEC REPOS:
     - FoundationExtension
     - GlobalActivityIndicatorView
     - GoogleMobileAds
+    - MASShortcut
 
 SPEC CHECKSUMS:
   cdebug: a9082b29d17cf592c7441a6bb78ce33b2b0ca8db
@@ -48,7 +51,8 @@ SPEC CHECKSUMS:
   FoundationExtension: 2dd5b23bc43f44da58e4592655dc86888cd46ea9
   GlobalActivityIndicatorView: 012695aa501b1476325b2076f522cc61c539ed04
   GoogleMobileAds: c79931d6eef16b1e4c35d331cf23c47e0dd490d2
+  MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
 
-PODFILE CHECKSUM: 2a7cbb42be7309b0003cabc6824b6bd0a193176f
+PODFILE CHECKSUM: edd639c7f32fdb60a4a0a512cf5704a7840694d3
 
 COCOAPODS: 1.5.3
