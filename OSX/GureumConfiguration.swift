@@ -31,6 +31,7 @@ var CIMSharedInputManager = "CIMSharedInputManager"
 var CIMAutosaveDefaultInputMode = "CIMAutosaveDefaultInputMode"
 var CIMRomanModeByEscapeKey = "CIMRomanModeByEscapeKey"
 var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
+var SkippedVersion = "SkippedVersion"
 
 
 @objc class GureumConfiguration: UserDefaults {
@@ -132,6 +133,15 @@ var CIMShowsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
         }
         set {
             return self.set(newValue, forKey: CIMAutosaveDefaultInputMode)
+        }
+    }
+    
+    public var skippedVersion: String?{
+        get {
+            return self.string(forKey: SkippedVersion)
+        }
+        set {
+            return self.set(newValue, forKey: SkippedVersion)
         }
     }
 
