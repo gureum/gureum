@@ -38,7 +38,7 @@ enum GureumConfigurationName: String {
 }
 
 
-@objc class GureumConfiguration: UserDefaults {
+@objc public class GureumConfiguration: UserDefaults {
 
     init() {
         super.init(suiteName: "org.youknowone.Gureum")!
