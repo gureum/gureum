@@ -34,6 +34,7 @@ class HangulComposerCombination {
 @objcMembers public class HangulComposer: NSObject, CIMComposerDelegate {
     let _inputContext: HGInputContext
     var _commitString: String
+    let configuration = GureumConfiguration.shared()
     
     init?(keyboardIdentifier: String) {
         self._commitString = String()
@@ -88,6 +89,15 @@ class HangulComposerCombination {
         let UCSString = self._inputContext.commitUCSString!
         // dassert(UCSString);
         let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
+        
+        if configuration.hangulWonCurrencySymbolForBackQuote {
+            let backQuote = 50
+            if keyCode == backQuote && string == recentCommitString {
+                self._commitString += "₩"
+                return CIMInputTextProcessResult.processed
+            }
+        }
+        
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
