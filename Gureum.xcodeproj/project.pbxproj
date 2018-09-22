@@ -11,6 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 38E9024D21344637005DF76A /* Build configuration list for PBXAggregateTarget "ScriptSupport" */;
 			buildPhases = (
+				382AF2C12156269F00701F90 /* Generate Version.xcconfig */,
 				38E9024E21344640005DF76A /* Print environment variables */,
 			);
 			dependencies = (
@@ -131,6 +132,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 382707E41F573F1D00658B6B;
 			remoteInfo = HangulTests;
+		};
+		382AF2C92156284200701F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38E9024821344637005DF76A;
+			remoteInfo = ScriptSupport;
+		};
+		382AF2CD2156284800701F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38E9024821344637005DF76A;
+			remoteInfo = ScriptSupport;
 		};
 		382E68741A13153300031D1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -724,7 +739,6 @@
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
 				D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */,
-				388FD025175ED98E00469B76 /* Run Version Script */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
@@ -737,6 +751,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				382AF2CA2156284200701F90 /* PBXTargetDependency */,
 				382E68751A13153300031D1D /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 			);
@@ -759,6 +774,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				382AF2CE2156284800701F90 /* PBXTargetDependency */,
 			);
 			name = Preferences;
 			productName = Preferences;
@@ -975,6 +991,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		382AF2C12156269F00701F90 /* Generate Version.xcconfig */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Version.xcconfig";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig\n";
+		};
 		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1003,20 +1037,6 @@
 			shellPath = /bin/sh;
 			shellScript = "./Pods/Fabric/run 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1";
 		};
-		388FD025175ED98E00469B76 /* Run Version Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Version Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig\n";
-		};
 		38E9024E21344640005DF76A /* Print environment variables */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1029,7 +1049,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1200,6 +1220,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		382AF2CA2156284200701F90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38E9024821344637005DF76A /* ScriptSupport */;
+			targetProxy = 382AF2C92156284200701F90 /* PBXContainerItemProxy */;
+		};
+		382AF2CE2156284800701F90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38E9024821344637005DF76A /* ScriptSupport */;
+			targetProxy = 382AF2CD2156284800701F90 /* PBXContainerItemProxy */;
+		};
 		382E68751A13153300031D1D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 382E68631A1314D900031D1D /* Preferences */;
