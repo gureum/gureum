@@ -324,4 +324,31 @@
     }
 }
 
+- (void)testBackQuote2 {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"`" key:50 modifiers:0];
+        XCTAssertEqualObjects(@"₩", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+    }
+}
+
+- (void)testBackQuote3Final {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"`" key:50 modifiers:0];
+        XCTAssertEqualObjects(@"*", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+    }
+}
+
+- (void)testBackQuoteQwerty {
+    for (VirtualApp *app in self.apps) {
+        app.client.string = @"";
+        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"`" key:50 modifiers:0];
+        XCTAssertEqualObjects(@"`", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+    }
+}
+
 @end
