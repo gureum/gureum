@@ -324,7 +324,7 @@
     }
 }
 
-- (void)testBackQuote2 {
+- (void)testBackQuoteHan2 {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
@@ -333,7 +333,7 @@
     }
 }
 
-- (void)testBackQuote3Final {
+- (void)testBackQuoteHan3Final {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];

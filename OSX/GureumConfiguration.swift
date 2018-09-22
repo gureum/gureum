@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-enum GureumConfiguraionName: String {
+enum GureumConfigurationName: String {
     case lastHangulInputMode = "CIMLastHangulInputMode"
     
     case leftCommandKeyShortcutBehavior = "CIMLeftCommandKeyShortcutBehavior"
@@ -33,6 +33,7 @@ enum GureumConfiguraionName: String {
     case romanModeByEscapeKey = "CIMRomanModeByEscapeKey"
     case showsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
     case skippedVersion = "SkippedVersion"
+    case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
 }
 
 
@@ -41,51 +42,52 @@ enum GureumConfiguraionName: String {
     init() {
         super.init(suiteName: "org.youknowone.Gureum")!
         self.register(defaults: [
-            GureumConfiguraionName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
-            GureumConfiguraionName.inputModeExchangeKeyCode.rawValue: 0x31,
-            GureumConfiguraionName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
-            GureumConfiguraionName.inputModeHanjaKeyCode.rawValue: 0x24,
-            GureumConfiguraionName.autosaveDefaultInputMode.rawValue: true,
+            GureumConfigurationName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
+            GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
+            GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
+            GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
+            GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
+            GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
         ])
     }
 
     @objc public var lastHangulInputMode: String? {
         get {
-            return self.string(forKey: GureumConfiguraionName.lastHangulInputMode.rawValue)
+            return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.lastHangulInputMode.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
         }
     }
 
     @objc public var optionKeyBehavior: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.optionKeyBehavior.rawValue)
+            return self.integer(forKey: GureumConfigurationName.optionKeyBehavior.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.optionKeyBehavior.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.optionKeyBehavior.rawValue)
         }
     }
 
     @objc public var showsInputForHanjaCandidates: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.showsInputForHanjaCandidates.rawValue)
+            return self.integer(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.showsInputForHanjaCandidates.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
     }
 
     @objc public var inputModeExchangeKeyModifier: NSEvent.ModifierFlags {
         get {
-            let value = self.integer(forKey: GureumConfiguraionName.inputModeExchangeKeyModifier.rawValue)
+            let value = self.integer(forKey: GureumConfigurationName.inputModeExchangeKeyModifier.rawValue)
             return NSEvent.ModifierFlags(rawValue: UInt(value))
         }
     }
     
     @objc public var inputModeExchangeKeyCode: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.inputModeExchangeKeyCode.rawValue)
+            return self.integer(forKey: GureumConfigurationName.inputModeExchangeKeyCode.rawValue)
         }
     }
     
@@ -97,20 +99,20 @@ enum GureumConfiguraionName: String {
 
     @objc public var inputModeHanjaKeyModifier: NSEvent.ModifierFlags {
         get {
-            let value = self.integer(forKey: GureumConfiguraionName.inputModeHanjaKeyModifier.rawValue)
+            let value = self.integer(forKey: GureumConfigurationName.inputModeHanjaKeyModifier.rawValue)
             return NSEvent.ModifierFlags(rawValue: UInt(value))
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.inputModeHanjaKeyModifier.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.inputModeHanjaKeyModifier.rawValue)
         }
     }
 
     @objc public var inputModeHanjaKeyCode: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.inputModeHanjaKeyCode.rawValue)
+            return self.integer(forKey: GureumConfigurationName.inputModeHanjaKeyCode.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.inputModeHanjaKeyCode.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.inputModeHanjaKeyCode.rawValue)
         }
     }
     
@@ -122,28 +124,37 @@ enum GureumConfiguraionName: String {
 
     @objc public var romanModeByEscapeKey: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.romanModeByEscapeKey.rawValue);
+            return self.integer(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.romanModeByEscapeKey.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
     }
 
     @objc public var autosaveDefaultInputMode: Int {
         get {
-            return self.integer(forKey: GureumConfiguraionName.autosaveDefaultInputMode.rawValue);
+            return self.integer(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.autosaveDefaultInputMode.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue)
         }
     }
     
     public var skippedVersion: String?{
         get {
-            return self.string(forKey: GureumConfiguraionName.skippedVersion.rawValue)
+            return self.string(forKey: GureumConfigurationName.skippedVersion.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfiguraionName.skippedVersion.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.skippedVersion.rawValue)
+        }
+    }
+    
+    public var hangulWonCurrencySymbolForBackQuote: Bool {
+        get {
+            return self.bool(forKey: GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue)
         }
     }
 
