@@ -830,7 +830,7 @@
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -842,7 +842,7 @@
 					};
 					382E68631A1314D900031D1D = {
 						CreatedOnToolsVersion = 6.1;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1000;
 					};
 					386ECB7E21537DE70060D9BE = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1323,7 +1323,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1366,7 +1366,7 @@
 				PRODUCT_NAME = Gureum;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1405,7 +1405,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Debug;
@@ -1438,7 +1438,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Release;
