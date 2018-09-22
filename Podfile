@@ -23,8 +23,6 @@ end
 target 'OSXTests' do
     platform :osx, "10.10"
     project 'Gureum.xcodeproj'
-    pod 'cdebug'
-    pod 'FoundationExtension', '>= 1.3.1'
 end
 
 target :'App' do
