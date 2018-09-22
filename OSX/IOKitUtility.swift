@@ -33,6 +33,10 @@ class IOKitError: Error {
             return state
         }
     }
+    
+    @objc func setCapsLockLed(_ state: Bool) {
+        IOHIDSetModifierLockState(self.id, Int32(kIOHIDCapsLockState), state);
+    }
 }
 
 @objcMembers class IOService: NSObject {
