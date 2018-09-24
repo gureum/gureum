@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TestWindowController.swift
 //  PreferencesApp
 //
 //  Created by Jeong YunWon on 2018. 9. 20..
@@ -10,6 +10,8 @@ import Cocoa
 
 
 class TestWindowController: NSWindowController {
+    
+    var windowDelegate: Any! = nil  // hold a reference not to deinit delegate object
     
     override func windowDidLoad() {
         var _objects: NSArray? = nil
@@ -32,6 +34,7 @@ class TestWindowController: NSWindowController {
             }
             window.showsResizeIndicator = true
             self.window = window
+            self.windowDelegate = window.delegate
             return
         }
     }
