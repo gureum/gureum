@@ -12,13 +12,12 @@
 
 - (void)beginSheetModalForEmptyWindowWithCompletionHandler:(void (^)(NSModalResponse))handler {
     NSWindow *window = nil;
-    [self beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:[handler retain]];
+    [self beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge_retained void *)handler];
 }
 
 - (void)alertDidEnd:(NSAlert *)alert returnCode:(NSModalResponse)returnCode contextInfo:(void *)contextInfo {
-    void (^handler)(NSModalResponse) = contextInfo;
+    void (^handler)(NSModalResponse) = (__bridge_transfer void (^)(NSModalResponse))(contextInfo);
     handler(returnCode);
-    [handler release];
 }
 
 @end

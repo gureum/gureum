@@ -8,16 +8,12 @@
 
 #include "CIMComposer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation CIMComposer
 @synthesize delegate = _delegate;
 @synthesize inputMode = _inputMode;
 @synthesize manager = manager;
-
-- (void)dealloc {
-    self.delegate = nil;
-    [self->_inputMode release];
-    [super dealloc];
-}
 
 #pragma - delegate
 
@@ -49,7 +45,7 @@
     return _delegate.hasCandidates;
 }
 
-- (NSArray *)candidates {
+- (nullable NSArray *)candidates {
     return _delegate.candidates;
 }
 
@@ -70,3 +66,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

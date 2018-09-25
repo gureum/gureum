@@ -20,7 +20,11 @@
     @warning    이 클래스에는 IMKServer, 클라이언트와 독립적인 코드는 **절대로** 쓰지 않는다. 디버그하기 화난다.
 */
 
+@import InputMethodKit;
+
 #import "CIMCommon.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CIMComposer;
 
@@ -42,7 +46,7 @@
 
 @interface CIMInputController : IMKInputController {
     CIMInputReceiver *_receiver;
-    IOConnect *_io_connect;
+    IOConnect *_ioConnect;
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge
@@ -89,3 +93,5 @@
 @end
 
 #endif
+
+NS_ASSUME_NONNULL_END

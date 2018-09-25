@@ -8,6 +8,8 @@
 
 #import "CIMCommon.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 const char CIMKeyMapLower[CIMKeyMapSize] = {
     'a', 's', 'd', 'f', 'h', 'g', 'z', 'x',
     'c', 'v',   0, 'b', 'q', 'w', 'e', 'r',
@@ -26,3 +28,5 @@ const char CIMKeyMapUpper[CIMKeyMapSize] = {
     'K', ':', '|', '<', '?', 'N', 'M', '>',
       0,   0, '~',
 };
+
+NS_ASSUME_NONNULL_END

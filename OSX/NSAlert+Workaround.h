@@ -6,7 +6,8 @@
 //  Copyright © 2018년 youknowone.org. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import AppKit;
 
 @interface NSAlert (Workaround)
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <Carbon/Carbon.h>
+@import Carbon;
 
 #define TISPropertyInputSourceCategory          (NSString *)kTISPropertyInputSourceCategory
 #define TISPropertyInputSourceType              (NSString *)kTISPropertyInputSourceType
@@ -40,6 +40,7 @@
 #define TISNotifySelectedKeyboardInputSourceChanged (NSString *)kTISNotifySelectedKeyboardInputSourceChanged
 #define TISNotifyEnabledKeyboardInputSourcesChanged (NSString *)kTISNotifyEnabledKeyboardInputSourcesChanged
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TISInputSource : NSObject {
     TISInputSourceRef _ref;
@@ -67,10 +68,12 @@
 + (instancetype)currentLayoutSource;
 + (instancetype)currentASCIICapableSource;
 + (instancetype)currentASCIICapableLayoutSource;
-+ (NSArray *)sourcesForLanguage:(NSString *)language;
++ (instancetype)sourceForLanguage:(NSString *)language;
 + (NSArray *)ASCIICapableSources;
 + (void)setInputMethodKeyboardLayoutOverride:(TISInputSource *)source;
 + (TISInputSource *)inputMethodKeyboardLayoutOverride;
 + (void)register:(NSURL *)location;
 
 @end
+
+NS_ASSUME_NONNULL_END

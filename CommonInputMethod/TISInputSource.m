@@ -6,7 +6,11 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
+#import <FoundationExtension/FoundationExtension.h>
+
 #import "TISInputSource.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TISInputSourceError : NSError
 
@@ -22,7 +26,7 @@
 }
 
 + (instancetype)errorWithCode:(OSStatus)err {
-    return [[[self alloc] initWithCode:err] autorelease];
+    return [[self alloc] initWithCode:err];
 }
 
 @end
@@ -38,13 +42,13 @@
 @implementation TISInputSource
 
 - (instancetype)init {
-    [self release];
     return nil;
 }
 
 - (instancetype)initWithRef:(TISInputSourceRef)ref {
     self = [super init];
     if (self != nil) {
+        CFRetain(ref);
         self->_ref = ref;
     }
     return self;
@@ -54,7 +58,6 @@
     if (self->_ref) {
         CFRelease(self->_ref);
     }
-    [super dealloc];
 }
 
 - (NSString *)description {
@@ -62,7 +65,7 @@
 }
 
 - (id)propertyForKey:(NSString *)key {
-    return (id)TISGetInputSourceProperty(self->_ref, (CFStringRef)key);
+    return (__bridge id)TISGetInputSourceProperty(self->_ref, (__bridge CFStringRef)key);
 }
 
 - (NSString *)category {
@@ -127,18 +130,18 @@
 
 NSArray *_TISSourceInputRefToObject(NSArray *refs) {
     return [refs arrayByMappingOperator:^id(id obj) {
-        TISInputSourceRef ref = (TISInputSourceRef)obj;
+        TISInputSourceRef ref = (__bridge TISInputSourceRef)obj;
         CFRetain(ref);
-        id source = [[[TISInputSource alloc] initWithRef:ref] autorelease];
+        id source = [[TISInputSource alloc] initWithRef:ref];
         dassert(source);
         return source;
     }];
 }
 
 + (NSArray *)sourcesWithProperties:(NSDictionary *)properties includeAllInstalled:(BOOL)includeAllInstalled {
-    NSArray *refs = (NSArray *)TISCreateInputSourceList((CFDictionaryRef)properties, includeAllInstalled);
-    NSArray *sources = _TISSourceInputRefToObject(refs);
-    [refs release];
+    CFArrayRef refs = TISCreateInputSourceList((__bridge CFDictionaryRef)properties, includeAllInstalled);
+    NSArray *sources = _TISSourceInputRefToObject((__bridge NSArray *)refs);
+    CFRelease(refs);
     return sources;
 }
 
@@ -162,17 +165,15 @@ NSArray *_TISSourceInputRefToObject(NSArray *refs) {
     return [[self alloc] initWithRef:ref];
 }
 
-+ (NSArray *)sourcesForLanguage:(NSString *)language {
-    NSArray *refs = (NSArray *)TISCopyInputSourceForLanguage((CFStringRef)language);
-    NSArray *sources = _TISSourceInputRefToObject(refs);
-    [refs release];
-    return sources;
++ (instancetype)sourceForLanguage:(NSString *)language {
+    TISInputSourceRef ref = TISCopyInputSourceForLanguage((__bridge CFStringRef)language);
+    return [[self alloc] initWithRef:ref];
 }
 
 + (NSArray *)ASCIICapableSources {
-    NSArray *refs = (NSArray *)TISCreateASCIICapableInputSourceList();
-    NSArray *sources = _TISSourceInputRefToObject(refs);
-    [refs release];
+    CFArrayRef refs = TISCreateASCIICapableInputSourceList();
+    NSArray *sources = _TISSourceInputRefToObject((__bridge NSArray *)refs);
+    CFRelease(refs);
     return sources;
 }
 
@@ -220,10 +221,12 @@ NSArray *_TISSourceInputRefToObject(NSArray *refs) {
 }
 
 + (void)register:(NSURL *)location {
-    OSStatus err = TISRegisterInputSource((CFURLRef)location);
+    OSStatus err = TISRegisterInputSource((__bridge CFURLRef)location);
     if (err != 0) {
         @throw [TISInputSourceError errorWithCode:err];
     }
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -67,7 +67,7 @@ class HangulComposerCombination {
 
     // CIMComposerDelegate
 
-    public func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
             return self._inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
@@ -78,7 +78,7 @@ class HangulComposerCombination {
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
         }
 
-        var string = string!
+        var string = string
         // 한글 입력에서 캡스락 무시
         if flags.contains(.capsLock) {
             if !flags.contains(.shift) {
@@ -86,43 +86,42 @@ class HangulComposerCombination {
             }
         }
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
-        let UCSString = self._inputContext.commitUCSString!
-        // dassert(UCSString);
-        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
-        
-        if configuration.hangulWonCurrencySymbolForBackQuote {
+        if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
             let backQuote = 50
-            if keyCode == backQuote && string == recentCommitString {
+            if keyCode == backQuote {
                 self._commitString += "₩"
                 return CIMInputTextProcessResult.processed
             }
         }
         
+        let UCSString = self._inputContext.commitUCSString
+        // dassert(UCSString);
+        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
 
-    public func inputController(_ controller: CIMInputController!, command string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, command string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed;
     }
 
-    public var composedString: String! {
+    public var composedString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString!
+            let preedit = self._inputContext.preeditUCSString
             return HangulComposerCombination.composedString(ucsString: preedit)
         }
     }
 
-    public var originalString: String! {
+    public var originalString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString!
+            let preedit = self._inputContext.preeditUCSString
             return HangulComposerCombination.commitString(ucsString: preedit)
         }
     }
 
-    public func dequeueCommitString() -> String! {
+    public func dequeueCommitString() -> String {
         let queuedCommitString = self._commitString
         self._commitString = ""
         return queuedCommitString
@@ -149,11 +148,11 @@ class HangulComposerCombination {
     }
 
     #if DEBUG
-    public func candidateSelected(_ candidateString: NSAttributedString!) {
+    public func candidateSelected(_ candidateString: NSAttributedString) {
         assert(false)
     }
 
-    public func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
+    public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         assert(false)
     }
     #endif

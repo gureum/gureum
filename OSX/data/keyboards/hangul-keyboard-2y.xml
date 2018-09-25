@@ -4,38 +4,6 @@
     <_name>Dubeolsik Yetgeul</_name>
 
     <map id="0">
-        <item key="0x21" value="0x0021"/>  <!-- ! → !  -->
-        <item key="0x22" value="0x0022"/>  <!-- " → "  -->
-        <item key="0x23" value="0x0023"/>  <!-- # → #  -->
-        <item key="0x24" value="0x0024"/>  <!-- $ → $  -->
-        <item key="0x25" value="0x0025"/>  <!-- % → %  -->
-        <item key="0x26" value="0x0026"/>  <!-- & → &  -->
-        <item key="0x27" value="0x0027"/>  <!-- ' → '  -->
-        <item key="0x28" value="0x0028"/>  <!-- ( → (  -->
-        <item key="0x29" value="0x0029"/>  <!-- ) → )  -->
-        <item key="0x2a" value="0x002a"/>  <!-- * → *  -->
-        <item key="0x2b" value="0x002b"/>  <!-- + → +  -->
-        <item key="0x2c" value="0x002c"/>  <!-- , → ,  -->
-        <item key="0x2d" value="0x002d"/>  <!-- - → -  -->
-        <item key="0x2e" value="0x002e"/>  <!-- . → .  -->
-        <item key="0x2f" value="0x002f"/>  <!-- / → /  -->
-        <item key="0x30" value="0x0030"/>  <!-- 0 → 0  -->
-        <item key="0x31" value="0x0031"/>  <!-- 1 → 1  -->
-        <item key="0x32" value="0x0032"/>  <!-- 2 → 2  -->
-        <item key="0x33" value="0x0033"/>  <!-- 3 → 3  -->
-        <item key="0x34" value="0x0034"/>  <!-- 4 → 4  -->
-        <item key="0x35" value="0x0035"/>  <!-- 5 → 5  -->
-        <item key="0x36" value="0x0036"/>  <!-- 6 → 6  -->
-        <item key="0x37" value="0x0037"/>  <!-- 7 → 7  -->
-        <item key="0x38" value="0x0038"/>  <!-- 8 → 8  -->
-        <item key="0x39" value="0x0039"/>  <!-- 9 → 9  -->
-        <item key="0x3a" value="0x003a"/>  <!-- : → :  -->
-        <item key="0x3b" value="0x003b"/>  <!-- ; → ;  -->
-        <item key="0x3c" value="0x003c"/>  <!-- < → <  -->
-        <item key="0x3d" value="0x003d"/>  <!-- = → =  -->
-        <item key="0x3e" value="0x003e"/>  <!-- > → >  -->
-        <item key="0x3f" value="0x003f"/>  <!-- ? → ?  -->
-        <item key="0x40" value="0x0040"/>  <!-- @ → @  -->
         <item key="0x41" value="0x1140"/>  <!-- A → ᅀᅠ -->
         <item key="0x42" value="0x1154"/>  <!-- B → ᅔᅠ -->
         <item key="0x43" value="0x114e"/>  <!-- C → ᅎᅠ -->
@@ -62,12 +30,6 @@
         <item key="0x58" value="0x113e"/>  <!-- X → ᄾᅠ -->
         <item key="0x59" value="0x116d"/>  <!-- Y → ᅟᅭ -->
         <item key="0x5a" value="0x113c"/>  <!-- Z → ᄼᅠ -->
-        <item key="0x5b" value="0x005b"/>  <!-- [ → [  -->
-        <item key="0x5c" value="0x005c"/>  <!-- \ → \  -->
-        <item key="0x5d" value="0x005d"/>  <!-- ] → ]  -->
-        <item key="0x5e" value="0x005e"/>  <!-- ^ → ^  -->
-        <item key="0x5f" value="0x005f"/>  <!-- _ → _  -->
-        <item key="0x60" value="0x0060"/>  <!-- ` → `  -->
         <item key="0x61" value="0x1106"/>  <!-- a → ᄆᅠ -->
         <item key="0x62" value="0x1172"/>  <!-- b → ᅟᅲ -->
         <item key="0x63" value="0x110e"/>  <!-- c → ᄎᅠ -->
@@ -94,10 +56,6 @@
         <item key="0x78" value="0x1110"/>  <!-- x → ᄐᅠ -->
         <item key="0x79" value="0x116d"/>  <!-- y → ᅟᅭ -->
         <item key="0x7a" value="0x110f"/>  <!-- z → ᄏᅠ -->
-        <item key="0x7b" value="0x007b"/>  <!-- { → {  -->
-        <item key="0x7c" value="0x007c"/>  <!-- | → |  -->
-        <item key="0x7d" value="0x007d"/>  <!-- } → }  -->
-        <item key="0x7e" value="0x007e"/>  <!-- ~ → ~  -->
     </map>
 
     <include file="hangul-combination-full.xml"/>

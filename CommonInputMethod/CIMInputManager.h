@@ -11,8 +11,14 @@
     @brief  입출력 환경을 제외한 입력기를 다룬다.
 */
 
-#import <Foundation/Foundation.h>
-#import <InputMethodKit/InputMethodKit.h>
+@import Foundation;
+@import InputMethodKit;
+
+#import <FoundationExtension/FoundationExtension.h>
+
+#import "CIMCommon.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CIMInputHandler;
 @class CIMComposer;
@@ -66,3 +72,5 @@
 @property(nonatomic, readonly)  CIMInputManager *manager;
 
 @end
+
+NS_ASSUME_NONNULL_END

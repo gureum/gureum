@@ -3,9 +3,5 @@
 //
 
 #ifdef __OBJC__
-    #import <CocoaExtension/CocoaExtension.h>
-    #import <InputMethodKit/InputMethodKit.h>
     #import <cdebug/debug.h>
-    #import "CIMCommon.h"
-    #import "OSX/Bridge.h"
 #endif

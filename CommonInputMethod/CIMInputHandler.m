@@ -14,6 +14,7 @@
 
 #import "Gureum-Swift.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 #define DEBUG_INPUTHANDLER FALSE
 
@@ -95,3 +96,5 @@ finalize:
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

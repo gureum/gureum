@@ -11,7 +11,10 @@
     @brief  CharmIM에서 범위 없이 널리 쓰이는 코드를 모아둔다.
 */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import Cocoa;
+
+NS_ASSUME_NONNULL_BEGIN
 
 static const int CIMKeyMapSize = 0x33;
 FOUNDATION_EXTERN const char CIMKeyMapLower[CIMKeyMapSize];
@@ -50,3 +53,4 @@ typedef NS_ENUM(int, CIMInputTextProcessResult) {
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender;
 @end
 
+NS_ASSUME_NONNULL_END

@@ -63,9 +63,7 @@
 		388802F2214530900050DEE8 /* QuickHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388802F1214530900050DEE8 /* QuickHelperViewController.swift */; };
 		388802F52145309C0050DEE8 /* QuickHelperViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388802F32145309B0050DEE8 /* QuickHelperViewController2.swift */; };
 		388802F62145309C0050DEE8 /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388802F42145309C0050DEE8 /* StaticWebViewController.swift */; };
-		38880300214562720050DEE8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3882B9FA193F9E6600076C26 /* Info.plist */; };
 		38880304214562EE0050DEE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38880302214562EE0050DEE8 /* InfoPlist.strings */; };
-		38880306214562F50050DEE8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BB7012193FA11000605583 /* Info.plist */; };
 		388803102145631D0050DEE8 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3888030D2145631D0050DEE8 /* Main.strings */; };
 		38880311214563220050DEE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388803072145630E0050DEE8 /* InfoPlist.strings */; };
 		38880312214563260050DEE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388803092145630E0050DEE8 /* Localizable.strings */; };
@@ -498,7 +496,7 @@
 		3882B9EE193F9E6600076C26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					3882B9F5193F9E6600076C26 = {
@@ -588,7 +586,6 @@
 				380136B5199CAFC200355D69 /* shop.json in Resources */,
 				380136AE199C67F200355D69 /* help in Resources */,
 				3882BA01193F9E6600076C26 /* Main.storyboard in Resources */,
-				38880300214562720050DEE8 /* Info.plist in Resources */,
 				388803102145631D0050DEE8 /* Main.strings in Resources */,
 				388802E721452F2F0050DEE8 /* NoLayout.xib in Resources */,
 				3882BA03193F9E6600076C26 /* Images.xcassets in Resources */,
@@ -608,7 +605,6 @@
 			files = (
 				388802E421452F280050DEE8 /* NumpadLayout.xib in Resources */,
 				388802E821452F300050DEE8 /* NoLayout.xib in Resources */,
-				38880306214562F50050DEE8 /* Info.plist in Resources */,
 				388802E621452F2C0050DEE8 /* QwertyLayout.xib in Resources */,
 				388802EA21452F3C0050DEE8 /* EmoticonLayout.xib in Resources */,
 				38880316214565080050DEE8 /* emoticon.json in Resources */,
