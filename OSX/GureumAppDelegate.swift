@@ -26,7 +26,7 @@ import Foundation
         checkUpdate()
     }
 
-    @objc func composer(server: IMKServer, client: Any) -> CIMComposer {
+    @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {
         let composer: CIMComposer = GureumComposer()
         return composer
     }

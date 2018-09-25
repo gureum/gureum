@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>${VERSION}, Copyright 2011-2017 Jeong YunWon</string>
 	<key>CFBundleIconFile</key>
-	<string>Gureum.icns</string>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -428,8 +428,6 @@
 	<string>CIMInputController</string>
 	<key>InputMethodServerDelegateClass</key>
 	<string>CIMInputController</string>
-	<key>InputMethodServerPreferencesWindowControllerClass</key>
-	<string>GureumPreferencesWindowController</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -442,7 +440,7 @@
 		<true/>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2011-2017 Jeong YunWon</string>
+	<string>Copyright 2011-2018 Jeong YunWon</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

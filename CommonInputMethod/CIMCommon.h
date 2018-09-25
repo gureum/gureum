@@ -33,7 +33,7 @@ typedef NS_ENUM(int, CIMInputTextProcessResult) {
 /*!
     @protocol
     @brief  입력을 처리하는 클래스의 관한 공통 형식
-    @discussion @ref IMKServerInput 을 TextData형식으로 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
+    @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
 */
 @protocol CIMInputTextDelegate
 @required

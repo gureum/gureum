@@ -148,8 +148,6 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
-        var lastModifier = 0
-        
         if keyCode == -1 {
             if !flags.intersection(NSEvent.ModifierFlags.capsLock).isEmpty && self.delegate === romanComposer {
                 need_exchange = true
