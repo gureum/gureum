@@ -13,27 +13,27 @@ class RomanComposer: CIMComposer {
 
     var _commitString: String? = nil
 
-    override var composedString: String! {
+    override var composedString: String {
         get {
             return "";
         }
     }
 
-    override var originalString: String! {
+    override var originalString: String {
         get {
             return self._commitString ?? "";
         }
     }
 
-    override var commitString: String! {
+    override var commitString: String {
         get {
             return self._commitString ?? "";
         }
     }
 
-    override func dequeueCommitString() -> String! {
+    override func dequeueCommitString() -> String {
         let dequeued = self._commitString
-        self._commitString = nil
+        self._commitString = ""
         return dequeued ?? ""
     }
 
@@ -54,7 +54,7 @@ class RomanComposer: CIMComposer {
         return nil
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
 
         if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             var newString = string
@@ -78,25 +78,25 @@ class DvorakComposer: CIMComposer {
 
     var _commitString: String? = nil
 
-    override var composedString: String! {
+    override var composedString: String {
         get {
             return "";
         }
     }
 
-    override var originalString: String! {
+    override var originalString: String {
         get {
             return self._commitString ?? "";
         }
     }
 
-    override var commitString: String! {
+    override var commitString: String {
         get {
             return self._commitString ?? "";
         }
     }
 
-    override func dequeueCommitString() -> String! {
+    override func dequeueCommitString() -> String {
         let dequeued = self._commitString
         self._commitString = nil
         return dequeued ?? ""
@@ -119,7 +119,7 @@ class DvorakComposer: CIMComposer {
         return nil
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
         let dvorak = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
         var map: [Character: Character] = [:]

@@ -140,7 +140,7 @@ enum GureumConfigurationName: String {
         }
     }
     
-    public var skippedVersion: String?{
+    public var skippedVersion: String? {
         get {
             return self.string(forKey: GureumConfigurationName.skippedVersion.rawValue)
         }

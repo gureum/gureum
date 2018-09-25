@@ -14,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import <InputMethodKit/InputMethodKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class CIMInputHandler;
 @class CIMComposer;
 @class GureumConfiguration;
@@ -66,3 +68,5 @@
 @property(nonatomic, readonly)  CIMInputManager *manager;
 
 @end
+
+NS_ASSUME_NONNULL_END

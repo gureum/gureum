@@ -19,6 +19,8 @@
 #import "TISInputSource.h"
 #import "Gureum-Swift.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 #define DEBUG_INPUTCONTROLLER FALSE
 #define DEBUG_LOGGING FALSE
 
@@ -341,7 +343,7 @@ TISInputSource *_USSource() {
         }
         NSLog(@"modifierFlags by IOKit: %lx", modifierFlags);
         //dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
-        BOOL processed = [self->_receiver inputController:self inputText:nil key:-1 modifiers:modifierFlags client:sender] > CIMInputTextProcessResultNotProcessed;
+        BOOL processed = [self->_receiver inputController:self inputText:@"" key:-1 modifiers:modifierFlags client:sender] > CIMInputTextProcessResultNotProcessed;
         //dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
         return NO;
     }
@@ -554,3 +556,5 @@ TISInputSource *_USSource() {
 @end
 
 #endif
+
+NS_ASSUME_NONNULL_END

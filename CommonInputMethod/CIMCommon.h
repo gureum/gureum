@@ -13,6 +13,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 static const int CIMKeyMapSize = 0x33;
 FOUNDATION_EXTERN const char CIMKeyMapLower[CIMKeyMapSize];
 FOUNDATION_EXTERN const char CIMKeyMapUpper[CIMKeyMapSize];
@@ -50,3 +52,4 @@ typedef NS_ENUM(int, CIMInputTextProcessResult) {
 - (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender;
 @end
 
+NS_ASSUME_NONNULL_END

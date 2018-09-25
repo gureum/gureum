@@ -11,6 +11,7 @@
 #import "CIMInputHandler.h"
 #import "Gureum-Swift.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation CIMInputManager
 @synthesize server, candidates, configuration, handler, sharedComposer;
@@ -52,3 +53,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

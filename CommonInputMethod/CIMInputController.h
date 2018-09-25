@@ -22,6 +22,8 @@
 
 #import "CIMCommon.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class CIMComposer;
 
 @interface CIMInputReceiver : NSObject<CIMInputTextDelegate> {
@@ -89,3 +91,5 @@
 @end
 
 #endif
+
+NS_ASSUME_NONNULL_END

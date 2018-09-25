@@ -40,6 +40,7 @@
 #define TISNotifySelectedKeyboardInputSourceChanged (NSString *)kTISNotifySelectedKeyboardInputSourceChanged
 #define TISNotifyEnabledKeyboardInputSourcesChanged (NSString *)kTISNotifyEnabledKeyboardInputSourcesChanged
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TISInputSource : NSObject {
     TISInputSourceRef _ref;
@@ -74,3 +75,5 @@
 + (void)register:(NSURL *)location;
 
 @end
+
+NS_ASSUME_NONNULL_END

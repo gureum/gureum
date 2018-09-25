@@ -8,6 +8,8 @@
 
 #import "CIMCommon.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class CIMInputManager;
 
 /*!
@@ -28,3 +30,5 @@
 - (instancetype)initWithManager:(CIMInputManager *)manager NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

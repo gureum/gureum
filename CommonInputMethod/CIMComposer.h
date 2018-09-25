@@ -12,6 +12,7 @@
     @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
 */
 
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol CIMComposerDelegate<CIMInputTextDelegate>
 
@@ -38,7 +39,7 @@
 
 @optional
 //! @brief  변환 후보 문자열 리스트
-@property(nonatomic, readonly) NSArray<NSString *> *candidates;
+@property(nonatomic, readonly, nullable) NSArray<NSString *> *candidates;
 //! @brief  변환 후보 문자열 선택
 - (void)candidateSelected:(NSAttributedString *)candidateString;
 //! @brief  변환 후보 문자열 변경
@@ -62,6 +63,8 @@
 }
 @property(nonatomic, retain) CIMInputManager *manager;
 @property(nonatomic, retain) id<CIMComposerDelegate> delegate;
-@property(nonatomic, retain, nonnull) NSString *inputMode;
+@property(nonatomic, retain) NSString *inputMode;
 
 @end
+
+NS_ASSUME_NONNULL_END
