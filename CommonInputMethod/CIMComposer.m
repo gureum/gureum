@@ -13,12 +13,6 @@
 @synthesize inputMode = _inputMode;
 @synthesize manager = manager;
 
-- (void)dealloc {
-    self.delegate = nil;
-    [self->_inputMode release];
-    [super dealloc];
-}
-
 #pragma - delegate
 
 - (NSString *)composedString {

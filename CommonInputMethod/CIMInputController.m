@@ -31,7 +31,7 @@ TISInputSource *_USSource() {
     if (source == nil) {
         NSArray *mainSources = [TISInputSource sourcesWithProperties:@{(NSString *)kTISPropertyInputSourceID: mainSourceID} includeAllInstalled:YES];
         dlog(1, @"main sources: %@", mainSources);
-        source = [mainSources[0] retain];
+        source = mainSources[0];
     }
     return source;
 }
@@ -65,7 +65,7 @@ TISInputSource *_USSource() {
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
         if (1) { // FIXME (!CIMSharedInputManager.configuration->sharedInputManager) {
-            self->_composer = [[CIMAppDelegate composerWithServer:server client:inputClient] retain];
+            self->_composer = [CIMAppDelegate composerWithServer:server client:inputClient];
             self->_composer->manager = CIMSharedInputManager;
         }
         _inputClient = inputClient;
@@ -75,11 +75,6 @@ TISInputSource *_USSource() {
 
 - (CIMComposer *)composer {
     return self->_composer ? self->_composer : CIMSharedInputManager.sharedComposer;
-}
-
-- (void)dealloc {
-    [self->_composer release];
-    [super dealloc];
 }
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러
@@ -198,7 +193,7 @@ TISInputSource *_USSource() {
 
 - (NSAttributedString *)originalString:(id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -originalString:");
-    NSAttributedString *string = [[[NSAttributedString alloc] initWithString:(self.composer).originalString] autorelease];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:(self.composer).originalString];
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::ORIGINALSTRING::%@", string.string);
     return string;
 }
@@ -300,16 +295,10 @@ TISInputSource *_USSource() {
         self->_receiver = [[CIMInputReceiver alloc] initWithServer:server delegate:delegate client:inputClient];
 
         IOService* service = [[IOService alloc] initWithName:@(kIOHIDSystemClass) error:NULL];
-        self->_io_connect = [[service openWithOwningTask:mach_task_self_ type:kIOHIDParamConnectType] retain];
-        dlog(DEBUG_INPUTCONTROLLER, @"io_connect: %@", self->_io_connect);
+        self->_ioConnect = [service openWithOwningTask:mach_task_self_ type:kIOHIDParamConnectType];
+        dlog(DEBUG_INPUTCONTROLLER, @"io_connect: %@", self->_ioConnect);
     }
     return self;
-}
-
-- (void)dealloc {
-    [self->_io_connect release];
-    [self->_receiver release];
-    [super dealloc];
 }
 
 - (CIMComposer *)composer {
@@ -347,7 +336,7 @@ TISInputSource *_USSource() {
     }
     else if (event.type == NSFlagsChanged) {
         NSEventModifierFlags modifierFlags = 0;
-        if (self->_io_connect.capsLockState) {
+        if (self->_ioConnect.capsLockState) {
             modifierFlags |= NSAlphaShiftKeyMask;
         }
         NSLog(@"modifierFlags by IOKit: %lx", modifierFlags);

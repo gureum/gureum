@@ -36,15 +36,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [self->sharedComposer release];
-    [self->configuration release];
-    [self->handler release];
-    [self->candidates release];
-    [self->server release];
-    [super dealloc];
-}
-
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@ server:%@ candidates:%@ handler:%@ configuration:%@>", NSStringFromClass([self class]), self->server, self->candidates, self->handler, self->configuration];
 }

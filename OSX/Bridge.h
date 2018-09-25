@@ -11,4 +11,4 @@
 #import "CIMCommon.h"
 #import "CIMInputController.h"
 #import "CIMInputHandler.h"
-#import "HangulComposer.h"
+#import "HanjaComposer.h"

@@ -67,7 +67,7 @@
 + (instancetype)currentLayoutSource;
 + (instancetype)currentASCIICapableSource;
 + (instancetype)currentASCIICapableLayoutSource;
-+ (NSArray *)sourcesForLanguage:(NSString *)language;
++ (instancetype)sourceForLanguage:(NSString *)language;
 + (NSArray *)ASCIICapableSources;
 + (void)setInputMethodKeyboardLayoutOverride:(TISInputSource *)source;
 + (TISInputSource *)inputMethodKeyboardLayoutOverride;

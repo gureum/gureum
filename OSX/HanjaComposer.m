@@ -7,7 +7,7 @@
 //
 
 #import <Hangul/HGInputContext.h>
-#import "HangulComposer.h"
+#import "HanjaComposer.h"
 
 #import "CIMInputController.h"
 #import "Gureum-Swift.h"
@@ -18,8 +18,14 @@
 
 @class CIMInputController;
 
+@interface HanjaComposer ()
+
+@property(nonatomic,retain) NSString *composedString, *commitString;
+
+@end
+
 @implementation HanjaComposer
-@synthesize mode=_mode;
+@synthesize mode=_mode, composedString, commitString, candidates;
 
 - (instancetype)init {
     self = [super init];
@@ -27,12 +33,6 @@
         self->bufferedString = [[NSMutableString alloc] init];
     }
     return self;
-}
-
-- (void)dealloc {
-    self.composedString = nil;
-    self.commitString = nil;
-    [super dealloc];
 }
 
 - (HangulComposer *)hangulComposer {
@@ -44,22 +44,12 @@
     return [self->bufferedString stringByAppendingString:self.hangulComposer.composedString];
 }
 
-- (NSString *)composedString {
-    return self->composedString;
-}
-
 - (void)setComposedString:(NSString *)string {
-    [self->composedString autorelease];
-    self->composedString = [string retain];
-}
-
-- (NSString *)commitString {
-    return self->commitString;
+    self->composedString = string;
 }
 
 - (void)setCommitString:(NSString *)string {
-    [self->commitString autorelease];
-    self->commitString = [string retain];
+    self->commitString = string;
 }
 
 - (NSString *)dequeueCommitString {
@@ -141,16 +131,6 @@
 
 - (BOOL)hasCandidates {
     return self.candidates.count > 0;
-}
-
-- (void)setCandidates:(NSMutableArray *)candidates {
-    [candidates retain];
-    [self->_candidates release];
-    self->_candidates = candidates;
-}
-
-- (NSArray *)candidates {
-    return self->_candidates;
 }
 
 - (void)candidateSelected:(NSAttributedString *)candidateString {

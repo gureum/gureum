@@ -42,7 +42,7 @@
 
 @interface CIMInputController : IMKInputController {
     CIMInputReceiver *_receiver;
-    IOConnect *_io_connect;
+    IOConnect *_ioConnect;
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge
