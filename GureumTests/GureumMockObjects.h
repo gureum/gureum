@@ -6,8 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+@import Cocoa;
 
 @interface CIMMockClient : NSTextView<IMKTextInput>
 

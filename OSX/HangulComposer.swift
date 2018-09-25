@@ -86,18 +86,17 @@ class HangulComposerCombination {
             }
         }
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
-        let UCSString = self._inputContext.commitUCSString!
-        // dassert(UCSString);
-        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
-        
-        if configuration.hangulWonCurrencySymbolForBackQuote {
+        if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
             let backQuote = 50
-            if keyCode == backQuote && string == recentCommitString {
+            if keyCode == backQuote {
                 self._commitString += "₩"
                 return CIMInputTextProcessResult.processed
             }
         }
         
+        let UCSString = self._inputContext.commitUCSString
+        // dassert(UCSString);
+        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
@@ -110,14 +109,14 @@ class HangulComposerCombination {
 
     public var composedString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString!
+            let preedit = self._inputContext.preeditUCSString
             return HangulComposerCombination.composedString(ucsString: preedit)
         }
     }
 
     public var originalString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString!
+            let preedit = self._inputContext.preeditUCSString
             return HangulComposerCombination.commitString(ucsString: preedit)
         }
     }

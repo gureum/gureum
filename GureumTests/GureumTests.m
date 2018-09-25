@@ -6,8 +6,9 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <objc/runtime.h>
-#import <XCTest/XCTest.h>
+@import ObjectiveC.runtime;
+@import XCTest;
+
 #import "CIMCommon.h"
 #import "CIMInputController.h"
 #import "GureumMockObjects.h"
@@ -205,7 +206,7 @@
 
 - (void)testIPMDServerClientWrapper {
     Class IPMDServerClientWrapper = NSClassFromString(@"IPMDServerClientWrapper");
-    dassert(IPMDServerClientWrapper != Nil);
+    XCTAssertTrue(IPMDServerClientWrapper != Nil);
     unsigned count = 0;
     Method *methods = class_copyMethodList(IPMDServerClientWrapper, &count);
     for (int i = 0; i < count; i++) {

@@ -6,8 +6,8 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import <AppKit/AppKit.h>
-#import <Carbon/Carbon.h>
+@import Cocoa;
+@import Carbon;
 
 #import "CIMCommon.h"
 

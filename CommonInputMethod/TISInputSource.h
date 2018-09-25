@@ -6,7 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <Carbon/Carbon.h>
+@import Carbon;
 
 #define TISPropertyInputSourceCategory          (NSString *)kTISPropertyInputSourceCategory
 #define TISPropertyInputSourceType              (NSString *)kTISPropertyInputSourceType

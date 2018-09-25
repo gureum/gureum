@@ -6,6 +6,7 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+#import "CIMCommon.h"
 #import "CIMInputManager.h"
 /*!
     @brief 실제로 문자를 합성하는 합성기의 프로토콜

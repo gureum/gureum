@@ -11,7 +11,8 @@
     @brief  CharmIM에서 범위 없이 널리 쓰이는 코드를 모아둔다.
 */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import Cocoa;
 
 NS_ASSUME_NONNULL_BEGIN
 

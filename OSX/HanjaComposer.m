@@ -6,7 +6,8 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import <Hangul/HGInputContext.h>
+@import Hangul;
+
 #import "HanjaComposer.h"
 
 #import "CIMInputController.h"
