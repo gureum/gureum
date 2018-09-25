@@ -6,7 +6,7 @@ cd "${SCRIPT_DIR}/.."
 TMPSCRIPT="${TMPDIR}gureumbuild"
 
 if [ -e $TMPSCRIPT ]; then
-    echo 'something wrong'
+    echo "unexpected existing file: ${TMPSCRIPT}"
     exit 255
 fi
 

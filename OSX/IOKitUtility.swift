@@ -62,11 +62,11 @@ class IOKitError: Error {
     }
 
     func open(owningTask: mach_port_t, type: Int) -> IOConnect? {
-        var connect_id: io_connect_t = 0
-        let r = IOServiceOpen(self.id, owningTask, UInt32(type), &connect_id)
+        var connectId: io_connect_t = 0
+        let r = IOServiceOpen(self.id, owningTask, UInt32(type), &connectId)
         guard r == KERN_SUCCESS else {
             return nil
         }
-        return IOConnect(id: connect_id)
+        return IOConnect(id: connectId)
     }
 }

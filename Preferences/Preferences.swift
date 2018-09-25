@@ -13,7 +13,6 @@ import MASShortcut
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
 
-
 }
 
 @objcMembers class PreferenceWindowDelegate: NSObject, NSWindowDelegate, NSComboBoxDataSource {
