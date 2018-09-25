@@ -68,7 +68,6 @@
 		3835B5431F5DAC4400896BEC /* hangul-combination-39.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */; };
 		3835B5441F5DAC4400896BEC /* hangul-combination-default.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */; };
 		3835B5451F5DAC4400896BEC /* hangul-combination-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */; };
-		383EF60D142B28B600013C0B /* preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383EF60C142B28B600013C0B /* preferences.xib */; };
 		38475AF61412BC050062100D /* han2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEE1412BC050062100D /* han2.png */; };
 		38475AF71412BC050062100D /* han3.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AEF1412BC050062100D /* han3.png */; };
 		38475AF91412BC050062100D /* han3final.png in Resources */ = {isa = PBXBuildFile; fileRef = 38475AF11412BC050062100D /* han3final.png */; };
@@ -93,7 +92,6 @@
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39A414234D6500A2ED88 /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		389DD8342098B69A00A8EF9B /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389DD8352098B6AC00A8EF9B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
@@ -301,9 +299,6 @@
 		3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-39.xml"; sourceTree = "<group>"; };
 		3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-default.xml"; sourceTree = "<group>"; };
 		3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-full.xml"; sourceTree = "<group>"; };
-		383EF60C142B28B600013C0B /* preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
-		383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumPreferencesWindowController.h; sourceTree = "<group>"; };
-		383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumPreferencesWindowController.m; sourceTree = "<group>"; };
 		38475AEE1412BC050062100D /* han2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han2.png; path = Icons/han2.png; sourceTree = "<group>"; };
 		38475AEF1412BC050062100D /* han3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3.png; path = Icons/han3.png; sourceTree = "<group>"; };
 		38475AF11412BC050062100D /* han3final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = han3final.png; path = Icons/han3final.png; sourceTree = "<group>"; };
@@ -439,7 +434,6 @@
 				38E90262213BB6F2005DF76A /* NSAlert+Workaround.m */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				38FA21DF14231BCC00444D67 /* Composers */,
-				383EF60B142B287F00013C0B /* Graphic Interface */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
 				3835B4E21F5DAA7100896BEC /* data */,
@@ -530,16 +524,6 @@
 				3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */,
 			);
 			path = keyboards;
-			sourceTree = "<group>";
-		};
-		383EF60B142B287F00013C0B /* Graphic Interface */ = {
-			isa = PBXGroup;
-			children = (
-				383EF60E142B28EB00013C0B /* GureumPreferencesWindowController.h */,
-				383EF60F142B28EB00013C0B /* GureumPreferencesWindowController.m */,
-				383EF60C142B28B600013C0B /* preferences.xib */,
-			);
-			name = "Graphic Interface";
 			sourceTree = "<group>";
 		};
 		38475AEB14129BAA0062100D /* Icons */ = {
@@ -965,7 +949,6 @@
 				38475AFC1412BC050062100D /* hanroman.png in Resources */,
 				38475AFD1412BC050062100D /* qwerty.png in Resources */,
 				383562F218B9F2DF00F8B8B9 /* han3@2x.png in Resources */,
-				383EF60D142B28B600013C0B /* preferences.xib in Resources */,
 				38F220A4142C79710064FAC3 /* libhangul_logo.png in Resources */,
 				388E2A611469249700ADBDA5 /* Hangul.strings in Resources */,
 				383562FC18B9F34500F8B8B9 /* eng@2x.png in Resources */,
@@ -1201,7 +1184,6 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
-				389A9D55142F82EA0087F074 /* GureumPreferencesWindowController.m in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
 				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
