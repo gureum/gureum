@@ -64,7 +64,6 @@
 		3835B5451F5DAC4400896BEC /* hangul-combination-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */; };
 		38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3D1B0E7E7C00E2C16D /* Security.framework */; };
 		38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */; };
-		385ABBF6193F825500478DA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 385ABBF5193F825500478DA8 /* main.m */; };
 		38699DC21F36191500FD093E /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
 		386ECB8221537DE70060D9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8121537DE70060D9BE /* AppDelegate.swift */; };
 		386ECB8421537DE70060D9BE /* TestWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8321537DE70060D9BE /* TestWindowController.swift */; };
@@ -91,6 +90,8 @@
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
 		38F85936215A926100CD80AE /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
+		38F85965215BEA3800CD80AE /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F85964215BEA3800CD80AE /* PreferencePanes.framework */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
@@ -278,7 +279,6 @@
 		3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-full.xml"; sourceTree = "<group>"; };
 		38531F3D1B0E7E7C00E2C16D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		385ABBF5193F825500478DA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		386ECB7F21537DE70060D9BE /* PreferencesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreferencesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		386ECB8121537DE70060D9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		386ECB8321537DE70060D9BE /* TestWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWindowController.swift; sourceTree = "<group>"; };
@@ -320,6 +320,8 @@
 		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
 		38EE977A1A00148D00AD19B8 /* TISInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISInputSource.m; sourceTree = "<group>"; };
 		38F220A3142C79710064FAC3 /* libhangul_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = libhangul_logo.png; path = Icons/libhangul_logo.png; sourceTree = "<group>"; };
+		38F85960215BD27000CD80AE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		38F85964215BEA3800CD80AE /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 		44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAB632CA8BB927B15D0FF2A /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F85965215BEA3800CD80AE /* PreferencePanes.framework in Frameworks */,
 				389DD8352098B6AC00A8EF9B /* Carbon.framework in Frameworks */,
 				389DD8342098B69A00A8EF9B /* InputMethodKit.framework in Frameworks */,
 				38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */,
@@ -416,7 +419,7 @@
 				38162DFC141263280077AA2D /* Prefix.pch */,
 				38162E4914128A740077AA2D /* MainMenu.xib */,
 				388E2A601469249700ADBDA5 /* Hangul.strings */,
-				385ABBF5193F825500478DA8 /* main.m */,
+				38F85960215BD27000CD80AE /* main.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 		38863C62140E64EB00A8ED76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38F85964215BEA3800CD80AE /* PreferencePanes.framework */,
 				38EE977519FFD65600AD19B8 /* Carbon.framework */,
 				38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */,
 				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
@@ -1103,6 +1107,7 @@
 				E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */,
 				E54B8382214299EB00527218 /* GureumComposer.swift in Sources */,
 				38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */,
+				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
 				38162E0F141264EB0077AA2D /* HanjaComposer.m in Sources */,
@@ -1114,7 +1119,6 @@
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
-				385ABBF6193F825500478DA8 /* main.m in Sources */,
 				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

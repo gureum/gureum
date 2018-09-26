@@ -1,6 +1,6 @@
 //
 //  NSAlert+Workaround.m
-//  OSX
+//  Gureum
 //
 //  Created by Jeong YunWon on 2018. 9. 2..
 //  Copyright © 2018년 youknowone.org. All rights reserved.

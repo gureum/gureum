@@ -1,6 +1,6 @@
 //
 //  CIMInputControllerGureum.swift
-//  OSX
+//  Gureum
 //
 //  Created by KMLee on 2018. 8. 24..
 //  Copyright © 2018년 youknowone.org. All rights reserved.

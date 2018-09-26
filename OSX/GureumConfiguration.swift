@@ -1,6 +1,6 @@
 //
 //  GureumConfiguration.swift
-//  OSX
+//  Gureum
 //
 //  Created by Jeong YunWon on 2018. 4. 19..
 //  Copyright © 2018 youknowone.org. All rights reserved.

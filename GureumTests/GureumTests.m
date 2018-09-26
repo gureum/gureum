@@ -24,6 +24,14 @@
 @end
 
 
+@protocol NSPrefPaneBundle
+
+- (instancetype)initWithPath:(id)arg1;
+- (BOOL)instantiatePrefPaneObject;
+
+@end
+
+
 @implementation GureumTests
 
 - (void)setUp {
@@ -44,6 +52,15 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)testPreferencePane {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Preferences" ofType:@"prefPane"];
+    Class NSPrefPaneBundle = NSClassFromString(@"NSPrefPaneBundle");
+    id<NSPrefPaneBundle> bundle = [[NSPrefPaneBundle alloc] initWithPath:path];
+    BOOL loaded = [bundle instantiatePrefPaneObject];
+    XCTAssertTrue(loaded);
+    
 }
 
 - (void)test2 {
