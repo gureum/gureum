@@ -283,6 +283,17 @@
                                                 <action selector="didTapHangulWonCurrencySymbolForBackQuoteCheckBox:" target="DMm-2g-KCR" id="795-Vy-9xg"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25n-Az-YAJ">
+                                            <rect key="frame" x="23" y="281" width="131" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="캡스락으로 자판 전환" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IkH-Pc-uX9">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                <connections>
+                                                    <action selector="enableCapslockToToggleInputMode:" target="DMm-2g-KCR" id="qu4-65-lnz"/>
+                                                </connections>
+                                            </buttonCell>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="centerY" secondItem="k0S-fI-Ly1" secondAttribute="centerY" id="0Te-K8-lNc"/>

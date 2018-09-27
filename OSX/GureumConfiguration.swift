@@ -27,6 +27,7 @@ enum GureumConfigurationName: String {
     case inputModeKoreanKeyModifier = "CIMInputModeKoreanKeyModifier"
     case inputModeKoreanKeyCode = "CIMInputModeKoreanKeyCode"
     case optionKeyBehavior = "CIMOptionKeyBehavior"
+    case enableCapslockToToggleInputMode = "EnableCapslockToToggleInputMode"
     
     case sharedInputManager = "CIMSharedInputManager"
     case autosaveDefaultInputMode = "CIMAutosaveDefaultInputMode"
@@ -48,6 +49,7 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
+            GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
         ])
     }
 
@@ -82,6 +84,15 @@ enum GureumConfigurationName: String {
         get {
             let value = self.integer(forKey: GureumConfigurationName.inputModeExchangeKeyModifier.rawValue)
             return NSEvent.ModifierFlags(rawValue: UInt(value))
+        }
+    }
+    
+    @objc public var enableCapslockToToggleInputMode: Bool {
+        get {
+           return self.bool(forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
         }
     }
     

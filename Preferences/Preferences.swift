@@ -55,6 +55,14 @@ import MASShortcut
         configuration.romanModeByEscapeKey = sender.integerValue
     }
     
+    @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
+        if sender.state == .on {
+            configuration.enableCapslockToToggleInputMode = true
+        } else {
+            configuration.enableCapslockToToggleInputMode = false
+        }
+    }
+    
     @IBAction func didTapHelpShortCut(_ sender: NSButton) {
         let helpAlert: NSAlert = {
             let alert = NSAlert()
