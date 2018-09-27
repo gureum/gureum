@@ -56,7 +56,7 @@ import MASShortcut
     }
     
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
-        if sender.integerValue == 1 {
+        if sender.state == .on {
             configuration.enableCapslockToToggleInputMode = true
         } else {
             configuration.enableCapslockToToggleInputMode = false

@@ -148,7 +148,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
-        if configuration.enableCapslockToToggleInputMode == true {
+        if configuration.enableCapslockToToggleInputMode {
             if keyCode == -1 {
                 if !flags.intersection(NSEvent.ModifierFlags.capsLock).isEmpty && self.delegate === romanComposer {
                     need_exchange = true
