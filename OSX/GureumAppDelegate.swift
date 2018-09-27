@@ -20,6 +20,8 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         switch (notification.activationType) {
         case .actionButtonClicked:
             NSWorkspace.shared.open(URL(string: download)!)
+        case .contentsClicked:
+            NSWorkspace.shared.open(URL(string: download)!)
         default:
             break;
         }
@@ -65,7 +67,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
             return
         }
 
-        let fmt = "현재 버젼: \(info.current)\n최신 버젼: \(info.recent)"
+        let fmt = "현재 버젼: \(info.current) 최신 버젼: \(info.recent)\n클릭 시 업데이트 페이지로 이동합니다."
         let notification = NSUserNotification()
 
         notification.title = "구름 입력기 업데이트 확인"
