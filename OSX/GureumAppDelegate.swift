@@ -8,10 +8,30 @@
 
 import Foundation
 
+class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
+    var download: String!
+
+    override init(){
+        super.init()
+        NSUserNotificationCenter.default.delegate = self
+    }
+
+    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+        switch (notification.activationType) {
+        case .actionButtonClicked:
+            NSWorkspace.shared.open(URL(string: download)!)
+        default:
+            break;
+        }
+    }
+}
+
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
     @objc var sharedInputManager: CIMInputManager!
     let configuration = GureumConfiguration.shared()
+    var notificationCenter = NSUserNotificationCenter.default
+    var notificationCenterDelegate = NotificationCenterDelegate()
 
     struct VersionInfo {
         var recent: String
@@ -19,7 +39,7 @@ import Foundation
         var download: String
         var note: String
     }
-    
+
     @objc override func awakeFromNib(){
         HGKeyboard.initialize()
         sharedInputManager = CIMInputManager()
@@ -35,7 +55,7 @@ import Foundation
         guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
             return
         }
-        guard  info.recent != info.current else {
+        guard info.recent != info.current else {
             return
         }
         guard info.download.count > 0 else {
@@ -44,27 +64,19 @@ import Foundation
         guard info.recent != configuration.skippedVersion else {
             return
         }
-        
-        var fmt = "현재 사용하고 있는 구름 입력기는 \(info.current) 이고 최신 버전은 \(info.recent) 입니다. 업데이트는 로그아웃하거나 재부팅해야 적용됩니다."
-        if info.note.count != 0 {
-            fmt += " 업데이트 요약은 \(info.note) 입니다."
-        }
-        let alert = NSAlert()
-        alert.messageText = "구름 입력기 업데이트 확인"
-        alert.addButton(withTitle: "확인")
-        alert.addButton(withTitle: "취소")
-        alert.informativeText = fmt
-        alert.showsSuppressionButton = true
-        alert.suppressionButton?.title = "새로운 버전이 나올 때까지 이 메시지를 보지 않음"
-        
-        alert.beginSheetModalForEmptyWindow(completionHandler: {(modalResponse: NSApplication.ModalResponse) -> Void in
-            if alert.suppressionButton?.state == .on {
-                self.configuration.skippedVersion = info.recent
-            }
-            if(modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn){
-                NSWorkspace.shared.open(URL(string: info.download)!)
-            }
-        })
+
+        let fmt = "현재 버젼: \(info.current)\n최신 버젼: \(info.recent)"
+        let notification = NSUserNotification()
+
+        notification.title = "구름 입력기 업데이트 확인"
+        notification.hasActionButton = true
+        notification.hasReplyButton = false
+        notification.actionButtonTitle = "업데이트"
+        notification.otherButtonTitle = "취소"
+        notification.informativeText = fmt
+        notificationCenterDelegate.download = info.download
+
+        notificationCenter.deliver(notification)
     }
     
     func getRecentVersion() -> VersionInfo? {

@@ -457,6 +457,8 @@
 	</array>
 	<key>tsInputMethodIconFileKey</key>
 	<string>icon.png</string>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
 	<key>tsInputModePrimaryInScriptKey</key>
 	<true/>
 </dict>
