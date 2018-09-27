@@ -123,7 +123,7 @@ class EmoticonComposer: CIMComposer {
                 NSLog("DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
                 NSLog("DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", keyword)
                 NSLog("DEBUG 14, [updateEmoticonCandidates] MSG: %@", self._sharedEmoticonTable.debugDescription)
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword)
+                let list = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
                 NSLog("DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
 
                 NSLog("DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
