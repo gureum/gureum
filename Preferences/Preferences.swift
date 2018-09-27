@@ -12,7 +12,12 @@ import Cocoa
 import MASShortcut
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
-
+    @IBOutlet var windowDelegate: PreferenceWindowDelegate! = nil
+    
+    override func mainViewDidLoad() {
+        super.mainViewDidLoad()
+        windowDelegate.viewDidLoad()
+    }
 }
 
 @objcMembers class PreferenceWindowDelegate: NSObject, NSWindowDelegate, NSComboBoxDataSource {
@@ -21,12 +26,17 @@ import MASShortcut
     @IBOutlet weak var inputModeHanjaShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeEnglishShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeKoreanShortcutView: MASShortcutView!
+    @IBOutlet weak var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
     
 //    @IBOutlet var _window: NSWindow!
+    
+    func viewDidLoad() {
+        
+    }
     
     @IBAction func openKeyboardPreference(sender: NSControl) {
         let myAppleScript = "reveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\""

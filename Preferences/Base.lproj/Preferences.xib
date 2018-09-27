@@ -13,6 +13,7 @@
                 <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="P94-Zj-7ft"/>
                 <outlet property="inputModeHanjaShortcutView" destination="H7u-hL-ncz" id="exc-2d-l3Z"/>
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="B8V-7t-gJe"/>
+                <outlet property="windowDelegate" destination="DMm-2g-KCR" id="Z9P-92-IcS"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -375,6 +376,7 @@
         <customObject id="DMm-2g-KCR" customClass="PreferenceWindowDelegate" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
+                <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
             </connections>
         </customObject>
     </objects>
