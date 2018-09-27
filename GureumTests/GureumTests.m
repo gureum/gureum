@@ -327,7 +327,7 @@
             continue; // 터미널은 이모티콘 모드 진입이 불가
         }
         app.client.string = @"";
-        [app.controller setValue:kGureumInputSourceIdentifierHan2 forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"s" key:1 modifiers:0];
         [app inputText:@"l" key:37 modifiers:0];
         [app inputText:@"e" key:14 modifiers:0];
