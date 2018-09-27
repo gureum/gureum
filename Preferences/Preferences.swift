@@ -66,6 +66,15 @@ import MASShortcut
         helpAlert.beginSheetModal(for: self.pane.mainView.window!, completionHandler: nil)
     }
     
+    @IBAction func didTapHangulWonCurrencySymbolForBackQuoteCheckBox(_ sender: NSButton) {
+        if sender.state == .on {
+            configuration.hangulWonCurrencySymbolForBackQuote = true
+        }
+        else {
+            configuration.hangulWonCurrencySymbolForBackQuote = false
+        }
+    }
+    
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return layoutTable.gureumPreferencesHangulLayouts.count
     }
