@@ -148,13 +148,15 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
-        if keyCode == -1 {
-            if !flags.intersection(NSEvent.ModifierFlags.capsLock).isEmpty && self.delegate === romanComposer {
-                need_exchange = true
-            } else if flags.rawValue == 0 && self.delegate === hangulComposer {
-                need_exchange = true
-            } else {
-                return CIMInputTextProcessResult.processed
+        if configuration.enableCapslockToToggleInputMode == true {
+            if keyCode == -1 {
+                if !flags.intersection(NSEvent.ModifierFlags.capsLock).isEmpty && self.delegate === romanComposer {
+                    need_exchange = true
+                } else if flags.rawValue == 0 && self.delegate === hangulComposer {
+                    need_exchange = true
+                } else {
+                    return CIMInputTextProcessResult.processed
+                }
             }
         }
 
