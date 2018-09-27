@@ -1,6 +1,6 @@
 //
 //  GureumComposer.swift
-//  OSX
+//  Gureum
 //
 //  Created by Hyewon on 2018. 9. 7..
 //  Copyright © 2018년 youknowone.org. All rights reserved.

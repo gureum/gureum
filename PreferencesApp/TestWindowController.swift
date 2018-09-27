@@ -14,28 +14,12 @@ class TestWindowController: NSWindowController {
     var windowDelegate: Any! = nil  // hold a reference not to deinit delegate object
     
     override func windowDidLoad() {
-        var _objects: NSArray? = nil
-        guard (NSNib(nibNamed: NSNib.Name("Preferences"), bundle: nil)!.instantiate(withOwner: nil, topLevelObjects: &_objects)) else {
-            NSLog("something wrong")
-            assert(false)
-            return
-        }
-        guard let objects = _objects else {
-            assert(false)
-            return
-        }
-        
-        for object in objects {
-            if object is NSApplication {
-                continue
-            }
-            guard let window = object as? NSWindow else {
-                continue
-            }
-            window.showsResizeIndicator = true
-            self.window = window
-            self.windowDelegate = window.delegate
-            return
-        }
+        let path = Bundle.main.path(forResource: "Preferences", ofType: "prefPane")
+        let bundle = NSPrefPaneBundle(path: path)!
+        let loaded = bundle.instantiatePrefPaneObject()
+        assert(loaded)
+        let pane = bundle.prefPaneObject()!
+        pane.loadMainView()
+        self.window!.contentView = pane.mainView
     }
 }
