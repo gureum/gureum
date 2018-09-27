@@ -6,8 +6,8 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-@import ObjectiveC.runtime;
 @import XCTest;
+@import PreferencePanes;
 
 #import "CIMCommon.h"
 #import "CIMInputController.h"
@@ -16,18 +16,19 @@
 #import "Gureum-Swift.h"
 
 
-@interface GureumTests : XCTestCase
+@interface NSPrefPaneBundle: NSObject
 
-@property(nonatomic,strong) NSArray *apps;
-@property(nonatomic,strong) VirtualApp *moderate, *terminal, *greedy;
+- (instancetype)initWithPath:(id)arg1;
+- (BOOL)instantiatePrefPaneObject;
+- (NSPreferencePane *)prefPaneObject;
 
 @end
 
 
-@protocol NSPrefPaneBundle
+@interface GureumTests : XCTestCase
 
-- (instancetype)initWithPath:(id)arg1;
-- (BOOL)instantiatePrefPaneObject;
+@property(nonatomic,strong) NSArray *apps;
+@property(nonatomic,strong) VirtualApp *moderate, *terminal, *greedy;
 
 @end
 
@@ -56,8 +57,7 @@
 
 - (void)testPreferencePane {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Preferences" ofType:@"prefPane"];
-    Class NSPrefPaneBundle = NSClassFromString(@"NSPrefPaneBundle");
-    id<NSPrefPaneBundle> bundle = [[NSPrefPaneBundle alloc] initWithPath:path];
+    NSPrefPaneBundle *bundle = [[NSPrefPaneBundle alloc] initWithPath:path];
     BOOL loaded = [bundle instantiatePrefPaneObject];
     XCTAssertTrue(loaded);
     

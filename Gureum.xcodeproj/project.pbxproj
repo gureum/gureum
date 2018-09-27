@@ -69,9 +69,6 @@
 		386ECB8421537DE70060D9BE /* TestWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8321537DE70060D9BE /* TestWindowController.swift */; };
 		386ECB8621537DEA0060D9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8521537DEA0060D9BE /* Assets.xcassets */; };
 		386ECB8921537DEA0060D9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8721537DEA0060D9BE /* Main.storyboard */; };
-		386ECBAD21537E750060D9BE /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
-		386ECBAF21537EF80060D9BE /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
-		386ECBB0215384DF0060D9BE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
 		386ECBB1215385720060D9BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
@@ -92,6 +89,7 @@
 		38F85936215A926100CD80AE /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85965215BEA3800CD80AE /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F85964215BEA3800CD80AE /* PreferencePanes.framework */; };
+		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		38FA21D71422DBBF00444D67 /* CIMInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D00051421FB6E00DAE6F4 /* CIMInputManager.m */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
@@ -162,6 +160,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 38162DF2141263270077AA2D;
 			remoteInfo = Gureum;
+		};
+		38F85967215BF4A600CD80AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 382E68631A1314D900031D1D;
+			remoteInfo = Preferences;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -732,6 +737,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				38F85968215BF4A600CD80AE /* PBXTargetDependency */,
 			);
 			name = PreferencesApp;
 			productName = PreferencesApp;
@@ -909,9 +915,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */,
 				386ECB8621537DEA0060D9BE /* Assets.xcassets in Resources */,
 				386ECBB1215385720060D9BE /* InfoPlist.strings in Resources */,
-				386ECBAD21537E750060D9BE /* Preferences.xib in Resources */,
 				386ECB8921537DEA0060D9BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1137,8 +1143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				386ECB8421537DE70060D9BE /* TestWindowController.swift in Sources */,
-				386ECBAF21537EF80060D9BE /* GureumConfiguration.swift in Sources */,
-				386ECBB0215384DF0060D9BE /* Preferences.swift in Sources */,
 				386ECB8221537DE70060D9BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1179,6 +1183,11 @@
 			isa = PBXTargetDependency;
 			target = 38162DF2141263270077AA2D /* OSX */;
 			targetProxy = 38BFE80618B45419004B2B2E /* PBXContainerItemProxy */;
+		};
+		38F85968215BF4A600CD80AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 382E68631A1314D900031D1D /* Preferences */;
+			targetProxy = 38F85967215BF4A600CD80AE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1276,6 +1285,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1296,6 +1306,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1319,7 +1330,7 @@
 				CODE_SIGN_ENTITLEMENTS = PreferencesApp/PreferencesApp.entitlements;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = PreferencesApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.PreferencesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1335,7 +1346,7 @@
 				CODE_SIGN_ENTITLEMENTS = PreferencesApp/PreferencesApp.entitlements;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = PreferencesApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.PreferencesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
