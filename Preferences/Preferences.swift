@@ -12,15 +12,15 @@ import Cocoa
 import MASShortcut
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
-    @IBOutlet var windowDelegate: PreferenceWindowDelegate! = nil
+    @IBOutlet var viewController: NSViewController! = nil
     
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
-        windowDelegate.viewDidLoad()
+       // self.viewController.viewDidLoad()
     }
 }
 
-@objcMembers class PreferenceWindowDelegate: NSObject, NSWindowDelegate, NSComboBoxDataSource {
+@objcMembers class PreferenceViewController: NSViewController, NSComboBoxDataSource {
     @IBOutlet weak var defaultInputHangulComboBox: NSComboBox!
     @IBOutlet weak var inputModeExchangeShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeHanjaShortcutView: MASShortcutView!
@@ -34,7 +34,7 @@ import MASShortcut
     
 //    @IBOutlet var _window: NSWindow!
     
-    func viewDidLoad() {
+    override func viewDidLoad() {
         
     }
     

@@ -10,4 +10,6 @@
 - (BOOL)instantiatePrefPaneObject;
 - (NSPreferencePane *)prefPaneObject;
 
+@property(readonly) NSBundle *bundle;
+
 @end

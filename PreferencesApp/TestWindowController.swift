@@ -16,10 +16,12 @@ class TestWindowController: NSWindowController {
     override func windowDidLoad() {
         let path = Bundle.main.path(forResource: "Preferences", ofType: "prefPane")
         let bundle = NSPrefPaneBundle(path: path)!
+        assert(bundle.bundle != nil)
+        assert(bundle.bundle.principalClass != nil)
         let loaded = bundle.instantiatePrefPaneObject()
         assert(loaded)
         let pane = bundle.prefPaneObject()!
-        pane.loadMainView()
+        // pane.loadMainView()
         self.window!.contentView = pane.mainView
     }
 }
