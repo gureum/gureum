@@ -56,6 +56,11 @@ class RomanComposer: CIMComposer {
 
     override func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
 
+        if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
+            NSLog(" ** ESCAPE from outbound keyCode: %d", keyCode);
+            return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
+        }
+
         if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
             var newString = string
             let chr = string.first!

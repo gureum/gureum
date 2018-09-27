@@ -26,6 +26,8 @@ enum GureumConfigurationName: String {
     case inputModeEnglishKeyCode = "CIMInputModeEnglishKeyCode"
     case inputModeKoreanKeyModifier = "CIMInputModeKoreanKeyModifier"
     case inputModeKoreanKeyCode = "CIMInputModeKoreanKeyCode"
+    case inputModeEmoticonKeyModifier = "CIMInputModeEmoticonKeyModifier"
+    case inputModeEmoticonKeyCode = "CIMInputModeEmoticonKeyCode"
     case optionKeyBehavior = "CIMOptionKeyBehavior"
     
     case sharedInputManager = "CIMSharedInputManager"
@@ -46,6 +48,8 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
             GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
             GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
+            GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue: ([NSEvent.ModifierFlags.option, NSEvent.ModifierFlags.control] as NSEvent.ModifierFlags).rawValue,
+            GureumConfigurationName.inputModeEmoticonKeyCode.rawValue: 0x24,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
         ])
@@ -119,6 +123,24 @@ enum GureumConfigurationName: String {
     public var inputModeHanjaKey: (NSEvent.ModifierFlags, Int) {
         get{
             return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
+        }
+    }
+
+    @objc public var inputModeEmoticonKeyModifier: Int {
+        get {
+            return self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue)
+        }
+    }
+
+    @objc public var inputModeEmoticonKeyCode: Int {
+        get {
+            return self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyCode.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.inputModeEmoticonKeyCode.rawValue)
         }
     }
 
