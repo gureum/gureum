@@ -13,8 +13,8 @@
 
 import Foundation
 
-@objc class GureumInputSourceIdentifier: NSObject {
-    @objc static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
+@objc public class GureumInputSourceIdentifier: NSObject {
+    @objc public static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
     @objc static let dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
     @objc static let dvorakQwertyCommand = "org.youknowone.inputmethod.Gureum.dvorakq"
     @objc static let colemak = "org.youknowone.inputmethod.Gureum.colemak"
@@ -221,7 +221,6 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         if delegatedComposer === emoticonComposer {
             emoticonComposer.delegate = self.delegate
             self.delegate = emoticonComposer
-            self.delegate.composerSelected!(self)
             emoticonComposer.updateFromController(controller)
             return CIMInputTextProcessResult.processed
         }

@@ -328,6 +328,7 @@
         }
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app inputText:@"\n" key:36 modifiers:786432]; // change to emoticon mode
         [app inputText:@"s" key:1 modifiers:0];
         [app inputText:@"l" key:37 modifiers:0];
         [app inputText:@"e" key:14 modifiers:0];
@@ -335,17 +336,46 @@
         [app inputText:@"p" key:35 modifiers:0];
         [app inputText:@"y" key:16 modifiers:0];
         XCTAssertEqualObjects(@"sleepy", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"sleepy", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@" " key:49 modifiers:0];
         XCTAssertEqualObjects(@"sleepy ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"sleepy ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"a" key:0 modifiers:0];
         [app inputText:@"c" key:8 modifiers:0];
         [app inputText:@"e" key:14 modifiers:0];
         XCTAssertEqualObjects(@"sleepy face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"sleepy face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"😪: sleepy face"]];
         XCTAssertEqualObjects(@"sleepy face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"sleepy face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"😪: sleepy face"]];
         XCTAssertEqualObjects(@"😪", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        
+        app.client.string = @"";
+        [app inputText:@"h" key:4 modifiers:0];
+        [app inputText:@"u" key:32 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        [app inputText:@"h" key:4 modifiers:0];
+        [app inputText:@"e" key:14 modifiers:0];
+        [app inputText:@"d" key:2 modifiers:0];
+        XCTAssertEqualObjects(@"hushed", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"hushed", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@" " key:49 modifiers:0];
+        XCTAssertEqualObjects(@"hushed ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"hushed ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"f" key:3 modifiers:0];
+        [app inputText:@"a" key:0 modifiers:0];
+        [app inputText:@"c" key:8 modifiers:0];
+        [app inputText:@"e" key:14 modifiers:0];
+        XCTAssertEqualObjects(@"hushed face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"hushed face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"😯: hushed face"]];
+        XCTAssertEqualObjects(@"hushed face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        XCTAssertEqualObjects(@"hushed face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"😯: hushed face"]];
+        XCTAssertEqualObjects(@"😯", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }

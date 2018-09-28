@@ -96,6 +96,8 @@
 		A3BAAE0C2160C6FC0076C66D /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		B0DE8679435065D0866D2AAF /* Pods_PreferencesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_PreferencesApp.framework */; };
 		DAA59CC398282039EE3F4265 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 057B3CD9EB092349BD540E8B /* libPods-OSX.a */; };
+		A30112CF213822F70008CAC3 /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30112CE213822F70008CAC3 /* EmoticonComposer.swift */; };
+		A301132A214E548B0008CAC3 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3011324214E53C50008CAC3 /* GureumTests.swift */; };
 		E54B8382214299EB00527218 /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
@@ -341,6 +343,9 @@
 		8DDF3209586DA50868B852BE /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
 		A3BAAE062160C6970076C66D /* GureumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		AAD6EEADFFF6686CFD8D71FD /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
+		A30112CE213822F70008CAC3 /* EmoticonComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonComposer.swift; sourceTree = "<group>"; };
+		A3011324214E53C50008CAC3 /* GureumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
+		A301132D214E56A10008CAC3 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		AEB490519C2C18CA988A9B83 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -628,6 +633,8 @@
 				38BFE82018B4F181004B2B2E /* GureumMockObjects.m */,
 				38BFE80318B45419004B2B2E /* GureumTests.m */,
 				38BFE7FE18B45419004B2B2E /* Supporting Files */,
+				A3011324214E53C50008CAC3 /* GureumTests.swift */,
+				A301132D214E56A10008CAC3 /* Bridge.h */,
 			);
 			path = GureumTests;
 			sourceTree = "<group>";
@@ -1245,9 +1252,12 @@
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1267,9 +1277,13 @@
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/build/$(CONFIGURATION)\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1497,7 +1511,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1531,7 +1544,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
