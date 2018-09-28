@@ -13,7 +13,7 @@
                 <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="P94-Zj-7ft"/>
                 <outlet property="inputModeHanjaShortcutView" destination="H7u-hL-ncz" id="exc-2d-l3Z"/>
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="B8V-7t-gJe"/>
-                <outlet property="windowDelegate" destination="DMm-2g-KCR" id="Z9P-92-IcS"/>
+                <outlet property="viewController" destination="DMm-2g-KCR" id="EWN-2K-pcr"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -22,7 +22,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="548"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="548"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -30,14 +30,14 @@
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="6I9-vn-Dbb">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="385" height="285"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
-                                    <rect key="frame" x="0.0" y="-200" width="400" height="500"/>
+                                    <rect key="frame" x="0.0" y="-215" width="385" height="500"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-UC-GBP">
-                                            <rect key="frame" x="247" y="459" width="134" height="32"/>
+                                            <rect key="frame" x="232" y="459" width="134" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="00c-IC-7IF"/>
                                                 <constraint firstAttribute="width" constant="122" id="tGn-n0-cSc"/>
@@ -89,7 +89,7 @@
                                             </connections>
                                         </comboBox>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
-                                            <rect key="frame" x="23" y="336" width="110" height="17"/>
+                                            <rect key="frame" x="23" y="336" width="109" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -190,7 +190,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QYr-aQ-b5O">
-                                            <rect key="frame" x="326" y="149" width="39" height="38"/>
+                                            <rect key="frame" x="326" y="151" width="38" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="028-3e-SEc"/>
                                                 <constraint firstAttribute="height" constant="26" id="E0J-oy-6I2"/>
@@ -204,7 +204,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Th5-A5-nW2">
-                                            <rect key="frame" x="326" y="87" width="39" height="38"/>
+                                            <rect key="frame" x="326" y="89" width="38" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="psx-Nr-h58"/>
                                                 <constraint firstAttribute="height" constant="26" id="v8L-TK-1TL"/>
@@ -218,7 +218,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K9Y-NE-xf1">
-                                            <rect key="frame" x="326" y="54" width="39" height="38"/>
+                                            <rect key="frame" x="326" y="56" width="38" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="6ek-RW-ajt"/>
                                                 <constraint firstAttribute="height" constant="26" id="ind-ay-rP8"/>
@@ -232,7 +232,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xGW-W9-NIo">
-                                            <rect key="frame" x="326" y="119" width="39" height="38"/>
+                                            <rect key="frame" x="326" y="121" width="38" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="500-Ty-FU4"/>
                                                 <constraint firstAttribute="height" constant="26" id="NV0-an-WUg"/>
@@ -363,11 +363,11 @@
                             <constraint firstAttribute="height" constant="300" id="Jso-1l-2z0"/>
                         </constraints>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
-                            <rect key="frame" x="0.0" y="284" width="400" height="16"/>
+                            <rect key="frame" x="0.0" y="285" width="385" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
-                            <rect key="frame" x="384" y="0.0" width="16" height="300"/>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.93023255813953487" horizontal="NO" id="E1U-9N-bFJ">
+                            <rect key="frame" x="385" y="0.0" width="15" height="285"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -379,15 +379,13 @@
                     <constraint firstAttribute="trailing" secondItem="6I9-vn-Dbb" secondAttribute="trailing" id="pzZ-Tm-ISk"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="DMm-2g-KCR" id="TZR-F2-JAi"/>
-            </connections>
             <point key="canvasLocation" x="-214" y="33"/>
         </window>
-        <customObject id="DMm-2g-KCR" customClass="PreferenceWindowDelegate" customModule="GureumPreferences" customModuleProvider="target">
+        <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
+                <outlet property="view" destination="se5-gp-TjO" id="x0B-I2-MHL"/>
             </connections>
         </customObject>
     </objects>

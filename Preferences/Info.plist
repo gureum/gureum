@@ -29,6 +29,6 @@
 	<key>NSPrefPaneIconLabel</key>
 	<string>Gureum Input Method</string>
 	<key>NSPrincipalClass</key>
-	<string>GureumPreferencePane</string>
+	<string>NSPreferencePane</string>
 </dict>
 </plist>
