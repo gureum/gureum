@@ -6,7 +6,6 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
-#import "CIMInputManager.h"
 
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
