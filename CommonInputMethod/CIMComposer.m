@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [_delegate inputController:controller commandString:string key:keyCode modifiers:flags client:sender];
 }
 
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(nullable NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     return [_delegate inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 }
 

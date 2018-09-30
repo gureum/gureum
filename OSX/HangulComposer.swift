@@ -67,7 +67,7 @@ class HangulComposerCombination {
 
     // CIMComposerDelegate
 
-    public func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
             return self._inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
@@ -78,7 +78,7 @@ class HangulComposerCombination {
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
         }
 
-        var string = string
+        var string = string!
         // 한글 입력에서 캡스락 무시
         if flags.contains(.capsLock) {
             if !flags.contains(.shift) {

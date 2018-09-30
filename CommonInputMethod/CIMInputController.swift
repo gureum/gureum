@@ -8,10 +8,10 @@
 
 import Foundation
 
-@objcMembers class CIMMockInputController: NSObject {
+@objcMembers class CIMMockInputController: CIMInputController {
     @objc var _receiver: CIMInputReceiver
     
-    @objc init(server: IMKServer, delegate: Any!, client: Any!) {
+    @objc override init(server: IMKServer, delegate: Any!, client: Any!) {
         self._receiver = CIMInputReceiver(server: server, delegate: delegate, client: client)
         super.init()
     }
@@ -28,15 +28,38 @@ import Foundation
         }
     }
     
-    @objc func client() -> Any {
-        return self._receiver.inputClient
-    }
-    
-    @objc func composer() -> CIMComposer {
+//    Implemented in objc file
+//    @objc override func client() -> (IMKTextInput & NSObjectProtocol)! {
+//        return self._receiver.inputClient
+//    }
+//
+    @objc override var composer: CIMComposer {
         return self._receiver.composer
     }
     
-    @objc func selectionRange() -> NSRange {
+    @objc override func selectionRange() -> NSRange {
         return (self._receiver.inputClient as AnyObject).selectedRange
     }
+}
+
+extension CIMMockInputController {
+    @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
+        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string) / keyCode: \(keyCode) / modifier flags: \(flags) / client: \((self.client() as AnyObject).bundleIdentifier)(\((self.client() as AnyObject).class))")
+        let v1 = (self._receiver.inputController(self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)
+        let v2 = (CIMInputTextProcessResult.notProcessed.rawValue)
+        let processed: Bool = v1 > v2
+        if !processed {
+            //[self cancelComposition];
+        }
+        return processed
+    }
+    
+    // Committing a Composition
+    // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+    @objc override func commitComposition(_ sender: Any) {
+        self._receiver.commitCompositionEvent(sender, controller: self)
+        // COMMIT triggered
+    }
+    
+    
 }
