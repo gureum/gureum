@@ -34,9 +34,9 @@ class GureumTests: XCTestCase {
                 continue
             }
 
-            app.client.string = ""
-            app.controller.setValue(GureumInputSourceIdentifier.qwerty, forTag:kTextServiceInputModePropertyTag, client: app.client)
-            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags(rawValue: 786432))
+//            app.client.string = ""
+//            app.controller.setValue(GureumInputSourceIdentifier.qwerty, forTag:kTextServiceInputModePropertyTag, client: app.client)
+//            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags(rawValue: 786432))
         }
     }
 }
