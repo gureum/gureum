@@ -61,7 +61,7 @@ TISInputSource *_USSource() {
 @implementation CIMInputReceiver
 @synthesize composer=_composer, inputClient=_inputClient;
 
-- (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+- (instancetype)initWithServer:(nullable IMKServer *)server delegate:(nullable id)delegate client:(nullable id)inputClient {
     self = [super init];
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
@@ -79,7 +79,7 @@ TISInputSource *_USSource() {
 }
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller inputText:(nullable NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
     dlog(DEBUG_LOGGING, @"LOGGING::KEY::(%@)(%ld)(%lu)", [string stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"], keyCode, flags);
 
     BOOL hadComposedString = self._internalComposedString.length > 0;
@@ -289,7 +289,7 @@ TISInputSource *_USSource() {
 
 @implementation CIMInputController
 
-- (instancetype)initWithServer:(IMKServer *)server delegate:(id)delegate client:(id)inputClient {
+- (instancetype)initWithServer:(nullable IMKServer *)server delegate:(nullable id)delegate client:(nullable id)inputClient {
     self = [super initWithServer:server delegate:delegate client:inputClient];
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
@@ -469,23 +469,8 @@ TISInputSource *_USSource() {
 
 @implementation CIMMockInputController (IMKServerInputTextData)
 
-- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-
-    BOOL processed = [self._receiver inputController:(id)self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
-    if (!processed) {
-        //[self cancelComposition];
-    }
-    return processed;
-}
-
-// Committing a Composition
-// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-- (void)commitComposition:(id)sender {
-    [self._receiver commitCompositionEvent:sender controller:(id)self];
-    { // COMMIT triggered
-
-    }
+- (id<IMKTextInput,NSObject>)client {
+    return self._receiver.inputClient;
 }
 
 - (void)updateComposition {

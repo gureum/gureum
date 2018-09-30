@@ -73,7 +73,7 @@ import Foundation
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
         self.needsFakeComposedString = false
         let handled = self.handler.inputController(controller, inputText: string, key: keyCode, modifiers: flag, client: sender)
