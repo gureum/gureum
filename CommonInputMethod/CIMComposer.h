@@ -7,13 +7,14 @@
 //
 
 #import "CIMCommon.h"
-#import "CIMInputManager.h"
 /*!
     @brief 실제로 문자를 합성하는 합성기의 프로토콜
     @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
 */
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class CIMInputManager;
 
 @protocol CIMComposerDelegate<CIMInputTextDelegate>
 
