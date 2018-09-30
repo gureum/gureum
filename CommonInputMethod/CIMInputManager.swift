@@ -18,18 +18,16 @@ import Foundation
  @coclass    IMKServer CIMInputHandler CIMComposer
  */
 @objcMembers public class CIMInputManager: NSObject, CIMInputTextDelegate {
-    // MARK: - sharedComposer에서 Delegate 생성하기 위해 형 변환을 위해 사용
-    private weak var _cimAppDelegate: CIMApplicationDelegate!
     //! @brief  현재 입력중인 서버
-    private var _server: IMKServer!
+    private var _server: IMKServer
     //! @property
-    private var _candidates: IMKCandidates!
+    private var _candidates: IMKCandidates
     //! @property
-    public var configuration: GureumConfiguration!
+    public var configuration: GureumConfiguration
     //! @brief  공용 입력 핸들러
     public var handler: CIMInputHandler!
     //! @brief  공용 합성기
-    public var sharedComposer: CIMComposer!
+    public var sharedComposer: CIMComposer
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
     //! @brief  입력기가 가짜 입력 중인 문자열이 필요한 지 여부를 저장
@@ -44,23 +42,25 @@ import Foundation
     }
     
     override init() {
-        super.init()
-        
         #if DEBUG
-        print("** CharmInputManager Init: \(self)")
+        print("** CharmInputManager Init")
         #endif
-        
+
+        self.configuration = GureumConfiguration.shared()
         let mainBundle = Bundle.main
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
         self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
-        self.handler = CIMInputHandler(manager: self)
-        self.configuration = GureumConfiguration.shared()
-        self._cimAppDelegate = NSApplication.shared.delegate as? CIMApplicationDelegate
-        self.sharedComposer = _cimAppDelegate.composer(server: nil, client: nil)
         
+        let appDelegate = NSApplication.shared.delegate as! CIMApplicationDelegate
+        self.sharedComposer = appDelegate.composer(server: nil, client: nil)
+
+        super.init()
+
+        self.handler = CIMInputHandler(manager: self)
+
         #if DEBUG
-        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates ?? nil)) / handler: \(String(describing: self.handler))")
+        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates)) / handler: \(String(describing: self.handler))")
         #endif
     }
     
