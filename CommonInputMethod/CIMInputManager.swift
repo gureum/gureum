@@ -50,30 +50,30 @@ import Foundation
         print("** CharmInputManager Init: \(self)")
         #endif
         
-        let mainBundle = Bundle()
+        let mainBundle = Bundle.main
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
         self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
         self.handler = CIMInputHandler(manager: self)
-        self.configuration = GureumConfiguration()
-        self._cimAppDelegate = NSApplication.shared.delegate as! CIMApplicationDelegate
-        self.sharedComposer = _cimAppDelegate as! CIMComposer
+        self.configuration = GureumConfiguration.shared()
+        self._cimAppDelegate = NSApplication.shared.delegate as? CIMApplicationDelegate
+        self.sharedComposer = _cimAppDelegate.composer(server: nil, client: nil)
         
         #if DEBUG
-        print("\tserver: \(self._server) / candidates: \(self._candidates) / handler: \(self.handler)")
+        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates ?? nil)) / handler: \(String(describing: self.handler))")
         #endif
     }
     
     public override var description: String {
         return """
-        <%@ server: "\(self._server)" candidates: "\(self._candidates)" handler: "\(self.handler)" configuration: \(self.configuration)>
+        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))" handler: "\(String(describing: self.handler))" configuration: \(String(describing: self.configuration))>
         """
     }
     
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func inputController(_ controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, inputText string: String, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
         self.needsFakeComposedString = false
         let handled = self.handler.inputController(controller, inputText: string, key: keyCode, modifiers: flag, client: sender)
