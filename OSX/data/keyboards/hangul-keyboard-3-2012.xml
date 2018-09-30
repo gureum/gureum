@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hangul-keyboard id="3-2012" type="jaso">
+
+    <_name>Sebeolsik 3-2012</_name>
+
+    <map id="0">
+        <item key="0x21" value="0x0021"/>  <!-- ! → !  -->
+        <item key="0x22" value="0x002f"/>  <!-- " → /  -->
+        <item key="0x23" value="0x0023"/>  <!-- # → #  -->
+        <item key="0x24" value="0x0024"/>  <!-- $ → $  -->
+        <item key="0x25" value="0x0025"/>  <!-- % → %  -->
+        <item key="0x26" value="0x0026"/>  <!-- & → &  -->
+        <item key="0x27" value="0x1110"/>  <!-- ' → ᄐᅠ -->
+        <item key="0x28" value="0x0028"/>  <!-- ( → (  -->
+        <item key="0x29" value="0x0029"/>  <!-- ) → )  -->
+        <item key="0x2a" value="0x002a"/>  <!-- * → *  -->
+        <item key="0x2b" value="0x002b"/>  <!-- + → +  -->
+        <item key="0x2c" value="0x002c"/>  <!-- , → ,  -->
+        <item key="0x2d" value="0x002d"/>  <!-- - → -  -->
+        <item key="0x2e" value="0x002e"/>  <!-- . → .  -->
+        <item key="0x2f" value="0x1169"/>  <!-- / → ᅟᅩ -->
+        <item key="0x30" value="0x110f"/>  <!-- 0 → ᄏᅠ -->
+        <item key="0x31" value="0x11c2"/>  <!-- 1 → ᅟᅠᇂ -->
+        <item key="0x32" value="0x11bb"/>  <!-- 2 → ᅟᅠᆻ -->
+        <item key="0x33" value="0x11b8"/>  <!-- 3 → ᅟᅠᆸ -->
+        <item key="0x34" value="0x116d"/>  <!-- 4 → ᅟᅭ -->
+        <item key="0x35" value="0x1172"/>  <!-- 5 → ᅟᅲ -->
+        <item key="0x36" value="0x1163"/>  <!-- 6 → ᅟᅣ -->
+        <item key="0x37" value="0x1168"/>  <!-- 7 → ᅟᅨ -->
+        <item key="0x38" value="0x1174"/>  <!-- 8 → ᅟᅴ -->
+        <item key="0x39" value="0x116e"/>  <!-- 9 → ᅟᅮ -->
+        <item key="0x3a" value="0x0034"/>  <!-- : → 4  -->
+        <item key="0x3b" value="0x1107"/>  <!-- ; → ᄇᅠ -->
+        <item key="0x3c" value="0x003c"/>  <!-- < → <  -->
+        <item key="0x3d" value="0x003d"/>  <!-- = → =  -->
+        <item key="0x3e" value="0x003e"/>  <!-- > → >  -->
+        <item key="0x3f" value="0x003f"/>  <!-- ? → ?  -->
+        <item key="0x40" value="0x0040"/>  <!-- @ → @  -->
+        <item key="0x41" value="0x11ae"/>  <!-- A → ᅟᅠᆮ -->
+        <item key="0x42" value="0x003b"/>  <!-- B → ;  -->
+        <item key="0x43" value="0x11bf"/>  <!-- C → ᅟᅠᆿ -->
+        <item key="0x44" value="0x11b0"/>  <!-- D → ᅟᅠᆰ -->
+        <item key="0x45" value="0x11bd"/>  <!-- E → ᅟᅠᆽ -->
+        <item key="0x46" value="0x11b1"/>  <!-- F → ᅟᅠᆱ -->
+        <item key="0x47" value="0x003a"/>  <!-- G → :  -->
+        <item key="0x48" value="0x0030"/>  <!-- H → 0  -->
+        <item key="0x49" value="0x0037"/>  <!-- I → 7  -->
+        <item key="0x4a" value="0x0031"/>  <!-- J → 1  -->
+        <item key="0x4b" value="0x0032"/>  <!-- K → 2  -->
+        <item key="0x4c" value="0x0033"/>  <!-- L → 3  -->
+        <item key="0x4d" value="0x0022"/>  <!-- M → "  -->
+        <item key="0x4e" value="0x0027"/>  <!-- N → '  -->
+        <item key="0x4f" value="0x0038"/>  <!-- O → 8  -->
+        <item key="0x50" value="0x0039"/>  <!-- P → 9  -->
+        <item key="0x51" value="0x11c1"/>  <!-- Q → ᅟᅠᇁ -->
+        <item key="0x52" value="0x11b6"/>  <!-- R → ᅟᅠᆶ -->
+        <item key="0x53" value="0x11ad"/>  <!-- S → ᅟᅠᆭ -->
+        <item key="0x54" value="0x1164"/>  <!-- T → ᅟᅤ -->
+        <item key="0x55" value="0x0036"/>  <!-- U → 6  -->
+        <item key="0x56" value="0x11a9"/>  <!-- V → ᅟᅠᆩ -->
+        <item key="0x57" value="0x11c0"/>  <!-- W → ᅟᅠᇀ -->
+        <item key="0x58" value="0x11b9"/>  <!-- X → ᅟᅠᆹ -->
+        <item key="0x59" value="0x0035"/>  <!-- Y → 5  -->
+        <item key="0x5a" value="0x11be"/>  <!-- Z → ᅟᅠᆾ -->
+        <item key="0x5b" value="0x005b"/>  <!-- [ → [  -->
+        <item key="0x5c" value="0x005c"/>  <!-- \ → \  -->
+        <item key="0x5d" value="0x005d"/>  <!-- ] → ]  -->
+        <item key="0x5e" value="0x005e"/>  <!-- ^ → ^  -->
+        <item key="0x5f" value="0x005f"/>  <!-- _ → _  -->
+        <item key="0x60" value="0x0060"/>  <!-- ` → `  -->
+        <item key="0x61" value="0x11bc"/>  <!-- a → ᅟᅠᆼ -->
+        <item key="0x62" value="0x116e"/>  <!-- b → ᅟᅮ -->
+        <item key="0x63" value="0x1166"/>  <!-- c → ᅟᅦ -->
+        <item key="0x64" value="0x1175"/>  <!-- d → ᅟᅵ -->
+        <item key="0x65" value="0x1167"/>  <!-- e → ᅟᅧ -->
+        <item key="0x66" value="0x1161"/>  <!-- f → ᅟᅡ -->
+        <item key="0x67" value="0x1173"/>  <!-- g → ᅟᅳ -->
+        <item key="0x68" value="0x1102"/>  <!-- h → ᄂᅠ -->
+        <item key="0x69" value="0x1106"/>  <!-- i → ᄆᅠ -->
+        <item key="0x6a" value="0x110b"/>  <!-- j → ᄋᅠ -->
+        <item key="0x6b" value="0x1100"/>  <!-- k → ᄀᅠ -->
+        <item key="0x6c" value="0x110c"/>  <!-- l → ᄌᅠ -->
+        <item key="0x6d" value="0x1112"/>  <!-- m → ᄒᅠ -->
+        <item key="0x6e" value="0x1109"/>  <!-- n → ᄉᅠ -->
+        <item key="0x6f" value="0x110e"/>  <!-- o → ᄎᅠ -->
+        <item key="0x70" value="0x1111"/>  <!-- p → ᄑᅠ -->
+        <item key="0x71" value="0x11ba"/>  <!-- q → ᅟᅠᆺ -->
+        <item key="0x72" value="0x1165"/>  <!-- r → ᅟᅥ -->
+        <item key="0x73" value="0x11ab"/>  <!-- s → ᅟᅠᆫ -->
+        <item key="0x74" value="0x1162"/>  <!-- t → ᅟᅢ -->
+        <item key="0x75" value="0x1103"/>  <!-- u → ᄃᅠ -->
+        <item key="0x76" value="0x1169"/>  <!-- v → ᅟᅩ -->
+        <item key="0x77" value="0x11af"/>  <!-- w → ᅟᅠᆯ -->
+        <item key="0x78" value="0x11a8"/>  <!-- x → ᅟᅠᆨ -->
+        <item key="0x79" value="0x1105"/>  <!-- y → ᄅᅠ -->
+        <item key="0x7a" value="0x11b7"/>  <!-- z → ᅟᅠᆷ -->
+        <item key="0x7b" value="0x007b"/>  <!-- { → {  -->
+        <item key="0x7c" value="0x007c"/>  <!-- | → |  -->
+        <item key="0x7d" value="0x007d"/>  <!-- } → }  -->
+        <item key="0x7e" value="0x007e"/>  <!-- ~ → ~  -->
+    </map>
+
+    <include file="hangul-combination-3p.xml"/>
+
+</hangul-keyboard>
