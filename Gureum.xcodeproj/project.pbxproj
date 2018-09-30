@@ -75,9 +75,6 @@
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		389DD8342098B69A00A8EF9B /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
-		389DD8352098B6AC00A8EF9B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
-		38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BFE7FB18B45419004B2B2E /* XCTest.framework */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -87,7 +84,6 @@
 		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
 		38F85936215A926100CD80AE /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
-		38F85965215BEA3800CD80AE /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F85964215BEA3800CD80AE /* PreferencePanes.framework */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
 		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
@@ -284,6 +280,7 @@
 		3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-full.xml"; sourceTree = "<group>"; };
 		38531F3D1B0E7E7C00E2C16D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		386441BD2160CC1A0069F420 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		386ECB7F21537DE70060D9BE /* PreferencesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreferencesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		386ECB8121537DE70060D9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		386ECB8321537DE70060D9BE /* TestWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWindowController.swift; sourceTree = "<group>"; };
@@ -379,10 +376,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38F85965215BEA3800CD80AE /* PreferencePanes.framework in Frameworks */,
-				389DD8352098B6AC00A8EF9B /* Carbon.framework in Frameworks */,
-				389DD8342098B69A00A8EF9B /* InputMethodKit.framework in Frameworks */,
-				38BFE7FC18B45419004B2B2E /* XCTest.framework in Frameworks */,
 				8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +570,7 @@
 		38863C62140E64EB00A8ED76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				386441BD2160CC1A0069F420 /* XCTest.framework */,
 				38F85964215BEA3800CD80AE /* PreferencePanes.framework */,
 				38EE977519FFD65600AD19B8 /* Carbon.framework */,
 				38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */,
@@ -765,7 +759,7 @@
 		38863C50140E62D100A8ED76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
@@ -1480,6 +1474,7 @@
 					"${CONFIGURATION_TEMP_DIR}/OSX.build/DerivedSources",
 				);
 				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1513,6 +1508,7 @@
 					"${CONFIGURATION_TEMP_DIR}/OSX.build/DerivedSources",
 				);
 				INFOPLIST_FILE = "GureumTests/GureumTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
