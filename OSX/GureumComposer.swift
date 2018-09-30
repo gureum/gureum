@@ -174,7 +174,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //            need_exchange = YES;
 //        }
         if (inputModifier, keyCode) == configuration.inputModeHanjaKey {
-            need_hanjamode = true
+            delegatedComposer = hanjaComposer
         }
 //    }
         

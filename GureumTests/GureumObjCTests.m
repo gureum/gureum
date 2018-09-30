@@ -25,7 +25,7 @@
 @end
 
 
-@interface GureumTests : XCTestCase
+@interface GureumObjCTests : XCTestCase
 
 @property(nonatomic,strong) NSArray *apps;
 @property(nonatomic,strong) VirtualApp *moderate, *terminal, *greedy;
@@ -33,7 +33,7 @@
 @end
 
 
-@implementation GureumTests
+@implementation GureumObjCTests
 
 - (void)setUp {
     [super setUp];

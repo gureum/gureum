@@ -127,7 +127,7 @@ class EmoticonComposer: CIMComposer {
                             NSLog("DEBUG 7, [updateEmoticonCandidates] MSG: hanja is nil!")
                         }
                         NSLog("DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        self._candidates.append(emoticon!.value as String + ": " + emoticon!.comment as String)
+                        self._candidates.append(emoticon.value as String + ": " + emoticon.comment as String)
                     }
                 }
             }
@@ -162,12 +162,12 @@ class EmoticonComposer: CIMComposer {
             let bundle: Bundle = Bundle.main
             let path: String? = bundle.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")
 
-            self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path)
+            self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path ?? "")
         }
         return self._sharedEmoticonTable
     }
 
-    override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func inputController(_ controller: CIMInputController!, inputText string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         NSLog("DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result: CIMInputTextProcessResult = self.delegate.inputController(controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
 
