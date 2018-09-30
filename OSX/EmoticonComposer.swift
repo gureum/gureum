@@ -24,7 +24,7 @@ class EmoticonComposer: CIMComposer {
         return self.delegate
     }
 
-    override var composedString: String! {
+    override var composedString: String {
         get {
             return self._composedString
         }
@@ -33,13 +33,13 @@ class EmoticonComposer: CIMComposer {
         }
     }
 
-    override var originalString: String! {
+    override var originalString: String {
         get {
             return self._bufferedString
         }
     }
 
-    override var commitString: String! {
+    override var commitString: String {
         get {
             return self._commitString
         }
@@ -48,7 +48,7 @@ class EmoticonComposer: CIMComposer {
         }
     }
 
-    override func dequeueCommitString() -> String! {
+    override func dequeueCommitString() -> String {
         let dequeued = self._commitString
         self._commitString = ""
         return dequeued
