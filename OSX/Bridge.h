@@ -4,8 +4,6 @@
 
 #import <FoundationExtension/FoundationExtension.h>
 
-#import "NSAlert+Workaround.h"
-
 #import "CIMCommon.h"
 #import "CIMInputController.h"
 #import "CIMInputHandler.h"
