@@ -650,8 +650,6 @@
 				38BFE82018B4F181004B2B2E /* GureumMockObjects.m */,
 				38BFE80318B45419004B2B2E /* GureumObjCTests.m */,
 				38BFE7FE18B45419004B2B2E /* Supporting Files */,
-				A3011324214E53C50008CAC3 /* GureumTests.swift */,
-				A301132D214E56A10008CAC3 /* Bridge.h */,
 			);
 			path = GureumTests;
 			sourceTree = "<group>";
@@ -1161,7 +1159,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A301132A214E548B0008CAC3 /* GureumTests.swift in Sources */,
 				38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */,
 				38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */,
 			);
