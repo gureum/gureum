@@ -71,9 +71,9 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var showsInputForHanjaCandidates: Int {
+    @objc public var showsInputForHanjaCandidates: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
+            return self.bool(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)

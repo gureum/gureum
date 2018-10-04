@@ -27,7 +27,7 @@
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
-		38162E0F141264EB0077AA2D /* HanjaComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.m */; };
+		38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
 		38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38162E1314126ACE0077AA2D /* CIMComposer.m */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
@@ -237,8 +237,7 @@
 		0130E800FFCE9947A2681B1A /* Pods-PreferencesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		057B3CD9EB092349BD540E8B /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38162D7A140F64B70077AA2D /* HanjaComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanjaComposer.h; sourceTree = "<group>"; };
-		38162D7B140F64B70077AA2D /* HanjaComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanjaComposer.m; sourceTree = "<group>"; };
+		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanjaComposer.swift; sourceTree = "<group>"; };
 		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
 		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,9 +641,8 @@
 		38FA21DF14231BCC00444D67 /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				38162D7A140F64B70077AA2D /* HanjaComposer.h */,
-				38162D7B140F64B70077AA2D /* HanjaComposer.m */,
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
+				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
 			);
@@ -1118,7 +1116,7 @@
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
-				38162E0F141264EB0077AA2D /* HanjaComposer.m in Sources */,
+				38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */,
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
 				38162E1514126ACE0077AA2D /* CIMComposer.m in Sources */,
 				E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */,
