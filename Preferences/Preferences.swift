@@ -16,7 +16,6 @@ import MASShortcut
     
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
-        self.viewController.viewDidLoad()
     }
 }
 
