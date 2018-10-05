@@ -34,6 +34,7 @@ import MASShortcut
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
+    let shortcutValidator = GureumShortcutValidator()
     
 //    @IBOutlet var _window: NSWindow!
     
@@ -50,6 +51,10 @@ import MASShortcut
             defaultInputHangulComboBox.selectItem(at: index)
         }
         optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
+        inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
+        inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
+        inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
+        inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
     }
     
     @IBAction func openKeyboardPreference(sender: NSControl) {
@@ -154,4 +159,23 @@ import MASShortcut
         super.init()
     }
 
+}
+
+class GureumShortcutValidator: MASShortcutValidator {
+    override init() {
+        super.init()
+        allowAnyShortcutWithOptionModifier = true
+    }
+    
+    override func isShortcutAlreadyTaken(bySystem shortcut: MASShortcut!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+        return false
+    }
+    
+    override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
+        return true
+    }
+    
+    override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+        return false
+    }
 }
