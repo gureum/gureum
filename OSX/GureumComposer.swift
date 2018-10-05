@@ -211,7 +211,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return CIMInputTextProcessResult.processed
             }
             // Vi-mode: esc로 로마자 키보드로 전환
-            if GureumConfiguration.shared().romanModeByEscapeKey != 0 && (keyCode == kVK_Escape || false) {
+            if GureumConfiguration.shared().romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
                 self.delegate.cancelComposition()
                 (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
