@@ -89,7 +89,7 @@ class HangulComposerCombination {
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
         if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
             let backQuote = 50
-            if keyCode == backQuote {
+            if keyCode == backQuote && !flags.contains(.shift) {
                 self._commitString += "₩"
                 return CIMInputTextProcessResult.processed
             }
