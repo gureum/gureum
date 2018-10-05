@@ -9,6 +9,8 @@
 import Foundation
 import Hangul
 
+let DEBUG_HANGULCOMPOSER = false
+
 class HangulComposerCombination {
     /*!
      @brief  설정에 따라 조합 완료할 문자 최종처리
@@ -75,7 +77,7 @@ class HangulComposerCombination {
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
-            //dlog(DEBUG_HANGULCOMPOSER, @" ** ESCAPE from outbound keyCode: %lu", keyCode);
+            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode);
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
         }
 

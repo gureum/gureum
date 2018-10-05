@@ -32,6 +32,7 @@
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
 		381CA2F11FCE208A00DDB81D /* Example.png in Resources */ = {isa = PBXBuildFile; fileRef = 381CA2F01FCE208A00DDB81D /* Example.png */; };
+		381DB19B21678B74005A37B9 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
@@ -251,6 +252,7 @@
 		381CA2ED1FCE16EA00DDB81D /* Preferences-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preferences-Bridging-Header.h"; sourceTree = "<group>"; };
 		381CA2EE1FCE16EA00DDB81D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		381CA2F01FCE208A00DDB81D /* Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Example.png; sourceTree = "<group>"; };
+		381DB19A21678B74005A37B9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		382AF2DC21563C0600701F90 /* PreferencesApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PreferencesApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		382E68641A1314D900031D1D /* Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
+				381DB19A21678B74005A37B9 /* Debug.swift */,
 				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
 				381B32731DA826B100EA1975 /* Bridge.h */,
 				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
@@ -1115,6 +1118,7 @@
 				878898012160AA6E00BF5770 /* CIMInputManager.swift in Sources */,
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
+				381DB19B21678B74005A37B9 /* Debug.swift in Sources */,
 				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
 				38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */,
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
