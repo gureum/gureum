@@ -16,7 +16,6 @@ import MASShortcut
     
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
-       // self.viewController.viewDidLoad()
     }
 }
 
@@ -27,6 +26,10 @@ import MASShortcut
     @IBOutlet weak var inputModeEnglishShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeKoreanShortcutView: MASShortcutView!
     @IBOutlet weak var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
+    @IBOutlet weak var optionKeyComboBox: NSComboBoxCell!
+    @IBOutlet weak var autoSaveDefaultInputModeButton: NSButton!
+    @IBOutlet weak var enableCapslockToToggleInputModeButton: NSButton!
+    @IBOutlet weak var romanModeByEscapeKeyButton: NSButton!
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
@@ -34,8 +37,19 @@ import MASShortcut
     
 //    @IBOutlet var _window: NSWindow!
     
+    func boolToButtonState(_ value: Bool) -> NSButton.StateValue {
+        return value ? .on : .off
+    }
+    
     override func viewDidLoad() {
-        
+        enableCapslockToToggleInputModeButton.state = boolToButtonState(configuration.enableCapslockToToggleInputMode)
+        hangulWonCurrencySymbolForBackQuoteButton.state = boolToButtonState(configuration.hangulWonCurrencySymbolForBackQuote)
+        romanModeByEscapeKeyButton.state = boolToButtonState(configuration.romanModeByEscapeKey)
+        autoSaveDefaultInputModeButton.state = boolToButtonState(configuration.autosaveDefaultInputMode)
+        if let index = layoutTable.gureumPreferencesHangulLayouts.index(of: configuration.lastHangulInputMode!) {
+            defaultInputHangulComboBox.selectItem(at: index)
+        }
+        optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
     }
     
     @IBAction func openKeyboardPreference(sender: NSControl) {
@@ -53,7 +67,7 @@ import MASShortcut
     }
     
     @IBAction func didTapAutoSaveDefaultInputModeCheckBox(_ sender: NSButton) {
-        configuration.autosaveDefaultInputMode = sender.integerValue
+        configuration.autosaveDefaultInputMode = sender.state == .on
     }
     
     @IBAction func defaultHangulInputModeComboBoxValueChanged(_ sender: NSComboBox) {
@@ -62,7 +76,7 @@ import MASShortcut
     }
     
     @IBAction func didTapRomanModeByEscapeKey(_ sender: NSButton) {
-        configuration.romanModeByEscapeKey = sender.integerValue
+        configuration.romanModeByEscapeKey = sender.state == .on
     }
     
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
