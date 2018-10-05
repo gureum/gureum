@@ -67,11 +67,7 @@ import MASShortcut
     }
     
     @IBAction func didTapAutoSaveDefaultInputModeCheckBox(_ sender: NSButton) {
-        if sender.state == .on {
-            configuration.autosaveDefaultInputMode = true
-        } else {
-            configuration.autosaveDefaultInputMode = false
-        }
+        configuration.autosaveDefaultInputMode = sender.state == .on
     }
     
     @IBAction func defaultHangulInputModeComboBoxValueChanged(_ sender: NSComboBox) {
@@ -80,11 +76,7 @@ import MASShortcut
     }
     
     @IBAction func didTapRomanModeByEscapeKey(_ sender: NSButton) {
-        if sender.state == .on {
-            configuration.romanModeByEscapeKey = true
-        } else {
-            configuration.romanModeByEscapeKey = false
-        }
+        configuration.romanModeByEscapeKey = sender.state == .on
     }
     
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
