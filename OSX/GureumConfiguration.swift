@@ -50,6 +50,7 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
             GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
+            GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
         ])
     }
 
@@ -133,18 +134,18 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var romanModeByEscapeKey: Int {
+    @objc public var romanModeByEscapeKey: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
+            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
     }
 
-    @objc public var autosaveDefaultInputMode: Int {
+    @objc public var autosaveDefaultInputMode: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
+            return self.bool(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue)

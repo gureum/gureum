@@ -383,8 +383,12 @@
         </window>
         <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
+                <outlet property="autoSaveDefaultInputModeButton" destination="RxT-GE-eXq" id="vft-Lv-q9b"/>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
+                <outlet property="enableCapslockToToggleInputModeButton" destination="IkH-Pc-uX9" id="qt0-gT-Hyb"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
+                <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
+                <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>
                 <outlet property="view" destination="se5-gp-TjO" id="x0B-I2-MHL"/>
             </connections>
         </customObject>
