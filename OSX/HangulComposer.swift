@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Hangul
 
 class HangulComposerCombination {
     /*!
