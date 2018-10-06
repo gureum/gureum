@@ -328,7 +328,7 @@
         }
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"\n" key:36 modifiers:786432]; // change to emoticon mode
+        [app inputText:@"\n" key:36 modifiers:655360]; // change to emoticon mode
         [app inputText:@"s" key:1 modifiers:0];
         [app inputText:@"l" key:37 modifiers:0];
         [app inputText:@"e" key:14 modifiers:0];

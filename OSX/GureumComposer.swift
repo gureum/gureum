@@ -176,6 +176,9 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         if (inputModifier, keyCode) == configuration.inputModeHanjaKey {
             delegatedComposer = hanjaComposer
         }
+        if (inputModifier, keyCode) == configuration.inputModeEmojiKey {
+            delegatedComposer = emoticonComposer
+        }
 //    }
         
         if need_exchange {
@@ -218,11 +221,13 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
         }
-        if delegatedComposer === emoticonComposer {
-            emoticonComposer.delegate = self.delegate
-            self.delegate = emoticonComposer
-            emoticonComposer.updateFromController(controller)
-            return CIMInputTextProcessResult.processed
+        if self.delegate === romanComposer {
+            if delegatedComposer === emoticonComposer {
+                emoticonComposer.delegate = self.delegate
+                self.delegate = emoticonComposer
+                emoticonComposer.updateFromController(controller)
+                return CIMInputTextProcessResult.processed
+            }
         }
         return CIMInputTextProcessResult.notProcessed
     }

@@ -20,6 +20,8 @@ enum GureumConfigurationName: String {
     case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
     case inputModeExchangeKeyModifier = "CIMInputModeExchangeKeyModifier"
     case inputModeExchangeKeyCode = "CIMInputModeExchangeKeyCode"
+    case inputModeEmojiKeyModifier = "CIMInputModeEmojiKeyModifier"
+    case inputModeEmojiKeyCode = "CIMInputModeEmojiKeyCode"
     case inputModeHanjaKeyModifier = "CIMInputModeHanjaKeyModifier"
     case inputModeHanjaKeyCode = "CIMInputModeHanjaKeyCode"
     case inputModeEnglishKeyModifier = "CIMInputModeEnglishKeyModifier"
@@ -45,6 +47,8 @@ enum GureumConfigurationName: String {
         self.register(defaults: [
             GureumConfigurationName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
             GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
+            GureumConfigurationName.inputModeEmojiKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
+            GureumConfigurationName.inputModeEmojiKeyCode.rawValue: 0x24,
             GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
             GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
@@ -106,6 +110,25 @@ enum GureumConfigurationName: String {
     public var inputModeExchangeKey: (NSEvent.ModifierFlags, Int) {
         get {
             return (self.inputModeExchangeKeyModifier, self.inputModeExchangeKeyCode)
+        }
+    }
+
+    @objc public var inputModeEmojiKeyModifier: NSEvent.ModifierFlags {
+        get {
+            let value = self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyModifier.rawValue)
+            return NSEvent.ModifierFlags(rawValue: UInt(value))
+        }
+    }
+
+    @objc public var inputModeEmojiKeyCode: Int {
+        get {
+            return self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyCode.rawValue)
+        }
+    }
+
+    public var inputModeEmojiKey: (NSEvent.ModifierFlags, Int) {
+        get {
+            return (self.inputModeEmojiKeyModifier, self.inputModeEmojiKeyCode)
         }
     }
 
