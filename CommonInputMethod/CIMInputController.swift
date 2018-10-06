@@ -10,6 +10,7 @@ import Foundation
 
 extension CIMInputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
+        NSApp.activate(ignoringOtherApps: true)
         NSApp.orderFrontStandardAboutPanel(sender)
     }
 }
