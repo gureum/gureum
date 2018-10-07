@@ -1,5 +1,5 @@
 """
-Generate a emoticon.txt from a emoji-test.txt
+Generate a emoji.txt from a emoji-test.txt
 """
 from typing import Iterable
 import logging
@@ -7,8 +7,8 @@ import logging
 import unittest
 
 
-def generate_emoticon(filename: str = 'emoji-test.txt') -> int:
-    """generate emoticon from input file
+def generate_emoji(filename: str = 'emoji-test.txt') -> int:
+    """generate emoji from input file
 
     Args:
         Input filename
@@ -23,13 +23,13 @@ def generate_emoticon(filename: str = 'emoji-test.txt') -> int:
     qualified_lines = _get_fully_qualified_lines(file_lines)
 
     for line in qualified_lines:
-        data.append(_get_emoticon_data(line))
+        data.append(_get_emoji_data(line))
 
     data.sort()  # XXX: search uses binary search algorithm
 
-    with open('emoticon.txt', 'w') as file:
-        for desc, _, emoti in data:
-            num = file.write('{1}:{0}:{1}\n'.format(emoti, desc))
+    with open('emoji.txt', 'w') as file:
+        for desc, _, emoji in data:
+            num = file.write('{1}:{0}:{1}\n'.format(emoji, desc))
 
     return num
 
@@ -50,27 +50,27 @@ def _is_valid_line(line: str) -> bool:
     return True
 
 
-def _get_emoticon_data(line: str) -> tuple:
-    """Extract the emoticon data from a line
+def _get_emoji_data(line: str) -> tuple:
+    """Extract the emoji data from a line
 
     Args:
         a fully-qualified line
     Return:
-        Description, Unicode, Emoticon
+        Description, Unicode, emoji
     """
     data = line.split('; fully-qualified')
 
     unicode = data[0].strip()
 
     bytes_num = len(unicode.split())
-    emoticon = data[1].strip()[2:]
+    emoji = data[1].strip()[2:]
 
-    description = emoticon[bytes_num+1:]
-    emoticon = emoticon[0:bytes_num]
+    desc = emoji[bytes_num+1:]
+    emoji = emoji[0:bytes_num]
 
-    description = _refine_description(description)
+    desc = _refine_description(desc)
 
-    return description, unicode, emoticon
+    return desc, unicode, emoji
 
 
 def _refine_description(desc):
@@ -82,7 +82,7 @@ def _refine_description(desc):
     return desc
 
 
-class TestGenerateemoticon(unittest.TestCase):
+class TestGenerateemoji(unittest.TestCase):
     def setUp(self):
         pass
 
@@ -101,7 +101,7 @@ class TestGenerateemoticon(unittest.TestCase):
         line = '# subgroup: face-negative'
         self.assertFalse(_is_valid_line(line))
 
-    def test_get_emoticon_data(self):
+    def test_get_emoji_data(self):
         lines = [
             '1F62F                                      ; fully-qualified     # 😯 hushed face',
             '2620 FE0F                                  ; fully-qualified     # ☠️ skull and crossbones',
@@ -110,25 +110,25 @@ class TestGenerateemoticon(unittest.TestCase):
             '1F3CA 1F3FB 200D 2642 FE0F                 ; fully-qualified     # 🏊🏻‍♂️ man swimming: light skin tone',
         ]
 
-        desc, unicode, emoti = _get_emoticon_data(lines[0])
+        desc, unicode, emoji = _get_emoji_data(lines[0])
         self.assertEqual(unicode, '1F62F')
-        self.assertEqual(emoti, '😯')
+        self.assertEqual(emoji, '😯')
         self.assertEqual(desc, 'hushed face')
-        desc, unicode, emoti = _get_emoticon_data(lines[1])
+        desc, unicode, emoji = _get_emoji_data(lines[1])
         self.assertEqual(unicode, '2620 FE0F')
-        self.assertEqual(emoti, '☠️')
+        self.assertEqual(emoji, '☠️')
         self.assertEqual(desc, 'skull and crossbones')
-        desc, unicode, emoti = _get_emoticon_data(lines[2])
+        desc, unicode, emoji = _get_emoji_data(lines[2])
         self.assertEqual(unicode, '1F469 1F3FC')
-        self.assertEqual(emoti, '👩🏼')
+        self.assertEqual(emoji, '👩🏼')
         self.assertEqual(desc, 'woman; medium-light skin tone')
-        desc, unicode, emoti = _get_emoticon_data(lines[3])
+        desc, unicode, emoji = _get_emoji_data(lines[3])
         self.assertEqual(unicode, '1F469 200D 2695 FE0F')
-        self.assertEqual(emoti, '👩‍⚕️')
+        self.assertEqual(emoji, '👩‍⚕️')
         self.assertEqual(desc, 'woman health worker')
-        desc, unicode, emoti = _get_emoticon_data(lines[4])
+        desc, unicode, emoji = _get_emoji_data(lines[4])
         self.assertEqual(unicode, '1F3CA 1F3FB 200D 2642 FE0F')
-        self.assertEqual(emoti, '🏊🏻‍♂️')
+        self.assertEqual(emoji, '🏊🏻‍♂️')
         self.assertEqual(desc, 'man swimming; light skin tone')
 
 
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     )
 
     try:
-        generate_emoticon()
-        logging.info('emoticon.txt has been created')
+        generate_emoji()
+        logging.info('emoji.txt has been created')
     except Exception as e:
         logging.error(e)
