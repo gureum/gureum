@@ -276,11 +276,6 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         self.layoutsView.contentSize = CGSize(width: newWidth, height: 0)
         //globalInputViewController?.log("layoutview frame: \(self.layoutsView.frame)")
 
-        self.pageControl.currentPage = index
-        let offset = CGFloat(index) * self.frame.width
-        
-        self.layoutsView.setContentOffset(CGPoint(x: offset, y: 0), animated: animated)
-     
         // 스크롤 하기 전의 offset으로 설정한다
         if index == layoutNames.count + 1 {
             let tempOffset = CGFloat(0) * self.frame.width
@@ -291,6 +286,10 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
             self.layoutsView.contentOffset = CGPoint(x: tempOffset, y: 0)
             selectedCollectionIndex = layoutNames.count
         }
+
+        self.pageControl.currentPage = selectedCollectionIndex
+        let offset = CGFloat(selectedCollectionIndex) * self.frame.width
+        self.layoutsView.setContentOffset(CGPoint(x: offset, y: 0), animated: animated)
 
         for (i, collection) in self.collections.enumerated() {
             collection.selectLayoutIndex(index: 0)
