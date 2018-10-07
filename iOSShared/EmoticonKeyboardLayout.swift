@@ -384,7 +384,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         self.emoticonView.tableView.reloadSections(IndexSet(integer: 0), with: .none)
     }
 
-    func selectSection(sender: GRInputButton) {
+    @objc func selectSection(_ sender: GRInputButton) {
         let section = sender.tag
         let indexPath = IndexPath(row: 0, section: section)
         let position = UITableViewScrollPosition.top
