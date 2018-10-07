@@ -18,6 +18,7 @@ class EmojiComposer: CIMComposer {
     var _candidates: [String] = []
     var _composedString: String = ""
     var _bufferedString: String = ""
+    var _selectedCandidate: NSAttributedString? = nil
 
     var mode: Bool = true
 
@@ -96,6 +97,16 @@ class EmojiComposer: CIMComposer {
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         // Pass
+        if candidateString.length == 0 {
+            self._selectedCandidate = nil
+        } else {
+            let value: String? = candidateString.string.components(separatedBy: ":")[0]
+            if value == nil {
+                self._selectedCandidate = nil
+            } else {
+                self._selectedCandidate = NSAttributedString(string: value!)
+            }
+        }
     }
 
     func updateEmojiCandidates() {
@@ -159,13 +170,13 @@ class EmojiComposer: CIMComposer {
     }
 
     func emojiTable() -> HGHanjaTable? {
-        if self._sharedemojiTable == nil {
+        if self._sharedEmojiTable == nil {
             let bundle: Bundle = Bundle.main
-            let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")
+            let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
 
-            self._sharedemojiTable = HGHanjaTable.init(contentOfFile: path ?? "")
+            self._sharedEmojiTable = HGHanjaTable.init(contentOfFile: path ?? "")
         }
-        return self._sharedemojiTable
+        return self._sharedEmojiTable
     }
 
     override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
@@ -210,15 +221,17 @@ class EmojiComposer: CIMComposer {
             self.composedString = self.originalString
             self.cancelComposition()
             // step 3. cancel candidates
-            self.candidates = nil
+            self.candidates = []
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+        // Enter
+        case 36:
+            self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: ""))
+            break
         default:
             break
         }
 
         dlog(DEBUG_EMOJI, "DEBUG 2, [inputController] MSG: %@", string)
-        // switch for some keyCodes
-        // updateemojiCandidates
         self.updateEmojiCandidates()
 
         dlog(DEBUG_EMOJI, "DEBUG 3, [inputController] MSG: %@", string)
