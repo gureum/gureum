@@ -83,7 +83,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
     
     func getRecentVersion() -> VersionInfo? {
-        return nil
         let url = URL(string: "http://gureum.io/version.txt")!
         var request = URLRequest(url: url)
         request.timeoutInterval = 0.5
