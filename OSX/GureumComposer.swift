@@ -225,7 +225,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             if delegatedComposer === emoticonComposer {
                 emoticonComposer.delegate = self.delegate
                 self.delegate = emoticonComposer
-                emoticonComposer.updateFromController(controller)
+                emoticonComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
         }

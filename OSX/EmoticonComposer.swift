@@ -135,21 +135,21 @@ class EmoticonComposer: CIMComposer {
         NSLog("DEBUG 2, [updateEmoticonCandidates] MSG: %@", self.candidates)
     }
 
-    func updateFromController(_ controller: CIMInputController) {
-        NSLog("DEBUG 1, [updateFromController] MSG: function called")
+    func update(fromController controller: CIMInputController) {
+        NSLog("DEBUG 1, [update] MSG: function called")
         let markedRange: NSRange = controller.client().markedRange()
         let selectedRange: NSRange = controller.client().selectedRange()
 
         let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.length == NSNotFound
 
-        NSLog("DEBUG 2, [updateFromController] MSG: DEBUG POINT 1")
+        NSLog("DEBUG 2, [update] MSG: DEBUG POINT 1")
         if isInvalidMarkedRange && selectedRange.length > 0 {
             let selectedString: String = controller.client().attributedSubstring(from: selectedRange).string
 
             controller.client().setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
 
             self._bufferedString = selectedString
-            NSLog("DEBUG 3, [updateFromController] MSG: %@", self._bufferedString)
+            NSLog("DEBUG 3, [update] MSG: %@", self._bufferedString)
 
             self.mode = false
         }
@@ -160,7 +160,7 @@ class EmoticonComposer: CIMComposer {
     func emoticonTable() -> HGHanjaTable? {
         if self._sharedEmoticonTable == nil {
             let bundle: Bundle = Bundle.main
-            let path: String? = bundle.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")
+            let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
 
             self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path ?? "")
         }

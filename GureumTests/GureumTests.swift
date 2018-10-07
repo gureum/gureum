@@ -30,12 +30,9 @@ class GureumTests: XCTestCase {
     
     func testSearchEmoticonTable() {
         let bundle: Bundle = Bundle.main
-        let path: String? = bundle.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")
-
+        let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
         let table: HGHanjaTable = HGHanjaTable.init(contentOfFile: path ?? "")
-
         let list: HGHanjaList = table.hanjas(byPrefixSearching: "hushed") ?? HGHanjaList()
-
         XCTAssert(list.count > 0)
     }
 }
