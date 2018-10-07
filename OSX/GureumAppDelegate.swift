@@ -31,7 +31,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
 
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
-    @objc var sharedInputManager: CIMInputManager!
+    @objc public var sharedInputManager: CIMInputManager!
     let configuration = GureumConfiguration.shared()
     var notificationCenter = NSUserNotificationCenter.default
     var notificationCenterDelegate = NotificationCenterDelegate()
