@@ -25,9 +25,10 @@ def generate_emoticonr(filename: str = 'emoji-test.txt') -> int:
     for line in qualified_lines:
         data.append(_get_emoticon_data(line))
 
+    data.sort()  # XXX: search uses binary search algorithm
 
     with open('emoticonr.txt', 'w') as file:
-        for _, emoti, desc in data:
+        for desc, _, emoti in data:
             num = file.write('{1}:{0}:{1}\n'.format(emoti, desc))
 
     return num
@@ -55,7 +56,7 @@ def _get_emoticon_data(line: str) -> tuple:
     Args:
         a fully-qualified line
     Return:
-        Unicode, Emoticon, Description
+        Description, Unicode, Emoticon
     """
     data = line.split('; fully-qualified')
 
@@ -67,7 +68,7 @@ def _get_emoticon_data(line: str) -> tuple:
     description = emoticon[bytes_num+1:]
     emoticon = emoticon[0:bytes_num]
 
-    return unicode, emoticon, description
+    return description, unicode, emoticon
 
 
 class TestGenerateEmoticonr(unittest.TestCase):
@@ -98,23 +99,23 @@ class TestGenerateEmoticonr(unittest.TestCase):
             '1F3CA 1F3FB 200D 2642 FE0F                 ; fully-qualified     # 🏊🏻‍♂️ man swimming: light skin tone',
         ]
 
-        unicode, emoti, desc = _get_emoticon_data(lines[0])
+        desc, unicode, emoti = _get_emoticon_data(lines[0])
         self.assertEqual(unicode, '1F62F')
         self.assertEqual(emoti, '😯')
         self.assertEqual(desc, 'hushed face')
-        unicode, emoti, desc = _get_emoticon_data(lines[1])
+        desc, unicode, emoti = _get_emoticon_data(lines[1])
         self.assertEqual(unicode, '2620 FE0F')
         self.assertEqual(emoti, '☠️')
         self.assertEqual(desc, 'skull and crossbones')
-        unicode, emoti, desc = _get_emoticon_data(lines[2])
+        desc, unicode, emoti = _get_emoticon_data(lines[2])
         self.assertEqual(unicode, '1F469 1F3FC')
         self.assertEqual(emoti, '👩🏼')
         self.assertEqual(desc, 'woman: medium-light skin tone')
-        unicode, emoti, desc = _get_emoticon_data(lines[3])
+        desc, unicode, emoti = _get_emoticon_data(lines[3])
         self.assertEqual(unicode, '1F469 200D 2695 FE0F')
         self.assertEqual(emoti, '👩‍⚕️')
         self.assertEqual(desc, 'woman health worker')
-        unicode, emoti, desc = _get_emoticon_data(lines[4])
+        desc, unicode, emoti = _get_emoticon_data(lines[4])
         self.assertEqual(unicode, '1F3CA 1F3FB 200D 2642 FE0F')
         self.assertEqual(emoti, '🏊🏻‍♂️')
         self.assertEqual(desc, 'man swimming: light skin tone')
