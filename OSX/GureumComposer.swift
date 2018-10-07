@@ -63,14 +63,14 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
     @objc var romanComposer: RomanComposer
     @objc var hangulComposer: HangulComposer
     @objc var hanjaComposer: HanjaComposer
-    @objc var emoticonComposer: EmoticonComposer
+    @objc var emojiComposer: EmojiComposer
 
     override init() {
         romanComposer = RomanComposer()
         hangulComposer = HangulComposer(keyboardIdentifier: "2")!
         hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
-        emoticonComposer = EmoticonComposer()
+        emojiComposer = EmojiComposer()
         super.init()
         self.delegate = romanComposer
     }
@@ -225,10 +225,10 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             }
         }
         if self.delegate === romanComposer {
-            if delegatedComposer === emoticonComposer {
-                emoticonComposer.delegate = self.delegate
-                self.delegate = emoticonComposer
-                emoticonComposer.update(fromController: controller)
+            if delegatedComposer === emojiComposer {
+                emojiComposer.delegate = self.delegate
+                self.delegate = emojiComposer
+                emojiComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
         }
