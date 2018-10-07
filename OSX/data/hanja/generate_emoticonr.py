@@ -68,7 +68,18 @@ def _get_emoticon_data(line: str) -> tuple:
     description = emoticon[bytes_num+1:]
     emoticon = emoticon[0:bytes_num]
 
+    description = _refine_description(description)
+
     return description, unicode, emoticon
+
+
+def _refine_description(desc):
+    """Refines a description
+
+    1. Not to use colon in description
+    """
+    desc = desc.replace(':', ';')
+    return desc
 
 
 class TestGenerateEmoticonr(unittest.TestCase):
@@ -110,7 +121,7 @@ class TestGenerateEmoticonr(unittest.TestCase):
         desc, unicode, emoti = _get_emoticon_data(lines[2])
         self.assertEqual(unicode, '1F469 1F3FC')
         self.assertEqual(emoti, '👩🏼')
-        self.assertEqual(desc, 'woman: medium-light skin tone')
+        self.assertEqual(desc, 'woman; medium-light skin tone')
         desc, unicode, emoti = _get_emoticon_data(lines[3])
         self.assertEqual(unicode, '1F469 200D 2695 FE0F')
         self.assertEqual(emoti, '👩‍⚕️')
@@ -118,7 +129,7 @@ class TestGenerateEmoticonr(unittest.TestCase):
         desc, unicode, emoti = _get_emoticon_data(lines[4])
         self.assertEqual(unicode, '1F3CA 1F3FB 200D 2642 FE0F')
         self.assertEqual(emoti, '🏊🏻‍♂️')
-        self.assertEqual(desc, 'man swimming: light skin tone')
+        self.assertEqual(desc, 'man swimming; light skin tone')
 
 
 if __name__ == '__main__':
