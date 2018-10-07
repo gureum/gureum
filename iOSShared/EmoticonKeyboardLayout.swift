@@ -369,7 +369,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         headerView.textLabel?.textColor = modelLabel?.textColor
     }
 
-    func input(sender: GRInputButton) {
+    @objc func input(_ sender: GRInputButton) {
         preferences.emoticonSection = sender.tag
         self.frequencyMap[sender.sequence] = (self.frequencyMap[sender.sequence] ?? 0) + 1
         preferences.emoticonFrequencies = self.frequencyMap

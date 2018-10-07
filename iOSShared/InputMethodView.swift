@@ -278,22 +278,19 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
         self.pageControl.currentPage = index
         let offset = CGFloat(index) * self.frame.width
+        
         self.layoutsView.setContentOffset(CGPoint(x: offset, y: 0), animated: animated)
      
-        if index == layoutNames.count+1 {
-
+        // 스크롤 하기 전의 offset으로 설정한다
+        if index == layoutNames.count + 1 {
             let tempOffset = CGFloat(0) * self.frame.width
             self.layoutsView.contentOffset = CGPoint(x: tempOffset, y: 0)
             selectedCollectionIndex = 1
-            
         } else if index == 0 {
-
             let tempOffset = CGFloat(layoutNames.count+1) * self.frame.width
             self.layoutsView.contentOffset = CGPoint(x: tempOffset, y: 0)
             selectedCollectionIndex = layoutNames.count
         }
-        
-     
 
         for (i, collection) in self.collections.enumerated() {
             collection.selectLayoutIndex(index: 0)
