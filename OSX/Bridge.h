@@ -7,4 +7,4 @@
 #import "CIMCommon.h"
 #import "CIMInputController.h"
 #import "CIMInputHandler.h"
-#import "HanjaComposer.h"
+#import "CIMComposer.h"

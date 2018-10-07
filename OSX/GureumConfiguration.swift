@@ -20,6 +20,8 @@ enum GureumConfigurationName: String {
     case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
     case inputModeExchangeKeyModifier = "CIMInputModeExchangeKeyModifier"
     case inputModeExchangeKeyCode = "CIMInputModeExchangeKeyCode"
+    case inputModeEmojiKeyModifier = "CIMInputModeEmojiKeyModifier"
+    case inputModeEmojiKeyCode = "CIMInputModeEmojiKeyCode"
     case inputModeHanjaKeyModifier = "CIMInputModeHanjaKeyModifier"
     case inputModeHanjaKeyCode = "CIMInputModeHanjaKeyCode"
     case inputModeEnglishKeyModifier = "CIMInputModeEnglishKeyModifier"
@@ -45,11 +47,14 @@ enum GureumConfigurationName: String {
         self.register(defaults: [
             GureumConfigurationName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
             GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
+            GureumConfigurationName.inputModeEmojiKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
+            GureumConfigurationName.inputModeEmojiKeyCode.rawValue: 0x24,
             GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
             GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
             GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
+            GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
         ])
     }
 
@@ -71,9 +76,9 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var showsInputForHanjaCandidates: Int {
+    @objc public var showsInputForHanjaCandidates: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
+            return self.bool(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
@@ -108,6 +113,25 @@ enum GureumConfigurationName: String {
         }
     }
 
+    @objc public var inputModeEmojiKeyModifier: NSEvent.ModifierFlags {
+        get {
+            let value = self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyModifier.rawValue)
+            return NSEvent.ModifierFlags(rawValue: UInt(value))
+        }
+    }
+
+    @objc public var inputModeEmojiKeyCode: Int {
+        get {
+            return self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyCode.rawValue)
+        }
+    }
+
+    public var inputModeEmojiKey: (NSEvent.ModifierFlags, Int) {
+        get {
+            return (self.inputModeEmojiKeyModifier, self.inputModeEmojiKeyCode)
+        }
+    }
+
     @objc public var inputModeHanjaKeyModifier: NSEvent.ModifierFlags {
         get {
             let value = self.integer(forKey: GureumConfigurationName.inputModeHanjaKeyModifier.rawValue)
@@ -133,18 +157,18 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var romanModeByEscapeKey: Int {
+    @objc public var romanModeByEscapeKey: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
+            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
     }
 
-    @objc public var autosaveDefaultInputMode: Int {
+    @objc public var autosaveDefaultInputMode: Bool {
         get {
-            return self.integer(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
+            return self.bool(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue)

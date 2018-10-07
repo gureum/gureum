@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Hangul
+
+let DEBUG_HANGULCOMPOSER = false
 
 class HangulComposerCombination {
     /*!
@@ -74,7 +77,7 @@ class HangulComposerCombination {
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
-            //dlog(DEBUG_HANGULCOMPOSER, @" ** ESCAPE from outbound keyCode: %lu", keyCode);
+            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode);
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
         }
 
@@ -88,7 +91,7 @@ class HangulComposerCombination {
         let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
         if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
             let backQuote = 50
-            if keyCode == backQuote {
+            if keyCode == backQuote && !flags.contains(.shift) {
                 self._commitString += "₩"
                 return CIMInputTextProcessResult.processed
             }

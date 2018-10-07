@@ -16,7 +16,6 @@ import MASShortcut
     
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
-       // self.viewController.viewDidLoad()
     }
 }
 
@@ -27,15 +26,35 @@ import MASShortcut
     @IBOutlet weak var inputModeEnglishShortcutView: MASShortcutView!
     @IBOutlet weak var inputModeKoreanShortcutView: MASShortcutView!
     @IBOutlet weak var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
+    @IBOutlet weak var optionKeyComboBox: NSComboBoxCell!
+    @IBOutlet weak var autoSaveDefaultInputModeButton: NSButton!
+    @IBOutlet weak var enableCapslockToToggleInputModeButton: NSButton!
+    @IBOutlet weak var romanModeByEscapeKeyButton: NSButton!
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
+    let shortcutValidator = GureumShortcutValidator()
     
 //    @IBOutlet var _window: NSWindow!
     
+    func boolToButtonState(_ value: Bool) -> NSButton.StateValue {
+        return value ? .on : .off
+    }
+    
     override func viewDidLoad() {
-        
+        enableCapslockToToggleInputModeButton.state = boolToButtonState(configuration.enableCapslockToToggleInputMode)
+        hangulWonCurrencySymbolForBackQuoteButton.state = boolToButtonState(configuration.hangulWonCurrencySymbolForBackQuote)
+        romanModeByEscapeKeyButton.state = boolToButtonState(configuration.romanModeByEscapeKey)
+        autoSaveDefaultInputModeButton.state = boolToButtonState(configuration.autosaveDefaultInputMode)
+        if let index = layoutTable.gureumPreferencesHangulLayouts.index(of: configuration.lastHangulInputMode!) {
+            defaultInputHangulComboBox.selectItem(at: index)
+        }
+        optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
+        inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
+        inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
+        inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
+        inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
     }
     
     @IBAction func openKeyboardPreference(sender: NSControl) {
@@ -53,7 +72,7 @@ import MASShortcut
     }
     
     @IBAction func didTapAutoSaveDefaultInputModeCheckBox(_ sender: NSButton) {
-        configuration.autosaveDefaultInputMode = sender.integerValue
+        configuration.autosaveDefaultInputMode = sender.state == .on
     }
     
     @IBAction func defaultHangulInputModeComboBoxValueChanged(_ sender: NSComboBox) {
@@ -62,7 +81,7 @@ import MASShortcut
     }
     
     @IBAction func didTapRomanModeByEscapeKey(_ sender: NSButton) {
-        configuration.romanModeByEscapeKey = sender.integerValue
+        configuration.romanModeByEscapeKey = sender.state == .on
     }
     
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
@@ -140,4 +159,23 @@ import MASShortcut
         super.init()
     }
 
+}
+
+class GureumShortcutValidator: MASShortcutValidator {
+    override init() {
+        super.init()
+        allowAnyShortcutWithOptionModifier = true
+    }
+    
+    override func isShortcutAlreadyTaken(bySystem shortcut: MASShortcut!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+        return false
+    }
+    
+    override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
+        return true
+    }
+    
+    override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+        return false
+    }
 }

@@ -383,8 +383,16 @@
         </window>
         <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
+                <outlet property="autoSaveDefaultInputModeButton" destination="RxT-GE-eXq" id="vft-Lv-q9b"/>
                 <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
+                <outlet property="enableCapslockToToggleInputModeButton" destination="IkH-Pc-uX9" id="qt0-gT-Hyb"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
+                <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="i8N-tR-KEH"/>
+                <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="LGg-vP-YF5"/>
+                <outlet property="inputModeHanjaShortcutView" destination="H7u-hL-ncz" id="31Z-g1-m5g"/>
+                <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="YTt-oL-VCC"/>
+                <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
+                <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>
                 <outlet property="view" destination="se5-gp-TjO" id="x0B-I2-MHL"/>
             </connections>
         </customObject>
