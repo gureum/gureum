@@ -8,6 +8,13 @@
 
 import Foundation
 
+extension CIMInputController {
+    @IBAction func showStandardAboutPanel(_ sender: Any) {
+        NSApp.activate(ignoringOtherApps: true)
+        NSApp.orderFrontStandardAboutPanel(sender)
+    }
+}
+
 @objcMembers class CIMMockInputController: CIMInputController {
     @objc var _receiver: CIMInputReceiver
     
@@ -60,6 +67,4 @@ extension CIMMockInputController {
         self._receiver.commitCompositionEvent(sender, controller: self)
         // COMMIT triggered
     }
-    
-    
 }

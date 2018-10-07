@@ -456,14 +456,6 @@ TISInputSource *_USSource() {
 
 @end
 
-@implementation CIMInputController (CIMMenu)
-
-- (void)showStandardAboutPanel:(id)sender {
-    [NSApp orderFrontStandardAboutPanel:sender];
-}
-
-@end
-
 
 #if DEBUG
 

@@ -60,12 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface CIMInputController (CIMMenu)
-
-- (IBAction)showStandardAboutPanel:(id)sender;
-
-@end
-
 
 #if DEBUG
 
