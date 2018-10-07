@@ -321,7 +321,7 @@
     }
 }
 
-- (void)testRomanEmoticon {
+- (void)testRomanEmoji {
     for (VirtualApp *app in @[self.moderate]) {
         if (app == self.terminal) {
             continue; // 터미널은 이모티콘 모드 진입이 불가
@@ -330,9 +330,9 @@
         [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
 
         GureumComposer *composer = (GureumComposer *)app.controller.composer;
-        EmoticonComposer *emoticonComposer = composer.emoticonComposer;
-        emoticonComposer.delegate = composer.delegate;  // roman?
-        composer.delegate = emoticonComposer;
+        EmojiComposer *emojiComposer = composer.emojiComposer;
+        emojiComposer.delegate = composer.delegate;  // roman?
+        composer.delegate = emojiComposer;
         
 //        [app inputText:@"\n" key:36 modifiers:655360]; // change to emoticon mode
         [app inputText:@"s" key:1 modifiers:0];
