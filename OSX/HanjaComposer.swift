@@ -15,7 +15,6 @@ class HanjaComposer: CIMComposer {
     static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)
     static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)
     static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)
-    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoticonr", ofType: "txt", inDirectory: "hanja")!)
     
     var _candidates: [String]?
     var _bufferedString: String = ""
@@ -156,7 +155,7 @@ class HanjaComposer: CIMComposer {
         } else {
             // dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidates");
             var candidates: [String] = []
-            for table in [HanjaComposer.emoticonTable, HanjaComposer.msSymbolTable, HanjaComposer.wordTable, HanjaComposer.reversedTable, HanjaComposer.characterTable] {
+            for table in [HanjaComposer.msSymbolTable, HanjaComposer.wordTable, HanjaComposer.reversedTable, HanjaComposer.characterTable] {
                 dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list for table: %@", table);
                 let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
                 dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list: %@", list);

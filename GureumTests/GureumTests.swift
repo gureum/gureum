@@ -8,6 +8,7 @@
 
 import XCTest
 import Gureum
+import Hangul
 
 
 class GureumTests: XCTestCase {
@@ -29,14 +30,10 @@ class GureumTests: XCTestCase {
     }
     
     func testSearchEmoticonTable() {
-        for app: VirtualApp in self.apps {
-            if (app == self.terminal) {
-                continue
-            }
-
-//            app.client.string = ""
-//            app.controller.setValue(GureumInputSourceIdentifier.qwerty, forTag:kTextServiceInputModePropertyTag, client: app.client)
-//            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags(rawValue: 786432))
-        }
+        let bundle: Bundle = Bundle.main
+        let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
+        let table: HGHanjaTable = HGHanjaTable.init(contentOfFile: path ?? "")
+        let list: HGHanjaList = table.hanjas(byPrefixSearching: "hushed") ?? HGHanjaList()
+        XCTAssert(list.count > 0)
     }
 }
