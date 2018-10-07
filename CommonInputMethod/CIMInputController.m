@@ -340,7 +340,7 @@ TISInputSource *_USSource() {
         if (self->_ioConnect.capsLockState) {
             modifierFlags |= NSAlphaShiftKeyMask;
         }
-        NSLog(@"modifierFlags by IOKit: %lx", modifierFlags);
+        dlog(DEBUG_LOGGING, @"modifierFlags by IOKit: %lx", modifierFlags);
         //dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
         BOOL processed = [self->_receiver inputController:self inputText:@"" key:-1 modifiers:modifierFlags client:sender] > CIMInputTextProcessResultNotProcessed;
         //dlog(DEBUG_LOGGING, @"LOGGING::PROCESSED::%d", processed);
