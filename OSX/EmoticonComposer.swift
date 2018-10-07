@@ -172,7 +172,7 @@ class EmoticonComposer: CIMComposer {
     func emoticonTable() -> HGHanjaTable? {
         if self._sharedEmoticonTable == nil {
             let bundle: Bundle = Bundle.main
-            let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
+            let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")
 
             self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path ?? "")
         }
