@@ -81,15 +81,20 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         return self.entries.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sub: Any? = self.entries[section]["items"]
-        assert(sub != nil)
-        let items = sub! as! Array<Any>
-        return items.count
+        
+        if self.entries.count > 0 {
+            let sub: Any? = self.entries[section]["items"]
+            assert(sub != nil)
+            let items = sub! as! Array<Any>
+            return items.count
+        } else {
+            return 0
+        }
     }
 
     override func viewDidLoad() {
@@ -134,9 +139,15 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
             assert(false);
             return UITableViewCell()
         }
-    }
 
+    }
+    
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+        guard entries.count > 0 else {
+            return ""
+        }
         let category = self.entries[section]
         let sub: Any? = category["section"]
         assert(sub != nil)

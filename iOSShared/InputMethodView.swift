@@ -190,7 +190,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
     }
 
     func loadCollections(traits: UITextInputTraits) {
-        let layoutNames = self.layoutNamesForKeyboardType(type: traits.keyboardType)
+        var layoutNames = self.layoutNamesForKeyboardType(type: traits.keyboardType)
         self.layoutNames = layoutNames
 
         for view in layoutsView.subviews {
@@ -206,6 +206,14 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         //assert(preferences.themeResources.count > 0)
         self.collections.removeAll(keepingCapacity: true)
 
+        let firstLayout = preferences.layouts.first
+        let lastLayout = preferences.layouts.last
+        if let fisrt = firstLayout, let last = lastLayout {
+            layoutNames.insert(last, at: 0)
+            layoutNames.insert(fisrt, at: layoutNames.count)
+        }
+     
+        
         for (i, name) in layoutNames.enumerated() {
             assert(self.bounds.height > 0)
             assert(self.bounds.width > 0)
@@ -270,7 +278,19 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
 
         self.pageControl.currentPage = index
         let offset = CGFloat(index) * self.frame.width
+        
         self.layoutsView.setContentOffset(CGPoint(x: offset, y: 0), animated: animated)
+     
+        // 스크롤 하기 전의 offset으로 설정한다
+        if index == layoutNames.count + 1 {
+            let tempOffset = CGFloat(0) * self.frame.width
+            self.layoutsView.contentOffset = CGPoint(x: tempOffset, y: 0)
+            selectedCollectionIndex = 1
+        } else if index == 0 {
+            let tempOffset = CGFloat(layoutNames.count+1) * self.frame.width
+            self.layoutsView.contentOffset = CGPoint(x: tempOffset, y: 0)
+            selectedCollectionIndex = layoutNames.count
+        }
 
         for (i, collection) in self.collections.enumerated() {
             collection.selectLayoutIndex(index: 0)
