@@ -5,9 +5,7 @@
 //  Created by Jim Jeon on 30/08/2018.
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
-
-import Foundation
-
+import Hangul
 
 class EmoticonComposer: CIMComposer {
     // FIXME: How can i use static with _sharedEmoticonTable?
