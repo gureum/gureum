@@ -1,5 +1,5 @@
 """
-Generate a emotionr.txt from a emoji-test.txt
+Generate a emoticon.txt from a emoji-test.txt
 """
 from typing import Iterable
 import logging
@@ -7,8 +7,8 @@ import logging
 import unittest
 
 
-def generate_emoticonr(filename: str = 'emoji-test.txt') -> int:
-    """generate emoticonr from input file
+def generate_emoticon(filename: str = 'emoji-test.txt') -> int:
+    """generate emoticon from input file
 
     Args:
         Input filename
@@ -27,7 +27,7 @@ def generate_emoticonr(filename: str = 'emoji-test.txt') -> int:
 
     data.sort()  # XXX: search uses binary search algorithm
 
-    with open('emoticonr.txt', 'w') as file:
+    with open('emoticon.txt', 'w') as file:
         for desc, _, emoti in data:
             num = file.write('{1}:{0}:{1}\n'.format(emoti, desc))
 
@@ -82,7 +82,7 @@ def _refine_description(desc):
     return desc
 
 
-class TestGenerateEmoticonr(unittest.TestCase):
+class TestGenerateemoticon(unittest.TestCase):
     def setUp(self):
         pass
 
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     )
 
     try:
-        generate_emoticonr()
-        logging.info('emoticonr.txt has been created')
+        generate_emoticon()
+        logging.info('emoticon.txt has been created')
     except Exception as e:
         logging.error(e)
