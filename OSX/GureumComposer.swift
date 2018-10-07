@@ -176,9 +176,10 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         if (inputModifier, keyCode) == configuration.inputModeHanjaKey {
             delegatedComposer = hanjaComposer
         }
-        if (inputModifier, keyCode) == configuration.inputModeEmojiKey {
-            delegatedComposer = emoticonComposer
-        }
+        // Disabled
+//        if (inputModifier, keyCode) == configuration.inputModeEmojiKey {
+//            delegatedComposer = emoticonComposer
+//        }
 //    }
         
         if need_exchange {
