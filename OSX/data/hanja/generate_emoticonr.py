@@ -77,19 +77,19 @@ class TestGenerateEmoticonr(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testNonFullyQualifiedLine(self):
+    def test_non_fully_qualified_line(self):
         line = '263A                                       ; non-fully-qualified # ☺ smiling face'
         self.assertFalse(_is_valid_line(line))
 
-    def testEmptyLine(self):
+    def test_empty_line(self):
         line = '\n'
         self.assertFalse(_is_valid_line(line))
 
-    def testCommentLine(self):
+    def test_comment_line(self):
         line = '# subgroup: face-negative'
         self.assertFalse(_is_valid_line(line))
 
-    def testGetEmoticonData(self):
+    def test_get_emoticon_data(self):
         lines = [
             '1F62F                                      ; fully-qualified     # 😯 hushed face',
             '2620 FE0F                                  ; fully-qualified     # ☠️ skull and crossbones',
