@@ -13,7 +13,7 @@ import MASShortcut
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
     @IBOutlet var viewController: NSViewController! = nil
-    
+
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
     }
@@ -35,13 +35,13 @@ import MASShortcut
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
-    
+
 //    @IBOutlet var _window: NSWindow!
-    
+
     func boolToButtonState(_ value: Bool) -> NSButton.StateValue {
         return value ? .on : .off
     }
-    
+
     override func viewDidLoad() {
         enableCapslockToToggleInputModeButton.state = boolToButtonState(configuration.enableCapslockToToggleInputMode)
         hangulWonCurrencySymbolForBackQuoteButton.state = boolToButtonState(configuration.hangulWonCurrencySymbolForBackQuote)
@@ -50,13 +50,15 @@ import MASShortcut
         if let index = layoutTable.gureumPreferencesHangulLayouts.index(of: configuration.lastHangulInputMode!) {
             defaultInputHangulComboBox.selectItem(at: index)
         }
-        optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
+        if (0..<optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
+            optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
+        }
         inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
         inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
         inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
     }
-    
+
     @IBAction func openKeyboardPreference(sender: NSControl) {
         let myAppleScript = "reveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\""
         var error: NSDictionary?
@@ -66,24 +68,24 @@ import MASShortcut
             print("pref event descriptor: \(output.stringValue ?? "nil")")
         }
     }
-    
+
     @IBAction func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
         configuration.optionKeyBehavior = sender.indexOfSelectedItem
     }
-    
+
     @IBAction func didTapAutoSaveDefaultInputModeCheckBox(_ sender: NSButton) {
         configuration.autosaveDefaultInputMode = sender.state == .on
     }
-    
+
     @IBAction func defaultHangulInputModeComboBoxValueChanged(_ sender: NSComboBox) {
         let index = layoutTable.layoutNames.index(of: defaultInputHangulComboBox.stringValue)!
         configuration.lastHangulInputMode = layoutTable.gureumPreferencesHangulLayouts[index]
     }
-    
+
     @IBAction func didTapRomanModeByEscapeKey(_ sender: NSButton) {
         configuration.romanModeByEscapeKey = sender.state == .on
     }
-    
+
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
         if sender.state == .on {
             configuration.enableCapslockToToggleInputMode = true
@@ -91,7 +93,7 @@ import MASShortcut
             configuration.enableCapslockToToggleInputMode = false
         }
     }
-    
+
     @IBAction func didTapHelpShortCut(_ sender: NSButton) {
         let helpAlert: NSAlert = {
             let alert = NSAlert()
@@ -102,7 +104,7 @@ import MASShortcut
         }()
         helpAlert.beginSheetModal(for: self.pane.mainView.window!, completionHandler: nil)
     }
-    
+
     @IBAction func didTapHangulWonCurrencySymbolForBackQuoteCheckBox(_ sender: NSButton) {
         if sender.state == .on {
             configuration.hangulWonCurrencySymbolForBackQuote = true
@@ -111,15 +113,15 @@ import MASShortcut
             configuration.hangulWonCurrencySymbolForBackQuote = false
         }
     }
-    
+
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return layoutTable.gureumPreferencesHangulLayouts.count
     }
-    
+
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
         return layoutTable.layoutNames.index(of: string) ?? NSNotFound
     }
-    
+
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         return layoutTable.layoutNames[index]
     }
@@ -166,15 +168,15 @@ class GureumShortcutValidator: MASShortcutValidator {
         super.init()
         allowAnyShortcutWithOptionModifier = true
     }
-    
+
     override func isShortcutAlreadyTaken(bySystem shortcut: MASShortcut!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
         return false
     }
-    
+
     override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
         return true
     }
-    
+
     override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
         return false
     }
