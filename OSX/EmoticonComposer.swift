@@ -1,5 +1,5 @@
 //
-//  emoticonComposer.swift
+//  EmoticonComposer.swift
 //  OSX
 //
 //  Created by Jim Jeon on 30/08/2018.
@@ -11,7 +11,7 @@ import Hangul
 let DEBUG_EMOTICON = true
 
 class EmoticonComposer: CIMComposer {
-    // FIXME: How can i use static with _sharedemoticonTable?
+    // FIXME: How can i use static with _sharedEmoticonTable?
     var _sharedEmoticonTable: HGHanjaTable? = nil
 
     var _commitString: String = ""
