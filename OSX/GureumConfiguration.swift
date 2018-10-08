@@ -20,8 +20,8 @@ enum GureumConfigurationName: String {
     case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
     case inputModeExchangeKeyModifier = "CIMInputModeExchangeKeyModifier"
     case inputModeExchangeKeyCode = "CIMInputModeExchangeKeyCode"
-    case inputModeEmojiKeyModifier = "CIMInputModeEmojiKeyModifier"
-    case inputModeEmojiKeyCode = "CIMInputModeEmojiKeyCode"
+    case inputModeEmoticonKeyModifier = "CIMInputModeEmoticonKeyModifier"
+    case inputModeEmoticonKeyCode = "CIMInputModeEmoticonKeyCode"
     case inputModeHanjaKeyModifier = "CIMInputModeHanjaKeyModifier"
     case inputModeHanjaKeyCode = "CIMInputModeHanjaKeyCode"
     case inputModeEnglishKeyModifier = "CIMInputModeEnglishKeyModifier"
@@ -47,8 +47,8 @@ enum GureumConfigurationName: String {
         self.register(defaults: [
             GureumConfigurationName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
             GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
-            GureumConfigurationName.inputModeEmojiKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
-            GureumConfigurationName.inputModeEmojiKeyCode.rawValue: 0x24,
+            GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
+            GureumConfigurationName.inputModeEmoticonKeyCode.rawValue: 0x24,
             GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
             GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
             GureumConfigurationName.optionKeyBehavior.rawValue: 0,
@@ -116,22 +116,22 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var inputModeEmojiKeyModifier: NSEvent.ModifierFlags {
+    @objc public var inputModeEmoticonKeyModifier: NSEvent.ModifierFlags {
         get {
-            let value = self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyModifier.rawValue)
+            let value = self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue)
             return NSEvent.ModifierFlags(rawValue: UInt(value))
         }
     }
 
-    @objc public var inputModeEmojiKeyCode: Int {
+    @objc public var inputModeEmoticonKeyCode: Int {
         get {
-            return self.integer(forKey: GureumConfigurationName.inputModeEmojiKeyCode.rawValue)
+            return self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyCode.rawValue)
         }
     }
 
-    public var inputModeEmojiKey: (NSEvent.ModifierFlags, Int) {
+    public var inputModeEmoticonKey: (NSEvent.ModifierFlags, Int) {
         get {
-            return (self.inputModeEmojiKeyModifier, self.inputModeEmojiKeyCode)
+            return (self.inputModeEmoticonKeyModifier, self.inputModeEmoticonKeyCode)
         }
     }
 
