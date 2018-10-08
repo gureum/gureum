@@ -86,26 +86,21 @@ class EmoticonComposer: CIMComposer {
 
     override func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [candidateSelected] MSG: function called")
-        let value: String? = candidateString.string.components(separatedBy: ":")[0]
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value ?? "")
+        let value: String = candidateString.string.components(separatedBy: ":")[0]
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value)
         self._bufferedString = ""
         self.composedString = ""
-        self.commitString = value ?? ""
+        self.commitString = value
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        // Pass
         if candidateString.length == 0 {
             self._selectedCandidate = nil
         } else {
-            let value: String? = candidateString.string.components(separatedBy: ":")[0]
-            if value == nil {
-                self._selectedCandidate = nil
-            } else {
-                self._selectedCandidate = NSAttributedString(string: value!)
-            }
+            let value: String = candidateString.string.components(separatedBy: ":")[0]
+            self._selectedCandidate = NSAttributedString(string: value)
         }
     }
 
