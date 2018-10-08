@@ -94,6 +94,7 @@
 		878898012160AA6E00BF5770 /* CIMInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* CIMInputManager.swift */; };
 		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
+		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A3F007682160B09700501606 /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
 		B0DE8679435065D0866D2AAF /* Pods_PreferencesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_PreferencesApp.framework */; };
 		DAA59CC398282039EE3F4265 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 057B3CD9EB092349BD540E8B /* libPods-OSX.a */; };
@@ -178,6 +179,7 @@
 			dstPath = hanja;
 			dstSubfolderSpec = 7;
 			files = (
+				A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */,
 				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
 				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
 				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
@@ -341,6 +343,7 @@
 		80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3p.xml"; sourceTree = "<group>"; };
 		871B807B2153DDFA0013EE69 /* CIMInputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIMInputManager.swift; sourceTree = "<group>"; };
 		9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = emoji.txt; path = OSX/data/hanja/emoji.txt; sourceTree = "<group>"; };
 		A3BAAE062160C6970076C66D /* GureumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonComposer.swift; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
@@ -576,6 +579,7 @@
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
+				A34E2024216ADBEC00B12476 /* emoji.txt */,
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38162DF6141263270077AA2D /* OSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
