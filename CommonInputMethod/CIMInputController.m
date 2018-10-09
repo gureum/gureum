@@ -298,8 +298,78 @@ TISInputSource *_USSource() {
         IOService* service = [[IOService alloc] initWithName:@(kIOHIDSystemClass) error:NULL];
         self->_ioConnect = [service openWithOwningTask:mach_task_self_ type:kIOHIDParamConnectType];
         dlog(DEBUG_INPUTCONTROLLER, @"io_connect: %@", self->_ioConnect);
+
+        self->_hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+
+        // Set device matching
+        CFMutableDictionaryRef deviceMatchingCFDictRef = createDeviceMatchingDictionary(kHIDPage_GenericDesktop, kHIDUsage_GD_Keyboard);
+        IOHIDManagerSetDeviceMatching(self->_hidManager, deviceMatchingCFDictRef);
+        CFRelease(deviceMatchingCFDictRef);
+
+        // Set input value matching
+        CFMutableDictionaryRef inputValueMatchingCFDictRef = createInputValueMatchingDictionary(kHIDUsage_KeyboardCapsLock, kHIDUsage_KeyboardCapsLock);
+        IOHIDManagerSetInputValueMatching(self->_hidManager, inputValueMatchingCFDictRef);
+        CFRelease(inputValueMatchingCFDictRef);
+
+        // Set input value callback
+        IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, nil);
+        IOHIDManagerScheduleWithRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+        IOReturn ioReturn = IOHIDManagerOpen(self->_hidManager, kIOHIDOptionsTypeNone);
+        if (ioReturn) {
+            dlog(DEBUG_INPUTCONTROLLER, @"IOHIDManagerOpen failed");
+        }
     }
     return self;
+}
+
+- (void)dealloc {
+    IOHIDManagerUnscheduleFromRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    IOHIDManagerRegisterInputValueCallback(self->_hidManager, nil, nil);
+    IOHIDManagerClose(self->_hidManager, kIOHIDOptionsTypeNone);
+    CFRelease(self->_hidManager);
+}
+
+static CFMutableDictionaryRef createDeviceMatchingDictionary(UInt32 inUsagePage, UInt32 inUsage) {
+    // Create a dictionary
+    CFMutableDictionaryRef result = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+
+    // Set usage page
+    CFNumberRef pageCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &inUsagePage);
+    CFDictionarySetValue(result, CFSTR(kIOHIDDeviceUsagePageKey), pageCFNumberRef);
+    CFRelease(pageCFNumberRef);
+
+    // Set usage
+    CFNumberRef usageCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &inUsage);
+    CFDictionarySetValue(result, CFSTR(kIOHIDDeviceUsageKey), usageCFNumberRef);
+    CFRelease(usageCFNumberRef);
+
+    return result;
+}
+
+static CFMutableDictionaryRef createInputValueMatchingDictionary(int usageMin, int usageMax) {
+    // Create a dictionary
+    CFMutableDictionaryRef result = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+
+    // Set usage min
+    CFNumberRef minCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usageMin);
+    CFDictionarySetValue(result, CFSTR(kIOHIDElementUsageMinKey), minCFNumberRef);
+    CFRelease(minCFNumberRef);
+
+    // Set usage max
+    CFNumberRef maxCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usageMax);
+    CFDictionarySetValue(result, CFSTR(kIOHIDElementUsageMaxKey), maxCFNumberRef);
+    CFRelease(maxCFNumberRef);
+
+    return result;
+}
+
+static void handleInputValueCallback(void *inContext, IOReturn inResult, void *inSender, IOHIDValueRef inIOHIDValueRef) {
+    IOHIDElementRef elem = IOHIDValueGetElement(inIOHIDValueRef);
+    IOHIDElementType type = IOHIDElementGetType(elem);
+    uint32_t usagePage = IOHIDElementGetUsagePage(elem);
+    uint32_t usage = IOHIDElementGetUsage(elem);
+    CFIndex intValue = IOHIDValueGetIntegerValue(inIOHIDValueRef);
+    dlog(DEBUG_INPUTCONTROLLER, @"type: %d, usagePage: %x, usage: %x, value: %lx", type, usagePage, usage, intValue);
 }
 
 - (CIMComposer *)composer {

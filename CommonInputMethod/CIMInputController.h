@@ -21,6 +21,7 @@
 */
 
 @import InputMethodKit;
+@import IOKit.hid;
 
 #import "CIMCommon.h"
 
@@ -54,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CIMInputController : IMKInputController {
     CIMInputReceiver *_receiver;
     IOConnect *_ioConnect;
+    IOHIDManagerRef _hidManager;
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge
