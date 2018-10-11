@@ -194,7 +194,7 @@ class EmoticonComposer: CIMComposer {
             self._composedString = self.originalString
             self.cancelComposition()
             // step 3. cancel candidates
-            self._candidates = []
+            self._candidates = nil
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit
         // Enter
         case 36:
