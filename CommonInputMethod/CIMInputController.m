@@ -312,12 +312,14 @@ TISInputSource *_USSource() {
         CFRelease(inputValueMatchingCFDictRef);
 
         // Set input value callback
-        IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, nil);
+        IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, (__bridge void *)(self));
         IOHIDManagerScheduleWithRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
         IOReturn ioReturn = IOHIDManagerOpen(self->_hidManager, kIOHIDOptionsTypeNone);
         if (ioReturn) {
             dlog(DEBUG_INPUTCONTROLLER, @"IOHIDManagerOpen failed");
         }
+
+        self->_capsLockPressed = NO;
     }
     return self;
 }
@@ -364,12 +366,11 @@ static CFMutableDictionaryRef createInputValueMatchingDictionary(int usageMin, i
 }
 
 static void handleInputValueCallback(void *inContext, IOReturn inResult, void *inSender, IOHIDValueRef inIOHIDValueRef) {
-    IOHIDElementRef elem = IOHIDValueGetElement(inIOHIDValueRef);
-    IOHIDElementType type = IOHIDElementGetType(elem);
-    uint32_t usagePage = IOHIDElementGetUsagePage(elem);
-    uint32_t usage = IOHIDElementGetUsage(elem);
+    CIMInputController *inputController = (__bridge CIMInputController *)(inContext);
     CFIndex intValue = IOHIDValueGetIntegerValue(inIOHIDValueRef);
-    dlog(DEBUG_INPUTCONTROLLER, @"type: %d, usagePage: %x, usage: %x, value: %lx", type, usagePage, usage, intValue);
+
+    dlog(DEBUG_INPUTCONTROLLER, @"context: %@, caps lock pressed: %lx", inputController, intValue);
+    inputController->_capsLockPressed = intValue == 1;
 }
 
 - (CIMComposer *)composer {

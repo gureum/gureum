@@ -56,9 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
     CIMInputReceiver *_receiver;
     IOConnect *_ioConnect;
     IOHIDManagerRef _hidManager;
+    BOOL _capsLockPressed;
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge
+@property BOOL capsLockPressed;
 
 @end
 
