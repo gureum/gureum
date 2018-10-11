@@ -2,9 +2,29 @@
 Generate a emoji.txt from a emoji-test.txt
 """
 from typing import Iterable
+import xml.etree.ElementTree as ET
 import logging
 
 import unittest
+
+
+def generate_ko_emoji(files):
+    lines = []
+    for file in files:
+        tree = ET.parse(file)
+        root = tree.getroot()
+        for annotation in root.iter('annotation'):
+            emoji = annotation.get('cp')
+            tags = annotation.text
+            for tag in tags.split('|'):
+                tag = _refine_description(tag.strip())
+                lines.append((emoji, tag))
+    lines = list(set(lines))
+    lines.sort(key=lambda x: x[1])
+
+    with open('emoji_ko.txt', 'w') as f:
+        for emoji, desc in lines:
+            f.write(f'{desc}:{emoji}:{desc}\n')
 
 
 def generate_emoji(filename: str = 'emoji-test.txt') -> int:
@@ -133,6 +153,9 @@ class TestGenerateemoji(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    ko_emoji_files = ['ko_emoji.xml', 'ko_emoji2.xml']
+    generate_ko_emoji(ko_emoji_files)
+
     unittest.main(exit=False)
 
     logging.basicConfig(
