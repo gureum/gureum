@@ -198,7 +198,7 @@ class EmoticonComposer: CIMComposer {
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit
         // Enter
         case 36:
-            self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: ""))
+            self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: self.composedString))
             break
         default:
             break
