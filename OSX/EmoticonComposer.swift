@@ -11,48 +11,43 @@ import Hangul
 let DEBUG_EMOTICON = true
 
 class EmoticonComposer: CIMComposer {
-    // FIXME: How can i use static with _sharedEmoticonTable?
-    var _sharedEmoticonTable: HGHanjaTable? = nil
+    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)
 
-    var _commitString: String = ""
-    var _candidates: [String] = []
-    var _composedString: String = ""
+    var _candidates: [String]?
     var _bufferedString: String = ""
+    var _composedString: String = ""
+    var _commitString: String = ""
+    var mode: Bool = false
 
-    var mode: Bool = true
+    var _selectedCandidate: NSAttributedString? = nil
 
     var romanComposer: CIMComposerDelegate {
         return self.delegate
     }
 
-    override var composedString: String {
-        get {
-            return self._composedString
-        }
-        set(newValue) {
-            self._composedString = newValue
-        }
+    override var candidates: [String]? {
+        return _candidates
     }
 
-    override var originalString: String {
-        get {
-            return self._bufferedString
-        }
+    override var composedString: String {
+        return _composedString
     }
 
     override var commitString: String {
-        get {
-            return self._commitString
-        }
-        set(newValue) {
-            self._commitString = newValue
-        }
+        return _commitString
+    }
+
+    override var originalString: String {
+        return _bufferedString
     }
 
     override func dequeueCommitString() -> String {
-        let dequeued = self._commitString
-        self._commitString = ""
-        return dequeued
+        let result = self._commitString
+        if !result.isEmpty {
+            self._bufferedString = ""
+            self._commitString = ""
+        }
+        return result
     }
 
     override func cancelComposition() {
@@ -68,34 +63,30 @@ class EmoticonComposer: CIMComposer {
     }
 
     override var hasCandidates: Bool {
-        get {
-            let candidates = self._candidates
-            return candidates.count > 0 ? true : false
+        guard let candidates = self._candidates else {
+            return false
         }
-    }
-
-    override var candidates: [String]! {
-        get {
-            return self._candidates
-        }
-        set(newValue) {
-            self._candidates = newValue
-        }
+        return candidates.count > 0 ? true : false
     }
 
     override func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [candidateSelected] MSG: function called")
-        let value: String? = candidateString.string.components(separatedBy: ":")[0]
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value ?? "")
+        let value: String = candidateString.string.components(separatedBy: ":")[0]
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value)
         self._bufferedString = ""
-        self.composedString = ""
-        self.commitString = value ?? ""
+        self._composedString = ""
+        self._commitString = value
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        // Pass
+        if candidateString.length == 0 {
+            self._selectedCandidate = nil
+        } else {
+            let value: String = candidateString.string.components(separatedBy: ":")[0]
+            self._selectedCandidate = NSAttributedString(string: value)
+        }
     }
 
     func updateEmoticonCandidates() {
@@ -105,7 +96,7 @@ class EmoticonComposer: CIMComposer {
         self._bufferedString.append(x)
         self._bufferedString.append(self.romanComposer.composedString)
         let originalString: String = self._bufferedString
-        self.composedString = originalString
+        self._composedString = originalString
         let keyword: String = originalString
 
         dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
@@ -113,10 +104,10 @@ class EmoticonComposer: CIMComposer {
             self._candidates = []
         } else {
             self._candidates = []
-            for table: HGHanjaTable in [emoticonTable()!] {
+            for table: HGHanjaTable in [EmoticonComposer.emoticonTable] {
                 dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
                 dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", keyword)
-                dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", self._sharedEmoticonTable.debugDescription)
+                dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", EmoticonComposer.emoticonTable.debugDescription)
                 let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
                 dlog(DEBUG_EMOTICON, "DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
 
@@ -128,12 +119,15 @@ class EmoticonComposer: CIMComposer {
                             dlog(DEBUG_EMOTICON, "DEBUG 7, [updateEmoticonCandidates] MSG: hanja is nil!")
                         }
                         dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        self._candidates.append(emoticon.value as String + ": " + emoticon.comment as String)
+                        if self._candidates == nil {
+                            self._candidates = []
+                        }
+                        self._candidates!.append(emoticon.value as String + ": " + emoticon.comment as String)
                     }
                 }
             }
         }
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", self.candidates)
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", self.candidates ?? [])
     }
 
     func update(fromController controller: CIMInputController) {
@@ -158,16 +152,6 @@ class EmoticonComposer: CIMComposer {
         self.updateEmoticonCandidates()
     }
 
-    func emoticonTable() -> HGHanjaTable? {
-        if self._sharedEmoticonTable == nil {
-            let bundle: Bundle = Bundle.main
-            let path: String? = bundle.path(forResource: "emoticon", ofType: "txt", inDirectory: "hanja")
-
-            self._sharedEmoticonTable = HGHanjaTable.init(contentOfFile: path ?? "")
-        }
-        return self._sharedEmoticonTable
-    }
-
     override func inputController(_ controller: CIMInputController!, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result: CIMInputTextProcessResult = self.delegate.inputController(controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
@@ -182,7 +166,7 @@ class EmoticonComposer: CIMComposer {
                     let lastIndex: String.Index = self._bufferedString.index(before: self._bufferedString.endIndex)
                     self._bufferedString.remove(at: lastIndex)
                     dlog(DEBUG_EMOTICON, "DEBUG 5, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
-                    self.composedString = self.originalString
+                    self._composedString = self.originalString
                     result = CIMInputTextProcessResult.processed
                 } else {
                     self.mode = false
@@ -207,18 +191,20 @@ class EmoticonComposer: CIMComposer {
             self.romanComposer.cancelComposition()
             self._bufferedString.append(self.romanComposer.dequeueCommitString())
             // step 2. commit all
-            self.composedString = self.originalString
+            self._composedString = self.originalString
             self.cancelComposition()
             // step 3. cancel candidates
-            self.candidates = nil
+            self._candidates = []
             return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+        // Enter
+        case 36:
+            self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: ""))
+            break
         default:
             break
         }
 
         dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: %@", string)
-        // switch for some keyCodes
-        // updateEmoticonCandidates
         self.updateEmoticonCandidates()
 
         dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: %@", string)
