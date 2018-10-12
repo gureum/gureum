@@ -35,11 +35,23 @@ import MASShortcut
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
+    
+    var exchangeShortcut: MASShortcut!
+    var hanjaShortcut: MASShortcut!
 
 //    @IBOutlet var _window: NSWindow!
 
     func boolToButtonState(_ value: Bool) -> NSButton.StateValue {
         return value ? .on : .off
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 49 {
+            inputModeExchangeShortcutView.shortcutValue = exchangeShortcut
+            inputModeHanjaShortcutView.shortcutValue = hanjaShortcut
+            inputModeEnglishShortcutView.shortcutValue = nil
+            inputModeKoreanShortcutView.shortcutValue = nil
+        }
     }
 
     override func viewDidLoad() {
@@ -57,6 +69,12 @@ import MASShortcut
         inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
         inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
+        
+        exchangeShortcut = MASShortcut(keyCode: UInt(configuration.inputModeExchangeKeyCode), modifierFlags: configuration.inputModeExchangeKeyModifier.rawValue)
+        hanjaShortcut = MASShortcut(keyCode: UInt(configuration.inputModeHanjaKeyCode), modifierFlags: configuration.inputModeHanjaKeyModifier.rawValue)
+        
+        inputModeExchangeShortcutView.shortcutValue = exchangeShortcut
+        inputModeHanjaShortcutView.shortcutValue = hanjaShortcut
     }
 
     @IBAction func openKeyboardPreference(sender: NSControl) {
