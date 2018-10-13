@@ -52,6 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class IOConnect;
 
+typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
+    CIMInputControllerSpecialKeyCodeCapsLockPressed = -1,
+    CIMInputControllerSpecialKeyCodeCapsLockFlagsChanged = -2,
+};
+
 @interface CIMInputController : IMKInputController {
     CIMInputReceiver *_receiver;
     IOConnect *_ioConnect;
@@ -60,7 +65,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge
-@property BOOL capsLockPressed;
 
 @end
 

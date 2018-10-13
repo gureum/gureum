@@ -153,22 +153,30 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
-        if keyCode == -1 {
+        // Handle SpecialKeyCode first
+        switch keyCode {
+        case CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue:
             guard configuration.enableCapslockToToggleInputMode else {
                 return CIMInputTextProcessResult.processed
             }
 
-            if flags.contains(NSEvent.ModifierFlags.capsLock) {
-                if (self.delegate === romanComposer || self.delegate === hangulComposer) && controller.capsLockPressed {
-                    controller.capsLockPressed = false
-                    need_exchange = true
-                }
-                self.ioConnect.setCapsLockLed(false)
+            if self.delegate === romanComposer || self.delegate === hangulComposer {
+                need_exchange = true
             }
+            self.ioConnect.setCapsLockLed(false)
 
             if !need_exchange {
                 return CIMInputTextProcessResult.processed
             }
+        case CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue:
+            guard configuration.enableCapslockToToggleInputMode else {
+                return CIMInputTextProcessResult.processed
+            }
+
+            self.ioConnect.setCapsLockLed(false)
+            return CIMInputTextProcessResult.processed
+        default:
+            break
         }
 
         if (inputModifier, keyCode) == configuration.inputModeExchangeKey {
