@@ -65,17 +65,15 @@ TISInputSource *_USSource() {
     self = [super init];
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
-        if (1) { // FIXME (!CIMSharedInputManager.configuration->sharedInputManager) {
-            self->_composer = [CIMAppDelegate composerWithServer:server client:inputClient];
-            self->_composer->manager = CIMSharedInputManager;
-        }
+        self->_composer = [CIMAppDelegate composerWithServer:server client:inputClient];
+        self->_composer->manager = CIMSharedInputManager;
         _inputClient = inputClient;
     }
     return self;
 }
 
 - (CIMComposer *)composer {
-    return self->_composer ? self->_composer : CIMSharedInputManager.sharedComposer;
+    return self->_composer;
 }
 
 // IMKServerInput 프로토콜에 대한 공용 핸들러
