@@ -26,12 +26,8 @@ import Foundation
     public var configuration: GureumConfiguration
     //! @brief  공용 입력 핸들러
     public var handler: CIMInputHandler!
-    //! @brief  공용 합성기
-    public var sharedComposer: CIMComposer
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
-    //! @brief  입력기가 가짜 입력 중인 문자열이 필요한 지 여부를 저장
-    public var needsFakeComposedString: Bool = false
     
     public var server: IMKServer! {
         return self._server
@@ -51,9 +47,6 @@ import Foundation
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
         self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
-        
-        let appDelegate = NSApplication.shared.delegate as! CIMApplicationDelegate
-        self.sharedComposer = appDelegate.composer(server: nil, client: nil)
 
         super.init()
 
@@ -75,7 +68,6 @@ import Foundation
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
     public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
-        self.needsFakeComposedString = false
         let handled = self.handler.inputController(controller, inputText: string, key: keyCode, modifiers: flag, client: sender)
         return handled
     }

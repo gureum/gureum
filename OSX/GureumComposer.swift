@@ -210,7 +210,6 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             } else {
                 (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
             }
-            manager.needsFakeComposedString = true
             return CIMInputTextProcessResult.processed
         }
         
