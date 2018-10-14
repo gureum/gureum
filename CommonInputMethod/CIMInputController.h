@@ -21,6 +21,7 @@
 */
 
 @import InputMethodKit;
+@import IOKit.hid;
 
 #import "CIMCommon.h"
 
@@ -51,9 +52,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class IOConnect;
 
+typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
+    CIMInputControllerSpecialKeyCodeCapsLockPressed = -1,
+    CIMInputControllerSpecialKeyCodeCapsLockFlagsChanged = -2,
+};
+
 @interface CIMInputController : IMKInputController {
     CIMInputReceiver *_receiver;
     IOConnect *_ioConnect;
+    IOHIDManagerRef _hidManager;
+    BOOL _capsLockPressed;
 }
 
 @property(readonly) CIMComposer *composer; // temp bridge

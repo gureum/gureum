@@ -64,6 +64,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
     @objc var hangulComposer: HangulComposer
     @objc var hanjaComposer: HanjaComposer
     @objc var emoticonComposer: EmoticonComposer
+    var ioConnect: IOConnect
 
     override init() {
         romanComposer = RomanComposer()
@@ -71,6 +72,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
         emoticonComposer = EmoticonComposer()
+        let service = try! IOService.init(name: kIOHIDSystemClass)
+        ioConnect = service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType)!
         super.init()
         self.delegate = romanComposer
     }
@@ -150,18 +153,30 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
-        if keyCode == -1 {
+        // Handle SpecialKeyCode first
+        switch keyCode {
+        case CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue:
             guard configuration.enableCapslockToToggleInputMode else {
                 return CIMInputTextProcessResult.processed
             }
 
-            if flags.contains(NSEvent.ModifierFlags.capsLock) && self.delegate === romanComposer {
+            if self.delegate === romanComposer || self.delegate === hangulComposer {
                 need_exchange = true
-            } else if flags.rawValue == 0 && self.delegate === hangulComposer {
-                need_exchange = true
-            } else {
+            }
+            self.ioConnect.setCapsLockLed(false)
+
+            if !need_exchange {
                 return CIMInputTextProcessResult.processed
             }
+        case CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue:
+            guard configuration.enableCapslockToToggleInputMode else {
+                return CIMInputTextProcessResult.processed
+            }
+
+            self.ioConnect.setCapsLockLed(false)
+            return CIMInputTextProcessResult.processed
+        default:
+            break
         }
 
         if (inputModifier, keyCode) == configuration.inputModeExchangeKey {
