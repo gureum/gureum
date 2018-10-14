@@ -31,7 +31,6 @@ enum GureumConfigurationName: String {
     case optionKeyBehavior = "CIMOptionKeyBehavior"
     case enableCapslockToToggleInputMode = "EnableCapslockToToggleInputMode"
     
-    case sharedInputManager = "CIMSharedInputManager"
     case autosaveDefaultInputMode = "CIMAutosaveDefaultInputMode"
     case romanModeByEscapeKey = "CIMRomanModeByEscapeKey"
     case showsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
