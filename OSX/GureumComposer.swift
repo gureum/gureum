@@ -168,6 +168,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             if !need_exchange {
                 return CIMInputTextProcessResult.processed
             }
+
         case CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue:
             guard configuration.enableCapslockToToggleInputMode else {
                 return CIMInputTextProcessResult.processed
@@ -176,27 +177,25 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             self.ioConnect.setCapsLockLed(false)
             return CIMInputTextProcessResult.processed
         default:
-            break
+            if let exchangeKey = configuration.inputModeExchangeKey, exchangeKey == (inputModifier, UInt(keyCode)) {
+                need_exchange = true
+            }
+    //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
+    //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
+    //            need_exchange = YES;
+    //        }
+    //        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
+    //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
+    //            need_exchange = YES;
+    //        }
+            if let hanjaKey = configuration.inputModeHanjaKey, hanjaKey == (inputModifier, UInt(keyCode)) {
+                delegatedComposer = hanjaComposer
+            }
+    //        if (inputModifier, keyCode) == configuration.inputModeEmoticonKey {
+    //            delegatedComposer = emoticonComposer
+    //        }
+    //    }
         }
-
-        if (inputModifier, keyCode) == configuration.inputModeExchangeKey {
-            need_exchange = true
-        }
-//        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
-//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
-//            need_exchange = YES;
-//        }
-//        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
-//            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
-//            need_exchange = YES;
-//        }
-        if (inputModifier, keyCode) == configuration.inputModeHanjaKey {
-            delegatedComposer = hanjaComposer
-        }
-//        if (inputModifier, keyCode) == configuration.inputModeEmoticonKey {
-//            delegatedComposer = emoticonComposer
-//        }
-//    }
         
         if need_exchange {
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소

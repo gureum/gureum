@@ -18,16 +18,12 @@ enum GureumConfigurationName: String {
     case rightCommandKeyShortcutBehavior = "CIMRightCommandKeyShortcutBehavior"
     case rightOptionKeyShortcutBehavior = "CIMRightOptionKeyShortcutBehavior"
     case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
-    case inputModeExchangeKeyModifier = "CIMInputModeExchangeKeyModifier"
-    case inputModeExchangeKeyCode = "CIMInputModeExchangeKeyCode"
+    case inputModeExchangeKey = "CIMInputModeExchangeKey"
     case inputModeEmoticonKeyModifier = "CIMInputModeEmoticonKeyModifier"
     case inputModeEmoticonKeyCode = "CIMInputModeEmoticonKeyCode"
-    case inputModeHanjaKeyModifier = "CIMInputModeHanjaKeyModifier"
-    case inputModeHanjaKeyCode = "CIMInputModeHanjaKeyCode"
-    case inputModeEnglishKeyModifier = "CIMInputModeEnglishKeyModifier"
-    case inputModeEnglishKeyCode = "CIMInputModeEnglishKeyCode"
-    case inputModeKoreanKeyModifier = "CIMInputModeKoreanKeyModifier"
-    case inputModeKoreanKeyCode = "CIMInputModeKoreanKeyCode"
+    case inputModeHanjaKey = "CIMInputModeHanjaKey"
+    case inputModeEnglishKey = "CIMInputModeEnglishKey"
+    case inputModeKoreanKey = "CIMInputModeKoreanKey"
     case optionKeyBehavior = "CIMOptionKeyBehavior"
     case enableCapslockToToggleInputMode = "EnableCapslockToToggleInputMode"
     
@@ -44,12 +40,10 @@ enum GureumConfigurationName: String {
     init() {
         super.init(suiteName: "org.youknowone.Gureum")!
         self.register(defaults: [
-            GureumConfigurationName.inputModeExchangeKeyModifier.rawValue: NSEvent.ModifierFlags.shift.rawValue,
-            GureumConfigurationName.inputModeExchangeKeyCode.rawValue: 0x31,
+            GureumConfigurationName.inputModeExchangeKey.rawValue: ["modifier": NSEvent.ModifierFlags.shift.rawValue, "keyCode": 0x31],
             GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
             GureumConfigurationName.inputModeEmoticonKeyCode.rawValue: 0x24,
-            GureumConfigurationName.inputModeHanjaKeyModifier.rawValue: NSEvent.ModifierFlags.option.rawValue,
-            GureumConfigurationName.inputModeHanjaKeyCode.rawValue: 0x24,
+            GureumConfigurationName.inputModeHanjaKey.rawValue: ["modifier": NSEvent.ModifierFlags.option.rawValue, "keyCode": 0x24],
             GureumConfigurationName.optionKeyBehavior.rawValue: 0,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.romanModeByEscapeKey.rawValue: false,
@@ -58,6 +52,24 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
             GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
         ])
+    }
+    
+    func getShortcutKey(_ propertyString: String) -> (NSEvent.ModifierFlags, UInt)? {
+        guard let value = self.dictionary(forKey: propertyString) else {
+            return nil
+        }
+        guard !value.isEmpty else {
+            return nil
+        }
+        return (NSEvent.ModifierFlags(rawValue: value["modifier"] as! UInt), value["keyCode"] as! UInt)
+    }
+    
+    func setShortcutKey(_ propertyString: String, _ newValue: (NSEvent.ModifierFlags, UInt)?) {
+        if let newValue = newValue {
+            self.set(["modifier": newValue.0.rawValue, "keyCode": newValue.1], forKey: propertyString)
+        } else {
+            self.set([:], forKey: propertyString)
+        }
     }
 
     @objc public var lastHangulInputMode: String? {
@@ -86,32 +98,34 @@ enum GureumConfigurationName: String {
             return self.set(newValue, forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
     }
-
-    @objc public var inputModeExchangeKeyModifier: NSEvent.ModifierFlags {
-        get {
-            let value = self.integer(forKey: GureumConfigurationName.inputModeExchangeKeyModifier.rawValue)
-            return NSEvent.ModifierFlags(rawValue: UInt(value))
-        }
-    }
     
     @objc public var enableCapslockToToggleInputMode: Bool {
         get {
-           return self.bool(forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
+            return self.bool(forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
         }
     }
     
-    @objc public var inputModeExchangeKeyCode: Int {
+    public var inputModeExchangeKeyCode: UInt? {
         get {
-            return self.integer(forKey: GureumConfigurationName.inputModeExchangeKeyCode.rawValue)
+            return self.inputModeExchangeKey?.1
         }
     }
     
-    public var inputModeExchangeKey: (NSEvent.ModifierFlags, Int) {
+    public var inputModeExchangeKeyModifier: UInt? {
         get {
-            return (self.inputModeExchangeKeyModifier, self.inputModeExchangeKeyCode)
+            return self.inputModeExchangeKey?.0.rawValue
+        }
+    }
+    
+    public var inputModeExchangeKey: (NSEvent.ModifierFlags, UInt)? {
+        get {
+            return getShortcutKey(GureumConfigurationName.inputModeExchangeKey.rawValue)
+        }
+        set {
+            setShortcutKey(GureumConfigurationName.inputModeExchangeKey.rawValue, newValue)
         }
     }
 
@@ -133,29 +147,67 @@ enum GureumConfigurationName: String {
             return (self.inputModeEmoticonKeyModifier, self.inputModeEmoticonKeyCode)
         }
     }
-
-    @objc public var inputModeHanjaKeyModifier: NSEvent.ModifierFlags {
+    
+    public var inputModeHanjaKeyCode: UInt? {
         get {
-            let value = self.integer(forKey: GureumConfigurationName.inputModeHanjaKeyModifier.rawValue)
-            return NSEvent.ModifierFlags(rawValue: UInt(value))
-        }
-        set {
-            return self.set(newValue, forKey: GureumConfigurationName.inputModeHanjaKeyModifier.rawValue)
-        }
-    }
-
-    @objc public var inputModeHanjaKeyCode: Int {
-        get {
-            return self.integer(forKey: GureumConfigurationName.inputModeHanjaKeyCode.rawValue)
-        }
-        set {
-            return self.set(newValue, forKey: GureumConfigurationName.inputModeHanjaKeyCode.rawValue)
+            return self.inputModeHanjaKey?.1
         }
     }
     
-    public var inputModeHanjaKey: (NSEvent.ModifierFlags, Int) {
-        get{
-            return (self.inputModeHanjaKeyModifier, self.inputModeHanjaKeyCode)
+    public var inputModeHanjaKeyModifier: UInt? {
+        get {
+            return self.inputModeHanjaKey?.0.rawValue
+        }
+    }
+    
+    public var inputModeHanjaKey: (NSEvent.ModifierFlags, UInt)? {
+        get {
+            return getShortcutKey(GureumConfigurationName.inputModeHanjaKey.rawValue)
+        }
+        set {
+            setShortcutKey(GureumConfigurationName.inputModeHanjaKey.rawValue, newValue)
+        }
+    }
+    
+    public var inputModeEnglishKeyCode: UInt? {
+        get {
+            return self.inputModeEnglishKey?.1
+        }
+    }
+    
+    public var inputModeEnglishKeyModifier: UInt? {
+        get {
+            return self.inputModeEnglishKey?.0.rawValue
+        }
+    }
+    
+    public var inputModeEnglishKey: (NSEvent.ModifierFlags, UInt)? {
+        get {
+            return getShortcutKey(GureumConfigurationName.inputModeEnglishKey.rawValue)
+        }
+        set {
+            setShortcutKey(GureumConfigurationName.inputModeEnglishKey.rawValue, newValue)
+        }
+    }
+    
+    public var inputModeKoreanKeyCode: UInt? {
+        get {
+            return self.inputModeKoreanKey?.1
+        }
+    }
+    
+    public var inputModeKoreanKeyModifier: UInt? {
+        get {
+            return self.inputModeKoreanKey?.0.rawValue
+        }
+    }
+    
+    public var inputModeKoreanKey: (NSEvent.ModifierFlags, UInt)? {
+        get {
+            return getShortcutKey(GureumConfigurationName.inputModeKoreanKey.rawValue)
+        }
+        set {
+            setShortcutKey(GureumConfigurationName.inputModeKoreanKey.rawValue, newValue)
         }
     }
 
