@@ -37,8 +37,6 @@
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
-		3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E71F5DAA7100896BEC /* emoticon.txt */; };
-		3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E81F5DAA7100896BEC /* emoticonr.txt */; };
 		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
 		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
 		3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EE1F5DAA7100896BEC /* hanjaw.txt */; };
@@ -185,8 +183,6 @@
 				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
 				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
 				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
-				3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */,
-				3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */,
 				3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */,
 				3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */,
 				3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */,
@@ -345,8 +341,8 @@
 		80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3p.xml"; sourceTree = "<group>"; };
 		871B807B2153DDFA0013EE69 /* CIMInputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIMInputManager.swift; sourceTree = "<group>"; };
 		9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.debug.xcconfig"; sourceTree = "<group>"; };
-		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = emoji.txt; path = OSX/data/hanja/emoji.txt; sourceTree = "<group>"; };
-		A36A4358216F86780052BE12 /* emoji_ko.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = emoji_ko.txt; path = OSX/data/hanja/emoji_ko.txt; sourceTree = "<group>"; };
+		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji.txt; sourceTree = "<group>"; };
+		A36A4358216F86780052BE12 /* emoji_ko.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji_ko.txt; sourceTree = "<group>"; };
 		A3BAAE062160C6970076C66D /* GureumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
 		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonComposer.swift; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
@@ -485,6 +481,8 @@
 		3835B4E31F5DAA7100896BEC /* hanja */ = {
 			isa = PBXGroup;
 			children = (
+				A36A4358216F86780052BE12 /* emoji_ko.txt */,
+				A34E2024216ADBEC00B12476 /* emoji.txt */,
 				3835B4E51F5DAA7100896BEC /* all.txt */,
 				3835B4E71F5DAA7100896BEC /* emoticon.txt */,
 				3835B4E81F5DAA7100896BEC /* emoticonr.txt */,
@@ -582,8 +580,6 @@
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
-				A36A4358216F86780052BE12 /* emoji_ko.txt */,
-				A34E2024216ADBEC00B12476 /* emoji.txt */,
 				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
 				38162DF6141263270077AA2D /* OSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
