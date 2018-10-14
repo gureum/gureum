@@ -37,8 +37,6 @@
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
-		3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E71F5DAA7100896BEC /* emoticon.txt */; };
-		3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E81F5DAA7100896BEC /* emoticonr.txt */; };
 		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
 		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
 		3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EE1F5DAA7100896BEC /* hanjaw.txt */; };
@@ -185,8 +183,6 @@
 				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
 				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
 				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
-				3835B5261F5DAB5E00896BEC /* emoticon.txt in Copy Hanja Files */,
-				3835B5271F5DAB5E00896BEC /* emoticonr.txt in Copy Hanja Files */,
 				3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */,
 				3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */,
 				3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */,
