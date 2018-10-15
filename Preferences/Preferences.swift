@@ -35,9 +35,6 @@ import MASShortcut
     let layoutTable = GureumLayoutTable()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
-    
-    var exchangeShortcut: MASShortcut!
-    var hanjaShortcut: MASShortcut!
 
 //    @IBOutlet var _window: NSWindow!
 
@@ -45,12 +42,65 @@ import MASShortcut
         return value ? .on : .off
     }
     
-    override func keyDown(with event: NSEvent) {
-        if event.keyCode == 49 {
-            inputModeExchangeShortcutView.shortcutValue = exchangeShortcut
-            inputModeHanjaShortcutView.shortcutValue = hanjaShortcut
+    func loadShortcutValues() {
+        if let key = configuration.inputModeExchangeKey {
+            inputModeExchangeShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+        } else {
+            inputModeExchangeShortcutView.shortcutValue = nil
+        }
+
+        if let key = configuration.inputModeHanjaKey {
+            inputModeHanjaShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+        } else {
+            inputModeHanjaShortcutView.shortcutValue = nil
+        }
+
+        if let key = configuration.inputModeEnglishKey {
+            inputModeEnglishShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+        } else {
             inputModeEnglishShortcutView.shortcutValue = nil
+        }
+
+        if let key = configuration.inputModeKoreanKey {
+            inputModeKoreanShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+        } else {
             inputModeKoreanShortcutView.shortcutValue = nil
+        }
+    }
+    
+    func setupShortcutViewValueChangeEvents() {
+        func masShortcutToShortcut(_ mas: MASShortcut?) -> GureumConfiguration.Shortcut? {
+            guard let mas = mas else {
+                return nil
+            }
+            return (mas.keyCode, NSEvent.ModifierFlags(rawValue: mas.modifierFlags))
+        }
+        inputModeExchangeShortcutView.shortcutValueChange = { (sender) in
+            guard let sender = sender else {
+                return
+            }
+            self.configuration.inputModeExchangeKey = masShortcutToShortcut(sender.shortcutValue)
+        }
+        
+        inputModeHanjaShortcutView.shortcutValueChange = { (sender) in
+            guard let sender = sender else {
+                return
+            }
+            self.configuration.inputModeHanjaKey = masShortcutToShortcut(sender.shortcutValue)
+        }
+        
+        inputModeEnglishShortcutView.shortcutValueChange = { (sender) in
+            guard let sender = sender else {
+                return
+            }
+            self.configuration.inputModeEnglishKey = masShortcutToShortcut(sender.shortcutValue)
+        }
+        
+        inputModeKoreanShortcutView.shortcutValueChange = { (sender) in
+            guard let sender = sender else {
+                return
+            }
+            self.configuration.inputModeKoreanKey = masShortcutToShortcut(sender.shortcutValue)
         }
     }
 
@@ -70,11 +120,8 @@ import MASShortcut
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
         inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
         
-        exchangeShortcut = MASShortcut(keyCode: UInt(configuration.inputModeExchangeKeyCode), modifierFlags: configuration.inputModeExchangeKeyModifier.rawValue)
-        hanjaShortcut = MASShortcut(keyCode: UInt(configuration.inputModeHanjaKeyCode), modifierFlags: configuration.inputModeHanjaKeyModifier.rawValue)
-        
-        inputModeExchangeShortcutView.shortcutValue = exchangeShortcut
-        inputModeHanjaShortcutView.shortcutValue = hanjaShortcut
+        loadShortcutValues()
+        setupShortcutViewValueChangeEvents()
     }
 
     @IBAction func openKeyboardPreference(sender: NSControl) {
