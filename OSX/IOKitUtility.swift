@@ -70,3 +70,41 @@ class IOKitError: Error {
         return IOConnect(id: connectId)
     }
 }
+
+extension IOHIDManager {
+
+    public class func deviceMatching(page: Int, usage: Int) -> NSDictionary {
+        let dict = NSMutableDictionary()
+        dict.setObject(NSNumber(value: page), forKey: kIOHIDDeviceUsagePageKey as NSString)
+        dict.setObject(NSNumber(value: usage), forKey: kIOHIDDeviceUsageKey as NSString)
+        return dict
+    }
+    
+    public class func inputValueMatching(min: Int, max: Int) -> NSDictionary {
+        let dict = NSMutableDictionary()
+        dict.setObject(NSNumber(value: min), forKey: kIOHIDElementUsageMinKey as NSString)
+        dict.setObject(NSNumber(value: max), forKey: kIOHIDElementUsageMaxKey as NSString)
+        return dict
+    }
+    
+    public class func capsLockManager() -> IOHIDManager {
+        let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone));
+        
+        // Set device matching
+        let deviceMatching = IOHIDManager.deviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
+        IOHIDManagerSetDeviceMatching(manager, deviceMatching);
+        
+        // Set input value matching
+        let inputValueMatching = IOHIDManager.inputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
+        IOHIDManagerSetInputValueMatching(manager, inputValueMatching);
+
+        return manager
+    }
+}
+
+@objc public class IOHIDManagerBridge: NSObject {
+
+    @objc public class func capsLockManager() -> IOHIDManager {
+        return IOHIDManager.capsLockManager()
+    }
+}

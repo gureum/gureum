@@ -297,18 +297,9 @@ TISInputSource *_USSource() {
         self->_ioConnect = [service openWithOwningTask:mach_task_self_ type:kIOHIDParamConnectType];
         dlog(DEBUG_INPUTCONTROLLER, @"io_connect: %@", self->_ioConnect);
 
-        self->_hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-
-        // Set device matching
-        CFMutableDictionaryRef deviceMatchingCFDictRef = createDeviceMatchingDictionary(kHIDPage_GenericDesktop, kHIDUsage_GD_Keyboard);
-        IOHIDManagerSetDeviceMatching(self->_hidManager, deviceMatchingCFDictRef);
-        CFRelease(deviceMatchingCFDictRef);
-
-        // Set input value matching
-        CFMutableDictionaryRef inputValueMatchingCFDictRef = createInputValueMatchingDictionary(kHIDUsage_KeyboardCapsLock, kHIDUsage_KeyboardCapsLock);
-        IOHIDManagerSetInputValueMatching(self->_hidManager, inputValueMatchingCFDictRef);
-        CFRelease(inputValueMatchingCFDictRef);
-
+        self->_hidManager = [IOHIDManagerBridge capsLockManager];
+        CFRetain(self->_hidManager);
+        
         // Set input value callback
         IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, (__bridge void *)(self));
         IOHIDManagerScheduleWithRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
@@ -329,39 +320,6 @@ TISInputSource *_USSource() {
     CFRelease(self->_hidManager);
 }
 
-static CFMutableDictionaryRef createDeviceMatchingDictionary(UInt32 inUsagePage, UInt32 inUsage) {
-    // Create a dictionary
-    CFMutableDictionaryRef result = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-
-    // Set usage page
-    CFNumberRef pageCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &inUsagePage);
-    CFDictionarySetValue(result, CFSTR(kIOHIDDeviceUsagePageKey), pageCFNumberRef);
-    CFRelease(pageCFNumberRef);
-
-    // Set usage
-    CFNumberRef usageCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &inUsage);
-    CFDictionarySetValue(result, CFSTR(kIOHIDDeviceUsageKey), usageCFNumberRef);
-    CFRelease(usageCFNumberRef);
-
-    return result;
-}
-
-static CFMutableDictionaryRef createInputValueMatchingDictionary(int usageMin, int usageMax) {
-    // Create a dictionary
-    CFMutableDictionaryRef result = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-
-    // Set usage min
-    CFNumberRef minCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usageMin);
-    CFDictionarySetValue(result, CFSTR(kIOHIDElementUsageMinKey), minCFNumberRef);
-    CFRelease(minCFNumberRef);
-
-    // Set usage max
-    CFNumberRef maxCFNumberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usageMax);
-    CFDictionarySetValue(result, CFSTR(kIOHIDElementUsageMaxKey), maxCFNumberRef);
-    CFRelease(maxCFNumberRef);
-
-    return result;
-}
 
 static void handleInputValueCallback(void *inContext, IOReturn inResult, void *inSender, IOHIDValueRef inIOHIDValueRef) {
     CIMInputController *inputController = (__bridge CIMInputController *)(inContext);
