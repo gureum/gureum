@@ -19,8 +19,7 @@ enum GureumConfigurationName: String {
     case rightOptionKeyShortcutBehavior = "CIMRightOptionKeyShortcutBehavior"
     case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
     case inputModeExchangeKey = "CIMInputModeExchangeKey"
-    case inputModeEmoticonKeyModifier = "CIMInputModeEmoticonKeyModifier"
-    case inputModeEmoticonKeyCode = "CIMInputModeEmoticonKeyCode"
+    case inputModeEmoticonKey = "CIMInputModeEmoticonKey"
     case inputModeHanjaKey = "CIMInputModeHanjaKey"
     case inputModeEnglishKey = "CIMInputModeEnglishKey"
     case inputModeKoreanKey = "CIMInputModeKoreanKey"
@@ -37,13 +36,28 @@ enum GureumConfigurationName: String {
 
 @objc public class GureumConfiguration: UserDefaults {
 
+    public typealias Shortcut = (UInt, NSEvent.ModifierFlags)
+    
+    public class func convertShortcutToConfiguration(_ shortcut: Shortcut?) -> [String: Any] {
+        guard let shortcut = shortcut else {
+            return [:]
+        }
+        return ["modifier": shortcut.1.rawValue, "keyCode": shortcut.0]
+    }
+    
+    public class func convertConfigurationToShortcut(_ configuration: [String: Any]) -> Shortcut? {
+        guard let modifier = configuration["modifier"] as? UInt, let keyCode = configuration["keyCode"] as? UInt else {
+            return nil
+        }
+        return (keyCode, NSEvent.ModifierFlags(rawValue: modifier))
+    }
+
     init() {
         super.init(suiteName: "org.youknowone.Gureum")!
         self.register(defaults: [
-            GureumConfigurationName.inputModeExchangeKey.rawValue: ["modifier": NSEvent.ModifierFlags.shift.rawValue, "keyCode": 0x31],
-            GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue: NSEvent.ModifierFlags([.shift, .option]).rawValue,
-            GureumConfigurationName.inputModeEmoticonKeyCode.rawValue: 0x24,
-            GureumConfigurationName.inputModeHanjaKey.rawValue: ["modifier": NSEvent.ModifierFlags.option.rawValue, "keyCode": 0x24],
+            GureumConfigurationName.inputModeExchangeKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x31, .shift)),
+            GureumConfigurationName.inputModeEmoticonKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x24, [.shift, .option])),
+            GureumConfigurationName.inputModeHanjaKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x24, .option)),
             GureumConfigurationName.optionKeyBehavior.rawValue: 0,
             GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
             GureumConfigurationName.romanModeByEscapeKey.rawValue: false,
@@ -54,22 +68,15 @@ enum GureumConfigurationName: String {
         ])
     }
     
-    func getShortcutKey(_ propertyString: String) -> (NSEvent.ModifierFlags, UInt)? {
-        guard let value = self.dictionary(forKey: propertyString) else {
+    func getShortcut(forKey key: String) -> Shortcut? {
+        guard let value = self.dictionary(forKey: key) else {
             return nil
         }
-        guard !value.isEmpty else {
-            return nil
-        }
-        return (NSEvent.ModifierFlags(rawValue: value["modifier"] as! UInt), value["keyCode"] as! UInt)
+        return GureumConfiguration.convertConfigurationToShortcut(value)
     }
     
-    func setShortcutKey(_ propertyString: String, _ newValue: (NSEvent.ModifierFlags, UInt)?) {
-        if let newValue = newValue {
-            self.set(["modifier": newValue.0.rawValue, "keyCode": newValue.1], forKey: propertyString)
-        } else {
-            self.set([:], forKey: propertyString)
-        }
+    func setShortcut(_ newValue: Shortcut?, forKey key: String) {
+        self.set(GureumConfiguration.convertShortcutToConfiguration(newValue) , forKey: key)
     }
 
     @objc public var lastHangulInputMode: String? {
@@ -108,106 +115,48 @@ enum GureumConfigurationName: String {
         }
     }
     
-    public var inputModeExchangeKeyCode: UInt? {
+    public var inputModeExchangeKey: Shortcut? {
         get {
-            return self.inputModeExchangeKey?.1
-        }
-    }
-    
-    public var inputModeExchangeKeyModifier: UInt? {
-        get {
-            return self.inputModeExchangeKey?.0.rawValue
-        }
-    }
-    
-    public var inputModeExchangeKey: (NSEvent.ModifierFlags, UInt)? {
-        get {
-            return getShortcutKey(GureumConfigurationName.inputModeExchangeKey.rawValue)
+            return getShortcut(forKey: GureumConfigurationName.inputModeExchangeKey.rawValue)
         }
         set {
-            setShortcutKey(GureumConfigurationName.inputModeExchangeKey.rawValue, newValue)
+            setShortcut(newValue, forKey: GureumConfigurationName.inputModeExchangeKey.rawValue)
         }
     }
 
-    @objc public var inputModeEmoticonKeyModifier: NSEvent.ModifierFlags {
+    public var inputModeEmoticonKey: Shortcut? {
         get {
-            let value = self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyModifier.rawValue)
-            return NSEvent.ModifierFlags(rawValue: UInt(value))
+            return getShortcut(forKey: GureumConfigurationName.inputModeEmoticonKey.rawValue)
+        }
+        set {
+            setShortcut(newValue, forKey: GureumConfigurationName.inputModeEmoticonKey.rawValue)
         }
     }
 
-    @objc public var inputModeEmoticonKeyCode: Int {
+    public var inputModeHanjaKey: Shortcut? {
         get {
-            return self.integer(forKey: GureumConfigurationName.inputModeEmoticonKeyCode.rawValue)
-        }
-    }
-
-    public var inputModeEmoticonKey: (NSEvent.ModifierFlags, Int) {
-        get {
-            return (self.inputModeEmoticonKeyModifier, self.inputModeEmoticonKeyCode)
-        }
-    }
-    
-    public var inputModeHanjaKeyCode: UInt? {
-        get {
-            return self.inputModeHanjaKey?.1
-        }
-    }
-    
-    public var inputModeHanjaKeyModifier: UInt? {
-        get {
-            return self.inputModeHanjaKey?.0.rawValue
-        }
-    }
-    
-    public var inputModeHanjaKey: (NSEvent.ModifierFlags, UInt)? {
-        get {
-            return getShortcutKey(GureumConfigurationName.inputModeHanjaKey.rawValue)
+            return getShortcut(forKey: GureumConfigurationName.inputModeHanjaKey.rawValue)
         }
         set {
-            setShortcutKey(GureumConfigurationName.inputModeHanjaKey.rawValue, newValue)
+            setShortcut(newValue, forKey: GureumConfigurationName.inputModeHanjaKey.rawValue)
         }
     }
     
-    public var inputModeEnglishKeyCode: UInt? {
+    public var inputModeEnglishKey: Shortcut? {
         get {
-            return self.inputModeEnglishKey?.1
-        }
-    }
-    
-    public var inputModeEnglishKeyModifier: UInt? {
-        get {
-            return self.inputModeEnglishKey?.0.rawValue
-        }
-    }
-    
-    public var inputModeEnglishKey: (NSEvent.ModifierFlags, UInt)? {
-        get {
-            return getShortcutKey(GureumConfigurationName.inputModeEnglishKey.rawValue)
+            return getShortcut(forKey: GureumConfigurationName.inputModeEnglishKey.rawValue)
         }
         set {
-            setShortcutKey(GureumConfigurationName.inputModeEnglishKey.rawValue, newValue)
+            setShortcut(newValue, forKey: GureumConfigurationName.inputModeEnglishKey.rawValue)
         }
     }
     
-    public var inputModeKoreanKeyCode: UInt? {
+    public var inputModeKoreanKey: Shortcut? {
         get {
-            return self.inputModeKoreanKey?.1
-        }
-    }
-    
-    public var inputModeKoreanKeyModifier: UInt? {
-        get {
-            return self.inputModeKoreanKey?.0.rawValue
-        }
-    }
-    
-    public var inputModeKoreanKey: (NSEvent.ModifierFlags, UInt)? {
-        get {
-            return getShortcutKey(GureumConfigurationName.inputModeKoreanKey.rawValue)
+            return getShortcut(forKey: GureumConfigurationName.inputModeKoreanKey.rawValue)
         }
         set {
-            setShortcutKey(GureumConfigurationName.inputModeKoreanKey.rawValue, newValue)
+            setShortcut(newValue, forKey: GureumConfigurationName.inputModeKoreanKey.rawValue)
         }
     }
 

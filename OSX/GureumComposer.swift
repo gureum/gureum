@@ -177,7 +177,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             self.ioConnect.setCapsLockLed(false)
             return CIMInputTextProcessResult.processed
         default:
-            if let exchangeKey = configuration.inputModeExchangeKey, exchangeKey == (inputModifier, UInt(keyCode)) {
+            let inputKey = (UInt(keyCode), inputModifier)
+            if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
                 need_exchange = true
             }
     //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
@@ -188,7 +189,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
     //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
     //            need_exchange = YES;
     //        }
-            if let hanjaKey = configuration.inputModeHanjaKey, hanjaKey == (inputModifier, UInt(keyCode)) {
+            if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
                 delegatedComposer = hanjaComposer
             }
     //        if (inputModifier, keyCode) == configuration.inputModeEmoticonKey {
