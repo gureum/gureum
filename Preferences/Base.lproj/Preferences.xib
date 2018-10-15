@@ -18,7 +18,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="548"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="548"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -42,10 +42,6 @@
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-UC-GBP">
                                             <rect key="frame" x="247" y="459" width="134" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="00c-IC-7IF"/>
-                                                <constraint firstAttribute="width" constant="122" id="tGn-n0-cSc"/>
-                                            </constraints>
                                             <buttonCell key="cell" type="push" title="설정하러 이동하기" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OPL-eq-ykB">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
@@ -54,9 +50,9 @@
                                                 <action selector="openKeyboardPreferenceWithSender:" target="DMm-2g-KCR" id="6Ub-WI-1T5"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7">
-                                            <rect key="frame" x="23" y="407" width="341" height="51"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 -&gt; 키보드 -&gt; 단축키 -&gt; 인풋 소스 에서 설정 ⇧스페이스 와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요.  (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7" userLabel="단축키 설정 설명">
+                                            <rect key="frame" x="23" y="407" width="354" height="51"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 → 키보드 → 단축키 → 인풋 소스 에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -71,15 +67,15 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
-                                            <rect key="frame" x="23" y="348" width="109" height="17"/>
+                                            <rect key="frame" x="23" y="348" width="110" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe">
-                                            <rect key="frame" x="196" y="343" width="163" height="26"/>
+                                        <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe" userLabel="option 키 동작 Combo Box">
+                                            <rect key="frame" x="215" y="343" width="163" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
                                                 <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
@@ -126,7 +122,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
-                                            <rect key="frame" x="196" y="259" width="163" height="26"/>
+                                            <rect key="frame" x="215" y="259" width="163" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="qgD-W9-Xqp">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -197,8 +193,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QYr-aQ-b5O">
-                                            <rect key="frame" x="326" y="140" width="38" height="37"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QYr-aQ-b5O" userLabel="영어로 바꾸기 단축키 도움말">
+                                            <rect key="frame" x="326" y="138" width="39" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="028-3e-SEc"/>
                                                 <constraint firstAttribute="height" constant="26" id="E0J-oy-6I2"/>
@@ -211,8 +207,8 @@
                                                 <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="Ybq-YZ-MiA"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xGW-W9-NIo">
-                                            <rect key="frame" x="326" y="110" width="38" height="37"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xGW-W9-NIo" userLabel="한자 단축키 도움말">
+                                            <rect key="frame" x="326" y="108" width="39" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="500-Ty-FU4"/>
                                                 <constraint firstAttribute="height" constant="26" id="NV0-an-WUg"/>
@@ -225,8 +221,8 @@
                                                 <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="fS1-OB-ypB"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Th5-A5-nW2">
-                                            <rect key="frame" x="326" y="78" width="38" height="37"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Th5-A5-nW2" userLabel="영어로 바꾸기 단축키 도움말">
+                                            <rect key="frame" x="326" y="76" width="39" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="psx-Nr-h58"/>
                                                 <constraint firstAttribute="height" constant="26" id="v8L-TK-1TL"/>
@@ -239,8 +235,8 @@
                                                 <action selector="didTapHelpShortCut:" target="DMm-2g-KCR" id="317-oa-Dh3"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K9Y-NE-xf1">
-                                            <rect key="frame" x="326" y="45" width="38" height="37"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K9Y-NE-xf1" userLabel="한국어로 바꾸기 단축키 도움말">
+                                            <rect key="frame" x="326" y="43" width="39" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="6ek-RW-ajt"/>
                                                 <constraint firstAttribute="height" constant="26" id="ind-ay-rP8"/>
@@ -293,33 +289,44 @@
                                     <constraints>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="centerY" secondItem="k0S-fI-Ly1" secondAttribute="centerY" id="0Te-K8-lNc"/>
                                         <constraint firstItem="xGW-W9-NIo" firstAttribute="centerY" secondItem="H7u-hL-ncz" secondAttribute="centerY" id="5RJ-4a-JbQ"/>
-                                        <constraint firstItem="F1x-Bk-yYe" firstAttribute="leading" secondItem="yjR-ur-FpL" secondAttribute="trailing" constant="127" id="6aB-Xo-xAu"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yjR-ur-FpL" secondAttribute="trailing" constant="20" symbolic="YES" id="6aB-Xo-xAu"/>
                                         <constraint firstItem="0Hf-Gu-mlf" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="35" id="6cg-ry-FXC"/>
                                         <constraint firstItem="BHm-Gy-NR7" firstAttribute="top" secondItem="BnJ-87-FKK" secondAttribute="bottom" constant="13" id="6mv-aD-AID"/>
                                         <constraint firstItem="tMq-UC-GBP" firstAttribute="centerY" secondItem="DRr-ZG-wMG" secondAttribute="centerY" id="6op-VP-qXp"/>
                                         <constraint firstItem="QYr-aQ-b5O" firstAttribute="centerY" secondItem="XiY-Tt-T3F" secondAttribute="centerY" id="6xs-VK-Htk"/>
                                         <constraint firstAttribute="trailing" secondItem="tMq-UC-GBP" secondAttribute="trailing" constant="25" id="7Dz-hI-Rub"/>
                                         <constraint firstItem="BnJ-87-FKK" firstAttribute="top" secondItem="Whp-xY-Myz" secondAttribute="bottom" constant="13" id="8s9-Kj-NxS"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JYx-Sc-lao" secondAttribute="trailing" constant="20" symbolic="YES" id="BoU-ap-7eZ"/>
                                         <constraint firstItem="ZkS-XC-ybl" firstAttribute="centerY" secondItem="BHm-Gy-NR7" secondAttribute="centerY" id="CdO-y5-PKa"/>
                                         <constraint firstItem="xGW-W9-NIo" firstAttribute="leading" secondItem="QYr-aQ-b5O" secondAttribute="leading" id="DtR-zP-B2A"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a8y-l9-yXh" secondAttribute="trailing" constant="20" symbolic="YES" id="EHK-cg-btQ"/>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k0S-fI-Ly1" secondAttribute="trailing" constant="8" symbolic="YES" id="Ejt-tc-jfH"/>
+                                        <constraint firstItem="tMq-UC-GBP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DRr-ZG-wMG" secondAttribute="trailing" constant="8" symbolic="YES" id="Es8-MK-bqs"/>
                                         <constraint firstItem="DRr-ZG-wMG" firstAttribute="top" secondItem="Mwx-RP-qRv" secondAttribute="top" constant="15" id="FHf-Pb-bI9"/>
                                         <constraint firstItem="BHm-Gy-NR7" firstAttribute="leading" secondItem="BnJ-87-FKK" secondAttribute="leading" id="GCi-0Z-dgU"/>
+                                        <constraint firstItem="fCD-Cp-FQV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BnJ-87-FKK" secondAttribute="trailing" constant="8" symbolic="YES" id="GQv-rF-8u1"/>
                                         <constraint firstItem="fCD-Cp-FQV" firstAttribute="leading" secondItem="H7u-hL-ncz" secondAttribute="leading" id="GdN-hT-W9e"/>
                                         <constraint firstItem="JYx-Sc-lao" firstAttribute="leading" secondItem="Wjk-Ru-yFr" secondAttribute="leading" id="GfL-yb-RVI"/>
                                         <constraint firstItem="25n-Az-YAJ" firstAttribute="leading" secondItem="qIw-na-Nz1" secondAttribute="leading" id="H8w-Ap-0BG"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="25n-Az-YAJ" secondAttribute="trailing" constant="20" symbolic="YES" id="IIH-Mg-ncp"/>
                                         <constraint firstItem="a8y-l9-yXh" firstAttribute="top" secondItem="JYx-Sc-lao" secondAttribute="bottom" constant="15" id="LcW-b0-06U"/>
                                         <constraint firstItem="K9Y-NE-xf1" firstAttribute="centerY" secondItem="ZkS-XC-ybl" secondAttribute="centerY" id="Oht-bc-TX2"/>
                                         <constraint firstItem="DRr-ZG-wMG" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="20" id="QDY-2R-DUr"/>
+                                        <constraint firstItem="X51-4X-EIq" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="QGu-09-Sc7"/>
                                         <constraint firstItem="BnJ-87-FKK" firstAttribute="leading" secondItem="Whp-xY-Myz" secondAttribute="leading" id="QNk-Tu-erb"/>
                                         <constraint firstItem="Whp-xY-Myz" firstAttribute="top" secondItem="0Hf-Gu-mlf" secondAttribute="bottom" constant="13" id="QuN-4v-afr"/>
                                         <constraint firstItem="kC8-kH-2z7" firstAttribute="leading" secondItem="Mwx-RP-qRv" secondAttribute="leading" constant="25" id="R7P-58-bCO"/>
+                                        <constraint firstItem="F1x-Bk-yYe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YGK-Vi-f1X" secondAttribute="trailing" constant="8" symbolic="YES" id="Rpr-Bo-Nu4"/>
                                         <constraint firstItem="Wjk-Ru-yFr" firstAttribute="leading" secondItem="k0S-fI-Ly1" secondAttribute="leading" id="S1d-h5-DJa"/>
                                         <constraint firstItem="k0S-fI-Ly1" firstAttribute="top" secondItem="25n-Az-YAJ" secondAttribute="bottom" constant="15" id="S9G-5S-XGk"/>
+                                        <constraint firstItem="ZkS-XC-ybl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BHm-Gy-NR7" secondAttribute="trailing" constant="8" symbolic="YES" id="SS0-lV-mrY"/>
                                         <constraint firstItem="Th5-A5-nW2" firstAttribute="leading" secondItem="xGW-W9-NIo" secondAttribute="leading" id="Su8-Vo-CfM"/>
+                                        <constraint firstItem="H7u-hL-ncz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Whp-xY-Myz" secondAttribute="trailing" constant="8" symbolic="YES" id="UMa-zg-o4h"/>
                                         <constraint firstItem="K9Y-NE-xf1" firstAttribute="leading" secondItem="Th5-A5-nW2" secondAttribute="leading" id="V27-NH-XuN"/>
                                         <constraint firstAttribute="height" constant="500" id="Vvm-rZ-vgV"/>
                                         <constraint firstItem="fCD-Cp-FQV" firstAttribute="centerY" secondItem="BnJ-87-FKK" secondAttribute="centerY" id="X6j-zG-cDO"/>
                                         <constraint firstItem="ZkS-XC-ybl" firstAttribute="leading" secondItem="fCD-Cp-FQV" secondAttribute="leading" id="YB4-re-dpO"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JId-gg-7RS" secondAttribute="trailing" constant="20" symbolic="YES" id="YVS-1H-o9d"/>
                                         <constraint firstItem="0Hf-Gu-mlf" firstAttribute="top" secondItem="a8y-l9-yXh" secondAttribute="bottom" constant="12" id="ZDx-2z-uIw"/>
                                         <constraint firstItem="QYr-aQ-b5O" firstAttribute="leading" secondItem="XiY-Tt-T3F" secondAttribute="trailing" constant="6" id="ZUN-AS-2tV"/>
                                         <constraint firstItem="yjR-ur-FpL" firstAttribute="leading" secondItem="DRr-ZG-wMG" secondAttribute="leading" id="akz-aO-3go"/>
@@ -336,8 +343,10 @@
                                         <constraint firstItem="Whp-xY-Myz" firstAttribute="leading" secondItem="0Hf-Gu-mlf" secondAttribute="leading" id="kqv-Wg-Y65"/>
                                         <constraint firstItem="kC8-kH-2z7" firstAttribute="top" secondItem="DRr-ZG-wMG" secondAttribute="bottom" constant="10" id="lPc-J7-au1"/>
                                         <constraint firstItem="JId-gg-7RS" firstAttribute="top" secondItem="BHm-Gy-NR7" secondAttribute="bottom" constant="13" id="ly6-pW-uPc"/>
-                                        <constraint firstItem="X51-4X-EIq" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="mfb-BC-6vA"/>
+                                        <constraint firstItem="kC8-kH-2z7" firstAttribute="trailing" secondItem="F1x-Bk-yYe" secondAttribute="trailing" id="mfb-BC-6vA"/>
                                         <constraint firstItem="yjR-ur-FpL" firstAttribute="top" secondItem="kC8-kH-2z7" secondAttribute="bottom" constant="15" id="oFh-Gk-Imw"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qIw-na-Nz1" secondAttribute="trailing" constant="20" symbolic="YES" id="oHT-Lp-cJ3"/>
+                                        <constraint firstAttribute="trailing" secondItem="kC8-kH-2z7" secondAttribute="trailing" constant="25" id="pDB-7p-SGq"/>
                                         <constraint firstItem="Th5-A5-nW2" firstAttribute="centerY" secondItem="fCD-Cp-FQV" secondAttribute="centerY" id="qw7-bG-iKh"/>
                                         <constraint firstItem="H7u-hL-ncz" firstAttribute="leading" secondItem="XiY-Tt-T3F" secondAttribute="leading" id="sSO-6O-DhT"/>
                                         <constraint firstItem="X51-4X-EIq" firstAttribute="height" secondItem="F1x-Bk-yYe" secondAttribute="height" id="tL3-9T-oNf"/>
@@ -346,6 +355,7 @@
                                         <constraint firstItem="H7u-hL-ncz" firstAttribute="centerY" secondItem="Whp-xY-Myz" secondAttribute="centerY" id="v5B-Ol-hkn"/>
                                         <constraint firstItem="YGK-Vi-f1X" firstAttribute="top" secondItem="yjR-ur-FpL" secondAttribute="bottom" constant="10" id="wFz-zO-Wzu"/>
                                         <constraint firstItem="k0S-fI-Ly1" firstAttribute="leading" secondItem="qIw-na-Nz1" secondAttribute="leading" id="xpn-A0-yA7"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wjk-Ru-yFr" secondAttribute="trailing" constant="20" symbolic="YES" id="yzC-8v-yid"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -360,11 +370,11 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="300" id="Jso-1l-2z0"/>
                         </constraints>
-                        <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
                             <rect key="frame" x="0.0" y="284" width="400" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.72999999999999998" horizontal="NO" id="E1U-9N-bFJ">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
                             <rect key="frame" x="384" y="0.0" width="16" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
