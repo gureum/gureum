@@ -22,20 +22,15 @@ import Foundation
     @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
     @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
     @objc static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
-    @objc static let han3FinalLoose = "org.youknowone.inputmethod.Gureum.han3finalloose"
     @objc static let han390 = "org.youknowone.inputmethod.Gureum.han390"
-    @objc static let han390Loose = "org.youknowone.inputmethod.Gureum.han390loose"
     @objc static let han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
     @objc static let han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
     @objc static let han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
     @objc static let hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
     @objc static let hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
+    @objc static let han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
     @objc static let han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
-    @objc static let han3_2011Loose = "org.youknowone.inputmethod.Gureum.han3-2011loose"
     @objc static let han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
-    @objc static let han3_2012Loose = "org.youknowone.inputmethod.Gureum.han3-2012loose"
-    @objc static let han3FinalNoShiftCompat = "org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat"
-    @objc static let han3FinalNoShiftSymbol = "org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol"
     @objc static let han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
     @objc static let han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
 }
@@ -51,8 +46,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
     GureumInputSourceIdentifier.han3Layout2 : "32",
     GureumInputSourceIdentifier.hanRoman : "ro",
     GureumInputSourceIdentifier.hanAhnmatae : "ahn",
-    GureumInputSourceIdentifier.han3FinalNoShiftCompat: "3gc",
-    GureumInputSourceIdentifier.han3FinalNoShiftSymbol : "3gs",
+    GureumInputSourceIdentifier.han3FinalNoShift : "3gs",
     GureumInputSourceIdentifier.han3_2011 : "3-2011",
     GureumInputSourceIdentifier.han3_2012 : "3-2012",
     GureumInputSourceIdentifier.han3_2014 : "3-2014",

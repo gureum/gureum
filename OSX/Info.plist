@@ -219,35 +219,12 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smKorean</string>
 			</dict>
-			<key>org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat</key>
+			<key>org.youknowone.inputmethod.Gureum.han3finalnoshift</key>
 			<dict>
 				<key>KeyboardLayout</key>
 				<string>com.apple.inputmethod.Korean.3SetKorean</string>
 				<key>TISInputSourceID</key>
-				<string>org.youknowone.inputmethod.Gureum.han3finalnoshiftcompat</string>
-				<key>TISIntendedLanguage</key>
-				<string>ko</string>
-				<key>tsInputModeAlternateMenuIconFileKey</key>
-				<string>han3.png</string>
-				<key>tsInputModeDefaultStateKey</key>
-				<false/>
-				<key>tsInputModeIsVisibleKey</key>
-				<true/>
-				<key>tsInputModeMenuIconFileKey</key>
-				<string>han3final.png</string>
-				<key>tsInputModePaletteIconFileKey</key>
-				<string>han3.png</string>
-				<key>tsInputModePrimaryInScriptKey</key>
-				<false/>
-				<key>tsInputModeScriptKey</key>
-				<string>smKorean</string>
-			</dict>
-			<key>org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol</key>
-			<dict>
-				<key>KeyboardLayout</key>
-				<string>com.apple.inputmethod.Korean.3SetKorean</string>
-				<key>TISInputSourceID</key>
-				<string>org.youknowone.inputmethod.Gureum.han3finalnoshiftsymbol</string>
+				<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
@@ -381,18 +358,14 @@
 			<string>org.youknowone.inputmethod.Gureum.han2</string>
 			<string>org.youknowone.inputmethod.Gureum.han2classic</string>
 			<string>org.youknowone.inputmethod.Gureum.han3final</string>
-			<string>org.youknowone.inputmethod.Gureum.han3finalloose</string>
 			<string>org.youknowone.inputmethod.Gureum.han390</string>
-			<string>org.youknowone.inputmethod.Gureum.han390loose</string>
 			<string>org.youknowone.inputmethod.Gureum.han3noshift</string>
 			<string>org.youknowone.inputmethod.Gureum.han3classic</string>
 			<string>org.youknowone.inputmethod.Gureum.hanroman</string>
-			<string>org.youknowone.inputmethod.Gureum.han3-2011</string>
-			<string>org.youknowone.inputmethod.Gureum.han3-2011loose</string>
-			<string>org.youknowone.inputmethod.Gureum.han3-2012</string>
-			<string>org.youknowone.inputmethod.Gureum.han3-2012loose</string>
-			<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
 			<string>org.youknowone.inputmethod.Gureum.hanahnmatae</string>
+			<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
+			<string>org.youknowone.inputmethod.Gureum.han3-2011</string>
+			<string>org.youknowone.inputmethod.Gureum.han3-2012</string>
 			<string>org.youknowone.inputmethod.Gureum.han3-2014</string>
 			<string>org.youknowone.inputmethod.Gureum.han3-2015</string>
 		</array>
@@ -445,6 +418,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
 	<key>TISInputSourceID</key>
 	<string>org.youknowone.inputmethod.Korean</string>
 	<key>TISIntendedLanguage</key>
@@ -457,8 +432,6 @@
 	</array>
 	<key>tsInputMethodIconFileKey</key>
 	<string>icon.png</string>
-	<key>NSUserNotificationAlertStyle</key>
-	<string>alert</string>
 	<key>tsInputModePrimaryInScriptKey</key>
 	<true/>
 </dict>
