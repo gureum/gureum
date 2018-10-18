@@ -239,7 +239,15 @@ class GureumShortcutValidator: MASShortcutValidator {
     }
 
     override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
-        return true
+        if super.isShortcutValid(shortcut) {
+            return true
+        }
+        let modifiers = shortcut.modifierFlags
+        let keyCode = shortcut.keyCode
+        guard (modifiers & NSEvent.ModifierFlags.shift.rawValue) > 0 else {
+            return false
+        }
+        return keyCode >= 0x33 || [kVK_Return, kVK_Tab, kVK_Space].contains(Int(keyCode))
     }
 
     override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
