@@ -96,7 +96,7 @@ class HanjaComposer: CIMComposer {
             if !self.originalString.isEmpty {
                 // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
                 self._bufferedString.removeLast()
-                self._composedString = self.originalString;
+                self._composedString = self.originalString
                 result = .processed
             } else {
                 // 글자를 모두 지우면 한자 모드에서 빠져 나간다.

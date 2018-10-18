@@ -17,7 +17,7 @@ class EmoticonComposer: CIMComposer {
     var _bufferedString: String = ""
     var _composedString: String = ""
     var _commitString: String = ""
-    var mode: Bool = false
+    var mode: Bool = true
 
     var _selectedCandidate: NSAttributedString? = nil
 
@@ -89,6 +89,19 @@ class EmoticonComposer: CIMComposer {
         }
     }
 
+    func exitComposer() {
+        // step 1. mode false
+        self.mode = false
+        // step 2. cancel candidates
+        self._candidates = nil
+        // step 3. get all composing characters
+        self.romanComposer.cancelComposition()
+        self._bufferedString.append(self.romanComposer.dequeueCommitString())
+        // step 4. commit all
+        self._composedString = self.originalString
+        self.cancelComposition()
+    }
+
     func updateEmoticonCandidates() {
         // Step 1: Get string from romanComposer
         let x: String = self.romanComposer.dequeueCommitString()
@@ -142,14 +155,15 @@ class EmoticonComposer: CIMComposer {
             let selectedString: String = controller.client().attributedSubstring(from: selectedRange).string
 
             controller.client().setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
+            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: marking: %@ / selected: %@", NSStringFromRange(controller.client().markedRange()), NSStringFromRange(controller.client().selectedRange()))
 
             self._bufferedString = selectedString
-            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: %@", self._bufferedString)
-
-            self.mode = false
+            dlog(DEBUG_EMOTICON, "DEBUG 4, [update] MSG: %@", self._bufferedString)
         }
 
+        dlog(DEBUG_EMOTICON, "DEBUG 5, [update] MSG: before updateEmoticonCandidates")
         self.updateEmoticonCandidates()
+        dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
     override func inputController(_ controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
@@ -158,17 +172,15 @@ class EmoticonComposer: CIMComposer {
 
         switch keyCode {
         // BackSpace
-        case 51:
-            if result == CIMInputTextProcessResult.notProcessed {
-                if self.originalString.count > 0 {
-                    dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: buffer (%@)", self._bufferedString)
-                    dlog(DEBUG_EMOTICON, "DEBUG 7, [inputController] MSG: length is %d", self._bufferedString.count)
-                    let lastIndex: String.Index = self._bufferedString.index(before: self._bufferedString.endIndex)
-                    self._bufferedString.remove(at: lastIndex)
-                    dlog(DEBUG_EMOTICON, "DEBUG 5, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
+        case 51: if result == .notProcessed {
+                if !self.originalString.isEmpty {
+                    dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", self._bufferedString)
+                    self._bufferedString.removeLast()
+                    dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
                     self._composedString = self.originalString
-                    result = CIMInputTextProcessResult.processed
+                    result = .processed
                 } else {
+                    // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
                     self.mode = false
                 }
             }
@@ -177,25 +189,17 @@ class EmoticonComposer: CIMComposer {
         case 49:
             self.romanComposer.cancelComposition()
             self._bufferedString.append(self.romanComposer.dequeueCommitString())
-            if self._bufferedString.count > 0 {
+            if !self._bufferedString.isEmpty {
                 self._bufferedString.append(" ")
-                result = CIMInputTextProcessResult.processed
+                result = .processed
             } else {
-                result = CIMInputTextProcessResult.notProcessedAndNeedsCommit
+                result = .notProcessedAndNeedsCommit
             }
             break
         // ESC
         case 53:
-            self.mode = false
-            // step 1. get all composing characters
-            self.romanComposer.cancelComposition()
-            self._bufferedString.append(self.romanComposer.dequeueCommitString())
-            // step 2. commit all
-            self._composedString = self.originalString
-            self.cancelComposition()
-            // step 3. cancel candidates
-            self._candidates = nil
-            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+            self.exitComposer()
+            return .notProcessedAndNeedsCommit
         // Enter
         case 36:
             self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: self.composedString))
@@ -209,14 +213,14 @@ class EmoticonComposer: CIMComposer {
 
         dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: %@", string)
 
-        if result == CIMInputTextProcessResult.notProcessedAndNeedsCommit {
+        if result == .notProcessedAndNeedsCommit {
             self.cancelComposition()
             return result
         }
         if self.commitString.count == 0 {
-            return CIMInputTextProcessResult.processed
+            return .processed
         } else {
-            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+            return .notProcessedAndNeedsCommit
         }
     }
 }

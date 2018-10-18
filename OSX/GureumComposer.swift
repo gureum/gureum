@@ -214,6 +214,13 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             }
         }
         
+        if self.delegate === emoticonComposer {
+            if !emoticonComposer.mode {
+                self.emoticonComposer.mode = true
+                self.delegate = romanComposer
+            }
+        }
+
         if delegatedComposer === hanjaComposer {
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if self.delegate === hangulComposer {
