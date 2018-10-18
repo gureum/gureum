@@ -95,8 +95,10 @@ class HanjaComposer: CIMComposer {
         case 51: if result == .notProcessed {
             if !self.originalString.isEmpty {
                 // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
+                dlog(DEBUG_HANJACOMPOSER, "DEBUG 1, [hanja] MSG: before (%@)", self._bufferedString)
                 self._bufferedString.removeLast()
-                self._composedString = self.originalString;
+                dlog(DEBUG_HANJACOMPOSER, "DEBUG 2, [hanja] MSG: after (%@)", self._bufferedString)
+                self._composedString = self.originalString
                 result = .processed
             } else {
                 // 글자를 모두 지우면 한자 모드에서 빠져 나간다.
@@ -171,7 +173,7 @@ class HanjaComposer: CIMComposer {
                 } else {
                     list = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
                 }
-                dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list: %@", list);
+//                dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list: %@", list);
                 for _hanja in list.array {
                     let hanja = _hanja as! HGHanja
                     dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates hanja: %@", hanja);
