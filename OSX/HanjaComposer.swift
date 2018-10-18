@@ -165,7 +165,12 @@ class HanjaComposer: CIMComposer {
             var candidates: [String] = []
             for table in [HanjaComposer.msSymbolTable, HanjaComposer.wordTable, HanjaComposer.reversedTable, HanjaComposer.characterTable, HanjaComposer.emojiTable] {
                 dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list for table: %@", table);
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
+                let list: HGHanjaList
+                if keyword.count == 1 {
+                    list = table.hanjasBySuffix(matching: keyword) ?? HGHanjaList()
+                } else {
+                    list = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
+                }
                 dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates getting list: %@", list);
                 for _hanja in list.array {
                     let hanja = _hanja as! HGHanja
