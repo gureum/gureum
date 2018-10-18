@@ -214,8 +214,9 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             }
         }
         
-        if self.delegate === hangulComposer {
-            if delegatedComposer === hanjaComposer {
+        if delegatedComposer === hanjaComposer {
+            // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
+            if self.delegate === hangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = hangulComposer.composedString.count > 0
                 hanjaComposer.mode = !isComposing // 조합 중이 아니면 1회만 사전을 띄운다
@@ -224,19 +225,18 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 hanjaComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
+            // 영어 입력 상태에서 이모티콘 입력기로 전환
+            if self.delegate === romanComposer {
+                emoticonComposer.delegate = self.delegate
+                self.delegate = emoticonComposer
+                emoticonComposer.update(fromController: controller)
+                return CIMInputTextProcessResult.processed
+            }
             // Vi-mode: esc로 로마자 키보드로 전환
             if GureumConfiguration.shared().romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
                 self.delegate.cancelComposition()
                 (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
-            }
-        }
-        if self.delegate === romanComposer {
-            if delegatedComposer === emoticonComposer {
-                emoticonComposer.delegate = self.delegate
-                self.delegate = emoticonComposer
-                emoticonComposer.update(fromController: controller)
-                return CIMInputTextProcessResult.processed
             }
         }
         return CIMInputTextProcessResult.notProcessed
