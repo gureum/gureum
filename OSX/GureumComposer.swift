@@ -28,7 +28,7 @@ import Foundation
     @objc static let han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
     @objc static let han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
     @objc static let han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
-    @objc static let hanAhnmatae = "org.youknowone.inputmethod.Gureum.han3ahnmatae"
+    @objc static let hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
     @objc static let hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
     @objc static let han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
     @objc static let han3_2011Loose = "org.youknowone.inputmethod.Gureum.han3-2011loose"
