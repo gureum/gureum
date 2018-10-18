@@ -8,7 +8,7 @@
 
 import Hangul
 
-let DEBUG_EMOTICON = true
+let DEBUG_EMOTICON = false
 
 class EmoticonComposer: CIMComposer {
     static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)
@@ -104,16 +104,16 @@ class EmoticonComposer: CIMComposer {
 
     func updateEmoticonCandidates() {
         // Step 1: Get string from romanComposer
-        let x: String = self.romanComposer.dequeueCommitString()
+        let dequeued: String = self.romanComposer.dequeueCommitString()
         // Step 2: Show the string
-        self._bufferedString.append(x)
+        self._bufferedString.append(dequeued)
         self._bufferedString.append(self.romanComposer.composedString)
         let originalString: String = self._bufferedString
         self._composedString = originalString
         let keyword: String = originalString
 
         dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
-        if keyword.count == 0 {
+        if keyword.isEmpty {
             self._candidates = []
         } else {
             self._candidates = []
@@ -173,18 +173,17 @@ class EmoticonComposer: CIMComposer {
         switch keyCode {
         // BackSpace
         case 51: if result == .notProcessed {
-                if !self.originalString.isEmpty {
-                    dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", self._bufferedString)
-                    self._bufferedString.removeLast()
-                    dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
-                    self._composedString = self.originalString
-                    result = .processed
-                } else {
-                    // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
-                    self.mode = false
-                }
+            if !self.originalString.isEmpty {
+                dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", self._bufferedString)
+                self._bufferedString.removeLast()
+                dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: after deletion, buffer (%@)", self._bufferedString)
+                self._composedString = self.originalString
+                result = .processed
+            } else {
+                // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
+                self.mode = false
             }
-            break
+        }
         // Space
         case 49:
             self.romanComposer.cancelComposition()
