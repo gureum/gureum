@@ -48,7 +48,7 @@
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7" userLabel="단축키 설정 설명">
                                                             <rect key="frame" x="-2" y="32" width="338" height="51"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 → 키보드 → 단축키 → 인풋 소스 에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 → 키보드 → 단축키 → 입력 소스에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -185,8 +185,8 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
-                                                            <rect key="frame" x="-2" y="23" width="231" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
+                                                            <rect key="frame" x="-2" y="23" width="232" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="Esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
