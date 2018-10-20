@@ -69,7 +69,8 @@
 
 - (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags {
     BOOL processed = [super inputText:text key:keyCode modifiers:flags];
-    if (!processed) {
+    BOOL specialFlags = (flags & (NSEventModifierFlagCommand | NSEventModifierFlagControl)) > 0;
+    if (!processed && !specialFlags) {
         [self.client insertText:text replacementRange:self.client.markedRange];
     }
     return processed;
