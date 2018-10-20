@@ -16,9 +16,7 @@ import Foundation
 @objc public class GureumInputSourceIdentifier: NSObject {
     @objc public static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
     @objc static let dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
-    @objc static let dvorakQwertyCommand = "org.youknowone.inputmethod.Gureum.dvorakq"
     @objc static let colemak = "org.youknowone.inputmethod.Gureum.colemak"
-    @objc static let colemakQwertyCommand = "org.youknowone.inputmethod.Gureum.colemakq"
     @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
     @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
     @objc static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
@@ -36,7 +34,9 @@ import Foundation
 }
 
 let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
-    GureumInputSourceIdentifier.qwerty : "",
+    GureumInputSourceIdentifier.qwerty : "qwerty",
+    GureumInputSourceIdentifier.dvorak : "dvorak",
+    GureumInputSourceIdentifier.colemak : "colemak",
     GureumInputSourceIdentifier.han2 : "2",
     GureumInputSourceIdentifier.han2Classic : "2y",
     GureumInputSourceIdentifier.han3Final : "3f",
@@ -55,6 +55,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 
 @objcMembers class GureumComposer: CIMComposer {
     @objc var romanComposer: RomanComposer
+    @objc var dvorakComposer: RomanDataComposer
+    @objc var colemakComposer: RomanDataComposer
     @objc var hangulComposer: HangulComposer
     @objc var hanjaComposer: HanjaComposer
     @objc var emoticonComposer: EmoticonComposer
@@ -62,6 +64,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 
     override init() {
         romanComposer = RomanComposer()
+        dvorakComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
+        colemakComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
         hangulComposer = HangulComposer(keyboardIdentifier: "2")!
         hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
@@ -85,8 +89,12 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return
             }
             
-            if keyboardIdentifier.count == 0 {
+            if keyboardIdentifier == "qwerty" {
                 self.delegate = romanComposer
+            } else if keyboardIdentifier == "dvorak" {
+                self.delegate = dvorakComposer
+            } else if keyboardIdentifier == "colemak" {
+                self.delegate = colemakComposer
             } else {
                 self.delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
