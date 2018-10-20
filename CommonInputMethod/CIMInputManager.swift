@@ -36,7 +36,7 @@ import Foundation
     public var candidates: IMKCandidates! {
         return self._candidates
     }
-    
+
     override init() {
         #if DEBUG
         print("** CharmInputManager Init")
@@ -56,7 +56,7 @@ import Foundation
         print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates)) / handler: \(String(describing: self.handler))")
         #endif
     }
-    
+
     public override var description: String {
         return """
         <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))" handler: "\(String(describing: self.handler))" configuration: \(String(describing: self.configuration))>
