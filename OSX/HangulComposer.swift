@@ -105,7 +105,7 @@ class HangulComposerCombination {
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
 
-    public func inputController(_ controller: CIMInputController, command string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed;
     }

@@ -8,6 +8,9 @@
 
 import Foundation
 
+let DEBUG_LOGGING = false
+let DEBUG_INPUTCONTROLLER = false
+
 extension CIMInputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
         NSApp.activate(ignoringOtherApps: true)
@@ -66,5 +69,44 @@ extension CIMMockInputController {
     @objc override func commitComposition(_ sender: Any) {
         self._receiver.commitCompositionEvent(sender, controller: self)
         // COMMIT triggered
+    }
+}
+
+
+extension CIMInputController { // IMKServerInputHandleEvent
+    // Receiving Events Directly from the Text Services Manager
+
+    open override func handle(_ event: NSEvent, client sender: Any!) -> Bool {
+        if event.type == .keyDown {
+            let bundleIdentifier: String = self.client()!.bundleIdentifier()
+            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", bundleIdentifier)
+            let processed = self.receiver.inputController(self, inputText: event.characters, key: Int(event.keyCode), modifiers:event.modifierFlags, client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
+            dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::%d", processed)
+            return processed
+        } else if event.type == .flagsChanged {
+            var modifierFlags = event.modifierFlags
+            if self.ioConnect.capsLockState {
+                modifierFlags.formUnion(.capsLock)
+            }
+
+            // Handle caps lock events
+            if modifierFlags.contains(.capsLock) {
+                if (self.capsLockPressed) {
+                    self.capsLockPressed = false
+                    dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue);
+                    // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
+                    self.receiver.inputController(self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
+                } else {
+                    dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue);
+                    self.receiver.inputController(self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
+                }
+                return false
+            }
+
+            dlog(DEBUG_LOGGING, "LOGGING::UNHANDLED::%@/%@", event, sender as! NSObject)
+            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender as! NSObject)
+            return false
+        }
+        return false
     }
 }

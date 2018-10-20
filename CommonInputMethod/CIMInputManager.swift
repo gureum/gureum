@@ -8,6 +8,30 @@
 
 import Foundation
 
+let DEBUG_INPUTHANDLER = false
+
+let CIMKeyMapLower = [
+    "a", "s", "d", "f", "h", "g", "z", "x",
+    "c", "v", nil, "b", "q", "w", "e", "r",
+    "y", "t", "1", "2", "3", "4", "6", "5",
+    "=", "9", "7", "-", "8", "0", "]", "o",
+    "u", "[", "i", "p", nil, "l", "j", "'",
+    "k", ";","\\", ",", "/", "n", "m", ".",
+    nil, nil, "`",
+]
+//assert(keyMapLower.count == CIMKeyMapSize)
+
+let CIMKeyMapUpper = [
+    "A", "S", "D", "F", "H", "G", "Z", "X",
+    "C", "V", nil, "B", "Q", "W", "E", "R",
+    "Y", "T", "!", "@", "#", "$", "^", "%",
+    "+", "(", "&", "_", "*", ")", "}", "O",
+    "U", "{", "I", "P", nil, "L", "J", "'",
+    "K", ":", "|", "<", "?", "N", "M", ">",
+    nil, nil, "~",
+]
+
+
 /*!
  @brief  공통적인 OSX의 입력기 구조를 다룬다.
  
@@ -15,7 +39,7 @@ import Foundation
  
  IMKServer나 클라이언트와 무관하게 입력 값에 대해 출력 값을 생성해 내는 입력기. 입력 뿐만 아니라 여러 키보드 간 전환이나 입력기에 관한 단축키 등 입력기에 관한 모든 기능을 다룬다.
  
- @coclass    IMKServer CIMInputHandler CIMComposer
+ @coclass    IMKServer CIMComposer
  */
 @objcMembers public class CIMInputManager: NSObject, CIMInputTextDelegate {
     //! @brief  현재 입력중인 서버
@@ -24,8 +48,6 @@ import Foundation
     private var _candidates: IMKCandidates
     //! @property
     public var configuration: GureumConfiguration
-    //! @brief  공용 입력 핸들러
-    public var handler: CIMInputHandler!
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
     
@@ -36,7 +58,7 @@ import Foundation
     public var candidates: IMKCandidates! {
         return self._candidates
     }
-    
+
     override init() {
         #if DEBUG
         print("** CharmInputManager Init")
@@ -45,30 +67,85 @@ import Foundation
         self.configuration = GureumConfiguration.shared()
         let mainBundle = Bundle.main
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
-        self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
+        self._server = IMKServer(name: "connectionName", bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
 
         super.init()
 
-        self.handler = CIMInputHandler(manager: self)
-
         #if DEBUG
-        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates)) / handler: \(String(describing: self.handler))")
+        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates))")
         #endif
     }
-    
+
     public override var description: String {
         return """
-        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))" handler: "\(String(describing: self.handler))" configuration: \(String(describing: self.configuration))>
+        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))" configuration: \(String(describing: self.configuration))>
         """
     }
     
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flag: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
-        let handled = self.handler.inputController(controller, inputText: string, key: keyCode, modifiers: flag, client: sender)
-        return handled
+
+        // 입력기용 특수 커맨드 처리
+        var result = controller.composer.inputController(controller, command:string, key:keyCode, modifiers:flags, client:sender)
+        if result == .notProcessedAndNeedsCommit {
+            return result
+        }
+        if result != .processed {
+            // 옵션 키 변환 처리
+            var string = string
+            if flags.contains(.option) {
+                dlog(DEBUG_INPUTHANDLER, "option key: %ld", self.configuration.optionKeyBehavior);
+                switch (self.configuration.optionKeyBehavior) {
+                case 0:
+                    // default
+                    dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior");
+                    return .notProcessedAndNeedsCommit;
+                case 1:
+                    // ignore
+                    if keyCode < 0x33 {
+                        if flags.contains(.capsLock) || flags.contains(.shift) {
+                            string = CIMKeyMapUpper[keyCode] ?? string
+                        } else {
+                            string = CIMKeyMapLower[keyCode] ?? string
+                        }
+                    }
+                default:
+                    assert(false)
+                }
+            } else {
+                if (keyCode < 0x33) {
+                    if flags.contains(.shift) {
+                        string = CIMKeyMapUpper[keyCode] ?? string
+                    } else {
+                        string = CIMKeyMapLower[keyCode] ?? string
+                    }
+                }
+            }
+
+            // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
+            if flags.contains(.command) || flags.contains(.option) || flags.contains(.control) {
+                dlog(true, "-- CIMInputHandler -inputText: Command/Option key input / returned NO")
+                return .notProcessedAndNeedsCommit;
+            }
+
+            if string == nil {
+                return .notProcessedAndNeedsCommit;
+            }
+
+            result = controller.composer.inputController(controller, inputText:string, key:keyCode, modifiers:flags, client:sender)
+        }
+
+        dlog(false, "******* FINAL STATE: %d", result.rawValue);
+        // 합성 후보가 있다면 보여준다
+        if controller.composer.hasCandidates {
+            let candidates = self.candidates!
+            candidates.update()
+            candidates.show(kIMKLocateCandidatesLeftHint)
+        }
+        return result;
     }
 }

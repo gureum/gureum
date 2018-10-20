@@ -54,7 +54,7 @@ class HanjaComposer: CIMComposer {
         self._composedString = ""
     }
     
-    override func composerSelected(_ sender: Any) {
+    func composerSelected(_ sender: Any) {
         self._bufferedString = ""
         self._commitString = ""
     }
@@ -92,7 +92,7 @@ class HanjaComposer: CIMComposer {
         var result = self.delegate.inputController(controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
         switch keyCode {
         // backspace
-        case 51: if result == .notProcessed {
+        case kVK_Delete: if result == .notProcessed {
             if !self.originalString.isEmpty {
                 // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
                 dlog(DEBUG_HANJACOMPOSER, "DEBUG 1, [hanja] MSG: before (%@)", self._bufferedString)
@@ -106,7 +106,7 @@ class HanjaComposer: CIMComposer {
             }
         }
         // space
-        case 49:
+        case kVK_Space:
             self.hangulComposer.cancelComposition()  // 강제로 조합중인 문자 추출
             self._bufferedString.append(self.hangulComposer.dequeueCommitString())
             // 단어 뜻 검색을 위해 공백 문자도 후보 검색에 포함한다.
@@ -117,7 +117,7 @@ class HanjaComposer: CIMComposer {
                 result = .notProcessedAndNeedsCommit
             }
         // esc
-        case 0x35:
+        case kVK_Escape:
             self.mode = false
             // step 1: 조합중인 한글을 모두 가져옴
             self.hangulComposer.cancelComposition()

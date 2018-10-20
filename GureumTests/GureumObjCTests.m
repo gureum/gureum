@@ -278,7 +278,7 @@
         [app inputText:@"w" key:13 modifiers:0];
         XCTAssertEqualObjects(@"물", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@" " key:49 modifiers:0];
+        [app inputText:@" " key:kVK_Space modifiers:0];
         XCTAssertEqualObjects(@"물 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물 ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@"n" key:45 modifiers:0];
@@ -293,7 +293,7 @@
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
 
         // 연달아 다음 한자 입력에 들어간다
-        [app inputText:@" " key:49 modifiers:0];
+        [app inputText:@" " key:kVK_Space modifiers:0];
         XCTAssertEqualObjects(@"水 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
 
@@ -305,7 +305,7 @@
         [app inputText:@"w" key:13 modifiers:0];
         XCTAssertEqualObjects(@"水 물", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@" " key:49 modifiers:0];
+        [app inputText:@" " key:kVK_Space modifiers:0];
         XCTAssertEqualObjects(@"水 물 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"물 ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@"n" key:45 modifiers:0];
@@ -343,7 +343,7 @@
         [app inputText:@"y" key:16 modifiers:0];
         XCTAssertEqualObjects(@"sleepy", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"sleepy", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@" " key:49 modifiers:0];
+        [app inputText:@" " key:kVK_Space modifiers:0];
         XCTAssertEqualObjects(@"sleepy ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"sleepy ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
         [app inputText:@"f" key:3 modifiers:0];

@@ -114,7 +114,7 @@ class EmoticonComposer: CIMComposer {
 
         dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
         if keyword.isEmpty {
-            self._candidates = []
+            self._candidates = nil
         } else {
             self._candidates = []
             for table: HGHanjaTable in [EmoticonComposer.emoticonTable] {
@@ -172,7 +172,7 @@ class EmoticonComposer: CIMComposer {
 
         switch keyCode {
         // BackSpace
-        case 51: if result == .notProcessed {
+        case kVK_Delete: if result == .notProcessed {
             if !self.originalString.isEmpty {
                 dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", self._bufferedString)
                 self._bufferedString.removeLast()
@@ -185,26 +185,25 @@ class EmoticonComposer: CIMComposer {
             }
         }
         // Space
-        case 49:
-            self.romanComposer.cancelComposition()
-            self._bufferedString.append(self.romanComposer.dequeueCommitString())
+        case kVK_Space:
             if !self._bufferedString.isEmpty {
                 self._bufferedString.append(" ")
                 result = .processed
             } else {
                 result = .notProcessedAndNeedsCommit
             }
-            break
         // ESC
-        case 53:
+        case kVK_Escape:
             self.exitComposer()
             return .notProcessedAndNeedsCommit
         // Enter
-        case 36:
+        case kVK_Return:
             self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: self.composedString))
-            break
         default:
-            break
+            if result == .notProcessed && string != nil {
+                self._bufferedString.append(string)
+                result = .processed
+            }
         }
 
         dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: %@", string)

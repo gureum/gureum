@@ -64,7 +64,10 @@ typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
     BOOL _capsLockPressed;
 }
 
+@property(readonly) CIMInputReceiver *receiver; // temp bridge
 @property(readonly) CIMComposer *composer; // temp bridge
+@property(readonly) IOConnect *ioConnect; // temp bridge
+@property(assign) BOOL capsLockPressed; // temp bridge
 
 @end
 
