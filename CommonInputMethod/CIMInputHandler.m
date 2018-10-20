@@ -9,7 +9,6 @@
 
 #import "CIMInputHandler.h"
 #import "CIMInputController.h"
-#import "CIMComposer.h"
 
 #import "Gureum-Swift.h"
 

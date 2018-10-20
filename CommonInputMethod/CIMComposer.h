@@ -52,21 +52,5 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/*!
-    @brief  일반적인 합성기 구조
- 
-    @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
-*/
-@interface CIMComposer : NSObject<CIMComposerDelegate> {
-    id<CIMComposerDelegate> _delegate;
-    NSString *_inputMode;
-@public
-    CIMInputManager *manager;
-}
-@property(nonatomic, retain) CIMInputManager *manager;
-@property(nonatomic, retain) id<CIMComposerDelegate> delegate;
-@property(nonatomic, retain) NSString *inputMode;
-
-@end
 
 NS_ASSUME_NONNULL_END

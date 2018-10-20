@@ -11,8 +11,6 @@
 
 #import "CIMCommon.h"
 
-#import "CIMComposer.h"
-
 #import "CIMInputController.h"
 
 #import "TISInputSource.h"
@@ -66,7 +64,7 @@ TISInputSource *_USSource() {
     if (self != nil) {
         dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
         self->_composer = [CIMAppDelegate composerWithServer:server client:inputClient];
-        self->_composer->manager = CIMSharedInputManager;
+        self->_composer.manager = CIMSharedInputManager;
         _inputClient = inputClient;
     }
     return self;

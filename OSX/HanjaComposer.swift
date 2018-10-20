@@ -54,7 +54,7 @@ class HanjaComposer: CIMComposer {
         self._composedString = ""
     }
     
-    override func composerSelected(_ sender: Any) {
+    func composerSelected(_ sender: Any) {
         self._bufferedString = ""
         self._commitString = ""
     }
