@@ -6,5 +6,4 @@
 
 #import "CIMCommon.h"
 #import "CIMInputController.h"
-#import "CIMInputHandler.h"
 #import "CIMComposer.h"

@@ -17,8 +17,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 static const int CIMKeyMapSize = 0x33;
-FOUNDATION_EXTERN const char CIMKeyMapLower[CIMKeyMapSize];
-FOUNDATION_EXTERN const char CIMKeyMapUpper[CIMKeyMapSize];
 
 @class CIMInputController;
 

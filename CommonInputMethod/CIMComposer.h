@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString;
 
 @required
-- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender;
+- (CIMInputTextProcessResult)inputController:(CIMInputController *)controller commandString:(nullable NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender;
 
 @end
 

@@ -97,7 +97,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         }
     }
     
-    @objc override func inputController(_ controller: CIMInputController, command string: String, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    @objc override func inputController(_ controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let configuration = GureumConfiguration.shared()
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false

@@ -65,13 +65,12 @@ class RomanComposer: CIMComposer {
             if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
+                self._commitString = newString
+                return CIMInputTextProcessResult.processed;
             }
-            self._commitString = newString
-            return CIMInputTextProcessResult.processed;
-        } else {
-            self._commitString = nil
-            return CIMInputTextProcessResult.notProcessed
         }
+        self._commitString = nil
+        return CIMInputTextProcessResult.notProcessed
     }
     
 }

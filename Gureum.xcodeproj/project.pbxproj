@@ -26,7 +26,6 @@
 		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863D30140F282000A8ED76 /* CIMInputHandler.m */; };
 		38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
@@ -68,7 +67,6 @@
 		386ECB8621537DEA0060D9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8521537DEA0060D9BE /* Assets.xcassets */; };
 		386ECB8921537DEA0060D9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8721537DEA0060D9BE /* Main.storyboard */; };
 		386ECBB1215385720060D9BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		387A47461688419800EB5943 /* CIMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 387A47441688415500EB5943 /* CIMCommon.m */; };
 		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		389289BD217B331B00F94F2C /* CIMComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* CIMComposer.swift */; };
@@ -297,7 +295,6 @@
 		386ECB8821537DEA0060D9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		386ECB8A21537DEA0060D9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		386ECB8B21537DEA0060D9BE /* PreferencesApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PreferencesApp.entitlements; sourceTree = "<group>"; };
-		387A47441688415500EB5943 /* CIMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMCommon.m; sourceTree = "<group>"; };
 		388534FC213A740600885C87 /* IOKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKitUtility.swift; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -306,8 +303,6 @@
 		38863C95140E669000A8ED76 /* CIMInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputController.h; sourceTree = "<group>"; };
 		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
 		38863C98140E677900A8ED76 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = SDKs/MacOSX10.6.sdk/System/Library/Frameworks/InputMethodKit.framework; sourceTree = DEVELOPER_DIR; };
-		38863D2F140F282000A8ED76 /* CIMInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputHandler.h; sourceTree = "<group>"; };
-		38863D30140F282000A8ED76 /* CIMInputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputHandler.m; sourceTree = "<group>"; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		389289BC217B331B00F94F2C /* CIMComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMComposer.swift; sourceTree = "<group>"; };
@@ -552,15 +547,12 @@
 			children = (
 				871B807B2153DDFA0013EE69 /* CIMInputManager.swift */,
 				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
-				387A47441688415500EB5943 /* CIMCommon.m */,
 				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
 				38863C95140E669000A8ED76 /* CIMInputController.h */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
 				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
 				389289BC217B331B00F94F2C /* CIMComposer.swift */,
-				38863D2F140F282000A8ED76 /* CIMInputHandler.h */,
-				38863D30140F282000A8ED76 /* CIMInputHandler.m */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
 				FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */,
@@ -1120,7 +1112,6 @@
 				38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */,
 				878898012160AA6E00BF5770 /* CIMInputManager.swift in Sources */,
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
-				38162E0E141264EB0077AA2D /* CIMInputHandler.m in Sources */,
 				381DB19B21678B74005A37B9 /* Debug.swift in Sources */,
 				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
 				38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */,
@@ -1132,7 +1123,6 @@
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
-				387A47461688419800EB5943 /* CIMCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
