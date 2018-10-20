@@ -24,19 +24,19 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="6I9-vn-Dbb">
-                        <rect key="frame" x="0.0" y="0.0" width="405" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="385" height="300"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
-                                    <rect key="frame" x="0.0" y="-250" width="390" height="550"/>
+                                    <rect key="frame" x="0.0" y="-250" width="385" height="550"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="42" width="350" height="491"/>
+                                            <rect key="frame" x="20" y="42" width="345" height="491"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="384" width="350" height="107"/>
+                                                    <rect key="frame" x="0.0" y="384" width="345" height="107"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
                                                             <rect key="frame" x="-2" y="90" width="64" height="17"/>
@@ -77,7 +77,7 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="190" width="350" height="179"/>
+                                                    <rect key="frame" x="0.0" y="190" width="345" height="179"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
                                                             <rect key="frame" x="-2" y="162" width="53" height="17"/>
@@ -87,8 +87,8 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="85" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
-                                                            <rect key="frame" x="0.0" y="131" width="350" height="20"/>
+                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
+                                                            <rect key="frame" x="0.0" y="131" width="345" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
                                                                     <rect key="frame" x="-2" y="2" width="109" height="17"/>
@@ -99,7 +99,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe" userLabel="option 키 동작 Combo Box">
-                                                                    <rect key="frame" x="190" y="-4" width="163" height="26"/>
+                                                                    <rect key="frame" x="185" y="-4" width="163" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
                                                                         <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
@@ -147,8 +147,8 @@
                                                                 </connections>
                                                             </buttonCell>
                                                         </button>
-                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="111" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqJ-8a-LYD">
-                                                            <rect key="frame" x="0.0" y="50" width="350" height="20"/>
+                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="106" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqJ-8a-LYD">
+                                                            <rect key="frame" x="0.0" y="50" width="345" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-fI-Ly1">
                                                                     <rect key="frame" x="-2" y="2" width="83" height="17"/>
@@ -159,7 +159,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
-                                                                    <rect key="frame" x="190" y="-4" width="163" height="26"/>
+                                                                    <rect key="frame" x="185" y="-4" width="163" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="160" id="5OC-lD-9BT"/>
                                                                         <constraint firstAttribute="height" constant="20" id="QsD-8d-PD4"/>
@@ -225,7 +225,7 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="175"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
                                                             <rect key="frame" x="-2" y="158" width="101" height="17"/>
@@ -436,8 +436,8 @@
                             <rect key="frame" x="0.0" y="285" width="385" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
-                            <rect key="frame" x="390" y="0.0" width="15" height="300"/>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.067999999999999949" horizontal="NO" id="E1U-9N-bFJ">
+                            <rect key="frame" x="385" y="0.0" width="15" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
