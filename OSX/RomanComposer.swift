@@ -9,7 +9,7 @@
 import Foundation
 
 
-class RomanComposer: CIMComposer {
+class QwertyComposer: CIMComposer {
 
     var _commitString: String? = nil
 

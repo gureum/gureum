@@ -447,13 +447,12 @@
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier dvorak] forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"s" key:1 modifiers:0];
-        [app inputText:@"l" key:37 modifiers:0];
-        [app inputText:@"e" key:14 modifiers:0];
-        [app inputText:@"e" key:14 modifiers:0];
+        [app inputText:@"j" key:38 modifiers:0];
+        [app inputText:@"d" key:2 modifiers:0];
         [app inputText:@"p" key:35 modifiers:0];
-        [app inputText:@"y" key:16 modifiers:0];
-        XCTAssertEqualObjects(@"on..lf", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"p" key:35 modifiers:0];
+        [app inputText:@"s" key:1 modifiers:0];
+        XCTAssertEqualObjects(@"hello", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
 
@@ -461,13 +460,12 @@
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:[GureumInputSourceIdentifier colemak] forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"s" key:1 modifiers:0];
-        [app inputText:@"l" key:37 modifiers:0];
-        [app inputText:@"e" key:14 modifiers:0];
-        [app inputText:@"e" key:14 modifiers:0];
-        [app inputText:@"p" key:35 modifiers:0];
-        [app inputText:@"y" key:16 modifiers:0];
-        XCTAssertEqualObjects(@"riff;j", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+        [app inputText:@"h" key:4 modifiers:0];
+        [app inputText:@"k" key:40 modifiers:0];
+        [app inputText:@"u" key:32 modifiers:0];
+        [app inputText:@"u" key:32 modifiers:0];
+        [app inputText:@";" key:41 modifiers:0];
+        XCTAssertEqualObjects(@"hello", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
 
