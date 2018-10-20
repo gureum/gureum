@@ -36,4 +36,15 @@ class GureumTests: XCTestCase {
         let list: HGHanjaList = table.hanjas(byPrefixSearching: "hushed") ?? HGHanjaList() // 현재 5글자 이상만 가능
         XCTAssert(list.count > 0)
     }
+    
+    func testCommandkeyAndControlkey() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags.command)
+            app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags.control)
+            XCTAssertEqual("", app.client.string, "");
+            XCTAssertEqual("", app.client.markedString(), "")
+        }
+    }
 }
