@@ -246,6 +246,12 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
         }
+        
+        // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
+        if flags.contains(.command) || flags.contains(.option) || flags.contains(.control) {
+            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+        }
+        
         return CIMInputTextProcessResult.notProcessed
     }
 }

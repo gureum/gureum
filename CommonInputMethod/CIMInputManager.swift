@@ -126,12 +126,6 @@ let CIMKeyMapUpper = [
                 }
             }
 
-            // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
-            if flags.contains(.command) || flags.contains(.option) || flags.contains(.control) {
-                dlog(true, "-- CIMInputHandler -inputText: Command/Option key input / returned NO")
-                return .notProcessedAndNeedsCommit;
-            }
-
             if string == nil {
                 return .notProcessedAndNeedsCommit;
             }
