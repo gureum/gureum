@@ -45,6 +45,8 @@ class HangulComposerCombination {
             return nil
         }
         self._inputContext = inputContext
+        self._inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+        self._inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
         super.init()
     }
 

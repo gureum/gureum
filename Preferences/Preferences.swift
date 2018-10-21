@@ -30,6 +30,8 @@ import MASShortcut
     @IBOutlet weak var autoSaveDefaultInputModeButton: NSButton!
     @IBOutlet weak var enableCapslockToToggleInputModeButton: NSButton!
     @IBOutlet weak var romanModeByEscapeKeyButton: NSButton!
+    @IBOutlet weak var hangulAutoReorderButton: NSButton!
+    @IBOutlet weak var hangulNonChoseongCombinationButton: NSButton!
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
@@ -109,6 +111,8 @@ import MASShortcut
         hangulWonCurrencySymbolForBackQuoteButton.state = boolToButtonState(configuration.hangulWonCurrencySymbolForBackQuote)
         romanModeByEscapeKeyButton.state = boolToButtonState(configuration.romanModeByEscapeKey)
         autoSaveDefaultInputModeButton.state = boolToButtonState(configuration.autosaveDefaultInputMode)
+        hangulAutoReorderButton.state = boolToButtonState(configuration.hangulAutoReorder)
+        hangulNonChoseongCombinationButton.state = boolToButtonState(configuration.hangulNonChoseongCombination)
         if let index = layoutTable.gureumPreferencesHangulLayouts.index(of: configuration.lastHangulInputMode!) {
             defaultInputHangulComboBox.selectItem(at: index)
         }
@@ -152,11 +156,7 @@ import MASShortcut
     }
 
     @IBAction func enableCapslockToToggleInputMode(_ sender: NSButton) {
-        if sender.state == .on {
-            configuration.enableCapslockToToggleInputMode = true
-        } else {
-            configuration.enableCapslockToToggleInputMode = false
-        }
+        configuration.enableCapslockToToggleInputMode = sender.state == .on
     }
 
     @IBAction func didTapHelpShortCut(_ sender: NSButton) {
@@ -171,13 +171,17 @@ import MASShortcut
     }
 
     @IBAction func didTapHangulWonCurrencySymbolForBackQuoteCheckBox(_ sender: NSButton) {
-        if sender.state == .on {
-            configuration.hangulWonCurrencySymbolForBackQuote = true
-        }
-        else {
-            configuration.hangulWonCurrencySymbolForBackQuote = false
-        }
+        configuration.hangulWonCurrencySymbolForBackQuote = sender.state == .on
     }
+    
+    @IBAction func didTapHangulAutoReorderCheckBox(_ sender: NSButton) {
+        configuration.hangulAutoReorder = sender.state == .on
+    }
+    
+    @IBAction func didTapHangulNonChoseongCombinationCheckBox(_ sender: NSButton) {
+        configuration.hangulNonChoseongCombination = sender.state == .on
+    }
+    
 
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return layoutTable.gureumPreferencesHangulLayouts.count
