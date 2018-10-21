@@ -21,7 +21,7 @@ import Foundation
     @objc static let colemakQwertyCommand = "org.youknowone.inputmethod.Gureum.colemakq"
     @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
     @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
-    @objc static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    @objc public static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
     @objc static let han390 = "org.youknowone.inputmethod.Gureum.han390"
     @objc static let han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
     @objc static let han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
