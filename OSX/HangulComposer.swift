@@ -35,7 +35,7 @@ class HangulComposerCombination {
  @coclass HGInputContext
  */
 @objcMembers public class HangulComposer: NSObject, CIMComposerDelegate {
-    let _inputContext: HGInputContext
+    let inputContext: HGInputContext
     var _commitString: String
     let configuration = GureumConfiguration.shared
     
@@ -44,17 +44,17 @@ class HangulComposerCombination {
         guard let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier) else {
             return nil
         }
-        self._inputContext = inputContext
-        self._inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
-        self._inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+        self.inputContext = inputContext
+        self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+        self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
         super.init()
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        self._inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
-        self._inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+        self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+        self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
     }
 
     deinit {
@@ -66,18 +66,12 @@ class HangulComposerCombination {
      @brief  현재 context의 배열을 바꾼다.
      @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
      */
-    public func setKeyboardWithIdentifier(_ identifier :String) {
+    public func setKeyboard(identifier :String) {
         if configuration.strictCombination && (identifier == "39" || identifier == "3f") {
             let strictCombinationIdentifier = "\(identifier)s"
-            self._inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
+            self.inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
         } else {
-            self._inputContext.setKeyboardWithIdentifier(identifier)
-        }
-    }
-
-    var inputContext: HGInputContext{
-        get{
-            return self._inputContext;
+            self.inputContext.setKeyboardWithIdentifier(identifier)
         }
     }
 
@@ -92,7 +86,7 @@ class HangulComposerCombination {
     public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
-            return self._inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
+            return self.inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
@@ -107,7 +101,7 @@ class HangulComposerCombination {
                 string = string.lowercased();
             }
         }
-        let handled = self._inputContext.process(string.first!.unicodeScalars.first!.value)
+        let handled = self.inputContext.process(string.first!.unicodeScalars.first!.value)
         if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
             let backQuote = 50
             if keyCode == backQuote && !flags.contains(.shift) {
@@ -116,7 +110,7 @@ class HangulComposerCombination {
             }
         }
         
-        let UCSString = self._inputContext.commitUCSString
+        let UCSString = self.inputContext.commitUCSString
         // dassert(UCSString);
         let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         self._commitString += recentCommitString
@@ -131,14 +125,14 @@ class HangulComposerCombination {
 
     public var composedString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString
+            let preedit = self.inputContext.preeditUCSString
             return HangulComposerCombination.composedString(ucsString: preedit)
         }
     }
 
     public var originalString: String {
         get {
-            let preedit = self._inputContext.preeditUCSString
+            let preedit = self.inputContext.preeditUCSString
             return HangulComposerCombination.commitString(ucsString: preedit)
         }
     }
@@ -150,12 +144,12 @@ class HangulComposerCombination {
     }
 
     public func cancelComposition() {
-        let flushedString: String! = HangulComposerCombination.commitString(ucsString: self._inputContext.flushUCSString())
+        let flushedString: String! = HangulComposerCombination.commitString(ucsString: self.inputContext.flushUCSString())
         self._commitString += flushedString
     }
 
     public func clearContext() {
-        self._inputContext.reset()
+        self.inputContext.reset()
         self._commitString = ""
     }
 

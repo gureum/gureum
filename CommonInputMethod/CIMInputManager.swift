@@ -43,19 +43,11 @@ let CIMKeyMapUpper = [
  */
 @objcMembers public class CIMInputManager: NSObject, CIMInputTextDelegate {
     //! @brief  현재 입력중인 서버
-    private var _server: IMKServer
+    private var server: IMKServer
     //! @property
-    private var _candidates: IMKCandidates
+    private var candidates: IMKCandidates
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
-    
-    public var server: IMKServer! {
-        return self._server
-    }
-    
-    public var candidates: IMKCandidates! {
-        return self._candidates
-    }
 
     override init() {
         dlog(true, "** CharmInputManager Init")
@@ -65,8 +57,8 @@ let CIMKeyMapUpper = [
         #if DEBUG
         connectionName += "_Debug"
         #endif
-        self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
-        self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
+        self.server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
+        self.candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
 
         super.init()
 
@@ -75,7 +67,7 @@ let CIMKeyMapUpper = [
 
     public override var description: String {
         return """
-        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))">
+        <%@ server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
         """
     }
     
@@ -139,7 +131,7 @@ let CIMKeyMapUpper = [
         dlog(false, "******* FINAL STATE: %d", result.rawValue);
         // 합성 후보가 있다면 보여준다
         if controller.composer.hasCandidates {
-            let candidates = self.candidates!
+            let candidates = self.candidates
             candidates.update()
             candidates.show(kIMKLocateCandidatesLeftHint)
         }

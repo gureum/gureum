@@ -40,7 +40,7 @@ class GureumTests: XCTestCase {
     func testCommandkeyAndControlkey() {
         for app in self.apps {
             app.client.string = ""
-            app.controller.setValue(GureumInputSourceIdentifier.qwerty, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags.command)
             app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags.control)
             XCTAssertEqual("", app.client.string, "");
@@ -51,7 +51,7 @@ class GureumTests: XCTestCase {
     func testHanjaSyllable() {
         for app in self.apps {
             app.client.string = ""
-            app.controller.setValue(GureumInputSourceIdentifier.han3Final, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
             app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
             app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
@@ -75,7 +75,7 @@ class GureumTests: XCTestCase {
                 continue // 터미널은 한자 모드 진입이 불가능
             }
             app.client.string = ""
-            app.controller.setValue(GureumInputSourceIdentifier.han3Final, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             // hanja search mode
             app.inputText("\n", key: UInt(kVK_Return), modifiers: NSEvent.ModifierFlags.option)
             app.inputText("i", key: UInt(kVK_ANSI_I), modifiers: NSEvent.ModifierFlags(rawValue: 0))
