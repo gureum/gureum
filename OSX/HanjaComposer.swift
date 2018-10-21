@@ -191,7 +191,11 @@ class HanjaComposer: CIMComposer {
         for _hanja in list.array {
             let hanja = _hanja as! HGHanja
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates hanja: %@", hanja)
-            candidates.append("\(hanja.value): \(hanja.comment)")
+            if hanja.comment.isEmpty {
+                candidates.append("\(hanja.value)")
+            } else {
+                candidates.append("\(hanja.value): \(hanja.comment)")
+            }
         }
         return candidates
     }
