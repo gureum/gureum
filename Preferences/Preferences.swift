@@ -32,6 +32,7 @@ import MASShortcut
     @IBOutlet weak var romanModeByEscapeKeyButton: NSButton!
     @IBOutlet weak var hangulAutoReorderButton: NSButton!
     @IBOutlet weak var hangulNonChoseongCombinationButton: NSButton!
+    @IBOutlet weak var strictCombination: NSButton!
     
     var configuration = GureumConfiguration()
     let layoutTable = GureumLayoutTable()
@@ -113,6 +114,7 @@ import MASShortcut
         autoSaveDefaultInputModeButton.state = boolToButtonState(configuration.autosaveDefaultInputMode)
         hangulAutoReorderButton.state = boolToButtonState(configuration.hangulAutoReorder)
         hangulNonChoseongCombinationButton.state = boolToButtonState(configuration.hangulNonChoseongCombination)
+        strictCombination.state = boolToButtonState(configuration.strictCombination)
         if let index = layoutTable.gureumPreferencesHangulLayouts.index(of: configuration.lastHangulInputMode!) {
             defaultInputHangulComboBox.selectItem(at: index)
         }
@@ -182,6 +184,9 @@ import MASShortcut
         configuration.hangulNonChoseongCombination = sender.state == .on
     }
     
+    @IBAction func didTapstrictCombinationCheckBox(_ sender: NSButton) {
+        configuration.strictCombination = sender.state == .on
+    }
 
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return layoutTable.gureumPreferencesHangulLayouts.count

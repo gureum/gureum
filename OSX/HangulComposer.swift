@@ -67,7 +67,12 @@ class HangulComposerCombination {
      @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
      */
     public func setKeyboardWithIdentifier(_ identifier :String) {
-        self._inputContext.setKeyboardWithIdentifier(identifier)
+        if configuration.strictCombination && (identifier == "39" || identifier == "3f") {
+            let strictCombinationIdentifier = "\(identifier)s"
+            self._inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
+        } else {
+            self._inputContext.setKeyboardWithIdentifier(identifier)
+        }
     }
 
     var inputContext: HGInputContext{

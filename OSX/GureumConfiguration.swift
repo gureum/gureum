@@ -34,6 +34,7 @@ enum GureumConfigurationName: String {
     case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     case hangulAutoReorder = "HangulAutoReorder"
     case hangulNonChoseongCombination = "HangulNonChoseongCombination"
+    case strictCombination = "strictCombination"
 }
 
 
@@ -226,6 +227,15 @@ enum GureumConfigurationName: String {
             return self.set(newValue, forKey: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
         }
     }
-
+    
+    public var strictCombination: Bool {
+        get {
+            return self.bool(forKey: GureumConfigurationName.strictCombination.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.strictCombination.rawValue)
+        }
+    }
+    
     static let shared = GureumConfiguration()
 }
