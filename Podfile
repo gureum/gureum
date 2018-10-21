@@ -1,7 +1,7 @@
 workspace 'Gureum'
 
 target 'OSX' do
-    platform :osx, "10.10"
+    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'cdebug'
     pod 'FoundationExtension', '>= 1.3.1'
@@ -10,18 +10,18 @@ target 'OSX' do
 end
 target 'Preferences' do
     use_frameworks!
-    platform :osx, "10.10"
+    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
 end
 target 'PreferencesApp' do
     use_frameworks!
-    platform :osx, "10.10"
+    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
 end
 target 'OSXTests' do
-    platform :osx, "10.10"
+    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
 end
 
