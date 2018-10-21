@@ -13,65 +13,74 @@
 
 import Foundation
 
-@objc public class GureumInputSourceIdentifier: NSObject {
-    @objc public static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
-    @objc static let dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
-    @objc static let colemak = "org.youknowone.inputmethod.Gureum.colemak"
-    @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
-    @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
-    @objc public static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
-    @objc static let han390 = "org.youknowone.inputmethod.Gureum.han390"
-    @objc static let han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
-    @objc static let han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
-    @objc static let han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
-    @objc static let hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
-    @objc static let hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
-    @objc static let han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
-    @objc static let han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
-    @objc static let han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
-    @objc static let han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
-    @objc static let han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+public enum GureumInputSourceIdentifier: String {
+    case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
+    case dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
+    case colemak = "org.youknowone.inputmethod.Gureum.colemak"
+    case han2 = "org.youknowone.inputmethod.Gureum.han2"
+    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
+    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    case han390 = "org.youknowone.inputmethod.Gureum.han390"
+    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    case han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
+    case han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
+    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
+    case hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
+    case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
+    case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
+    case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
+    case han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
+    case han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+    
+    var keyboardIdentifier: String {
+        guard let value = GureumInputSourceToHangulKeyboardIdentifierTable[self] else {
+            assert(false)
+        }
+        return value
+    }
 }
 
-let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
-    GureumInputSourceIdentifier.qwerty : "qwerty",
-    GureumInputSourceIdentifier.dvorak : "dvorak",
-    GureumInputSourceIdentifier.colemak : "colemak",
-    GureumInputSourceIdentifier.han2 : "2",
-    GureumInputSourceIdentifier.han2Classic : "2y",
-    GureumInputSourceIdentifier.han3Final : "3f",
-    GureumInputSourceIdentifier.han390 : "39",
-    GureumInputSourceIdentifier.han3NoShift : "3s",
-    GureumInputSourceIdentifier.han3Classic : "3y",
-    GureumInputSourceIdentifier.han3Layout2 : "32",
-    GureumInputSourceIdentifier.hanRoman : "ro",
-    GureumInputSourceIdentifier.hanAhnmatae : "ahn",
-    GureumInputSourceIdentifier.han3FinalNoShift : "3gs",
-    GureumInputSourceIdentifier.han3_2011 : "3-2011",
-    GureumInputSourceIdentifier.han3_2012 : "3-2012",
-    GureumInputSourceIdentifier.han3_2014 : "3-2014",
-    GureumInputSourceIdentifier.han3_2015 : "3-2015",
+let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifier: String] = [
+    .qwerty : "qwerty",
+    .dvorak : "dvorak",
+    .colemak : "colemak",
+    .han2 : "2",
+    .han2Classic : "2y",
+    .han3Final : "3f",
+    .han390 : "39",
+    .han3NoShift : "3s",
+    .han3Classic : "3y",
+    .han3Layout2 : "32",
+    .hanRoman : "ro",
+    .hanAhnmatae : "ahn",
+    .han3FinalNoShift : "3gs",
+    .han3_2011 : "3-2011",
+    .han3_2012 : "3-2012",
+    .han3_2014 : "3-2014",
+    .han3_2015 : "3-2015",
 ]
 
 @objcMembers class GureumComposer: CIMComposer {
-    @objc var romanComposer: CIMComposer
-    @objc var qwertyComposer: QwertyComposer
-    @objc var dvorakComposer: RomanDataComposer
-    @objc var colemakComposer: RomanDataComposer
-    @objc var hangulComposer: HangulComposer
-    @objc var hanjaComposer: HanjaComposer
-    @objc var emoticonComposer: EmoticonComposer
-    var ioConnect: IOConnect
+    var romanComposer: CIMComposer
+    let qwertyComposer: QwertyComposer = QwertyComposer()
+    let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
+    let colemakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
+    let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: "2")!
+    let hanjaComposer: HanjaComposer = HanjaComposer()
+    let emoticonComposer: EmoticonComposer = EmoticonComposer()
+    let romanComposersByIdentifier: [String: CIMComposer]
+    
+    let ioConnect: IOConnect
 
     override init() {
-        qwertyComposer = QwertyComposer()
         romanComposer = qwertyComposer
-        dvorakComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
-        colemakComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
-        hangulComposer = HangulComposer(keyboardIdentifier: "2")!
-        hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
-        emoticonComposer = EmoticonComposer()
+        self.romanComposersByIdentifier = [
+            "qwerty": qwertyComposer,
+            "dvorak": dvorakComposer,
+            "colemak": colemakComposer,
+        ]
+        
         let service = try! IOService.init(name: kIOHIDSystemClass)
         ioConnect = service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType)!
         super.init()
@@ -87,26 +96,21 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return
             }
 
-            guard let keyboardIdentifier = GureumInputSourceToHangulKeyboardIdentifierTable[newValue] else {
+            guard let keyboardIdentifier = GureumInputSourceIdentifier(rawValue: newValue)?.keyboardIdentifier else {
+                #if DEBUG
+                assert(false)
+                #endif
                 return
             }
             
-            if keyboardIdentifier == "qwerty" {
-                self.delegate = qwertyComposer
-                romanComposer = qwertyComposer
-                GureumConfiguration.shared.lastRomanInputMode = newValue
-            } else if keyboardIdentifier == "dvorak" {
-                self.delegate = dvorakComposer
-                romanComposer = dvorakComposer
-                GureumConfiguration.shared.lastRomanInputMode = newValue
-            } else if keyboardIdentifier == "colemak" {
-                self.delegate = colemakComposer
-                romanComposer = colemakComposer
+            if romanComposersByIdentifier.keys.contains(keyboardIdentifier) {
+                self.romanComposer = romanComposersByIdentifier[keyboardIdentifier]!
+                self.delegate = self.romanComposer
                 GureumConfiguration.shared.lastRomanInputMode = newValue
             } else {
                 self.delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
-                hangulComposer.setKeyboardWithIdentifier(keyboardIdentifier)
+                hangulComposer.setKeyboard(identifier: keyboardIdentifier)
                 GureumConfiguration.shared.lastHangulInputMode = newValue
             }
             super.inputMode = newValue
@@ -256,7 +260,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             // Vi-mode: esc로 로마자 키보드로 전환
             if GureumConfiguration.shared.romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
                 self.delegate.cancelComposition()
-                (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
+                (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty.rawValue)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
             }
         }

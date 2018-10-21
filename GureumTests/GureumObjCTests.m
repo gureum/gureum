@@ -65,7 +65,7 @@
 - (void)test2 {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han2" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"g" key:5 modifiers:0];
         [app inputText:@"k" key:40 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -106,7 +106,7 @@
 - (void)test3final {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -147,7 +147,7 @@
 - (void)testCapslockRoman {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
 
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"r" key:15 modifiers:0];
@@ -165,7 +165,7 @@
 - (void)testCapslockHangul {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
 
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"r" key:15 modifiers:0];
@@ -187,7 +187,7 @@
 - (void)testBlock {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"m" key:46 modifiers:0];
         [app inputText:@"f" key:3 modifiers:0];
         [app inputText:@"s" key:1 modifiers:0];
@@ -211,7 +211,7 @@
 - (void)testLayoutChange {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:nil key:-1 modifiers:NSAlphaShiftKeyMask];
 
         [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
@@ -235,7 +235,7 @@
 - (void)test3Number {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"K" key:40 modifiers:131072];
         XCTAssertEqualObjects(@"2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
         XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
@@ -248,7 +248,7 @@
             continue; // 터미널은 이모티콘 모드 진입이 불가
         }
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
 
         GureumComposer *composer = (GureumComposer *)app.controller.composer;
         EmoticonComposer *emoticonComposer = composer.emoticonComposer;
@@ -313,7 +313,7 @@
             continue; // 터미널은 한자 모드 진입이 불가
         }
         app.client.string = @"물 수";
-        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
         // hanja search mode
         [app.client setSelectedRange:NSMakeRange(0, 3)];
         XCTAssertEqualObjects(@"물 수", app.client.selectedString, @"");
@@ -331,7 +331,7 @@
 - (void)testBackQuoteHan2 {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han2" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"`" key:50 modifiers:0];
         XCTAssertEqualObjects(@"₩", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
@@ -340,7 +340,7 @@
 - (void)testBackQuoteWithShiftKeyHan2 {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han2] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han2" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"~" key:50 modifiers: NSShiftKeyMask];
         XCTAssertEqualObjects(@"~", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
@@ -349,7 +349,7 @@
 - (void)testBackQuoteHan3Final {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier han3Final] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"`" key:50 modifiers:0];
         XCTAssertEqualObjects(@"*", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
@@ -358,7 +358,7 @@
 - (void)testBackQuoteQwerty {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier qwerty] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"`" key:50 modifiers:0];
         XCTAssertEqualObjects(@"`", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
@@ -367,7 +367,7 @@
 - (void)testDvorak {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier dvorak] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.dvorak" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"j" key:38 modifiers:0];
         [app inputText:@"d" key:2 modifiers:0];
         [app inputText:@"p" key:35 modifiers:0];
@@ -380,7 +380,7 @@
 - (void)testColemak {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
-        [app.controller setValue:[GureumInputSourceIdentifier colemak] forTag:kTextServiceInputModePropertyTag client:app.client];
+        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.colemak" forTag:kTextServiceInputModePropertyTag client:app.client];
         [app inputText:@"h" key:4 modifiers:0];
         [app inputText:@"k" key:40 modifiers:0];
         [app inputText:@"u" key:32 modifiers:0];
