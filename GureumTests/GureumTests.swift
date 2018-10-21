@@ -47,4 +47,25 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "")
         }
     }
+
+    func testHanjaSyllable() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags.option)
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString.init(string: "韓: 나라 이름 한"))
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelected(NSAttributedString.init(string: "韓: 나라 이름 한"))
+            XCTAssertEqual("韓", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+        }
+    }
 }
