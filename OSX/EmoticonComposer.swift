@@ -116,12 +116,13 @@ class EmoticonComposer: CIMComposer {
         if keyword.isEmpty {
             self._candidates = nil
         } else {
+            let loweredKeyword = keyword.lowercased() // case insensitive searching
             self._candidates = []
             for table: HGHanjaTable in [EmoticonComposer.emoticonTable] {
                 dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
-                dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", keyword)
+                dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", loweredKeyword)
                 dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", EmoticonComposer.emoticonTable.debugDescription)
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
+                let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
                 dlog(DEBUG_EMOTICON, "DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
 
                 dlog(DEBUG_EMOTICON, "DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
@@ -200,7 +201,8 @@ class EmoticonComposer: CIMComposer {
         case kVK_Return:
             self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: self.composedString))
         default:
-            if result == .notProcessed && string != nil {
+            dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string)
+            if result == .notProcessed && string != nil && keyCode < 0x33 {
                 self._bufferedString.append(string)
                 result = .processed
             }
@@ -215,8 +217,8 @@ class EmoticonComposer: CIMComposer {
             self.cancelComposition()
             return result
         }
-        if self.commitString.count == 0 {
-            return .processed
+        if self.commitString.isEmpty {
+            return result == .processed ? .processed : .notProcessed
         } else {
             return .notProcessedAndNeedsCommit
         }
