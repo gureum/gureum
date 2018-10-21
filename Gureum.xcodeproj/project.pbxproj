@@ -72,6 +72,7 @@
 		389289BD217B331B00F94F2C /* CIMComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* CIMComposer.swift */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		38AC8D4A217C4EDA00E4B332 /* CIMInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumObjCTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -307,6 +308,7 @@
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		389289BC217B331B00F94F2C /* CIMComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMComposer.swift; sourceTree = "<group>"; };
 		38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
+		38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputReceiver.swift; sourceTree = "<group>"; };
 		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BFE7FB18B45419004B2B2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				871B807B2153DDFA0013EE69 /* CIMInputManager.swift */,
 				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
 				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
+				38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */,
 				38863C95140E669000A8ED76 /* CIMInputController.h */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
@@ -1121,6 +1124,7 @@
 				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
 				A3F007682160B09700501606 /* EmoticonComposer.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
+				38AC8D4A217C4EDA00E4B332 /* CIMInputReceiver.swift in Sources */,
 				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
 			);

@@ -28,30 +28,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class CIMComposer;
-
-@interface CIMInputReceiver : NSObject<CIMInputTextDelegate> {
-    id _inputClient;
-    CIMComposer *_composer;
-    CIMInputController *_controller;
-}
-
-@property(nonatomic, readonly) id inputClient;
-@property(nonatomic, readonly) CIMComposer *composer;
-
-- (instancetype)initWithServer:(nullable IMKServer *)server delegate:(nullable id)delegate client:(nullable id)inputClient;
-
-@end
-
-
-@interface CIMInputReceiver(SwiftBridge)
-
-- (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
-- (NSInteger)recognizedEvents:(_Null_unspecified id)sender;
-- (void)setValue:(_Null_unspecified id)value forTag:(NSInteger)tag client:(_Null_unspecified id)sender controller:(CIMInputController *)controller;
-
-@end
-
-
+@class CIMInputReceiver;
 @class IOConnect;
 
 typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
