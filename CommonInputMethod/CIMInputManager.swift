@@ -46,8 +46,6 @@ let CIMKeyMapUpper = [
     private var _server: IMKServer
     //! @property
     private var _candidates: IMKCandidates
-    //! @property
-    public var configuration: GureumConfiguration
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
     
@@ -60,11 +58,8 @@ let CIMKeyMapUpper = [
     }
 
     override init() {
-        #if DEBUG
-        print("** CharmInputManager Init")
-        #endif
+        dlog(true, "** CharmInputManager Init")
 
-        self.configuration = GureumConfiguration.shared()
         let mainBundle = Bundle.main
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
         self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
@@ -72,14 +67,12 @@ let CIMKeyMapUpper = [
 
         super.init()
 
-        #if DEBUG
-        print("\tserver: \(String(describing: self._server)) / candidates: \(String(describing: self._candidates))")
-        #endif
+        dlog(true, "\t%@", self.description)
     }
 
     public override var description: String {
         return """
-        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))" configuration: \(String(describing: self.configuration))>
+        <%@ server: "\(String(describing: self._server))" candidates: "\(String(describing: self._candidates))">
         """
     }
     
@@ -98,8 +91,9 @@ let CIMKeyMapUpper = [
             // 옵션 키 변환 처리
             var string = string
             if flags.contains(.option) {
-                dlog(DEBUG_INPUTHANDLER, "option key: %ld", self.configuration.optionKeyBehavior);
-                switch (self.configuration.optionKeyBehavior) {
+                let configuration = GureumConfiguration.shared()
+                dlog(DEBUG_INPUTHANDLER, "option key: %ld", configuration.optionKeyBehavior);
+                switch configuration.optionKeyBehavior {
                 case 0:
                     // default
                     dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior");

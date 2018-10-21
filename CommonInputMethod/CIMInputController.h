@@ -43,9 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface CIMInputReceiver(IMKServerInput)
+@interface CIMInputReceiver(SwiftBridge)
 
 - (BOOL)commitCompositionEvent:(id)sender controller:(CIMInputController *)controller;
+- (NSInteger)recognizedEvents:(_Null_unspecified id)sender;
+- (void)setValue:(_Null_unspecified id)value forTag:(NSInteger)tag client:(_Null_unspecified id)sender controller:(CIMInputController *)controller;
 
 @end
 

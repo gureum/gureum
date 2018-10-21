@@ -110,3 +110,33 @@ extension CIMInputController { // IMKServerInputHandleEvent
         return false
     }
 }
+
+
+extension CIMInputController {  // IMKStateSetting
+    //! @brief  마우스 이벤트를 잡을 수 있게 한다.
+    open override func recognizedEvents(_ sender: Any!) -> Int {
+        return self.receiver.recognizedEvents(sender)
+    }
+
+    //! @brief 자판 전환을 감지한다.
+    open override func setValue(_ value: Any!, forTag tag: Int, client sender: Any!) {
+        self.receiver.setValue(value, forTag: tag, client: sender, controller: self)
+    }
+}
+
+extension CIMInputController {  // IMKMouseHandling
+    /*!
+     @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
+     */
+    open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any!) -> Bool {
+        dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN");
+        self.receiver.commitCompositionEvent(sender, controller: self)
+        return false
+    }
+}
+
+extension CIMInputController {  // IMKCustomCommands
+    open override func menu() -> NSMenu! {
+        return (NSApplication.shared.delegate! as! CIMApplicationDelegate).menu
+    }
+}

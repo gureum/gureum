@@ -220,14 +220,14 @@ TISInputSource *_USSource() {
 @implementation CIMInputReceiver (IMKStateSetting)
 
 //! @brief  마우스 이벤트를 잡을 수 있게 한다.
-- (NSUInteger)recognizedEvents:(id)sender {
+- (NSInteger)recognizedEvents:(_Null_unspecified id)sender {
     dlog(DEBUG_LOGGING, @"LOGGING::CHECK::RECOGNIZEDEVENTS");
     // NSFlagsChangeMask는 -handleEvent: 에서만 동작
     return NSKeyDownMask | NSFlagsChangedMask | NSLeftMouseDownMask | NSRightMouseDownMask | NSLeftMouseDraggedMask | NSRightMouseDraggedMask;
 }
 
 //! @brief 자판 전환을 감지한다.
-- (void)setValue:(id)value forTag:(long)tag client:(id)sender controller:(CIMInputController *)controller {
+- (void)setValue:(_Null_unspecified id)value forTag:(long)tag client:(_Null_unspecified id)sender controller:(CIMInputController *)controller {
     dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CHANGE-%lu-%@", tag, value);
     dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value, tag, controller.client);
     switch (tag) {
@@ -419,42 +419,6 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
 
 @end
 
-@implementation CIMInputController (IMKStateSetting)
-
-//! @brief  마우스 이벤트를 잡을 수 있게 한다.
-- (NSUInteger)recognizedEvents:(id)sender {
-    return [self->_receiver recognizedEvents:sender];
-}
-
-//! @brief 자판 전환을 감지한다.
-- (void)setValue:(id)value forTag:(long)tag client:(id)sender {
-    [self->_receiver setValue:value forTag:tag client:sender controller:self];
-}
-
-@end
-
-@implementation CIMInputController (IMKMouseHandling)
-
-/*!
-    @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
-*/
-- (BOOL)mouseDownOnCharacterIndex:(NSUInteger)index coordinate:(NSPoint)point withModifier:(NSUInteger)flags continueTracking:(BOOL *)keepTracking client:(id)sender {
-    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::MOUSEDOWN");
-    [self->_receiver commitComposition:sender controller:self];
-    return NO;
-}
-
-@end
-
-@implementation CIMInputController (IMKCustomCommands)
-
-- (NSMenu *)menu {
-    return CIMAppDelegate.menu;
-}
-
-@end
-
-
 #if DEBUG
 
 @implementation CIMMockInputController (IMKServerInputTextData)
@@ -518,12 +482,12 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
 @implementation CIMMockInputController (IMKStateSetting)
 
 //! @brief  마우스 이벤트를 잡을 수 있게 한다.
-- (NSUInteger)recognizedEvents:(id)sender {
+- (NSUInteger)recognizedEvents:(_Null_unspecified id)sender {
     return [self._receiver recognizedEvents:sender];
 }
 
 //! @brief 자판 전환을 감지한다.
-- (void)setValue:(id)value forTag:(long)tag client:(id)sender {
+- (void)setValue:(_Null_unspecified id)value forTag:(long)tag client:(_Null_unspecified id)sender {
     [self._receiver setValue:value forTag:tag client:sender controller:(id)self];
 }
 
