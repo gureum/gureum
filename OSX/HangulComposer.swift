@@ -48,6 +48,18 @@ class HangulComposerCombination {
         self._inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
         self._inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
         super.init()
+        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+    }
+    
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        self._inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+        self._inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+    }
+
+    deinit {
+        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue)
+        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
     }
 
     /*!
