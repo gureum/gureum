@@ -31,6 +31,8 @@ enum GureumConfigurationName: String {
     case showsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
     case skippedVersion = "SkippedVersion"
     case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
+    case hangulAutoReorder = "HangulAutoReorder"
+    case hangulNonChoseongCombination = "HangulNonChoseongCombination"
 }
 
 
@@ -193,6 +195,24 @@ enum GureumConfigurationName: String {
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue)
+        }
+    }
+    
+    public var hangulAutoReorder: Bool {
+        get {
+            return self.bool(forKey: GureumConfigurationName.hangulAutoReorder.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.hangulAutoReorder.rawValue)
+        }
+    }
+    
+    public var hangulNonChoseongCombination: Bool {
+        get {
+            return self.bool(forKey: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
         }
     }
 
