@@ -4,6 +4,4 @@
 
 #import <FoundationExtension/FoundationExtension.h>
 
-#import "CIMCommon.h"
 #import "CIMInputController.h"
-#import "CIMComposer.h"

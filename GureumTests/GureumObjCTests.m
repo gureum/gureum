@@ -9,7 +9,6 @@
 @import XCTest;
 @import PreferencePanes;
 
-#import "CIMCommon.h"
 #import "CIMInputController.h"
 #import "GureumMockObjects.h"
 

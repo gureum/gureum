@@ -9,8 +9,6 @@
 @import Cocoa;
 @import Carbon;
 
-#import "CIMCommon.h"
-
 #import "CIMInputController.h"
 
 #import "TISInputSource.h"

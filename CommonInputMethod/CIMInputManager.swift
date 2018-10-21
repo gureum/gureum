@@ -82,11 +82,11 @@ let CIMKeyMapUpper = [
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
 
         // 입력기용 특수 커맨드 처리
-        var result = controller.composer.inputController(controller, command:string, key:keyCode, modifiers:flags, client:sender)
+        var result = controller.composer.input(controller: controller, command:string, key:keyCode, modifiers:flags, client:sender)
         if result == .notProcessedAndNeedsCommit {
             return result
         }
@@ -133,7 +133,7 @@ let CIMKeyMapUpper = [
                 return .notProcessedAndNeedsCommit;
             }
 
-            result = controller.composer.inputController(controller, inputText:string, key:keyCode, modifiers:flags, client:sender)
+            result = controller.composer.input(controller: controller, inputText:string, key:keyCode, modifiers:flags, client:sender)
         }
 
         dlog(false, "******* FINAL STATE: %d", result.rawValue);

@@ -31,7 +31,7 @@ extension CIMInputController { // IMKServerInputHandleEvent
         if event.type == .keyDown {
             let bundleIdentifier: String = self.client()!.bundleIdentifier()
             dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", bundleIdentifier)
-            let processed = self.receiver.inputController(self, inputText: event.characters, key: Int(event.keyCode), modifiers:event.modifierFlags, client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
+            let processed = self.receiver.input(controller: self, inputText: event.characters, key: Int(event.keyCode), modifiers:event.modifierFlags, client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::%d", processed)
             return processed
         } else if event.type == .flagsChanged {
@@ -46,10 +46,10 @@ extension CIMInputController { // IMKServerInputHandleEvent
                     self.capsLockPressed = false
                     dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue);
                     // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
-                    self.receiver.inputController(self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
+                    self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
                 } else {
                     dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue);
-                    self.receiver.inputController(self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
+                    self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
                 }
                 return false
             }
@@ -66,7 +66,7 @@ extension CIMInputController { // IMKServerInputHandleEvent
 extension CIMInputController {  // IMKServerInputTextData
     open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-        let processed = self.receiver.inputController(self, inputText: string, key: keyCode, modifiers: flags, client: sender) > CIMInputTextProcessResult.notProcessed;
+        let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: flags, client: sender) > CIMInputTextProcessResult.notProcessed;
         return processed
     }
 }
@@ -197,7 +197,7 @@ extension CIMInputController {  // IMKServerInput
 extension CIMMockInputController {
     @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
         print("** CIMInputController -inputText:key:modifiers:client  with string: \(string) / keyCode: \(keyCode) / modifier flags: \(flags) / client: \((self.client() as AnyObject).bundleIdentifier)(\((self.client() as AnyObject).class))")
-        let v1 = (self._receiver.inputController(self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)
+        let v1 = (self._receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)
         let v2 = (CIMInputTextProcessResult.notProcessed.rawValue)
         let processed: Bool = v1 > v2
         if !processed {
