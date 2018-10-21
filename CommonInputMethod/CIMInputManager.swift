@@ -67,7 +67,7 @@ let CIMKeyMapUpper = [
         self.configuration = GureumConfiguration.shared()
         let mainBundle = Bundle.main
         let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
-        self._server = IMKServer(name: "connectionName", bundleIdentifier: mainBundle.bundleIdentifier)
+        self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
 
         super.init()
