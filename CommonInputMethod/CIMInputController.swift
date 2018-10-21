@@ -19,11 +19,11 @@ extension CIMInputController {
 }
 
 @objcMembers class CIMMockInputController: CIMInputController {
-    @objc var _receiver: CIMInputReceiver
+    @objc var _receiver: CIMInputReceiver!
     
     @objc override init(server: IMKServer, delegate: Any!, client: Any!) {
-        self._receiver = CIMInputReceiver(server: server, delegate: delegate, client: client)
         super.init()
+        self._receiver = CIMInputReceiver(server: server, delegate: delegate, client: client, controller: self)
     }
     
     @objc func repoduceTextLog(_ text: String) throws {
