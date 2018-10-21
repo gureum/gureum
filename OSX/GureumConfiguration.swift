@@ -11,6 +11,7 @@ import AppKit
 
 enum GureumConfigurationName: String {
     case lastHangulInputMode = "CIMLastHangulInputMode"
+    case lastRomanInputMode = "CIMLastRomanInputMode"
     
     case leftCommandKeyShortcutBehavior = "CIMLeftCommandKeyShortcutBehavior"
     case leftOptionKeyShortcutBehavior = "CIMLeftOptionKeyShortcutBehavior"
@@ -67,6 +68,7 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
             GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
             GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
+            GureumConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
         ])
     }
     
@@ -87,6 +89,15 @@ enum GureumConfigurationName: String {
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
+        }
+    }
+
+    @objc public var lastRomanInputMode: String? {
+        get {
+            return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
+        }
+        set {
+            return self.set(newValue, forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
         }
     }
 

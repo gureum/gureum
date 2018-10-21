@@ -16,9 +16,7 @@ import Foundation
 @objc public class GureumInputSourceIdentifier: NSObject {
     @objc public static let qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
     @objc static let dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
-    @objc static let dvorakQwertyCommand = "org.youknowone.inputmethod.Gureum.dvorakq"
     @objc static let colemak = "org.youknowone.inputmethod.Gureum.colemak"
-    @objc static let colemakQwertyCommand = "org.youknowone.inputmethod.Gureum.colemakq"
     @objc static let han2 = "org.youknowone.inputmethod.Gureum.han2"
     @objc static let han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
     @objc public static let han3Final = "org.youknowone.inputmethod.Gureum.han3final"
@@ -36,7 +34,9 @@ import Foundation
 }
 
 let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
-    GureumInputSourceIdentifier.qwerty : "",
+    GureumInputSourceIdentifier.qwerty : "qwerty",
+    GureumInputSourceIdentifier.dvorak : "dvorak",
+    GureumInputSourceIdentifier.colemak : "colemak",
     GureumInputSourceIdentifier.han2 : "2",
     GureumInputSourceIdentifier.han2Classic : "2y",
     GureumInputSourceIdentifier.han3Final : "3f",
@@ -54,14 +54,20 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 ]
 
 @objcMembers class GureumComposer: CIMComposer {
-    @objc var romanComposer: RomanComposer
+    @objc var romanComposer: CIMComposer
+    @objc var qwertyComposer: QwertyComposer
+    @objc var dvorakComposer: RomanDataComposer
+    @objc var colemakComposer: RomanDataComposer
     @objc var hangulComposer: HangulComposer
     @objc var hanjaComposer: HanjaComposer
     @objc var emoticonComposer: EmoticonComposer
     var ioConnect: IOConnect
 
     override init() {
-        romanComposer = RomanComposer()
+        qwertyComposer = QwertyComposer()
+        romanComposer = qwertyComposer
+        dvorakComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
+        colemakComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
         hangulComposer = HangulComposer(keyboardIdentifier: "2")!
         hanjaComposer = HanjaComposer()
         hanjaComposer.delegate = hangulComposer
@@ -69,7 +75,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         let service = try! IOService.init(name: kIOHIDSystemClass)
         ioConnect = service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType)!
         super.init()
-        self.delegate = romanComposer
+        self.delegate = qwertyComposer
     }
     
     @objc override var inputMode: String {
@@ -85,8 +91,18 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return
             }
             
-            if keyboardIdentifier.count == 0 {
-                self.delegate = romanComposer
+            if keyboardIdentifier == "qwerty" {
+                self.delegate = qwertyComposer
+                romanComposer = qwertyComposer
+                GureumConfiguration.shared().lastRomanInputMode = newValue
+            } else if keyboardIdentifier == "dvorak" {
+                self.delegate = dvorakComposer
+                romanComposer = dvorakComposer
+                GureumConfiguration.shared().lastRomanInputMode = newValue
+            } else if keyboardIdentifier == "colemak" {
+                self.delegate = colemakComposer
+                romanComposer = colemakComposer
+                GureumConfiguration.shared().lastRomanInputMode = newValue
             } else {
                 self.delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
@@ -147,13 +163,13 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
 //        }
 //    } else
 //    {
+
         // Handle SpecialKeyCode first
         switch keyCode {
         case CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue:
             guard configuration.enableCapslockToToggleInputMode else {
                 return CIMInputTextProcessResult.processed
             }
-
             if self.delegate === romanComposer || self.delegate === hangulComposer {
                 need_exchange = true
             }
@@ -196,13 +212,11 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             self.delegate.cancelComposition()
             if self.delegate === romanComposer {
-                var lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
-                if lastHangulInputMode == nil {
-                    lastHangulInputMode = GureumInputSourceIdentifier.han2
-                }
+                let lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
                 (sender as AnyObject).selectMode(lastHangulInputMode)
             } else {
-                (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
+                let lastRomanInputMode = GureumConfiguration.shared().lastRomanInputMode
+                (sender as AnyObject).selectMode(lastRomanInputMode)
             }
             return CIMInputTextProcessResult.processed
         }

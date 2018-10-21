@@ -9,7 +9,7 @@
 import Foundation
 
 
-class RomanComposer: CIMComposer {
+class QwertyComposer: CIMComposer {
 
     var _commitString: String? = nil
 
@@ -76,9 +76,18 @@ class RomanComposer: CIMComposer {
 }
 
 
-class DvorakComposer: CIMComposer {
+class RomanDataComposer: CIMComposer {
+    public static let dvorakData: String = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
+    public static let colemakData: String = "`1234567890-=\\qwfpgjluy;[]arstdhneio'zxcvbkm,./~!@#$%^&*()_+|QWFPGJLUY:{}ARSTDHNEIO\"ZXCVBKM<>"
 
     var _commitString: String? = nil
+
+    var _keyboard: String = ""
+
+    init(keyboardData: String) {
+        super.init()
+        self._keyboard = keyboardData
+    }
 
     override var composedString: String {
         get {
@@ -128,9 +137,9 @@ class DvorakComposer: CIMComposer {
         }
         
         let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
-        let dvorak = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
+
         var map: [Character: Character] = [:]
-        zip(qwerty, dvorak).forEach {
+        zip(qwerty, self._keyboard).forEach {
             map[$0] = $1
         }
 
@@ -149,5 +158,5 @@ class DvorakComposer: CIMComposer {
             return CIMInputTextProcessResult.notProcessed
         }
     }
-    
+
 }
