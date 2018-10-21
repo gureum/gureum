@@ -260,8 +260,6 @@
 		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
 		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3835B4E51F5DAA7100896BEC /* all.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all.txt; sourceTree = "<group>"; };
-		3835B4E71F5DAA7100896BEC /* emoticon.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoticon.txt; sourceTree = "<group>"; };
-		3835B4E81F5DAA7100896BEC /* emoticonr.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoticonr.txt; sourceTree = "<group>"; };
 		3835B4EC1F5DAA7100896BEC /* hanjac.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjac.txt; sourceTree = "<group>"; };
 		3835B4ED1F5DAA7100896BEC /* hanjar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjar.txt; sourceTree = "<group>"; };
 		3835B4EE1F5DAA7100896BEC /* hanjaw.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjaw.txt; sourceTree = "<group>"; };
@@ -303,14 +301,12 @@
 		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38863C95140E669000A8ED76 /* CIMInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputController.h; sourceTree = "<group>"; };
 		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
-		38863C98140E677900A8ED76 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = SDKs/MacOSX10.6.sdk/System/Library/Frameworks/InputMethodKit.framework; sourceTree = DEVELOPER_DIR; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		389289BC217B331B00F94F2C /* CIMComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMComposer.swift; sourceTree = "<group>"; };
 		38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputReceiver.swift; sourceTree = "<group>"; };
 		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38BFE7FB18B45419004B2B2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38BFE80318B45419004B2B2E /* GureumObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumObjCTests.m; sourceTree = "<group>"; };
@@ -481,8 +477,6 @@
 				A36A4358216F86780052BE12 /* emoji_ko.txt */,
 				A34E2024216ADBEC00B12476 /* emoji.txt */,
 				3835B4E51F5DAA7100896BEC /* all.txt */,
-				3835B4E71F5DAA7100896BEC /* emoticon.txt */,
-				3835B4E81F5DAA7100896BEC /* emoticonr.txt */,
 				3835B52B1F5DAB9600896BEC /* hanja.txt */,
 				3835B52C1F5DABA400896BEC /* mssymbol.txt */,
 				3835B4EC1F5DAA7100896BEC /* hanjac.txt */,
@@ -605,8 +599,6 @@
 				38EE977519FFD65600AD19B8 /* Carbon.framework */,
 				38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */,
 				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
-				38863C98140E677900A8ED76 /* InputMethodKit.framework */,
-				38BFE7FB18B45419004B2B2E /* XCTest.framework */,
 				38863C65140E64EB00A8ED76 /* Other Frameworks */,
 				E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */,
 				44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */,
