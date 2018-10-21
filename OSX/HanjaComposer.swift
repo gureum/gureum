@@ -81,7 +81,7 @@ class HanjaComposer: CIMComposer {
         //    }
     }
     
-    override func inputController(_ controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         switch keyCode {
         // Arrow
         case 125, 126:
@@ -89,7 +89,7 @@ class HanjaComposer: CIMComposer {
         default:
             break
         }
-        var result = self.delegate.inputController(controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
+        var result = self.delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
         switch keyCode {
         // backspace
         case kVK_Delete: if result == .notProcessed {
@@ -181,7 +181,7 @@ class HanjaComposer: CIMComposer {
                 }
             }
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating");
-            if candidates.count > 0 && GureumConfiguration.shared().showsInputForHanjaCandidates {
+            if candidates.count > 0 && GureumConfiguration.shared.showsInputForHanjaCandidates {
                 candidates.insert(keyword, at: 0)
             }
             self._candidates = candidates

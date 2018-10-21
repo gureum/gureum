@@ -94,27 +94,27 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             if keyboardIdentifier == "qwerty" {
                 self.delegate = qwertyComposer
                 romanComposer = qwertyComposer
-                GureumConfiguration.shared().lastRomanInputMode = newValue
+                GureumConfiguration.shared.lastRomanInputMode = newValue
             } else if keyboardIdentifier == "dvorak" {
                 self.delegate = dvorakComposer
                 romanComposer = dvorakComposer
-                GureumConfiguration.shared().lastRomanInputMode = newValue
+                GureumConfiguration.shared.lastRomanInputMode = newValue
             } else if keyboardIdentifier == "colemak" {
                 self.delegate = colemakComposer
                 romanComposer = colemakComposer
-                GureumConfiguration.shared().lastRomanInputMode = newValue
+                GureumConfiguration.shared.lastRomanInputMode = newValue
             } else {
                 self.delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
                 hangulComposer.setKeyboardWithIdentifier(keyboardIdentifier)
-                GureumConfiguration.shared().lastHangulInputMode = newValue
+                GureumConfiguration.shared.lastHangulInputMode = newValue
             }
             super.inputMode = newValue
         }
     }
     
-    @objc override func inputController(_ controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
-        let configuration = GureumConfiguration.shared()
+    @objc override func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+        let configuration = GureumConfiguration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
         var delegatedComposer: CIMComposerDelegate? = nil
@@ -212,10 +212,10 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             self.delegate.cancelComposition()
             if self.delegate === romanComposer {
-                let lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
+                let lastHangulInputMode = GureumConfiguration.shared.lastHangulInputMode
                 (sender as AnyObject).selectMode(lastHangulInputMode)
             } else {
-                let lastRomanInputMode = GureumConfiguration.shared().lastRomanInputMode
+                let lastRomanInputMode = GureumConfiguration.shared.lastRomanInputMode
                 (sender as AnyObject).selectMode(lastRomanInputMode)
             }
             return CIMInputTextProcessResult.processed
@@ -254,7 +254,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 return CIMInputTextProcessResult.processed
             }
             // Vi-mode: esc로 로마자 키보드로 전환
-            if GureumConfiguration.shared().romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
+            if GureumConfiguration.shared.romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
                 self.delegate.cancelComposition()
                 (sender as AnyObject).selectMode(GureumInputSourceIdentifier.qwerty)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit

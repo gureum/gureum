@@ -14,20 +14,34 @@
 /*!
     @brief  OS에서 입력을 받아 처리기로 전달하고 결과를 클라이언트에 반영한다.
     
-    이 클래스는 @link IMKServer @/link 에 의존하는 입력과 클라이언트에서의 결과 반영을 담당한다. OS 독립적인 처리를 위해 모든 입력을 @link CharmInputManager @/link 로 전달한다. CharmInputManager가 값 처리 후 보관하고 있는 결과를 가져와 클라이언트에 반영하는 것도 이 클래스의 몫이다.
+    이 클래스는 @link IMKServer @/link 에 의존하는 입력과 클라이언트에서의 결과 반영을 담당한다.
+    IMKInputController가 내부 구현으로 의도하지 않은 동작을 하는 것을 방어하고 명시적으로 동작을 덮어쓰기 위해 IMKInputController를 직접 상속하고 모든 기능은 CIMInputReceiver로 위임한다.
  
-    @coclass    CharmInputManager
-    @warning    이 클래스에는 IMKServer, 클라이언트와 독립적인 코드는 **절대로** 쓰지 않는다. 디버그하기 화난다.
+    @coclass    CIMInputManager CIMInputReceiver
+    @warning    이 클래스에는 IMKServer, 클라이언트와 독립적인 코드는 **절대로** 쓰지 않는다. IMKInputController의 내부 구현과 섞이면 디버그하기 어렵다.
 */
 
 @import InputMethodKit;
 @import IOKit.hid;
 
-#import "CIMCommon.h"
+static const int CIMKeyMapSize = 0x33;
+
+@class CIMInputController;
+
+/*!
+ @enum
+ @brief  최종적으로 CIMInputController가 처리할 결과
+ */
+typedef NS_ENUM(int, CIMInputTextProcessResult) {
+    CIMInputTextProcessResultNotProcessedAndNeedsCommit = -2,
+    CIMInputTextProcessResultNotProcessedAndNeedsCancel = -1,
+    CIMInputTextProcessResultNotProcessed = 0,
+    CIMInputTextProcessResultProcessed = 1,
+};
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CIMComposer;
 @class CIMInputReceiver;
 @class IOConnect;
 
@@ -44,7 +58,6 @@ typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
 }
 
 @property(readonly) CIMInputReceiver *receiver; // temp bridge
-@property(readonly) CIMComposer *composer; // temp bridge
 @property(readonly) IOConnect *ioConnect; // temp bridge
 @property(assign) BOOL capsLockPressed; // temp bridge
 

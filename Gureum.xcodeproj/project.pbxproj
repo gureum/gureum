@@ -241,8 +241,6 @@
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanjaComposer.swift; sourceTree = "<group>"; };
-		38162DCA1410A4A50077AA2D /* CIMComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMComposer.h; sourceTree = "<group>"; };
-		38162DCE1410A95A0077AA2D /* CIMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMCommon.h; sourceTree = "<group>"; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -542,13 +540,11 @@
 			isa = PBXGroup;
 			children = (
 				871B807B2153DDFA0013EE69 /* CIMInputManager.swift */,
-				38162DCE1410A95A0077AA2D /* CIMCommon.h */,
 				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
 				38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */,
 				38863C95140E669000A8ED76 /* CIMInputController.h */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
-				38162DCA1410A4A50077AA2D /* CIMComposer.h */,
 				389289BC217B331B00F94F2C /* CIMComposer.swift */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
