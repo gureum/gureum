@@ -212,10 +212,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             self.delegate.cancelComposition()
             if self.delegate === romanComposer {
-                var lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
-                if lastHangulInputMode == nil {
-                    lastHangulInputMode = GureumInputSourceIdentifier.han2
-                }
+                let lastHangulInputMode = GureumConfiguration.shared().lastHangulInputMode
                 (sender as AnyObject).selectMode(lastHangulInputMode)
             } else {
                 let lastRomanInputMode = GureumConfiguration.shared().lastRomanInputMode
