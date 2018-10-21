@@ -200,7 +200,8 @@ class EmoticonComposer: CIMComposer {
         case kVK_Return:
             self.candidateSelected(self._selectedCandidate ?? NSAttributedString(string: self.composedString))
         default:
-            if result == .notProcessed && string != nil {
+            dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string)
+            if result == .notProcessed && string != nil && keyCode < 0x33 {
                 self._bufferedString.append(string)
                 result = .processed
             }
@@ -215,8 +216,8 @@ class EmoticonComposer: CIMComposer {
             self.cancelComposition()
             return result
         }
-        if self.commitString.count == 0 {
-            return .processed
+        if self.commitString.isEmpty {
+            return result == .processed ? .processed : .notProcessed
         } else {
             return .notProcessedAndNeedsCommit
         }

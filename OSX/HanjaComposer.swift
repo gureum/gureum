@@ -139,7 +139,7 @@ class HanjaComposer: CIMComposer {
         if self.commitString.isEmpty {
             return result == .processed ? .processed : .notProcessed
         } else {
-            return .notProcessedAndNeedsCommit;
+            return .notProcessedAndNeedsCommit
         }
     }
 
