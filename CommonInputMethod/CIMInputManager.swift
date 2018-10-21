@@ -61,7 +61,10 @@ let CIMKeyMapUpper = [
         dlog(true, "** CharmInputManager Init")
 
         let mainBundle = Bundle.main
-        let connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
+        var connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
+        #if DEBUG
+        connectionName += "_Debug"
+        #endif
         self._server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
         self._candidates = IMKCandidates(server: _server, panelType: kIMKSingleColumnScrollingCandidatePanel)
 

@@ -93,87 +93,6 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
 @end
 
 
-#pragma - IMKServerInput Protocol
-
-// IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
-/*
-@implementation CIMInputController (IMKServerInputTextData)
-
-- (BOOL)inputText:(NSString *)string key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags client:(id)sender {
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-    
-    BOOL processed = [self->_receiver inputController:self inputText:string key:keyCode modifiers:flags client:sender] > CIMInputTextProcessResultNotProcessed;
-    return processed;
-}
-
-@end
-*/
-
-/*
-@implementation CIMInputController (IMKServerInputKeyBinding)
-
-- (BOOL)inputText:(NSString *)string client:(id)sender {
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender);
-    return NO;
-}
-
-- (BOOL)didCommandBySelector:(SEL)aSelector client:(id)sender {
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -didCommandBySelector: with selector: %@", aSelector);
-    
-    return NO;
-}
-
-@end
-*/
-
-@implementation CIMInputController (IMKServerInput)
-
-// Committing a Composition
-// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-- (void)commitComposition:(id)sender {
-    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::COMMIT-RAW?");
-    [self->_receiver commitCompositionEvent:sender controller:self];
-    //[super commitComposition:sender];
-}
-
-- (void)updateComposition {
-    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::UPDATE-RAW?");
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition");
-    [self->_receiver updateCompositionEvent:self];
-    [super updateComposition];
-    dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController -updateComposition ended");
-}
-
-- (void)cancelComposition {
-    dlog(DEBUG_LOGGING, @"LOGGING::EVENT::CANCEL-RAW?");
-    [self->_receiver cancelCompositionEvent:self];
-    [super cancelComposition];
-}
-
-// Getting Input Strings and Candidates
-// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-- (id)composedString:(id)sender {
-    return [self->_receiver composedString:sender controller:self];
-}
-
-- (NSAttributedString *)originalString:(id)sender {
-    return [self->_receiver originalString:sender controller:self];
-}
-
-- (NSArray *)candidates:(id)sender {
-    return [self->_receiver candidates:sender controller:self];
-}
-
-- (void)candidateSelected:(NSAttributedString *)candidateString {
-    [self->_receiver candidateSelected:candidateString controller:self];
-}
-
-- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
-    [self->_receiver candidateSelectionChanged:candidateString controller:self];
-}
-
-@end
-
 #if DEBUG
 
 @implementation CIMMockInputController (IMKServerInputTextData)
@@ -211,23 +130,23 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
 
 // Getting Input Strings and Candidates
 // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-- (id)composedString:(id)sender {
+- (id _Null_unspecified)composedString:(id _Null_unspecified)sender {
     return [self._receiver composedString:sender controller:(id)self];
 }
 
-- (NSAttributedString *)originalString:(id)sender {
+- (NSAttributedString *_Null_unspecified)originalString:(id _Null_unspecified)sender {
     return [self._receiver originalString:sender controller:(id)self];
 }
 
-- (NSArray *)candidates:(id)sender {
+- (NSArray *_Null_unspecified)candidates:(id _Null_unspecified)sender {
     return [self._receiver candidates:sender controller:(id)self];
 }
 
-- (void)candidateSelected:(NSAttributedString *)candidateString {
+- (void)candidateSelected:(NSAttributedString *_Null_unspecified)candidateString {
     [self._receiver candidateSelected:candidateString controller:(id)self];
 }
 
-- (void)candidateSelectionChanged:(NSAttributedString *)candidateString {
+- (void)candidateSelectionChanged:(NSAttributedString *_Null_unspecified)candidateString {
     [self._receiver candidateSelectionChanged:candidateString controller:(id)self];
 }
 
