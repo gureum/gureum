@@ -37,7 +37,7 @@ class HangulComposerCombination {
 @objcMembers public class HangulComposer: NSObject, CIMComposerDelegate {
     let _inputContext: HGInputContext
     var _commitString: String
-    let configuration = GureumConfiguration.shared()
+    let configuration = GureumConfiguration.shared
     
     init?(keyboardIdentifier: String) {
         self._commitString = String()

@@ -227,9 +227,5 @@ enum GureumConfigurationName: String {
         }
     }
 
-    static let _shared = GureumConfiguration()
-
-    @objc class func shared() -> GureumConfiguration {
-        return _shared
-    }
+    static let shared = GureumConfiguration()
 }

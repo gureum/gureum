@@ -181,7 +181,7 @@ class HanjaComposer: CIMComposer {
                 }
             }
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating");
-            if candidates.count > 0 && GureumConfiguration.shared().showsInputForHanjaCandidates {
+            if candidates.count > 0 && GureumConfiguration.shared.showsInputForHanjaCandidates {
                 candidates.insert(keyword, at: 0)
             }
             self._candidates = candidates

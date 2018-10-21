@@ -94,7 +94,7 @@ let CIMKeyMapUpper = [
             // 옵션 키 변환 처리
             var string = string
             if flags.contains(.option) {
-                let configuration = GureumConfiguration.shared()
+                let configuration = GureumConfiguration.shared
                 dlog(DEBUG_INPUTHANDLER, "option key: %ld", configuration.optionKeyBehavior);
                 switch configuration.optionKeyBehavior {
                 case 0:
