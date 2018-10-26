@@ -10,35 +10,28 @@ import Foundation
 import AppKit
 
 enum GureumConfigurationName: String {
-    case lastHangulInputMode = "CIMLastHangulInputMode"
-    case lastRomanInputMode = "CIMLastRomanInputMode"
+    case lastHangulInputMode = "LastHangulInputMode"
+    case lastRomanInputMode = "LastRomanInputMode"
     
-    case leftCommandKeyShortcutBehavior = "CIMLeftCommandKeyShortcutBehavior"
-    case leftOptionKeyShortcutBehavior = "CIMLeftOptionKeyShortcutBehavior"
-    case leftControlKeyShortcutBehavior = "CIMLeftControlKeyShortcutBehavior"
-    case rightCommandKeyShortcutBehavior = "CIMRightCommandKeyShortcutBehavior"
-    case rightOptionKeyShortcutBehavior = "CIMRightOptionKeyShortcutBehavior"
-    case rightControlKeyShortcutBehavior = "CIMRightControlKeyShortcutBehavior"
-    case inputModeExchangeKey = "CIMInputModeExchangeKey"
-    case inputModeEmoticonKey = "CIMInputModeEmoticonKey"
-    case inputModeHanjaKey = "CIMInputModeHanjaKey"
-    case inputModeEnglishKey = "CIMInputModeEnglishKey"
-    case inputModeKoreanKey = "CIMInputModeKoreanKey"
-    case optionKeyBehavior = "CIMOptionKeyBehavior"
-    case enableCapslockToToggleInputMode = "EnableCapslockToToggleInputMode"
+    case inputModeExchangeKey = "InputModeExchangeKey"
+    case inputModeEmoticonKey = "InputModeEmoticonKey"
+    case inputModeHanjaKey = "InputModeHanjaKey"
+    case inputModeEnglishKey = "InputModeEnglishKey"
+    case inputModeKoreanKey = "InputModeKoreanKey"
+    case optionKeyBehavior = "OptionKeyBehavior"
     
-    case autosaveDefaultInputMode = "CIMAutosaveDefaultInputMode"
-    case romanModeByEscapeKey = "CIMRomanModeByEscapeKey"
+    case romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
     case showsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
-    case skippedVersion = "SkippedVersion"
     case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     case hangulAutoReorder = "HangulAutoReorder"
     case hangulNonChoseongCombination = "HangulNonChoseongCombination"
-    case strictCombination = "strictCombination"
+    case hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
 }
 
 
 @objc public class GureumConfiguration: UserDefaults {
+
+    public var enableCapslockToToggleInputMode: Bool = true
 
     public typealias Shortcut = (UInt, NSEvent.ModifierFlags)
     
@@ -59,18 +52,27 @@ enum GureumConfigurationName: String {
     init() {
         super.init(suiteName: "org.youknowone.Gureum")!
         self.register(defaults: [
+            GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
+            GureumConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
+
             GureumConfigurationName.inputModeExchangeKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x31, .shift)),
             GureumConfigurationName.inputModeEmoticonKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x24, [.shift, .option])),
             GureumConfigurationName.inputModeHanjaKey.rawValue: GureumConfiguration.convertShortcutToConfiguration((0x24, .option)),
             GureumConfigurationName.optionKeyBehavior.rawValue: 0,
-            GureumConfigurationName.autosaveDefaultInputMode.rawValue: true,
+
             GureumConfigurationName.romanModeByEscapeKey.rawValue: false,
-            GureumConfigurationName.showsInputForHanjaCandidates.rawValue: true,
+            GureumConfigurationName.showsInputForHanjaCandidates.rawValue: false,
             GureumConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
-            GureumConfigurationName.enableCapslockToToggleInputMode.rawValue: true,
-            GureumConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
-            GureumConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
+            GureumConfigurationName.hangulAutoReorder.rawValue: false,
+            GureumConfigurationName.hangulNonChoseongCombination.rawValue: false,
+            GureumConfigurationName.hangulForceStrictCombinationRule.rawValue: false,
         ])
+
+        // 시스템 설정 읽어와서 반영한다. 여기도 observer 설정 가능한지 확인 필요
+        let libraryUrl = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
+        let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryUrl))!
+        let state: Int = (globalPreferences["TISRomanSwitchState"] as? NSNumber)?.intValue ?? 1
+        self.enableCapslockToToggleInputMode = state > 0
     }
     
     func getShortcut(forKey key: String) -> Shortcut? {
@@ -84,18 +86,18 @@ enum GureumConfigurationName: String {
         self.set(GureumConfiguration.convertShortcutToConfiguration(newValue) , forKey: key)
     }
 
-    @objc public var lastHangulInputMode: String? {
+    @objc public var lastHangulInputMode: String {
         get {
-            return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
+            return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)!
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
         }
     }
 
-    @objc public var lastRomanInputMode: String? {
+    @objc public var lastRomanInputMode: String {
         get {
-            return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
+            return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)!
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
@@ -117,15 +119,6 @@ enum GureumConfigurationName: String {
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
-        }
-    }
-    
-    @objc public var enableCapslockToToggleInputMode: Bool {
-        get {
-            return self.bool(forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
-        }
-        set {
-            return self.set(newValue, forKey: GureumConfigurationName.enableCapslockToToggleInputMode.rawValue)
         }
     }
     
@@ -182,24 +175,6 @@ enum GureumConfigurationName: String {
             return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
     }
-
-    @objc public var autosaveDefaultInputMode: Bool {
-        get {
-            return self.bool(forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue);
-        }
-        set {
-            return self.set(newValue, forKey: GureumConfigurationName.autosaveDefaultInputMode.rawValue)
-        }
-    }
-    
-    public var skippedVersion: String? {
-        get {
-            return self.string(forKey: GureumConfigurationName.skippedVersion.rawValue)
-        }
-        set {
-            return self.set(newValue, forKey: GureumConfigurationName.skippedVersion.rawValue)
-        }
-    }
     
     public var hangulWonCurrencySymbolForBackQuote: Bool {
         get {
@@ -228,12 +203,12 @@ enum GureumConfigurationName: String {
         }
     }
     
-    public var strictCombination: Bool {
+    public var hangulForceStrictCombinationRule: Bool {
         get {
-            return self.bool(forKey: GureumConfigurationName.strictCombination.rawValue)
+            return self.bool(forKey: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue)
         }
         set {
-            return self.set(newValue, forKey: GureumConfigurationName.strictCombination.rawValue)
+            return self.set(newValue, forKey: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue)
         }
     }
     

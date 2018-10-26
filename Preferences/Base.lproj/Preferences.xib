@@ -17,31 +17,31 @@
         <window title="≪ do not localize ≫" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="176" y="715" width="400" height="548"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="548"/>
+            <rect key="contentRect" x="176" y="715" width="400" height="300"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="6I9-vn-Dbb">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="385" height="300"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
-                                    <rect key="frame" x="0.0" y="-250" width="400" height="550"/>
+                                    <rect key="frame" x="0.0" y="-250" width="385" height="550"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="-49" width="360" height="582"/>
+                                            <rect key="frame" x="20" y="63" width="345" height="470"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="471" width="360" height="111"/>
+                                                    <rect key="frame" x="0.0" y="359" width="345" height="111"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
-                                                            <rect key="frame" x="-2" y="94" width="64" height="17"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="단축키 설정" id="45X-EX-BbZ">
-                                                                <font key="font" metaFont="systemBold"/>
+                                                            <rect key="frame" x="-2" y="94" width="101" height="17"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="시스템 단축키 설정" id="45X-EX-BbZ">
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Bold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -77,18 +77,18 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="197" width="345" height="254"/>
+                                                    <rect key="frame" x="0.0" y="166" width="345" height="173"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
-                                                            <rect key="frame" x="-2" y="237" width="53" height="17"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="고급 설정" id="HIp-u9-CIf">
-                                                                <font key="font" metaFont="systemBold"/>
+                                                            <rect key="frame" x="-2" y="156" width="116" height="17"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글 입력기 고급 설정" id="HIp-u9-CIf">
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Bold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
-                                                            <rect key="frame" x="0.0" y="206" width="345" height="20"/>
+                                                            <rect key="frame" x="0.0" y="125" width="345" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
                                                                     <rect key="frame" x="-2" y="2" width="109" height="17"/>
@@ -127,118 +127,58 @@
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
                                                         </stackView>
-                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="qIw-na-Nz1">
-                                                            <rect key="frame" x="-2" y="179" width="277" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="자판을 선택하면 기본 자판으로 자동으로 지정하기" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="RxT-GE-eXq">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="didTapAutoSaveDefaultInputModeCheckBox:" target="DMm-2g-KCR" id="GE6-EJ-E6w"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25n-Az-YAJ">
-                                                            <rect key="frame" x="-2" y="154" width="131" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="캡스락으로 자판 전환" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IkH-Pc-uX9">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                                                                <connections>
-                                                                    <action selector="enableCapslockToToggleInputMode:" target="DMm-2g-KCR" id="qu4-65-lnz"/>
-                                                                </connections>
-                                                            </buttonCell>
-                                                        </button>
-                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="106" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqJ-8a-LYD">
-                                                            <rect key="frame" x="0.0" y="125" width="345" height="20"/>
-                                                            <subviews>
-                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-fI-Ly1">
-                                                                    <rect key="frame" x="-2" y="2" width="83" height="17"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기본 한글 자판:" id="gKb-ot-itV">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X51-4X-EIq">
-                                                                    <rect key="frame" x="185" y="-4" width="163" height="26"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="160" id="5OC-lD-9BT"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="QsD-8d-PD4"/>
-                                                                    </constraints>
-                                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="qgD-W9-Xqp">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </comboBoxCell>
-                                                                    <connections>
-                                                                        <action selector="defaultHangulInputModeComboBoxValueChanged:" target="DMm-2g-KCR" id="pTd-Rx-iRd"/>
-                                                                        <outlet property="dataSource" destination="DMm-2g-KCR" id="zsl-GK-sqo"/>
-                                                                    </connections>
-                                                                </comboBox>
-                                                            </subviews>
-                                                            <visibilityPriorities>
-                                                                <integer value="1000"/>
-                                                                <integer value="1000"/>
-                                                            </visibilityPriorities>
-                                                            <customSpacing>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                            </customSpacing>
-                                                        </stackView>
-                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
-                                                            <rect key="frame" x="-2" y="98" width="232" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="Esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="didTapRomanModeByEscapeKey:" target="DMm-2g-KCR" id="CNF-QS-ke4"/>
-                                                            </connections>
-                                                        </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JYx-Sc-lao">
-                                                            <rect key="frame" x="-2" y="73" width="281" height="18"/>
+                                                            <rect key="frame" x="-2" y="98" width="281" height="18"/>
                                                             <buttonCell key="cell" type="check" title="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2iT-lY-Scx" userLabel="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="didTapHangulWonCurrencySymbolForBackQuoteCheckBox:" target="DMm-2g-KCR" id="795-Vy-9xg"/>
+                                                                <action selector="hangulWonCurrencySymbolForBackQuoteValueChanged:" target="DMm-2g-KCR" id="795-Vy-9xg"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DXg-Ha-7zY">
-                                                            <rect key="frame" x="-2" y="48" width="93" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="모아치기 사용" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HZu-6J-gbz">
+                                                            <rect key="frame" x="-2" y="73" width="228" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="완성되지 않은 낱자 자동 교정 (모아치기)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HZu-6J-gbz">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="didTapHangulAutoReorderCheckBox:" target="DMm-2g-KCR" id="TTP-oX-N80"/>
+                                                                <action selector="hangulAutoReorderValueChanged:" target="DMm-2g-KCR" id="TTP-oX-N80"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AHr-Ou-hBi">
-                                                            <rect key="frame" x="-2" y="23" width="179" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="조합 중일때도 종성을 합쳐주기" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Phf-eg-t0A">
+                                                            <rect key="frame" x="-2" y="48" width="300" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Phf-eg-t0A">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="didTapHangulNonChoseongCombinationCheckBox:" target="DMm-2g-KCR" id="RYe-GQ-ycc"/>
+                                                                <action selector="hangulNonChoseongCombinationValueChanged:" target="DMm-2g-KCR" id="RYe-GQ-ycc"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-3z-VAl" userLabel="Strict Combination">
-                                                            <rect key="frame" x="-2" y="-2" width="183" height="18"/>
-                                                            <buttonCell key="cell" type="check" title="세벌식 종성 결합 허용하지 않음" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cQP-uo-ggW" userLabel="세벌식 종성 결합 허용하지 않음">
+                                                            <rect key="frame" x="-2" y="23" width="108" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="세벌식 정석 강요" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cQP-uo-ggW" userLabel="세벌식 종성 결합 허용하지 않음">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="hangulForceStrictCombinationRuleValueChanged:" target="DMm-2g-KCR" id="59K-Of-diH"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
+                                                            <rect key="frame" x="-2" y="-2" width="232" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="Esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="didTapstrictCombinationCheckBox:" target="DMm-2g-KCR" id="G0X-gI-Qtb"/>
+                                                                <action selector="romanModeByEscapeKeyValueChanged:" target="DMm-2g-KCR" id="CNF-QS-ke4"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
@@ -255,24 +195,21 @@
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="177"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="146"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
-                                                            <rect key="frame" x="-2" y="160" width="101" height="17"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="단축키 설정 (임시)" id="F6j-tJ-jrU">
-                                                                <font key="font" metaFont="systemBold"/>
+                                                            <rect key="frame" x="-2" y="129" width="90" height="17"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="내부 단축키 설정" id="F6j-tJ-jrU">
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Bold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coV-fo-vDP">
-                                                            <rect key="frame" x="0.0" y="31" width="303" height="118"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="303" height="118"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-Z3-oXo">
                                                                     <rect key="frame" x="0.0" y="96" width="303" height="22"/>
@@ -410,22 +347,12 @@
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
                                                         </stackView>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JId-gg-7RS">
-                                                            <rect key="frame" x="-2" y="0.0" width="146" height="20"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="※ 스페이스로 초기화합니다" id="d6C-2Z-taR">
-                                                                <font key="font" size="13" name="AppleSDGothicNeo-Bold"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
                                                     </subviews>
                                                     <visibilityPriorities>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
-                                                        <integer value="1000"/>
                                                     </visibilityPriorities>
                                                     <customSpacing>
-                                                        <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
@@ -469,11 +396,11 @@
                             <constraint firstAttribute="height" constant="300" id="Jso-1l-2z0"/>
                         </constraints>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
-                            <rect key="frame" x="0.0" y="284" width="400" height="16"/>
+                            <rect key="frame" x="0.0" y="285" width="385" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
-                            <rect key="frame" x="384" y="0.0" width="16" height="300"/>
+                            <rect key="frame" x="385" y="0.0" width="15" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -485,14 +412,12 @@
                     <constraint firstAttribute="trailing" secondItem="6I9-vn-Dbb" secondAttribute="trailing" id="pzZ-Tm-ISk"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-214" y="33"/>
+            <point key="canvasLocation" x="-214" y="-91"/>
         </window>
         <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
-                <outlet property="autoSaveDefaultInputModeButton" destination="RxT-GE-eXq" id="vft-Lv-q9b"/>
-                <outlet property="defaultInputHangulComboBox" destination="X51-4X-EIq" id="LhT-HU-Jm4"/>
-                <outlet property="enableCapslockToToggleInputModeButton" destination="IkH-Pc-uX9" id="qt0-gT-Hyb"/>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
+                <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
                 <outlet property="hangulNonChoseongCombinationButton" destination="AHr-Ou-hBi" id="A1C-aF-9IN"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
                 <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="i8N-tR-KEH"/>
@@ -501,7 +426,6 @@
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="YTt-oL-VCC"/>
                 <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
                 <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>
-                <outlet property="strictCombination" destination="JOz-3z-VAl" id="qkJ-rn-647"/>
                 <outlet property="view" destination="se5-gp-TjO" id="x0B-I2-MHL"/>
             </connections>
         </customObject>

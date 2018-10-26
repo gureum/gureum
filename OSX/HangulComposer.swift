@@ -50,24 +50,31 @@ class HangulComposerCombination {
         super.init()
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
-        self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+        if keyPath == GureumConfigurationName.hangulForceStrictCombinationRule.rawValue {
+            let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? "2"
+            self.setKeyboard(identifier: keyboard)
+        } else {
+            self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+            self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+        }
     }
 
     deinit {
         configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue)
         configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
+        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue)
     }
 
     /*!
      @brief  현재 context의 배열을 바꾼다.
      @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
      */
-    public func setKeyboard(identifier :String) {
-        if configuration.strictCombination && (identifier == "39" || identifier == "3f") {
+    public func setKeyboard(identifier: String) {
+        if configuration.hangulForceStrictCombinationRule && (identifier == "39" || identifier == "3f") {
             let strictCombinationIdentifier = "\(identifier)s"
             self.inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
         } else {
