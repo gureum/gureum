@@ -64,9 +64,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         guard info.download.count > 0 else {
             return
         }
-        guard info.recent != configuration.skippedVersion else {
-            return
-        }
 
         let fmt = "현재 버젼: \(info.current) 최신 버젼: \(info.recent)\n클릭 시 업데이트 페이지로 이동합니다."
         let notification = NSUserNotification()
