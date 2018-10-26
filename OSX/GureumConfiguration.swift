@@ -68,6 +68,7 @@ enum GureumConfigurationName: String {
             GureumConfigurationName.hangulForceStrictCombinationRule.rawValue: false,
         ])
 
+        // 시스템 설정 읽어와서 반영한다. 여기도 observer 설정 가능한지 확인 필요
         let libraryUrl = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
         let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryUrl))!
         let state: Int = (globalPreferences["TISRomanSwitchState"] as? NSNumber)?.intValue ?? 1
@@ -85,18 +86,18 @@ enum GureumConfigurationName: String {
         self.set(GureumConfiguration.convertShortcutToConfiguration(newValue) , forKey: key)
     }
 
-    @objc public var lastHangulInputMode: String? {
+    @objc public var lastHangulInputMode: String {
         get {
-            return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
+            return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)!
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.lastHangulInputMode.rawValue)
         }
     }
 
-    @objc public var lastRomanInputMode: String? {
+    @objc public var lastRomanInputMode: String {
         get {
-            return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
+            return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)!
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.lastRomanInputMode.rawValue)
