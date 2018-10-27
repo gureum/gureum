@@ -71,7 +71,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         notification.hasReplyButton = false
         notification.actionButtonTitle = "업데이트"
         notification.otherButtonTitle = "취소"
-        notification.informativeText = "최신 버젼: \(info.recent) 현재 버젼: \(info.current)\n\(info.note)"
+        notification.informativeText = "최신 버전: \(info.recent) 현재 버전: \(info.current)\n\(info.note)"
         notificationCenterDelegate.download = info.download
 
         notificationCenter.deliver(notification)
