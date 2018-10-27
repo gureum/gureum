@@ -164,10 +164,6 @@ class HangulComposerCombination {
         }
     }
 
-    public func input(controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
-        return CIMInputTextProcessResult.notProcessed
-    }
-
     #if DEBUG
     public func candidateSelected(_ candidateString: NSAttributedString) {
         assert(false)
