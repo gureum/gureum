@@ -65,15 +65,13 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
             return
         }
 
-        let fmt = "현재 버젼: \(info.current) 최신 버젼: \(info.recent)\n클릭 시 업데이트 페이지로 이동합니다."
         let notification = NSUserNotification()
-
-        notification.title = "구름 입력기 업데이트 확인"
+        notification.title = "구름 입력기 업데이트 알림"
         notification.hasActionButton = true
         notification.hasReplyButton = false
         notification.actionButtonTitle = "업데이트"
         notification.otherButtonTitle = "취소"
-        notification.informativeText = fmt
+        notification.informativeText = "최신 버전: \(info.recent) 현재 버전: \(info.current)\n\(info.note)"
         notificationCenterDelegate.download = info.download
 
         notificationCenter.deliver(notification)

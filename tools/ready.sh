@@ -14,7 +14,8 @@ xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuratio
 . ${TMPSCRIPT} &> /dev/null
 rm ${TMPSCRIPT}
 
-PACKAGE_NAME=`git tag | tail -n 1`
+XCVERSION=`cat OSX/Version.xcconfig`
+PACKAGE_NAME=Gureum-${XCVERSION#VERSION = }
 
 if [ ! $CONFIGURATION ]; then
 	CONFIGURATION='Debug'
