@@ -12,15 +12,30 @@ import Hangul
 
 
 class GureumTests: XCTestCase {
+    static let domainName: String = "org.youknowone.Gureum"
+    static var oldConfiguration: [String : Any]?
     let moderate: VirtualApp = ModerateApp()
     let terminal: VirtualApp = TerminalApp()
     let greedy: VirtualApp = GreedyApp()
     var apps: [VirtualApp] = []
-    
+
+    override class func setUp() {
+        super.setUp()
+        self.oldConfiguration = UserDefaults.standard.persistentDomain(forName: self.domainName)
+    }
+
+    override class func tearDown() {
+        if let oldConfiguration = self.oldConfiguration {
+            UserDefaults.standard.setPersistentDomain(oldConfiguration, forName: self.domainName)
+        }
+        super.tearDown()
+    }
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+
+        UserDefaults.standard.removePersistentDomain(forName: GureumTests.domainName)
         self.apps = [self.moderate]
     }
     

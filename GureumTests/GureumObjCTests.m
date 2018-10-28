@@ -32,11 +32,25 @@
 @end
 
 
+static NSString *domainName = @"org.youknowone.Gureum";
+static NSDictionary<NSString *, id> *oldConfiguration;
+
 @implementation GureumObjCTests
+
++ (void)setUp {
+    [super setUp];
+    oldConfiguration = [[NSUserDefaults standardUserDefaults] persistentDomainForName:domainName];
+}
+
++ (void)tearDown {
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldConfiguration forName:domainName];
+    [super tearDown];
+}
 
 - (void)setUp {
     [super setUp];
 
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     self.moderate = [[ModerateApp alloc] init];
     self.terminal = [[TerminalApp alloc] init];
     self.greedy = [[GreedyApp alloc] init];
