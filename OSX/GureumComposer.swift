@@ -257,8 +257,11 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
                 emoticonComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
+        }
+
+        if self.delegate === hangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
-            if GureumConfiguration.shared.romanModeByEscapeKey && (keyCode == kVK_Escape || false) {
+            if GureumConfiguration.shared.romanModeByEscapeKey && keyCode == kVK_Escape {
                 self.delegate.cancelComposition()
                 (sender as AnyObject).selectMode(GureumConfiguration.shared.lastRomanInputMode)
                 return CIMInputTextProcessResult.notProcessedAndNeedsCommit
