@@ -38,7 +38,7 @@ class HangulComposerCombination {
     let inputContext: HGInputContext
     var _commitString: String
     let configuration = GureumConfiguration.shared
-    
+
     init?(keyboardIdentifier: String) {
         self._commitString = String()
         guard let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier) else {
@@ -52,7 +52,7 @@ class HangulComposerCombination {
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
     }
-    
+
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == GureumConfigurationName.hangulForceStrictCombinationRule.rawValue {
             let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? "2"
@@ -110,13 +110,13 @@ class HangulComposerCombination {
         }
         let handled = self.inputContext.process(string.first!.unicodeScalars.first!.value)
         if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
-            let backQuote = 50
-            if keyCode == backQuote && !flags.contains(.shift) {
+            if keyCode == kVK_ANSI_Grave && !flags.contains(.shift) {
+                self.cancelComposition()
                 self._commitString += "₩"
                 return CIMInputTextProcessResult.processed
             }
         }
-        
+
         let UCSString = self.inputContext.commitUCSString
         // dassert(UCSString);
         let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
