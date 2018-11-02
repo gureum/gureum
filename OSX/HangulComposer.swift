@@ -109,17 +109,15 @@ class HangulComposerCombination {
             }
         }
         let handled = self.inputContext.process(string.first!.unicodeScalars.first!.value)
+        let UCSString = self.inputContext.commitUCSString
+        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
-            if keyCode == kVK_ANSI_Grave && !flags.contains(.shift) {
-                self.cancelComposition()
-                self._commitString += "₩"
+            if keyCode == kVK_ANSI_Grave && flags.isSubset(of: .capsLock) {
+                self._commitString += recentCommitString + "₩"
                 return CIMInputTextProcessResult.processed
             }
         }
 
-        let UCSString = self.inputContext.commitUCSString
-        // dassert(UCSString);
-        let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         self._commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
         return handled ? .processed : .notProcessedAndNeedsCancel;
