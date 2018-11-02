@@ -8,6 +8,8 @@
 
 import Foundation
 import Hangul
+import Fabric
+import Crashlytics
 
 class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     var download: String!
@@ -46,6 +48,12 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     @objc override func awakeFromNib(){
         HGKeyboard.initialize()
         sharedInputManager = CIMInputManager()
+    }
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        #if NDEBUG
+        Fabric.with([Crashlytics.self])
+        #endif
         checkUpdate()
     }
 
