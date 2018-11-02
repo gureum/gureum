@@ -1,8 +1,8 @@
 PODS:
-  - cdebug (1.1)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
-  - Fabric (1.7.11)
+  - cdebug (1.2)
+  - Crashlytics (3.11.1):
+    - Fabric (~> 1.8.1)
+  - Fabric (1.8.2)
   - FoundationExtension (1.3.1):
     - cdebug (~> 1.1)
     - FoundationExtension/CocoaExtension (= 1.3.1)
@@ -29,7 +29,7 @@ DEPENDENCIES:
   - cdebug
   - Crashlytics
   - Fabric
-  - FoundationExtension (>= 1.3.1)
+  - FoundationExtension (~> 1.3.1)
   - GlobalActivityIndicatorView (>= 0.1.1)
   - GoogleMobileAds
   - MASShortcut
@@ -45,14 +45,14 @@ SPEC REPOS:
     - MASShortcut
 
 SPEC CHECKSUMS:
-  cdebug: a9082b29d17cf592c7441a6bb78ce33b2b0ca8db
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  cdebug: 55a96da647360590f0d292baebb34c4066cbca02
+  Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
+  Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
   FoundationExtension: 2dd5b23bc43f44da58e4592655dc86888cd46ea9
   GlobalActivityIndicatorView: 012695aa501b1476325b2076f522cc61c539ed04
   GoogleMobileAds: c79931d6eef16b1e4c35d331cf23c47e0dd490d2
   MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
 
-PODFILE CHECKSUM: 4c6677c8d83c46d720e3f6686f656ddbfa427277
+PODFILE CHECKSUM: 4eaa2d5eb291713ebca70df69e6524a5ab72a403
 
 COCOAPODS: 1.6.0.beta.2
