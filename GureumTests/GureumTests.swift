@@ -138,4 +138,51 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
         }
     }
+
+    func testBackQuoteHan2() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("`", key: UInt(kVK_ANSI_Grave), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("₩", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            app.inputText("~", key: UInt(kVK_ANSI_Grave), modifiers: .shift)
+            XCTAssertEqual("₩~", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
+    func testBackQuoteOnComposing() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("r", key: UInt(kVK_ANSI_R), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("k", key: UInt(kVK_ANSI_K), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("가", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            app.inputText("`", key: UInt(kVK_ANSI_Grave), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("가₩", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
+    func testBackQuoteQwerty() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("`", key: UInt(kVK_ANSI_Grave), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("`", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
+    func testBackQuoteHan3Final() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("`", key: UInt(kVK_ANSI_Grave), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("*", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }

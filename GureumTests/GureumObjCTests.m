@@ -342,42 +342,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)testBackQuoteHan2 {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han2" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"`" key:50 modifiers:0];
-        XCTAssertEqualObjects(@"₩", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
-- (void)testBackQuoteWithShiftKeyHan2 {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han2" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"~" key:50 modifiers: NSShiftKeyMask];
-        XCTAssertEqualObjects(@"~", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
-- (void)testBackQuoteHan3Final {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"`" key:50 modifiers:0];
-        XCTAssertEqualObjects(@"*", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
-- (void)testBackQuoteQwerty {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"`" key:50 modifiers:0];
-        XCTAssertEqualObjects(@"`", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testDvorak {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
