@@ -185,4 +185,14 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("*", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
+
+    func testHan3Gureum() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("\"", key: UInt(kVK_ANSI_Quote), modifiers: NSEvent.ModifierFlags.shift)
+            XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
