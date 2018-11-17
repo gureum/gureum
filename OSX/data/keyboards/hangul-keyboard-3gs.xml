@@ -62,12 +62,12 @@
         <item key="0x58" value="0x11a8"/>  <!-- X → ᅟᅠᆨ -->
         <item key="0x59" value="0x0035"/>  <!-- Y → 5  -->
         <item key="0x5a" value="0x11b7"/>  <!-- Z → ᅟᅠᆷ -->
-        <item key="0x5b" value="0x5b"/>  <!-- [ → (  -->
-        <item key="0x5c" value="0x5c"/>  <!-- \ → :  -->
-        <item key="0x5d" value="0x5d"/>  <!-- ] → <  -->
-        <item key="0x5e" value="0x5e"/>  <!-- ^ → =  -->
-        <item key="0x5f" value="0x5f"/>  <!-- _ → ;  -->
-        <item key="0x60" value="0x60"/>  <!-- ` → *  -->
+        <item key="0x5b" value="0x5b"/>  <!-- [ -->
+        <item key="0x5c" value="0x5c"/>  <!-- \ -->
+        <item key="0x5d" value="0x5d"/>  <!-- ] -->
+        <item key="0x5e" value="0x5e"/>  <!-- ^ -->
+        <item key="0x5f" value="0x5f"/>  <!-- _ -->
+        <item key="0x60" value="0x60"/>  <!-- ` -->
         <item key="0x61" value="0x11bc"/>  <!-- a → ᅟᅠᆼ -->
         <item key="0x62" value="0x116e"/>  <!-- b → ᅟᅮ -->
         <item key="0x63" value="0x1166"/>  <!-- c → ᅟᅦ -->
