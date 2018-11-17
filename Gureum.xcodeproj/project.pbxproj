@@ -88,6 +88,8 @@
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
+		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
+		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
 		878898012160AA6E00BF5770 /* CIMInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* CIMInputManager.swift */; };
 		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
@@ -195,6 +197,8 @@
 			dstPath = keyboards;
 			dstSubfolderSpec = 7;
 			files = (
+				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
+				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
 				80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */,
 				80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */,
 				80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */,
@@ -330,6 +334,8 @@
 		80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2012.xml"; sourceTree = "<group>"; };
 		80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2011.xml"; sourceTree = "<group>"; };
 		80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3p.xml"; sourceTree = "<group>"; };
+		80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-2y-full.xml"; sourceTree = "<group>"; };
+		80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-2-full.xml"; sourceTree = "<group>"; };
 		871B807B2153DDFA0013EE69 /* CIMInputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIMInputManager.swift; sourceTree = "<group>"; };
 		9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji.txt; sourceTree = "<group>"; };
@@ -494,7 +500,9 @@
 				3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */,
 				3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */,
 				3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */,
+				80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */,
 				3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */,
+				80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */,
 				3835B4F81F5DAA7100896BEC /* hangul-keyboard-2y.xml */,
 				80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */,
 				80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */,

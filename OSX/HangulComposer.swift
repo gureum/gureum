@@ -111,9 +111,12 @@ class HangulComposerCombination {
         let handled = self.inputContext.process(string.first!.unicodeScalars.first!.value)
         let UCSString = self.inputContext.commitUCSString
         let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
-        if !handled && configuration.hangulWonCurrencySymbolForBackQuote {
-            if keyCode == kVK_ANSI_Grave && flags.isSubset(of: .capsLock) {
+        if configuration.hangulWonCurrencySymbolForBackQuote && keyCode == kVK_ANSI_Grave && flags.isSubset(of: .capsLock) {
+            if !handled {
                 self._commitString += recentCommitString + "₩"
+                return CIMInputTextProcessResult.processed
+            } else if recentCommitString.last! == "`" {
+                self._commitString += recentCommitString.dropLast() + "₩"
                 return CIMInputTextProcessResult.processed
             }
         }
@@ -162,10 +165,6 @@ class HangulComposerCombination {
         get {
             return false
         }
-    }
-
-    public func input(controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
-        return CIMInputTextProcessResult.notProcessed
     }
 
     #if DEBUG

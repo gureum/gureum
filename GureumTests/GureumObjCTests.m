@@ -226,10 +226,10 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
         [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:nil key:-1 modifiers:NSAlphaShiftKeyMask];
+        [app inputText:nil key:-1 modifiers:NSEventModifierFlagCapsLock];
 
-        [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
-        [app inputText:@" " key:kVK_Space modifiers:NSShiftKeyMask];
+        [app inputText:@" " key:kVK_Space modifiers:NSEventModifierFlagShift];
+        [app inputText:@" " key:kVK_Space modifiers:NSEventModifierFlagShift];
         XCTAssertEqualObjects(@"", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
