@@ -195,4 +195,18 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
+    
+    func testDvorak() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue("org.youknowone.inputmethod.Gureum.dvorak", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("j", key: 38, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("d", key: 2, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("p", key: 35, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("p", key: 35, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hello", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
