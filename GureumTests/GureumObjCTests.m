@@ -342,19 +342,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)testDvorak {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.dvorak" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"j" key:38 modifiers:0];
-        [app inputText:@"d" key:2 modifiers:0];
-        [app inputText:@"p" key:35 modifiers:0];
-        [app inputText:@"p" key:35 modifiers:0];
-        [app inputText:@"s" key:1 modifiers:0];
-        XCTAssertEqualObjects(@"hello", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testColemak {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
