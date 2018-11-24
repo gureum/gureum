@@ -464,31 +464,22 @@ class GureumTests: XCTestCase {
     
     func testHan3UnicodeArea() {
         for app in self.apps {
-            
-            //두벌식 ㅏㄹ
+            //두벌식 ㅑㄴ
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputText("k", key: UInt(kVK_ANSI_K), modifiers: NSEvent.ModifierFlags(rawValue: 0))
-            app.inputText("f", key: UInt(kVK_ANSI_F), modifiers: NSEvent.ModifierFlags(rawValue: 0))
-            XCTAssertEqual("ㅏㄹ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            
+            app.inputText("i", key: UInt(kVK_ANSI_I), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: UInt(kVK_ANSI_S), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("ㅑㄴ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+ 
             let han2 = app.client.string
+            app.inputText(" ", key: UInt(kVK_Space), modifiers: NSEvent.ModifierFlags(rawValue: 0))
             
-            //세벌식 ㅏㄹ
+            //세벌식 ㅑㄴ
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputText("f", key: UInt(kVK_ANSI_K), modifiers: NSEvent.ModifierFlags(rawValue: 0))
-            app.inputText("y", key: UInt(kVK_ANSI_F), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("6", key: UInt(kVK_ANSI_6), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: UInt(kVK_ANSI_S), modifiers: NSEvent.ModifierFlags(rawValue: 0))
             XCTAssertEqual(han2, app.client.string, "buffer: \(app.client.string) app: \(app)")
-            
-            // qwertyuiop[]\
-            // ㅅㄹㅕㅐㅓㄹㄷㅁㅊㅍ(<:
-            // asdfghjkl;'
-            // ㅇㄴㅣㅏㅡㄴㅇㄱㅈㅂㅌ
-            // zxcvbnm,./
-            // ㅁㄱㅔㅗㅜㅅㅎ,.ㅗ
-            // `1234567890-=
-            // *ㅎㅆㅂㅛㅠㅑㅖㅢㅜㅋ)>
         }
     }
 
