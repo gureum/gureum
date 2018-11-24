@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import Crashlytics
 
 
 @objcMembers class CIMInputReceiver: NSObject, CIMInputTextDelegate {

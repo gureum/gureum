@@ -257,6 +257,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
                 emoticonComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
+            Answers.logContentView(withName: , contentType: "InputMode", contentId:, customAttributes: [:])
+            
         }
 
         if self.delegate === hangulComposer {
