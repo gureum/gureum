@@ -8,7 +8,7 @@ import logging
 import unittest
 
 
-data=[]
+data = []
 
 
 def generate_ko_emoji(files):
@@ -23,7 +23,7 @@ def generate_ko_emoji(files):
                 tag = _refine_description(tag.strip())
                 lines.append((emoji, tag))
     lines = list(set(lines))
-    lines.sort(key=lambda x: x[1])
+    lines.sort(key=lambda x: (x[1], x[0]))
 
     with open('emoji_ko.txt', 'w') as f:
         for emoji, desc in lines:
@@ -32,16 +32,14 @@ def generate_ko_emoji(files):
 
 def make_emoji(filename: str = 'generate_emoji.txt') -> int:
     global data
-             
+
     with open(filename, 'r', encoding='utf-8') as file:
         file_lines = file.readlines()
-             
+
     qualified_lines = _get_fully_qualified_lines(file_lines)
-             
+
     for line in qualified_lines:
         data.append(_get_emoji_data(line))
-             
-
 
 
 def generate_emoji(filename: str = 'emoji-test.txt') -> int:
