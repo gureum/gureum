@@ -54,6 +54,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
             notificationCenter.deliver(notification)
         #else
             Fabric.with([Crashlytics.self])
+            Fabric.with([Answers.self])
         #endif
 
         UpdateManager.shared.notifyUpdateIfNeeded()
