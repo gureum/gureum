@@ -187,7 +187,7 @@ extension CIMInputReceiver { // IMKStateSetting
                     self.commitComposition(sender, controller:controller)
                     self.composer.inputMode = value
                 }
-                Answers.logContentView(withName: value, contentType: "InputMode", contentId: value, customAttributes: nil)
+                Answers.logContentView(withName: value, contentType: "InputMode", contentId: value, customAttributes: [:])
             default:
                 dlog(true, "**** UNKNOWN TAG %ld !!! ****", tag);
         }

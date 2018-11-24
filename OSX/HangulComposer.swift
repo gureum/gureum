@@ -8,6 +8,8 @@
 
 import Foundation
 import Hangul
+import Fabric
+import Crashlytics
 
 let DEBUG_HANGULCOMPOSER = false
 

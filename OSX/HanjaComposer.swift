@@ -71,6 +71,7 @@ class HanjaComposer: CIMComposer {
         self._commitString = value
         self.hangulComposer.cancelComposition()
         self.hangulComposer.dequeueCommitString()
+        Answers.logContentView(withName:value, contentType:"hanja",contentId:value,customAttributes:[:])
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
@@ -183,7 +184,6 @@ class HanjaComposer: CIMComposer {
             }
             self._candidates = candidates
         }
-        Answers.logContentView(withName:dequeued, contentType:"hanja",contentId:keyword,customAttributes:[:])
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates showing: %d", self.candidates != nil);
     }
 
