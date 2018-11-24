@@ -60,14 +60,14 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2015 : "3-2015",
 ]
 
-@objcMembers class GureumComposer: CIMComposer {
+@objcMembers public class GureumComposer: CIMComposer {
     var romanComposer: CIMComposer
     let qwertyComposer: QwertyComposer = QwertyComposer()
     let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
     let colemakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
     let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: "2")!
     let hanjaComposer: HanjaComposer = HanjaComposer()
-    let emoticonComposer: EmoticonComposer = EmoticonComposer()
+    public let emoticonComposer: EmoticonComposer = EmoticonComposer()
     let romanComposersByIdentifier: [String: CIMComposer]
     
     let ioConnect: IOConnect
@@ -87,7 +87,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
         self.delegate = qwertyComposer
     }
     
-    @objc override var inputMode: String {
+    @objc override public var inputMode: String {
         get {
             return super.inputMode
         }
@@ -117,7 +117,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
         }
     }
     
-    @objc override func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    @objc override public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let configuration = GureumConfiguration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
