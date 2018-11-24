@@ -318,4 +318,212 @@ class GureumTests: XCTestCase {
             }
         }
     }
+
+    func testColemak() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.colemak.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("h", key: 4, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("k", key: 40,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("u", key: 32,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("u", key: 32,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText(";", key: 41,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hello", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            
+        }
+    }
+
+    func test2(){
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("g", key: 5, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("k", key: 40, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText(" ", key: 49, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            app.inputText("g", key: 5, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㅎ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("k", key: 40, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            if (app != self.terminal) {
+                XCTAssertEqual("한글 한글\n", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            }
+        }
+    }
+    
+    func testCapslockHangul() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("2", key: 19, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            app.inputText(" ", key: 49, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+
+            app.client.string = ""
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("2", key: 19, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+    
+    func testRomanEmoticon(){
+        for app in self.apps {
+            if(app == self.terminal){
+                continue
+            }
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+
+            let composer = app.controller.composer as! GureumComposer
+            let emoticonComposer = composer.emoticonComposer
+            emoticonComposer.delegate = composer.delegate // roman?
+            composer.delegate = emoticonComposer
+            
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("l", key: 37, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("e", key: 14, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("e", key: 14, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("p", key: 35, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("y", key: 16, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("sleepy", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("sleepy", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText(" ", key: UInt(kVK_Space), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("sleepy ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("sleepy ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("c", key: 8, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("e", key: 14, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("sleepy face", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("sleepy face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string:"😪: sleepy face"))
+            XCTAssertEqual("sleepy face", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("sleepy face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelected(NSAttributedString(string:"😪: sleepy face"))
+            XCTAssertEqual("😪", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            app.client.string = ""
+            app.inputText("h", key: 4, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("u", key: 32, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("h", key: 4, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("e", key: 14, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("d", key: 2, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hushed", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("hushed", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText(" ", key: UInt(kVK_Space), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hushed ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("hushed ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("a", key: 0, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("c", key: 8, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("e", key: 14, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hushed face", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("hushed face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string:"😯: hushed face"))
+            XCTAssertEqual("hushed face", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("hushed face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelected(NSAttributedString(string:"😯:, hushed face"))
+            XCTAssertEqual("😯", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
+
+//-- (void)testRomanEmoticon {
+//    -    for (VirtualApp *app in @[self.moderate]) {
+//        -        if (app == self.terminal) {
+//            -            continue; // 터미널은 이모티콘 모드 진입이 불가
+//            -        }
+//        -        app.client.string = @"";
+//        -        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
+//        -
+//        -        GureumComposer *composer = (GureumComposer *)app.controller.composer;
+//        -        EmoticonComposer *emoticonComposer = composer.emoticonComposer;
+//        -        emoticonComposer.delegate = composer.delegate;  // roman?
+//        -        composer.delegate = emoticonComposer;
+//        -
+//        -//        [app inputText:@"\n" key:36 modifiers:655360]; // change to emoticon mode
+//        -        [app inputText:@"s" key:1 modifiers:0];
+//        -        [app inputText:@"l" key:37 modifiers:0];
+//        -        [app inputText:@"e" key:14 modifiers:0];
+//        -        [app inputText:@"e" key:14 modifiers:0];
+//        -        [app inputText:@"p" key:35 modifiers:0];
+//        -        [app inputText:@"y" key:16 modifiers:0];
+//        -        XCTAssertEqualObjects(@"sleepy", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"sleepy", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app inputText:@" " key:kVK_Space modifiers:0];
+//        -        XCTAssertEqualObjects(@"sleepy ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"sleepy ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app inputText:@"f" key:3 modifiers:0];
+//        -        [app inputText:@"a" key:0 modifiers:0];
+//        -        [app inputText:@"c" key:8 modifiers:0];
+//        -        [app inputText:@"e" key:14 modifiers:0];
+//        -        XCTAssertEqualObjects(@"sleepy face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"sleepy face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"😪: sleepy face"]];
+//        -        XCTAssertEqualObjects(@"sleepy face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"sleepy face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"😪: sleepy face"]];
+//        -        XCTAssertEqualObjects(@"😪", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -
+//        -        app.client.string = @"";
+//        -        [app inputText:@"h" key:4 modifiers:0];
+//        -        [app inputText:@"u" key:32 modifiers:0];
+//        -        [app inputText:@"s" key:1 modifiers:0];
+//        -        [app inputText:@"h" key:4 modifiers:0];
+//        -        [app inputText:@"e" key:14 modifiers:0];
+//        -        [app inputText:@"d" key:2 modifiers:0];
+//        -        XCTAssertEqualObjects(@"hushed", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"hushed", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app inputText:@" " key:49 modifiers:0];
+//        -        XCTAssertEqualObjects(@"hushed ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"hushed ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app inputText:@"f" key:3 modifiers:0];
+//        -        [app inputText:@"a" key:0 modifiers:0];
+//        -        [app inputText:@"c" key:8 modifiers:0];
+//        -        [app inputText:@"e" key:14 modifiers:0];
+//        -        XCTAssertEqualObjects(@"hushed face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"hushed face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"😯: hushed face"]];
+//        -        XCTAssertEqualObjects(@"hushed face", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"hushed face", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"😯: hushed face"]];
+//        -        XCTAssertEqualObjects(@"😯", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
+//        -    }
+//    -}

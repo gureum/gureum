@@ -10,7 +10,7 @@ import Hangul
 
 let DEBUG_EMOTICON = false
 
-class EmoticonComposer: CIMComposer {
+public class EmoticonComposer: CIMComposer {
     static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)
 
     var _candidates: [String]?
@@ -25,23 +25,23 @@ class EmoticonComposer: CIMComposer {
         return self.delegate
     }
 
-    override var candidates: [String]? {
+    override public var candidates: [String]? {
         return _candidates
     }
 
-    override var composedString: String {
+    override public var composedString: String {
         return _composedString
     }
 
-    override var commitString: String {
+    override public var commitString: String {
         return _commitString
     }
 
-    override var originalString: String {
+    override public var originalString: String {
         return _bufferedString
     }
 
-    override func dequeueCommitString() -> String {
+    override public func dequeueCommitString() -> String {
         let result = self._commitString
         if !result.isEmpty {
             self._bufferedString = ""
@@ -50,7 +50,7 @@ class EmoticonComposer: CIMComposer {
         return result
     }
 
-    override func cancelComposition() {
+    override public func cancelComposition() {
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
         self._commitString.append(self._composedString)
@@ -58,18 +58,18 @@ class EmoticonComposer: CIMComposer {
         self._composedString = ""
     }
 
-    override func clearContext() {
+    override public func clearContext() {
         self._commitString = ""
     }
 
-    override var hasCandidates: Bool {
+    override public var hasCandidates: Bool {
         guard let candidates = self._candidates else {
             return false
         }
         return candidates.count > 0 ? true : false
     }
 
-    override func candidateSelected(_ candidateString: NSAttributedString) {
+    override public func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [candidateSelected] MSG: function called")
         let value: String = candidateString.string.components(separatedBy: ":")[0]
         dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value)
@@ -80,7 +80,7 @@ class EmoticonComposer: CIMComposer {
         self.romanComposer.dequeueCommitString()
     }
 
-    override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
+    override public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         if candidateString.length == 0 {
             self._selectedCandidate = nil
         } else {
@@ -167,7 +167,7 @@ class EmoticonComposer: CIMComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
-    override func input(controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override public func input(controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result: CIMInputTextProcessResult = self.delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
 
