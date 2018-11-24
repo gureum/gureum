@@ -151,6 +151,30 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("₩~", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
+    
+    func testHanjaSelection() {
+        for app in self.apps {
+            if app == self.terminal {
+                continue // 터미널은 한자 모드 진입이 불가능
+            }
+            
+            app.client.string = "물 수"
+            
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            app.client.setSelectedRange(NSMakeRange(0,3))
+            XCTAssertEqual("물 수", app.client.selectedString(), "")
+            
+            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags.option)
+            app.controller.candidateSelectionChanged(NSAttributedString.init(string: "水: 물 수, 고를 수"))
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelected(NSAttributedString.init(string: "水 : 물 수, 고를 수"))
+            XCTAssertEqual("水", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            
+        }
+    }
 
     func testBackQuoteOnComposing() {
         for app in self.apps {
