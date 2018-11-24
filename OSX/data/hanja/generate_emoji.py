@@ -8,6 +8,9 @@ import logging
 import unittest
 
 
+data=[]
+
+
 def generate_ko_emoji(files):
     lines = []
     for file in files:
@@ -27,6 +30,20 @@ def generate_ko_emoji(files):
             f.write(f'{desc}:{emoji}:{desc}\n')
 
 
+def make_emoji(filename: str = 'generate_emoji.txt') -> int:
+    global data
+             
+    with open(filename, 'r', encoding='utf-8') as file:
+        file_lines = file.readlines()
+             
+    qualified_lines = _get_fully_qualified_lines(file_lines)
+             
+    for line in qualified_lines:
+        data.append(_get_emoji_data(line))
+             
+
+
+
 def generate_emoji(filename: str = 'emoji-test.txt') -> int:
     """generate emoji from input file
 
@@ -35,7 +52,7 @@ def generate_emoji(filename: str = 'emoji-test.txt') -> int:
     Return:
         Number of written characters
     """
-    data = []
+    global data
 
     with open(filename, 'r', encoding='utf-8') as file:
         file_lines = file.readlines()
@@ -164,6 +181,7 @@ if __name__ == '__main__':
     )
 
     try:
+        make_emoji()
         generate_emoji()
         logging.info('emoji.txt has been created')
     except Exception as e:

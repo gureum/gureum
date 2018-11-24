@@ -1,0 +1,4 @@
+F8FF                                       ; fully-qualified     #  Apple logo
+2318				           ; fully-qualified     # ⌘ Command
+2325					   ; fully-qualified     # ⌥ Option
+21E7					   ; fully-qualified     # ⇧ Shift

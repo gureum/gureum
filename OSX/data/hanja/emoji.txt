@@ -13,6 +13,7 @@ Angola:🇦🇴:Angola
 Anguilla:🇦🇮:Anguilla
 Antarctica:🇦🇶:Antarctica
 Antigua & Barbuda:🇦🇬:Antigua & Barbuda
+Apple logo::Apple logo
 Aquarius:♒:Aquarius
 Argentina:🇦🇷:Argentina
 Aries:♈:Aries
@@ -66,6 +67,7 @@ Christmas tree:🎄:Christmas tree
 Clipperton Island:🇨🇵:Clipperton Island
 Cocos (Keeling) Islands:🇨🇨:Cocos (Keeling) Islands
 Colombia:🇨🇴:Colombia
+Command:⌘:Command
 Comoros:🇰🇲:Comoros
 Congo - Brazzaville:🇨🇬:Congo - Brazzaville
 Congo - Kinshasa:🇨🇩:Congo - Kinshasa
@@ -231,6 +233,7 @@ OK hand; medium-light skin tone:👌🏼:OK hand; medium-light skin tone
 ON! arrow:🔛:ON! arrow
 Oman:🇴🇲:Oman
 Ophiuchus:⛎:Ophiuchus
+Option:⌥:Option
 P button:🅿️:P button
 Pakistan:🇵🇰:Pakistan
 Palau:🇵🇼:Palau
@@ -267,6 +270,7 @@ Scotland:🏴󠁧󠁢󠁳󠁣󠁴󠁿:Scotland
 Senegal:🇸🇳:Senegal
 Serbia:🇷🇸:Serbia
 Seychelles:🇸🇨:Seychelles
+Shift:⇧:Shift
 Sierra Leone:🇸🇱:Sierra Leone
 Singapore:🇸🇬:Singapore
 Sint Maarten:🇸🇽:Sint Maarten
