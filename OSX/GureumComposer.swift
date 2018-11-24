@@ -12,6 +12,7 @@
  */
 
 import Foundation
+import Crashlytics
 
 public enum GureumInputSourceIdentifier: String {
     case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
@@ -257,9 +258,8 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
                 emoticonComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
-            Answers.logContentView(withName: , contentType: "InputMode", contentId:, customAttributes: [:])
-            
-        }
+            //Answers.logContentView(withName: delegatedComposer as! String, contentType: "InputMode", contentId:delegatedComposer as! String, customAttributes: [:])
+            Answers.logContentView(withName: delegatedComposer as? String, contentType: "HanjaMode", contentId: delegatedComposer as? String, customAttributes: [:])        }
 
         if self.delegate === hangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환

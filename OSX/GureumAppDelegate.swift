@@ -54,6 +54,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         #if NDEBUG
         Fabric.with([Crashlytics.self])
         #endif
+        Fabric.with([Answers.self])
         checkUpdate()
     }
 
