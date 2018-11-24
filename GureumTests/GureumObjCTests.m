@@ -117,47 +117,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)test3final {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"m" key:46 modifiers:0];
-        [app inputText:@"f" key:3 modifiers:0];
-        [app inputText:@"s" key:1 modifiers:0];
-        XCTAssertEqualObjects(@"한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"k" key:40 modifiers:0];
-        XCTAssertEqualObjects(@"한ㄱ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"g" key:5 modifiers:0];
-        [app inputText:@"w" key:13 modifiers:0];
-        XCTAssertEqualObjects(@"한글", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@" " key:49 modifiers:0];
-        XCTAssertEqualObjects(@"한글 ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-
-        [app inputText:@"m" key:46 modifiers:0];
-        XCTAssertEqualObjects(@"한글 ㅎ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"ㅎ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"f" key:3 modifiers:0];
-        [app inputText:@"s" key:1 modifiers:0];
-        XCTAssertEqualObjects(@"한글 한", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"한", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"k" key:40 modifiers:0];
-        XCTAssertEqualObjects(@"한글 한ㄱ", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"ㄱ", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"g" key:5 modifiers:0];
-        [app inputText:@"w" key:13 modifiers:0];
-        XCTAssertEqualObjects(@"한글 한글", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"글", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@"\n" key:36 modifiers:0];
-        if (app != self.terminal) {
-            XCTAssertEqualObjects(@"한글 한글\n", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        }
-    }
-}
-
 - (void)testCapslockRoman {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
@@ -198,30 +157,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)testBlock {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"m" key:46 modifiers:0];
-        [app inputText:@"f" key:3 modifiers:0];
-        [app inputText:@"s" key:1 modifiers:0];
-        [app inputText:@"k" key:40 modifiers:0];
-        [app inputText:@"g" key:5 modifiers:0];
-        [app inputText:@"w" key:13 modifiers:0];
-        XCTAssertEqualObjects(@"mfskgw", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app inputText:@" " key:49 modifiers:0];
-
-        [app inputText:@"" key:123 modifiers:10616832];
-        [app inputText:@"" key:123 modifiers:10616832];
-        [app inputText:@"" key:123 modifiers:10616832];
-        [app inputText:@"" key:123 modifiers:10616832];
-        [app inputText:@"" key:123 modifiers:10616832];
-        [app inputText:@"" key:123 modifiers:10616832];
-        //XCTAssertEqualObjects(@"fskgw ", app.client.selectedString, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testLayoutChange {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
@@ -243,16 +178,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
         SEL selector = method_getName(methods[i]);
         NSString *name = NSStringFromSelector(selector);
         NSLog(@"IPMDServerClientWrapper selector: %@", name);
-    }
-}
-
-- (void)test3Number {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"K" key:40 modifiers:131072];
-        XCTAssertEqualObjects(@"2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
     }
 }
 
