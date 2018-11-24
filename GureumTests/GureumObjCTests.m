@@ -228,27 +228,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)testHanjaSelection {
-    for (VirtualApp *app in @[self.moderate]) {
-        if (app == self.terminal) {
-            continue; // 터미널은 한자 모드 진입이 불가
-        }
-        app.client.string = @"물 수";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
-        // hanja search mode
-        [app.client setSelectedRange:NSMakeRange(0, 3)];
-        XCTAssertEqualObjects(@"물 수", app.client.selectedString, @"");
-
-        [app inputText:@"\n" key:36 modifiers:524288];
-        [app.controller candidateSelectionChanged:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
-        XCTAssertEqualObjects(@"물 수", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"물 수", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-        [app.controller candidateSelected:[[NSAttributedString alloc] initWithString:@"水: 물 수, 고를 수"]];
-        XCTAssertEqualObjects(@"水", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testColemak {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
