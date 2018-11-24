@@ -7,6 +7,8 @@
 //
 
 import Hangul
+import Fabric
+import Crashlytics
 
 let DEBUG_HANJACOMPOSER = false
 
@@ -181,6 +183,7 @@ class HanjaComposer: CIMComposer {
             }
             self._candidates = candidates
         }
+        Answers.logContentView(withName:dequeued, contentType:"hanja",contentId:keyword,customAttributes:[:])
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates showing: %d", self.candidates != nil);
     }
 

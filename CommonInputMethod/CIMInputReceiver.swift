@@ -8,7 +8,7 @@
 
 import Foundation
 import Cocoa
-
+import Crashlytics
 
 @objcMembers class CIMInputReceiver: NSObject, CIMInputTextDelegate {
     var inputClient: Any
@@ -187,10 +187,10 @@ extension CIMInputReceiver { // IMKStateSetting
                     self.commitComposition(sender, controller:controller)
                     self.composer.inputMode = value
                 }
+                Answers.logContentView(withName: value, contentType: "InputMode", contentId: value, customAttributes: nil)
             default:
                 dlog(true, "**** UNKNOWN TAG %ld !!! ****", tag);
         }
-        
         dlog(true, "==== source");
         return;
         
