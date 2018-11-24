@@ -246,16 +246,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)test3Number {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.han3final" forTag:kTextServiceInputModePropertyTag client:app.client];
-        [app inputText:@"K" key:40 modifiers:131072];
-        XCTAssertEqualObjects(@"2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-        XCTAssertEqualObjects(@"", app.client.markedString, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testRomanEmoticon {
     for (VirtualApp *app in @[self.moderate]) {
         if (app == self.terminal) {

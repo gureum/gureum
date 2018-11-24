@@ -210,4 +210,13 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func test3Number() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue("org.youknowone.inputmethod.Gureum.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("K", key: UInt(kVK_ANSI_K), modifiers: NSEvent.ModifierFlags(rawValue: 131072))
+            XCTAssertEqual("2", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }       
+    }
 }
