@@ -282,4 +282,83 @@ class GureumTests: XCTestCase {
             }
         }
     }
+
+    func testColemak() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.colemak.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("h", key: 4, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("k", key: 40,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("u", key: 32,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("u", key: 32,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText(";", key: 41,modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("hello", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            
+        }
+    }
+
+    func test2(){
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("g", key: 5, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("k", key: 40, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText(" ", key: 49, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            app.inputText("g", key: 5, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㅎ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("k", key: 40, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("s", key: 1, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("f", key: 3, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한글 한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("\n", key: 36, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            if (app != self.terminal) {
+                XCTAssertEqual("한글 한글\n", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            }
+        }
+    }
+    
+    func testCapslockHangul() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag:kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("2", key: 19, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            
+            app.inputText(" ", key: 49, modifiers: NSEvent.ModifierFlags(rawValue: 0))
+
+            app.client.string = ""
+            app.inputText("m", key: 46, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("r", key: 15, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("2", key: 19, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
