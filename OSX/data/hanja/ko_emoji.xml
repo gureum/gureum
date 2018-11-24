@@ -1593,7 +1593,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<annotation cp="🕖" type="tts">일곱 시</annotation>
 		<annotation cp="🕢">7:30 | 7시 30분 | 시계 | 일곱 시 반</annotation>
 		<annotation cp="🕢" type="tts">일곱 시 반</annotation>
-		<annotation cp="🕗">7 | 8:00 | 8시 | 시계 | 여덟 시</annotation>
+		<annotation cp="🕗">8 | 8:00 | 8시 | 시계 | 여덟 시</annotation>
 		<annotation cp="🕗" type="tts">여덟 시</annotation>
 		<annotation cp="🕣">8:30 | 8시 30분 | 시계 | 여덟 시 반</annotation>
 		<annotation cp="🕣" type="tts">여덟 시 반</annotation>
