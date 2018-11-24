@@ -63,6 +63,22 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testCapslockRoman(){
+        for app in self.apps{
+            app.client.string=""
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag : kTextServiceInputModePropertyTag, client : app.client)
+            app.inputText("m",key:46, modifiers:NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("r",key:15, modifiers:NSEvent.ModifierFlags(rawValue: 0))
+            app.inputText("2",key:19, modifiers:NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("mr2", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            app.client.string=""
+            app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag : kTextServiceInputModePropertyTag, client : app.client)
+            app.inputText("m",key:46, modifiers: NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("r",key:15, modifiers:NSEvent.ModifierFlags(rawValue: 0x10000))
+            app.inputText("2",key:19, modifiers:NSEvent.ModifierFlags(rawValue: 0x10000))
+            XCTAssertEqual("MR2", app.client.string, "buffer: \(app.client.string), app: \(app)")
+        }
+    }
     func testHanjaSyllable() {
         for app in self.apps {
             app.client.string = ""

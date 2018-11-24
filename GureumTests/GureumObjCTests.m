@@ -117,24 +117,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
     }
 }
 
-- (void)testCapslockRoman {
-    for (VirtualApp *app in self.apps) {
-        app.client.string = @"";
-        [app.controller setValue:@"org.youknowone.inputmethod.Gureum.qwerty" forTag:kTextServiceInputModePropertyTag client:app.client];
-
-        [app inputText:@"m" key:46 modifiers:0];
-        [app inputText:@"r" key:15 modifiers:0];
-        [app inputText:@"2" key:19 modifiers:0];
-        XCTAssertEqualObjects(@"mr2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-
-        app.client.string = @"";
-        [app inputText:@"m" key:46 modifiers:0x10000];
-        [app inputText:@"r" key:15 modifiers:0x10000];
-        [app inputText:@"2" key:19 modifiers:0x10000];
-        XCTAssertEqualObjects(@"MR2", app.client.string, @"buffer: %@ app: (%@)", app.client.string, app);
-    }
-}
-
 - (void)testCapslockHangul {
     for (VirtualApp *app in self.apps) {
         app.client.string = @"";
