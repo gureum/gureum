@@ -502,4 +502,25 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testEscapeOrCntrlAndLeftBracketHan3Gureum() {
+        for app in self.apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: NSEvent.ModifierFlags.control)
+            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+    
+    func testEscapeOrCntrlAndLeftBracketWithShiftHan3Gureum() {
+        for app in self.apps {
+            let controlAndShift = NSEvent.ModifierFlags.control.union(.shift)
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            
+            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: controlAndShift)
+            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
 }
