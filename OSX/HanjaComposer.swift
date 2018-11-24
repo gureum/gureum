@@ -7,6 +7,7 @@
 //
 
 import Hangul
+import Crashlytics
 
 let DEBUG_HANJACOMPOSER = false
 
@@ -69,7 +70,7 @@ class HanjaComposer: CIMComposer {
         self._commitString = value
         self.hangulComposer.cancelComposition()
         self.hangulComposer.dequeueCommitString()
-        Answers.logCustomEvent("HanjaInput", customAttributes: ["Hanja":value])
+        Answers.logCustomEvent(withName:"HanjaInput", customAttributes: ["Hanja":value])
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {

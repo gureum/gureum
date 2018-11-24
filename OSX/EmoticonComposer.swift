@@ -79,7 +79,7 @@ public class EmoticonComposer: CIMComposer {
         self._commitString = value
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
-        Answers.logCustomEvent("EmojiInput", customAttributes: ["Emoji":value])
+        Answers.logCustomEvent(withName: "EmojiInput", customAttributes: ["Emoji":value])
 
     }
 
