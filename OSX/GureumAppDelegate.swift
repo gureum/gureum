@@ -61,5 +61,12 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
 
         // IMKServer를 띄워야만 입력기가 동작한다
         _ = InputMethodServer.shared
+
+        reportLastInputMode()
+    }
+
+    func reportLastInputMode() {
+        let lastInputModes = ["Roman": self.configuration.lastRomanInputMode, "Hangul": self.configuration.lastHangulInputMode]
+        Answers.logCustomEvent(withName: "LastInputMode", customAttributes: lastInputModes)
     }
 }
