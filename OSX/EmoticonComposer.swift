@@ -7,6 +7,7 @@
 //
 
 import Hangul
+import Crashlytics
 
 let DEBUG_EMOTICON = false
 
@@ -78,6 +79,8 @@ public class EmoticonComposer: CIMComposer {
         self._commitString = value
         self.romanComposer.cancelComposition()
         self.romanComposer.dequeueCommitString()
+        Answers.logCustomEvent("EmojiInput", customAttributes: ["Emoji":value])
+
     }
 
     override public func candidateSelectionChanged(_ candidateString: NSAttributedString) {

@@ -16,6 +16,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
 
     override init(){
         super.init()
+        Fabric.with([Answers.self])
         NSUserNotificationCenter.default.delegate = self
     }
 
@@ -55,6 +56,13 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         Fabric.with([Crashlytics.self])
         #endif
         checkUpdate()
+        logLastInputMode()
+    }
+    
+    func logLastInputMode() {
+        let lastRoman = self.configuration.lastRomanInputMode
+        let lastHangul = self.configuration.lastHangulInputMode
+        Answers.logCustomEvent(withName: "LastInputMode", customAttributes: ["Roman":lastRoman, "Hangul":lastHangul])
     }
 
     @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {
