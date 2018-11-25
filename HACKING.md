@@ -8,8 +8,18 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
     pod install # cocoapod을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
     open Gureum.xcworkspace
 
+또한, Cocoa Pod 1.6 베타 이상의 환경이 필요합니다. 경우에 따라 빌드 결과물의 경로가 변경될 수 있습니다. Xcode 10을 기준으로 Build Location 은 Unique 세팅으로 워크스페이스가 구성되어 있는지 확인해주세요.
+
+> Xcode > Preferences > Locations > Derived Data > Advanced... > Unique
+
+![image](https://user-images.githubusercontent.com/906974/48977266-9057a580-f0da-11e8-86a3-14a0fd4fcb48.png)
+
 # 빌드
-OSX 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
+
+`OSX 타겟`을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
+
+![image](https://user-images.githubusercontent.com/906974/48977284-c5fc8e80-f0da-11e8-9ad2-7a40b8e774ea.png)
+
 Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
 
 # 테스트

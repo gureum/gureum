@@ -16,9 +16,10 @@ Pods
 *perspectivev3
 *xcuserdata*
 *xcworkspace*
+/build
+
 # Junk files on Mac OS X
 *.DS_Store
-
 .python-version
 *.playground
 Crashlytics.framework
