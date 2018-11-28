@@ -43,7 +43,14 @@ class GureumTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
+    func testPreferencePane() {
+         let path = Bundle.main.path(forResource: "Preferences", ofType: "prefPane")
+         let bundle = NSPrefPaneBundle(path: path)!
+         let loaded = bundle.instantiatePrefPaneObject()
+         XCTAssertTrue(loaded)
+    }
+
     func testSearchEmoticonTable() {
         let bundle: Bundle = Bundle.main
         let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")
