@@ -38,3 +38,11 @@
 @interface GreedyApp: VirtualApp
 
 @end
+
+@interface NSPrefPaneBundle: NSObject
+
+- (instancetype)initWithPath:(id)arg1;
+- (BOOL)instantiatePrefPaneObject;
+//- (NSPreferencePane *)prefPaneObject;
+
+@end
