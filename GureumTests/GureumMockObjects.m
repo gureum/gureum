@@ -54,7 +54,7 @@
     return self;
 }
 
-- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags {
+- (BOOL)inputText:(NSString *)text key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags {
     CIMInputController *controller = self.controller;
     CIMMockClient *client = self.client;
     BOOL processed = [controller inputText:text key:keyCode modifiers:flags client:client];
@@ -67,7 +67,7 @@
 
 @implementation ModerateApp
 
-- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags {
+- (BOOL)inputText:(NSString *)text key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags {
     BOOL processed = [super inputText:text key:keyCode modifiers:flags];
     BOOL specialFlags = (flags & (NSEventModifierFlagCommand | NSEventModifierFlagControl)) > 0;
     if (!processed && !specialFlags) {
@@ -81,7 +81,7 @@
 
 @implementation TerminalApp
 
-- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags {
+- (BOOL)inputText:(NSString *)text key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags {
     BOOL processed = NO;
     if (self.client.hasMarkedText) {
         processed = [super inputText:text key:keyCode modifiers:flags];
@@ -108,7 +108,7 @@
 
 @implementation GreedyApp
 
-- (BOOL)inputText:(NSString *)text key:(NSUInteger)keyCode modifiers:(NSEventModifierFlags)flags {
+- (BOOL)inputText:(NSString *)text key:(NSInteger)keyCode modifiers:(NSEventModifierFlags)flags {
     BOOL processed = NO;
     if (self.client.hasMarkedText) {
         processed = [super inputText:text key:keyCode modifiers:flags];
