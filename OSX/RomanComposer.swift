@@ -77,11 +77,24 @@ class QwertyComposer: CIMComposer {
 
 
 class RomanDataComposer: CIMComposer {
-    public static let dvorakData: String = "`1234567890[]\\',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz~!@#$%^&*(){}|\"<>PYFGCRL?+AOEUIDHTNS_:QJKXBMWVZ"
-    public static let colemakData: String = "`1234567890-=\\qwfpgjluy;[]arstdhneio'zxcvbkm,./~!@#$%^&*()_+|QWFPGJLUY:{}ARSTDHNEIO\"ZXCVBKM<>"
+    public static let dvorakData: String = ["`1234567890[]\\",
+                                            "',.pyfgcrl/=",
+                                            "aoeuidhtns-",
+                                            ";qjkxbmwvz",
+                                            "~!@#$%^&*(){}|",
+                                            "\"<>PYFGCRL?+",
+                                            "AOEUIDHTNS_",
+                                            ":QJKXBMWVZ"].reduce("", +)
+    public static let colemakData: String = ["`1234567890-=\\",
+                                             "qwfpgjluy;[]",
+                                             "arstdhneio'",
+                                             "zxcvbkm,./",
+                                             "~!@#$%^&*()_+|",
+                                             "QWFPGJLUY:{}",
+                                             "ARSTDHNEIO\"",
+                                             "ZXCVBKM<>?"].reduce("", +)
 
     var _commitString: String? = nil
-
     var _keyboard: String = ""
 
     init(keyboardData: String) {
@@ -135,8 +148,15 @@ class RomanDataComposer: CIMComposer {
             assert(false)
             return .notProcessed
         }
-        
-        let qwerty = "`1234567890-=\\qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+|QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
+
+        let qwerty = ["`1234567890-=\\",
+                      "qwertyuiop[]",
+                      "asdfghjkl;'",
+                      "zxcvbnm,./",
+                      "~!@#$%^&*()_+|",
+                      "QWERTYUIOP{}",
+                      "ASDFGHJKL:\"",
+                      "ZXCVBNM<>?"].reduce("", +)
 
         var map: [Character: Character] = [:]
         zip(qwerty, self._keyboard).forEach {
