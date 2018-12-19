@@ -348,7 +348,8 @@ class GureumTests: XCTestCase {
             app.inputText("u", key: Int(kVK_ANSI_U), modifiers: NSEvent.ModifierFlags(rawValue: 0))
             app.inputText("u", key: Int(kVK_ANSI_U), modifiers: NSEvent.ModifierFlags(rawValue: 0))
             app.inputText(";", key: Int(kVK_ANSI_Semicolon), modifiers: NSEvent.ModifierFlags(rawValue: 0))
-            XCTAssertEqual("hello", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputText("?", key: Int(kVK_ANSI_Slash), modifiers: NSEvent.ModifierFlags.shift)
+            XCTAssertEqual("hello?", app.client.string, "buffer: \(app.client.string) app: \(app)")
             
         }
     }
