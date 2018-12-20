@@ -46,10 +46,10 @@ extension CIMInputController { // IMKServerInputHandleEvent
                     self.capsLockPressed = false
                     dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue);
                     // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
-                    self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
+                    let _ = self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
                 } else {
                     dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue);
-                    self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
+                    let _ = self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
                 }
                 return false
             }
@@ -103,7 +103,7 @@ extension CIMInputController {  // IMKMouseHandling
      */
     open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any!) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN");
-        self.receiver.commitCompositionEvent(sender, controller: self)
+        let _ = self.receiver.commitCompositionEvent(sender, controller: self)
         return false
     }
 }
@@ -119,7 +119,7 @@ extension CIMInputController {  // IMKServerInput
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     open override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?");
-        self.receiver.commitCompositionEvent(sender, controller: self)
+        let _ = self.receiver.commitCompositionEvent(sender, controller: self)
         //[super commitComposition:sender];
     }
     

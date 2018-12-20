@@ -48,7 +48,7 @@ class HanjaComposer: CIMComposer {
 
     override func cancelComposition() {
         self.hangulComposer.cancelComposition()
-        self.hangulComposer.dequeueCommitString()
+        let _ = self.hangulComposer.dequeueCommitString()
         self._commitString.append(self._composedString)
         self._bufferedString = ""
         self._composedString = ""
@@ -68,7 +68,7 @@ class HanjaComposer: CIMComposer {
         self._composedString = ""
         self._commitString = value
         self.hangulComposer.cancelComposition()
-        self.hangulComposer.dequeueCommitString()
+        let _ = self.hangulComposer.dequeueCommitString()
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {

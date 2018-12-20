@@ -52,7 +52,7 @@ public class EmoticonComposer: CIMComposer {
 
     override public func cancelComposition() {
         self.romanComposer.cancelComposition()
-        self.romanComposer.dequeueCommitString()
+        let _ = self.romanComposer.dequeueCommitString()
         self._commitString.append(self._composedString)
         self._bufferedString = ""
         self._composedString = ""
@@ -77,7 +77,7 @@ public class EmoticonComposer: CIMComposer {
         self._composedString = ""
         self._commitString = value
         self.romanComposer.cancelComposition()
-        self.romanComposer.dequeueCommitString()
+        let _ = self.romanComposer.dequeueCommitString()
     }
 
     override public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
@@ -129,9 +129,6 @@ public class EmoticonComposer: CIMComposer {
                 if list.count > 0 {
                     for idx in 0...list.count-1 {
                         let emoticon = list.hanja(at: idx)
-                        if emoticon == nil {
-                            dlog(DEBUG_EMOTICON, "DEBUG 7, [updateEmoticonCandidates] MSG: hanja is nil!")
-                        }
                         dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
                         if self._candidates == nil {
                             self._candidates = []

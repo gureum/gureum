@@ -1,6 +1,10 @@
 #!/bin/bash
 #https://discuss.atom.io/t/sandbox-supposedly-enabled-but-application-loader-disagrees/26155
 
+if [ ! $CONFIGURATION ]; then
+	CONFIGURATION='Release'
+fi
+
 SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
