@@ -51,7 +51,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        #if NDEBUG
+        #if !DEBUG
         Fabric.with([Crashlytics.self])
         #endif
         checkUpdate()
