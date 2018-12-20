@@ -35,6 +35,7 @@ public enum GureumInputSourceIdentifier: String {
     var keyboardIdentifier: String {
         guard let value = GureumInputSourceToHangulKeyboardIdentifierTable[self] else {
             assert(false)
+            return "qwerty"
         }
         return value
     }

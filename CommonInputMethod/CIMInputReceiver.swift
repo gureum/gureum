@@ -180,7 +180,9 @@ extension CIMInputReceiver { // IMKStateSetting
         switch tag {
             case kTextServiceInputModePropertyTag:
                 guard let value = value as? String else {
+                    NSLog("Failed to change keyboard layout")
                     assert(false)
+                    break
                 }
                 if value != self.composer.inputMode {
                     assert(sender != nil)
