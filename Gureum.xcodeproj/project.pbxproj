@@ -946,7 +946,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/OSX\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\necho \"VERSION = $tag\" > Version.xcconfig\n";
+			shellScript = "cd ${PROJECT_DIR}\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\nif [ $CONFIGURATION != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
 		};
 		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
 			isa = PBXShellScriptBuildPhase;

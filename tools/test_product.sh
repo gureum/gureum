@@ -1,4 +1,8 @@
 #!/bin/bash
+
+if [ ! $CONFIGURATION ]; then
+	CONFIGURATION='Release'
+fi
 SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
