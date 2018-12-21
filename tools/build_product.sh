@@ -4,9 +4,14 @@
 if [ ! $CONFIGURATION ]; then
 	CONFIGURATION='Release'
 fi
-
 SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
 . "${SCRIPT_DIR}/ready.sh" || exit $?
+
+if [ $CONFIGURATION != 'Release' ]; then
+    echo "Configuration is not Release: $CONFIGURATION"
+    echo "Keep going?"
+    read
+fi
 
 APP_KEY="3rd Party Mac Developer Application: YunWon Jeong"
 INSTALLER_KEY="3rd Party Mac Developer Installer: YunWon Jeong"

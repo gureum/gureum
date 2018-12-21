@@ -51,7 +51,14 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        #if !DEBUG
+        #if DEBUG
+        let notification = NSUserNotification()
+        notification.title = "디버그 빌드 알림"
+        notification.hasActionButton = false
+        notification.hasReplyButton = false
+        notification.informativeText = "이 버전은 디버그 빌드입니다. 키 입력이 로그로 남을 수 있어 안전하지 않습니다."
+        notificationCenter.deliver(notification)
+        #else
         Fabric.with([Crashlytics.self])
         #endif
         checkUpdate()

@@ -10,16 +10,16 @@ if [ -e $TMPSCRIPT ]; then
     exit 255
 fi
 
-xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration 'Debug' | grep export > $TMPSCRIPT
+if [ ! $CONFIGURATION ]; then
+	CONFIGURATION='Debug'
+fi
+
+xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > $TMPSCRIPT
 . ${TMPSCRIPT} &> /dev/null
 rm ${TMPSCRIPT}
 
 XCVERSION=`cat OSX/Version.xcconfig`
 PACKAGE_NAME=Gureum-${XCVERSION#VERSION = }
-
-if [ ! $CONFIGURATION ]; then
-	CONFIGURATION='Debug'
-fi
 
 if [ "${PRODUCT_NAME}" != "Gureum" ]; then
     echo 'something wrong'
