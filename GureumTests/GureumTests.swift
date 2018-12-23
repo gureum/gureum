@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Gureum
+@testable import Gureum
 import Hangul
 
 
