@@ -187,7 +187,9 @@ class HanjaComposer: CIMComposer {
     func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
         var candidates: [String] = []
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates getting list for table: %@", table)
-        let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) ?? HGHanjaList()
+        guard let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) else {
+            return candidates
+        }
         for _hanja in list.array {
             let hanja = _hanja as! HGHanja
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates hanja: %@", hanja)
