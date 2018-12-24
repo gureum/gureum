@@ -168,7 +168,7 @@ class TestGenerateemoji(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    ko_emoji_files = ['ko_emoji.xml', 'ko_emoji2.xml']
+    ko_emoji_files = ['ko_annotations.xml', 'ko_annotations_derived.xml']
     generate_ko_emoji(ko_emoji_files)
 
     unittest.main(exit=False)
