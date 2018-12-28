@@ -21,7 +21,7 @@ enum GureumConfigurationName: String {
     case optionKeyBehavior = "OptionKeyBehavior"
     
     case romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
-    case showsInputForHanjaCandidates = "CIMShowsInputForHanjaCandidates"
+    case showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
     case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     case hangulAutoReorder = "HangulAutoReorder"
     case hangulNonChoseongCombination = "HangulNonChoseongCombination"
