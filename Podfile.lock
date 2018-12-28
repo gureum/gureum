@@ -1,8 +1,8 @@
 PODS:
   - cdebug (1.2)
-  - Crashlytics (3.11.1):
-    - Fabric (~> 1.8.1)
-  - Fabric (1.8.2)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
   - FoundationExtension (1.3.1):
     - cdebug (~> 1.1)
     - FoundationExtension/CocoaExtension (= 1.3.1)
@@ -46,11 +46,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   cdebug: 55a96da647360590f0d292baebb34c4066cbca02
-  Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
-  Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   FoundationExtension: 2dd5b23bc43f44da58e4592655dc86888cd46ea9
   GlobalActivityIndicatorView: 012695aa501b1476325b2076f522cc61c539ed04
-  GoogleMobileAds: c79931d6eef16b1e4c35d331cf23c47e0dd490d2
+  GoogleMobileAds: 0ed4d41b03fe768e2e2945df68707fd4ff97c179
   MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
 
 PODFILE CHECKSUM: 4eaa2d5eb291713ebca70df69e6524a5ab72a403
