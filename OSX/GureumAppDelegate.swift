@@ -70,7 +70,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
 
     func checkUpdate() {
-        guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
+        guard let info = getRecentVersion() else {
             return
         }
         guard info.recent != info.current else {
@@ -93,7 +93,13 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
     
     func getRecentVersion() -> VersionInfo? {
-        let url = URL(string: "http://gureum.io/version.txt")!
+        let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        var url: URL
+        if currentVersion.contains("-pre") {
+            url = URL(string: "http://gureum.io/version-pre.txt")!
+        } else {
+            url = URL(string: "http://gureum.io/version.txt")!
+        }
         var request = URLRequest(url: url)
         request.timeoutInterval = 0.5
         request.cachePolicy = .reloadIgnoringCacheData
@@ -103,7 +109,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         if data.length == 0 { // 위에서 제대로 안걸림
             return nil
         }
-        let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         let verstring = String(data: data as Data, encoding: String.Encoding.utf8)!
         var components = verstring.components(separatedBy: "::")
         let version = VersionInfo(recent: components[0], current: currentVersion, download: components[1], note: components[2])
