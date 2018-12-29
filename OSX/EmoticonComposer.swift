@@ -11,7 +11,7 @@ import Hangul
 let DEBUG_EMOTICON = false
 
 public class EmoticonComposer: CIMComposer {
-    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)
+    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 
     var _candidates: [String]?
     var _bufferedString: String = ""

@@ -10,12 +10,18 @@ import Hangul
 
 let DEBUG_HANJACOMPOSER = false
 
+extension HGHanjaList: Sequence {
+    public func makeIterator() -> NSFastEnumerationIterator {
+        return NSFastEnumerationIterator(self)
+    }
+}
+
 class HanjaComposer: CIMComposer {
-    static let characterTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)
-    static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)
-    static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)
-    static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)
-    static let emojiTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)
+    static let characterTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
+    static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
+    static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
+    static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
+    static let emojiTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
 
     var _candidates: [String]?
     var _bufferedString: String = ""
@@ -190,7 +196,7 @@ class HanjaComposer: CIMComposer {
         guard let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) else {
             return candidates
         }
-        for _hanja in list.array {
+        for _hanja in list {
             let hanja = _hanja as! HGHanja
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates hanja: %@", hanja)
             if hanja.comment.isEmpty {
