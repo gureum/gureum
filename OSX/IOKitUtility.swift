@@ -74,30 +74,33 @@ class IOKitError: Error {
 extension IOHIDManager {
 
     public class func deviceMatching(page: Int, usage: Int) -> NSDictionary {
-        let dict = NSMutableDictionary()
-        dict.setObject(NSNumber(value: page), forKey: kIOHIDDeviceUsagePageKey as NSString)
-        dict.setObject(NSNumber(value: usage), forKey: kIOHIDDeviceUsageKey as NSString)
-        return dict
+        return [
+            kIOHIDDeviceUsagePageKey as NSString: NSNumber(value: page),
+            kIOHIDDeviceUsageKey as NSString: NSNumber(value: usage),
+        ]
     }
-    
-    public class func inputValueMatching(min: Int, max: Int) -> NSDictionary {
-        let dict = NSMutableDictionary()
-        dict.setObject(NSNumber(value: min), forKey: kIOHIDElementUsageMinKey as NSString)
-        dict.setObject(NSNumber(value: max), forKey: kIOHIDElementUsageMaxKey as NSString)
-        return dict
-    }
-    
-    public class func capsLockManager() -> IOHIDManager {
-        let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone));
-        
-        // Set device matching
-        let deviceMatching = IOHIDManager.deviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
-        IOHIDManagerSetDeviceMatching(manager, deviceMatching);
-        
-        // Set input value matching
-        let inputValueMatching = IOHIDManager.inputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
-        IOHIDManagerSetInputValueMatching(manager, inputValueMatching);
 
+    public class func inputValueMatching(min: Int, max: Int) -> NSDictionary {
+        return [
+            kIOHIDElementUsageMinKey as NSString: NSNumber(value: min),
+            kIOHIDElementUsageMaxKey as NSString: NSNumber(value: max),
+        ]
+    }
+
+    public func setDeviceMatching(page: Int, usage: Int) {
+        let deviceMatching = IOHIDManager.deviceMatching(page: page, usage: usage)
+        IOHIDManagerSetDeviceMatching(self, deviceMatching)
+    }
+
+    public func setInputValueMatching(min: Int, max: Int) {
+        let inputValueMatching = IOHIDManager.inputValueMatching(min: min, max: max)
+        IOHIDManagerSetInputValueMatching(self, inputValueMatching)
+    }
+
+    public class func capsLockManager() -> IOHIDManager {
+        let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
+        manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
+        manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
         return manager
     }
 }
