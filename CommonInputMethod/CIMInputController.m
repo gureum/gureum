@@ -34,8 +34,6 @@ TISInputSource *_USSource() {
 }
 
 
-
-
 @implementation CIMInputController
 
 @synthesize receiver=_receiver, ioConnect=_ioConnect, capsLockPressed=_capsLockPressed;
@@ -52,7 +50,7 @@ TISInputSource *_USSource() {
 
         self->_hidManager = [IOHIDManagerBridge capsLockManager];
         CFRetain(self->_hidManager);
-        
+
         // Set input value callback
         IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, (__bridge void *)(self));
         IOHIDManagerScheduleWithRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
@@ -82,10 +80,6 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
     if (intValue == 1) {
         inputController->_capsLockPressed = YES;
     }
-}
-
-- (CIMComposer *)composer {
-    return self->_receiver.composer;
 }
 
 @end

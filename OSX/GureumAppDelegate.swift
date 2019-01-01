@@ -11,18 +11,20 @@ import Hangul
 import Fabric
 import Crashlytics
 
-class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
-    var download: String!
 
-    override init(){
-        super.init()
-        NSUserNotificationCenter.default.delegate = self
-    }
+class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
+    static let appDefault = NotificationCenterDelegate()
 
     func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        guard let download = userInfo["download"] as? String else {
+            return
+        }
         switch (notification.activationType) {
         case .actionButtonClicked:
-            NSWorkspace.shared.open(URL(string: download)!)
+            fallthrough
         case .contentsClicked:
             NSWorkspace.shared.open(URL(string: download)!)
         default:
@@ -35,15 +37,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     @IBOutlet @objc var menu: NSMenu!
     @objc public var sharedInputManager: CIMInputManager!
     let configuration = GureumConfiguration.shared
-    var notificationCenter = NSUserNotificationCenter.default
-    var notificationCenterDelegate = NotificationCenterDelegate()
-
-    struct VersionInfo {
-        var recent: String
-        var current: String
-        var download: String
-        var note: String
-    }
+    let notificationCenterDelegate = NotificationCenterDelegate()
 
     @objc override func awakeFromNib(){
         HGKeyboard.initialize()
@@ -51,6 +45,9 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        NSUserNotificationCenter.default.delegate = notificationCenterDelegate
+
+        let notificationCenter = NSUserNotificationCenter.default
         #if DEBUG
         let notification = NSUserNotification()
         notification.title = "디버그 빌드 알림"
@@ -61,7 +58,9 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         #else
         Fabric.with([Crashlytics.self])
         #endif
-        checkUpdate()
+
+        let updateManager = UpdateManager.shared
+        updateManager.notifyUpdateIfNeeded()
     }
 
     @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {
@@ -69,49 +68,4 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate{
         return composer
     }
 
-    func checkUpdate() {
-        guard let info = getRecentVersion() else {
-            return
-        }
-        guard info.recent != info.current else {
-            return
-        }
-        guard info.download.count > 0 else {
-            return
-        }
-
-        let notification = NSUserNotification()
-        notification.title = "구름 입력기 업데이트 알림"
-        notification.hasActionButton = true
-        notification.hasReplyButton = false
-        notification.actionButtonTitle = "업데이트"
-        notification.otherButtonTitle = "취소"
-        notification.informativeText = "최신 버전: \(info.recent) 현재 버전: \(info.current)\n\(info.note)"
-        notificationCenterDelegate.download = info.download
-
-        notificationCenter.deliver(notification)
-    }
-    
-    func getRecentVersion() -> VersionInfo? {
-        let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-        var url: URL
-        if currentVersion.contains("-pre") {
-            url = URL(string: "http://gureum.io/version-pre.txt")!
-        } else {
-            url = URL(string: "http://gureum.io/version.txt")!
-        }
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 0.5
-        request.cachePolicy = .reloadIgnoringCacheData
-        guard let data = try? NSData(contentsOf: request, error: ()) else {
-            return nil
-        }
-        if data.length == 0 { // 위에서 제대로 안걸림
-            return nil
-        }
-        let verstring = String(data: data as Data, encoding: String.Encoding.utf8)!
-        var components = verstring.components(separatedBy: "::")
-        let version = VersionInfo(recent: components[0], current: currentVersion, download: components[1], note: components[2])
-        return version
-    }
 }

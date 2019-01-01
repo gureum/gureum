@@ -46,10 +46,10 @@ extension CIMInputController { // IMKServerInputHandleEvent
                     self.capsLockPressed = false
                     dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue);
                     // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
-                    let _ = self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
+                    let _ = self.receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
                 } else {
                     dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue);
-                    let _ = self.receiver.input(controller: self, inputText: "", key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
+                    let _ = self.receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
                 }
                 return false
             }
@@ -196,7 +196,8 @@ extension CIMInputController {  // IMKServerInput
 
 extension CIMMockInputController {
     @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
-        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string) / keyCode: \(keyCode) / modifier flags: \(flags) / client: \((self.client() as AnyObject).bundleIdentifier)(\((self.client() as AnyObject).class))")
+        let client = self.client() as AnyObject
+        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client.bundleIdentifier)) client class: \(String(describing: client.class))")
         let v1 = (self._receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)
         let v2 = (CIMInputTextProcessResult.notProcessed.rawValue)
         let processed: Bool = v1 > v2

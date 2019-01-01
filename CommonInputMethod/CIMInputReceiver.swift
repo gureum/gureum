@@ -176,7 +176,7 @@ extension CIMInputReceiver { // IMKStateSetting
     //! @brief 자판 전환을 감지한다.
     open func setValue(_ value: Any!, forTag tag: Int, client sender: Any!, controller: CIMInputController) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CHANGE-%lu-%@", tag, value as? String ?? "(nonstring)");
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value as? String ?? "(nonstring)", tag, (controller.client as? NSObject) ?? "(nil)");
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value as? String ?? "(nonstring)", tag, String(describing: controller.client as AnyObject));
         switch tag {
             case kTextServiceInputModePropertyTag:
                 guard let value = value as? String else {
