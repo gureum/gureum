@@ -11,7 +11,7 @@ import Cocoa
 
 extension CIMInputController {
     @IBAction func checkRecentVersion(_ sender: Any) {
-        guard let info = (NSApp.delegate as! GureumAppDelegate).getRecentVersion() else {
+        guard let info = UpdateManager.shared.requestRecentVersion() else {
             return
         }
         

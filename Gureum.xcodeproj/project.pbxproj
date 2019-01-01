@@ -34,6 +34,7 @@
 		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
+		3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831983B21DB744900E20D78 /* UpdateManager.swift */; };
 		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
 		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
 		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
@@ -261,6 +262,7 @@
 		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
 		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		3831983B21DB744900E20D78 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		3835B4E51F5DAA7100896BEC /* all.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all.txt; sourceTree = "<group>"; };
 		3835B4EC1F5DAA7100896BEC /* hanjac.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjac.txt; sourceTree = "<group>"; };
 		3835B4ED1F5DAA7100896BEC /* hanjar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjar.txt; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				381B32731DA826B100EA1975 /* Bridge.h */,
 				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
+				3831983B21DB744900E20D78 /* UpdateManager.swift */,
 				38FA21DF14231BCC00444D67 /* Composers */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
@@ -1112,6 +1115,7 @@
 				878898012160AA6E00BF5770 /* CIMInputManager.swift in Sources */,
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				381DB19B21678B74005A37B9 /* Debug.swift in Sources */,
+				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
 				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
 				38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */,
 				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
