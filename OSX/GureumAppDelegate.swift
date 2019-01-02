@@ -35,14 +35,9 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
 @objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
-    @objc public var sharedInputManager: CIMInputManager!
+
     let configuration = GureumConfiguration.shared
     let notificationCenterDelegate = NotificationCenterDelegate()
-
-    @objc override func awakeFromNib(){
-        HGKeyboard.initialize()
-        sharedInputManager = CIMInputManager()
-    }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSUserNotificationCenter.default.delegate = notificationCenterDelegate
@@ -61,6 +56,10 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
         let updateManager = UpdateManager.shared
         updateManager.notifyUpdateIfNeeded()
+
+        HGKeyboard.initialize()
+        // IMKServer를 띄워야만 입력기가 동작한다
+        let _ = CIMInputManager.shared
     }
 
     @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {

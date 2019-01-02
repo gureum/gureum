@@ -19,9 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 #define DEBUG_INPUTCONTROLLER FALSE
 #define DEBUG_LOGGING FALSE
 
-#define CIMSharedInputManager CIMAppDelegate.sharedInputManager
-#define CIMAppDelegate ((NSObject<CIMApplicationDelegate> *)[[NSApplication sharedApplication] delegate])
-
 TISInputSource *_USSource() {
     static NSString *mainSourceID = @"com.apple.keylayout.US";
     static TISInputSource *source = nil;

@@ -32,6 +32,16 @@ let CIMKeyMapUpper = [
 ]
 
 
+extension IMKServer {
+    convenience init?(bundle: Bundle) {
+        guard let connectionName = bundle.infoDictionary!["InputMethodConnectionName"] as? String else {
+            return nil
+        }
+        self.init(name: connectionName, bundleIdentifier: bundle.bundleIdentifier)
+    }
+}
+
+
 /*!
  @brief  공통적인 OSX의 입력기 구조를 다룬다.
  
@@ -42,6 +52,7 @@ let CIMKeyMapUpper = [
  @coclass    IMKServer CIMComposer
  */
 @objcMembers public class CIMInputManager: NSObject, CIMInputTextDelegate {
+    static let shared = CIMInputManager()
     //! @brief  현재 입력중인 서버
     private var server: IMKServer
     //! @property
@@ -49,15 +60,23 @@ let CIMKeyMapUpper = [
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     public var inputting: Bool = false
 
-    override init() {
-        dlog(true, "** CharmInputManager Init")
-
-        let mainBundle = Bundle.main
-        var connectionName = mainBundle.infoDictionary!["InputMethodConnectionName"] as! String
+    convenience override init() {
+        let bundle = Bundle.main
+        var name = bundle.infoDictionary!["InputMethodConnectionName"] as! String
         #if DEBUG
-        connectionName += "_Debug"
+        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+            name += "_Test" + String(describing: Int.random(in: 0..<0x10000))
+        } else {
+            name += "_Debug"
+        }
         #endif
-        self.server = IMKServer(name: connectionName, bundleIdentifier: mainBundle.bundleIdentifier)
+        self.init(name: name)
+    }
+
+    init(name: String) {
+        dlog(true, "** CIMInputManager Init")
+
+        self.server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         self.candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
 
         super.init()
@@ -131,7 +150,6 @@ let CIMKeyMapUpper = [
         dlog(false, "******* FINAL STATE: %d", result.rawValue);
         // 합성 후보가 있다면 보여준다
         if controller.composer.hasCandidates {
-            let candidates = self.candidates
             candidates.update()
             candidates.show(kIMKLocateCandidatesLeftHint)
         }
