@@ -11,10 +11,6 @@ import Cocoa
 
 @objc protocol CIMApplicationDelegate: NSObjectProtocol {
     /*!
-     @brief  공용 입력 처리기
-     */
-    @objc var sharedInputManager: CIMInputManager! { get }
-    /*!
      @brief  합성기 생성
      
      입력 소스 별로 사용할 합성기를 만들어 반환한다.

@@ -21,7 +21,7 @@ import Cocoa
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)");
         let appDelegate = NSApplication.shared.delegate as! CIMApplicationDelegate
         self.composer = appDelegate.composer(server: server, client: client)
-        self.composer.manager = appDelegate.sharedInputManager
+        self.composer.manager = CIMInputManager.shared
         self.inputClient = client
         self.controller = controller
     }
