@@ -51,7 +51,7 @@ extension IMKServer {
  
  @coclass    IMKServer CIMComposer
  */
-@objcMembers public class CIMInputManager: NSObject, CIMInputTextDelegate {
+public class CIMInputManager: NSObject, CIMInputTextDelegate {
     static let shared = CIMInputManager()
     //! @brief  현재 입력중인 서버
     private var server: IMKServer
@@ -93,7 +93,7 @@ extension IMKServer {
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
 
         // 입력기용 특수 커맨드 처리
@@ -152,6 +152,8 @@ extension IMKServer {
         if controller.composer.hasCandidates {
             candidates.update()
             candidates.show(kIMKLocateCandidatesLeftHint)
+        } else if candidates.isVisible() {
+            candidates.hide()
         }
         return result;
     }

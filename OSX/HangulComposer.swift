@@ -34,7 +34,14 @@ class HangulComposerCombination {
 
  @coclass HGInputContext
  */
-@objcMembers public class HangulComposer: NSObject, CIMComposerDelegate {
+public class HangulComposer: NSObject, CIMComposerDelegate {
+    public func composerSelected(_ sender: Any!) {
+    }
+    
+    public var candidates: [NSAttributedString]? {
+        return nil
+    }
+    
     let inputContext: HGInputContext
     var _commitString: String
     let configuration = GureumConfiguration.shared
@@ -90,7 +97,7 @@ class HangulComposerCombination {
 
     // CIMComposerDelegate
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
             return self.inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
@@ -126,7 +133,7 @@ class HangulComposerCombination {
         return handled ? .processed : .notProcessedAndNeedsCancel;
     }
 
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed;
     }
@@ -202,7 +209,7 @@ func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>)->UnsafeMutablePointer
 }
 
 extension NSString {
-    @objc class func stringByRemovingFillerWithUCSString(_ ucsString: UnsafePointer<HGUCSChar>) -> NSString {
+    class func stringByRemovingFillerWithUCSString(_ ucsString: UnsafePointer<HGUCSChar>) -> NSString {
 
         // 채움문자로 조합 중 판별
         if !HGCharacterIsChoseong(ucsString[0]) {

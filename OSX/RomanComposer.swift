@@ -45,16 +45,14 @@ class QwertyComposer: CIMComposer {
     }
 
     override var hasCandidates: Bool {
-        get {
-            return false
-        }
+        return false
     }
 
-    override var candidates: [String]? {
+    override var candidates: [NSAttributedString]? {
         return nil
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -134,16 +132,14 @@ class RomanDataComposer: CIMComposer {
     }
 
     override var hasCandidates: Bool {
-        get {
-            return false
-        }
+        return false
     }
 
-    override var candidates: [String]! {
+    override var candidates: [NSAttributedString]? {
         return nil
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
