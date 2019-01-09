@@ -59,7 +59,7 @@ class GureumTests: XCTestCase {
             
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
-            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string), app: \(app)");
+            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string), app: \(app)")
         }
     }
 
@@ -77,7 +77,7 @@ class GureumTests: XCTestCase {
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputText("a", key: Int(kVK_ANSI_A), modifiers: NSEvent.ModifierFlags.command)
             app.inputText("a", key: Int(kVK_ANSI_A), modifiers: NSEvent.ModifierFlags.control)
-            XCTAssertEqual("", app.client.string, "");
+            XCTAssertEqual("", app.client.string, "")
             XCTAssertEqual("", app.client.markedString(), "")
         }
     }
