@@ -98,18 +98,22 @@ extension CIMInputReceiver { // IMKServerInput
         let commitString = self.composer.dequeueCommitString()
         
         // 커밋할 문자가 없으면 중단
-        if !commitString.isEmpty {
-            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender as! NSObject, commitString);
-            let range = controller.selectionRange()
-            dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
-            if range.length > 0 {
-                controller.client().insertText(commitString, replacementRange: range)
-            } else {
-                controller.client().insertText(commitString, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-            }
-            return true
+        if commitString.isEmpty {
+            return false
         }
-        return false
+
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -commitComposition: with sender: %@ / strings: %@", sender as! NSObject, commitString);
+        let range = controller.selectionRange()
+        dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString);
+        if range.length > 0 {
+            controller.client().insertText(commitString, replacementRange: range)
+        } else {
+            controller.client().insertText(commitString, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
+        }
+
+        self.composer.manager.controllerDidCommit(controller)
+
+        return true
     }
     
     func updateCompositionEvent(_ controller: CIMInputController) {
