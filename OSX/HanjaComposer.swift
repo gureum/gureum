@@ -95,7 +95,7 @@ class HanjaComposer: CIMComposer {
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         // TODO: 설정 추가
 //        if (candidateString.length == 0) {
-//            self._composedString = self.originalString;
+//            self._composedString = self.originalString
 //        } else {
 //            self._composedString = candidateString.string.components(separatedBy: ":")[0]
 //        }
@@ -149,7 +149,7 @@ class HanjaComposer: CIMComposer {
             self._candidates = nil // 후보 취소
             return .notProcessedAndNeedsCommit
         default:
-            break;
+            break
         }
         self.prepareHanjaCandidates()
         if result == .notProcessedAndNeedsCommit {
@@ -168,26 +168,26 @@ class HanjaComposer: CIMComposer {
     }
 
     func prepareHanjaCandidates() {
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates")
         let dequeued = self.hangulComposer.dequeueCommitString()
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step1");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step1")
         self._bufferedString.append(dequeued)
         // step 2: 일단 화면에 한글이 표시되도록 조정
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step2");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step2")
         self._composedString = self.originalString
         // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step3");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step3")
     }
     
     func buildHanjaCandidates() -> [NSAttributedString]? {
-        let keyword = self.originalString;
+        let keyword = self.originalString
         guard !keyword.isEmpty else {
-            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates no keywords");
+            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates no keywords")
             return nil
         }
 
-        // dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidates");
+        // dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidates")
         var candidates: [String] = []
         if keyword.count == 1 {
             for table in [HanjaComposer.msSymbolTable, HanjaComposer.characterTable] {
@@ -199,7 +199,7 @@ class HanjaComposer: CIMComposer {
             let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
             candidates.append(contentsOf: tableCandidates)
         }
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating")
         if candidates.count > 0 && GureumConfiguration.shared.showsInputForHanjaCandidates {
             candidates.insert(keyword, at: 0)
         }
@@ -225,21 +225,21 @@ class HanjaComposer: CIMComposer {
     }
 
     func update(fromController controller: CIMInputController) {
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer updateFromController:");
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer updateFromController:")
         guard let client = controller.client() else {
             assert(false)
             return
         }
         let markedRange: NSRange = client.markedRange()
         let selectedRange: NSRange = client.selectedRange()
-        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange));
+        dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange))
         if (markedRange.length == 0 || markedRange.length == NSNotFound) && selectedRange.length > 0 {
             let selectedString = client.attributedSubstring(from: selectedRange).string
-            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: selected string: %@", selectedString);
+            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: selected string: %@", selectedString)
             client.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
-            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange(controller.client().markedRange()), NSStringFromRange(controller.client().selectedRange()));
-            self._bufferedString = selectedString;
-            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: so buffer is: %@", self._bufferedString);
+            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange(controller.client().markedRange()), NSStringFromRange(controller.client().selectedRange()))
+            self._bufferedString = selectedString
+            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: so buffer is: %@", self._bufferedString)
             self.mode = .single
         }
         self.prepareHanjaCandidates()

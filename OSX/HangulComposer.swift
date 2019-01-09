@@ -91,7 +91,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
 
     public var commitString: String {
         get{
-            return self._commitString;
+            return self._commitString
         }
     }
 
@@ -104,15 +104,15 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         }
 
         if (keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space) {
-            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode);
-            return CIMInputTextProcessResult.notProcessedAndNeedsCommit;
+            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode)
+            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
         }
 
         var string = string!
         // 한글 입력에서 캡스락 무시
         if flags.contains(.capsLock) {
             if !flags.contains(.shift) {
-                string = string.lowercased();
+                string = string.lowercased()
             }
         }
         let handled = self.inputContext.process(string.first!.unicodeScalars.first!.value)
@@ -129,13 +129,13 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         }
 
         self._commitString += recentCommitString
-        // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString);
-        return handled ? .processed : .notProcessedAndNeedsCancel;
+        // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString)
+        return handled ? .processed : .notProcessedAndNeedsCancel
     }
 
     public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         assert(false)
-        return .notProcessed;
+        return .notProcessed
     }
 
     public var composedString: String {
