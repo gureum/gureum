@@ -97,7 +97,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
 
     // CIMComposerDelegate
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
             return self.inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
@@ -133,7 +133,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         return handled ? .processed : .notProcessedAndNeedsCancel
     }
 
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed
     }

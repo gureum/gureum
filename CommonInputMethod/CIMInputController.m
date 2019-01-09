@@ -150,7 +150,7 @@ static void handleInputValueCallback(void *inContext, IOReturn inResult, void *i
 }
 
 //! @brief 자판 전환을 감지한다.
-- (void)setValue:(_Null_unspecified id)value forTag:(long)tag client:(_Null_unspecified id)sender {
+- (void)setValue:(id)value forTag:(long)tag client:(id)sender {
     [self._receiver setValue:value forTag:tag client:sender controller:(id)self];
 }
 

@@ -40,6 +40,10 @@
     [self setMarkedText:string selectedRange:selectionRange replacementRange:replacementRange];
 }
 
+- (void)overrideKeyboardWithKeyboardNamed:(NSString *)keyboardUniqueName {
+    // do nothing
+}
+
 @end
 
 
