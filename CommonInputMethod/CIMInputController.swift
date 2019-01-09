@@ -65,8 +65,8 @@ extension CIMInputController { // IMKServerInputHandleEvent
 /*
 extension CIMInputController {  // IMKServerInputTextData
     open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-        let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: flags, client: sender) > CIMInputTextProcessResult.notProcessed;
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@", string, keyCode, flags, self.client()?.bundleIdentifier() ?? "nil");
+        let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue;
         return processed
     }
 }

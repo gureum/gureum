@@ -25,13 +25,13 @@ class HanjaComposer: CIMComposer {
     static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
     static let emojiTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
 
-    var _candidates: [String]?
+    var _candidates: [NSAttributedString]?
     var _bufferedString: String = ""
     var _composedString: String = ""
     var _commitString: String = ""
     var mode: Bool = false
-
-    override var candidates: [String]? {
+    
+    override var candidates: [NSAttributedString]? {
         return _candidates
     }
     override var composedString: String {
@@ -62,7 +62,7 @@ class HanjaComposer: CIMComposer {
         self._composedString = ""
     }
 
-    func composerSelected(_ sender: Any) {
+    override func composerSelected(_ sender: Any?) {
         self._bufferedString = ""
         self._commitString = ""
     }
@@ -81,15 +81,14 @@ class HanjaComposer: CIMComposer {
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         // TODO: 설정 추가
-        //    if (candidateString.length == 0) {
-        //        self.composedString = self.originalString;
-        //    } else {
-        //        NSString *value = [[candidateString string] componentsSeparatedByString:":"][0];
-        //        self.composedString = value;
-        //    }
+//        if (candidateString.length == 0) {
+//            self._composedString = self.originalString;
+//        } else {
+//            self._composedString = candidateString.string.components(separatedBy: ":")[0]
+//        }
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         switch keyCode {
         // Arrow
         case kVK_DownArrow, kVK_UpArrow:
@@ -187,7 +186,7 @@ class HanjaComposer: CIMComposer {
             if candidates.count > 0 && GureumConfiguration.shared.showsInputForHanjaCandidates {
                 candidates.insert(keyword, at: 0)
             }
-            self._candidates = candidates
+            self._candidates = candidates.map({s in NSAttributedString(string: s)})
         }
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates showing: %d", self.candidates != nil);
     }

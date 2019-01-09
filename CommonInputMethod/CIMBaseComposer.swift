@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class CIMBaseComposer {
+class CIMBaseComposer {
     
     func composedString() -> NSString {
         return "";
