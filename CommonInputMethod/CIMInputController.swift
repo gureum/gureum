@@ -64,7 +64,7 @@ extension CIMInputController { // IMKServerInputHandleEvent
 
 /*
 extension CIMInputController {  // IMKServerInputTextData
-    open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
+    open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@", string, keyCode, flags, self.client()?.bundleIdentifier() ?? "nil")
         let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
         return processed
@@ -73,12 +73,12 @@ extension CIMInputController {  // IMKServerInputTextData
 */
 /*
 extension CIMInputController {  // IMKServerInputKeyBinding
-    open override func inputText(_ string: String!, client sender: Any!) -> Bool {
+    open override func inputText(_ string: String!, client sender: Any) -> Bool {
         // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender)
         return false
     }
     
-    open override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
+    open override func didCommand(by aSelector: Selector!, client sender: Any) -> Bool {
         // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -didCommandBySelector: with selector: %@", aSelector)
         return false
     }
@@ -92,7 +92,7 @@ extension CIMInputController {  // IMKStateSetting
     }
 
     //! @brief 자판 전환을 감지한다.
-    open override func setValue(_ value: Any!, forTag tag: Int, client sender: Any!) {
+    open override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
         self.receiver.setValue(value, forTag: tag, client: sender, controller: self)
     }
 }
@@ -101,7 +101,7 @@ extension CIMInputController {  // IMKMouseHandling
     /*!
      @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
      */
-    open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any!) -> Bool {
+    open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN")
         let _ = self.receiver.commitCompositionEvent(sender, controller: self)
         return false
@@ -195,7 +195,7 @@ extension CIMInputController {  // IMKServerInput
 }
 
 extension CIMMockInputController {
-    @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
+    @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
         let client = self.client() as AnyObject
         print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client.bundleIdentifier)) client class: \(String(describing: client.class))")
         let v1 = (self._receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)

@@ -93,7 +93,7 @@ public class CIMInputManager: NSObject, CIMInputTextDelegate {
     // MARK: - IMKServerInputTextData
     
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
 
         // 입력기용 특수 커맨드 처리

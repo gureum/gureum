@@ -26,7 +26,7 @@ import Cocoa
     }
     
     // IMKServerInput 프로토콜에 대한 공용 핸들러
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode, flags.rawValue)
         
         let hadComposedString = !self._internalComposedString.isEmpty
@@ -177,7 +177,7 @@ extension CIMInputReceiver { // IMKStateSetting
     }
     
     //! @brief 자판 전환을 감지한다.
-    open func setValue(_ value: Any!, forTag tag: Int, client sender: Any!, controller: CIMInputController) {
+    open func setValue(_ value: Any, forTag tag: Int, client sender: Any, controller: CIMInputController) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CHANGE-%lu-%@", tag, value as? String ?? "(nonstring)")
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value as? String ?? "(nonstring)", tag, String(describing: controller.client as AnyObject))
         switch tag {
@@ -188,7 +188,6 @@ extension CIMInputReceiver { // IMKStateSetting
                     break
                 }
                 if value != self.composer.inputMode {
-                    assert(sender != nil)
                     self.commitComposition(sender, controller:controller)
                     self.composer.inputMode = value
                 }
@@ -196,7 +195,6 @@ extension CIMInputReceiver { // IMKStateSetting
                 dlog(true, "**** UNKNOWN TAG %ld !!! ****", tag)
         }
         
-        dlog(true, "==== source")
         return
         
         // 미국자판으로 기본자판 잡는 것도 임시로 포기

@@ -103,7 +103,7 @@ class HanjaComposer: CIMComposer {
 //        }
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         switch keyCode {
         // Arrow
         case kVK_DownArrow, kVK_UpArrow:
