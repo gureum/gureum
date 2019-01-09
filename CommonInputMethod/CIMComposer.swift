@@ -24,7 +24,7 @@ public protocol CIMInputTextDelegate {
  @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
  @see    IMKServerInput
  */
-    func input(controller: CIMInputController, inputText: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any!) -> CIMInputTextProcessResult
+    func input(controller: CIMInputController, inputText: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
 }
 
 
@@ -61,7 +61,7 @@ public protocol CIMComposerDelegate: CIMInputTextDelegate {
     //! @brief  변환 후보 문자열 변경
     func candidateSelectionChanged(_ candidateString: NSAttributedString)
 
-    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client: Any!) -> CIMInputTextProcessResult
+    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
 
 }
 
@@ -119,11 +119,11 @@ public class CIMComposer: NSObject, CIMComposerDelegate {
         return delegate.candidateSelectionChanged(candidateString)
     }
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
     }
     
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, command: string, key: keyCode, modifiers: flags, client: sender)
     }
 }

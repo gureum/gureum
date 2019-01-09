@@ -118,7 +118,7 @@ public class GureumComposer: CIMComposer {
         }
     }
     
-    override public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
+    override public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let configuration = GureumConfiguration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
@@ -214,10 +214,14 @@ public class GureumComposer: CIMComposer {
             self.delegate.cancelComposition()
             if (self.delegate as? CIMComposer) === romanComposer {
                 let lastHangulInputMode = GureumConfiguration.shared.lastHangulInputMode
-                (sender as AnyObject).selectMode(lastHangulInputMode)
+                if let sender = sender as? IMKTextInput {
+                    sender.selectMode(lastHangulInputMode)
+                }
             } else {
                 let lastRomanInputMode = GureumConfiguration.shared.lastRomanInputMode
-                (sender as AnyObject).selectMode(lastRomanInputMode)
+                if let sender = sender as? IMKTextInput {
+                    sender.selectMode(lastRomanInputMode)
+                }
             }
             return CIMInputTextProcessResult.processed
         }
