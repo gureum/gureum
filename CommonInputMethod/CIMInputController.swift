@@ -95,6 +95,15 @@ extension CIMInputController {  // IMKStateSetting
     open override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
         self.receiver.setValue(value, forTag: tag, client: sender, controller: self)
     }
+
+    open override func activateServer(_ sender: Any!) {
+        dlog(DEBUG_INPUTCONTROLLER, "server activated")
+    }
+
+    open override func deactivateServer(_ sender: Any!) {
+        dlog(DEBUG_INPUTCONTROLLER, "server deactivated")
+        self.receiver.commitComposition(sender, controller: self)
+    }
 }
 
 extension CIMInputController {  // IMKMouseHandling
