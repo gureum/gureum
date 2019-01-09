@@ -157,4 +157,13 @@ public class CIMInputManager: NSObject, CIMInputTextDelegate {
         }
         return result;
     }
+
+    func controllerDidCommit(_ controller: CIMInputController) {
+        if controller.composer.hasCandidates {
+            candidates.update()
+            candidates.show(kIMKLocateCandidatesLeftHint)
+        } else if candidates.isVisible() {
+            candidates.hide()
+        }
+    }
 }
