@@ -13,7 +13,7 @@ let DEBUG_EMOTICON = false
 public class EmoticonComposer: CIMComposer {
     static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 
-    var _candidates: [String]?
+    var _candidates: [NSAttributedString]?
     var _bufferedString: String = ""
     var _composedString: String = ""
     var _commitString: String = ""
@@ -25,7 +25,7 @@ public class EmoticonComposer: CIMComposer {
         return self.delegate
     }
 
-    override public var candidates: [String]? {
+    override public var candidates: [NSAttributedString]? {
         return _candidates
     }
 
@@ -130,15 +130,13 @@ public class EmoticonComposer: CIMComposer {
                     for idx in 0...list.count-1 {
                         let emoticon = list.hanja(at: idx)
                         dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        if self._candidates == nil {
-                            self._candidates = []
-                        }
-                        self._candidates!.append(emoticon.value as String + ": " + emoticon.comment as String)
+                        self._candidates!.append(
+                            NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String))
                     }
                 }
             }
         }
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", self.candidates ?? [])
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", self._candidates ?? [])
     }
 
     func update(fromController controller: CIMInputController) {
@@ -164,7 +162,7 @@ public class EmoticonComposer: CIMComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
-    override public func input(controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override public func input(controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result: CIMInputTextProcessResult = self.delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
 

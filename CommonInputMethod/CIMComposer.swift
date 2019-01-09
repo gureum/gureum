@@ -13,7 +13,7 @@ import Foundation
  @brief  입력을 처리하는 클래스의 관한 공통 형식
  @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
  */
-@objc public protocol CIMInputTextDelegate {
+public protocol CIMInputTextDelegate {
 /*!
  @method
  @param  controller  서버에서 입력을 받은 컨트롤러
@@ -33,10 +33,10 @@ import Foundation
  @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
  */
 
-@objc public protocol CIMComposerDelegate: CIMInputTextDelegate {
+public protocol CIMComposerDelegate: CIMInputTextDelegate {
 
     //! @brief  입력기가 선택 됨
-    @objc optional func composerSelected(_ sender: Any!)
+    func composerSelected(_ sender: Any!)
 
     //! @brief  합성 중인 문자로 보여줄 문자열
     var composedString: String { get }
@@ -55,13 +55,13 @@ import Foundation
     var hasCandidates: Bool { get }
 
     //! @brief  변환 후보 문자열 리스트
-    @objc optional var candidates: [String]? { get }
+    var candidates: [NSAttributedString]? { get }
     //! @brief  변환 후보 문자열 선택
-    @objc optional func candidateSelected(_ candidateString: NSAttributedString)
+    func candidateSelected(_ candidateString: NSAttributedString)
     //! @brief  변환 후보 문자열 변경
-    @objc optional func candidateSelectionChanged(_ candidateString: NSAttributedString)
+    func candidateSelectionChanged(_ candidateString: NSAttributedString)
 
-    func input(controller: CIMInputController, command: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any!) -> CIMInputTextProcessResult
+    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client: Any!) -> CIMInputTextProcessResult
 
 }
 
@@ -71,7 +71,10 @@ import Foundation
  
  @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
  */
-@objcMembers public class CIMComposer: NSObject, CIMComposerDelegate {
+public class CIMComposer: NSObject, CIMComposerDelegate {
+    
+    public func composerSelected(_ sender: Any!) { }
+
     public var delegate: CIMComposerDelegate! = nil
     public var inputMode: String = ""
     public var manager: CIMInputManager! = nil
@@ -104,23 +107,23 @@ import Foundation
         return delegate.hasCandidates
     }
     
-    public var candidates: [String]? {
+    public var candidates: [NSAttributedString]? {
         return delegate.candidates ?? nil
     }
     
     public func candidateSelected(_ candidateString: NSAttributedString) {
-        return delegate.candidateSelected!(candidateString)
+        return delegate.candidateSelected(candidateString)
     }
     
     public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        return delegate.candidateSelectionChanged!(candidateString)
+        return delegate.candidateSelectionChanged(candidateString)
     }
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
     }
     
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any!) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, command: string, key: keyCode, modifiers: flags, client: sender)
     }
 }
