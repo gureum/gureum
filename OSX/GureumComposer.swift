@@ -223,7 +223,7 @@ public class GureumComposer: CIMComposer {
         }
         
         if (self.delegate as? HanjaComposer) === hanjaComposer {
-            if !hanjaComposer.mode && hanjaComposer.composedString.count == 0 && hanjaComposer.commitString.count == 0 {
+            if hanjaComposer.mode == .single && hanjaComposer.composedString.count == 0 && hanjaComposer.commitString.count == 0 {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 self.delegate = hangulComposer
             }
@@ -241,7 +241,7 @@ public class GureumComposer: CIMComposer {
             if (self.delegate as? HangulComposer) === hangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = hangulComposer.composedString.count > 0
-                hanjaComposer.mode = !isComposing // 조합 중이 아니면 1회만 사전을 띄운다
+                hanjaComposer.mode = isComposing ? .single : .continuous
                 self.delegate = hanjaComposer
                 self.delegate.composerSelected(self)
                 hanjaComposer.update(fromController: controller)
