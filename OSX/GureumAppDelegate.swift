@@ -62,9 +62,4 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         let _ = CIMInputManager.shared
     }
 
-    @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {
-        let composer: CIMComposer = GureumComposer()
-        return composer
-    }
-
 }
