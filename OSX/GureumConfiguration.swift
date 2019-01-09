@@ -169,7 +169,7 @@ public class GureumConfiguration: UserDefaults {
 
     public var romanModeByEscapeKey: Bool {
         get {
-            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
+            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)

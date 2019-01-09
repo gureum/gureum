@@ -28,7 +28,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         case .contentsClicked:
             NSWorkspace.shared.open(URL(string: download)!)
         default:
-            break;
+            break
         }
     }
 }

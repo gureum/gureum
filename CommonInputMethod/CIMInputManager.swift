@@ -106,11 +106,11 @@ public class CIMInputManager: NSObject, CIMInputTextDelegate {
             var string = string
             if flags.contains(.option) {
                 let configuration = GureumConfiguration.shared
-                dlog(DEBUG_INPUTHANDLER, "option key: %ld", configuration.optionKeyBehavior);
+                dlog(DEBUG_INPUTHANDLER, "option key: %ld", configuration.optionKeyBehavior)
                 switch configuration.optionKeyBehavior {
                 case 0:
                     // default
-                    dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior");
+                    dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior")
                     return .notProcessedAndNeedsCommit;
                 case 1:
                     // ignore
@@ -137,17 +137,17 @@ public class CIMInputManager: NSObject, CIMInputTextDelegate {
             // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
             if flags.contains(.command) || flags.contains(.option) || flags.contains(.control) {
                 dlog(true, "-- CIMInputHandler -inputText: Command/Option key input / returned NO")
-                return .notProcessedAndNeedsCommit;
+                return .notProcessedAndNeedsCommit
             }
 
             if string == nil {
-                return .notProcessedAndNeedsCommit;
+                return .notProcessedAndNeedsCommit
             }
 
             result = controller.composer.input(controller: controller, inputText:string, key:keyCode, modifiers:flags, client:sender)
         }
 
-        dlog(false, "******* FINAL STATE: %d", result.rawValue);
+        dlog(false, "******* FINAL STATE: %d", result.rawValue)
         // 합성 후보가 있다면 보여준다
         if controller.composer.hasCandidates {
             candidates.update()
@@ -155,7 +155,7 @@ public class CIMInputManager: NSObject, CIMInputTextDelegate {
         } else if candidates.isVisible() {
             candidates.hide()
         }
-        return result;
+        return result
     }
 
     func controllerDidCommit(_ controller: CIMInputController) {
