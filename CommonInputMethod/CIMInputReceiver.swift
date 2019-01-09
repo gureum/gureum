@@ -18,9 +18,8 @@ import Cocoa
     var hasSelectionRange: Bool = false
     
     init(server: IMKServer, delegate: Any!, client: Any!, controller: CIMInputController) {
-        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)");
-        let appDelegate = NSApplication.shared.delegate as! CIMApplicationDelegate
-        self.composer = appDelegate.composer(server: server, client: client)
+        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)")
+        self.composer = GureumComposer()
         self.composer.manager = CIMInputManager.shared
         self.inputClient = client
         self.controller = controller
