@@ -174,7 +174,6 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         }
     }
 
-    #if DEBUG
     public func candidateSelected(_ candidateString: NSAttributedString) {
         assert(false)
     }
@@ -182,7 +181,6 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
     public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         assert(false)
     }
-    #endif
 }
 
 let table: [HGUCSChar:HGUCSChar]=[
