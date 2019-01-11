@@ -13,7 +13,7 @@ import Foundation
  @brief  입력을 처리하는 클래스의 관한 공통 형식
  @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
  */
-public protocol CIMInputTextDelegate {
+protocol CIMInputTextDelegate {
 /*!
  @method
  @param  controller  서버에서 입력을 받은 컨트롤러
@@ -33,7 +33,7 @@ public protocol CIMInputTextDelegate {
  @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
  */
 
-public protocol CIMComposerDelegate: CIMInputTextDelegate {
+protocol CIMComposerDelegate: CIMInputTextDelegate {
 
     //! @brief  입력기가 선택 됨
     func composerSelected(_ sender: Any!)
@@ -71,7 +71,7 @@ public protocol CIMComposerDelegate: CIMInputTextDelegate {
  
  @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
  */
-public class CIMComposer: NSObject, CIMComposerDelegate {
+class CIMComposer: NSObject, CIMComposerDelegate {
     
     public func composerSelected(_ sender: Any!) { }
 

@@ -61,7 +61,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2015 : "3-2015",
 ]
 
-public class GureumComposer: CIMComposer {
+class GureumComposer: CIMComposer {
     var romanComposer: CIMComposer
     let qwertyComposer: QwertyComposer = QwertyComposer()
     let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
@@ -118,7 +118,7 @@ public class GureumComposer: CIMComposer {
         }
     }
     
-    override public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let configuration = GureumConfiguration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false

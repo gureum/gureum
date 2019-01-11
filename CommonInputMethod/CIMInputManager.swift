@@ -51,7 +51,7 @@ extension IMKServer {
  
  @coclass    IMKServer CIMComposer
  */
-public class CIMInputManager: NSObject, CIMInputTextDelegate {
+class CIMInputManager: NSObject, CIMInputTextDelegate {
     static let shared = CIMInputManager()
     //! @brief  현재 입력중인 서버
     private var server: IMKServer
