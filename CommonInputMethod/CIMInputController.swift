@@ -11,9 +11,21 @@ import Foundation
 let DEBUG_LOGGING = false
 let DEBUG_INPUTCONTROLLER = false
 
+/*!
+ @enum
+ @brief  최종적으로 CIMInputController가 처리할 결과
+ */
+enum CIMInputTextProcessResult: Int {
+    case notProcessedAndNeedsCommit = -2
+    case notProcessedAndNeedsCancel = -1
+    case notProcessed = 0
+    case processed = 1
+};
+
+
 extension CIMInputController {
     
-    @objc open var composer: CIMComposer {
+    @objc var composer: CIMComposer {
         return self.receiver.composer
     }
     
