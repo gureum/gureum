@@ -12,6 +12,22 @@ class IOKitError: Error {
     init() {}
 }
 
+public extension io_connect_t {
+    func close() -> IOReturn {
+        return IOServiceClose(self)
+    }
+
+    func getModifierLockState(_ selector: Int) -> (kern_return_t, Bool) {
+        var state: Bool = false
+        let kr = IOHIDGetModifierLockState(self, Int32(selector), &state)
+        return (kr, state)
+    }
+
+    func setModifierLockState(_ selector: Int, state: Bool) -> kern_return_t {
+        return IOHIDSetModifierLockState(self, Int32(selector), state)
+    }
+}
+
 @objcMembers class IOConnect: NSObject {
     let id: io_connect_t
 
@@ -20,22 +36,20 @@ class IOKitError: Error {
     }
 
     deinit {
-        IOServiceClose(self.id)
+        _ = self.id.close()
     }
 
-    @objc var capsLockState: Bool {
+    var capsLockState: Bool {
         get {
-            var state: Bool = false
-            let kr = IOHIDGetModifierLockState(self.id, Int32(kIOHIDCapsLockState), &state)
+            let (kr, state) = id.getModifierLockState(kIOHIDCapsLockState)
             guard kr == KERN_SUCCESS else {
                 return false
             }
             return state
         }
-    }
-    
-    @objc func setCapsLockLed(_ state: Bool) {
-        IOHIDSetModifierLockState(self.id, Int32(kIOHIDCapsLockState), state)
+        set {
+            _ = id.setModifierLockState(kIOHIDCapsLockState, state: newValue)
+        }
     }
 }
 
@@ -45,6 +59,7 @@ class IOKitError: Error {
     init(id: io_service_t) {
         self.id = id
     }
+
     convenience init(port: mach_port_t, matching: NSDictionary?) throws {
         let id = IOServiceGetMatchingService(port, matching)
         if id == 0 {
@@ -52,6 +67,7 @@ class IOKitError: Error {
         }
         self.init(id: id)
     }
+
     convenience init(name: String) throws {
         let matching = IOServiceMatching(name)
         try! self.init(port: kIOMasterPortDefault, matching: matching)
@@ -63,7 +79,7 @@ class IOKitError: Error {
 
     func open(owningTask: mach_port_t, type: Int) -> IOConnect? {
         var connectId: io_connect_t = 0
-        let r = IOServiceOpen(self.id, owningTask, UInt32(type), &connectId)
+        let r = IOServiceOpen(id, owningTask, UInt32(type), &connectId)
         guard r == KERN_SUCCESS else {
             return nil
         }
@@ -71,7 +87,55 @@ class IOKitError: Error {
     }
 }
 
-extension IOHIDManager {
+public extension IOHIDValue {
+    public typealias Callback = IOHIDValueCallback
+    public typealias MultipleCallback = IOHIDValueMultipleCallback
+
+    var element: IOHIDElement {
+        return IOHIDValueGetElement(self)
+    }
+
+    var length: CFIndex {
+        return IOHIDValueGetLength(self)
+    }
+
+    var integerValue: CFIndex {
+        return IOHIDValueGetIntegerValue(self)
+    }
+}
+
+public extension IOHIDManager {
+    public class func create(options: IOOptionBits) -> IOHIDManager {
+        return IOHIDManagerCreate(kCFAllocatorDefault, options)
+    }
+
+    public class func create() -> IOHIDManager {
+        return create(options: IOOptionBits(kIOHIDOptionsTypeNone))
+    }
+
+    public func open() -> IOReturn {
+        return open(options: IOOptionBits(kIOHIDOptionsTypeNone))
+    }
+
+    public func open(options: IOOptionBits) -> IOReturn {
+        return IOHIDManagerOpen(self, options)
+    }
+
+    public func close() -> IOReturn {
+        return close(options: IOOptionBits(kIOHIDOptionsTypeNone))
+    }
+
+    public func close(options: IOOptionBits) -> IOReturn {
+        return IOHIDManagerClose(self, options)
+    }
+
+    public func schedule(runloop: RunLoop, mode: RunLoop.Mode) {
+        IOHIDManagerScheduleWithRunLoop(self, runloop.getCFRunLoop(), mode.rawValue as CFString)
+    }
+
+    public func unschedule(runloop: RunLoop, mode: RunLoop.Mode) {
+        IOHIDManagerUnscheduleFromRunLoop(self, runloop.getCFRunLoop(), mode.rawValue as CFString)
+    }
 
     public class func deviceMatching(page: Int, usage: Int) -> NSDictionary {
         return [
@@ -97,17 +161,11 @@ extension IOHIDManager {
         IOHIDManagerSetInputValueMatching(self, inputValueMatching)
     }
 
-    public class func capsLockManager() -> IOHIDManager {
-        let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
-        manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
-        manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
-        return manager
+    public func registerInputValueCallback(_ callback: @escaping IOHIDValueCallback, context: UnsafeMutableRawPointer?) {
+        IOHIDManagerRegisterInputValueCallback(self, callback, context)
     }
-}
 
-@objc public class IOHIDManagerBridge: NSObject {
-
-    @objc public class func capsLockManager() -> IOHIDManager {
-        return IOHIDManager.capsLockManager()
+    public func unregisterInputValueCallback() {
+        IOHIDManagerRegisterInputValueCallback(self, nil, nil)
     }
 }

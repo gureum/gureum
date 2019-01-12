@@ -6,8 +6,8 @@
 //  Copyright © 2018년 youknowone.org. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 @objc protocol CIMApplicationDelegate: NSObjectProtocol {
     //! @brief  언어 설정에 추가될 메뉴

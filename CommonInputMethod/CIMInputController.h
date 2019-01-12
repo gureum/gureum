@@ -30,28 +30,6 @@ static const int CIMKeyMapSize = 0x33;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CIMInputReceiver;
-@class IOConnect;
-
-typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
-    CIMInputControllerSpecialKeyCodeCapsLockPressed = -1,
-    CIMInputControllerSpecialKeyCodeCapsLockFlagsChanged = -2,
-};
-
-@interface CIMInputController : IMKInputController {
-    CIMInputReceiver *_receiver;
-    IOConnect *_ioConnect;
-    IOHIDManagerRef _hidManager;
-    BOOL _capsLockPressed;
-}
-
-@property(readonly) CIMInputReceiver *receiver; // temp bridge
-@property(readonly) IOConnect *ioConnect; // temp bridge
-@property(assign) BOOL capsLockPressed; // temp bridge
-
-@end
-
-
 #if DEBUG
 
 // no impleentation for this class here
