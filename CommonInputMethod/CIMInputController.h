@@ -28,41 +28,7 @@ static const int CIMKeyMapSize = 0x33;
 
 @class CIMInputController;
 
-/*!
- @enum
- @brief  최종적으로 CIMInputController가 처리할 결과
- */
-typedef NS_ENUM(int, CIMInputTextProcessResult) {
-    CIMInputTextProcessResultNotProcessedAndNeedsCommit = -2,
-    CIMInputTextProcessResultNotProcessedAndNeedsCancel = -1,
-    CIMInputTextProcessResultNotProcessed = 0,
-    CIMInputTextProcessResultProcessed = 1,
-};
-
-
 NS_ASSUME_NONNULL_BEGIN
-
-@class CIMInputReceiver;
-@class IOConnect;
-
-typedef NS_ENUM(NSInteger, CIMInputControllerSpecialKeyCode) {
-    CIMInputControllerSpecialKeyCodeCapsLockPressed = -1,
-    CIMInputControllerSpecialKeyCodeCapsLockFlagsChanged = -2,
-};
-
-@interface CIMInputController : IMKInputController {
-    CIMInputReceiver *_receiver;
-    IOConnect *_ioConnect;
-    IOHIDManagerRef _hidManager;
-    BOOL _capsLockPressed;
-}
-
-@property(readonly) CIMInputReceiver *receiver; // temp bridge
-@property(readonly) IOConnect *ioConnect; // temp bridge
-@property(assign) BOOL capsLockPressed; // temp bridge
-
-@end
-
 
 #if DEBUG
 

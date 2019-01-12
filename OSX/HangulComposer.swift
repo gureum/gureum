@@ -15,14 +15,14 @@ class HangulComposerCombination {
     /*!
      @brief  설정에 따라 조합 완료할 문자 최종처리
      */
-    public class func commitString(ucsString: UnsafePointer<HGUCSChar>) -> String {
+    class func commitString(ucsString: UnsafePointer<HGUCSChar>) -> String {
         return NSString.stringByRemovingFillerWithUCSString(ucsString) as String
     }
 
     /*!
      @brief  설정에 따라 조합중으로 보여줄 문자 최종처리
      */
-    public class func composedString(ucsString: UnsafePointer<HGUCSChar>) -> String {
+    class func composedString(ucsString: UnsafePointer<HGUCSChar>) -> String {
         return NSString.stringByRemovingFillerWithUCSString(ucsString) as String
     }
 }
@@ -34,11 +34,11 @@ class HangulComposerCombination {
 
  @coclass HGInputContext
  */
-public class HangulComposer: NSObject, CIMComposerDelegate {
-    public func composerSelected(_ sender: Any!) {
+class HangulComposer: NSObject, CIMComposerDelegate {
+    func composerSelected(_ sender: Any!) {
     }
     
-    public var candidates: [NSAttributedString]? {
+    var candidates: [NSAttributedString]? {
         return nil
     }
     
@@ -60,7 +60,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == GureumConfigurationName.hangulForceStrictCombinationRule.rawValue {
             let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? "2"
             self.setKeyboard(identifier: keyboard)
@@ -80,7 +80,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
      @brief  현재 context의 배열을 바꾼다.
      @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
      */
-    public func setKeyboard(identifier: String) {
+    func setKeyboard(identifier: String) {
         if configuration.hangulForceStrictCombinationRule && (identifier == "39" || identifier == "3f") {
             let strictCombinationIdentifier = "\(identifier)s"
             self.inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
@@ -89,7 +89,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         }
     }
 
-    public var commitString: String {
+    var commitString: String {
         get{
             return self._commitString
         }
@@ -97,7 +97,7 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
 
     // CIMComposerDelegate
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if (keyCode == kVK_Delete) {
             return self.inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
@@ -133,56 +133,54 @@ public class HangulComposer: NSObject, CIMComposerDelegate {
         return handled ? .processed : .notProcessedAndNeedsCancel
     }
 
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(false)
         return .notProcessed
     }
 
-    public var composedString: String {
+    var composedString: String {
         get {
             let preedit = self.inputContext.preeditUCSString
             return HangulComposerCombination.composedString(ucsString: preedit)
         }
     }
 
-    public var originalString: String {
+    var originalString: String {
         get {
             let preedit = self.inputContext.preeditUCSString
             return HangulComposerCombination.commitString(ucsString: preedit)
         }
     }
 
-    public func dequeueCommitString() -> String {
+    func dequeueCommitString() -> String {
         let queuedCommitString = self._commitString
         self._commitString = ""
         return queuedCommitString
     }
 
-    public func cancelComposition() {
+    func cancelComposition() {
         let flushedString: String! = HangulComposerCombination.commitString(ucsString: self.inputContext.flushUCSString())
         self._commitString += flushedString
     }
 
-    public func clearContext() {
+    func clearContext() {
         self.inputContext.reset()
         self._commitString = ""
     }
 
-    public var hasCandidates: Bool {
+    var hasCandidates: Bool {
         get {
             return false
         }
     }
 
-    #if DEBUG
-    public func candidateSelected(_ candidateString: NSAttributedString) {
+    func candidateSelected(_ candidateString: NSAttributedString) {
         assert(false)
     }
 
-    public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
+    func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         assert(false)
     }
-    #endif
 }
 
 let table: [HGUCSChar:HGUCSChar]=[

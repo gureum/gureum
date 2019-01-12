@@ -30,65 +30,9 @@ TISInputSource *_USSource() {
     return source;
 }
 
-
-@implementation CIMInputController
-
-@synthesize receiver=_receiver, ioConnect=_ioConnect, capsLockPressed=_capsLockPressed;
-
-- (instancetype)initWithServer:(nullable IMKServer *)server delegate:(nullable id)delegate client:(nullable id)inputClient {
-    self = [super initWithServer:server delegate:delegate client:inputClient];
-    if (self != nil) {
-        dlog(DEBUG_INPUTCONTROLLER, @"**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, delegate, inputClient);
-        self->_receiver = [[CIMInputReceiver alloc] initWithServer:server delegate:delegate client:inputClient controller:self];
-
-        IOService* service = [[IOService alloc] initWithName:@(kIOHIDSystemClass) error:NULL];
-        self->_ioConnect = [service openWithOwningTask:mach_task_self_ type:kIOHIDParamConnectType];
-        dlog(DEBUG_INPUTCONTROLLER, @"io_connect: %@", self->_ioConnect);
-
-        self->_hidManager = [IOHIDManagerBridge capsLockManager];
-        CFRetain(self->_hidManager);
-
-        // Set input value callback
-        IOHIDManagerRegisterInputValueCallback(self->_hidManager, handleInputValueCallback, (__bridge void *)(self));
-        IOHIDManagerScheduleWithRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-        IOReturn ioReturn = IOHIDManagerOpen(self->_hidManager, kIOHIDOptionsTypeNone);
-        if (ioReturn) {
-            dlog(DEBUG_INPUTCONTROLLER, @"IOHIDManagerOpen failed");
-        }
-
-        self->_capsLockPressed = NO;
-    }
-    return self;
-}
-
-- (void)dealloc {
-    IOHIDManagerUnscheduleFromRunLoop(self->_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-    IOHIDManagerRegisterInputValueCallback(self->_hidManager, nil, nil);
-    IOHIDManagerClose(self->_hidManager, kIOHIDOptionsTypeNone);
-    CFRelease(self->_hidManager);
-}
-
-
-static void handleInputValueCallback(void *inContext, IOReturn inResult, void *inSender, IOHIDValueRef inIOHIDValueRef) {
-    CIMInputController *inputController = (__bridge CIMInputController *)(inContext);
-    CFIndex intValue = IOHIDValueGetIntegerValue(inIOHIDValueRef);
-
-    dlog(DEBUG_INPUTCONTROLLER, @"context: %@, caps lock pressed: %lx", inputController, intValue);
-    if (intValue == 1) {
-        inputController->_capsLockPressed = YES;
-    }
-}
-
-@end
-
-
 #if DEBUG
 
 @implementation CIMMockInputController (IMKServerInputTextData)
-
-- (id<IMKTextInput,NSObject>)client {
-    return self._receiver.inputClient;
-}
 
 - (void)updateComposition {
     [self._receiver updateCompositionEvent:(id)self];

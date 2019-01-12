@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TISInputSource
 
+@synthesize ref=_ref;
+
 - (instancetype)init {
     return nil;
 }
