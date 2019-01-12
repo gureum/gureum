@@ -6,48 +6,48 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-import UIKit
-import Fabric
 import Crashlytics
+import Fabric
+import UIKit
 
 var crashlyticsInitialized = false
 
-var globalInputViewController: InputViewController? = nil
-var sharedInputMethodView: InputMethodView? = nil
+var globalInputViewController: InputViewController?
+var sharedInputMethodView: InputMethodView?
 var launchedDate: NSDate = NSDate()
 
 class BasicInputViewController: UIInputViewController {
-    lazy var inputMethodView: InputMethodView = { return InputMethodView(frame: self.view.bounds) }()
+    lazy var inputMethodView: InputMethodView = { InputMethodView(frame: self.view.bounds) }()
     var willContextBeforeInput: String = ""
     var willContextAfterInput: String = ""
     var didContextBeforeInput: String = ""
     var didContextAfterInput: String = ""
 
     override func textWillChange(_ textInput: UITextInput?) {
-        //self.log("text will change")
+        // self.log("text will change")
         super.textWillChange(textInput)
-        let proxy = self.textDocumentProxy
-        self.willContextBeforeInput = proxy.documentContextBeforeInput ?? ""
-        self.willContextAfterInput = proxy.documentContextAfterInput ?? ""
+        let proxy = textDocumentProxy
+        willContextBeforeInput = proxy.documentContextBeforeInput ?? ""
+        willContextAfterInput = proxy.documentContextAfterInput ?? ""
     }
 
     override func textDidChange(_ textInput: UITextInput?) {
-        //self.log("text did change")
-        let proxy = self.textDocumentProxy
-        self.didContextBeforeInput = proxy.documentContextBeforeInput ?? ""
-        self.didContextAfterInput = proxy.documentContextAfterInput ?? ""
+        // self.log("text did change")
+        let proxy = textDocumentProxy
+        didContextBeforeInput = proxy.documentContextBeforeInput ?? ""
+        didContextAfterInput = proxy.documentContextAfterInput ?? ""
         super.textDidChange(textInput)
     }
 
-    override func selectionDidChange(_ textInput: UITextInput?)  {
-        //self.log("selection did change:")
-        self.inputMethodView.resetContext()
+    override func selectionDidChange(_: UITextInput?) {
+        // self.log("selection did change:")
+        inputMethodView.resetContext()
         //        self.keyboard.view.logTextView.backgroundColor = UIColor.redColor()
     }
 
-    override func selectionWillChange(_ textInput: UITextInput?)  {
-        //self.log("selection will change:")
-        self.inputMethodView.resetContext()
+    override func selectionWillChange(_: UITextInput?) {
+        // self.log("selection will change:")
+        inputMethodView.resetContext()
         //        self.keyboard.view.logTextView.backgroundColor = UIColor.blueColor()
     }
 
@@ -63,27 +63,20 @@ class BasicInputViewController: UIInputViewController {
 
     func log(text: String) {
         #if DEBUG
-        println(text)
-        return;
+            println(text)
+            return;
 
-        let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
-        self.logTextView.text = diff + "> " +  text + "\n" + self.logTextView.text
-        self.view.bringSubviewToFront(self.logTextView)
+            let diff = String(format: "%.3f", NSDate().timeIntervalSinceDate(launchedDate))
+            logTextView.text = diff + "> " + text + "\n" + logTextView.text
+            view.bringSubviewToFront(logTextView)
         #endif
     }
 
-    func input(_ sender: GRInputButton) {
+    func input(_: GRInputButton) {}
 
-    }
+    func inputDelete(_: GRInputButton) {}
 
-    func inputDelete(_ sender: GRInputButton) {
-
-    }
-
-    func reloadInputMethodView() {
-
-    }
-    
+    func reloadInputMethodView() {}
 }
 
 class DebugInputViewController: BasicInputViewController {
@@ -91,34 +84,34 @@ class DebugInputViewController: BasicInputViewController {
     var modeDate = NSDate()
 
     override func loadView() {
-        self.view = self.inputMethodView
+        view = inputMethodView
     }
 
     override func viewDidLoad() {
-        //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
-        self.log(text: "loaded: \(self.view.frame)")
-        //globalInputViewController = self
+        // assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
+        log(text: "loaded: \(view.frame)")
+        // globalInputViewController = self
         super.viewDidLoad()
 
-        self.initialized = true
-        let proxy = self.textDocumentProxy as UITextInputTraits
-        self.log(text: "adding input method view")
-        self.inputMethodView.loadCollections(traits: proxy)
-        self.log(text: "added method view")
+        initialized = true
+        let proxy = textDocumentProxy as UITextInputTraits
+        log(text: "adding input method view")
+        inputMethodView.loadCollections(traits: proxy)
+        log(text: "added method view")
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if initialized {
-            //self.log("viewWillLayoutSubviews \(self.view.bounds)")
-            self.inputMethodView.transitionViewToSize(size: self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator)
+            // self.log("viewWillLayoutSubviews \(self.view.bounds)")
+            inputMethodView.transitionViewToSize(size: view.bounds.size, withTransitionCoordinator: transitionCoordinator)
         }
     }
 
     override func viewDidLayoutSubviews() {
         if initialized {
-            //self.log("viewDidLayoutSubviews \(self.view.bounds)")
-            self.inputMethodView.transitionViewToSize(size: self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator)
+            // self.log("viewDidLayoutSubviews \(self.view.bounds)")
+            inputMethodView.transitionViewToSize(size: view.bounds.size, withTransitionCoordinator: transitionCoordinator)
         }
         super.viewDidLayoutSubviews()
     }
@@ -127,7 +120,7 @@ class DebugInputViewController: BasicInputViewController {
 class InputViewController: BasicInputViewController {
     var initialized = false
     var modeDate = NSDate()
-    var lastTraits: UITextInputTraits! = nil
+    var lastTraits: UITextInputTraits!
 
     // overriding `init` causes crash
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -139,23 +132,23 @@ class InputViewController: BasicInputViewController {
 //    }
 
     override func reloadInputMethodView() {
-        let proxy = self.textDocumentProxy as UITextInputTraits
-        self.inputMethodView.loadCollections(traits: proxy)
-        //self.inputMethodView.adjustTraits(proxy)
-        self.inputMethodView.adjustedSize = CGSize.zero
-        //println("bounds: \(self.view.bounds)")
-        self.inputMethodView.transitionViewToSize(size: self.view.bounds.size, withTransitionCoordinator: nil)
+        let proxy = textDocumentProxy as UITextInputTraits
+        inputMethodView.loadCollections(traits: proxy)
+        // self.inputMethodView.adjustTraits(proxy)
+        inputMethodView.adjustedSize = CGSize.zero
+        // println("bounds: \(self.view.bounds)")
+        inputMethodView.transitionViewToSize(size: view.bounds.size, withTransitionCoordinator: nil)
     }
 
     override func viewDidLoad() {
         if !crashlyticsInitialized {
-            //Crashlytics().debugMode = true
+            // Crashlytics().debugMode = true
 //            Crashlytics.startWithAPIKey("1b5d8443c3eabba778b0d97bff234647af846181")
             Fabric.with([Crashlytics()])
             crashlyticsInitialized = true
         }
-        //assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
-        //self.log("loaded: \(self.view.frame)")
+        // assert(globalInputViewController == nil, "input view controller is set?? \(globalInputViewController)")
+        // self.log("loaded: \(self.view.frame)")
         super.viewDidLoad()
 
         globalInputViewController = self
@@ -163,19 +156,19 @@ class InputViewController: BasicInputViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if !initialized && self.view.bounds != CGRect.zero {
-            self.view = self.inputMethodView
-            let traits = self.textDocumentProxy as UITextInputTraits
-            self.lastTraits = traits
-            self.inputMethodView.loadCollections(traits: traits)
+        if !initialized, view.bounds != CGRect.zero {
+            view = inputMethodView
+            let traits = textDocumentProxy as UITextInputTraits
+            lastTraits = traits
+            inputMethodView.loadCollections(traits: traits)
 
             if preferences.swipe {
                 let leftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(InputViewController.leftForSwipeRecognizer(_:)))
                 leftRecognizer.direction = .left
                 let rightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(InputViewController.rightForSwipeRecognizer(_:)))
                 rightRecognizer.direction = .right
-                self.view.addGestureRecognizer(leftRecognizer)
-                self.view.addGestureRecognizer(rightRecognizer)
+                view.addGestureRecognizer(leftRecognizer)
+                view.addGestureRecognizer(rightRecognizer)
             }
 
             initialized = true
@@ -184,7 +177,7 @@ class InputViewController: BasicInputViewController {
 
     override func viewDidLayoutSubviews() {
         if initialized {
-            self.inputMethodView.transitionViewToSize(size: self.view.bounds.size, withTransitionCoordinator: self.transitionCoordinator)
+            inputMethodView.transitionViewToSize(size: view.bounds.size, withTransitionCoordinator: transitionCoordinator)
         }
         super.viewDidLayoutSubviews()
     }
@@ -202,18 +195,18 @@ class InputViewController: BasicInputViewController {
             return
         }
 
-        if self.willContextBeforeInput != self.didContextBeforeInput || self.willContextAfterInput != self.didContextAfterInput {
-            self.inputMethodView.resetContext()
-            self.inputMethodView.selectedCollection.selectLayoutIndex(index: 0)
-            self.inputMethodView.selectedLayout.view.shiftButton?.isSelected = false
-            self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        if willContextBeforeInput != didContextBeforeInput || willContextAfterInput != didContextAfterInput {
+            inputMethodView.resetContext()
+            inputMethodView.selectedCollection.selectLayoutIndex(index: 0)
+            inputMethodView.selectedLayout.view.shiftButton?.isSelected = false
+            inputMethodView.selectedLayout.helper.updateCaptionLabel()
         }
         if let traits = textInput as UITextInput? {
-            self.lastTraits = traits // for app
+            lastTraits = traits // for app
         } else {
-            self.lastTraits = self.textDocumentProxy as UITextInputTraits // for keyboard
+            lastTraits = textDocumentProxy as UITextInputTraits // for keyboard
         }
-        self.adjustTraits(traits: self.lastTraits)
+        adjustTraits(traits: lastTraits)
     }
 
     func adjustTraits(traits: UITextInputTraits) {
@@ -224,13 +217,13 @@ class InputViewController: BasicInputViewController {
             textColor = UIColor.black
         }
 
-        self.inputMethodView.adjustTraits(traits: traits)
-        self.inputMethodView.transitionViewToSize(size: self.view.bounds.size, withTransitionCoordinator: nil)
+        inputMethodView.adjustTraits(traits: traits)
+        inputMethodView.transitionViewToSize(size: view.bounds.size, withTransitionCoordinator: nil)
 
-        let selectedLayout = self.inputMethodView.selectedLayout
-        let proxy = self.textDocumentProxy
+        let selectedLayout = inputMethodView.selectedLayout
+        let proxy = textDocumentProxy
 
-        if traits.enablesReturnKeyAutomatically ?? false && (self.didContextBeforeInput.count + self.didContextAfterInput.count) == 0 {
+        if traits.enablesReturnKeyAutomatically ?? false, (didContextBeforeInput.count + didContextAfterInput.count) == 0 {
             selectedLayout.view.doneButton.isEnabled = false
         } else {
             selectedLayout.view.doneButton.isEnabled = true
@@ -240,43 +233,43 @@ class InputViewController: BasicInputViewController {
             if selectedLayout.shift == .Auto {
                 selectedLayout.shift = .Off
             }
-            if type(of: selectedLayout).capitalizable && selectedLayout.shift != .Auto {
+            if type(of: selectedLayout).capitalizable, selectedLayout.shift != .Auto {
                 var needsShift = false
                 switch traits.autocapitalizationType! {
                 case .allCharacters:
                     needsShift = true
                 case .words:
-                    if self.didContextBeforeInput.count == 0 {
+                    if didContextBeforeInput.count == 0 {
                         needsShift = true
                     } else {
                         let whitespaces = NSCharacterSet.whitespacesAndNewlines
-                        let lastCharacter =  self.didContextBeforeInput.unicodeScalars.last!
+                        let lastCharacter = didContextBeforeInput.unicodeScalars.last!
                         needsShift = whitespaces.contains(lastCharacter)
                     }
                 case .sentences:
                     let whitespaces = NSCharacterSet.whitespaces
-                    
-                    // FIXME: porting
-                    /*
-                    let punctuations = NSCharacterSet(charactersIn: ".!?")
-                    let utf16 = self.didContextBeforeInput.utf16 
-                    var index = utf16.endIndex
-                    needsShift = true
-                    while index != utf16.startIndex {
-                        index = index.predecessor()
-                        let code = utf16[index]
-                        if punctuations.characterIsMember(code) || code == 10 {
-                            let nextIndex = index.successor()
-                            if utf16.endIndex != nextIndex && utf16[nextIndex] == 32 {
-                                break
-                            }
-                        }
-                        if !whitespaces.characterIsMember(code) {
-                            needsShift = false
-                            break
-                        }
-                    }
-                    */
+
+                // FIXME: porting
+                /*
+                 let punctuations = NSCharacterSet(charactersIn: ".!?")
+                 let utf16 = self.didContextBeforeInput.utf16
+                 var index = utf16.endIndex
+                 needsShift = true
+                 while index != utf16.startIndex {
+                 index = index.predecessor()
+                 let code = utf16[index]
+                 if punctuations.characterIsMember(code) || code == 10 {
+                 let nextIndex = index.successor()
+                 if utf16.endIndex != nextIndex && utf16[nextIndex] == 32 {
+                 break
+                 }
+                 }
+                 if !whitespaces.characterIsMember(code) {
+                 needsShift = false
+                 break
+                 }
+                 }
+                 */
                 default: break
                 }
                 if needsShift {
@@ -284,25 +277,25 @@ class InputViewController: BasicInputViewController {
                 }
             }
         }
-        //self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
+        // self.keyboard.view.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
     @objc override func input(_ sender: GRInputButton) {
-        //Crashlytics().crash()
-        let proxy = self.textDocumentProxy
-        self.log(text: "before: \(proxy.documentContextBeforeInput)")
+        // Crashlytics().crash()
+        let proxy = textDocumentProxy
+        log(text: "before: \(proxy.documentContextBeforeInput)")
 
-        let selectedLayout = self.inputMethodView.selectedLayout
-        for collection in self.inputMethodView.collections {
+        let selectedLayout = inputMethodView.selectedLayout
+        for collection in inputMethodView.collections {
             for layout in collection.layouts {
-                if selectedLayout.context != layout.context && layout.context != nil {
+                if selectedLayout.context != layout.context, layout.context != nil {
                     context_truncate(layout.context)
                 }
             }
         }
 
         if sender.sequence != nil {
-            (self.textDocumentProxy as UIKeyInput).insertText(sender.sequence)
+            (textDocumentProxy as UIKeyInput).insertText(sender.sequence)
             return
         }
 
@@ -323,16 +316,15 @@ class InputViewController: BasicInputViewController {
 
         selectedLayout.view.doneButton.isEnabled = true
 
-        //assert(selectedLayout.view.spaceButton != nil)
-        //assert(selectedLayout.view.doneButton != nil)
+        // assert(selectedLayout.view.spaceButton != nil)
+        // assert(selectedLayout.view.doneButton != nil)
         if sender == selectedLayout.view.spaceButton ?? nil || sender == selectedLayout.view.doneButton ?? nil {
-            self.inputMethodView.selectedCollection.selectLayoutIndex(index: 0)
-            self.inputMethodView.resetContext()
+            inputMethodView.selectedCollection.selectLayoutIndex(index: 0)
+            inputMethodView.resetContext()
             // FIXME: dirty solution
             if sender == selectedLayout.view.spaceButton {
                 proxy.insertText(" ")
-            }
-            else if sender == selectedLayout.view.doneButton {
+            } else if sender == selectedLayout.view.doneButton {
                 proxy.insertText("\n")
             }
 
@@ -341,23 +333,23 @@ class InputViewController: BasicInputViewController {
 
         let precomposed = context_get_composed_unicodes(context: context!)
         let processed = context_put(context, UInt32(keycode))
-        //self.log("processed: \(processed) / precomposed: \(precomposed)")
+        // self.log("processed: \(processed) / precomposed: \(precomposed)")
 
         if processed == 0 {
-            self.inputMethodView.resetContext()
-            
+            inputMethodView.resetContext()
+
             if let code = UnicodeScalar(keycode) {
                 proxy.insertText("\(code)")
             } else {
                 print("Optional clear fail!")
             }
-            //self.log("truncate and insert: \(UnicodeScalar(keycode))")
-            
+            // self.log("truncate and insert: \(UnicodeScalar(keycode))")
+
         } else {
             let commited = context_get_commited_unicodes(context: context!)
             let composed = context_get_composed_unicodes(context: context!)
             let combined = commited + composed
-            //self.log("combined: \(combined)")
+            // self.log("combined: \(combined)")
             var sharedLength = 0
             for (i, char) in precomposed.enumerated() {
                 if char == combined[i] {
@@ -367,82 +359,81 @@ class InputViewController: BasicInputViewController {
                 }
             }
 
-            let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
-            let unsharedCombined = Array(combined[sharedLength..<combined.count])
+            let unsharedPrecomposed = Array(precomposed[sharedLength ..< precomposed.count])
+            let unsharedCombined = Array(combined[sharedLength ..< combined.count])
 
-            //self.log("-- deleting")
+            // self.log("-- deleting")
             for _ in unsharedPrecomposed {
                 proxy.deleteBackward()
             }
-            //self.log("-- deleted")
+            // self.log("-- deleted")
 
-            //self.log("-- inserting")
-            //self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
+            // self.log("-- inserting")
+            // self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
             if unsharedCombined.count > 0 {
                 let string = unicodes_to_string(unicodes: unsharedCombined)
                 proxy.insertText(string)
             }
-            //self.log("-- inserted")
-            self.log(text: "commited: \(commited) / composed: \(composed)")
+            // self.log("-- inserted")
+            log(text: "commited: \(commited) / composed: \(composed)")
 
             /*
-            let NFDPrecomposed = unicodes_nfc_to_nfd(unsharedPrecomposed)
-            let NFDCombined = unicodes_nfc_to_nfd(unsharedCombined)
+             let NFDPrecomposed = unicodes_nfc_to_nfd(unsharedPrecomposed)
+             let NFDCombined = unicodes_nfc_to_nfd(unsharedCombined)
 
-            var NFDSharedLength = 0
-            for (i, char) in enumerate(NFDPrecomposed) {
-                if char == NFDCombined[i] {
-                    NFDSharedLength = i + 1
-                } else {
-                    break
-                }
-            }
+             var NFDSharedLength = 0
+             for (i, char) in enumerate(NFDPrecomposed) {
+             if char == NFDCombined[i] {
+             NFDSharedLength = i + 1
+             } else {
+             break
+             }
+             }
 
-            let NFDUnsharedPrecomposed = Array(NFDPrecomposed[NFDSharedLength..<NFDPrecomposed.count])
-            let NFDUnsharedCombined = Array(NFDCombined[NFDSharedLength..<NFDCombined.count])
+             let NFDUnsharedPrecomposed = Array(NFDPrecomposed[NFDSharedLength..<NFDPrecomposed.count])
+             let NFDUnsharedCombined = Array(NFDCombined[NFDSharedLength..<NFDCombined.count])
 
-            if NFDUnsharedPrecomposed.count == 0 {
-                if NFDUnsharedCombined.count > 0 {
-                    let string = unicodes_to_string(NFDUnsharedCombined)
-                    proxy.insertText(string)
-                }
-            } else {
-                //self.log("-- deleting")
-                for _ in unsharedPrecomposed {
-                    proxy.deleteBackward()
-                }
-                self.needsProtection = !proxy.hasText()
-                //self.log("-- deleted")
+             if NFDUnsharedPrecomposed.count == 0 {
+             if NFDUnsharedCombined.count > 0 {
+             let string = unicodes_to_string(NFDUnsharedCombined)
+             proxy.insertText(string)
+             }
+             } else {
+             //self.log("-- deleting")
+             for _ in unsharedPrecomposed {
+             proxy.deleteBackward()
+             }
+             self.needsProtection = !proxy.hasText()
+             //self.log("-- deleted")
 
-                //self.log("-- inserting")
-                //self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
-                if unsharedCombined.count > 0 {
-                    let string = unicodes_to_string(NFDCombined)
-                    proxy.insertText(string)
-                }
-                //self.log("-- inserted")
-                self.log("commited: \(commited) / composed: \(composed)")
-            }
-            */
-
+             //self.log("-- inserting")
+             //self.log("shared length: \(sharedLength) unshared text: \(unsharedCombined)")
+             if unsharedCombined.count > 0 {
+             let string = unicodes_to_string(NFDCombined)
+             proxy.insertText(string)
+             }
+             //self.log("-- inserted")
+             self.log("commited: \(commited) / composed: \(composed)")
+             }
+             */
         }
-        self.log(text: "input done")
-        //self.log("after: \(proxy.documentContextAfterInput)")
+        log(text: "input done")
+        // self.log("after: \(proxy.documentContextAfterInput)")
     }
 
     @objc override func inputDelete(_ sender: GRInputButton) {
-        let proxy = self.textDocumentProxy
-        let context = self.inputMethodView.selectedLayout.context
+        let proxy = textDocumentProxy
+        let context = inputMethodView.selectedLayout.context
         let precomposed = context_get_composed_unicodes(context: context!)
         if precomposed.count > 0 {
             let processed = context_put(context, InputSource(sender.keycode))
-            let proxy = self.textDocumentProxy as UIKeyInput
+            let proxy = textDocumentProxy as UIKeyInput
             if processed > 0 {
-                //self.log("start deleting")
+                // self.log("start deleting")
                 let commited = context_get_commited_unicodes(context: context!)
                 let composed = context_get_composed_unicodes(context: context!)
                 let combined = commited + composed
-                //self.log("combined: \(combined)")
+                // self.log("combined: \(combined)")
                 var sharedLength = 0
                 for (i, char) in combined.enumerated() {
                     if char == precomposed[i] {
@@ -451,8 +442,8 @@ class InputViewController: BasicInputViewController {
                         break
                     }
                 }
-                let unsharedPrecomposed = Array(precomposed[sharedLength..<precomposed.count])
-                let unsharedCombined = Array(combined[sharedLength..<combined.count])
+                let unsharedPrecomposed = Array(precomposed[sharedLength ..< precomposed.count])
+                let unsharedCombined = Array(combined[sharedLength ..< combined.count])
 
                 for _ in unsharedPrecomposed {
                     proxy.deleteBackward()
@@ -462,85 +453,85 @@ class InputViewController: BasicInputViewController {
                     let composed = unicodes_to_string(unicodes: unsharedCombined)
                     proxy.insertText("\(composed)")
                 }
-                //self.log("end deleting")
+                // self.log("end deleting")
             } else {
                 proxy.deleteBackward()
             }
-            //self.log("deleted and add \(UnicodeScalar(composed))")
+            // self.log("deleted and add \(UnicodeScalar(composed))")
         } else {
-            (self.textDocumentProxy as UIKeyInput).deleteBackward()
-            //self.log("deleted")
+            (textDocumentProxy as UIKeyInput).deleteBackward()
+            // self.log("deleted")
         }
     }
 
     @objc func space(_ sender: GRInputButton) {
-        let proxy = self.textDocumentProxy
-        self.input(sender)
+        let proxy = textDocumentProxy
+        input(sender)
     }
 
     @objc func shift(_ sender: GRInputButton) {
-        self.inputMethodView.selectedLayout.shift = sender.isSelected ? .Off : .On
+        inputMethodView.selectedLayout.shift = sender.isSelected ? .Off : .On
     }
 
-    @objc func toggleLayout(_ sender: GRInputButton) {
-        self.inputMethodView.selectedLayout.shift = .Off
-        let collection = self.inputMethodView.selectedCollection
+    @objc func toggleLayout(_: GRInputButton) {
+        inputMethodView.selectedLayout.shift = .Off
+        let collection = inputMethodView.selectedCollection
         collection.switchLayout()
         collection.selectedLayout.view.toggleKeyboardButton.isSelected = collection.selectedLayoutIndex != 0
-        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
-        self.adjustTraits(traits: self.lastTraits)
+        inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        adjustTraits(traits: lastTraits)
     }
 
     @objc func selectLayout(_ sender: GRInputButton) {
-        let collection = self.inputMethodView.selectedCollection
+        let collection = inputMethodView.selectedCollection
         collection.selectLayoutIndex(index: sender.tag)
-        self.inputMethodView.selectedLayout.helper.updateCaptionLabel()
-        self.adjustTraits(traits: self.lastTraits)
+        inputMethodView.selectedLayout.helper.updateCaptionLabel()
+        adjustTraits(traits: lastTraits)
     }
 
     @objc func done(_ sender: GRInputButton) {
-        self.inputMethodView.resetContext()
+        inputMethodView.resetContext()
         sender.keycode = 13
-        self.input(sender)
+        input(sender)
     }
 
-    @objc func mode(_ sender: GRInputButton) {
+    @objc func mode(_: GRInputButton) {
         let now = NSDate()
         var needsNextInputMode = false
         if preferences.inglobe {
-            if now.timeIntervalSince(self.modeDate as Date) < 0.5 {
+            if now.timeIntervalSince(modeDate as Date) < 0.5 {
                 needsNextInputMode = true
             }
         } else {
             needsNextInputMode = true
         }
         if needsNextInputMode {
-            self.advanceToNextInputMode()
+            advanceToNextInputMode()
         } else {
-            let newIndex = self.inputMethodView.selectedCollectionIndex == 0 ? 1 : 0;
-            self.inputMethodView.selectCollectionByIndex(index: newIndex, animated: true)
-            self.modeDate = now
-            self.adjustTraits(traits: self.lastTraits)
+            let newIndex = inputMethodView.selectedCollectionIndex == 0 ? 1 : 0
+            inputMethodView.selectCollectionByIndex(index: newIndex, animated: true)
+            modeDate = now
+            adjustTraits(traits: lastTraits)
         }
     }
 
-    @objc func leftForSwipeRecognizer(_ recognizer: UISwipeGestureRecognizer!) {
-        let index = self.inputMethodView.selectedCollectionIndex
-        if index < self.inputMethodView.collections.count - 1 {
-            self.inputMethodView.selectCollectionByIndex(index: index + 1, animated: true)
-            self.adjustTraits(traits: self.lastTraits)
+    @objc func leftForSwipeRecognizer(_: UISwipeGestureRecognizer!) {
+        let index = inputMethodView.selectedCollectionIndex
+        if index < inputMethodView.collections.count - 1 {
+            inputMethodView.selectCollectionByIndex(index: index + 1, animated: true)
+            adjustTraits(traits: lastTraits)
         } else {
-            self.inputMethodView.selectCollectionByIndex(index: 0, animated: true)
+            inputMethodView.selectCollectionByIndex(index: 0, animated: true)
         }
     }
 
-    @objc func rightForSwipeRecognizer(_ recognizer: UISwipeGestureRecognizer!) {
-        let index = self.inputMethodView.selectedCollectionIndex
+    @objc func rightForSwipeRecognizer(_: UISwipeGestureRecognizer!) {
+        let index = inputMethodView.selectedCollectionIndex
         if index > 0 {
-            self.inputMethodView.selectCollectionByIndex(index: index - 1, animated: true)
-            self.adjustTraits(traits: self.lastTraits)
+            inputMethodView.selectCollectionByIndex(index: index - 1, animated: true)
+            adjustTraits(traits: lastTraits)
         } else {
-            self.inputMethodView.selectCollectionByIndex(index: self.inputMethodView.collections.count - 1, animated: true)
+            inputMethodView.selectCollectionByIndex(index: inputMethodView.collections.count - 1, animated: true)
         }
     }
 
@@ -549,11 +540,10 @@ class InputViewController: BasicInputViewController {
 //    }
 
     @objc func error(_ sender: UIButton) {
-        self.inputMethodView.resetContext()
-        let proxy = self.textDocumentProxy
+        inputMethodView.resetContext()
+        let proxy = textDocumentProxy
         #if DEBUG
-        proxy.insertText("<error: \(sender.tag)>")
+            proxy.insertText("<error: \(sender.tag)>")
         #endif
     }
-
 }

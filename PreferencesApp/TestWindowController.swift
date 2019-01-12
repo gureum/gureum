@@ -8,11 +8,9 @@
 
 import Cocoa
 
-
 class TestWindowController: NSWindowController {
-    
-    var windowDelegate: Any! = nil  // hold a reference not to deinit delegate object
-    
+    var windowDelegate: Any! // hold a reference not to deinit delegate object
+
     override func windowDidLoad() {
         let path = Bundle.main.path(forResource: "Preferences", ofType: "prefPane")
         let bundle = NSPrefPaneBundle(path: path)!
@@ -22,6 +20,6 @@ class TestWindowController: NSWindowController {
         assert(loaded)
         let pane = bundle.prefPaneObject()!
         // pane.loadMainView()
-        self.window!.contentView = pane.mainView
+        window!.contentView = pane.mainView
     }
 }

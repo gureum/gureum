@@ -29,9 +29,7 @@ class EmoticonKeyboardView: KeyboardView {
     }()
 
     override var visibleButtons: [GRInputButton] {
-        get {
-            return [self.nextKeyboardButton, self.deleteButton, self.dummyLabelButton] + self.sectionButtons
-        }
+        return [self.nextKeyboardButton, self.deleteButton, self.dummyLabelButton] + self.sectionButtons
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -41,17 +39,17 @@ class EmoticonKeyboardView: KeyboardView {
     override func awakeFromNib() {
         super.awakeFromNib()
         /*
-        let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
-        let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
-        let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.footerBlurView.bounds
-        gradientLayer.colors = [transparentColor, medianColor, opaqueColor]
-        gradientLayer.locations = [0.0, 0.15, 0.3, 1.0]
-        gradientLayer.startPoint = CGPointMake(0.5, 0.0)
-        gradientLayer.endPoint = CGPointMake(0.5, 1.0)
-        self.footerBlurView.layer.mask = gradientLayer
-        */
+         let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
+         let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
+         let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
+         let gradientLayer = CAGradientLayer()
+         gradientLayer.frame = self.footerBlurView.bounds
+         gradientLayer.colors = [transparentColor, medianColor, opaqueColor]
+         gradientLayer.locations = [0.0, 0.15, 0.3, 1.0]
+         gradientLayer.startPoint = CGPointMake(0.5, 0.0)
+         gradientLayer.endPoint = CGPointMake(0.5, 1.0)
+         self.footerBlurView.layer.mask = gradientLayer
+         */
     }
 
     override init(frame: CGRect) {
@@ -60,7 +58,7 @@ class EmoticonKeyboardView: KeyboardView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.foregroundEventView.removeFromSuperview()
+        foregroundEventView.removeFromSuperview()
     }
 }
 
@@ -70,6 +68,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let data = try! Data(contentsOf: url)
         return try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [[String]]
     }()
+
     static let titles = [
         "자주 사용하는 항목", "사람", "자연", "음식 및 음료", "축하", "활동", "여행 및 장소", "사물 및 기호", "텍스트",
     ]
@@ -81,7 +80,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
     var frequencyHistory = preferences.emoticonHistory
     lazy var favorites: [String] = self.populateFavorites()
     func populateFavorites() -> [String] {
-        let scores = Array(self.frequencyMap.keys.map({ return ($0, self.frequencyMap[$0]!) }))
+        let scores = Array(frequencyMap.keys.map({ ($0, self.frequencyMap[$0]!) }))
         let sorted = scores.sorted(by: {
             let (text1, score1) = $0
             let (text2, score2) = $1
@@ -92,8 +91,8 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
             }
         })
 
-        var emoticons: [String] = Array(sorted[0..<min(sorted.count, 24)].map({ (emoticon: String, score: UInt) -> String in return emoticon }))
-        for emoticon in self.frequencyHistory as! [String] {
+        var emoticons: [String] = Array(sorted[0 ..< min(sorted.count, 24)].map({ (emoticon: String, _: UInt) -> String in emoticon }))
+        for emoticon in frequencyHistory as! [String] {
             if emoticons.contains(emoticon) {
                 continue
             }
@@ -105,21 +104,15 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         return emoticons
     }
 
-
-    var headerBackgroundViews: [Int:UIView] = [:]
+    var headerBackgroundViews: [Int: UIView] = [:]
 
     var emoticonView: EmoticonKeyboardView {
-        get {
-            return self.view as! EmoticonKeyboardView
-        }
+        return self.view as! EmoticonKeyboardView
     }
 
-    override class var toggleCaption: String {
-        get { return "😀" }
-    }
+    override class var toggleCaption: String { return "😀" }
 
-    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
-
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
         func functionCaption(name: String, row: Int) -> ThemeCaption {
             return trait.captionForIdentifier(identifier: "emoticon-\(name)", needsMargin: type(of: self).needsMargin, classes: {
                 trait.captionClassesForGetters(getters: [
@@ -149,10 +142,10 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
                 trait.captionClassesForGetters(getters: [
                     { $0.classByName(key: "header") },
                     { $0.base },
-                    ], inGroups: [trait.emoticon, trait.common])
-            })
+                ], inGroups: [trait.emoticon, trait.common])
+            }),
         ]
-        for button in self.emoticonView.sectionButtons {
+        for button in emoticonView.sectionButtons {
             themeMap[button] = specialCaption(name: "section", row: 4)
         }
         return themeMap
@@ -167,16 +160,13 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         return view!
     }
 
-
-    func keyForPosition(position: GRKeyboardLayoutHelper.Position, shift: Bool) -> UnicodeScalar {
+    func keyForPosition(position _: GRKeyboardLayoutHelper.Position, shift _: Bool) -> UnicodeScalar {
         return UnicodeScalar(0)
     }
 
-    override func adjustTraits(traits: UITextInputTraits) {
+    override func adjustTraits(traits _: UITextInputTraits) {}
 
-    }
-
-    override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
+    override func captionThemeForTrait(trait: ThemeTrait, position _: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
         return trait._baseCaption
     }
 
@@ -201,11 +191,11 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         self.emoticonView.footerBlurView.alpha = 0.9
     }
 
-    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    override func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         return 2
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, heightOfRow row: Int, forSize size: CGSize) -> CGFloat {
         if row == 0 {
             return size.height - (size.height / 5.4)
         } else {
@@ -213,32 +203,32 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         if row == 0 {
             return []
         } else {
-            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons.map({$0}) + [self.view.deleteButton]
+            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons.map({ $0 }) + [self.view.deleteButton]
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
         return []
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    override func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition _: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton(type: .system)
         return button
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition _: GRKeyboardLayoutHelper.Position) -> String {
         return ""
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow _: Int) -> Int {
         return 0
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize _: CGSize) -> CGFloat {
         return 0
     }
 
@@ -256,7 +246,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         }
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return type(of: self).table.count
     }
 
@@ -268,10 +258,10 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         }
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let emoticons = section == 0 ? self.favorites : type(of: self).table[section]
         let length = emoticons.count
-        let numberOfRow  = (length - 1) / type(of: self).numbersOfColumns[section] + 1
+        let numberOfRow = (length - 1) / type(of: self).numbersOfColumns[section] + 1
         return numberOfRow + 2
     }
 
@@ -279,7 +269,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let section = indexPath.section
         if indexPath.row == 0 || indexPath.row == self.tableView(tableView, numberOfRowsInSection: section) - 1 {
             let identifier = "margin"
-            let cell = (tableView.dequeueReusableCell(withIdentifier: identifier) ) ?? {
+            let cell = (tableView.dequeueReusableCell(withIdentifier: identifier)) ?? {
                 let cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
                 cell.backgroundColor = UIColor.clear
                 return cell
@@ -289,10 +279,10 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
 
         let identifier = "cell_\(section)"
         let numberOfColumns = type(of: self).numbersOfColumns[indexPath.section]
-        let cell = (tableView.dequeueReusableCell(withIdentifier: identifier) ) ?? {
+        let cell = (tableView.dequeueReusableCell(withIdentifier: identifier)) ?? {
             let cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
             cell.backgroundColor = UIColor.clear
-            for _ in 0..<numberOfColumns {
+            for _ in 0 ..< numberOfColumns {
                 let button = GRInputButton(frame: CGRect(x: 0, y: 0, width: 60, height: 28))
                 button.addTarget(self, action: Selector("input:"), for: .touchUpInside)
                 button.addTarget(nil, action: Selector("input:"), for: .touchUpInside)
@@ -313,7 +303,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let buttonWidth = (tableView.frame.size.width - 2 * margin) / CGFloat(numberOfColumns)
 
         let row = indexPath.row - 1
-        for column in 0..<numberOfColumns {
+        for column in 0 ..< numberOfColumns {
             let position = row * numberOfColumns + column
             if position >= length {
                 break
@@ -334,11 +324,11 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         return cell
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         return type(of: self).titles[section]
     }
 
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
 
         let backgroundView = self.headerBackgroundViews[section] ?? {
@@ -347,20 +337,20 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
             blurView.alpha = 0.9
             return blurView
             /*
-            let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-            let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
-            let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
-            let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = view.bounds
-            gradientLayer.colors = [transparentColor, medianColor, opaqueColor, opaqueColor, medianColor, transparentColor]
-            gradientLayer.locations = [0.0, 0.1, 0.3, 0.7, 0.9, 1.0]
-            gradientLayer.startPoint = CGPointMake(0.5, 0.0)
-            gradientLayer.endPoint = CGPointMake(0.5, 1.0)
-            blurView.layer.mask = gradientLayer
-            self.headerBackgroundViews[section] = blurView
-            return blurView
-            */
+             let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+             let opaqueColor = UIColor(white: 0.0, alpha: 0.90).CGColor
+             let medianColor = UIColor(white: 0.0, alpha: 0.60).CGColor
+             let transparentColor = UIColor(white: 0.0, alpha: 0.0).CGColor
+             let gradientLayer = CAGradientLayer()
+             gradientLayer.frame = view.bounds
+             gradientLayer.colors = [transparentColor, medianColor, opaqueColor, opaqueColor, medianColor, transparentColor]
+             gradientLayer.locations = [0.0, 0.1, 0.3, 0.7, 0.9, 1.0]
+             gradientLayer.startPoint = CGPointMake(0.5, 0.0)
+             gradientLayer.endPoint = CGPointMake(0.5, 1.0)
+             blurView.layer.mask = gradientLayer
+             self.headerBackgroundViews[section] = blurView
+             return blurView
+             */
         }()
 
         headerView.backgroundView = backgroundView

@@ -6,13 +6,13 @@
 //  Copyright © 2017 youknowone.org. All rights reserved.
 //
 
-import Foundation
-import PreferencePanes
 import Cocoa
+import Foundation
 import MASShortcut
+import PreferencePanes
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
-    @IBOutlet var viewController: NSViewController! = nil
+    @IBOutlet var viewController: NSViewController!
 
     override func mainViewDidLoad() {
         super.mainViewDidLoad()
@@ -20,17 +20,17 @@ import MASShortcut
 }
 
 @objcMembers class PreferenceViewController: NSViewController, NSComboBoxDataSource {
-    @IBOutlet weak var inputModeExchangeShortcutView: MASShortcutView!
-    @IBOutlet weak var inputModeHanjaShortcutView: MASShortcutView!
-    @IBOutlet weak var inputModeEnglishShortcutView: MASShortcutView!
-    @IBOutlet weak var inputModeKoreanShortcutView: MASShortcutView!
-    @IBOutlet weak var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
-    @IBOutlet weak var optionKeyComboBox: NSComboBoxCell!
-    @IBOutlet weak var romanModeByEscapeKeyButton: NSButton!
-    @IBOutlet weak var hangulAutoReorderButton: NSButton!
-    @IBOutlet weak var hangulNonChoseongCombinationButton: NSButton!
-    @IBOutlet weak var hangulForceStrictCombinationRuleButton: NSButton!
-    
+    @IBOutlet var inputModeExchangeShortcutView: MASShortcutView!
+    @IBOutlet var inputModeHanjaShortcutView: MASShortcutView!
+    @IBOutlet var inputModeEnglishShortcutView: MASShortcutView!
+    @IBOutlet var inputModeKoreanShortcutView: MASShortcutView!
+    @IBOutlet var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
+    @IBOutlet var optionKeyComboBox: NSComboBoxCell!
+    @IBOutlet var romanModeByEscapeKeyButton: NSButton!
+    @IBOutlet var hangulAutoReorderButton: NSButton!
+    @IBOutlet var hangulNonChoseongCombinationButton: NSButton!
+    @IBOutlet var hangulForceStrictCombinationRuleButton: NSButton!
+
     var configuration = GureumConfiguration()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
@@ -40,7 +40,7 @@ import MASShortcut
     func boolToButtonState(_ value: Bool) -> NSButton.StateValue {
         return value ? .on : .off
     }
-    
+
     func loadShortcutValues() {
         if let key = configuration.inputModeExchangeKey {
             inputModeExchangeShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
@@ -66,7 +66,7 @@ import MASShortcut
             inputModeKoreanShortcutView.shortcutValue = nil
         }
     }
-    
+
     func setupShortcutViewValueChangeEvents() {
         func masShortcutToShortcut(_ mas: MASShortcut?) -> GureumConfiguration.Shortcut? {
             guard let mas = mas else {
@@ -74,28 +74,28 @@ import MASShortcut
             }
             return (mas.keyCode, NSEvent.ModifierFlags(rawValue: mas.modifierFlags))
         }
-        inputModeExchangeShortcutView.shortcutValueChange = { (sender) in
+        inputModeExchangeShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
                 return
             }
             self.configuration.inputModeExchangeKey = masShortcutToShortcut(sender.shortcutValue)
         }
-        
-        inputModeHanjaShortcutView.shortcutValueChange = { (sender) in
+
+        inputModeHanjaShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
                 return
             }
             self.configuration.inputModeHanjaKey = masShortcutToShortcut(sender.shortcutValue)
         }
-        
-        inputModeEnglishShortcutView.shortcutValueChange = { (sender) in
+
+        inputModeEnglishShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
                 return
             }
             self.configuration.inputModeEnglishKey = masShortcutToShortcut(sender.shortcutValue)
         }
-        
-        inputModeKoreanShortcutView.shortcutValueChange = { (sender) in
+
+        inputModeKoreanShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
                 return
             }
@@ -109,24 +109,25 @@ import MASShortcut
         hangulAutoReorderButton.state = boolToButtonState(configuration.hangulAutoReorder)
         hangulNonChoseongCombinationButton.state = boolToButtonState(configuration.hangulNonChoseongCombination)
         hangulForceStrictCombinationRuleButton.state = boolToButtonState(configuration.hangulForceStrictCombinationRule)
-        if (0..<optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
+        if (0 ..< optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
             optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
         }
         inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
         inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
         inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
-        
+
         loadShortcutValues()
         setupShortcutViewValueChangeEvents()
     }
 
-    @IBAction func openKeyboardPreference(sender: NSControl) {
+    @IBAction func openKeyboardPreference(sender _: NSControl) {
         let myAppleScript = "reveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\""
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: myAppleScript) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
-                &error)
+                &error
+            )
             print("pref event descriptor: \(output.stringValue ?? "nil")")
         }
     }
@@ -153,20 +154,19 @@ import MASShortcut
     @IBAction func hangulWonCurrencySymbolForBackQuoteValueChanged(_ sender: NSButton) {
         configuration.hangulWonCurrencySymbolForBackQuote = sender.state == .on
     }
-    
+
     @IBAction func hangulAutoReorderValueChanged(_ sender: NSButton) {
         configuration.hangulAutoReorder = sender.state == .on
     }
-    
+
     @IBAction func hangulNonChoseongCombinationValueChanged(_ sender: NSButton) {
         configuration.hangulNonChoseongCombination = sender.state == .on
     }
-    
+
     @IBAction func hangulForceStrictCombinationRuleValueChanged(_ sender: NSButton) {
         configuration.hangulForceStrictCombinationRule = sender.state == .on
     }
 }
-
 
 @objc class GureumLayoutTable: NSObject {
     let gureumPreferencesHangulLayouts = [
@@ -182,7 +182,8 @@ import MASShortcut
         "org.youknowone.inputmethod.Gureum.han3-2012",
         "org.youknowone.inputmethod.Gureum.han3finalnoshift",
         "org.youknowone.inputmethod.Gureum.han3-2014",
-        "org.youknowone.inputmethod.Gureum.han3-2015" ]
+        "org.youknowone.inputmethod.Gureum.han3-2015",
+    ]
 
     let layoutNames: [String]
 
@@ -196,7 +197,6 @@ import MASShortcut
         layoutNames = names
         super.init()
     }
-
 }
 
 class GureumShortcutValidator: MASShortcutValidator {
@@ -205,7 +205,7 @@ class GureumShortcutValidator: MASShortcutValidator {
         allowAnyShortcutWithOptionModifier = true
     }
 
-    override func isShortcutAlreadyTaken(bySystem shortcut: MASShortcut!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+    override func isShortcutAlreadyTaken(bySystem _: MASShortcut!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
         return false
     }
 
@@ -221,7 +221,7 @@ class GureumShortcutValidator: MASShortcutValidator {
         return keyCode >= 0x33 || [kVK_Return, kVK_Tab, kVK_Space].contains(Int(keyCode))
     }
 
-    override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+    override func isShortcut(_: MASShortcut!, alreadyTakenIn _: NSMenu!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
         return false
     }
 }

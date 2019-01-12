@@ -8,7 +8,8 @@
 
 import Foundation
 
-let DEBUG_INPUTHANDLER = false
+let DEBUG_INPUT_SERVER = false
+let DEBUG_INPUT_HANDLER = false
 let DEBUG_IOKIT_EVENT = false
 
 let CIMKeyMapLower = [
@@ -81,16 +82,16 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
     }
 
     init(name: String) {
-        dlog(true, "** CIMInputManager Init")
+        dlog(DEBUG_INPUT_SERVER, "** CIMInputManager Init")
 
         server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
         candidates.setSelectionKeysKeylayout(TISInputSource.currentLayout().ref)
 
         super.init()
-        ref = self
+        ref = self // iokit callback
 
-        dlog(true, "\t%@", description)
+        dlog(DEBUG_INPUT_SERVER, "\t%@", description)
 
         guard let ioService = try? IOService(name: kIOHIDSystemClass) else {
             return
@@ -109,7 +110,7 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
             IOHIDManagerRegisterInputValueCallback(ioHidManager, {
                 inContext, _, _, value in
                 guard let inContext = inContext else {
-                    dlog(true, "IOKit callback inContext is nil")
+                    dlog(DEBUG_IOKIT_EVENT, "IOKit callback inContext is nil")
                     return
                 }
                 let intValue = value.integerValue
@@ -160,11 +161,11 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
             var string = string
             if flags.contains(.option) {
                 let configuration = GureumConfiguration.shared
-                dlog(DEBUG_INPUTHANDLER, "option key: %ld", configuration.optionKeyBehavior)
+                dlog(DEBUG_INPUT_HANDLER, "option key: %ld", configuration.optionKeyBehavior)
                 switch configuration.optionKeyBehavior {
                 case 0:
                     // default
-                    dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior")
+                    dlog(DEBUG_INPUT_HANDLER, " ** ESCAPE from option-key default behavior")
                     return .notProcessedAndNeedsCommit
                 case 1:
                     // ignore
@@ -190,7 +191,7 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
 
             // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
             if flags.contains(.command) || flags.contains(.option) || flags.contains(.control) {
-                dlog(true, "-- CIMInputHandler -inputText: Command/Option key input / returned NO")
+                dlog(DEBUG_INPUT_HANDLER, "-- CIMInputHandler -inputText: Command/Option key input / returned NO")
                 return .notProcessedAndNeedsCommit
             }
 

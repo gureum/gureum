@@ -14,9 +14,7 @@ class NumberPadView: KeyboardView {
 
 class NumberPadLayout: KeyboardLayout {
     var padView: NumberPadView {
-        get {
-            return self.view as! NumberPadView
-        }
+        return self.view as! NumberPadView
     }
 
     override class func loadView() -> KeyboardView {
@@ -40,8 +38,8 @@ class NumberPadLayout: KeyboardLayout {
     }
 
     override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
-        let keycodes = self.keycodesForPosition(position: position)
-        let title = self.helper(helper: self.helper, titleForPosition: position)
+        let keycodes = keycodesForPosition(position: position)
+        let title = helper(helper: helper, titleForPosition: position)
         let keycode = "\(keycodes[0])" // FIXME:
 
         let identifier = "\(type(of: self))-\(title)-\(keycode))"
@@ -56,8 +54,7 @@ class NumberPadLayout: KeyboardLayout {
         })
     }
 
-    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
-
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
         func functionCaption(name: String, row: Int) -> ThemeCaption {
             return trait.captionForIdentifier(identifier: "numpad-\(name)", needsMargin: false, classes: {
                 trait.captionClassesForGetters(getters: [
@@ -65,7 +62,7 @@ class NumberPadLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.function },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.tenkey, trait.common])
             })
         }
         func specialCaption(name: String, row: Int) -> ThemeCaption {
@@ -75,7 +72,7 @@ class NumberPadLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.special },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.tenkey, trait.common])
             })
         }
 
@@ -83,35 +80,35 @@ class NumberPadLayout: KeyboardLayout {
             self.padView.deleteButton!: functionCaption(name: "delete", row: 4),
             self.padView.toggleKeyboardButton!: functionCaption(name: "toggle", row: 4),
             self.padView.shiftButton!: functionCaption(name: "shift", row: 4),
-            //self.padView.doneButton!: functionCaption("done", 4),
-            //self.padView.spaceButton!: specialCaption("space", 4),
+            // self.padView.doneButton!: functionCaption("done", 4),
+            // self.padView.spaceButton!: specialCaption("space", 4),
         ]
-        if !map.keys.contains(self.padView.leftButton) {
+        if !map.keys.contains(padView.leftButton) {
             map[self.padView.leftButton] = specialCaption(name: "left", row: 4)
         }
         return map
     }
 
-    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    override func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         return 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         if row == 3 {
             return 1
         }
         return 3
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, heightOfRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.height / 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.width / 3
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 0, 1, 2:
             return []
@@ -123,7 +120,7 @@ class NumberPadLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 0, 1, 2:
             return []
@@ -135,17 +132,17 @@ class NumberPadLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    override func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton(type: .system)
-        button.keycodes = self.keycodesForPosition(position: position)
+        button.keycodes = keycodesForPosition(position: position)
         if button.keycode != 0 {
             button.addTarget(nil, action: "input:", for: .touchUpInside)
         }
         return button
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycodes = self.keycodesForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycodes = keycodesForPosition(position: position)
         let title = String(UnicodeScalar(UInt32(keycodes[0]))!)
         return title
     }
@@ -161,19 +158,16 @@ class DecimalPadLayout: NumberPadLayout {
         return view
     }
 
-    override func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
-        super.layoutWillLoad(helper: self.helper)
-        self.padView.leftButton.addTarget(nil, action: "input:", for: .touchUpInside)
+    override func layoutWillLoad(helper _: GRKeyboardLayoutHelper) {
+        super.layoutWillLoad(helper: helper)
+        padView.leftButton.addTarget(nil, action: "input:", for: .touchUpInside)
     }
 }
 
 class PhonePadLayout: NumberPadLayout {
-    override class var shiftCaption: String {
-        get { return "+*#" }
-    }
-    override class var autounshift: Bool {
-        get { return true }
-    }
+    override class var shiftCaption: String { return "+*#" }
+
+    override class var autounshift: Bool { return true }
 
     override class func loadView() -> KeyboardView {
         let view = super.loadView() as! NumberPadView

@@ -22,8 +22,8 @@ class StaticWebViewController: UIViewController {
     override func viewDidLoad() {
         let url = type(of: self).url()
         let request = URLRequest(url: url)
-        assert(self.webView != nil)
-        self.webView.loadRequest(request)
+        assert(webView != nil)
+        webView.loadRequest(request)
     }
 }
 

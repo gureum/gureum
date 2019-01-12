@@ -9,10 +9,8 @@
 import Foundation
 import FoundationExtension
 
-
 class UpdateManager {
-
-    public static let shared = UpdateManager()
+    static let shared = UpdateManager()
 
     struct VersionInfo {
         var recent: String
@@ -67,6 +65,6 @@ class UpdateManager {
         guard info.download.count > 0 else {
             return
         }
-        self.notifyUpdate(info: info)
+        notifyUpdate(info: info)
     }
 }
