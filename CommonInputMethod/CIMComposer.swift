@@ -14,19 +14,18 @@ import Foundation
  @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
  */
 protocol CIMInputTextDelegate {
-/*!
- @method
- @param  controller  서버에서 입력을 받은 컨트롤러
- @param  string  문자열로 표현된 입력 값
- @param  keyCode 입력된 raw key code
- @param  flags   입력된 modifier flag
- @param  sender  입력 값을 전달한 외부 오브젝트
- @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
- @see    IMKServerInput
- */
+    /*!
+     @method
+     @param  controller  서버에서 입력을 받은 컨트롤러
+     @param  string  문자열로 표현된 입력 값
+     @param  keyCode 입력된 raw key code
+     @param  flags   입력된 modifier flag
+     @param  sender  입력 값을 전달한 외부 오브젝트
+     @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
+     @see    IMKServerInput
+     */
     func input(controller: CIMInputController, inputText: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
 }
-
 
 /*!
  @brief 실제로 문자를 합성하는 합성기의 프로토콜
@@ -34,7 +33,6 @@ protocol CIMInputTextDelegate {
  */
 
 protocol CIMComposerDelegate: CIMInputTextDelegate {
-
     //! @brief  입력기가 선택 됨
     func composerSelected(_ sender: Any!)
 
@@ -62,69 +60,65 @@ protocol CIMComposerDelegate: CIMInputTextDelegate {
     func candidateSelectionChanged(_ candidateString: NSAttributedString)
 
     func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
-
 }
-
 
 /*!
  @brief  일반적인 합성기 구조
- 
+
  @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
  */
 class CIMComposer: NSObject, CIMComposerDelegate {
-    
-    public func composerSelected(_ sender: Any!) { }
+    func composerSelected(_: Any!) {}
 
-    public var delegate: CIMComposerDelegate! = nil
-    public var inputMode: String = ""
-    public var manager: CIMInputManager! = nil
-    
-    public var composedString: String {
+    var delegate: CIMComposerDelegate!
+    var inputMode: String = ""
+    var manager: CIMInputManager!
+
+    var composedString: String {
         return delegate.composedString
     }
-    
-    public var originalString: String {
+
+    var originalString: String {
         return delegate.originalString
     }
-    
-    public var commitString: String {
+
+    var commitString: String {
         return delegate.commitString
     }
-    
-    public func dequeueCommitString() -> String {
+
+    func dequeueCommitString() -> String {
         return delegate.dequeueCommitString()
     }
 
-    public func cancelComposition() {
+    func cancelComposition() {
         delegate.cancelComposition()
     }
-    
-    public func clearContext() {
+
+    func clearContext() {
         delegate.clearContext()
     }
-    
-    public var hasCandidates: Bool {
+
+    var hasCandidates: Bool {
         return delegate.hasCandidates
     }
-    
-    public var candidates: [NSAttributedString]? {
+
+    var candidates: [NSAttributedString]? {
         return delegate.candidates ?? nil
     }
-    
-    public func candidateSelected(_ candidateString: NSAttributedString) {
+
+    func candidateSelected(_ candidateString: NSAttributedString) {
         return delegate.candidateSelected(candidateString)
     }
-    
-    public func candidateSelectionChanged(_ candidateString: NSAttributedString) {
+
+    func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         return delegate.candidateSelectionChanged(candidateString)
     }
 
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
     }
-    
-    public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+
+    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         return delegate.input(controller: controller, command: string, key: keyCode, modifiers: flags, client: sender)
     }
 }
-

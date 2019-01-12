@@ -6,16 +6,16 @@
 //  Copyright © 2018년 youknowone.org. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 extension CIMInputController {
-    @IBAction func checkRecentVersion(_ sender: Any) {
+    @IBAction func checkRecentVersion(_: Any) {
         guard let info = UpdateManager.shared.requestRecentVersion() else {
             return
         }
-        
-        if (info.recent == info.current) {
+
+        if info.recent == info.current {
             let fmt = "현재 사용하고 있는 구름 입력기 \(info.current) 는 최신 버전입니다."
             let alert = NSAlert()
             alert.messageText = "구름 입력기 업데이트 확인"
@@ -42,26 +42,26 @@ extension CIMInputController {
             }
         }
     }
-    
-    @IBAction func openWebsite(_ sender:Any) {
+
+    @IBAction func openWebsite(_: Any) {
         if let url = URL(string: "http://gureum.io") {
             NSWorkspace.shared.open(url)
         }
     }
-    
-    @IBAction func openWebsiteHelp(_ sender:Any) {
+
+    @IBAction func openWebsiteHelp(_: Any) {
         if let url = URL(string: "http://dan.gureum.io") {
             NSWorkspace.shared.open(url)
         }
     }
-    
-    @IBAction func openWebsiteSource(_ sender:Any) {
+
+    @IBAction func openWebsiteSource(_: Any) {
         if let url = URL(string: "http://ssi.gureum.io") {
             NSWorkspace.shared.open(url)
         }
     }
-    
-    @IBAction func openWebsiteIssues(_ sender:Any) {
+
+    @IBAction func openWebsiteIssues(_: Any) {
         if let url = URL(string: "http://meok.gureum.io") {
             NSWorkspace.shared.open(url)
         }
