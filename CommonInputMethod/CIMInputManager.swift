@@ -9,6 +9,7 @@
 import Foundation
 
 let DEBUG_INPUTHANDLER = false
+let DEBUG_IOKIT_EVENT = false
 
 let CIMKeyMapLower = [
     "a", "s", "d", "f", "h", "g", "z", "x",
@@ -19,7 +20,7 @@ let CIMKeyMapLower = [
     "k", ";","\\", ",", "/", "n", "m", ".",
     nil, nil, "`",
 ]
-//assert(keyMapLower.count == CIMKeyMapSize)
+// assert(keyMapLower.count == CIMKeyMapSize)
 
 let CIMKeyMapUpper = [
     "A", "S", "D", "F", "H", "G", "Z", "X",
@@ -31,7 +32,6 @@ let CIMKeyMapUpper = [
     nil, nil, "~",
 ]
 
-
 extension IMKServer {
     convenience init?(bundle: Bundle) {
         guard let connectionName = bundle.infoDictionary!["InputMethodConnectionName"] as? String else {
@@ -41,66 +41,120 @@ extension IMKServer {
     }
 }
 
+class XYZ {}
 
 /*!
  @brief  공통적인 OSX의 입력기 구조를 다룬다.
- 
+
  InputManager는 @ref CIMInputController 또는 테스트코드에 해당하는 외부에서 입력을 받아 입력기에서 처리 후 결과 값을 보관한다. 처리 후 그 결과를 확인하는 것은 사용자의 몫이다.
- 
+
  IMKServer나 클라이언트와 무관하게 입력 값에 대해 출력 값을 생성해 내는 입력기. 입력 뿐만 아니라 여러 키보드 간 전환이나 입력기에 관한 단축키 등 입력기에 관한 모든 기능을 다룬다.
- 
+
  @coclass    IMKServer CIMComposer
  */
 class CIMInputManager: NSObject, CIMInputTextDelegate {
     static let shared = CIMInputManager()
     //! @brief  현재 입력중인 서버
-    private var server: IMKServer
+    var server: IMKServer
     //! @property
-    private var candidates: IMKCandidates
+    var candidates: IMKCandidates
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
-    public var inputting: Bool = false
+    var inputting: Bool = false
+
+    var ioConnect: IOConnect!
+    var ioHidManager: IOHIDManager!
+    var capsLockPressed: Bool = false
+    var ref: CIMInputManager!
 
     convenience override init() {
         let bundle = Bundle.main
         var name = bundle.infoDictionary!["InputMethodConnectionName"] as! String
         #if DEBUG
-        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
-            name += "_Test" + String(describing: Int.random(in: 0..<0x10000))
-        } else {
-            name += "_Debug"
-        }
+            if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+                name += "_Test" + String(describing: Int.random(in: 0 ..< 0x10000))
+            } else {
+                name += "_Debug"
+            }
         #endif
+
         self.init(name: name)
     }
 
     init(name: String) {
         dlog(true, "** CIMInputManager Init")
 
-        self.server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
-        self.candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
+        server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
+        candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
+        candidates.setSelectionKeysKeylayout(TISInputSource.currentLayout().ref)
 
         super.init()
+        ref = self
 
-        dlog(true, "\t%@", self.description)
+        dlog(true, "\t%@", description)
+
+        guard let ioService = try? IOService(name: kIOHIDSystemClass) else {
+            return
+        }
+        guard let _connect = ioService.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
+            return
+        }
+
+        ioConnect = _connect
+        ioHidManager = IOHIDManager.create()
+        ioHidManager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
+        ioHidManager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
+        // Set input value callback
+        withUnsafeMutablePointer(to: &ref, {
+            _self in
+            IOHIDManagerRegisterInputValueCallback(ioHidManager, {
+                inContext, _, _, value in
+                guard let inContext = inContext else {
+                    dlog(true, "IOKit callback inContext is nil")
+                    return
+                }
+                let intValue = value.integerValue
+
+                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(intValue)")
+                let _self = inContext.assumingMemoryBound(to: CIMInputManager.self).pointee
+                if intValue == 1 {
+                    _self.capsLockPressed = true
+                    dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+                }
+                _self.ioConnect.capsLockState = false
+            }, _self)
+        })
+        ioHidManager.schedule(runloop: .current, mode: .default)
+        let ioReturn = ioHidManager.open()
+        if ioReturn != 0 {
+            dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
+        }
     }
 
-    public override var description: String {
+    deinit {
+        ioHidManager.unschedule(runloop: .current, mode: .default)
+        IOHIDManagerRegisterInputValueCallback(ioHidManager, nil, nil)
+        let ioReturn = ioHidManager.close()
+        assert(ioReturn == 0)
+    }
+
+    override var description: String {
         return """
-        <%@ server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
+        <CIMInputManager server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
         """
     }
-    
+
     // MARK: - IMKServerInputTextData
-    
+
     // 일단 받은 입력은 모두 핸들러로 넘겨준다.
-    public func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         assert(controller.className.hasSuffix("InputController"))
 
         // 입력기용 특수 커맨드 처리
-        var result = controller.composer.input(controller: controller, command:string, key:keyCode, modifiers:flags, client:sender)
+        var result = controller.composer.input(controller: controller, command: string, key: keyCode, modifiers: flags, client: sender)
         if result == .notProcessedAndNeedsCommit {
             return result
         }
+
         if result != .processed {
             // 옵션 키 변환 처리
             var string = string
@@ -111,7 +165,7 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
                 case 0:
                     // default
                     dlog(DEBUG_INPUTHANDLER, " ** ESCAPE from option-key default behavior")
-                    return .notProcessedAndNeedsCommit;
+                    return .notProcessedAndNeedsCommit
                 case 1:
                     // ignore
                     if keyCode < 0x33 {
@@ -125,7 +179,7 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
                     assert(false)
                 }
             } else {
-                if (keyCode < 0x33) {
+                if keyCode < 0x33 {
                     if flags.contains(.shift) {
                         string = CIMKeyMapUpper[keyCode] ?? string
                     } else {
@@ -144,7 +198,7 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
                 return .notProcessedAndNeedsCommit
             }
 
-            result = controller.composer.input(controller: controller, inputText:string, key:keyCode, modifiers:flags, client:sender)
+            result = controller.composer.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
         }
 
         dlog(false, "******* FINAL STATE: %d", result.rawValue)

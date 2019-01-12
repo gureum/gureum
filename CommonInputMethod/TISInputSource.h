@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)propertyForKey:(NSString *)key;
 
+@property(nonatomic,readonly) TISInputSourceRef ref;
 @property(nonatomic,readonly) NSString *category, *type;
 @property(nonatomic,readonly) BOOL ASCIICapable, enableCapable, selectCapable;
 @property(nonatomic,readonly) BOOL enabled, selected;
