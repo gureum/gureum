@@ -3,7 +3,7 @@
 //  Gureum
 //
 //  Created by Jeong YunWon on 2018. 9. 1..
-//  Copyright © 2018년 youknowone.org. All rights reserved.
+//  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
 import Foundation

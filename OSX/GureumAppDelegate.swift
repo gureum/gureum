@@ -3,7 +3,7 @@
 //  Gureum
 //
 //  Created by 혜원 on 2018. 8. 27..
-//  Copyright © 2018년 youknowone.org. All rights reserved.
+//  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
 import Crashlytics
@@ -58,6 +58,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
         HGKeyboard.initialize()
         // IMKServer를 띄워야만 입력기가 동작한다
-        _ = CIMInputManager.shared
+        _ = InputMethodServer.shared
     }
 }

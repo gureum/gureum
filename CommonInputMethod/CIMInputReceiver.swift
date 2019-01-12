@@ -19,7 +19,6 @@ import Foundation
     init(server: IMKServer, delegate: Any!, client: Any!, controller: CIMInputController) {
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)")
         composer = GureumComposer()
-        composer.manager = CIMInputManager.shared
         inputClient = client
         self.controller = controller
     }
@@ -29,9 +28,9 @@ import Foundation
         dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode, flags.rawValue)
 
         let hadComposedString = !_internalComposedString.isEmpty
-        let handled = composer.manager.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
+        let handled = composer.server.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
 
-        composer.manager.inputting = true
+        composer.server.inputting = true
 
         switch handled {
         case .notProcessed:
@@ -57,7 +56,7 @@ import Foundation
             updateComposition(controller) // 조합 중인 문자 반영
         }
 
-        composer.manager.inputting = false
+        composer.server.inputting = false
 
         dlog(DEBUG_INPUTCONTROLLER, "*** End of Input handling ***")
         return handled
@@ -86,7 +85,7 @@ extension CIMInputReceiver { // IMKServerInput
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     func commitCompositionEvent(_ sender: Any!, controller: CIMInputController) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
-        if !composer.manager.inputting {
+        if !composer.server.inputting {
             // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
             dlog(DEBUG_INPUTCONTROLLER, "-- CANCEL composition because of external commit request from %@", sender as! NSObject)
             dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL-INTERNAL")
@@ -110,7 +109,7 @@ extension CIMInputReceiver { // IMKServerInput
             controller.client().insertText(commitString, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
         }
 
-        composer.manager.controllerDidCommit(controller)
+        composer.server.controllerDidCommit(controller)
 
         return true
     }
@@ -152,10 +151,10 @@ extension CIMInputReceiver { // IMKServerInput
 
     func candidateSelected(_ candidateString: NSAttributedString, controller: CIMInputController) {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATESELECTED::%@", candidateString)
-        composer.manager.inputting = true
+        composer.server.inputting = true
         composer.candidateSelected(candidateString)
         commitComposition(inputClient, controller: controller)
-        composer.manager.inputting = false
+        composer.server.inputting = false
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString, controller: CIMInputController) {

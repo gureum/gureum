@@ -17,7 +17,7 @@
     이 클래스는 @link IMKServer @/link 에 의존하는 입력과 클라이언트에서의 결과 반영을 담당한다.
     IMKInputController가 내부 구현으로 의도하지 않은 동작을 하는 것을 방어하고 명시적으로 동작을 덮어쓰기 위해 IMKInputController를 직접 상속하고 모든 기능은 CIMInputReceiver로 위임한다.
  
-    @coclass    CIMInputManager CIMInputReceiver
+    @coclass    InputMethodServer CIMInputReceiver
     @warning    이 클래스에는 IMKServer, 클라이언트와 독립적인 코드는 **절대로** 쓰지 않는다. IMKInputController의 내부 구현과 섞이면 디버그하기 어렵다.
 */
 

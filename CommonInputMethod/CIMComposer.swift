@@ -72,7 +72,9 @@ class CIMComposer: NSObject, CIMComposerDelegate {
 
     var delegate: CIMComposerDelegate!
     var inputMode: String = ""
-    var manager: CIMInputManager!
+    var server: InputMethodServer {
+        return InputMethodServer.shared
+    }
 
     var composedString: String {
         return delegate.composedString

@@ -3,7 +3,7 @@
 //  Gureum
 //
 //  Created by Hyewon on 2018. 9. 7..
-//  Copyright © 2018년 youknowone.org. All rights reserved.
+//  Copyright © 2018 youknowone.org. All rights reserved.
 //
 /*!
  @brief  구름 입력기의 합성기

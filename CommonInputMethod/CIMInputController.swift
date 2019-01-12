@@ -3,7 +3,7 @@
 //  Gureum
 //
 //  Created by KMLee on 2018. 9. 12..
-//  Copyright © 2018년 youknowone.org. All rights reserved.
+//  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
 import Foundation
@@ -64,7 +64,7 @@ extension CIMInputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
     override func handle(_ event: NSEvent, client sender: Any) -> Bool {
-        let imkCandidtes = composer.manager.candidates
+        let imkCandidtes = composer.server.candidates
         let keys = imkCandidtes.selectionKeys() as! [NSNumber]
         if imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
             imkCandidtes.interpretKeyEvents([event])
@@ -78,11 +78,8 @@ extension CIMInputController { // IMKServerInputHandleEvent
             return processed
         } else if event.type == .flagsChanged {
             var modifierFlags = event.modifierFlags
-            if composer.manager.capsLockPressed {
+            if composer.server.io.testAndClearCapsLockState() {
                 dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
-                composer.manager.capsLockPressed = false
-                composer.manager.ioConnect.capsLockState = false
-                dlog(DEBUG_IOKIT_EVENT, "state after resetting: \(composer.manager.ioConnect.capsLockState)")
                 modifierFlags.formUnion(.capsLock)
 
                 dlog(DEBUG_IOKIT_EVENT, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)

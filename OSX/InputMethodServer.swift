@@ -1,9 +1,9 @@
 //
-//  CIMInputManager.swift
+//  InputMethodServer.swift
 //  OSX
 //
 //  Created by yuaming on 2018. 9. 20..
-//  Copyright © 2018년 youknowone.org. All rights reserved.
+//  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
 import Foundation
@@ -42,7 +42,71 @@ extension IMKServer {
     }
 }
 
-class XYZ {}
+class IOKitty {
+    var ref: IOKitty!
+
+    let service: IOService
+    let connect: IOConnect
+    let manager: IOHIDManager
+    private var defaultCapsLockState: Bool = false
+    private var capsLockPressed: Bool = false
+
+    init?() {
+        guard let _service = try? IOService(name: kIOHIDSystemClass) else {
+            return nil
+        }
+        guard let _connect = _service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
+            return nil
+        }
+
+        service = _service
+        connect = _connect
+
+        manager = IOHIDManager.create()
+        manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
+        manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
+
+        ref = self
+        // Set input value callback
+        withUnsafeMutablePointer(to: &ref, {
+            _self in
+            manager.registerInputValueCallback({
+                inContext, _, _, value in
+                guard let inContext = inContext else {
+                    dlog(DEBUG_IOKIT_EVENT, "IOKit callback inContext is nil")
+                    return
+                }
+                let pressed = value.integerValue > 0
+                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
+                let _self = inContext.assumingMemoryBound(to: IOKitty.self).pointee
+                if pressed {
+                    _self.capsLockPressed = true
+                    dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+                }
+                _self.connect.capsLockState = _self.defaultCapsLockState
+            }, context: _self)
+        })
+        manager.schedule(runloop: .current, mode: .default)
+        let r = manager.open()
+        if r != 0 {
+            dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
+        }
+    }
+
+    deinit {
+        manager.unschedule(runloop: .current, mode: .default)
+        manager.unregisterInputValueCallback()
+        let r = manager.close()
+        assert(r == 0)
+    }
+
+    func testAndClearCapsLockState() -> Bool {
+        let r = capsLockPressed
+        capsLockPressed = false
+        connect.capsLockState = defaultCapsLockState
+        return r
+    }
+}
 
 /*!
  @brief  공통적인 OSX의 입력기 구조를 다룬다.
@@ -53,21 +117,18 @@ class XYZ {}
 
  @coclass    IMKServer CIMComposer
  */
-class CIMInputManager: NSObject, CIMInputTextDelegate {
-    static let shared = CIMInputManager()
+// TODO: CIMInputTextDelegate를 제거하고 서버만 관리하도록 한다
+class InputMethodServer: CIMInputTextDelegate {
+    static let shared = InputMethodServer()
     //! @brief  현재 입력중인 서버
-    var server: IMKServer
+    let server: IMKServer
     //! @property
-    var candidates: IMKCandidates
+    let candidates: IMKCandidates
     //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     var inputting: Bool = false
+    let io: IOKitty
 
-    var ioConnect: IOConnect!
-    var ioHidManager: IOHIDManager!
-    var capsLockPressed: Bool = false
-    var ref: CIMInputManager!
-
-    convenience override init() {
+    convenience init() {
         let bundle = Bundle.main
         var name = bundle.infoDictionary!["InputMethodConnectionName"] as! String
         #if DEBUG
@@ -82,65 +143,19 @@ class CIMInputManager: NSObject, CIMInputTextDelegate {
     }
 
     init(name: String) {
-        dlog(DEBUG_INPUT_SERVER, "** CIMInputManager Init")
+        dlog(DEBUG_INPUT_SERVER, "** InputMethodServer Init")
 
         server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
         candidates.setSelectionKeysKeylayout(TISInputSource.currentLayout().ref)
 
-        super.init()
-        ref = self  // iokit callback
-
+        io = IOKitty()!
         dlog(DEBUG_INPUT_SERVER, "\t%@", description)
-
-        guard let ioService = try? IOService(name: kIOHIDSystemClass) else {
-            return
-        }
-        guard let _connect = ioService.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
-            return
-        }
-
-        ioConnect = _connect
-        ioHidManager = IOHIDManager.create()
-        ioHidManager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
-        ioHidManager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
-        // Set input value callback
-        withUnsafeMutablePointer(to: &ref, {
-            _self in
-            IOHIDManagerRegisterInputValueCallback(ioHidManager, {
-                inContext, _, _, value in
-                guard let inContext = inContext else {
-                    dlog(DEBUG_IOKIT_EVENT, "IOKit callback inContext is nil")
-                    return
-                }
-                let intValue = value.integerValue
-
-                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(intValue)")
-                let _self = inContext.assumingMemoryBound(to: CIMInputManager.self).pointee
-                if intValue == 1 {
-                    _self.capsLockPressed = true
-                    dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
-                }
-                _self.ioConnect.capsLockState = false
-            }, _self)
-        })
-        ioHidManager.schedule(runloop: .current, mode: .default)
-        let ioReturn = ioHidManager.open()
-        if ioReturn != 0 {
-            dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
-        }
     }
 
-    deinit {
-        ioHidManager.unschedule(runloop: .current, mode: .default)
-        IOHIDManagerRegisterInputValueCallback(ioHidManager, nil, nil)
-        let ioReturn = ioHidManager.close()
-        assert(ioReturn == 0)
-    }
-
-    override var description: String {
+    var description: String {
         return """
-        <CIMInputManager server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
+        <InputMethodServer server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
         """
     }
 
