@@ -8,40 +8,31 @@
 
 import Foundation
 
-
 class QwertyComposer: CIMComposer {
-
-    var _commitString: String? = nil
+    var _commitString: String?
 
     override var composedString: String {
-        get {
-            return ""
-        }
+        return ""
     }
 
     override var originalString: String {
-        get {
-            return self._commitString ?? ""
-        }
+        return self._commitString ?? ""
     }
 
     override var commitString: String {
-        get {
-            return self._commitString ?? ""
-        }
+        return self._commitString ?? ""
     }
 
     override func dequeueCommitString() -> String {
-        let dequeued = self._commitString
-        self._commitString = ""
+        let dequeued = _commitString
+        _commitString = ""
         return dequeued ?? ""
     }
 
-    override func cancelComposition() {
-    }
+    override func cancelComposition() {}
 
     override func clearContext() {
-        self._commitString = nil
+        _commitString = nil
     }
 
     override var hasCandidates: Bool {
@@ -52,83 +43,74 @@ class QwertyComposer: CIMComposer {
         return nil
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller _: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
         }
-        if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
+        if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
             var newString = string
             let chr = string.first!
-            if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
+            if flags.contains(.capsLock), "a" <= chr, chr <= "z" {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
-                self._commitString = newString
+                _commitString = newString
                 return CIMInputTextProcessResult.processed
             }
         }
-        self._commitString = nil
+        _commitString = nil
         return CIMInputTextProcessResult.notProcessed
     }
-    
 }
 
-
 class RomanDataComposer: CIMComposer {
-    public static let dvorakData: String = ["`1234567890[]\\",
-                                            "',.pyfgcrl/=",
-                                            "aoeuidhtns-",
-                                            ";qjkxbmwvz",
-                                            "~!@#$%^&*(){}|",
-                                            "\"<>PYFGCRL?+",
-                                            "AOEUIDHTNS_",
-                                            ":QJKXBMWVZ"].reduce("", +)
-    public static let colemakData: String = ["`1234567890-=\\",
-                                             "qwfpgjluy;[]",
-                                             "arstdhneio'",
-                                             "zxcvbkm,./",
-                                             "~!@#$%^&*()_+|",
-                                             "QWFPGJLUY:{}",
-                                             "ARSTDHNEIO\"",
-                                             "ZXCVBKM<>?"].reduce("", +)
+    static let dvorakData: String = ["`1234567890[]\\",
+                                     "',.pyfgcrl/=",
+                                     "aoeuidhtns-",
+                                     ";qjkxbmwvz",
+                                     "~!@#$%^&*(){}|",
+                                     "\"<>PYFGCRL?+",
+                                     "AOEUIDHTNS_",
+                                     ":QJKXBMWVZ"].reduce("", +)
+    static let colemakData: String = ["`1234567890-=\\",
+                                      "qwfpgjluy;[]",
+                                      "arstdhneio'",
+                                      "zxcvbkm,./",
+                                      "~!@#$%^&*()_+|",
+                                      "QWFPGJLUY:{}",
+                                      "ARSTDHNEIO\"",
+                                      "ZXCVBKM<>?"].reduce("", +)
 
-    var _commitString: String? = nil
+    var _commitString: String?
     var _keyboard: String = ""
 
     init(keyboardData: String) {
         super.init()
-        self._keyboard = keyboardData
+        _keyboard = keyboardData
     }
 
     override var composedString: String {
-        get {
-            return ""
-        }
+        return ""
     }
 
     override var originalString: String {
-        get {
-            return self._commitString ?? ""
-        }
+        return self._commitString ?? ""
     }
 
     override var commitString: String {
-        get {
-            return self._commitString ?? ""
-        }
+        return self._commitString ?? ""
     }
 
     override func dequeueCommitString() -> String {
-        let dequeued = self._commitString
-        self._commitString = nil
+        let dequeued = _commitString
+        _commitString = nil
         return dequeued ?? ""
     }
 
-    override func cancelComposition() {
-    }
+    override func cancelComposition() {}
 
     override func clearContext() {
-        self._commitString = nil
+        _commitString = nil
     }
 
     override var hasCandidates: Bool {
@@ -139,7 +121,7 @@ class RomanDataComposer: CIMComposer {
         return nil
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller _: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -155,24 +137,23 @@ class RomanDataComposer: CIMComposer {
                       "ZXCVBNM<>?"].reduce("", +)
 
         var map: [Character: Character] = [:]
-        zip(qwerty, self._keyboard).forEach {
+        zip(qwerty, _keyboard).forEach {
             map[$0] = $1
         }
 
-        if !string.isEmpty && keyCode < 0x33 && !flags.contains(.option) {
+        if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
             let newChr: Character
             let chr = string.first!
-            if flags.contains(.capsLock) && "a" <= chr && chr <= "z" {
+            if flags.contains(.capsLock), "a" <= chr, chr <= "z" {
                 newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
             } else {
                 newChr = chr
             }
-            self._commitString = String(map[newChr]!)
+            _commitString = String(map[newChr]!)
             return CIMInputTextProcessResult.processed
         } else {
-            self._commitString = nil
+            _commitString = nil
             return CIMInputTextProcessResult.notProcessed
         }
     }
-
 }

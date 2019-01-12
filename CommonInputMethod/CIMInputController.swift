@@ -79,13 +79,13 @@ extension CIMInputController { // IMKServerInputHandleEvent
         } else if event.type == .flagsChanged {
             var modifierFlags = event.modifierFlags
             if composer.manager.capsLockPressed {
-                dlog(true, "controller detected capslock")
+                dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
                 composer.manager.capsLockPressed = false
                 composer.manager.ioConnect.capsLockState = false
-                dlog(true, "state after resetting: \(composer.manager.ioConnect.capsLockState)")
+                dlog(DEBUG_IOKIT_EVENT, "state after resetting: \(composer.manager.ioConnect.capsLockState)")
                 modifierFlags.formUnion(.capsLock)
 
-                dlog(true, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)
+                dlog(DEBUG_IOKIT_EVENT, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)
                 // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
                 _ = receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
                 return false

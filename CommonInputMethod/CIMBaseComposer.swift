@@ -9,7 +9,6 @@
 import Foundation
 
 class CIMBaseComposer {
-    
     func composedString() -> NSString {
         return ""
     }
@@ -21,22 +20,22 @@ class CIMBaseComposer {
     func commitString() -> NSString {
         return ""
     }
-    
+
     func dequeueCommitString() -> NSString {
         return ""
     }
-    
-    func cancelComposition() -> Void { }
 
-    func clearContext() -> Void { }
-    
+    func cancelComposition() {}
+
+    func clearContext() {}
+
     func hasCandidates() -> Bool { return false }
-    
+
     func candidates() -> NSArray? {
         return nil
     }
-    
-    public func input(controller: CIMInputController!, command string: String!, key keyCode: Int, modifier flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+
+    func input(controller _: CIMInputController!, command _: String!, key _: Int, modifier _: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
         return CIMInputTextProcessResult.notProcessed
     }
 }

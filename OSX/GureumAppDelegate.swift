@@ -6,23 +6,22 @@
 //  Copyright © 2018년 youknowone.org. All rights reserved.
 //
 
+import Crashlytics
+import Fabric
 import Foundation
 import Hangul
-import Fabric
-import Crashlytics
-
 
 class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
     static let appDefault = NotificationCenterDelegate()
 
-    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+    func userNotificationCenter(_: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
         guard let userInfo = notification.userInfo else {
             return
         }
         guard let download = userInfo["download"] as? String else {
             return
         }
-        switch (notification.activationType) {
+        switch notification.activationType {
         case .actionButtonClicked:
             fallthrough
         case .contentsClicked:
@@ -44,14 +43,14 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
         let notificationCenter = NSUserNotificationCenter.default
         #if DEBUG
-        let notification = NSUserNotification()
-        notification.title = "디버그 빌드 알림"
-        notification.hasActionButton = false
-        notification.hasReplyButton = false
-        notification.informativeText = "이 버전은 디버그 빌드입니다. 키 입력이 로그로 남을 수 있어 안전하지 않습니다."
-        notificationCenter.deliver(notification)
+            let notification = NSUserNotification()
+            notification.title = "디버그 빌드 알림"
+            notification.hasActionButton = false
+            notification.hasReplyButton = false
+            notification.informativeText = "이 버전은 디버그 빌드입니다. 키 입력이 로그로 남을 수 있어 안전하지 않습니다."
+            notificationCenter.deliver(notification)
         #else
-        Fabric.with([Crashlytics.self])
+            Fabric.with([Crashlytics.self])
         #endif
 
         let updateManager = UpdateManager.shared
@@ -59,7 +58,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
         HGKeyboard.initialize()
         // IMKServer를 띄워야만 입력기가 동작한다
-        let _ = CIMInputManager.shared
+        _ = CIMInputManager.shared
     }
-
 }
