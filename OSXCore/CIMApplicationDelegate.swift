@@ -7,9 +7,8 @@
 //
 
 import Cocoa
-import Foundation
 
-@objc protocol CIMApplicationDelegate: NSObjectProtocol {
+@objc public protocol CIMApplicationDelegate: NSObjectProtocol {
     //! @brief  언어 설정에 추가될 메뉴
     @objc var menu: NSMenu! { get }
 }

@@ -6,9 +6,11 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
+import Cocoa
 import Crashlytics
 import Fabric
 import Foundation
+import GureumCore
 import Hangul
 
 class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
@@ -32,7 +34,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
     }
 }
 
-@objcMembers class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
+class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
 
     let configuration = GureumConfiguration.shared

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import IOKit
+import IOKit.hid
 
 class IOKitError: Error {
     init() {}

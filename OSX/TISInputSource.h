@@ -63,7 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enable;
 - (void)disable;
 
-+ (CFTypeID)typeID;
 + (NSArray *)sourcesWithProperties:(NSDictionary *)properties includeAllInstalled:(BOOL)includeAllInstalled;
 + (instancetype)currentSource;
 + (instancetype)currentLayoutSource;

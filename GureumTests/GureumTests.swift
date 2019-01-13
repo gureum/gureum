@@ -6,7 +6,7 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
-@testable import Gureum
+@testable import GureumCore
 import Hangul
 import XCTest
 
@@ -14,8 +14,9 @@ class GureumTests: XCTestCase {
     static let domainName: String = "org.youknowone.Gureum"
     static var oldConfiguration: [String: Any]?
     let moderate: VirtualApp = ModerateApp()
-    let terminal: VirtualApp = TerminalApp()
-    let greedy: VirtualApp = GreedyApp()
+    let terminal: VirtualApp! = nil
+//    let terminal: VirtualApp = TerminalApp()
+//    let greedy: VirtualApp = GreedyApp()
     var apps: [VirtualApp] = []
 
     override class func setUp() {

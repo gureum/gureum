@@ -6,6 +6,7 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
+import Cocoa
 import Foundation
 
 /*!

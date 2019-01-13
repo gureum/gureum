@@ -6,6 +6,8 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+import Carbon
+import Cocoa
 import Hangul
 
 let DEBUG_HANJACOMPOSER = false

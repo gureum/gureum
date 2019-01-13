@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import GureumCore
 
 extension CIMInputController {
     @IBAction func checkRecentVersion(_: Any) {

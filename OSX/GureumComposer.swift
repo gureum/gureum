@@ -11,6 +11,8 @@
  입력 모드에 따라 libhangul을 이용하여 문자를 합성해 준다.
  */
 
+import Carbon
+import Cocoa
 import Foundation
 
 enum GureumInputSourceIdentifier: String {

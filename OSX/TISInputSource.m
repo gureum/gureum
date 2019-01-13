@@ -126,16 +126,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self propertyForKey:TISPropertyIconImageURL];
 }
 
-+ (CFTypeID)typeID {
-    return TISInputSourceGetTypeID();
-}
-
 NSArray *_TISSourceInputRefToObject(NSArray *refs) {
     return [refs arrayByMappingOperator:^id(id obj) {
         TISInputSourceRef ref = (__bridge TISInputSourceRef)obj;
         CFRetain(ref);
         id source = [[TISInputSource alloc] initWithRef:ref];
-        dassert(source);
+        assert(source);
         return source;
     }];
 }

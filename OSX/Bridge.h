@@ -4,5 +4,4 @@
 
 #import <FoundationExtension/FoundationExtension.h>
 
-#import "CIMInputController.h"
 #import "TISInputSource.h"

@@ -6,10 +6,10 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
-import Cocoa
 import Foundation
+import InputMethodKit
 
-@objcMembers class CIMInputReceiver: NSObject, CIMInputTextDelegate {
+public class CIMInputReceiver: NSObject, CIMInputTextDelegate {
     var inputClient: Any
     var composer: CIMComposer
     var controller: CIMInputController
@@ -137,7 +137,7 @@ extension CIMInputReceiver { // IMKServerInput
         return string
     }
 
-    func originalString(_: Any!, controller _: CIMInputController) -> NSAttributedString! {
+    func originalString(_: Any!, controller _: CIMInputController) -> NSAttributedString {
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -originalString:")
         let s = NSAttributedString(string: composer.originalString)
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::ORIGINALSTRING::%@", s.string)

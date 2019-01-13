@@ -28,7 +28,8 @@ enum GureumConfigurationName: String {
     case hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
 }
 
-class GureumConfiguration: UserDefaults {
+public class GureumConfiguration: UserDefaults {
+    public static let shared = GureumConfiguration()
     var enableCapslockToToggleInputMode: Bool = true
 
     typealias Shortcut = (UInt, NSEvent.ModifierFlags)
@@ -209,6 +210,4 @@ class GureumConfiguration: UserDefaults {
             `set`(newValue, forKey: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue)
         }
     }
-
-    static let shared = GureumConfiguration()
 }

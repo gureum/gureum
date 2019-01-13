@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import InputMethodKit
+import IOKit
 
 let DEBUG_INPUT_SERVER = false
 let DEBUG_INPUT_HANDLER = false
@@ -118,8 +120,8 @@ class IOKitty {
  @coclass    IMKServer CIMComposer
  */
 // TODO: CIMInputTextDelegate를 제거하고 서버만 관리하도록 한다
-class InputMethodServer: CIMInputTextDelegate {
-    static let shared = InputMethodServer()
+public class InputMethodServer: CIMInputTextDelegate {
+    public static let shared = InputMethodServer()
     //! @brief  현재 입력중인 서버
     let server: IMKServer
     //! @property
@@ -147,7 +149,7 @@ class InputMethodServer: CIMInputTextDelegate {
 
         server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
-        candidates.setSelectionKeysKeylayout(TISInputSource.currentLayout().ref)
+        candidates.setSelectionKeysKeylayout(TISInputSource.currentKeyboardLayout())
 
         io = IOKitty()!
         dlog(DEBUG_INPUT_SERVER, "\t%@", description)

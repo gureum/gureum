@@ -6,6 +6,8 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
+import Carbon
+import Cocoa
 import Foundation
 import Hangul
 
