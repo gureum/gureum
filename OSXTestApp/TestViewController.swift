@@ -1,5 +1,5 @@
 //
-//  TestWindowController.swift
+//  TestViewController.swift
 //  PreferencesApp
 //
 //  Created by Jeong YunWon on 2018. 9. 20..
@@ -8,10 +8,8 @@
 
 import Cocoa
 
-class TestWindowController: NSWindowController {
-    var windowDelegate: Any! // hold a reference not to deinit delegate object
-
-    override func windowDidLoad() {
+class PreferenceViewController: NSViewController {
+    override func loadView() {
         let path = Bundle.main.path(forResource: "Preferences", ofType: "prefPane")
         let bundle = NSPrefPaneBundle(path: path)!
         assert(bundle.bundle != nil)
@@ -20,6 +18,6 @@ class TestWindowController: NSWindowController {
         assert(loaded)
         let pane = bundle.prefPaneObject()!
         // pane.loadMainView()
-        window!.contentView = pane.mainView
+        view = pane.mainView
     }
 }

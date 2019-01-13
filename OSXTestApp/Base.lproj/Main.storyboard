@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="U7k-K7-Gi3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -680,22 +682,82 @@
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
-        <scene sceneID="R2V-B0-nI4">
+        <scene sceneID="hkP-Zk-Wgy">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="TestWindowController" customModule="PreferencesApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="U7k-K7-Gi3" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="I3c-Bx-srH">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="554"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
+                            <outlet property="delegate" destination="U7k-K7-Gi3" id="aqt-iD-V4D"/>
                         </connections>
                     </window>
+                    <connections>
+                        <segue destination="51r-7I-RWn" kind="relationship" relationship="window.shadowedContentViewController" id="N8T-UJ-YBD"/>
+                    </connections>
                 </windowController>
-                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="vBl-ln-Vlv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="392"/>
+            <point key="canvasLocation" x="1048" y="177"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="eJR-ot-M6Y">
+            <objects>
+                <splitViewController id="51r-7I-RWn" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="8px-yx-J1B"/>
+                        <splitViewItem id="7s4-ha-q9h"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" id="cjl-u3-f8r">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="51r-7I-RWn" id="cEl-nz-PUN"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="cjl-u3-f8r" id="fbw-e6-W97"/>
+                        <segue destination="zeP-wW-eW1" kind="relationship" relationship="splitItems" id="kNA-Sj-iBq"/>
+                        <segue destination="FvW-Jl-y5M" kind="relationship" relationship="splitItems" id="bv7-de-w2b"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="Z5V-n4-ahr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1581" y="170"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nke-2p-9x8">
+            <objects>
+                <viewController id="zeP-wW-eW1" sceneMemberID="viewController">
+                    <view key="view" id="pWB-TB-Xpj">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-34-xZ0">
+                                <rect key="frame" x="51" y="243" width="96" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="v2I-Gn-FZX">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="qCK-O7-toi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2251" y="-16"/>
+        </scene>
+        <!--Preference View Controller-->
+        <scene sceneID="hBV-Cq-BbS">
+            <objects>
+                <customObject id="8Kq-4N-dYC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="FvW-Jl-y5M" customClass="PreferenceViewController" customModule="PreferencesApp" customModuleProvider="target" sceneMemberID="viewController"/>
+            </objects>
+            <point key="canvasLocation" x="2251" y="356"/>
         </scene>
     </scenes>
 </document>
