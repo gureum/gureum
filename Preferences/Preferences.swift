@@ -31,7 +31,7 @@ import PreferencePanes
     @IBOutlet var hangulNonChoseongCombinationButton: NSButton!
     @IBOutlet var hangulForceStrictCombinationRuleButton: NSButton!
 
-    var configuration = GureumConfiguration()
+    var configuration = Configuration()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
 
@@ -68,7 +68,7 @@ import PreferencePanes
     }
 
     func setupShortcutViewValueChangeEvents() {
-        func masShortcutToShortcut(_ mas: MASShortcut?) -> GureumConfiguration.Shortcut? {
+        func masShortcutToShortcut(_ mas: MASShortcut?) -> Configuration.Shortcut? {
             guard let mas = mas else {
                 return nil
             }

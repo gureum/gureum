@@ -63,15 +63,15 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2015: "3-2015",
 ]
 
-class GureumComposer: CIMComposer {
-    var romanComposer: CIMComposer
+class GureumComposer: DelegatedComposer {
+    var romanComposer: DelegatedComposer
     let qwertyComposer: QwertyComposer = QwertyComposer()
     let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
     let colemakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
     let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: "2")!
     let hanjaComposer: HanjaComposer = HanjaComposer()
     let emoticonComposer: EmoticonComposer = EmoticonComposer()
-    let romanComposersByIdentifier: [String: CIMComposer]
+    let romanComposersByIdentifier: [String: DelegatedComposer]
 
     override init() {
         romanComposer = qwertyComposer
@@ -103,21 +103,64 @@ class GureumComposer: CIMComposer {
             }
 
             if romanComposersByIdentifier.keys.contains(keyboardIdentifier) {
-                self.romanComposer = romanComposersByIdentifier[keyboardIdentifier]!
-                self.delegate = self.romanComposer
-                GureumConfiguration.shared.lastRomanInputMode = newValue
+                romanComposer = romanComposersByIdentifier[keyboardIdentifier]!
+                delegate = romanComposer
+                Configuration.shared.lastRomanInputMode = newValue
             } else {
-                self.delegate = hangulComposer
+                delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
                 hangulComposer.setKeyboard(identifier: keyboardIdentifier)
-                GureumConfiguration.shared.lastHangulInputMode = newValue
+                Configuration.shared.lastHangulInputMode = newValue
             }
             super.inputMode = newValue
         }
     }
 
-    override func input(controller: CIMInputController, command _: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
-        let configuration = GureumConfiguration.shared
+    func changeLayout(_ layout: ChangeLayout, client sender: Any) -> InputResult {
+        var layout = layout
+        if layout == .toggle {
+            if (delegate as AnyObject) === romanComposer {
+                layout = .hangul
+            } else if (delegate as AnyObject) === hangulComposer {
+                layout = .roman
+            } else {
+                return .notProcessed
+            }
+        }
+
+        if [.hangul, .roman].contains(layout) {
+            // 한영전환을 위해 현재 입력 중인 문자 합성 취소
+            let config = Configuration.shared
+            delegate.cancelComposition()
+            inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
+            return InputResult(processed: true, action: .layout(inputMode))
+        }
+
+        if layout == .hanja {
+            // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
+            if (delegate as? HangulComposer) === hangulComposer {
+                // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
+                let isComposing = hangulComposer.composedString.count > 0
+                hanjaComposer.mode = isComposing ? .single : .continuous
+                delegate = hanjaComposer
+                delegate.composerSelected(self)
+                hanjaComposer.update(client: sender as! IMKTextInput)
+            } else if (delegate as? DelegatedComposer) === romanComposer {
+                emoticonComposer.delegate = delegate
+                delegate = emoticonComposer
+                emoticonComposer.update(client: sender as! IMKTextInput)
+            } else {
+                return .notProcessed
+            }
+            return .processed
+        }
+
+        assert(false)
+        return .notProcessed
+    }
+
+    func filterCommand(key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputEvent? {
+        let configuration = Configuration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
         var need_candidtes = false
@@ -168,59 +211,20 @@ class GureumComposer: CIMComposer {
 //    {
 
         // Handle SpecialKeyCode first
-        switch keyCode {
-        case CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue:
-            guard configuration.enableCapslockToToggleInputMode else {
-                return CIMInputTextProcessResult.processed
-            }
-            if (delegate as? CIMComposer) === romanComposer || (delegate as? HangulComposer) === hangulComposer {
-                need_exchange = true
-            }
-            if !need_exchange {
-                return CIMInputTextProcessResult.processed
-            }
-
-        case CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue:
-            guard configuration.enableCapslockToToggleInputMode else {
-                return CIMInputTextProcessResult.processed
-            }
-
-            return CIMInputTextProcessResult.processed
-        default:
-            let inputKey = (UInt(keyCode), inputModifier)
-            if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
-                need_exchange = true
-            }
-    //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
-    //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
-    //            need_exchange = YES;
-    //        }
-    //        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
-    //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
-    //            need_exchange = YES;
-    //        }
-            if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
-                need_candidtes = true
-            }
+        let inputKey = (UInt(keyCode), inputModifier)
+        if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
+            return .changeLayout(.toggle)
         }
-
-        if need_exchange {
-            // 한영전환을 위해 현재 입력 중인 문자 합성 취소
-            delegate.cancelComposition()
-            if (delegate as? CIMComposer) === romanComposer {
-                let lastHangulInputMode = GureumConfiguration.shared.lastHangulInputMode
-                if let sender = sender as? IMKTextInput {
-                    // inputMode = lastHangulInputMode
-                    sender.selectMode(lastHangulInputMode)
-                }
-            } else {
-                let lastRomanInputMode = GureumConfiguration.shared.lastRomanInputMode
-                if let sender = sender as? IMKTextInput {
-                    // inputMode = lastRomanInputMode
-                    sender.selectMode(lastRomanInputMode)
-                }
-            }
-            return CIMInputTextProcessResult.processed
+        //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
+        //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
+        //            need_exchange = YES;
+        //        }
+        //        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
+        //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
+        //            need_exchange = YES;
+        //        }
+        if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
+            return .changeLayout(.hanja)
         }
 
         if (delegate as? HanjaComposer) === hanjaComposer {
@@ -237,36 +241,15 @@ class GureumComposer: CIMComposer {
             }
         }
 
-        if need_candidtes {
-            // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
-            if (delegate as? HangulComposer) === hangulComposer {
-                // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
-                let isComposing = hangulComposer.composedString.count > 0
-                hanjaComposer.mode = isComposing ? .single : .continuous
-                delegate = hanjaComposer
-                delegate.composerSelected(self)
-                hanjaComposer.update(fromController: controller)
-                return CIMInputTextProcessResult.processed
-            }
-            // 영어 입력 상태에서 이모티콘 입력기로 전환
-            if (delegate as? CIMComposer) === romanComposer {
-                emoticonComposer.delegate = delegate
-                delegate = emoticonComposer
-                emoticonComposer.update(fromController: controller)
-                return CIMInputTextProcessResult.processed
-            }
-        }
-
         if (delegate as? HangulComposer) === hangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
-            if GureumConfiguration.shared.romanModeByEscapeKey {
+            if Configuration.shared.romanModeByEscapeKey {
                 if keyCode == kVK_Escape || (keyCode, inputModifier) == (kVK_ANSI_LeftBracket, NSEvent.ModifierFlags.control) {
-                    delegate.cancelComposition()
-                    (sender as AnyObject).selectMode(GureumConfiguration.shared.lastRomanInputMode)
-                    return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+                    return .changeLayout(.roman)
                 }
             }
         }
-        return CIMInputTextProcessResult.notProcessed
+
+        return nil
     }
 }

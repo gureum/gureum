@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class QwertyComposer: CIMComposer {
+class QwertyComposer: DelegatedComposer {
     var _commitString: String?
 
     override var composedString: String {
@@ -44,7 +44,7 @@ class QwertyComposer: CIMComposer {
         return nil
     }
 
-    override func input(controller _: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -56,15 +56,15 @@ class QwertyComposer: CIMComposer {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
                 _commitString = newString
-                return CIMInputTextProcessResult.processed
+                return .processed
             }
         }
         _commitString = nil
-        return CIMInputTextProcessResult.notProcessed
+        return .notProcessed
     }
 }
 
-class RomanDataComposer: CIMComposer {
+class RomanDataComposer: DelegatedComposer {
     static let dvorakData: String = ["`1234567890[]\\",
                                      "',.pyfgcrl/=",
                                      "aoeuidhtns-",
@@ -122,7 +122,7 @@ class RomanDataComposer: CIMComposer {
         return nil
     }
 
-    override func input(controller _: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -151,10 +151,10 @@ class RomanDataComposer: CIMComposer {
                 newChr = chr
             }
             _commitString = String(map[newChr]!)
-            return CIMInputTextProcessResult.processed
+            return .processed
         } else {
             _commitString = nil
-            return CIMInputTextProcessResult.notProcessed
+            return .notProcessed
         }
     }
 }

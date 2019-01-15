@@ -1,5 +1,5 @@
 //
-//  CIMBaseComposer.swift
+//  BaseComposer.swift
 //  Gureum
 //
 //  Created by 김민주 on 2018. 9. 1..
@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class CIMBaseComposer {
+class BaseComposer {
     func composedString() -> NSString {
         return ""
     }
@@ -22,7 +22,7 @@ class CIMBaseComposer {
         return ""
     }
 
-    func dequeueCommitString() -> NSString {
+    func dequeueCommitString() -> String {
         return ""
     }
 
@@ -36,7 +36,7 @@ class CIMBaseComposer {
         return nil
     }
 
-    func input(controller _: CIMInputController!, command _: String!, key _: Int, modifier _: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
-        return CIMInputTextProcessResult.notProcessed
+    func input(controller _: InputController!, command _: String!, key _: Int, modifier _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
+        return .notProcessed
     }
 }

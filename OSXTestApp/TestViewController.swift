@@ -26,11 +26,11 @@ class PreferenceViewController: NSViewController {
 class TestViewController: NSViewController {
     @IBOutlet var textField: NSTextField!
     @IBOutlet var inputClient: MockInputClient!
-    var inputController: CIMInputController!
+    var inputController: InputController!
 
     override func viewDidLoad() {
         assert(inputClient != nil)
-        inputController = CIMMockInputController(server: InputMethodServer.shared.server, delegate: self, client: inputClient!)
+        inputController = MockInputController(server: InputMethodServer.shared.server, delegate: self, client: inputClient!)
         NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged], handler: {
             event in
             // print(event)

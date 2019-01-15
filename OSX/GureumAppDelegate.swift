@@ -34,10 +34,10 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
     }
 }
 
-class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate {
+class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDelegate {
     @IBOutlet @objc var menu: NSMenu!
 
-    let configuration = GureumConfiguration.shared
+    let configuration = Configuration.shared
     let notificationCenterDelegate = NotificationCenterDelegate()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -55,8 +55,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate
             Fabric.with([Crashlytics.self])
         #endif
 
-        let updateManager = UpdateManager.shared
-        updateManager.notifyUpdateIfNeeded()
+        UpdateManager.shared.notifyUpdateIfNeeded()
 
         // IMKServer를 띄워야만 입력기가 동작한다
         _ = InputMethodServer.shared

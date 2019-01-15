@@ -1,5 +1,5 @@
 //
-//  CIMComposer.swift
+//  DelegatedComposer.swift
 //  OSX
 //
 //  Created by Jeong YunWon on 20/10/2018.
@@ -12,9 +12,9 @@ import Foundation
 /*!
  @protocol
  @brief  입력을 처리하는 클래스의 관한 공통 형식
- @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. CharmIM에서 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
+ @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
  */
-protocol CIMInputTextDelegate {
+protocol InputTextDelegate {
     /*!
      @method
      @param  controller  서버에서 입력을 받은 컨트롤러
@@ -25,15 +25,15 @@ protocol CIMInputTextDelegate {
      @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
      @see    IMKServerInput
      */
-    func input(controller: CIMInputController, inputText: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
+    func input(text: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any) -> InputResult
 }
 
 /*!
  @brief 실제로 문자를 합성하는 합성기의 프로토콜
- @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 CIMComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
+ @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 DelegatedComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
  */
 
-protocol CIMComposerDelegate: CIMInputTextDelegate {
+protocol ComposerDelegate: InputTextDelegate {
     //! @brief  입력기가 선택 됨
     func composerSelected(_ sender: Any!)
 
@@ -59,23 +59,18 @@ protocol CIMComposerDelegate: CIMInputTextDelegate {
     func candidateSelected(_ candidateString: NSAttributedString)
     //! @brief  변환 후보 문자열 변경
     func candidateSelectionChanged(_ candidateString: NSAttributedString)
-
-    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client: Any) -> CIMInputTextProcessResult
 }
 
 /*!
  @brief  일반적인 합성기 구조
 
- @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref CIMBaseComposer 를 사용한다.
+ @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref BaseComposer 를 사용한다.
  */
-class CIMComposer: NSObject, CIMComposerDelegate {
+class DelegatedComposer: ComposerDelegate {
     func composerSelected(_: Any!) {}
 
-    var delegate: CIMComposerDelegate!
+    var delegate: ComposerDelegate!
     var inputMode: String = ""
-    var server: InputMethodServer {
-        return InputMethodServer.shared
-    }
 
     var composedString: String {
         return delegate.composedString
@@ -117,11 +112,7 @@ class CIMComposer: NSObject, CIMComposerDelegate {
         return delegate.candidateSelectionChanged(candidateString)
     }
 
-    func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
-        return delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
-    }
-
-    func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
-        return delegate.input(controller: controller, command: string, key: keyCode, modifiers: flags, client: sender)
+    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+        return delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
     }
 }

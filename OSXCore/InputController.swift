@@ -1,5 +1,5 @@
 //
-//  CIMInputController.swift
+//  InputController.swift
 //  Gureum
 //
 //  Created by KMLee on 2018. 9. 12..
@@ -14,23 +14,38 @@ let DEBUG_INPUTCONTROLLER = false
 
 /*!
  @enum
- @brief  최종적으로 CIMInputController가 처리할 결과
+ @brief  최종적으로 InputController가 처리할 결과
  */
-enum CIMInputTextProcessResult: Int {
-    case notProcessedAndNeedsCommit = -2
-    case notProcessedAndNeedsCancel = -1
-    case notProcessed = 0
-    case processed = 1
+
+public enum InputAction: Equatable {
+    case none
+    case commit
+    case cancel
+    case layout(String)
 }
 
-enum CIMInputControllerSpecialKeyCode: Int {
-    case capsLockPressed = -1
-    case capsLockFlagsChanged = -2
+struct InputResult: Equatable {
+    let processed: Bool
+    let action: InputAction
+
+    static let processed = InputResult(processed: true, action: .none)
+    static let notProcessed = InputResult(processed: false, action: .none)
 }
 
-@objc(CIMInputController)
-public class CIMInputController: IMKInputController {
-    var receiver: CIMInputReceiver!
+enum ChangeLayout {
+    case toggle
+    case hangul
+    case roman
+    case hanja
+}
+
+enum InputEvent {
+    case changeLayout(ChangeLayout)
+}
+
+@objc(GureumInputController)
+public class InputController: IMKInputController {
+    var receiver: InputReceiver!
 
     override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
         super.init(server: server, delegate: delegate, client: inputClient)
@@ -38,7 +53,7 @@ public class CIMInputController: IMKInputController {
             return nil
         }
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(delegate ?? "nil") / CLIENT: \(inputClient) \(inputClient.bundleIdentifier() ?? "nil")")
-        receiver = CIMInputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
+        receiver = InputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
     }
 
     override init() {
@@ -46,11 +61,7 @@ public class CIMInputController: IMKInputController {
     }
 }
 
-extension CIMInputController {
-    @objc var composer: CIMComposer {
-        return receiver.composer
-    }
-
+extension InputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
         NSApp.activate(ignoringOtherApps: true)
         NSApp.orderFrontStandardAboutPanel(sender)
@@ -58,36 +69,36 @@ extension CIMInputController {
 }
 
 // IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
-public extension CIMInputController { // IMKServerInputHandleEvent
+public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
     public override func handle(_ event: NSEvent, client sender: Any) -> Bool {
         // sender is (IMKInputText & IMKUnicodeInputText & IMTSMSupport)
-        let imkCandidtes = composer.server.candidates
+        let imkCandidtes = InputMethodServer.shared.candidates
         let keys = imkCandidtes.selectionKeys() as! [NSNumber]
         if imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
             imkCandidtes.interpretKeyEvents([event])
             return true
         }
         if event.type == .keyDown {
-            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client()!.bundleIdentifier())
-            let processed = receiver.input(controller: self, inputText: event.characters, key: Int(event.keyCode), modifiers: event.modifierFlags, client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
-            dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::%d", processed)
-            return processed
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client()!.bundleIdentifier())
+            let result = receiver.input(text: event.characters, key: Int(event.keyCode), modifiers: event.modifierFlags, client: sender)
+            dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
+            return result.processed
         } else if event.type == .flagsChanged {
             var modifierFlags = event.modifierFlags
-            if composer.server.io.testAndClearCapsLockState() {
+            if InputMethodServer.shared.io.testAndClearCapsLockState() {
                 dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
                 modifierFlags.formUnion(.capsLock)
 
                 dlog(DEBUG_IOKIT_EVENT, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)
-                // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
-                _ = receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
+                // dlog(DEBUG_INPUTCONTROLLER, @"** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
+                receiver.input(event: .changeLayout(.toggle), client: sender)
                 return false
             }
 
             dlog(DEBUG_LOGGING, "LOGGING::UNHANDLED::%@/%@", event, sender as! NSObject)
-            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -handleEvent:client: with event: %@ / sender: %@", event, sender as! NSObject)
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController -handleEvent:client: with event: %@ / sender: %@", event, sender as! NSObject)
             return false
         }
         return false
@@ -95,29 +106,29 @@ public extension CIMInputController { // IMKServerInputHandleEvent
 }
 
 /*
-extension CIMInputController { // IMKServerInputTextData
-    override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@", string, keyCode, flags, client()?.bundleIdentifier() ?? "nil")
-        let processed = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
-        return processed
-    }
-}
-*/
+ extension InputController { // IMKServerInputTextData
+ override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
+ dlog(DEBUG_INPUTCONTROLLER, "** InputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@", string, keyCode, flags, client()?.bundleIdentifier() ?? "nil")
+ let processed = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
+ return processed
+ }
+ }
+ */
 /*
-extension CIMInputController { // IMKServerInputKeyBinding
-    override func inputText(_: String!, client _: Any) -> Bool {
-        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender)
-        return false
-    }
+ extension InputController { // IMKServerInputKeyBinding
+ override func inputText(_: String!, client _: Any) -> Bool {
+ // dlog(DEBUG_INPUTCONTROLLER, "** InputController -inputText:client: with string: %@ / client: %@", string, sender)
+ return false
+ }
 
-    override func didCommand(by _: Selector!, client _: Any) -> Bool {
-        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -didCommandBySelector: with selector: %@", aSelector)
-        return false
-    }
-}
-*/
+ override func didCommand(by _: Selector!, client _: Any) -> Bool {
+ // dlog(DEBUG_INPUTCONTROLLER, "** InputController -didCommandBySelector: with selector: %@", aSelector)
+ return false
+ }
+ }
+ */
 
-public extension CIMInputController { // IMKStateSetting
+public extension InputController { // IMKStateSetting
     //! @brief  마우스 이벤트를 잡을 수 있게 한다.
     override func recognizedEvents(_ sender: Any!) -> Int {
         return receiver.recognizedEvents(sender)
@@ -138,7 +149,7 @@ public extension CIMInputController { // IMKStateSetting
     }
 }
 
-public extension CIMInputController { // IMKMouseHandling
+public extension InputController { // IMKMouseHandling
     /*!
      @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
      */
@@ -149,13 +160,13 @@ public extension CIMInputController { // IMKMouseHandling
     }
 }
 
-public extension CIMInputController { // IMKCustomCommands
+public extension InputController { // IMKCustomCommands
     override func menu() -> NSMenu! {
-        return (NSApplication.shared.delegate! as! CIMApplicationDelegate).menu
+        return (NSApplication.shared.delegate! as! GureumApplicationDelegate).menu
     }
 }
 
-public extension CIMInputController { // IMKServerInput
+public extension InputController { // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     override func commitComposition(_ sender: Any!) {
@@ -166,10 +177,10 @@ public extension CIMInputController { // IMKServerInput
 
     override func updateComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-RAW?")
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition")
+        dlog(DEBUG_INPUTCONTROLLER, "** InputController -updateComposition")
         receiver.updateCompositionEvent()
         super.updateComposition()
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition ended")
+        dlog(DEBUG_INPUTCONTROLLER, "** InputController -updateComposition ended")
     }
 
     override func cancelComposition() {
@@ -202,26 +213,22 @@ public extension CIMInputController { // IMKServerInput
 }
 
 #if DEBUG
-    @objcMembers public class CIMMockInputController: CIMInputController {
+    @objcMembers public class MockInputController: InputController {
         public override init(server: IMKServer, delegate: Any!, client: Any) {
             super.init()
-            receiver = CIMInputReceiver(server: server, delegate: delegate, client: client as! (IMKTextInput & IMKUnicodeTextInput), controller: self)
+            receiver = InputReceiver(server: server, delegate: delegate, client: client as! (IMKTextInput & IMKUnicodeTextInput), controller: self)
         }
 
         func repoduceTextLog(_ text: String) throws {
             for row in text.components(separatedBy: "\n") {
                 guard let regex = try? NSRegularExpression(pattern: "LOGGING::([A-Z]+)::(.*)", options: []) else {
-                    throw NSException(name: NSExceptionName("CIMMockInputControllerLogParserError"), reason: "Log is not readable format", userInfo: nil) as! Error
+                    throw NSException(name: NSExceptionName("MockInputControllerLogParserError"), reason: "Log is not readable format", userInfo: nil) as! Error
                 }
                 let matches = regex.matches(in: row, options: [], range: NSRangeFromString(row))
                 let type = matches[1]
                 let data = matches[2]
                 print("test: \(type) \(data)")
             }
-        }
-
-        override var composer: CIMComposer {
-            return receiver.composer
         }
 
         public override func client() -> (IMKTextInput & NSObjectProtocol)! {
@@ -233,17 +240,24 @@ public extension CIMInputController { // IMKServerInput
         }
     }
 
-    public extension CIMMockInputController { // IMKServerInputTextData
-        override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
+    public extension MockInputController { // IMKServerInputTextData
+        func inputFlags(_: Int, client sender: Any) -> Bool {
             let client = self.client()
-            print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
-            let v1 = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue
-            let v2 = CIMInputTextProcessResult.notProcessed.rawValue
-            let processed: Bool = v1 > v2
-            if !processed {
+            let result = receiver.input(event: .changeLayout(.toggle), client: sender)
+            if !result.processed {
                 // [self cancelComposition]
             }
-            return processed
+            return result.processed
+        }
+
+        override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
+            let client = self.client()
+            print("** InputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
+            let result = receiver.input(text: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender)
+            if !result.processed {
+                // [self cancelComposition]
+            }
+            return result.processed
         }
 
         // Committing a Composition
@@ -302,7 +316,7 @@ public extension CIMInputController { // IMKServerInput
         }
     }
 
-    public extension CIMMockInputController { // IMKStateSetting
+    public extension MockInputController { // IMKStateSetting
         //! @brief  마우스 이벤트를 잡을 수 있게 한다.
         public override func recognizedEvents(_ sender: Any!) -> Int {
             return receiver.recognizedEvents(sender)

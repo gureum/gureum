@@ -1,5 +1,5 @@
 //
-//  CIMApplicationDelegate.swift
+//  GureumApplicationDelegate.swift
 //  Gureum
 //
 //  Created by KMLee on 2018. 9. 6..
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc public protocol CIMApplicationDelegate: NSObjectProtocol {
+@objc public protocol GureumApplicationDelegate: NSObjectProtocol {
     //! @brief  언어 설정에 추가될 메뉴
     @objc var menu: NSMenu! { get }
 }

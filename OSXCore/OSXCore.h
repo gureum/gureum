@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <InputMethodKit/InputMethodKit.h>
 
 //! Project version number for OSXCore.
 FOUNDATION_EXPORT double OSXCoreVersionNumber;

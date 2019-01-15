@@ -10,12 +10,18 @@ import Foundation
 @testable import GureumCore
 
 class VirtualApp: NSObject {
-    let controller: CIMInputController
+    let controller: MockInputController
     let client = MockInputClient()
 
     override init() {
-        controller = CIMMockInputController(server: InputMethodServer.shared.server, delegate: client, client: client)
+        controller = MockInputController(server: InputMethodServer.shared.server, delegate: client, client: client)
         super.init()
+    }
+
+    func inputFlags(_ flags: NSEvent.ModifierFlags) -> Bool {
+        let processed = controller.inputFlags(Int(flags.rawValue), client: client)
+        controller.updateComposition()
+        return processed
     }
 
     func inputText(_ string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags) -> Bool {

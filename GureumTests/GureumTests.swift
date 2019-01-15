@@ -55,7 +55,7 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputText(nil, key: -1, modifiers: NSEvent.ModifierFlags.capsLock)
+            app.inputFlags(NSEvent.ModifierFlags.capsLock)
 
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
@@ -426,7 +426,7 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            let composer = app.controller.composer as! GureumComposer
+            let composer = app.controller.receiver.composer as! GureumComposer
             let emoticonComposer = composer.emoticonComposer
             emoticonComposer.delegate = composer.delegate // roman?
             composer.delegate = emoticonComposer
