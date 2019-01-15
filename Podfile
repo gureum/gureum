@@ -33,11 +33,11 @@ target 'OSXTests' do
     platform :osx, "10.13"
     project 'Gureum.xcodeproj'
 end
-=begin
+
 target :'App' do
     platform :ios, "9.0"
     project 'iOS.xcodeproj'
-    pod 'FoundationExtension', '~> 1.3.1'
+    pod 'UIKitExtension', '~> 2.0.0'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'GoogleMobileAds'
@@ -46,13 +46,12 @@ end
 target :'iOS' do
     platform :ios, "9.0"
     project 'iOS.xcodeproj'
-    pod 'FoundationExtension', '~> 1.3.1'
+    pod 'UIKitExtension', '~> 2.0.0'
     pod 'Fabric'
     pod 'Crashlytics'
 end
 target :'iOSTests' do
     platform :ios, "9.0"
     project 'iOS.xcodeproj'
-    pod 'FoundationExtension', '~> 1.3.1'
+    pod 'UIKitExtension', '~> 2.0.0'
 end
-=end

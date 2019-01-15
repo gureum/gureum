@@ -58,7 +58,6 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, CIMApplicationDelegate
         let updateManager = UpdateManager.shared
         updateManager.notifyUpdateIfNeeded()
 
-        HGKeyboard.initialize()
         // IMKServer를 띄워야만 입력기가 동작한다
         _ = InputMethodServer.shared
     }

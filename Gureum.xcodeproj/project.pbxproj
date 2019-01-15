@@ -32,12 +32,9 @@
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831983B21DB744900E20D78 /* UpdateManager.swift */; };
-		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
 		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
 		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
 		3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EE1F5DAA7100896BEC /* hanjaw.txt */; };
-		3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52B1F5DAB9600896BEC /* hanja.txt */; };
-		3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52C1F5DABA400896BEC /* mssymbol.txt */; };
 		3835B52F1F5DABCA00896BEC /* hangul-combination-3gc.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F51F5DAA7100896BEC /* hangul-combination-3gc.xml */; };
 		3835B5301F5DABCA00896BEC /* hangul-combination-3gs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F61F5DAA7100896BEC /* hangul-combination-3gs.xml */; };
 		3835B5311F5DABCA00896BEC /* hangul-keyboard-2.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */; };
@@ -89,14 +86,15 @@
 		388186B121EB453E004B7FDB /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
 		388186B521EB4E98004B7FDB /* MockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186B321EB4E4C004B7FDB /* MockApp.swift */; };
 		388186BA21EB72F7004B7FDB /* MockInputClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3881866221EB239E004B7FDB /* MockInputClient.m */; };
+		388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
+		388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
+		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
-		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumObjCTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
-		38F85936215A926100CD80AE /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		53BEC486D4B0C2746785B54B /* Pods_OSXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489B10BD894E874269356F2F /* Pods_OSXTests.framework */; };
@@ -107,11 +105,10 @@
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
 		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
 		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
-		989D28C8DA68E85E4D6FC62A /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
-		B0DE8679435065D0866D2AAF /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
+		AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
 		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
@@ -208,14 +205,11 @@
 		3835B5231F5DAADF00896BEC /* Copy Hanja Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = hanja;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/hanja";
+			dstSubfolderSpec = 0;
 			files = (
 				A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */,
 				A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */,
-				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
-				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
-				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
 				3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */,
 				3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */,
 				3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */,
@@ -226,8 +220,8 @@
 		3835B5241F5DAB2700896BEC /* Copy Keyboards Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = keyboards;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/keyboards";
+			dstSubfolderSpec = 0;
 			files = (
 				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
 				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
@@ -263,8 +257,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */,
 				3881868221EB2D7D004B7FDB /* GureumCore.framework in Copy Frameworks */,
-				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +287,6 @@
 		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
 		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3831983B21DB744900E20D78 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
-		3835B4E51F5DAA7100896BEC /* all.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all.txt; sourceTree = "<group>"; };
 		3835B4EC1F5DAA7100896BEC /* hanjac.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjac.txt; sourceTree = "<group>"; };
 		3835B4ED1F5DAA7100896BEC /* hanjar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjar.txt; sourceTree = "<group>"; };
 		3835B4EE1F5DAA7100896BEC /* hanjaw.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjaw.txt; sourceTree = "<group>"; };
@@ -312,8 +305,6 @@
 		3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3y.xml"; sourceTree = "<group>"; };
 		3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ahn.xml"; sourceTree = "<group>"; };
 		3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ro.xml"; sourceTree = "<group>"; };
-		3835B52B1F5DAB9600896BEC /* hanja.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = hanja.txt; sourceTree = "<group>"; };
-		3835B52C1F5DABA400896BEC /* mssymbol.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = mssymbol.txt; sourceTree = "<group>"; };
 		3835B53E1F5DAC3500896BEC /* hangul-combination-3f.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3f.xml"; sourceTree = "<group>"; };
 		3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-39.xml"; sourceTree = "<group>"; };
 		3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-default.xml"; sourceTree = "<group>"; };
@@ -407,7 +398,6 @@
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
-				38F85936215A926100CD80AE /* Hangul.framework in Frameworks */,
 				66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,8 +414,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0DE8679435065D0866D2AAF /* Pods_OSXTestApp.framework in Frameworks */,
-				989D28C8DA68E85E4D6FC62A /* Pods_OSXTestApp.framework in Frameworks */,
+				388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */,
+				388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */,
+				AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +475,6 @@
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
-				3835B4E21F5DAA7100896BEC /* data */,
 				388534F9213A731E00885C87 /* IOKit */,
 				38098F09215A3DB30001F159 /* Assets.xcassets */,
 			);
@@ -539,9 +529,6 @@
 			children = (
 				A36A4358216F86780052BE12 /* emoji_ko.txt */,
 				A34E2024216ADBEC00B12476 /* emoji.txt */,
-				3835B4E51F5DAA7100896BEC /* all.txt */,
-				3835B52B1F5DAB9600896BEC /* hanja.txt */,
-				3835B52C1F5DABA400896BEC /* mssymbol.txt */,
 				3835B4EC1F5DAA7100896BEC /* hanjac.txt */,
 				3835B4ED1F5DAA7100896BEC /* hanjar.txt */,
 				3835B4EE1F5DAA7100896BEC /* hanjaw.txt */,
@@ -621,6 +608,7 @@
 				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
+				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
 			sourceTree = "<group>";
@@ -751,9 +739,6 @@
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
-				3835B4E11F59DDAF00896BEC /* Prepare libhangul data */,
-				3835B5231F5DAADF00896BEC /* Copy Hanja Files */,
-				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
 				9248550919B356340823B139 /* [CP] Embed Pods Frameworks */,
@@ -822,6 +807,8 @@
 				3881867621EB2D7D004B7FDB /* Sources */,
 				3881867721EB2D7D004B7FDB /* Frameworks */,
 				3881867821EB2D7D004B7FDB /* Resources */,
+				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
+				3835B5231F5DAADF00896BEC /* Copy Hanja Files */,
 			);
 			buildRules = (
 			);
@@ -1046,20 +1033,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ${PROJECT_DIR}\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\nif [ $CONFIGURATION != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
-		};
-		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Prepare libhangul data";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "for template_path in \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.template; do\n  template=${template_path##*/}\n  xml=${template%.template}\n  cp \"$template_path\" \"OSX/data/keyboards/$xml\"\ndone\n\ncp \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.xml \"OSX/data/keyboards/\"\n\ncp \"$SRCROOT/libhangul-objc/libhangul/data/hanja/\"*.txt \"OSX/data/hanja/\"\n";
 		};
 		388FB6471A12320E00DCB995 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
