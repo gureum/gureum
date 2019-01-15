@@ -30,4 +30,8 @@
     // do nothing
 }
 
+- (NSString *)bundleIdentifier {
+    return [NSBundle mainBundle].bundleIdentifier;
+}
+
 @end

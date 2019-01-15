@@ -114,7 +114,7 @@ class HangulComposer: NSObject, CIMComposerDelegate {
                 string = string.lowercased()
             }
         }
-        let handled = inputContext.process(string.first!.unicodeScalars.first!.value)
+        let handled = inputContext.process(string.unicodeScalars.first!.value)
         let UCSString = inputContext.commitUCSString
         let recentCommitString = HangulComposerCombination.commitString(ucsString: UCSString)
         if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == kVK_ANSI_Grave, flags.isSubset(of: .capsLock) {

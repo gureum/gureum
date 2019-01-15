@@ -210,11 +210,13 @@ class GureumComposer: CIMComposer {
             if (delegate as? CIMComposer) === romanComposer {
                 let lastHangulInputMode = GureumConfiguration.shared.lastHangulInputMode
                 if let sender = sender as? IMKTextInput {
+                    // inputMode = lastHangulInputMode
                     sender.selectMode(lastHangulInputMode)
                 }
             } else {
                 let lastRomanInputMode = GureumConfiguration.shared.lastRomanInputMode
                 if let sender = sender as? IMKTextInput {
+                    // inputMode = lastRomanInputMode
                     sender.selectMode(lastRomanInputMode)
                 }
             }

@@ -31,13 +31,17 @@ class TestViewController: NSViewController {
     override func viewDidLoad() {
         assert(inputClient != nil)
         inputController = CIMMockInputController(server: InputMethodServer.shared.server, delegate: self, client: inputClient!)
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: {
+        NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged], handler: {
             event in
             // print(event)
             assert(self.inputController != nil)
             assert(self.inputClient != nil)
-            self.inputController.inputText(event.characters, key: Int(event.keyCode), modifiers: Int(event.modifierFlags.rawValue), client: self.inputClient)
-            return event
+            let processed = self.inputController.handle(event, client: self.inputClient)
+            let specialFlags = event.modifierFlags.intersection([.command, .control])
+            if event.type == .keyDown && !processed && specialFlags.isEmpty {
+                self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+            }
+            return nil
         })
     }
 }

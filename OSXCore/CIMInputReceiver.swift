@@ -16,7 +16,7 @@ public class CIMInputReceiver: NSObject, CIMInputTextDelegate {
 
     var hasSelectionRange: Bool = false
 
-    init(server: IMKServer, delegate: Any!, client: Any!, controller: CIMInputController) {
+    init(server: IMKServer, delegate: Any!, client: Any, controller: CIMInputController) {
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)")
         composer = GureumComposer()
         inputClient = client

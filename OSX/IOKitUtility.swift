@@ -163,7 +163,7 @@ public extension IOHIDManager {
         IOHIDManagerSetInputValueMatching(self, inputValueMatching)
     }
 
-    public func registerInputValueCallback(_ callback: @escaping IOHIDValueCallback, context: UnsafeMutableRawPointer?) {
+    public func registerInputValueCallback(_ callback: @escaping IOHIDValue.Callback, context: UnsafeMutableRawPointer?) {
         IOHIDManagerRegisterInputValueCallback(self, callback, context)
     }
 

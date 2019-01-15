@@ -42,11 +42,9 @@ public class CIMInputController: IMKInputController {
         receiver = CIMInputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
     }
 
-    #if DEBUG
-        override init() {
-            super.init()
-        }
-    #endif
+    override init() {
+        super.init()
+    }
 }
 
 extension CIMInputController {
@@ -72,8 +70,7 @@ public extension CIMInputController { // IMKServerInputHandleEvent
             return true
         }
         if event.type == .keyDown {
-            let bundleIdentifier: String = client()!.bundleIdentifier()
-            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", bundleIdentifier)
+            dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client()!.bundleIdentifier())
             let processed = receiver.input(controller: self, inputText: event.characters, key: Int(event.keyCode), modifiers: event.modifierFlags, client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::%d", processed)
             return processed
@@ -204,6 +201,7 @@ public extension CIMInputController { // IMKServerInput
     }
 }
 
+#if DEBUG
 @objcMembers public class CIMMockInputController: CIMInputController {
     public override init(server: IMKServer, delegate: Any, client: Any) {
         super.init()
@@ -237,8 +235,8 @@ public extension CIMInputController { // IMKServerInput
 
 public extension CIMMockInputController { // IMKServerInputTextData
     override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
-        let client = self.client() as AnyObject
-        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client.bundleIdentifier)) client class: \(String(describing: client.class))")
+        let client = self.client()
+        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
         let v1 = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue
         let v2 = CIMInputTextProcessResult.notProcessed.rawValue
         let processed: Bool = v1 > v2
@@ -315,3 +313,4 @@ public extension CIMMockInputController { // IMKStateSetting
         receiver.setValue(value, forTag: tag, client: sender, controller: self)
     }
 }
+#endif
