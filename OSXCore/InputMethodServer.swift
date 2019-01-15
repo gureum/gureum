@@ -90,7 +90,7 @@ class IOKitty {
         })
         manager.schedule(runloop: .current, mode: .default)
         let r = manager.open()
-        if r != 0 {
+        if r != kIOReturnSuccess {
             dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
         }
     }

@@ -32,13 +32,12 @@ enum CIMInputControllerSpecialKeyCode: Int {
 public class CIMInputController: IMKInputController {
     var receiver: CIMInputReceiver!
 
-    override init!(server: IMKServer, delegate: Any, client inputClient: Any) {
+    override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
         super.init(server: server, delegate: delegate, client: inputClient)
-        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(delegate) / CLIENT: \(inputClient)")
-
-//        guard inputClient is IMKTextInput else {
-//            return
-//        }
+        guard let inputClient = inputClient as? (IMKTextInput & IMKUnicodeTextInput) else {
+            return nil
+        }
+        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(delegate ?? "nil") / CLIENT: \(inputClient) \(inputClient.bundleIdentifier() ?? "nil")")
         receiver = CIMInputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
     }
 
@@ -63,6 +62,7 @@ public extension CIMInputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
     public override func handle(_ event: NSEvent, client sender: Any) -> Bool {
+        // sender is (IMKInputText & IMKUnicodeInputText & IMTSMSupport)
         let imkCandidtes = composer.server.candidates
         let keys = imkCandidtes.selectionKeys() as! [NSNumber]
         if imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
@@ -134,7 +134,7 @@ public extension CIMInputController { // IMKStateSetting
 
     override func deactivateServer(_ sender: Any!) {
         dlog(DEBUG_INPUTCONTROLLER, "server deactivated")
-        receiver.commitComposition(sender, controller: self)
+        receiver.commitComposition(sender)
     }
 }
 
@@ -144,7 +144,7 @@ public extension CIMInputController { // IMKMouseHandling
      */
     override func mouseDown(onCharacterIndex _: Int, coordinate _: NSPoint, withModifier _: Int, continueTracking _: UnsafeMutablePointer<ObjCBool>!, client sender: Any) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN")
-        _ = receiver.commitCompositionEvent(sender, controller: self)
+        _ = receiver.commitCompositionEvent(sender)
         return false
     }
 }
@@ -160,40 +160,40 @@ public extension CIMInputController { // IMKServerInput
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
-        _ = receiver.commitCompositionEvent(sender, controller: self)
+        _ = receiver.commitCompositionEvent(sender)
         // [super commitComposition:sender]
     }
 
     override func updateComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-RAW?")
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition")
-        receiver.updateCompositionEvent(self)
+        receiver.updateCompositionEvent()
         super.updateComposition()
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition ended")
     }
 
     override func cancelComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL-RAW?")
-        receiver.cancelCompositionEvent(self)
+        receiver.cancelCompositionEvent()
         super.cancelComposition()
     }
 
     // Getting Input Strings and Candidates
     // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
     override func composedString(_ sender: Any!) -> Any {
-        return receiver.composedString(sender, controller: self)
+        return receiver.composedString(sender)
     }
 
     override func originalString(_ sender: Any!) -> NSAttributedString {
-        return receiver.originalString(sender, controller: self)
+        return receiver.originalString(sender)
     }
 
     override func candidates(_ sender: Any!) -> [Any]! {
-        return receiver.candidates(sender, controller: self)
+        return receiver.candidates(sender)
     }
 
     override func candidateSelected(_ candidateString: NSAttributedString!) {
-        receiver.candidateSelected(candidateString, controller: self)
+        receiver.candidateSelected(candidateString)
     }
 
     override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
@@ -202,115 +202,115 @@ public extension CIMInputController { // IMKServerInput
 }
 
 #if DEBUG
-@objcMembers public class CIMMockInputController: CIMInputController {
-    public override init(server: IMKServer, delegate: Any, client: Any) {
-        super.init()
-        receiver = CIMInputReceiver(server: server, delegate: delegate, client: client, controller: self)
-    }
+    @objcMembers public class CIMMockInputController: CIMInputController {
+        public override init(server: IMKServer, delegate: Any!, client: Any) {
+            super.init()
+            receiver = CIMInputReceiver(server: server, delegate: delegate, client: client as! (IMKTextInput & IMKUnicodeTextInput), controller: self)
+        }
 
-    func repoduceTextLog(_ text: String) throws {
-        for row in text.components(separatedBy: "\n") {
-            guard let regex = try? NSRegularExpression(pattern: "LOGGING::([A-Z]+)::(.*)", options: []) else {
-                throw NSException(name: NSExceptionName("CIMMockInputControllerLogParserError"), reason: "Log is not readable format", userInfo: nil) as! Error
+        func repoduceTextLog(_ text: String) throws {
+            for row in text.components(separatedBy: "\n") {
+                guard let regex = try? NSRegularExpression(pattern: "LOGGING::([A-Z]+)::(.*)", options: []) else {
+                    throw NSException(name: NSExceptionName("CIMMockInputControllerLogParserError"), reason: "Log is not readable format", userInfo: nil) as! Error
+                }
+                let matches = regex.matches(in: row, options: [], range: NSRangeFromString(row))
+                let type = matches[1]
+                let data = matches[2]
+                print("test: \(type) \(data)")
             }
-            let matches = regex.matches(in: row, options: [], range: NSRangeFromString(row))
-            let type = matches[1]
-            let data = matches[2]
-            print("test: \(type) \(data)")
+        }
+
+        override var composer: CIMComposer {
+            return receiver.composer
+        }
+
+        public override func client() -> (IMKTextInput & NSObjectProtocol)! {
+            return receiver.inputClient as? (IMKTextInput & NSObjectProtocol)
+        }
+
+        public override func selectionRange() -> NSRange {
+            return client().selectedRange()
         }
     }
 
-    override var composer: CIMComposer {
-        return receiver.composer
-    }
-
-    public override func client() -> (IMKTextInput & NSObjectProtocol)! {
-        return receiver.inputClient as? (IMKTextInput & NSObjectProtocol)
-    }
-
-    public override func selectionRange() -> NSRange {
-        return client().selectedRange()
-    }
-}
-
-public extension CIMMockInputController { // IMKServerInputTextData
-    override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
-        let client = self.client()
-        print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
-        let v1 = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue
-        let v2 = CIMInputTextProcessResult.notProcessed.rawValue
-        let processed: Bool = v1 > v2
-        if !processed {
-            // [self cancelComposition]
+    public extension CIMMockInputController { // IMKServerInputTextData
+        override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
+            let client = self.client()
+            print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
+            let v1 = receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue
+            let v2 = CIMInputTextProcessResult.notProcessed.rawValue
+            let processed: Bool = v1 > v2
+            if !processed {
+                // [self cancelComposition]
+            }
+            return processed
         }
-        return processed
-    }
 
-    // Committing a Composition
-    // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    override func commitComposition(_ sender: Any) {
-        receiver.commitCompositionEvent(sender, controller: self)
-        // COMMIT triggered
-    }
+        // Committing a Composition
+        // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+        override func commitComposition(_ sender: Any) {
+            receiver.commitCompositionEvent(sender)
+            // COMMIT triggered
+        }
 
-    public override func updateComposition() {
-        receiver.updateCompositionEvent(self)
+        public override func updateComposition() {
+            receiver.updateCompositionEvent()
 
-        let client = receiver.inputClient as! IMKTextInput
-        let composed = composedString(client) as! String
-        let markedRange = client.markedRange()
-        let newMarkedRange = NSRange(location: markedRange.location, length: composed.count)
-        if markedRange.length > 0 || newMarkedRange.length > 0 {
+            let client = receiver.inputClient
+            let composed = composedString(client) as! String
+            let markedRange = client.markedRange()
+            let newMarkedRange = NSRange(location: markedRange.location, length: composed.count)
+            if markedRange.length > 0 || newMarkedRange.length > 0 {
+                let view = receiver.inputClient as! NSTextView
+                view.setMarkedText(composed, selectedRange: newMarkedRange, replacementRange: markedRange)
+                let hasMarked1 = view.hasMarkedText()
+                view.setSelectedRange(newMarkedRange)
+                let hasMarked2 = view.hasMarkedText()
+                assert(hasMarked1 == hasMarked2)
+            }
+        }
+
+        public override func cancelComposition() {
+            receiver.cancelCompositionEvent()
+
+            let client = receiver.inputClient
             let view = receiver.inputClient as! NSTextView
-            view.setMarkedText(composed, selectedRange: newMarkedRange, replacementRange: markedRange)
-            let hasMarked1 = view.hasMarkedText()
-            view.setSelectedRange(newMarkedRange)
-            let hasMarked2 = view.hasMarkedText()
-            assert(hasMarked1 == hasMarked2)
+            let markedRange = client.markedRange()
+            view.setMarkedText("", selectedRange: NSRange(location: markedRange.location, length: 0), replacementRange: markedRange)
+        }
+
+        // Getting Input Strings and Candidates
+        // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
+        public override func composedString(_ sender: Any!) -> Any {
+            return receiver.composedString(sender)
+        }
+
+        public override func originalString(_ sender: Any!) -> NSAttributedString {
+            return receiver.originalString(sender)
+        }
+
+        public override func candidates(_ sender: Any!) -> [Any]! {
+            return receiver.candidates(sender)
+        }
+
+        public override func candidateSelected(_ candidateString: NSAttributedString!) {
+            receiver.candidateSelected(candidateString)
+        }
+
+        public override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
+            receiver.candidateSelectionChanged(candidateString, controller: self)
         }
     }
 
-    public override func cancelComposition() {
-        receiver.cancelCompositionEvent(self)
+    public extension CIMMockInputController { // IMKStateSetting
+        //! @brief  마우스 이벤트를 잡을 수 있게 한다.
+        public override func recognizedEvents(_ sender: Any!) -> Int {
+            return receiver.recognizedEvents(sender)
+        }
 
-        let client = receiver.inputClient as! IMKTextInput
-        let view = receiver.inputClient as! NSTextView
-        let markedRange = client.markedRange()
-        view.setMarkedText("", selectedRange: NSRange(location: markedRange.location, length: 0), replacementRange: markedRange)
+        //! @brief 자판 전환을 감지한다.
+        public override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
+            receiver.setValue(value, forTag: tag, client: sender, controller: self)
+        }
     }
-
-    // Getting Input Strings and Candidates
-    // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-    public override func composedString(_ sender: Any!) -> Any {
-        return receiver.composedString(sender, controller: self)
-    }
-
-    public override func originalString(_ sender: Any!) -> NSAttributedString {
-        return receiver.originalString(sender, controller: self)
-    }
-
-    public override func candidates(_ sender: Any!) -> [Any]! {
-        return receiver.candidates(sender, controller: self)
-    }
-
-    public override func candidateSelected(_ candidateString: NSAttributedString!) {
-        receiver.candidateSelected(candidateString, controller: self)
-    }
-
-    public override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
-        receiver.candidateSelectionChanged(candidateString, controller: self)
-    }
-}
-
-public extension CIMMockInputController { // IMKStateSetting
-    //! @brief  마우스 이벤트를 잡을 수 있게 한다.
-    public override func recognizedEvents(_ sender: Any!) -> Int {
-        return receiver.recognizedEvents(sender)
-    }
-
-    //! @brief 자판 전환을 감지한다.
-    public override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
-        receiver.setValue(value, forTag: tag, client: sender, controller: self)
-    }
-}
 #endif

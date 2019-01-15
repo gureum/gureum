@@ -38,7 +38,7 @@ class TestViewController: NSViewController {
             assert(self.inputClient != nil)
             let processed = self.inputController.handle(event, client: self.inputClient)
             let specialFlags = event.modifierFlags.intersection([.command, .control])
-            if event.type == .keyDown && !processed && specialFlags.isEmpty {
+            if event.type == .keyDown, !processed, specialFlags.isEmpty {
                 self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
             }
             return nil

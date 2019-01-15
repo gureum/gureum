@@ -30,8 +30,8 @@ class ModerateApp: VirtualApp {
         let processed = super.inputText(string, key: keyCode, modifiers: flags)
         let specialFlags = flags.intersection([.command, .control])
 
-        if !processed && specialFlags.isEmpty {
-            self.client.insertText(string, replacementRange: self.client.markedRange())
+        if !processed, specialFlags.isEmpty {
+            client.insertText(string, replacementRange: client.markedRange())
         }
         return processed
     }

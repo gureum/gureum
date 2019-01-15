@@ -10,13 +10,13 @@ import Foundation
 import InputMethodKit
 
 public class CIMInputReceiver: NSObject, CIMInputTextDelegate {
-    var inputClient: Any
+    var inputClient: IMKTextInput & IMKUnicodeTextInput
     var composer: CIMComposer
     var controller: CIMInputController
 
     var hasSelectionRange: Bool = false
 
-    init(server: IMKServer, delegate: Any!, client: Any, controller: CIMInputController) {
+    init(server: IMKServer, delegate: Any!, client: IMKTextInput & IMKUnicodeTextInput, controller: CIMInputController) {
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: %@ / DELEGATE: %@ / CLIENT: %@", server, (delegate as? NSObject) ?? "(nil)", (client as? NSObject) ?? "(nil)")
         composer = GureumComposer()
         inputClient = client
@@ -38,22 +38,22 @@ public class CIMInputReceiver: NSObject, CIMInputTextDelegate {
         case .processed:
             break
         case .notProcessedAndNeedsCancel:
-            cancelComposition(controller)
+            cancelComposition()
         case .notProcessedAndNeedsCommit:
-            cancelComposition(controller)
-            commitComposition(sender, controller: controller)
+            cancelComposition()
+            commitComposition(sender)
             return handled
         default:
             dlog(true, "WRONG RESULT: %d", handled.rawValue)
             assert(false)
         }
 
-        let commited = commitComposition(sender, controller: controller) // 조합 된 문자 반영
+        let commited = commitComposition(sender) // 조합 된 문자 반영
         let hasComposedString = !_internalComposedString.isEmpty
         let selectionRange = controller.selectionRange()
         hasSelectionRange = selectionRange.location != NSNotFound && selectionRange.length > 0
         if commited || controller.selectionRange().length > 0 || hadComposedString || hasComposedString {
-            updateComposition(controller) // 조합 중인 문자 반영
+            updateComposition() // 조합 중인 문자 반영
         }
 
         composer.server.inputting = false
@@ -66,30 +66,30 @@ public class CIMInputReceiver: NSObject, CIMInputTextDelegate {
 extension CIMInputReceiver { // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    func commitComposition(_ sender: Any!, controller: CIMInputController) -> Bool {
+    func commitComposition(_ sender: Any) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-INTERNAL")
-        return commitCompositionEvent(sender, controller: controller)
+        return commitCompositionEvent(sender)
     }
 
-    func updateComposition(_ controller: CIMInputController) {
+    func updateComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-INTERNAL")
         controller.updateComposition()
     }
 
-    func cancelComposition(_ controller: CIMInputController) {
+    func cancelComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL-INTERNAL")
         controller.cancelComposition()
     }
 
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    func commitCompositionEvent(_ sender: Any!, controller: CIMInputController) -> Bool {
+    func commitCompositionEvent(_ sender: Any!) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
         if !composer.server.inputting {
             // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
             dlog(DEBUG_INPUTCONTROLLER, "-- CANCEL composition because of external commit request from %@", sender as! NSObject)
             dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL-INTERNAL")
-            cancelCompositionEvent(controller)
+            cancelCompositionEvent()
         }
         // 왠지는 모르겠지만 프로그램마다 동작이 달라서 조합을 반드시 마쳐주어야 한다
         // 터미널과 같이 조합중에 리턴키 먹는 프로그램은 조합 중인 문자가 없고 보통은 있다
@@ -114,12 +114,12 @@ extension CIMInputReceiver { // IMKServerInput
         return true
     }
 
-    func updateCompositionEvent(_: CIMInputController) {
+    func updateCompositionEvent() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE")
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition")
     }
 
-    func cancelCompositionEvent(_: CIMInputController) {
+    func cancelCompositionEvent() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL")
         composer.cancelComposition()
     }
@@ -130,37 +130,37 @@ extension CIMInputReceiver { // IMKServerInput
 
     // Getting Input Strings and Candidates
     // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-    func composedString(_: Any, controller _: CIMInputController) -> String {
+    public override func composedString(_: Any) -> Any {
         let string = _internalComposedString
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::COMPOSEDSTRING::(%@)", string)
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -composedString: with return: '%@'", string)
         return string
     }
 
-    func originalString(_: Any!, controller _: CIMInputController) -> NSAttributedString {
+    public override func originalString(_: Any!) -> NSAttributedString {
         dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -originalString:")
         let s = NSAttributedString(string: composer.originalString)
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::ORIGINALSTRING::%@", s.string)
         return s
     }
 
-    func candidates(_: Any!, controller _: CIMInputController) -> [Any]! {
+    public override func candidates(_: Any!) -> [Any]! {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATES")
         return composer.candidates
     }
 
-    func candidateSelected(_ candidateString: NSAttributedString, controller: CIMInputController) {
+    func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATESELECTED::%@", candidateString)
         composer.server.inputting = true
         composer.candidateSelected(candidateString)
-        commitComposition(inputClient, controller: controller)
+        commitComposition(inputClient)
         composer.server.inputting = false
     }
 
-    func candidateSelectionChanged(_ candidateString: NSAttributedString, controller: CIMInputController) {
+    func candidateSelectionChanged(_ candidateString: NSAttributedString, controller _: CIMInputController) {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATESELECTIONCHANGED::%@", candidateString)
         composer.candidateSelectionChanged(candidateString)
-        updateComposition(controller)
+        updateComposition()
     }
 }
 
@@ -188,7 +188,7 @@ extension CIMInputReceiver { // IMKStateSetting
                 break
             }
             if value != composer.inputMode {
-                commitComposition(sender, controller: controller)
+                commitComposition(sender)
                 composer.inputMode = value
             }
         default:
