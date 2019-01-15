@@ -7,20 +7,12 @@
 //
 
 @import XCTest;
-@import PreferencePanes;
 
-#import "CIMInputController.h"
-#import "GureumMockObjects.h"
-
+#import "NSPrefPaneBundle.h"
 #import "Gureum-Swift.h"
 
 
-
-
 @interface GureumObjCTests : XCTestCase
-
-@property(nonatomic,strong) NSArray *apps;
-@property(nonatomic,strong) VirtualApp *moderate, *terminal, *greedy;
 
 @end
 
@@ -42,18 +34,6 @@ static NSDictionary<NSString *, id> *oldConfiguration;
 
 - (void)setUp {
     [super setUp];
-
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
-    self.moderate = [[ModerateApp alloc] init];
-    self.terminal = [[TerminalApp alloc] init];
-    self.greedy = [[GreedyApp alloc] init];
-
-
-    self.apps = @[
-        self.moderate,
-//        self.terminal,
-//        self.greedy,
-    ];
 }
 
 - (void)tearDown {

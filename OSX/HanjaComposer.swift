@@ -6,6 +6,8 @@
 //  Copyright 2011 youknowone.org. All rights reserved.
 //
 
+import Carbon
+import Cocoa
 import Hangul
 
 let DEBUG_HANJACOMPOSER = false
@@ -21,12 +23,14 @@ enum HanjaMode {
     case continuous
 }
 
+private let hangulBundle = Bundle(for: HGKeyboard.self)
+
 class HanjaComposer: CIMComposer {
-    static let characterTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
-    static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
-    static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
-    static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
-    static let emojiTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
+    static let characterTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
+    static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
+    static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
+    static let msSymbolTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
+    static let emojiTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
 
     var _candidates: [NSAttributedString]?
     var _bufferedString: String = ""

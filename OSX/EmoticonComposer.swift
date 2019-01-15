@@ -6,12 +6,14 @@
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
 
+import Carbon
+import Cocoa
 import Hangul
 
 let DEBUG_EMOTICON = false
 
 class EmoticonComposer: CIMComposer {
-    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle.main.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
+    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle(for: HGKeyboard.self).path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 
     var _candidates: [NSAttributedString]?
     var _bufferedString: String = ""

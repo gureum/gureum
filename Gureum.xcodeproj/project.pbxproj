@@ -23,24 +23,18 @@
 
 /* Begin PBXBuildFile section */
 		38098F0A215A3DB30001F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38098F09215A3DB30001F159 /* Assets.xcassets */; };
-		381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
-		38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
 		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
 		381CA2F11FCE208A00DDB81D /* Example.png in Resources */ = {isa = PBXBuildFile; fileRef = 381CA2F01FCE208A00DDB81D /* Example.png */; };
-		381DB19B21678B74005A37B9 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
 		382E68761A13156700031D1D /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
 		3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831983B21DB744900E20D78 /* UpdateManager.swift */; };
-		3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4E51F5DAA7100896BEC /* all.txt */; };
 		3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EC1F5DAA7100896BEC /* hanjac.txt */; };
 		3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4ED1F5DAA7100896BEC /* hanjar.txt */; };
 		3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B4EE1F5DAA7100896BEC /* hanjaw.txt */; };
-		3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52B1F5DAB9600896BEC /* hanja.txt */; };
-		3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = 3835B52C1F5DABA400896BEC /* mssymbol.txt */; };
 		3835B52F1F5DABCA00896BEC /* hangul-combination-3gc.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F51F5DAA7100896BEC /* hangul-combination-3gc.xml */; };
 		3835B5301F5DABCA00896BEC /* hangul-combination-3gs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F61F5DAA7100896BEC /* hangul-combination-3gs.xml */; };
 		3835B5311F5DABCA00896BEC /* hangul-keyboard-2.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B4F71F5DAA7100896BEC /* hangul-keyboard-2.xml */; };
@@ -62,49 +56,62 @@
 		3835B5451F5DAC4400896BEC /* hangul-combination-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 3835B5411F5DAC3500896BEC /* hangul-combination-full.xml */; };
 		38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3D1B0E7E7C00E2C16D /* Security.framework */; };
 		38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */; };
-		38699DC21F36191500FD093E /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
 		386ECB8221537DE70060D9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8121537DE70060D9BE /* AppDelegate.swift */; };
-		386ECB8421537DE70060D9BE /* TestWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8321537DE70060D9BE /* TestWindowController.swift */; };
+		386ECB8421537DE70060D9BE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386ECB8321537DE70060D9BE /* TestViewController.swift */; };
 		386ECB8621537DEA0060D9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8521537DEA0060D9BE /* Assets.xcassets */; };
 		386ECB8921537DEA0060D9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 386ECB8721537DEA0060D9BE /* Main.storyboard */; };
 		386ECBB1215385720060D9BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
+		3881866421EB23F3004B7FDB /* MockInputClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3881866221EB239E004B7FDB /* MockInputClient.m */; };
+		3881867E21EB2D7D004B7FDB /* OSXCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3881867C21EB2D7D004B7FDB /* OSXCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3881868121EB2D7D004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
+		3881868221EB2D7D004B7FDB /* GureumCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3881868821EB2D8D004B7FDB /* CIMApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */; };
+		3881868921EB2D8D004B7FDB /* CIMInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */; };
+		3881868D21EB2D8D004B7FDB /* CIMComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* CIMComposer.swift */; };
+		3881869021EB2D8D004B7FDB /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
+		3881869121EB2DC0004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
+		3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
+		3881869321EB2DC0004B7FDB /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
+		3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
+		3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
+		3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
+		3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
+		388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
+		388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
+		388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
+		388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186A721EB34FA004B7FDB /* TISInputSource.swift */; };
+		388186AA21EB3D61004B7FDB /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
+		388186AB21EB3E72004B7FDB /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
+		388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
+		388186B121EB453E004B7FDB /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
+		388186B521EB4E98004B7FDB /* MockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186B321EB4E4C004B7FDB /* MockApp.swift */; };
+		388186BA21EB72F7004B7FDB /* MockInputClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3881866221EB239E004B7FDB /* MockInputClient.m */; };
+		388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
+		388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
+		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
-		389289BD217B331B00F94F2C /* CIMComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* CIMComposer.swift */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
-		389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		38AC8D4A217C4EDA00E4B332 /* CIMInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumObjCTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE82018B4F181004B2B2E /* GureumMockObjects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
-		38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
-		38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
-		38F85936215A926100CD80AE /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
-		38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38863C96140E669000A8ED76 /* CIMInputController.m */; };
+		53BEC486D4B0C2746785B54B /* Pods_OSXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489B10BD894E874269356F2F /* Pods_OSXTests.framework */; };
 		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
+		66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */; };
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
 		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
 		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
-		878898012160AA6E00BF5770 /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
-		8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
-		A3F007682160B09700501606 /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
-		B0DE8679435065D0866D2AAF /* Pods_PreferencesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_PreferencesApp.framework */; };
-		DAA59CC398282039EE3F4265 /* libPods-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 057B3CD9EB092349BD540E8B /* libPods-OSX.a */; };
-		E54B8382214299EB00527218 /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
+		AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
+		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
-		E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
-		E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
-		FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +142,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 382E68631A1314D900031D1D;
 			remoteInfo = Preferences;
+		};
+		3881867F21EB2D7D004B7FDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3881867921EB2D7D004B7FDB;
+			remoteInfo = OSXCore;
+		};
+		388186A421EB306B004B7FDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38FA220114233FD900444D67 /* Hangul.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 38F858E2215A8B2200CD80AE;
+			remoteInfo = Hangul;
+		};
+		388186B821EB723A004B7FDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38863C50140E62D100A8ED76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3881867921EB2D7D004B7FDB;
+			remoteInfo = OSXCore;
 		};
 		389A387C1423477F00A2ED88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -177,14 +205,11 @@
 		3835B5231F5DAADF00896BEC /* Copy Hanja Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = hanja;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/hanja";
+			dstSubfolderSpec = 0;
 			files = (
 				A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */,
 				A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */,
-				3835B52E1F5DABB400896BEC /* mssymbol.txt in Copy Hanja Files */,
-				3835B52D1F5DABAF00896BEC /* hanja.txt in Copy Hanja Files */,
-				3835B5251F5DAB5E00896BEC /* all.txt in Copy Hanja Files */,
 				3835B5281F5DAB5E00896BEC /* hanjac.txt in Copy Hanja Files */,
 				3835B5291F5DAB5E00896BEC /* hanjar.txt in Copy Hanja Files */,
 				3835B52A1F5DAB5E00896BEC /* hanjaw.txt in Copy Hanja Files */,
@@ -195,8 +220,8 @@
 		3835B5241F5DAB2700896BEC /* Copy Keyboards Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = keyboards;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/keyboards";
+			dstSubfolderSpec = 0;
 			files = (
 				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
 				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
@@ -232,7 +257,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				389A39ED142356E900A2ED88 /* Hangul.framework in Copy Frameworks */,
+				388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */,
+				3881868221EB2D7D004B7FDB /* GureumCore.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,15 +267,13 @@
 
 /* Begin PBXFileReference section */
 		0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
-		057B3CD9EB092349BD540E8B /* libPods-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanjaComposer.swift; sourceTree = "<group>"; };
+		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HanjaComposer.swift; path = OSX/HanjaComposer.swift; sourceTree = SOURCE_ROOT; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38162DFC141263280077AA2D /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		38162E451412866F0077AA2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		381B32731DA826B100EA1975 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
@@ -257,13 +281,12 @@
 		381CA2EE1FCE16EA00DDB81D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		381CA2F01FCE208A00DDB81D /* Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Example.png; sourceTree = "<group>"; };
 		381DB19A21678B74005A37B9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
-		382AF2DC21563C0600701F90 /* PreferencesApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PreferencesApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		382AF2DC21563C0600701F90 /* OSXTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		382E68641A1314D900031D1D /* Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		382E68671A1314D900031D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382E686C1A1314D900031D1D /* Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Preferences.tiff; sourceTree = "<group>"; };
 		382E686F1A1314D900031D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3831983B21DB744900E20D78 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
-		3835B4E51F5DAA7100896BEC /* all.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all.txt; sourceTree = "<group>"; };
 		3835B4EC1F5DAA7100896BEC /* hanjac.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjac.txt; sourceTree = "<group>"; };
 		3835B4ED1F5DAA7100896BEC /* hanjar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjar.txt; sourceTree = "<group>"; };
 		3835B4EE1F5DAA7100896BEC /* hanjaw.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hanjaw.txt; sourceTree = "<group>"; };
@@ -282,8 +305,6 @@
 		3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-3y.xml"; sourceTree = "<group>"; };
 		3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ahn.xml"; sourceTree = "<group>"; };
 		3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-keyboard-ro.xml"; sourceTree = "<group>"; };
-		3835B52B1F5DAB9600896BEC /* hanja.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = hanja.txt; sourceTree = "<group>"; };
-		3835B52C1F5DABA400896BEC /* mssymbol.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = mssymbol.txt; sourceTree = "<group>"; };
 		3835B53E1F5DAC3500896BEC /* hangul-combination-3f.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3f.xml"; sourceTree = "<group>"; };
 		3835B53F1F5DAC3500896BEC /* hangul-combination-39.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-39.xml"; sourceTree = "<group>"; };
 		3835B5401F5DAC3500896BEC /* hangul-combination-default.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-default.xml"; sourceTree = "<group>"; };
@@ -291,19 +312,25 @@
 		38531F3D1B0E7E7C00E2C16D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		386441BD2160CC1A0069F420 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		386ECB7F21537DE70060D9BE /* PreferencesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreferencesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		386ECB7F21537DE70060D9BE /* OSXTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSXTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		386ECB8121537DE70060D9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		386ECB8321537DE70060D9BE /* TestWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWindowController.swift; sourceTree = "<group>"; };
+		386ECB8321537DE70060D9BE /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		386ECB8521537DEA0060D9BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		386ECB8821537DEA0060D9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		386ECB8A21537DEA0060D9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		386ECB8B21537DEA0060D9BE /* PreferencesApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PreferencesApp.entitlements; sourceTree = "<group>"; };
+		3881866121EB239D004B7FDB /* MockInputClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockInputClient.h; sourceTree = "<group>"; };
+		3881866221EB239E004B7FDB /* MockInputClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockInputClient.m; sourceTree = "<group>"; };
+		3881866521EB24CA004B7FDB /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridge.h; path = GureumTests/Bridge.h; sourceTree = SOURCE_ROOT; };
+		3881867A21EB2D7D004B7FDB /* GureumCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GureumCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3881867C21EB2D7D004B7FDB /* OSXCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSXCore.h; sourceTree = "<group>"; };
+		3881867D21EB2D7D004B7FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		388186A721EB34FA004B7FDB /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
+		388186B321EB4E4C004B7FDB /* MockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApp.swift; sourceTree = "<group>"; };
 		388534FC213A740600885C87 /* IOKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKitUtility.swift; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		38863C95140E669000A8ED76 /* CIMInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMInputController.h; sourceTree = "<group>"; };
 		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
@@ -314,12 +341,11 @@
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38BFE80318B45419004B2B2E /* GureumObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumObjCTests.m; sourceTree = "<group>"; };
-		38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GureumMockObjects.h; sourceTree = "<group>"; };
-		38BFE82018B4F181004B2B2E /* GureumMockObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GureumMockObjects.m; sourceTree = "<group>"; };
+		38BFE81F18B4F181004B2B2E /* NSPrefPaneBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPrefPaneBundle.h; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38C2AE4C208795E700FE211A /* GureumConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumConfiguration.swift; sourceTree = "<group>"; };
-		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanComposer.swift; sourceTree = "<group>"; };
-		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
+		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RomanComposer.swift; path = OSX/RomanComposer.swift; sourceTree = SOURCE_ROOT; };
+		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HangulComposer.swift; path = OSX/HangulComposer.swift; sourceTree = SOURCE_ROOT; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
@@ -329,28 +355,35 @@
 		38F85964215BEA3800CD80AE /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
 		44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		489B10BD894E874269356F2F /* Pods_OSXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B185969033D59E37DA605FD /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
-		4BBBDD5D65FE92A8E230117D /* Pods-PreferencesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.release.xcconfig"; sourceTree = "<group>"; };
-		4F10FF4A81E4501FB2F71251 /* Pods_PreferencesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreferencesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BBBDD5D65FE92A8E230117D /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.release.xcconfig"; sourceTree = "<group>"; };
+		77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
+		7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2012.xml"; sourceTree = "<group>"; };
 		80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2011.xml"; sourceTree = "<group>"; };
 		80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3p.xml"; sourceTree = "<group>"; };
 		80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-2y-full.xml"; sourceTree = "<group>"; };
 		80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-2-full.xml"; sourceTree = "<group>"; };
 		871B807B2153DDFA0013EE69 /* InputMethodServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMethodServer.swift; sourceTree = "<group>"; };
-		9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreferencesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9B1EC9A5CFCEEBC9368AE9A9 /* Pods-OSXTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji.txt; sourceTree = "<group>"; };
 		A36A4358216F86780052BE12 /* emoji_ko.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji_ko.txt; sourceTree = "<group>"; };
 		A3BAAE062160C6970076C66D /* GureumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
-		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonComposer.swift; sourceTree = "<group>"; };
+		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmoticonComposer.swift; path = OSX/EmoticonComposer.swift; sourceTree = SOURCE_ROOT; };
+		A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
-		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
+		CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GureumComposer.swift; path = OSX/GureumComposer.swift; sourceTree = SOURCE_ROOT; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
 		E5BB72CC214A788100E35558 /* CIMInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputController.swift; sourceTree = "<group>"; };
 		E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMApplicationDelegate.swift; sourceTree = "<group>"; };
 		E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputControllerGureum.swift; sourceTree = "<group>"; };
-		E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMBaseComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,13 +392,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3881868121EB2D7D004B7FDB /* GureumCore.framework in Frameworks */,
 				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
-				38F85936215A926100CD80AE /* Hangul.framework in Frameworks */,
-				DAA59CC398282039EE3F4265 /* libPods-OSX.a in Frameworks */,
+				66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +414,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0DE8679435065D0866D2AAF /* Pods_PreferencesApp.framework in Frameworks */,
+				388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */,
+				388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */,
+				AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3881867721EB2D7D004B7FDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
+				C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +433,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FB2D1F50746B5A15A5617BE /* libPods-OSXTests.a in Frameworks */,
+				53BEC486D4B0C2746785B54B /* Pods_OSXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +447,14 @@
 				32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */,
 				4B185969033D59E37DA605FD /* Pods-OSX.debug.xcconfig */,
 				ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */,
-				4BBBDD5D65FE92A8E230117D /* Pods-PreferencesApp.release.xcconfig */,
+				4BBBDD5D65FE92A8E230117D /* Pods-OSXTestApp.release.xcconfig */,
 				236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */,
 				78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */,
-				9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */,
+				9B1EC9A5CFCEEBC9368AE9A9 /* Pods-OSXTestApp.debug.xcconfig */,
+				55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */,
+				E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */,
+				A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */,
+				561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -419,17 +467,14 @@
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
 				38FA220114233FD900444D67 /* Hangul.xcodeproj */,
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
-				381DB19A21678B74005A37B9 /* Debug.swift */,
-				871B807B2153DDFA0013EE69 /* InputMethodServer.swift */,
-				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
-				381B32731DA826B100EA1975 /* Bridge.h */,
+				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
+				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
+				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
-				38FA21DF14231BCC00444D67 /* Composers */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
-				3835B4E21F5DAA7100896BEC /* data */,
 				388534F9213A731E00885C87 /* IOKit */,
 				38098F09215A3DB30001F159 /* Assets.xcassets */,
 			);
@@ -441,7 +486,7 @@
 			children = (
 				38162DF8141263280077AA2D /* Info.plist */,
 				38162DF9141263280077AA2D /* InfoPlist.strings */,
-				38162DFC141263280077AA2D /* Prefix.pch */,
+				381B32731DA826B100EA1975 /* Bridge.h */,
 				38162E4914128A740077AA2D /* MainMenu.xib */,
 				388E2A601469249700ADBDA5 /* Hangul.strings */,
 				38F85960215BD27000CD80AE /* main.swift */,
@@ -484,9 +529,6 @@
 			children = (
 				A36A4358216F86780052BE12 /* emoji_ko.txt */,
 				A34E2024216ADBEC00B12476 /* emoji.txt */,
-				3835B4E51F5DAA7100896BEC /* all.txt */,
-				3835B52B1F5DAB9600896BEC /* hanja.txt */,
-				3835B52C1F5DABA400896BEC /* mssymbol.txt */,
 				3835B4EC1F5DAA7100896BEC /* hanjac.txt */,
 				3835B4ED1F5DAA7100896BEC /* hanjar.txt */,
 				3835B4EE1F5DAA7100896BEC /* hanjaw.txt */,
@@ -534,35 +576,41 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		386ECB8021537DE70060D9BE /* PreferencesApp */ = {
+		386ECB8021537DE70060D9BE /* OSXTestApp */ = {
 			isa = PBXGroup;
 			children = (
 				386ECB8121537DE70060D9BE /* AppDelegate.swift */,
-				386ECB8321537DE70060D9BE /* TestWindowController.swift */,
+				386ECB8321537DE70060D9BE /* TestViewController.swift */,
 				386ECB8521537DEA0060D9BE /* Assets.xcassets */,
 				386ECB8721537DEA0060D9BE /* Main.storyboard */,
 				386ECB8A21537DEA0060D9BE /* Info.plist */,
-				386ECB8B21537DEA0060D9BE /* PreferencesApp.entitlements */,
-				382AF2DC21563C0600701F90 /* PreferencesApp-Bridging-Header.h */,
+				382AF2DC21563C0600701F90 /* OSXTestApp-Bridging-Header.h */,
 			);
-			path = PreferencesApp;
+			path = OSXTestApp;
 			sourceTree = "<group>";
 		};
-		387DFFFE1421F1E000DAE6F4 /* Common Input Method */ = {
+		3881867B21EB2D7D004B7FDB /* OSXCore */ = {
 			isa = PBXGroup;
 			children = (
+				388186A721EB34FA004B7FDB /* TISInputSource.swift */,
 				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
 				38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */,
-				38863C95140E669000A8ED76 /* CIMInputController.h */,
-				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
 				389289BC217B331B00F94F2C /* CIMComposer.swift */,
-				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
-				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
 				FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */,
+				381DB19A21678B74005A37B9 /* Debug.swift */,
+				871B807B2153DDFA0013EE69 /* InputMethodServer.swift */,
+				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
+				3881867C21EB2D7D004B7FDB /* OSXCore.h */,
+				3881867D21EB2D7D004B7FDB /* Info.plist */,
+				A3F007652160B09700501606 /* EmoticonComposer.swift */,
+				38D3E42A21213E9700751191 /* HangulComposer.swift */,
+				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
+				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
+				E54B8381214299EB00527218 /* GureumComposer.swift */,
+				3835B4E21F5DAA7100896BEC /* data */,
 			);
-			name = "Common Input Method";
-			path = CommonInputMethod;
+			path = OSXCore;
 			sourceTree = "<group>";
 		};
 		388534F9213A731E00885C87 /* IOKit */ = {
@@ -576,11 +624,11 @@
 		38863C4E140E62D100A8ED76 = {
 			isa = PBXGroup;
 			children = (
-				387DFFFE1421F1E000DAE6F4 /* Common Input Method */,
+				3881867B21EB2D7D004B7FDB /* OSXCore */,
 				38162DF6141263270077AA2D /* OSX */,
 				38BFE7FD18B45419004B2B2E /* GureumTests */,
 				382E68651A1314D900031D1D /* Preferences */,
-				386ECB8021537DE70060D9BE /* PreferencesApp */,
+				386ECB8021537DE70060D9BE /* OSXTestApp */,
 				38863C62140E64EB00A8ED76 /* Frameworks */,
 				38863C60140E64EB00A8ED76 /* Products */,
 				03FCFBF6A8917E0317CD26F2 /* Pods */,
@@ -593,7 +641,8 @@
 				38162DF3141263270077AA2D /* Gureum.app */,
 				38BFE7FA18B45419004B2B2E /* OSXTests.xctest */,
 				382E68641A1314D900031D1D /* Preferences.prefPane */,
-				386ECB7F21537DE70060D9BE /* PreferencesApp.app */,
+				386ECB7F21537DE70060D9BE /* OSXTestApp.app */,
+				3881867A21EB2D7D004B7FDB /* GureumCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -607,10 +656,12 @@
 				38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */,
 				38863C63140E64EB00A8ED76 /* Cocoa.framework */,
 				38863C65140E64EB00A8ED76 /* Other Frameworks */,
-				E73EDD6DBCA6CA17A1708BE5 /* libPods-OSXTests.a */,
 				44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */,
-				4F10FF4A81E4501FB2F71251 /* Pods_PreferencesApp.framework */,
-				057B3CD9EB092349BD540E8B /* libPods-OSX.a */,
+				4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */,
+				77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */,
+				CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */,
+				7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */,
+				489B10BD894E874269356F2F /* Pods_OSXTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -639,8 +690,10 @@
 			isa = PBXGroup;
 			children = (
 				A3BAAE062160C6970076C66D /* GureumTests.swift */,
-				38BFE81F18B4F181004B2B2E /* GureumMockObjects.h */,
-				38BFE82018B4F181004B2B2E /* GureumMockObjects.m */,
+				388186B321EB4E4C004B7FDB /* MockApp.swift */,
+				3881866121EB239D004B7FDB /* MockInputClient.h */,
+				3881866221EB239E004B7FDB /* MockInputClient.m */,
+				38BFE81F18B4F181004B2B2E /* NSPrefPaneBundle.h */,
 				38BFE80318B45419004B2B2E /* GureumObjCTests.m */,
 				38BFE7FE18B45419004B2B2E /* Supporting Files */,
 			);
@@ -650,22 +703,11 @@
 		38BFE7FE18B45419004B2B2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3881866521EB24CA004B7FDB /* Bridge.h */,
 				38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */,
 				38BFE80018B45419004B2B2E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		38FA21DF14231BCC00444D67 /* Composers */ = {
-			isa = PBXGroup;
-			children = (
-				A3F007652160B09700501606 /* EmoticonComposer.swift */,
-				38D3E42A21213E9700751191 /* HangulComposer.swift */,
-				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
-				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
-				E54B8381214299EB00527218 /* GureumComposer.swift */,
-			);
-			name = Composers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,6 +717,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3881867521EB2D7D004B7FDB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3881867E21EB2D7D004B7FDB /* OSXCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,11 +739,9 @@
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
-				3835B4E11F59DDAF00896BEC /* Prepare libhangul data */,
-				3835B5231F5DAADF00896BEC /* Copy Hanja Files */,
-				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
 				388FB6471A12320E00DCB995 /* Run Fabric */,
+				9248550919B356340823B139 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -701,6 +749,7 @@
 				382AF2CA2156284200701F90 /* PBXTargetDependency */,
 				389A398414234B5600A2ED88 /* PBXTargetDependency */,
 				382E68751A13153300031D1D /* PBXTargetDependency */,
+				3881868021EB2D7D004B7FDB /* PBXTargetDependency */,
 			);
 			name = OSX;
 			productName = OSX;
@@ -728,9 +777,9 @@
 			productReference = 382E68641A1314D900031D1D /* Preferences.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
-		386ECB7E21537DE70060D9BE /* PreferencesApp */ = {
+		386ECB7E21537DE70060D9BE /* OSXTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "PreferencesApp" */;
+			buildConfigurationList = 386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "OSXTestApp" */;
 			buildPhases = (
 				B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */,
 				386ECB7B21537DE70060D9BE /* Sources */,
@@ -741,12 +790,35 @@
 			buildRules = (
 			);
 			dependencies = (
+				388186B921EB723A004B7FDB /* PBXTargetDependency */,
 				38F85968215BF4A600CD80AE /* PBXTargetDependency */,
 			);
-			name = PreferencesApp;
-			productName = PreferencesApp;
-			productReference = 386ECB7F21537DE70060D9BE /* PreferencesApp.app */;
+			name = OSXTestApp;
+			productName = OSXTestApp;
+			productReference = 386ECB7F21537DE70060D9BE /* OSXTestApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		3881867921EB2D7D004B7FDB /* OSXCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3881868721EB2D7D004B7FDB /* Build configuration list for PBXNativeTarget "OSXCore" */;
+			buildPhases = (
+				D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */,
+				3881867521EB2D7D004B7FDB /* Headers */,
+				3881867621EB2D7D004B7FDB /* Sources */,
+				3881867721EB2D7D004B7FDB /* Frameworks */,
+				3881867821EB2D7D004B7FDB /* Resources */,
+				3835B5241F5DAB2700896BEC /* Copy Keyboards Files */,
+				3835B5231F5DAADF00896BEC /* Copy Hanja Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				388186A521EB306B004B7FDB /* PBXTargetDependency */,
+			);
+			name = OSXCore;
+			productName = OSXCore;
+			productReference = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		38BFE7F918B45419004B2B2E /* OSXTests */ = {
 			isa = PBXNativeTarget;
@@ -813,6 +885,10 @@
 							};
 						};
 					};
+					3881867921EB2D7D004B7FDB = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+					};
 					38BFE7F918B45419004B2B2E = {
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
@@ -858,11 +934,12 @@
 			);
 			projectRoot = "";
 			targets = (
+				3881867921EB2D7D004B7FDB /* OSXCore */,
 				38162DF2141263270077AA2D /* OSX */,
 				38BFE7F918B45419004B2B2E /* OSXTests */,
 				382E68631A1314D900031D1D /* Preferences */,
 				38E9024821344637005DF76A /* ScriptSupport */,
-				386ECB7E21537DE70060D9BE /* PreferencesApp */,
+				386ECB7E21537DE70060D9BE /* OSXTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -925,6 +1002,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3881867821EB2D7D004B7FDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BFE7F818B45419004B2B2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -949,20 +1033,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ${PROJECT_DIR}\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\nif [ $CONFIGURATION != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
-		};
-		3835B4E11F59DDAF00896BEC /* Prepare libhangul data */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Prepare libhangul data";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "for template_path in \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.template; do\n  template=${template_path##*/}\n  xml=${template%.template}\n  cp \"$template_path\" \"OSX/data/keyboards/$xml\"\ndone\n\ncp \"${SRCROOT}/libhangul-objc/libhangul/data/keyboards/\"*.xml \"OSX/data/keyboards/\"\n\ncp \"$SRCROOT/libhangul-objc/libhangul/data/hanja/\"*.txt \"OSX/data/hanja/\"\n";
 		};
 		388FB6471A12320E00DCB995 /* Run Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1028,6 +1098,28 @@
 			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9248550919B356340823B139 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FoundationExtension/FoundationExtension.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoundationExtension.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1039,7 +1131,29 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PreferencesApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OSXTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OSXCore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1088,16 +1202,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FoundationExtension/FoundationExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoundationExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PreferencesApp/Pods-PreferencesApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1107,25 +1223,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38C2AE4D208795E700FE211A /* GureumConfiguration.swift in Sources */,
-				38EE977B1A00148D00AD19B8 /* TISInputSource.m in Sources */,
+				388186AA21EB3D61004B7FDB /* TISInputSource.m in Sources */,
 				E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */,
-				E54B8382214299EB00527218 /* GureumComposer.swift in Sources */,
-				38D3E42B21213E9700751191 /* HangulComposer.swift in Sources */,
-				878898012160AA6E00BF5770 /* InputMethodServer.swift in Sources */,
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
-				381DB19B21678B74005A37B9 /* Debug.swift in Sources */,
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
-				E5D234EF2141260E00595FA0 /* CIMApplicationDelegate.swift in Sources */,
-				38162E0F141264EB0077AA2D /* HanjaComposer.swift in Sources */,
-				38699DC21F36191500FD093E /* RomanComposer.swift in Sources */,
-				389289BD217B331B00F94F2C /* CIMComposer.swift in Sources */,
-				E5BB72CD214A788100E35558 /* CIMInputController.swift in Sources */,
-				38FA21DD14230E2E00444D67 /* CIMInputController.m in Sources */,
-				A3F007682160B09700501606 /* EmoticonComposer.swift in Sources */,
+				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
-				38AC8D4A217C4EDA00E4B332 /* CIMInputReceiver.swift in Sources */,
-				FC158A0B213A847D00E4ABAC /* CIMBaseComposer.swift in Sources */,
 				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1135,7 +1238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
-				381228DB208D869B00BB7D5D /* GureumConfiguration.swift in Sources */,
+				388186AB21EB3E72004B7FDB /* GureumConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,8 +1246,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				386ECB8421537DE70060D9BE /* TestWindowController.swift in Sources */,
+				386ECB8421537DE70060D9BE /* TestViewController.swift in Sources */,
 				386ECB8221537DE70060D9BE /* AppDelegate.swift in Sources */,
+				388186BA21EB72F7004B7FDB /* MockInputClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3881867621EB2D7D004B7FDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */,
+				3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */,
+				3881868D21EB2D8D004B7FDB /* CIMComposer.swift in Sources */,
+				388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */,
+				3881868821EB2D8D004B7FDB /* CIMApplicationDelegate.swift in Sources */,
+				3881869321EB2DC0004B7FDB /* GureumConfiguration.swift in Sources */,
+				3881869021EB2D8D004B7FDB /* CIMBaseComposer.swift in Sources */,
+				388186B121EB453E004B7FDB /* CIMInputController.swift in Sources */,
+				3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */,
+				3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */,
+				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
+				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
+				3881868921EB2D8D004B7FDB /* CIMInputReceiver.swift in Sources */,
+				3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */,
+				388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,8 +1279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A34E20012168B21B00B12476 /* GureumTests.swift in Sources */,
+				388186B521EB4E98004B7FDB /* MockApp.swift in Sources */,
+				3881866421EB23F3004B7FDB /* MockInputClient.m in Sources */,
 				38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */,
-				38BFE82118B4F181004B2B2E /* GureumMockObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,6 +1302,21 @@
 			isa = PBXTargetDependency;
 			target = 382E68631A1314D900031D1D /* Preferences */;
 			targetProxy = 382E68741A13153300031D1D /* PBXContainerItemProxy */;
+		};
+		3881868021EB2D7D004B7FDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3881867921EB2D7D004B7FDB /* OSXCore */;
+			targetProxy = 3881867F21EB2D7D004B7FDB /* PBXContainerItemProxy */;
+		};
+		388186A521EB306B004B7FDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Hangul;
+			targetProxy = 388186A421EB306B004B7FDB /* PBXContainerItemProxy */;
+		};
+		388186B921EB723A004B7FDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3881867921EB2D7D004B7FDB /* OSXCore */;
+			targetProxy = 388186B821EB723A004B7FDB /* PBXContainerItemProxy */;
 		};
 		389A398414234B5600A2ED88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1234,11 +1376,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4B185969033D59E37DA605FD /* Pods-OSX.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OSX/Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
@@ -1254,11 +1397,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OSX/Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = OSX/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Input Methods";
@@ -1313,33 +1457,99 @@
 		};
 		386ECBA221537DEA0060D9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B1EC9A5CFCEEBC9368AE9A9 /* Pods-PreferencesApp.debug.xcconfig */;
+			baseConfigurationReference = 55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = PreferencesApp/Info.plist;
+				INFOPLIST_FILE = OSXTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.PreferencesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.OSXTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "PreferencesApp/PreferencesApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OSXTestApp/OSXTestApp-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		386ECBA321537DEA0060D9BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BBBDD5D65FE92A8E230117D /* Pods-PreferencesApp.release.xcconfig */;
+			baseConfigurationReference = E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = PreferencesApp/Info.plist;
+				INFOPLIST_FILE = OSXTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.PreferencesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.OSXTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "PreferencesApp/PreferencesApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OSXTestApp/OSXTestApp-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		3881868321EB2D7D004B7FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OSXCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.OSXCore;
+				PRODUCT_NAME = GureumCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3881868421EB2D7D004B7FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = OSXCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.OSXCore;
+				PRODUCT_NAME = GureumCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1567,11 +1777,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "PreferencesApp" */ = {
+		386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "OSXTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				386ECBA221537DEA0060D9BE /* Debug */,
 				386ECBA321537DEA0060D9BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3881868721EB2D7D004B7FDB /* Build configuration list for PBXNativeTarget "OSXCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3881868321EB2D7D004B7FDB /* Debug */,
+				3881868421EB2D7D004B7FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
