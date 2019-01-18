@@ -64,6 +64,17 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testLayoutChangeCommit() {
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue("org.youknowone.inputmethod.Gureum.han2", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("g", key: Int(kVK_ANSI_G), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            app.inputFlags(NSEvent.ModifierFlags.capsLock)
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+        }
+    }
+
     func testSearchEmoticonTable() {
         let bundle = Bundle(for: HGKeyboard.self)
         let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")

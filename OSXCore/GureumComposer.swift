@@ -73,6 +73,22 @@ class GureumComposer: DelegatedComposer {
     let emoticonComposer: EmoticonComposer = EmoticonComposer()
     let romanComposersByIdentifier: [String: DelegatedComposer]
 
+    var _commitStrings: [String] = []
+    override var commitString: String {
+        return _commitStrings.joined() + delegate.commitString
+    }
+
+    func enqueueCommitString(_ string: String) {
+        _commitStrings.append(string)
+    }
+
+    override func dequeueCommitString() -> String {
+        let r = commitString
+        delegate.dequeueCommitString()
+        _commitStrings.removeAll()
+        return r
+    }
+
     override init() {
         romanComposer = qwertyComposer
         hanjaComposer.delegate = hangulComposer
@@ -132,6 +148,7 @@ class GureumComposer: DelegatedComposer {
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             let config = Configuration.shared
             delegate.cancelComposition()
+            enqueueCommitString(delegate.dequeueCommitString())
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
         }

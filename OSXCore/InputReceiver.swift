@@ -128,7 +128,7 @@ public class InputReceiver: InputTextDelegate {
 
             if result.action != .none {
                 cancelComposition()
-                if result.action == .commit {
+                if result.action != .cancel {
                     commitCompositionEvent(sender)
                     return result
                 }
