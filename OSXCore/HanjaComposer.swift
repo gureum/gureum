@@ -25,7 +25,7 @@ enum HanjaMode {
 
 private let hangulBundle = Bundle(for: HGKeyboard.self)
 
-class HanjaComposer: CIMComposer {
+class HanjaComposer: DelegatedComposer {
     static let characterTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
     static let wordTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
     static let reversedTable: HGHanjaTable = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
@@ -107,7 +107,7 @@ class HanjaComposer: CIMComposer {
 //        }
     }
 
-    override func input(controller: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
         switch keyCode {
         // Arrow
         case kVK_DownArrow, kVK_UpArrow:
@@ -115,10 +115,10 @@ class HanjaComposer: CIMComposer {
         default:
             break
         }
-        var result = delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
+        var result = delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
         switch keyCode {
         // backspace
-        case kVK_Delete: if result == .notProcessed {
+        case kVK_Delete: if result == InputResult.notProcessed {
             if !originalString.isEmpty {
                 // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
                 dlog(DEBUG_HANJACOMPOSER, "DEBUG 1, [hanja] MSG: before (%@)", _bufferedString)
@@ -140,7 +140,7 @@ class HanjaComposer: CIMComposer {
                 _bufferedString.append(" ")
                 result = .processed
             } else {
-                result = .notProcessedAndNeedsCommit
+                result = InputResult(processed: false, action: .commit)
             }
         // esc
         case kVK_Escape:
@@ -153,19 +153,19 @@ class HanjaComposer: CIMComposer {
             cancelComposition()
             // step 3: 한자 후보 취소
             _candidates = nil // 후보 취소
-            return .notProcessedAndNeedsCommit
+            return InputResult(processed: false, action: .commit)
         default:
             break
         }
         prepareHanjaCandidates()
-        if result == .notProcessedAndNeedsCommit {
+        if result == InputResult(processed: false, action: .commit) {
             cancelComposition()
             return result
         }
         if commitString.isEmpty {
             return result == .processed ? .processed : .notProcessed
         } else {
-            return .notProcessedAndNeedsCommit
+            return InputResult(processed: false, action: .commit)
         }
     }
 
@@ -206,7 +206,7 @@ class HanjaComposer: CIMComposer {
             candidates.append(contentsOf: tableCandidates)
         }
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating")
-        if candidates.count > 0, GureumConfiguration.shared.showsInputForHanjaCandidates {
+        if candidates.count > 0, Configuration.shared.showsInputForHanjaCandidates {
             candidates.insert(keyword, at: 0)
         }
         return candidates.map({ s in NSAttributedString(string: s) })
@@ -230,12 +230,8 @@ class HanjaComposer: CIMComposer {
         return candidates
     }
 
-    func update(fromController controller: CIMInputController) {
+    func update(client: IMKTextInput) {
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer updateFromController:")
-        guard let client = controller.client() else {
-            assert(false)
-            return
-        }
         let markedRange: NSRange = client.markedRange()
         let selectedRange: NSRange = client.selectedRange()
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange))
@@ -243,7 +239,7 @@ class HanjaComposer: CIMComposer {
             let selectedString = client.attributedSubstring(from: selectedRange).string
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: selected string: %@", selectedString)
             client.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
-            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange(controller.client().markedRange()), NSStringFromRange(controller.client().selectedRange()))
+            dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: try marking: %@ / selected: %@", NSStringFromRange(client.markedRange()), NSStringFromRange(client.selectedRange()))
             _bufferedString = selectedString
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: so buffer is: %@", _bufferedString)
             mode = .single

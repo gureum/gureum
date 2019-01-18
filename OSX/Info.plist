@@ -442,9 +442,9 @@
 	<key>InputMethodConnectionName</key>
 	<string>GureumInputMethod_1_Connection</string>
 	<key>InputMethodServerControllerClass</key>
-	<string>CIMInputController</string>
+	<string>GureumInputController</string>
 	<key>InputMethodServerDelegateClass</key>
-	<string>CIMInputController</string>
+	<string>GureumInputController</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>

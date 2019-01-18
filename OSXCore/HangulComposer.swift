@@ -36,7 +36,7 @@ class HangulComposerCombination {
 
  @coclass HGInputContext
  */
-class HangulComposer: NSObject, CIMComposerDelegate {
+class HangulComposer: NSObject, ComposerDelegate {
     func composerSelected(_: Any!) {}
 
     var candidates: [NSAttributedString]? {
@@ -45,7 +45,7 @@ class HangulComposer: NSObject, CIMComposerDelegate {
 
     let inputContext: HGInputContext
     var _commitString: String
-    let configuration = GureumConfiguration.shared
+    let configuration = Configuration.shared
 
     init?(keyboardIdentifier: String) {
         _commitString = String()
@@ -56,13 +56,13 @@ class HangulComposer: NSObject, CIMComposerDelegate {
         self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
         self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
         super.init()
-        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
-        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
-        configuration.addObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule.rawValue, options: NSKeyValueObservingOptions.new, context: nil)
     }
 
     override func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
-        if keyPath == GureumConfigurationName.hangulForceStrictCombinationRule.rawValue {
+        if keyPath == ConfigurationName.hangulForceStrictCombinationRule.rawValue {
             let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? "2"
             setKeyboard(identifier: keyboard)
         } else {
@@ -72,9 +72,9 @@ class HangulComposer: NSObject, CIMComposerDelegate {
     }
 
     deinit {
-        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulAutoReorder.rawValue)
-        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulNonChoseongCombination.rawValue)
-        configuration.removeObserver(self, forKeyPath: GureumConfigurationName.hangulForceStrictCombinationRule.rawValue)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder.rawValue)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination.rawValue)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule.rawValue)
     }
 
     /*!
@@ -94,17 +94,17 @@ class HangulComposer: NSObject, CIMComposerDelegate {
         return _commitString
     }
 
-    // CIMComposerDelegate
+    // ComposerDelegate
 
-    func input(controller _: CIMInputController, inputText string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
+    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if keyCode == kVK_Delete {
-            return inputContext.backspace() ? CIMInputTextProcessResult.processed : CIMInputTextProcessResult.notProcessed
+            return inputContext.backspace() ? .processed : .notProcessed
         }
 
         if keyCode > 50 || keyCode == kVK_Delete || keyCode == kVK_Return || keyCode == kVK_Tab || keyCode == kVK_Space {
             dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode)
-            return CIMInputTextProcessResult.notProcessedAndNeedsCommit
+            return InputResult(processed: false, action: .commit)
         }
 
         var string = string!
@@ -120,19 +120,19 @@ class HangulComposer: NSObject, CIMComposerDelegate {
         if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == kVK_ANSI_Grave, flags.isSubset(of: .capsLock) {
             if !handled {
                 _commitString += recentCommitString + "₩"
-                return CIMInputTextProcessResult.processed
+                return .processed
             } else if recentCommitString.last! == "`" {
                 _commitString += recentCommitString.dropLast() + "₩"
-                return CIMInputTextProcessResult.processed
+                return .processed
             }
         }
 
         _commitString += recentCommitString
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString)
-        return handled ? .processed : .notProcessedAndNeedsCancel
+        return handled ? .processed : InputResult(processed: false, action: .cancel)
     }
 
-    func input(controller _: CIMInputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> CIMInputTextProcessResult {
+    func input(controller _: InputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
         assert(false)
         return .notProcessed
     }

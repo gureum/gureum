@@ -8,6 +8,7 @@
 
 @testable import GureumCore
 import Hangul
+import InputMethodKit
 import XCTest
 
 class GureumTests: XCTestCase {
@@ -55,11 +56,22 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputText(nil, key: -1, modifiers: NSEvent.ModifierFlags.capsLock)
+            app.inputFlags(NSEvent.ModifierFlags.capsLock)
 
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
             app.inputText(" ", key: Int(kVK_Space), modifiers: NSEvent.ModifierFlags.shift)
             XCTAssertEqual("", app.client.string, "buffer: \(app.client.string), app: \(app)")
+        }
+    }
+
+    func testLayoutChangeCommit() {
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue("org.youknowone.inputmethod.Gureum.han2", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("g", key: Int(kVK_ANSI_G), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            app.inputFlags(NSEvent.ModifierFlags.capsLock)
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
         }
     }
 
@@ -426,7 +438,7 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            let composer = app.controller.composer as! GureumComposer
+            let composer = app.controller.receiver.composer as! GureumComposer
             let emoticonComposer = composer.emoticonComposer
             emoticonComposer.delegate = composer.delegate // roman?
             composer.delegate = emoticonComposer

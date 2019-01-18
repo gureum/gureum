@@ -1,5 +1,5 @@
 //
-//  CIMInputController.m
+//  InputController.m
 //  Gureum
 //
 //  Created by youknowone on 11. 8. 31..

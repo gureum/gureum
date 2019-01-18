@@ -12,7 +12,7 @@ import Hangul
 
 let DEBUG_EMOTICON = false
 
-class EmoticonComposer: CIMComposer {
+class EmoticonComposer: DelegatedComposer {
     static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle(for: HGKeyboard.self).path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 
     var _candidates: [NSAttributedString]?
@@ -23,7 +23,7 @@ class EmoticonComposer: CIMComposer {
 
     var _selectedCandidate: NSAttributedString?
 
-    var romanComposer: CIMComposerDelegate {
+    var romanComposer: ComposerDelegate {
         return self.delegate
     }
 
@@ -142,19 +142,19 @@ class EmoticonComposer: CIMComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", _candidates ?? [])
     }
 
-    func update(fromController controller: CIMInputController) {
+    func update(client sender: IMKTextInput) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [update] MSG: function called")
-        let markedRange: NSRange = controller.client().markedRange()
-        let selectedRange: NSRange = controller.client().selectedRange()
+        let markedRange: NSRange = sender.markedRange()
+        let selectedRange: NSRange = sender.selectedRange()
 
         let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.length == NSNotFound
 
         dlog(DEBUG_EMOTICON, "DEBUG 2, [update] MSG: DEBUG POINT 1")
         if isInvalidMarkedRange, selectedRange.length > 0 {
-            let selectedString: String = controller.client().attributedSubstring(from: selectedRange).string
+            let selectedString: String = sender.attributedSubstring(from: selectedRange).string
 
-            controller.client().setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
-            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: marking: %@ / selected: %@", NSStringFromRange(controller.client().markedRange()), NSStringFromRange(controller.client().selectedRange()))
+            sender.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
+            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: marking: %@ / selected: %@", NSStringFromRange(sender.markedRange()), NSStringFromRange(sender.selectedRange()))
 
             _bufferedString = selectedString
             dlog(DEBUG_EMOTICON, "DEBUG 4, [update] MSG: %@", _bufferedString)
@@ -165,9 +165,9 @@ class EmoticonComposer: CIMComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
-    override func input(controller: CIMInputController, inputText string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(text string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
-        var result: CIMInputTextProcessResult = delegate.input(controller: controller, inputText: string, key: keyCode, modifiers: flags, client: sender)
+        var result = delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
 
         switch keyCode {
         // BackSpace
@@ -189,12 +189,12 @@ class EmoticonComposer: CIMComposer {
                 _bufferedString.append(" ")
                 result = .processed
             } else {
-                result = .notProcessedAndNeedsCommit
+                result = InputResult(processed: false, action: .commit)
             }
         // ESC
         case kVK_Escape:
             exitComposer()
-            return .notProcessedAndNeedsCommit
+            return InputResult(processed: false, action: .commit)
         // Enter
         case kVK_Return:
             candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
@@ -211,14 +211,14 @@ class EmoticonComposer: CIMComposer {
 
         dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: %@", string)
 
-        if result == .notProcessedAndNeedsCommit {
+        if result == InputResult(processed: false, action: .commit) {
             cancelComposition()
             return result
         }
         if commitString.isEmpty {
             return result == .processed ? .processed : .notProcessed
         } else {
-            return .notProcessedAndNeedsCommit
+            return InputResult(processed: false, action: .commit)
         }
     }
 }

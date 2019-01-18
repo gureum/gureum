@@ -65,14 +65,14 @@
 		3881867E21EB2D7D004B7FDB /* OSXCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3881867C21EB2D7D004B7FDB /* OSXCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3881868121EB2D7D004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
 		3881868221EB2D7D004B7FDB /* GureumCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3881868821EB2D8D004B7FDB /* CIMApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */; };
-		3881868921EB2D8D004B7FDB /* CIMInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */; };
-		3881868D21EB2D8D004B7FDB /* CIMComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* CIMComposer.swift */; };
-		3881869021EB2D8D004B7FDB /* CIMBaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */; };
+		3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */; };
+		3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* InputReceiver.swift */; };
+		3881868D21EB2D8D004B7FDB /* ComposerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* ComposerDelegate.swift */; };
+		3881869021EB2D8D004B7FDB /* BaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* BaseComposer.swift */; };
 		3881869121EB2DC0004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
-		3881869321EB2DC0004B7FDB /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
-		3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
+		3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
+		3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
 		3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
 		3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
@@ -81,15 +81,15 @@
 		388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
 		388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186A721EB34FA004B7FDB /* TISInputSource.swift */; };
 		388186AA21EB3D61004B7FDB /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
-		388186AB21EB3E72004B7FDB /* GureumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* GureumConfiguration.swift */; };
+		388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
 		388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
-		388186B121EB453E004B7FDB /* CIMInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* CIMInputController.swift */; };
+		388186B121EB453E004B7FDB /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB72CC214A788100E35558 /* InputController.swift */; };
 		388186B521EB4E98004B7FDB /* MockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186B321EB4E4C004B7FDB /* MockApp.swift */; };
 		388186BA21EB72F7004B7FDB /* MockInputClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3881866221EB239E004B7FDB /* MockInputClient.m */; };
 		388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
 		388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
 		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
+		388534FD213A740600885C87 /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
@@ -111,7 +111,7 @@
 		AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
 		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
-		E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */; };
+		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,7 +270,7 @@
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HanjaComposer.swift; path = OSX/HanjaComposer.swift; sourceTree = SOURCE_ROOT; };
+		38162D7B140F64B70077AA2D /* HanjaComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanjaComposer.swift; sourceTree = "<group>"; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38162DF8141263280077AA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38162DFA141263280077AA2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		3881867D21EB2D7D004B7FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		388186A721EB34FA004B7FDB /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
 		388186B321EB4E4C004B7FDB /* MockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApp.swift; sourceTree = "<group>"; };
-		388534FC213A740600885C87 /* IOKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKitUtility.swift; sourceTree = "<group>"; };
+		388534FC213A740600885C87 /* IOKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKit.swift; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -334,18 +334,18 @@
 		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		389289BC217B331B00F94F2C /* CIMComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMComposer.swift; sourceTree = "<group>"; };
+		389289BC217B331B00F94F2C /* ComposerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerDelegate.swift; sourceTree = "<group>"; };
 		38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
-		38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputReceiver.swift; sourceTree = "<group>"; };
+		38AC8D49217C4EDA00E4B332 /* InputReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputReceiver.swift; sourceTree = "<group>"; };
 		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38BFE80318B45419004B2B2E /* GureumObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumObjCTests.m; sourceTree = "<group>"; };
 		38BFE81F18B4F181004B2B2E /* NSPrefPaneBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPrefPaneBundle.h; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
-		38C2AE4C208795E700FE211A /* GureumConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumConfiguration.swift; sourceTree = "<group>"; };
-		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RomanComposer.swift; path = OSX/RomanComposer.swift; sourceTree = SOURCE_ROOT; };
-		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HangulComposer.swift; path = OSX/HangulComposer.swift; sourceTree = SOURCE_ROOT; };
+		38C2AE4C208795E700FE211A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanComposer.swift; sourceTree = "<group>"; };
+		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
 		38EE977519FFD65600AD19B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		38EE97791A00148D00AD19B8 /* TISInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISInputSource.h; sourceTree = "<group>"; };
@@ -374,17 +374,17 @@
 		A34E2024216ADBEC00B12476 /* emoji.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji.txt; sourceTree = "<group>"; };
 		A36A4358216F86780052BE12 /* emoji_ko.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = emoji_ko.txt; sourceTree = "<group>"; };
 		A3BAAE062160C6970076C66D /* GureumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GureumTests.swift; sourceTree = "<group>"; };
-		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmoticonComposer.swift; path = OSX/EmoticonComposer.swift; sourceTree = SOURCE_ROOT; };
+		A3F007652160B09700501606 /* EmoticonComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonComposer.swift; sourceTree = "<group>"; };
 		A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
 		CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
-		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GureumComposer.swift; path = OSX/GureumComposer.swift; sourceTree = SOURCE_ROOT; };
+		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
-		E5BB72CC214A788100E35558 /* CIMInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputController.swift; sourceTree = "<group>"; };
-		E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMApplicationDelegate.swift; sourceTree = "<group>"; };
-		E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMInputControllerGureum.swift; sourceTree = "<group>"; };
-		FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIMBaseComposer.swift; sourceTree = "<group>"; };
+		E5BB72CC214A788100E35558 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumApplicationDelegate.swift; sourceTree = "<group>"; };
+		E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumMenu.swift; sourceTree = "<group>"; };
+		FC158A0A213A847D00E4ABAC /* BaseComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,12 +470,11 @@
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
 				38863C96140E669000A8ED76 /* CIMInputController.m */,
-				E5ED2DE3213030B700BD9B13 /* CIMInputControllerGureum.swift */,
+				E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
-				388534F9213A731E00885C87 /* IOKit */,
 				38098F09215A3DB30001F159 /* Assets.xcassets */,
 			);
 			path = OSX;
@@ -592,33 +591,26 @@
 		3881867B21EB2D7D004B7FDB /* OSXCore */ = {
 			isa = PBXGroup;
 			children = (
-				388186A721EB34FA004B7FDB /* TISInputSource.swift */,
-				E5D234EE2141260E00595FA0 /* CIMApplicationDelegate.swift */,
-				38AC8D49217C4EDA00E4B332 /* CIMInputReceiver.swift */,
-				E5BB72CC214A788100E35558 /* CIMInputController.swift */,
-				389289BC217B331B00F94F2C /* CIMComposer.swift */,
-				FC158A0A213A847D00E4ABAC /* CIMBaseComposer.swift */,
-				381DB19A21678B74005A37B9 /* Debug.swift */,
-				871B807B2153DDFA0013EE69 /* InputMethodServer.swift */,
-				38C2AE4C208795E700FE211A /* GureumConfiguration.swift */,
 				3881867C21EB2D7D004B7FDB /* OSXCore.h */,
 				3881867D21EB2D7D004B7FDB /* Info.plist */,
+				388186A721EB34FA004B7FDB /* TISInputSource.swift */,
+				381DB19A21678B74005A37B9 /* Debug.swift */,
+				E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */,
+				38C2AE4C208795E700FE211A /* Configuration.swift */,
+				38AC8D49217C4EDA00E4B332 /* InputReceiver.swift */,
+				E5BB72CC214A788100E35558 /* InputController.swift */,
+				871B807B2153DDFA0013EE69 /* InputMethodServer.swift */,
+				389289BC217B331B00F94F2C /* ComposerDelegate.swift */,
+				FC158A0A213A847D00E4ABAC /* BaseComposer.swift */,
 				A3F007652160B09700501606 /* EmoticonComposer.swift */,
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
 				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
+				388534FC213A740600885C87 /* IOKit.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
-			sourceTree = "<group>";
-		};
-		388534F9213A731E00885C87 /* IOKit */ = {
-			isa = PBXGroup;
-			children = (
-				388534FC213A740600885C87 /* IOKitUtility.swift */,
-			);
-			name = IOKit;
 			sourceTree = "<group>";
 		};
 		38863C4E140E62D100A8ED76 = {
@@ -887,6 +879,7 @@
 					};
 					3881867921EB2D7D004B7FDB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					38BFE7F918B45419004B2B2E = {
@@ -1228,8 +1221,8 @@
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
 				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
-				E5ED2DE4213030B700BD9B13 /* CIMInputControllerGureum.swift in Sources */,
-				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
+				E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */,
+				388534FD213A740600885C87 /* IOKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,7 +1231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
-				388186AB21EB3E72004B7FDB /* GureumConfiguration.swift in Sources */,
+				388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,18 +1251,18 @@
 			files = (
 				3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */,
 				3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */,
-				3881868D21EB2D8D004B7FDB /* CIMComposer.swift in Sources */,
+				3881868D21EB2D8D004B7FDB /* ComposerDelegate.swift in Sources */,
 				388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */,
-				3881868821EB2D8D004B7FDB /* CIMApplicationDelegate.swift in Sources */,
-				3881869321EB2DC0004B7FDB /* GureumConfiguration.swift in Sources */,
-				3881869021EB2D8D004B7FDB /* CIMBaseComposer.swift in Sources */,
-				388186B121EB453E004B7FDB /* CIMInputController.swift in Sources */,
+				3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */,
+				3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */,
+				3881869021EB2D8D004B7FDB /* BaseComposer.swift in Sources */,
+				388186B121EB453E004B7FDB /* InputController.swift in Sources */,
 				3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */,
 				3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */,
 				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
 				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
-				3881868921EB2D8D004B7FDB /* CIMInputReceiver.swift in Sources */,
-				3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */,
+				3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */,
+				3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */,
 				388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1492,6 +1485,7 @@
 			baseConfigurationReference = A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1517,6 +1511,7 @@
 				PRODUCT_NAME = GureumCore;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1528,6 +1523,7 @@
 			baseConfigurationReference = 561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;

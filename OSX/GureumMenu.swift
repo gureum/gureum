@@ -1,5 +1,5 @@
 //
-//  CIMInputControllerGureum.swift
+//  InputControllerGureum.swift
 //  Gureum
 //
 //  Created by KMLee on 2018. 8. 24..
@@ -10,7 +10,7 @@ import Cocoa
 import Foundation
 import GureumCore
 
-extension CIMInputController {
+extension GureumAppDelegate {
     @IBAction func checkRecentVersion(_: Any) {
         guard let info = UpdateManager.shared.requestRecentVersion() else {
             return

@@ -9,6 +9,7 @@
 import Foundation
 import IOKit
 import IOKit.hid
+import IOKit.hidsystem
 
 class IOKitError: Error {
     init() {}
@@ -50,7 +51,8 @@ public extension io_connect_t {
             return state
         }
         set {
-            _ = id.setModifierLockState(kIOHIDCapsLockState, state: newValue)
+            let kr = id.setModifierLockState(kIOHIDCapsLockState, state: newValue)
+            // NSLog("set capslock state: \(newValue) \(kr == KERN_SUCCESS)")
         }
     }
 }
