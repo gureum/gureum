@@ -119,8 +119,7 @@ public extension InputController { // IMKServerInputHandleEvent
             if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
                 if InputMethodServer.shared.io.testAndClearCapsLockState() {
                     dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
-                    let result = receiver.input(event: .changeLayout(.toggleByCapsLock), client: sender)
-                    return false
+                    _ = receiver.input(event: .changeLayout(.toggleByCapsLock), client: sender)
                 } else {
                     (sender as! IMKTextInput).selectMode(receiver.composer.inputMode)
                 }
@@ -204,13 +203,13 @@ public extension InputController { // IMKCustomCommands
 public extension InputController { // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    override func commitComposition(_ sender: Any!) {
+    @objc override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
         _ = receiver.commitCompositionEvent(sender)
         super.commitComposition(sender)
     }
 
-    override func updateComposition() {
+    @objc override func updateComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-RAW?")
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -updateComposition")
         receiver.updateCompositionEvent()
@@ -218,7 +217,7 @@ public extension InputController { // IMKServerInput
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -updateComposition ended")
     }
 
-    override func cancelComposition() {
+    @objc override func cancelComposition() {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CANCEL-RAW?")
         receiver.cancelCompositionEvent()
         super.cancelComposition()
@@ -226,23 +225,23 @@ public extension InputController { // IMKServerInput
 
     // Getting Input Strings and Candidates
     // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-    override func composedString(_ sender: Any!) -> Any {
+    @objc override func composedString(_ sender: Any!) -> Any {
         return receiver.composedString(sender)
     }
 
-    override func originalString(_ sender: Any!) -> NSAttributedString {
+    @objc override func originalString(_ sender: Any!) -> NSAttributedString {
         return receiver.originalString(sender)
     }
 
-    override func candidates(_ sender: Any!) -> [Any]! {
+    @objc override func candidates(_ sender: Any!) -> [Any]! {
         return receiver.candidates(sender)
     }
 
-    override func candidateSelected(_ candidateString: NSAttributedString!) {
+    @objc override func candidateSelected(_ candidateString: NSAttributedString!) {
         receiver.candidateSelected(candidateString)
     }
 
-    override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
+    @objc override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
         receiver.candidateSelectionChanged(candidateString, controller: self)
     }
 }
@@ -297,7 +296,7 @@ public extension InputController { // IMKServerInput
 
         // Committing a Composition
         // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-        override func commitComposition(_ sender: Any) {
+        @objc override func commitComposition(_ sender: Any) {
             receiver.commitCompositionEvent(sender)
             // COMMIT triggered
         }

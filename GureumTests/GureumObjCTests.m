@@ -16,30 +16,7 @@
 
 @end
 
-
-static NSString *domainName = @"org.youknowone.Gureum";
-static NSDictionary<NSString *, id> *oldConfiguration;
-
 @implementation GureumObjCTests
-
-+ (void)setUp {
-    [super setUp];
-    oldConfiguration = [[NSUserDefaults standardUserDefaults] persistentDomainForName:domainName];
-}
-
-+ (void)tearDown {
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldConfiguration forName:domainName];
-    [super tearDown];
-}
-
-- (void)setUp {
-    [super setUp];
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
 
 - (void)testIPMDServerClientWrapper {
     Class IPMDServerClientWrapper = NSClassFromString(@"IPMDServerClientWrapper");

@@ -159,7 +159,7 @@ public class InputMethodServer {
 
         server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
-        candidates.setSelectionKeysKeylayout(TISInputSource.currentKeyboardLayout())
+        // candidates.setSelectionKeysKeylayout(TISInputSource.currentKeyboardLayout())
 
         io = IOKitty()!
         dlog(DEBUG_INPUT_SERVER, "\t%@", description)

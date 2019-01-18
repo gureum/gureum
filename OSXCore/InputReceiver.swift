@@ -96,13 +96,12 @@ public class InputReceiver: InputTextDelegate {
 
         if handled.action != .none {
             cancelComposition()
-            if handled.action == .commit {
-                commitCompositionEvent(sender)
-                return handled
-            }
         }
 
         let commited = commitCompositionEvent(sender) // 조합 된 문자 반영
+        if handled.action == .commit {
+            return handled
+        }
         let hasComposedString = !_internalComposedString.isEmpty
         let selectionRange = controller.selectionRange()
         hasSelectionRange = selectionRange.location != NSNotFound && selectionRange.length > 0
@@ -130,16 +129,12 @@ public class InputReceiver: InputTextDelegate {
                 cancelComposition()
                 if result.action != .cancel {
                     commitCompositionEvent(sender)
-                    return result
+                    if case let .layout(mode) = result.action, layout != .toggleByCapsLock {
+                        (sender as! IMKTextInput).selectMode(mode)
+                    }
+                } else {
+                    updateComposition() // 조합 중인 문자 반영
                 }
-                updateComposition() // 조합 중인 문자 반영
-            }
-
-            switch result.action {
-            case let .layout(mode) where layout != .toggleByCapsLock:
-                (sender as! IMKTextInput).selectMode(mode)
-            default:
-                break
             }
 
             inputting = false
