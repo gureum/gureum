@@ -8,6 +8,7 @@
 
 @testable import GureumCore
 import Hangul
+import InputMethodKit
 import XCTest
 
 class GureumTests: XCTestCase {

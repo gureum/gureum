@@ -50,7 +50,7 @@ class IOKitty {
     let connect: IOConnect
     let manager: IOHIDManager
     private var defaultCapsLockState: Bool = false
-    private var capsLockPressed: Bool = false
+    var capsLockDate: Date?
 
     init?() {
         guard let _service = try? IOService(name: kIOHIDSystemClass) else {
@@ -62,6 +62,7 @@ class IOKitty {
 
         service = _service
         connect = _connect
+        defaultCapsLockState = connect.capsLockState
 
         manager = IOHIDManager.create()
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
@@ -74,17 +75,29 @@ class IOKitty {
             manager.registerInputValueCallback({
                 inContext, _, _, value in
                 guard let inContext = inContext else {
-                    dlog(DEBUG_IOKIT_EVENT, "IOKit callback inContext is nil")
+                    dlog(true, "IOKit callback inContext is nil - impossible")
                     return
                 }
+
                 let pressed = value.integerValue > 0
                 dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
                 let _self = inContext.assumingMemoryBound(to: IOKitty.self).pointee
                 if pressed {
-                    _self.capsLockPressed = true
+                    _self.capsLockDate = Date()
                     dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+                } else {
+                    var interval = 0.0
+                    if let capsLockDate = _self.capsLockDate {
+                        interval = Date().timeIntervalSince(capsLockDate)
+                    }
+                    if _self.defaultCapsLockState || interval >= 0.5 {
+                        _self.defaultCapsLockState = !_self.defaultCapsLockState
+                    } else {
+                        _self.connect.capsLockState = _self.defaultCapsLockState
+                    }
+                    _self.capsLockDate = nil
                 }
-                _self.connect.capsLockState = _self.defaultCapsLockState
+                // NSEvent.otherEvent(with: .applicationDefined, location: .zero, modifierFlags: .capsLock, timestamp: 0, windowNumber: 0, context: nil, subtype: 0, data1: 0, data2: 0)!
             }, context: _self)
         })
         manager.schedule(runloop: .current, mode: .default)
@@ -102,9 +115,8 @@ class IOKitty {
     }
 
     func testAndClearCapsLockState() -> Bool {
-        let r = capsLockPressed
-        capsLockPressed = false
-        connect.capsLockState = defaultCapsLockState
+        let r = capsLockDate != nil
+        // capsLockDate = nil
         return r
     }
 }

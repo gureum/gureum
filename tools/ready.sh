@@ -14,6 +14,8 @@ if [ ! $CONFIGURATION ]; then
 	CONFIGURATION='Debug'
 fi
 
+echo "Configuration: ${CONFIGURATION}"
+
 xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > $TMPSCRIPT
 . ${TMPSCRIPT} &> /dev/null
 rm ${TMPSCRIPT}

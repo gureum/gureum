@@ -162,8 +162,6 @@ class GureumComposer: DelegatedComposer {
     func filterCommand(key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputEvent? {
         let configuration = Configuration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
-        var need_exchange = false
-        var need_candidtes = false
 //    if (string == nil) {
 //        NSUInteger modifierKey = flags & 0xff;
 //        if (self->lastModifier != 0 && modifierKey == 0) {

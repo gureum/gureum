@@ -11,6 +11,7 @@ import InputMethodKit
 
 let DEBUG_LOGGING = false
 let DEBUG_INPUTCONTROLLER = false
+let DEBUG_SPYING = true
 
 /*!
  @enum
@@ -34,6 +35,7 @@ struct InputResult: Equatable {
 
 enum ChangeLayout {
     case toggle
+    case toggleByCapsLock
     case hangul
     case roman
     case hanja
@@ -46,19 +48,41 @@ enum InputEvent {
 @objc(GureumInputController)
 public class InputController: IMKInputController {
     var receiver: InputReceiver!
+    var lastFlags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)
 
     override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
         super.init(server: server, delegate: delegate, client: inputClient)
         guard let inputClient = inputClient as? (IMKTextInput & IMKUnicodeTextInput) else {
             return nil
         }
-        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(delegate ?? "nil") / CLIENT: \(inputClient) \(inputClient.bundleIdentifier() ?? "nil")")
+        dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(String(describing: delegate)) / CLIENT: \(inputClient) \(inputClient.bundleIdentifier() ?? "nil")")
+        assert(InputMethodServer.shared.server === server)
         receiver = InputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
     }
 
     override init() {
         super.init()
     }
+
+    #if DEBUG
+        public override func responds(to aSelector: Selector) -> Bool {
+            let r = super.responds(to: aSelector)
+            dlog(DEBUG_SPYING, "controller responds to: \(aSelector) \(r)")
+            return r
+        }
+
+        public override func modes(_ sender: Any!) -> [AnyHashable: Any]! {
+            let modes = super.modes(sender)
+            dlog(DEBUG_SPYING, "modes: \(modes)")
+            return modes
+        }
+
+        public override func value(forTag tag: Int, client _: Any!) -> Any! {
+            let v = super.value(forTag: tag, client: client)
+            dlog(DEBUG_SPYING, "value: \(v) for tag: \(tag)")
+            return v
+        }
+    #endif
 }
 
 extension InputController {
@@ -73,33 +97,42 @@ public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
     public override func handle(_ event: NSEvent, client sender: Any) -> Bool {
+        // dlog(DEBUG_INPUTCONTROLLER, "event: \(event)")
         // sender is (IMKInputText & IMKUnicodeInputText & IMTSMSupport)
         let imkCandidtes = InputMethodServer.shared.candidates
         let keys = imkCandidtes.selectionKeys() as! [NSNumber]
-        if imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
+        if event.type == .keyDown, imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
             imkCandidtes.interpretKeyEvents([event])
             return true
         }
-        if event.type == .keyDown {
+        switch event.type {
+        case .keyDown:
             dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client()!.bundleIdentifier())
             let result = receiver.input(text: event.characters, key: Int(event.keyCode), modifiers: event.modifierFlags, client: sender)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
             return result.processed
-        } else if event.type == .flagsChanged {
-            var modifierFlags = event.modifierFlags
-            if InputMethodServer.shared.io.testAndClearCapsLockState() {
-                dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
-                modifierFlags.formUnion(.capsLock)
+        case .flagsChanged:
+            // dlog(DEBUG_INPUTCONTROLLER, @"** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
+            let changed = lastFlags.symmetricDifference(event.modifierFlags)
+            lastFlags = event.modifierFlags
 
-                dlog(DEBUG_IOKIT_EVENT, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)
-                // dlog(DEBUG_INPUTCONTROLLER, @"** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
-                receiver.input(event: .changeLayout(.toggle), client: sender)
-                return false
+            if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
+                if InputMethodServer.shared.io.testAndClearCapsLockState() {
+                    dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
+                    let result = receiver.input(event: .changeLayout(.toggleByCapsLock), client: sender)
+                    return false
+                } else {
+                    (sender as! IMKTextInput).selectMode(receiver.composer.inputMode)
+                }
             }
 
             dlog(DEBUG_LOGGING, "LOGGING::UNHANDLED::%@/%@", event, sender as! NSObject)
             dlog(DEBUG_INPUTCONTROLLER, "** InputController -handleEvent:client: with event: %@ / sender: %@", event, sender as! NSObject)
             return false
+        case .leftMouseDown, .leftMouseUp, .leftMouseDragged, .rightMouseDown, .rightMouseUp, .rightMouseDragged:
+            dlog(false, "mouse event: \(event)")
+        default:
+            dlog(DEBUG_SPYING, "unhandled event: \(event)")
         }
         return false
     }
@@ -131,7 +164,7 @@ public extension InputController { // IMKServerInputHandleEvent
 public extension InputController { // IMKStateSetting
     //! @brief  마우스 이벤트를 잡을 수 있게 한다.
     override func recognizedEvents(_ sender: Any!) -> Int {
-        return receiver.recognizedEvents(sender)
+        return Int(receiver.recognizedEvents(sender).rawValue)
     }
 
     //! @brief 자판 전환을 감지한다.
@@ -139,13 +172,15 @@ public extension InputController { // IMKStateSetting
         receiver.setValue(value, forTag: tag, client: sender, controller: self)
     }
 
-    override func activateServer(_: Any!) {
-        dlog(DEBUG_INPUTCONTROLLER, "server activated")
+    override func activateServer(_ sender: Any!) {
+        dlog(true, "server activated")
+        super.activateServer(sender)
     }
 
     override func deactivateServer(_ sender: Any!) {
-        dlog(DEBUG_INPUTCONTROLLER, "server deactivated")
-        receiver.commitComposition(sender)
+        dlog(true, "server deactivating")
+        receiver.commitCompositionEvent(sender)
+        super.deactivateServer(sender)
     }
 }
 
@@ -172,7 +207,7 @@ public extension InputController { // IMKServerInput
     override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
         _ = receiver.commitCompositionEvent(sender)
-        // [super commitComposition:sender]
+        super.commitComposition(sender)
     }
 
     override func updateComposition() {
@@ -319,7 +354,7 @@ public extension InputController { // IMKServerInput
     public extension MockInputController { // IMKStateSetting
         //! @brief  마우스 이벤트를 잡을 수 있게 한다.
         public override func recognizedEvents(_ sender: Any!) -> Int {
-            return receiver.recognizedEvents(sender)
+            return Int(receiver.recognizedEvents(sender).rawValue)
         }
 
         //! @brief 자판 전환을 감지한다.

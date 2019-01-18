@@ -72,7 +72,7 @@
 		3881869121EB2DC0004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
 		3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
-		3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
+		3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
 		3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
 		3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
@@ -89,7 +89,7 @@
 		388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
 		388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
 		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		388534FD213A740600885C87 /* IOKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKitUtility.swift */; };
+		388534FD213A740600885C87 /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
@@ -326,7 +326,7 @@
 		3881867D21EB2D7D004B7FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		388186A721EB34FA004B7FDB /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
 		388186B321EB4E4C004B7FDB /* MockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApp.swift; sourceTree = "<group>"; };
-		388534FC213A740600885C87 /* IOKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKitUtility.swift; sourceTree = "<group>"; };
+		388534FC213A740600885C87 /* IOKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKit.swift; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -475,7 +475,6 @@
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
 				38475AEB14129BAA0062100D /* Icons */,
 				38162DF7141263280077AA2D /* Supporting Files */,
-				388534F9213A731E00885C87 /* IOKit */,
 				38098F09215A3DB30001F159 /* Assets.xcassets */,
 			);
 			path = OSX;
@@ -608,17 +607,10 @@
 				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
+				388534FC213A740600885C87 /* IOKit.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
-			sourceTree = "<group>";
-		};
-		388534F9213A731E00885C87 /* IOKit */ = {
-			isa = PBXGroup;
-			children = (
-				388534FC213A740600885C87 /* IOKitUtility.swift */,
-			);
-			name = IOKit;
 			sourceTree = "<group>";
 		};
 		38863C4E140E62D100A8ED76 = {
@@ -887,6 +879,7 @@
 					};
 					3881867921EB2D7D004B7FDB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					38BFE7F918B45419004B2B2E = {
@@ -1229,7 +1222,7 @@
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
 				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */,
-				388534FD213A740600885C87 /* IOKitUtility.swift in Sources */,
+				388534FD213A740600885C87 /* IOKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,7 +1262,7 @@
 				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
 				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
 				3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */,
-				3881869721EB2E0F004B7FDB /* IOKitUtility.swift in Sources */,
+				3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */,
 				388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1492,6 +1485,7 @@
 			baseConfigurationReference = A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1517,6 +1511,7 @@
 				PRODUCT_NAME = GureumCore;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1528,6 +1523,7 @@
 			baseConfigurationReference = 561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
