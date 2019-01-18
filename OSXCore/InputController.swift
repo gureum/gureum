@@ -178,7 +178,7 @@ public extension InputController { // IMKStateSetting
 
     override func deactivateServer(_ sender: Any!) {
         dlog(true, "server deactivating")
-        receiver.commitCompositionEvent(sender)
+        self.commitComposition(sender)
         super.deactivateServer(sender)
     }
 }
@@ -206,7 +206,7 @@ public extension InputController { // IMKServerInput
     @objc override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
         _ = receiver.commitCompositionEvent(sender)
-        super.commitComposition(sender)
+        // super.commitComposition(sender)
     }
 
     @objc override func updateComposition() {
