@@ -41,8 +41,9 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
     let notificationCenterDelegate = NotificationCenterDelegate()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        NSUserNotificationCenter.default.delegate = notificationCenterDelegate
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
 
+        NSUserNotificationCenter.default.delegate = notificationCenterDelegate
         let notificationCenter = NSUserNotificationCenter.default
         #if DEBUG
             let notification = NSUserNotification()
