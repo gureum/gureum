@@ -530,4 +530,20 @@ class GureumTests: XCTestCase {
             XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
         }
     }
+
+    func testHanClassic() {
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3Classic.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputText("m", key: Int(kVK_ANSI_M), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputText("f", key: Int(kVK_ANSI_F), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("하", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputText("f", key: Int(kVK_ANSI_F), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ᄒᆞ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputText("s", key: Int(kVK_ANSI_S), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ᄒᆞᆫ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
