@@ -29,7 +29,9 @@ enum ConfigurationName: String {
 }
 
 public class Configuration: UserDefaults {
-    public static let shared = Configuration()
+    public static let sharedSuiteName = "org.youknowone.Gureum"
+    public static var shared = Configuration()
+
     var enableCapslockToToggleInputMode: Bool = true
 
     typealias Shortcut = (UInt, NSEvent.ModifierFlags)
@@ -48,8 +50,9 @@ public class Configuration: UserDefaults {
         return (keyCode, NSEvent.ModifierFlags(rawValue: modifier))
     }
 
-    init() {
-        super.init(suiteName: "org.youknowone.Gureum")!
+    override init?(suiteName: String?) {
+        super.init(suiteName: suiteName)
+
         register(defaults: [
             ConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
@@ -72,6 +75,10 @@ public class Configuration: UserDefaults {
         let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryUrl))!
         let state: Int = (globalPreferences["TISRomanSwitchState"] as? NSNumber)?.intValue ?? 1
         enableCapslockToToggleInputMode = state > 0
+    }
+
+    convenience init() {
+        self.init(suiteName: Configuration.sharedSuiteName)!
     }
 
     func getShortcut(forKey key: String) -> Shortcut? {

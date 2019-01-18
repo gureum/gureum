@@ -12,8 +12,7 @@ import InputMethodKit
 import XCTest
 
 class GureumTests: XCTestCase {
-    static let domainName: String = "org.youknowone.Gureum"
-    static var oldConfiguration: [String: Any]?
+    static let domainName = "org.youknowone.Gureum.test"
     let moderate: VirtualApp = ModerateApp()
     let terminal: VirtualApp! = nil
 //    let terminal: VirtualApp = TerminalApp()
@@ -21,14 +20,11 @@ class GureumTests: XCTestCase {
     var apps: [VirtualApp] = []
 
     override class func setUp() {
+        Configuration.shared = Configuration(suiteName: "org.youknowone.Gureum.test")!
         super.setUp()
-        oldConfiguration = UserDefaults.standard.persistentDomain(forName: domainName)
     }
 
     override class func tearDown() {
-        if let oldConfiguration = self.oldConfiguration {
-            UserDefaults.standard.setPersistentDomain(oldConfiguration, forName: domainName)
-        }
         super.tearDown()
     }
 
@@ -36,7 +32,7 @@ class GureumTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        UserDefaults.standard.removePersistentDomain(forName: GureumTests.domainName)
+        Configuration.shared.removePersistentDomain(forName: GureumTests.domainName)
         apps = [self.moderate]
     }
 
@@ -515,24 +511,23 @@ class GureumTests: XCTestCase {
         }
     }
 
-    func testEscapeOrCntrlAndLeftBracketHan3Gureum() {
+    func testEscapeOrCtrlAndLeftBracketHan3Gureum() {
+        XCTAssertFalse(Configuration.shared.romanModeByEscapeKey)
+        Configuration.shared.romanModeByEscapeKey = true
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: NSEvent.ModifierFlags.control)
-            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
-        }
-    }
+            app.inputText("m", key: Int(kVK_ANSI_M), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-    func testEscapeOrCntrlAndLeftBracketWithShiftHan3Gureum() {
-        for app in apps {
-            let controlAndShift = NSEvent.ModifierFlags.control.union(.shift)
-            app.client.string = ""
-            app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: [.control])
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
 
-            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: controlAndShift)
-            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputText("[", key: Int(kVK_ANSI_LeftBracket), modifiers: [.control, .shift])
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
         }
     }
 }
