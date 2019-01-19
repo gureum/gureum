@@ -748,7 +748,7 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="395" height="230"/>
-                                            <size key="maxSize" width="395" height="10000000"/>
+                                            <size key="maxSize" width="410" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
@@ -758,20 +758,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-34-xZ0">
-                                <rect key="frame" x="20" y="258" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="v2I-Gn-FZX">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="inputClient" destination="Vto-Sd-h3L" id="QiS-ho-4fm"/>
-                        <outlet property="textField" destination="Do9-34-xZ0" id="PV4-ol-FQX"/>
                     </connections>
                 </viewController>
                 <customObject id="qCK-O7-toi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -52,17 +52,19 @@ class TestViewController: NSViewController {
             if !processed, specialFlags.isEmpty {
                 if event.keyCode == kVK_Delete {
                     NSLog("\(self.inputClient.selectedRange())")
+                    let marked = self.inputClient.markedRange()
                     if self.inputClient.hasMarkedText() {
-                        self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
-                    } else {
-                        let marked = self.inputClient.markedRange()
+                        self.inputClient.insertText(event.characters, replacementRange: marked)
+                    } else if marked.location > 0 {
                         let deleted = NSRange(location: marked.location - 1, length: 1)
                         self.inputClient.insertText(event.characters, replacementRange: deleted)
                         let marking = NSRange(location: marked.location - 1, length: 0)
                         self.inputClient.setMarkedText("", selectionRange: marking, replacementRange: deleted)
                     }
-                } else {
+                } else if event.keyCode <= 0x33 {
                     self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+                } else {
+                    return event
                 }
                 return nil
             }
