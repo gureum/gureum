@@ -36,12 +36,37 @@ class TestViewController: NSViewController {
             // print(event)
             assert(self.inputController != nil)
             assert(self.inputClient != nil)
-            let processed = self.inputController.handle(event, client: self.inputClient)
-            let specialFlags = event.modifierFlags.intersection([.command, .control])
-            if event.type == .keyDown, !processed, specialFlags.isEmpty {
-                self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+            guard event.type == .keyDown else {
+                _ = self.inputController.handle(event, client: self.inputClient)
+                return nil
             }
-            return nil
+            if event.keyCode == kVK_Delete, self.inputClient.selectedRange().length > 0 {
+                self.inputClient.insertText(event.characters, replacementRange: self.inputClient.selectedRange())
+                return nil
+            }
+            let processed = self.inputController.handle(event, client: self.inputClient)
+            if processed {
+                return nil
+            }
+            let specialFlags = event.modifierFlags.intersection([.command, .control])
+            if !processed, specialFlags.isEmpty {
+                if event.keyCode == kVK_Delete {
+                    NSLog("\(self.inputClient.selectedRange())")
+                    if self.inputClient.hasMarkedText() {
+                        self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+                    } else {
+                        let marked = self.inputClient.markedRange()
+                        let deleted = NSRange(location: marked.location - 1, length: 1)
+                        self.inputClient.insertText(event.characters, replacementRange: deleted)
+                        let marking = NSRange(location: marked.location - 1, length: 0)
+                        self.inputClient.setMarkedText("", selectionRange: marking, replacementRange: deleted)
+                    }
+                } else {
+                    self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+                }
+                return nil
+            }
+            return event
         })
     }
 }

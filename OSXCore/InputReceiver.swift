@@ -183,7 +183,7 @@ extension InputReceiver { // IMKServerInput
         }
 
         dlog(DEBUG_INPUT_RECEIVER, "** InputController -commitComposition: with sender: %@ / strings: %@", sender as! NSObject, commitString)
-        let range = controller.selectionRange()
+        let range = (sender as! IMKTextInput).markedRange()
         dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString)
         if range.length > 0 {
             controller.client().insertText(commitString, replacementRange: range)

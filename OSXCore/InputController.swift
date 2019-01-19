@@ -178,7 +178,7 @@ public extension InputController { // IMKStateSetting
 
     override func deactivateServer(_ sender: Any!) {
         dlog(true, "server deactivating")
-        receiver.commitCompositionEvent(sender)
+        commitComposition(sender)
         super.deactivateServer(sender)
     }
 }
@@ -206,7 +206,7 @@ public extension InputController { // IMKServerInput
     @objc override func commitComposition(_ sender: Any!) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
         _ = receiver.commitCompositionEvent(sender)
-        super.commitComposition(sender)
+        // super.commitComposition(sender)
     }
 
     @objc override func updateComposition() {
@@ -311,10 +311,6 @@ public extension InputController { // IMKServerInput
             if markedRange.length > 0 || newMarkedRange.length > 0 {
                 let view = receiver.inputClient as! NSTextView
                 view.setMarkedText(composed, selectedRange: newMarkedRange, replacementRange: markedRange)
-                let hasMarked1 = view.hasMarkedText()
-                view.setSelectedRange(newMarkedRange)
-                let hasMarked2 = view.hasMarkedText()
-                assert(hasMarked1 == hasMarked2)
             }
         }
 
