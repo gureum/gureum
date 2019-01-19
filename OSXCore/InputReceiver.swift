@@ -87,20 +87,20 @@ public class InputReceiver: InputTextDelegate {
         dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode, flags.rawValue)
 
         let hadComposedString = !_internalComposedString.isEmpty
-        let handled = input2(text: string, key: keyCode, modifiers: flags, client: sender)
+        let result = input2(text: string, key: keyCode, modifiers: flags, client: sender)
 
         // 합성 후보가 있다면 보여준다
         InputMethodServer.shared.showOrHideCandidates(controller: controller)
 
         inputting = true
 
-        if handled.action != .none {
+        if result.action != .none {
             cancelComposition()
         }
 
         let commited = commitCompositionEvent(sender) // 조합 된 문자 반영
-        if handled.action == .commit {
-            return handled
+        if result.action == .commit {
+            return result
         }
         let hasComposedString = !_internalComposedString.isEmpty
         let selectionRange = controller.selectionRange()
@@ -112,7 +112,7 @@ public class InputReceiver: InputTextDelegate {
         inputting = false
 
         dlog(DEBUG_INPUT_RECEIVER, "*** End of Input handling ***")
-        return handled
+        return result
     }
 
     func input(event: InputEvent, client sender: Any) -> InputResult {
