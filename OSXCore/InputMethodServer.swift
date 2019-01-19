@@ -86,11 +86,7 @@ class IOKitty {
                     _self.capsLockDate = Date()
                     dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
                 } else {
-                    var interval = 0.0
-                    if let capsLockDate = _self.capsLockDate {
-                        interval = Date().timeIntervalSince(capsLockDate)
-                    }
-                    if _self.defaultCapsLockState || interval >= 0.5 {
+                    if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
                         _self.defaultCapsLockState = !_self.defaultCapsLockState
                     } else {
                         _self.connect.capsLockState = _self.defaultCapsLockState
@@ -114,10 +110,12 @@ class IOKitty {
         assert(r == 0)
     }
 
-    func testAndClearCapsLockState() -> Bool {
-        let r = capsLockDate != nil
-        // capsLockDate = nil
-        return r
+    var capsLockTriggered: Bool {
+        guard let capsLockDate = capsLockDate else {
+            return false
+        }
+        let interval = Date().timeIntervalSince(capsLockDate)
+        return interval < 0.5
     }
 }
 

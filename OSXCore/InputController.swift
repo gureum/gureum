@@ -117,7 +117,7 @@ public extension InputController { // IMKServerInputHandleEvent
             lastFlags = event.modifierFlags
 
             if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
-                if InputMethodServer.shared.io.testAndClearCapsLockState() {
+                if InputMethodServer.shared.io.capsLockTriggered {
                     dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
                     _ = receiver.input(event: .changeLayout(.toggleByCapsLock), client: sender)
                 } else {
