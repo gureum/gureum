@@ -40,33 +40,42 @@ class TestViewController: NSViewController {
                 _ = self.inputController.handle(event, client: self.inputClient)
                 return nil
             }
-            if event.keyCode == kVK_Delete, self.inputClient.selectedRange().length > 0 {
-                self.inputClient.insertText(event.characters, replacementRange: self.inputClient.selectedRange())
+            let selected = self.inputClient.selectedRange()
+            let marked = self.inputClient.markedRange()
+            if event.keyCode == kVK_Delete, (selected.length > 0 && selected != marked) {
+                self.inputController.cancelComposition()
+                self.inputClient.insertText("", replacementRange: selected)
+                self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
                 return nil
             }
             let processed = self.inputController.handle(event, client: self.inputClient)
             if processed {
+                // self.inputController.updateComposition()
                 return nil
             }
             let specialFlags = event.modifierFlags.intersection([.command, .control])
-            if !processed, specialFlags.isEmpty {
-                if event.keyCode == kVK_Delete {
-                    NSLog("\(self.inputClient.selectedRange())")
-                    if self.inputClient.hasMarkedText() {
-                        self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
-                    } else {
-                        let marked = self.inputClient.markedRange()
-                        let deleted = NSRange(location: marked.location - 1, length: 1)
-                        self.inputClient.insertText(event.characters, replacementRange: deleted)
-                        let marking = NSRange(location: marked.location - 1, length: 0)
-                        self.inputClient.setMarkedText("", selectionRange: marking, replacementRange: deleted)
-                    }
-                } else {
-                    self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
-                }
-                return nil
+            if !specialFlags.isEmpty {
+                return event
             }
-            return event
+            self.inputController.cancelComposition()
+            self.inputController.commitComposition(self.inputClient)
+            if event.keyCode == kVK_Delete {
+                NSLog("\(self.inputClient.selectedRange())")
+                // let marked = self.inputClient.markedRange()
+                if self.inputClient.hasMarkedText() {
+                    self.inputClient.insertText("", replacementRange: marked)
+                } else if selected.location > 0 {
+                    let deleted = NSRange(location: selected.location - 1, length: 1)
+                    self.inputClient.insertText("", replacementRange: deleted)
+                    let marking = NSRange(location: deleted.location, length: 0)
+                    self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: marking)
+                }
+            } else if event.keyCode <= 0x33 {
+                self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
+            } else {
+                return event
+            }
+            return nil
         })
     }
 }

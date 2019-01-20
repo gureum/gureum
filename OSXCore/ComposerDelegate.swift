@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import InputMethodKit
 
 /*!
  @protocol
@@ -25,7 +26,7 @@ protocol InputTextDelegate {
      @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
      @see    IMKServerInput
      */
-    func input(text: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: Any) -> InputResult
+    func input(text: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: IMKTextInput & IMKUnicodeTextInput) -> InputResult
 }
 
 /*!
@@ -112,7 +113,7 @@ class DelegatedComposer: ComposerDelegate {
         return delegate.candidateSelectionChanged(candidateString)
     }
 
-    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         return delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
     }
 }

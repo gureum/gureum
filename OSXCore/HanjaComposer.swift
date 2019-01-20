@@ -107,11 +107,11 @@ class HanjaComposer: DelegatedComposer {
 //        }
     }
 
-    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         switch keyCode {
         // Arrow
         case kVK_DownArrow, kVK_UpArrow:
-            return .notProcessed
+            return InputResult(processed: false, action: .candidatesEvent(keyCode))
         default:
             break
         }

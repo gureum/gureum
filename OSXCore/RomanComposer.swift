@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import InputMethodKit
 
 class QwertyComposer: DelegatedComposer {
     var _commitString: String?
@@ -44,7 +45,7 @@ class QwertyComposer: DelegatedComposer {
         return nil
     }
 
-    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -122,7 +123,7 @@ class RomanDataComposer: DelegatedComposer {
         return nil
     }
 
-    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
+    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed

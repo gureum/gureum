@@ -26,7 +26,7 @@ public class InputReceiver: InputTextDelegate {
 
     // MARK: - IMKServerInputTextData
 
-    func input2(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+    func input2(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // 옵션 키 변환 처리
         var string = string
         if flags.contains(.option) {
@@ -75,7 +75,7 @@ public class InputReceiver: InputTextDelegate {
     }
 
     // IMKServerInput 프로토콜에 대한 공용 핸들러
-    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // 입력기용 특수 커맨드 처리
         if let command = composer.filterCommand(key: keyCode, modifiers: flags, client: sender) {
             let result = input(event: command, client: sender)
@@ -87,20 +87,20 @@ public class InputReceiver: InputTextDelegate {
         dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode, flags.rawValue)
 
         let hadComposedString = !_internalComposedString.isEmpty
-        let handled = input2(text: string, key: keyCode, modifiers: flags, client: sender)
+        let result = input2(text: string, key: keyCode, modifiers: flags, client: sender)
 
         // 합성 후보가 있다면 보여준다
         InputMethodServer.shared.showOrHideCandidates(controller: controller)
 
         inputting = true
 
-        if handled.action != .none {
+        if result.action != .none {
             cancelComposition()
         }
 
         let commited = commitCompositionEvent(sender) // 조합 된 문자 반영
-        if handled.action == .commit {
-            return handled
+        if result.action == .commit {
+            return result
         }
         let hasComposedString = !_internalComposedString.isEmpty
         let selectionRange = controller.selectionRange()
@@ -112,10 +112,10 @@ public class InputReceiver: InputTextDelegate {
         inputting = false
 
         dlog(DEBUG_INPUT_RECEIVER, "*** End of Input handling ***")
-        return handled
+        return result
     }
 
-    func input(event: InputEvent, client sender: Any) -> InputResult {
+    func input(event: InputEvent, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         switch event {
         case let .changeLayout(layout):
             let innerLayout = layout == .toggleByCapsLock ? .toggle : layout
@@ -148,7 +148,7 @@ public class InputReceiver: InputTextDelegate {
 extension InputReceiver { // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    func commitComposition(_ sender: Any) {
+    func commitComposition(_ sender: IMKTextInput & IMKUnicodeTextInput) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-INTERNAL")
         commitCompositionEvent(sender)
     }
@@ -165,7 +165,7 @@ extension InputReceiver { // IMKServerInput
 
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
-    func commitCompositionEvent(_ sender: Any!) -> Bool {
+    func commitCompositionEvent(_ sender: IMKTextInput & IMKUnicodeTextInput) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
         if !inputting {
             // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.
@@ -188,7 +188,7 @@ extension InputReceiver { // IMKServerInput
         if range.length > 0 {
             controller.client().insertText(commitString, replacementRange: range)
         } else {
-            controller.client().insertText(commitString, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
+            controller.client().insertText(commitString, replacementRange: sender.selectedRange())
         }
 
         InputMethodServer.shared.showOrHideCandidates(controller: controller)
@@ -212,21 +212,21 @@ extension InputReceiver { // IMKServerInput
 
     // Getting Input Strings and Candidates
     // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-    func composedString(_: Any) -> Any {
+    func composedString(_: IMKTextInput & IMKUnicodeTextInput) -> String {
         let string = _internalComposedString
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::COMPOSEDSTRING::(%@)", string)
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -composedString: with return: '%@'", string)
         return string
     }
 
-    func originalString(_: Any!) -> NSAttributedString {
+    func originalString(_: IMKTextInput & IMKUnicodeTextInput) -> NSAttributedString {
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -originalString:")
         let s = NSAttributedString(string: composer.originalString)
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::ORIGINALSTRING::%@", s.string)
         return s
     }
 
-    func candidates(_: Any!) -> [Any]! {
+    func candidates(_: IMKTextInput & IMKUnicodeTextInput) -> [Any]! {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATES")
         return composer.candidates
     }
@@ -239,7 +239,7 @@ extension InputReceiver { // IMKServerInput
         inputting = false
     }
 
-    func candidateSelectionChanged(_ candidateString: NSAttributedString, controller _: InputController) {
+    func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::CANDIDATESELECTIONCHANGED::%@", candidateString)
         composer.candidateSelectionChanged(candidateString)
         updateComposition()
@@ -248,20 +248,18 @@ extension InputReceiver { // IMKServerInput
 
 extension InputReceiver { // IMKStateSetting
     //! @brief  마우스 이벤트를 잡을 수 있게 한다.
-    func recognizedEvents(_: Any!) -> NSEvent.EventTypeMask {
+    func recognizedEvents(_: IMKTextInput & IMKUnicodeTextInput) -> NSEvent.EventTypeMask {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::RECOGNIZEDEVENTS")
         // NSFlagsChangeMask는 -handleEvent: 에서만 동작
         return NSEvent.EventTypeMask(arrayLiteral: .keyDown, .flagsChanged, .leftMouseUp, .rightMouseUp, .leftMouseDown, .rightMouseDown, .leftMouseDragged, .rightMouseDragged, .appKitDefined, .applicationDefined, .systemDefined)
     }
 
     //! @brief 자판 전환을 감지한다.
-    func setValue(_ value: Any, forTag tag: Int, client sender: Any, controller: InputController) {
+    func setValue(_ value: Any, forTag tag: Int, client sender: IMKTextInput & IMKUnicodeTextInput) {
         InputMethodServer.shared.io.capsLockDate = nil
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CHANGE-%lu-%@", tag, value as? String ?? "(nonstring)")
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value as? String ?? "(nonstring)", tag, String(describing: controller.client as AnyObject))
-        if let sender = sender as? IMKTextInput {
-            sender.overrideKeyboard(withKeyboardNamed: "com.apple.keylayout.US")
-        }
+        sender.overrideKeyboard(withKeyboardNamed: "com.apple.keylayout.US")
         switch tag {
         case kTextServiceInputModePropertyTag:
             guard let value = value as? String else {
