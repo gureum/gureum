@@ -111,7 +111,7 @@ class HanjaComposer: DelegatedComposer {
         switch keyCode {
         // Arrow
         case kVK_DownArrow, kVK_UpArrow:
-            return .notProcessed
+            return InputResult(processed: false, action: .candidatesEvent(keyCode))
         default:
             break
         }

@@ -14,10 +14,11 @@ import XCTest
 class GureumTests: XCTestCase {
     static let domainName = "org.youknowone.Gureum.test"
     let moderate: VirtualApp = ModerateApp()
+    // let xcode: VirtualApp = XcodeApp()
     let terminal: VirtualApp! = nil
 //    let terminal: VirtualApp = TerminalApp()
 //    let greedy: VirtualApp = GreedyApp()
-    var apps: [VirtualApp] = []
+    lazy var apps: [VirtualApp] = [moderate]
 
     override class func setUp() {
         Configuration.shared = Configuration(suiteName: "org.youknowone.Gureum.test")!
@@ -33,7 +34,6 @@ class GureumTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         Configuration.shared.removePersistentDomain(forName: GureumTests.domainName)
-        apps = [self.moderate]
     }
 
     override func tearDown() {
@@ -544,6 +544,19 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("ᄒᆞ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             app.inputText("s", key: Int(kVK_ANSI_S), modifiers: .init(rawValue: 0))
             XCTAssertEqual("ᄒᆞᆫ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
+    func testHanDelete() {
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("d", key: Int(kVK_ANSI_D), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㅇ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputText("", key: Int(kVK_Delete), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
         }
     }
 }
