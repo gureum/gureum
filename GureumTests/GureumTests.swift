@@ -561,4 +561,18 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
         }
     }
+
+    func testSelection() {
+        for app in apps {
+            app.client.string = "한"
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputText("d", key: Int(kVK_ANSI_D), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㅇ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.client.setSelectedRange(NSRange(location: 0, length: 0))
+            app.inputText("r", key: Int(kVK_ANSI_R), modifiers: .init(rawValue: 0))
+            XCTAssertEqual("ㄱ한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
 }
