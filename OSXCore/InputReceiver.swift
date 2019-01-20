@@ -76,6 +76,17 @@ public class InputReceiver: InputTextDelegate {
 
     // IMKServerInput 프로토콜에 대한 공용 핸들러
     func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+        var selected = sender.selectedRange()
+        var marked = sender.markedRange()
+        if selected.location != marked.location {
+//            dlog(DEBUG_LOGGING, "MISMATCHING: \(selected) \(marked)")
+//            cancelComposition()
+//            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
+//
+//            // commitComposition(sender)
+//            marked = selected
+        }
+
         // 입력기용 특수 커맨드 처리
         if let command = composer.filterCommand(key: keyCode, modifiers: flags, client: sender) {
             let result = input(event: command, client: sender)
