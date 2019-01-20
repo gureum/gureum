@@ -166,6 +166,10 @@ extension InputReceiver { // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     func commitCompositionEvent(_ sender: Any!) -> Bool {
+        guard let sender = sender as? IMKTextInput else {
+            assert(false)
+            return false
+        }
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
         if !inputting {
             // 입력기 외부에서 들어오는 커밋 요청에 대해서는 편집 중인 글자도 커밋한다.

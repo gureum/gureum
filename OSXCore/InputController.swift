@@ -23,6 +23,7 @@ public enum InputAction: Equatable {
     case commit
     case cancel
     case layout(String)
+    case candidatesEvent(Int) // keyCode
 }
 
 struct InputResult: Equatable {
@@ -49,6 +50,7 @@ enum InputEvent {
 public class InputController: IMKInputController {
     var receiver: InputReceiver!
     var lastFlags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)
+    var updating = false
 
     override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
         super.init(server: server, delegate: delegate, client: inputClient)
@@ -129,7 +131,7 @@ public extension InputController { // IMKServerInputHandleEvent
             dlog(DEBUG_INPUTCONTROLLER, "** InputController -handleEvent:client: with event: %@ / sender: %@", event, sender as! NSObject)
             return false
         case .leftMouseDown, .leftMouseUp, .leftMouseDragged, .rightMouseDown, .rightMouseUp, .rightMouseDragged:
-            dlog(false, "mouse event: \(event)")
+            commitComposition(sender)
         default:
             dlog(DEBUG_SPYING, "unhandled event: \(event)")
         }
@@ -189,7 +191,7 @@ public extension InputController { // IMKMouseHandling
      */
     override func mouseDown(onCharacterIndex _: Int, coordinate _: NSPoint, withModifier _: Int, continueTracking _: UnsafeMutablePointer<ObjCBool>!, client sender: Any) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN")
-        _ = receiver.commitCompositionEvent(sender)
+        commitComposition(sender)
         return false
     }
 }
