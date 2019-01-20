@@ -71,7 +71,7 @@ public class InputController: IMKInputController {
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
         #else
             guard let sender = sender as? (IMKTextInput & IMKUnicodeTextInput) else {
-                return self.client()!
+                return self.client() as! (IMKTextInput & IMKUnicodeTextInput)
             }
             return sender
         #endif
