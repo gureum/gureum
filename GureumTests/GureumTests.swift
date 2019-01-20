@@ -320,6 +320,8 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.inputText("g", key: Int(kVK_ANSI_G), modifiers: NSEvent.ModifierFlags(rawValue: 0))
+            XCTAssertEqual("한그", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("그", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.inputText("w", key: Int(kVK_ANSI_W), modifiers: NSEvent.ModifierFlags(rawValue: 0))
             XCTAssertEqual("한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")

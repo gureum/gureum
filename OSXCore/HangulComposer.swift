@@ -120,7 +120,7 @@ class HangulComposer: NSObject, ComposerDelegate {
 
     // ComposerDelegate
 
-    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputResult {
+    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if keyCode == kVK_Delete {
             return inputContext.backspace() ? .processed : .notProcessed

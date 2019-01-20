@@ -165,7 +165,7 @@ class EmoticonComposer: DelegatedComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
-    override func input(text string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> InputResult {
+    override func input(text string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
         var result = delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
 
