@@ -73,6 +73,7 @@ class GureumComposer: DelegatedComposer {
     let emoticonComposer: EmoticonComposer = EmoticonComposer()
     let romanComposersByIdentifier: [String: DelegatedComposer]
 
+    var _inputMode: String = ""
     var _commitStrings: [String] = []
     override var commitString: String {
         return _commitStrings.joined() + delegate.commitString
@@ -102,9 +103,16 @@ class GureumComposer: DelegatedComposer {
         delegate = qwertyComposer
     }
 
-    override var inputMode: String {
+    override func clear() {
+        hangulComposer.clear()
+        romanComposer.clear()
+        hanjaComposer.clear()
+        emoticonComposer.clear()
+    }
+
+    var inputMode: String {
         get {
-            return super.inputMode
+            return _inputMode
         }
         set {
             guard self.inputMode != newValue else {
@@ -128,7 +136,7 @@ class GureumComposer: DelegatedComposer {
                 hangulComposer.setKeyboard(identifier: keyboardIdentifier)
                 Configuration.shared.lastHangulInputMode = newValue
             }
-            super.inputMode = newValue
+            _inputMode = newValue
         }
     }
 
@@ -160,7 +168,7 @@ class GureumComposer: DelegatedComposer {
                 let isComposing = hangulComposer.composedString.count > 0
                 hanjaComposer.mode = isComposing ? .single : .continuous
                 delegate = hanjaComposer
-                delegate.composerSelected(self)
+                delegate.composerSelected()
                 hanjaComposer.update(client: sender as! IMKTextInput)
             } else if (delegate as? DelegatedComposer) === romanComposer {
                 emoticonComposer.delegate = delegate

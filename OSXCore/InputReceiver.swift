@@ -78,13 +78,19 @@ public class InputReceiver: InputTextDelegate {
     func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         var selected = sender.selectedRange()
         var marked = sender.markedRange()
-        if selected.location != marked.location {
-//            dlog(DEBUG_LOGGING, "MISMATCHING: \(selected) \(marked)")
-//            cancelComposition()
-//            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
-//
-//            // commitComposition(sender)
-//            marked = selected
+
+        dlog(DEBUG_INPUT_RECEIVER, "MISMATCHING?: \(selected) \(marked)")
+        // 보통: selected.location = marked.location
+        // FF 주소창: selected.location = marked.location + marked.length
+        // 터미널: selected.location = marked.location + 2
+        if marked.location != NSNotFound, selected.location != marked.location, selected.location + selected.length != marked.location + marked.length, selected.location != marked.location + marked.length + 1 {
+            dlog(DEBUG_LOGGING, "MISMATCHING: \(selected) \(marked)")
+            cancelComposition()
+            composer.clear()
+            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
+            // dlog(true, "new marked text by 88: \(sender.selectedRange()) \(sender.markedRange())")
+            // commitComposition(sender)
+            marked = selected
         }
 
         // 입력기용 특수 커맨드 처리
@@ -194,13 +200,9 @@ extension InputReceiver { // IMKServerInput
         }
 
         dlog(DEBUG_INPUT_RECEIVER, "** InputController -commitComposition: with sender: %@ / strings: %@", sender as! NSObject, commitString)
-        let range = (sender as! IMKTextInput).markedRange()
-        dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString)
-        if range.length > 0 {
-            controller.client().insertText(commitString, replacementRange: range)
-        } else {
-            controller.client().insertText(commitString, replacementRange: sender.selectedRange())
-        }
+        let selected = sender.selectedRange()
+        dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", selected.location, selected.length, commitString)
+        controller.client().insertText(commitString, replacementRange: selected)
 
         InputMethodServer.shared.showOrHideCandidates(controller: controller)
 

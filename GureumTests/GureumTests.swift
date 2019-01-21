@@ -194,6 +194,7 @@ class GureumTests: XCTestCase {
             app.client.setSelectedRange(NSMakeRange(0, 3))
             XCTAssertEqual("물 수", app.client.selectedString(), "")
             app.inputText("\n", key: Int(kVK_Return), modifiers: NSEvent.ModifierFlags.option)
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
             XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")

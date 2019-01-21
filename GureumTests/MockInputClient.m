@@ -32,11 +32,11 @@
 
 - (void)setMarkedText:(id)string selectionRange:(NSRange)selectionRange replacementRange:(NSRange)replacementRange {
     NSRange selected = NSMakeRange(replacementRange.location + selectionRange.location, selectionRange.length);
-    [self setSelectedRange:selected];
     [self setMarkedText:string selectedRange:selected replacementRange:replacementRange];
-    
-//    NSRange s = self.selectedRange;
-//    NSRange m = self.markedRange;
+    [self setSelectedRange:selected];
+
+    NSRange s = self.selectedRange;
+    NSRange m = self.markedRange;
 //    NSAssert(selected.location == s.location && selected.length == s.length, @"");
 //    NSAssert(selected.location == m.location && selected.length == m.length, @"");
 }
