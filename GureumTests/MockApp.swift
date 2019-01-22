@@ -18,16 +18,28 @@ class VirtualApp: NSObject {
         super.init()
     }
 
+    @discardableResult
     func inputFlags(_ flags: NSEvent.ModifierFlags) -> Bool {
         let processed = controller.inputFlags(Int(flags.rawValue), client: client)
         controller.updateComposition()
         return processed
     }
 
-    func inputText(_ string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags) -> Bool {
+    @discardableResult
+    func inputText(_ string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
         let processed = controller.inputText(string, key: keyCode, modifiers: Int(flags.rawValue), client: client)
         controller.updateComposition()
         return processed
+    }
+
+    @discardableResult
+    func inputKey(_ keyCode: Int, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
+        assert(keyCode <= 0x33) // use inputText:key:modifiers:
+        var string = KeyMapLower[keyCode]
+        if !flags.intersection([.shift]).isEmpty {
+            string = KeyMapUpper[keyCode]
+        }
+        return inputText(string, key: keyCode, modifiers: flags)
     }
 }
 
