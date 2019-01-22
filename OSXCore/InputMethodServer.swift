@@ -53,16 +53,16 @@ class IOKitty {
     var capsLockDate: Date?
 
     init?() {
-        guard let _service = try? IOService(name: kIOHIDSystemClass) else {
+        guard let _service = IOService(name: kIOHIDSystemClass) else {
             return nil
         }
-        guard let _connect = _service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
-            return nil
-        }
-
         service = _service
+        guard let _connect = try? service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
+            return nil
+        }
         connect = _connect
-        defaultCapsLockState = connect.capsLockState
+
+        defaultCapsLockState = (try? connect.getModifierLock(selector: .capsLock)) ?? false
 
         manager = IOHIDManager.create()
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
@@ -87,9 +87,11 @@ class IOKitty {
                     dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
                 } else {
                     if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
+                        // long pressed
                         _self.defaultCapsLockState = !_self.defaultCapsLockState
                     } else {
-                        _self.connect.capsLockState = _self.defaultCapsLockState
+                        // short pressed
+                        try? _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
                     }
                     _self.capsLockDate = nil
                 }
