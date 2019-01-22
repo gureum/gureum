@@ -61,7 +61,14 @@ func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
  @coclass HGInputContext
  */
 class HangulComposer: NSObject, ComposerDelegate {
-    func composerSelected(_: Any!) {}
+    func clear() {
+        inputContext.reset()
+        _commitString = ""
+    }
+
+    func composerSelected() {
+        clear()
+    }
 
     var candidates: [NSAttributedString]? {
         return nil

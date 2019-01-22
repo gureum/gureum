@@ -71,7 +71,7 @@ public class InputController: IMKInputController {
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
         #else
             guard let sender = sender as? (IMKTextInput & IMKUnicodeTextInput) else {
-                return self.client() as! (IMKTextInput & IMKUnicodeTextInput)
+                return client() as! (IMKTextInput & IMKUnicodeTextInput)
             }
             return sender
         #endif
@@ -326,12 +326,11 @@ public extension InputController { // IMKServerInput
 
         public override func updateComposition() {
             receiver.updateCompositionEvent()
-
             let client = receiver.inputClient
-            let composed = composedString(client) as! String
-            let markedRange = client.markedRange()
-            let view = receiver.inputClient as! NSTextView
-            view.setMarkedText(composed, selectedRange: NSRange(location: 0, length: composed.count), replacementRange: markedRange)
+            // 아래에서 NSRange를 만들므로 NSString
+            let composed = composedString(client) as! NSString
+            let markedRange = client.selectedRange() // marked가 selected로 보정된다
+            client.setMarkedText(composed, selectionRange: NSRange(location: 0, length: composed.length), replacementRange: markedRange)
         }
 
         public override func cancelComposition() {
@@ -355,7 +354,7 @@ public extension InputController { // IMKServerInput
             return receiver.originalString(client)
         }
 
-        public override func candidates(_ sender: Any) -> [Any]! {
+        public override func candidates(_ sender: Any) -> [Any]? {
             let client = asClient(sender)
             return receiver.candidates(client)
         }

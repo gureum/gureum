@@ -78,7 +78,7 @@ class HanjaComposer: DelegatedComposer {
         _composedString = ""
     }
 
-    override func composerSelected(_: Any?) {
+    override func composerSelected() {
         _bufferedString = ""
         _commitString = ""
         _lastString = ""
