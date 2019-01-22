@@ -3,6 +3,7 @@ sudo: false
 xcode_workspace: Gureum.xcworkspace
 osx_image: xcode9.4
 install:
+  - gem install cocoapods --pre
   - pod install --repo-update
 matrix:
   include:
