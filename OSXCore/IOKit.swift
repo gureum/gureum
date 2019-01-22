@@ -11,92 +11,120 @@ import IOKit
 import IOKit.hid
 import IOKit.hidsystem
 
-class IOKitError: Error {
-    init() {}
+enum IOError: Error {
+    case kernel(kern_return_t)
 }
 
-public extension io_connect_t {
-    func close() -> IOReturn {
-        return IOServiceClose(self)
+public class IOConnect {
+    let rawValue: io_connect_t
+
+    init(rawValue: io_connect_t) {
+        self.rawValue = rawValue
     }
 
-    func getModifierLockState(_ selector: Int) -> (kern_return_t, Bool) {
+    deinit {
+        try? close()
+        IOObjectRelease(rawValue)
+    }
+
+    public struct IOConnectSelector {
+        let rawValue: Int32
+
+        static let capsLock = IOConnectSelector(rawValue: Int32(kIOHIDCapsLockState))
+        static let numLock = IOConnectSelector(rawValue: Int32(kIOHIDNumLockState))
+        static let activityUserIdle = IOConnectSelector(rawValue: Int32(kIOHIDActivityUserIdle))
+        static let activityDisplayOn = IOConnectSelector(rawValue: Int32(kIOHIDActivityDisplayOn))
+    }
+
+    public func close() throws {
+        let kr = IOServiceClose(rawValue)
+        guard kr == KERN_SUCCESS else {
+            throw IOError.kernel(kr)
+        }
+    }
+
+    public func getState(selector: IOConnectSelector) throws -> UInt32 {
+        var state: UInt32 = 0
+        let kr = IOHIDGetStateForSelector(rawValue, selector.rawValue, &state)
+        if kr != KERN_SUCCESS {
+            throw IOError.kernel(kr)
+        }
+        return state
+    }
+
+    public func setState(selector: IOConnectSelector, state: UInt32) throws {
+        let kr = IOHIDSetStateForSelector(rawValue, selector.rawValue, state)
+        if kr != KERN_SUCCESS {
+            throw IOError.kernel(kr)
+        }
+    }
+
+    public func getModifierLock(selector: IOConnectSelector) throws -> Bool {
         var state: Bool = false
-        let kr = IOHIDGetModifierLockState(self, Int32(selector), &state)
-        return (kr, state)
-    }
-
-    func setModifierLockState(_ selector: Int, state: Bool) -> kern_return_t {
-        return IOHIDSetModifierLockState(self, Int32(selector), state)
-    }
-}
-
-@objcMembers class IOConnect: NSObject {
-    let id: io_connect_t
-
-    init(id: io_connect_t) {
-        self.id = id
-    }
-
-    deinit {
-        _ = self.id.close()
-    }
-
-    var capsLockState: Bool {
-        get {
-            let (kr, state) = id.getModifierLockState(kIOHIDCapsLockState)
-            guard kr == KERN_SUCCESS else {
-                return false
-            }
-            return state
+        let kr = IOHIDGetModifierLockState(rawValue, selector.rawValue, &state)
+        if kr != KERN_SUCCESS {
+            throw IOError.kernel(kr)
         }
-        set {
-            let kr = id.setModifierLockState(kIOHIDCapsLockState, state: newValue)
-            // NSLog("set capslock state: \(newValue) \(kr == KERN_SUCCESS)")
+        return state
+    }
+
+    public func setModifierLock(selector: IOConnectSelector, state: Bool) throws {
+        let kr = IOHIDSetModifierLockState(rawValue, selector.rawValue, state)
+        if kr != KERN_SUCCESS {
+            throw IOError.kernel(kr)
         }
     }
 }
 
-@objcMembers class IOService: NSObject {
-    let id: io_service_t
+class IOService {
+    let rawValue: io_service_t
 
-    init(id: io_service_t) {
-        self.id = id
-    }
-
-    convenience init(port: mach_port_t, matching: NSDictionary?) throws {
-        let id = IOServiceGetMatchingService(port, matching)
-        if id == 0 {
-            throw IOKitError()
-        }
-        self.init(id: id)
-    }
-
-    convenience init(name: String) throws {
-        let matching = IOServiceMatching(name)
-        try! self.init(port: kIOMasterPortDefault, matching: matching)
-    }
-
-    deinit {
-        IOObjectRelease(self.id)
-    }
-
-    func open(owningTask: mach_port_t, type: Int) -> IOConnect? {
-        var connectId: io_connect_t = 0
-        let r = IOServiceOpen(id, owningTask, UInt32(type), &connectId)
-        guard r == KERN_SUCCESS else {
+    init?(port: mach_port_t, matching: NSDictionary?) {
+        rawValue = IOServiceGetMatchingService(port, matching)
+        guard rawValue != 0 else {
             return nil
         }
-        return IOConnect(id: connectId)
     }
+
+    convenience init?(name: String) {
+        self.init(port: kIOMasterPortDefault, matching: IOService.matching(name: name))
+    }
+
+    deinit {
+        IOObjectRelease(rawValue)
+    }
+
+    static func matching(name: String) -> NSDictionary? {
+        return IOServiceMatching(name)
+    }
+
+    func open(owningTask: mach_port_t, type: Int) throws -> IOConnect {
+        var connect: io_connect_t = 0
+        let kr = IOServiceOpen(rawValue, owningTask, UInt32(type), &connect)
+        guard kr == KERN_SUCCESS else {
+            throw IOError.kernel(kr)
+        }
+        return IOConnect(rawValue: connect)
+    }
+}
+
+public extension IOHIDValueScaleType {
+    public static let Calibrated = kIOHIDValueScaleTypeCalibrated
+    public static let Physical = kIOHIDValueScaleTypePhysical
+    public static let Exponent = kIOHIDValueScaleTypeExponent
 }
 
 public extension IOHIDValue {
+    public typealias ScaleType = IOHIDValueScaleType
     public typealias Callback = IOHIDValueCallback
     public typealias MultipleCallback = IOHIDValueMultipleCallback
 
     var element: IOHIDElement {
         return IOHIDValueGetElement(self)
+    }
+
+    var timestamp: UInt64 {
+        return IOHIDValueGetTimeStamp(self)
     }
 
     var length: CFIndex {
@@ -105,6 +133,10 @@ public extension IOHIDValue {
 
     var integerValue: CFIndex {
         return IOHIDValueGetIntegerValue(self)
+    }
+
+    func scaledValue(ofType type: ScaleType) -> Double {
+        return IOHIDValueGetScaledValue(self, type)
     }
 }
 
