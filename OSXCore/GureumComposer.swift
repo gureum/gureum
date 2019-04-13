@@ -26,28 +26,50 @@ enum GureumInputSource: String {
     case colemak = "org.youknowone.inputmethod.Gureum.colemak"
     /// 한글 두벌식 자판.
     case han2 = "org.youknowone.inputmethod.Gureum.han2"
-    /// 한글 두벌식 옛글 자판.
-    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
-    /// 한글 세벌식 최종 자판.
-    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
-    /// 한글 세벌식 390 자판.
+    case han2noshift = "org.youknowone.inputmethod.Gureum.han2noshift"
+    case han2n9256 = "org.youknowone.inputmethod.Gureum.han2n9256"
     case han390 = "org.youknowone.inputmethod.Gureum.han390"
-    /// 한글 세벌식 순아래 자판.
-    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
-    /// 한글 세벌식 옛글 자판.
-    case han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
-    /// 한글 세벌식 두벌식 배치 자판.
+    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    case han3_p3 = "org.youknowone.inputmethod.Gureum.han3-p3"
+    case han3moa_semoe_2018i = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2018i"
+    case han3sun_2014 = "org.youknowone.inputmethod.Gureum.han3sun-2014"
+    case han3shin_p2 = "org.youknowone.inputmethod.Gureum.han3shin-p2"
+    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
     case han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
-    /// 한글 안마태 자판.
-    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
-    /// 한글 로마자 자판.
     case hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
-    /// 한글 세벌식 최종 순아래 자판.
-    case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
-    /// 한글 세벌식 2011 자판.
+    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
+    case han3sun_1990 = "org.youknowone.inputmethod.Gureum.han3sun-1990"
+    case han3_89 = "org.youknowone.inputmethod.Gureum.han3-89"
+    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    case han3_93_yet = "org.youknowone.inputmethod.Gureum.han3-93-yet"
+    case han3_95 = "org.youknowone.inputmethod.Gureum.han3-95"
+    case han3ahnmatae = "org.youknowone.inputmethod.Gureum.han3ahnmatae"
     case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
-    /// 한글 세벌식 2012 자판.
+    case han3_2011_yet = "org.youknowone.inputmethod.Gureum.han3-2011-yet"
     case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
+    case han3_2012_yet = "org.youknowone.inputmethod.Gureum.han3-2012-yet"
+    case han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
+    case han3_2014_yet = "org.youknowone.inputmethod.Gureum.han3-2014-yet"
+    case han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+    case han3_2015_yet = "org.youknowone.inputmethod.Gureum.han3-2015-yet"
+    case han3_2015_metal = "org.youknowone.inputmethod.Gureum.han3-2015-metal"
+    case han3_2015_patal = "org.youknowone.inputmethod.Gureum.han3-2015-patal"
+    case han3_2015_patal_yet = "org.youknowone.inputmethod.Gureum.han3-2015-patal-yet"
+    case han3_p2 = "org.youknowone.inputmethod.Gureum.han3-p2"
+    case han3_14_proposal = "org.youknowone.inputmethod.Gureum.han3-14-proposal"
+    case han3moa_semoe_2014 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2014"
+    case han3moa_semoe_2015 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2015"
+    case han3moa_semoe_2016 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2016"
+    case han3moa_semoe_2017 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2017"
+    case han3gimguk_38a_yet = "org.youknowone.inputmethod.Gureum.han3gimguk-38a-yet"
+    case han3shin_1995 = "org.youknowone.inputmethod.Gureum.han3shin-1995"
+    case han3shin_2003 = "org.youknowone.inputmethod.Gureum.han3shin-2003"
+    case han3shin_2012 = "org.youknowone.inputmethod.Gureum.han3shin-2012"
+    case han3shin_2015 = "org.youknowone.inputmethod.Gureum.han3shin-2015"
+    case han3shin_m = "org.youknowone.inputmethod.Gureum.han3shin-m"
+    case han3shin_p = "org.youknowone.inputmethod.Gureum.han3shin-p"
+    case han3shin_p_yet = "org.youknowone.inputmethod.Gureum.han3shin-p-yet"
+    case han3shin_p2_yet = "org.youknowone.inputmethod.Gureum.han3shin-p2-yet"
 }
 
 // MARK: - GureumComposer 클래스
@@ -261,29 +283,95 @@ extension GureumInputSource {
         case .colemak:
             return "colemak"
         case .han2:
-            return "2-full"
-        case .han2Classic:
-            return "2y-full"
-        case .han3Final:
-            return "3f"
+            return "2"
+        case .han2noshift:
+            return "2noshift"
+        case .han2n9256:
+            return "2n9256"
         case .han390:
-            return "39"
-        case .han3NoShift:
-            return "3s"
-        case .han3Classic:
-            return "3y"
+            return "3-90"
+        case .han3Final:
+            return "3-91"
+        case .han3_p3:
+            return "3-p3"
+        case .han3moa_semoe_2018i:
+            return "3moa-semoe-2018i"
+        case .han3sun_2014:
+            return "3sun-2014"
+        case .han3shin_p2:
+            return "3shin-p2"
+        case .han2Classic:
+            return "2y"
         case .han3Layout2:
             return "32"
-        case .hanAhnmatae:
-            return "ahn"
         case .hanRoman:
             return "ro"
-        case .han3FinalNoShift:
-            return "3gs"
+        case .hanAhnmatae:
+            return "ahn"
+        case .han3sun_1990:
+            return "3sun-1990"
+        case .han3_89:
+            return "3-89"
+        case .han3NoShift:
+            return "3-91-noshift"
+        case .han3_93_yet:
+            return "3-93-yet"
+        case .han3_95:
+            return "3-95"
+        case .han3ahnmatae:
+            return "3-ahn"
         case .han3_2011:
             return "3-2011"
+        case .han3_2011_yet:
+            return "3-2011-yet"
         case .han3_2012:
             return "3-2012"
+        case .han3_2012_yet:
+            return "3-2012-yet"
+        case .han3_2014:
+            return "3-2014"
+        case .han3_2014_yet:
+            return "3-2014-yet"
+        case .han3_2015:
+            return "3-2015"
+        case .han3_2015_yet:
+            return "3-2015-yet"
+        case .han3_2015_metal:
+            return "3-2015-metal"
+        case .han3_2015_patal:
+            return "3-2015-patal"
+        case .han3_2015_patal_yet:
+            return "3-2015-patal-yet"
+        case .han3_p2:
+            return "3-p2"
+        case .han3_14_proposal:
+            return "3-14-proposal"
+        case .han3moa_semoe_2014:
+            return "3moa-semoe-2014"
+        case .han3moa_semoe_2015:
+            return "3moa-semoe-2015"
+        case .han3moa_semoe_2016:
+            return "3moa-semoe-2016"
+        case .han3moa_semoe_2017:
+            return "3moa-semoe-2017"
+        case .han3gimguk_38a_yet:
+            return "3gimguk-38a-yet"
+        case .han3shin_1995:
+            return "3shin-1995"
+        case .han3shin_2003:
+            return "3shin-2003"
+        case .han3shin_2012:
+            return "3shin-2012"
+        case .han3shin_2015:
+            return "3shin-2015"
+        case .han3shin_m:
+            return "3shin-m"
+        case .han3shin_p:
+            return "3shin-p"
+        case .han3shin_p_yet:
+            return "3shin-p-yet"
+        case .han3shin_p2_yet:
+            return "3shin-p2-yet"
         }
     }
 }
