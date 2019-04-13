@@ -20,19 +20,50 @@ enum GureumInputSourceIdentifier: String {
     case dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
     case colemak = "org.youknowone.inputmethod.Gureum.colemak"
     case han2 = "org.youknowone.inputmethod.Gureum.han2"
-    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
-    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    case han2noshift = "org.youknowone.inputmethod.Gureum.han2noshift"
+    case han2n9256 = "org.youknowone.inputmethod.Gureum.han2n9256"
     case han390 = "org.youknowone.inputmethod.Gureum.han390"
-    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
-    case han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
+    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    case han3_p3 = "org.youknowone.inputmethod.Gureum.han3-p3"
+    case han3moa_semoe_2018 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2018"
+    case han3sun_2014 = "org.youknowone.inputmethod.Gureum.han3sun-2014"
+    case han3shin_p2 = "org.youknowone.inputmethod.Gureum.han3shin-p2"
+    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
     case han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
-    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
     case hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
-    case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
+    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
+    case han3sun_1990 = "org.youknowone.inputmethod.Gureum.han3sun-1990"
+    case han3_89 = "org.youknowone.inputmethod.Gureum.han3-89"
+    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    case han3_93_yet = "org.youknowone.inputmethod.Gureum.han3-93-yet"
+    case han3_95 = "org.youknowone.inputmethod.Gureum.han3-95"
+    case han3ahnmatae = "org.youknowone.inputmethod.Gureum.han3ahnmatae"
     case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
+    case han3_2011_yet = "org.youknowone.inputmethod.Gureum.han3-2011-yet"
     case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
+    case han3_2012_yet = "org.youknowone.inputmethod.Gureum.han3-2012-yet"
     case han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
+    case han3_2014_yet = "org.youknowone.inputmethod.Gureum.han3-2014-yet"
     case han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
+    case han3_2015_yet = "org.youknowone.inputmethod.Gureum.han3-2015-yet"
+    case han3_2015_metal = "org.youknowone.inputmethod.Gureum.han3-2015-metal"
+    case han3_2015_patal = "org.youknowone.inputmethod.Gureum.han3-2015-patal"
+    case han3_2015_patal_yet = "org.youknowone.inputmethod.Gureum.han3-2015-patal-yet"
+    case han3_p2 = "org.youknowone.inputmethod.Gureum.han3-p2"
+    case han3_14_proposal = "org.youknowone.inputmethod.Gureum.han3-14-proposal"
+    case han3moa_semoe_2014 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2014"
+    case han3moa_semoe_2015 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2015"
+    case han3moa_semoe_2016 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2016"
+    case han3moa_semoe_2017 = "org.youknowone.inputmethod.Gureum.han3moa-semoe-2017"
+    case han3gimguk_38a_yet = "org.youknowone.inputmethod.Gureum.han3gimguk-38a-yet"
+    case han3shin_1995 = "org.youknowone.inputmethod.Gureum.han3shin-1995"
+    case han3shin_2003 = "org.youknowone.inputmethod.Gureum.han3shin-2003"
+    case han3shin_2012 = "org.youknowone.inputmethod.Gureum.han3shin-2012"
+    case han3shin_2015 = "org.youknowone.inputmethod.Gureum.han3shin-2015"
+    case han3shin_m = "org.youknowone.inputmethod.Gureum.han3shin-m"
+    case han3shin_p = "org.youknowone.inputmethod.Gureum.han3shin-p"
+    case han3shin_p_yet = "org.youknowone.inputmethod.Gureum.han3shin-p-yet"
+    case han3shin_p2_yet = "org.youknowone.inputmethod.Gureum.han3shin-p2-yet"
 
     var keyboardIdentifier: String {
         guard let value = GureumInputSourceToHangulKeyboardIdentifierTable[self] else {
@@ -47,20 +78,51 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .qwerty: "qwerty",
     .dvorak: "dvorak",
     .colemak: "colemak",
-    .han2: "2-full",
-    .han2Classic: "2y-full",
-    .han3Final: "3f",
-    .han390: "39",
-    .han3NoShift: "3s",
-    .han3Classic: "3y",
+    .han2: "2",
+    .han2noshift: "2noshift",
+    .han2n9256: "2n9256",
+    .han390: "3-90",
+    .han3Final: "3-91",
+    .han3_p3: "3-p3",
+    .han3moa_semoe_2018: "3moa-semoe-2018",
+    .han3sun_2014: "3sun-2014",
+    .han3shin_p2: "3shin-p2",
+    .han2Classic: "2y",
     .han3Layout2: "32",
     .hanRoman: "ro",
     .hanAhnmatae: "ahn",
-    .han3FinalNoShift: "3gs",
+    .han3sun_1990: "3sun-1990",
+    .han3_89: "3-89",
+    .han3NoShift: "3-91-noshift",
+    .han3_93_yet: "3-93-yet",
+    .han3_95: "3-95",
+    .han3ahnmatae: "3-ahn",
     .han3_2011: "3-2011",
+    .han3_2011_yet: "3-2011-yet",
     .han3_2012: "3-2012",
+    .han3_2012_yet: "3-2012-yet",
     .han3_2014: "3-2014",
+    .han3_2014_yet: "3-2014-yet",
     .han3_2015: "3-2015",
+    .han3_2015_yet: "3-2015-yet",
+    .han3_2015_metal: "3-2015-metal",
+    .han3_2015_patal: "3-2015-patal",
+    .han3_2015_patal_yet: "3-2015-patal-yet",
+    .han3_p2: "3-p2",
+    .han3_14_proposal: "3-14-proposal",
+    .han3moa_semoe_2014: "3moa-semoe-2014",
+    .han3moa_semoe_2015: "3moa-semoe-2015",
+    .han3moa_semoe_2016: "3moa-semoe-2016",
+    .han3moa_semoe_2017: "3moa-semoe-2017",
+    .han3gimguk_38a_yet: "3gimguk-38a-yet",
+    .han3shin_1995: "3shin-1995",
+    .han3shin_2003: "3shin-2003",
+    .han3shin_2012: "3shin-2012",
+    .han3shin_2015: "3shin-2015",
+    .han3shin_m: "3shin-m",
+    .han3shin_p: "3shin-p",
+    .han3shin_p_yet: "3shin-p-yet",
+    .han3shin_p2_yet: "3shin-p2-yet",
 ]
 
 class GureumComposer: DelegatedComposer {
