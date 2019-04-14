@@ -1,3 +1,7 @@
+[submodule "libhangul-objc"]
+	path = libhangul-objc
+	url = git://github.com/yous/libhangul-objc.git
+	branch = experimental
 [submodule "hangeul"]
 	path = hangeul
 	url = https://github.com/youknowone/hangeul.git
