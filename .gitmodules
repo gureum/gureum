@@ -1,6 +1,3 @@
-[submodule "libhangul-objc"]
-	path = libhangul-objc
-	url = git://github.com/gureum/libhangul-objc.git
 [submodule "hangeul"]
 	path = hangeul
 	url = https://github.com/youknowone/hangeul.git
