@@ -217,7 +217,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         if row == 0 {
             return []
         } else {
-            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons + [self.view.deleteButton]
+            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons.map({$0}) + [self.view.deleteButton]
         }
     }
 

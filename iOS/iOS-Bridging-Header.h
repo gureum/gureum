@@ -5,6 +5,6 @@
 #include <hangeul/capi.h>
 #include <FoundationExtension/FoundationExtension.h>
 #include <UIKitExtension/UIKitExtension.h>
-#include <GlobalActivityIndicatorView/GlobalActivityIndicatorView.h>
+//#include <GlobalActivityIndicatorView/GlobalActivityIndicatorView.h>
 //#include "NSACommonCrypto.h"
 #include "GRInputButton.h"

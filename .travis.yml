@@ -1,8 +1,9 @@
 language: objective-c
 sudo: false
 xcode_workspace: Gureum.xcworkspace
-osx_image: xcode9.4
+osx_image: xcode10.2
 install:
+  - gem update cocoapods
   - pod install --repo-update
 matrix:
   include:
