@@ -173,6 +173,9 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         let view = QwertyKeyboardView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
 
         for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] + view.URLButtons + view.emailButtons + view.twitterButtons {
+            guard let subview = subview else {
+                assert(false)
+            }
             view.addSubview(subview)
         }
         return view

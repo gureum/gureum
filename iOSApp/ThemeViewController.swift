@@ -104,7 +104,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         let mainQueue = DispatchQueue.main
         
-        UIActivityIndicatorView.globalActivityIndicatorView().startAnimating()
+//        UIActivityIndicatorView.globalActivityIndicatorView().startAnimating()
         backgroundQueue.async {
             self.loadEntries()
             mainQueue.async {
@@ -113,7 +113,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
                 } else {
                     UIAlertView(title: "네트워크 오류", message: "테마 목록을 불러올 수 없습니다. LTE 또는 Wi-Fi 연결을 확인하고 잠시 후에 다시 시도해 주세요.", delegate: nil, cancelButtonTitle: "확인").show()
                 }
-                UIActivityIndicatorView.globalActivityIndicatorView().stopAnimating()
+//                UIActivityIndicatorView.globalActivityIndicatorView().stopAnimating()
             }
         }
     }

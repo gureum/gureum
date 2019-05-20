@@ -25,7 +25,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
         let rightIndexPaths = QuickHelperResult["right"] as! [NSIndexPath]
         result["main"] = ["ksx5002", "danmoum", "cheonjiin"][mainIndexPath.row]
         if result["main"] as! String != "cheonjiin" {
-            result["left"] = ["qwerty"][leftIndexPath.row]
+            result["left"] = ["qwerty"][leftIndexPath.row] as Any
             let rights = NSMutableArray()
             for indexPath in rightIndexPaths {
                 let row = indexPath.row

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <FoundationExtension/FoundationExtension.h>
+@import FoundationExtension;
 
 #import "TISInputSource.h"
 

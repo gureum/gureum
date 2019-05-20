@@ -57,7 +57,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         let updateManager = UpdateManager.shared
         updateManager.notifyUpdateIfNeeded()
 
-        HGKeyboard.initialize()
         // IMKServer를 띄워야만 입력기가 동작한다
         let _ = CIMInputManager.shared
     }
