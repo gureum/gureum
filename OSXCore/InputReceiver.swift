@@ -141,7 +141,7 @@ public class InputReceiver: InputTextDelegate {
                 if result.action != .cancel {
                     commitCompositionEvent(sender)
                     if case let .layout(mode) = result.action, layout != .toggleByCapsLock {
-                        (sender as! IMKTextInput).selectMode(mode)
+                        (sender as IMKTextInput).selectMode(mode)
                     }
                 } else {
                     updateComposition() // 조합 중인 문자 반영

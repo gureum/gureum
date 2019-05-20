@@ -113,7 +113,7 @@ class HangulComposer: NSObject, ComposerDelegate {
      @param  identifier  libhangul의 @ref hangul_ic_select_keyboard 를 참고한다.
      */
     func setKeyboard(identifier: String) {
-        if configuration.hangulForceStrictCombinationRule, (identifier == "39" || identifier == "3f") {
+        if configuration.hangulForceStrictCombinationRule, identifier == "39" || identifier == "3f" {
             let strictCombinationIdentifier = "\(identifier)s"
             inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
         } else {

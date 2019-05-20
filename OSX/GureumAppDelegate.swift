@@ -35,7 +35,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 }
 
 class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDelegate {
-    @IBOutlet @objc var menu: NSMenu!
+    @IBOutlet var menu: NSMenu!
 
     let configuration = Configuration.shared
     let notificationCenterDelegate = NotificationCenterDelegate()

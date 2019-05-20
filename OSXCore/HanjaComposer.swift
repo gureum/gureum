@@ -209,7 +209,7 @@ class HanjaComposer: DelegatedComposer {
         if candidates.count > 0, Configuration.shared.showsInputForHanjaCandidates {
             candidates.insert(keyword, at: 0)
         }
-        return candidates.map({ s in NSAttributedString(string: s) })
+        return candidates.map { s in NSAttributedString(string: s) }
     }
 
     func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {

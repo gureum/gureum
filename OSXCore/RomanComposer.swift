@@ -53,7 +53,7 @@ class QwertyComposer: DelegatedComposer {
         if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
             var newString = string
             let chr = string.first!
-            if flags.contains(.capsLock), "a" <= chr, chr <= "z" {
+            if flags.contains(.capsLock), chr >= "a", chr <= "z" {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
                 _commitString = newString
@@ -146,7 +146,7 @@ class RomanDataComposer: DelegatedComposer {
         if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
             let newChr: Character
             let chr = string.first!
-            if flags.contains(.capsLock), "a" <= chr, chr <= "z" {
+            if flags.contains(.capsLock), chr >= "a", chr <= "z" {
                 newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
             } else {
                 newChr = chr

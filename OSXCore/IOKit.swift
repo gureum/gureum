@@ -109,15 +109,15 @@ class IOService {
 }
 
 public extension IOHIDValueScaleType {
-    public static let Calibrated = kIOHIDValueScaleTypeCalibrated
-    public static let Physical = kIOHIDValueScaleTypePhysical
-    public static let Exponent = kIOHIDValueScaleTypeExponent
+    static let Calibrated = kIOHIDValueScaleTypeCalibrated
+    static let Physical = kIOHIDValueScaleTypePhysical
+    static let Exponent = kIOHIDValueScaleTypeExponent
 }
 
 public extension IOHIDValue {
-    public typealias ScaleType = IOHIDValueScaleType
-    public typealias Callback = IOHIDValueCallback
-    public typealias MultipleCallback = IOHIDValueMultipleCallback
+    typealias ScaleType = IOHIDValueScaleType
+    typealias Callback = IOHIDValueCallback
+    typealias MultipleCallback = IOHIDValueMultipleCallback
 
     var element: IOHIDElement {
         return IOHIDValueGetElement(self)
@@ -141,67 +141,67 @@ public extension IOHIDValue {
 }
 
 public extension IOHIDManager {
-    public class func create(options: IOOptionBits) -> IOHIDManager {
+    class func create(options: IOOptionBits) -> IOHIDManager {
         return IOHIDManagerCreate(kCFAllocatorDefault, options)
     }
 
-    public class func create() -> IOHIDManager {
+    class func create() -> IOHIDManager {
         return create(options: IOOptionBits(kIOHIDOptionsTypeNone))
     }
 
-    public func open() -> IOReturn {
+    func open() -> IOReturn {
         return open(options: IOOptionBits(kIOHIDOptionsTypeNone))
     }
 
-    public func open(options: IOOptionBits) -> IOReturn {
+    func open(options: IOOptionBits) -> IOReturn {
         return IOHIDManagerOpen(self, options)
     }
 
-    public func close() -> IOReturn {
+    func close() -> IOReturn {
         return close(options: IOOptionBits(kIOHIDOptionsTypeNone))
     }
 
-    public func close(options: IOOptionBits) -> IOReturn {
+    func close(options: IOOptionBits) -> IOReturn {
         return IOHIDManagerClose(self, options)
     }
 
-    public func schedule(runloop: RunLoop, mode: RunLoop.Mode) {
+    func schedule(runloop: RunLoop, mode: RunLoop.Mode) {
         IOHIDManagerScheduleWithRunLoop(self, runloop.getCFRunLoop(), mode.rawValue as CFString)
     }
 
-    public func unschedule(runloop: RunLoop, mode: RunLoop.Mode) {
+    func unschedule(runloop: RunLoop, mode: RunLoop.Mode) {
         IOHIDManagerUnscheduleFromRunLoop(self, runloop.getCFRunLoop(), mode.rawValue as CFString)
     }
 
-    public class func deviceMatching(page: Int, usage: Int) -> NSDictionary {
+    class func deviceMatching(page: Int, usage: Int) -> NSDictionary {
         return [
             kIOHIDDeviceUsagePageKey as NSString: NSNumber(value: page),
             kIOHIDDeviceUsageKey as NSString: NSNumber(value: usage),
         ]
     }
 
-    public class func inputValueMatching(min: Int, max: Int) -> NSDictionary {
+    class func inputValueMatching(min: Int, max: Int) -> NSDictionary {
         return [
             kIOHIDElementUsageMinKey as NSString: NSNumber(value: min),
             kIOHIDElementUsageMaxKey as NSString: NSNumber(value: max),
         ]
     }
 
-    public func setDeviceMatching(page: Int, usage: Int) {
+    func setDeviceMatching(page: Int, usage: Int) {
         let deviceMatching = IOHIDManager.deviceMatching(page: page, usage: usage)
         IOHIDManagerSetDeviceMatching(self, deviceMatching)
     }
 
-    public func setInputValueMatching(min: Int, max: Int) {
+    func setInputValueMatching(min: Int, max: Int) {
         let inputValueMatching = IOHIDManager.inputValueMatching(min: min, max: max)
         IOHIDManagerSetInputValueMatching(self, inputValueMatching)
     }
 
-    public func registerInputValueCallback(_ callback: @escaping IOHIDValue.Callback, context: UnsafeMutableRawPointer?) {
+    func registerInputValueCallback(_ callback: @escaping IOHIDValue.Callback, context: UnsafeMutableRawPointer?) {
         IOHIDManagerRegisterInputValueCallback(self, callback, context)
     }
 
-    public func unregisterInputValueCallback() {
+    func unregisterInputValueCallback() {
         IOHIDManagerRegisterInputValueCallback(self, nil, nil)
     }
 }

@@ -70,7 +70,7 @@ class IOKitty {
 
         ref = self
         // Set input value callback
-        withUnsafeMutablePointer(to: &ref, {
+        withUnsafeMutablePointer(to: &ref) {
             _self in
             manager.registerInputValueCallback({
                 inContext, _, _, value in
@@ -97,7 +97,7 @@ class IOKitty {
                 }
                 // NSEvent.otherEvent(with: .applicationDefined, location: .zero, modifierFlags: .capsLock, timestamp: 0, windowNumber: 0, context: nil, subtype: 0, data1: 0, data2: 0)!
             }, context: _self)
-        })
+        }
         manager.schedule(runloop: .current, mode: .default)
         let r = manager.open()
         if r != kIOReturnSuccess {
@@ -167,7 +167,7 @@ public class InputMethodServer {
 
     var description: String {
         return """
-        <InputMethodServer server: "\(String(describing: self.server))" candidates: "\(String(describing: self.candidates))">
+        <InputMethodServer server: "\(String(describing: server))" candidates: "\(String(describing: candidates))">
         """
     }
 
