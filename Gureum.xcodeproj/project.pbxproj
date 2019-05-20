@@ -177,8 +177,8 @@
 		3835B5231F5DAADF00896BEC /* Copy Hanja Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = hanja;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/hanja";
+			dstSubfolderSpec = 0;
 			files = (
 				A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */,
 				A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */,
@@ -195,8 +195,8 @@
 		3835B5241F5DAB2700896BEC /* Copy Keyboards Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = keyboards;
-			dstSubfolderSpec = 7;
+			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/keyboards";
+			dstSubfolderSpec = 0;
 			files = (
 				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
 				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
