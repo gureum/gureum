@@ -11,9 +11,21 @@ import Foundation
 let DEBUG_LOGGING = false
 let DEBUG_INPUTCONTROLLER = false
 
+/*!
+ @enum
+ @brief  최종적으로 CIMInputController가 처리할 결과
+ */
+enum CIMInputTextProcessResult: Int {
+    case notProcessedAndNeedsCommit = -2
+    case notProcessedAndNeedsCancel = -1
+    case notProcessed = 0
+    case processed = 1
+};
+
+
 extension CIMInputController {
     
-    @objc open var composer: CIMComposer {
+    @objc var composer: CIMComposer {
         return self.receiver.composer
     }
     
@@ -44,11 +56,11 @@ extension CIMInputController { // IMKServerInputHandleEvent
             if modifierFlags.contains(.capsLock) {
                 if (self.capsLockPressed) {
                     self.capsLockPressed = false
-                    dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue);
-                    // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier]);
+                    dlog(DEBUG_LOGGING, "modifierFlags by IOKit: %lx", modifierFlags.rawValue)
+                    // dlog(DEBUG_INPUTCONTROLLER, @"** CIMInputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
                     let _ = self.receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockPressed.rawValue, modifiers: modifierFlags, client: sender)
                 } else {
-                    dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue);
+                    dlog(DEBUG_INPUTCONTROLLER, "flagsChanged: context: %@, modifierFlags: %lx", self, modifierFlags.rawValue)
                     let _ = self.receiver.input(controller: self, inputText: nil, key: CIMInputControllerSpecialKeyCode.capsLockFlagsChanged.rawValue, modifiers: modifierFlags, client: sender)
                 }
                 return false
@@ -64,22 +76,22 @@ extension CIMInputController { // IMKServerInputHandleEvent
 
 /*
 extension CIMInputController {  // IMKServerInputTextData
-    open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@(%@)", string, keyCode, flags, [[self client] bundleIdentifier], [[self client] class]);
-        let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: flags, client: sender) > CIMInputTextProcessResult.notProcessed;
+    open override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:key:modifiers:client  with string: %@ / keyCode: %ld / modifier flags: %lu / client: %@", string, keyCode, flags, self.client()?.bundleIdentifier() ?? "nil")
+        let processed = self.receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: sender).rawValue > CIMInputTextProcessResult.notProcessed.rawValue
         return processed
     }
 }
 */
 /*
 extension CIMInputController {  // IMKServerInputKeyBinding
-    open override func inputText(_ string: String!, client sender: Any!) -> Bool {
-        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender);
+    open override func inputText(_ string: String!, client sender: Any) -> Bool {
+        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -inputText:client: with string: %@ / client: %@", string, sender)
         return false
     }
     
-    open override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
-        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -didCommandBySelector: with selector: %@", aSelector);
+    open override func didCommand(by aSelector: Selector!, client sender: Any) -> Bool {
+        // dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -didCommandBySelector: with selector: %@", aSelector)
         return false
     }
 }
@@ -92,8 +104,17 @@ extension CIMInputController {  // IMKStateSetting
     }
 
     //! @brief 자판 전환을 감지한다.
-    open override func setValue(_ value: Any!, forTag tag: Int, client sender: Any!) {
+    open override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
         self.receiver.setValue(value, forTag: tag, client: sender, controller: self)
+    }
+
+    open override func activateServer(_ sender: Any!) {
+        dlog(DEBUG_INPUTCONTROLLER, "server activated")
+    }
+
+    open override func deactivateServer(_ sender: Any!) {
+        dlog(DEBUG_INPUTCONTROLLER, "server deactivated")
+        self.receiver.commitComposition(sender, controller: self)
     }
 }
 
@@ -101,8 +122,8 @@ extension CIMInputController {  // IMKMouseHandling
     /*!
      @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
      */
-    open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any!) -> Bool {
-        dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN");
+    open override func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any) -> Bool {
+        dlog(DEBUG_LOGGING, "LOGGING::EVENT::MOUSEDOWN")
         let _ = self.receiver.commitCompositionEvent(sender, controller: self)
         return false
     }
@@ -118,17 +139,17 @@ extension CIMInputController {  // IMKServerInput
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     open override func commitComposition(_ sender: Any!) {
-        dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?");
+        dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
         let _ = self.receiver.commitCompositionEvent(sender, controller: self)
-        //[super commitComposition:sender];
+        //[super commitComposition:sender]
     }
     
     open override func updateComposition() {
-        dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-RAW?");
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition");
+        dlog(DEBUG_LOGGING, "LOGGING::EVENT::UPDATE-RAW?")
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition")
         self.receiver.updateCompositionEvent(self)
         super.updateComposition()
-        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition ended");
+        dlog(DEBUG_INPUTCONTROLLER, "** CIMInputController -updateComposition ended")
     }
     
     open override func cancelComposition() {
@@ -195,14 +216,14 @@ extension CIMInputController {  // IMKServerInput
 }
 
 extension CIMMockInputController {
-    @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any!) -> Bool {
+    @objc override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
         let client = self.client() as AnyObject
         print("** CIMInputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client.bundleIdentifier)) client class: \(String(describing: client.class))")
         let v1 = (self._receiver.input(controller: self, inputText: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: NSEvent.ModifierFlags.RawValue(flags)), client: sender).rawValue)
         let v2 = (CIMInputTextProcessResult.notProcessed.rawValue)
         let processed: Bool = v1 > v2
         if !processed {
-            //[self cancelComposition];
+            //[self cancelComposition]
         }
         return processed
     }

@@ -29,7 +29,7 @@ enum GureumConfigurationName: String {
 }
 
 
-@objc public class GureumConfiguration: UserDefaults {
+public class GureumConfiguration: UserDefaults {
 
     public var enableCapslockToToggleInputMode: Bool = true
 
@@ -86,7 +86,7 @@ enum GureumConfigurationName: String {
         self.set(GureumConfiguration.convertShortcutToConfiguration(newValue) , forKey: key)
     }
 
-    @objc public var lastHangulInputMode: String {
+    public var lastHangulInputMode: String {
         get {
             return self.string(forKey: GureumConfigurationName.lastHangulInputMode.rawValue)!
         }
@@ -95,7 +95,7 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var lastRomanInputMode: String {
+    public var lastRomanInputMode: String {
         get {
             return self.string(forKey: GureumConfigurationName.lastRomanInputMode.rawValue)!
         }
@@ -104,7 +104,7 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var optionKeyBehavior: Int {
+    public var optionKeyBehavior: Int {
         get {
             return self.integer(forKey: GureumConfigurationName.optionKeyBehavior.rawValue)
         }
@@ -113,7 +113,7 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var showsInputForHanjaCandidates: Bool {
+    public var showsInputForHanjaCandidates: Bool {
         get {
             return self.bool(forKey: GureumConfigurationName.showsInputForHanjaCandidates.rawValue)
         }
@@ -167,9 +167,9 @@ enum GureumConfigurationName: String {
         }
     }
 
-    @objc public var romanModeByEscapeKey: Bool {
+    public var romanModeByEscapeKey: Bool {
         get {
-            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue);
+            return self.bool(forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)
         }
         set {
             return self.set(newValue, forKey: GureumConfigurationName.romanModeByEscapeKey.rawValue)

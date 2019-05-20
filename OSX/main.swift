@@ -10,12 +10,12 @@ import Cocoa
 
 //_ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
 
-//dlog(TRUE, @"******* CharmIM initialized! *******");
+//dlog(TRUE, @"******* CharmIM initialized! *******")
 let mainNibName = Bundle.main.infoDictionary!["NSMainNibFile"] as! String
 let nib = NSNib(nibNamed: NSNib.Name(mainNibName), bundle: Bundle.main)!
 if nib.instantiate(withOwner: NSApplication.shared, topLevelObjects: nil) == false {
-    dlog(true, "!! CharmIM fails to load Main Nib File !!");
+    dlog(true, "!! CharmIM fails to load Main Nib File !!")
 }
-//dlog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName);
+//dlog(TRUE, @"****   Main bundle %@ loaded   ****", mainNibName)
 NSApplication.shared.run()
-//dlog(TRUE, @"******* CharmIM finalized! *******");
+//dlog(TRUE, @"******* CharmIM finalized! *******")

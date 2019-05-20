@@ -26,7 +26,7 @@ class IOKitError: Error {
     @objc var capsLockState: Bool {
         get {
             var state: Bool = false
-            let kr = IOHIDGetModifierLockState(self.id, Int32(kIOHIDCapsLockState), &state);
+            let kr = IOHIDGetModifierLockState(self.id, Int32(kIOHIDCapsLockState), &state)
             guard kr == KERN_SUCCESS else {
                 return false
             }
@@ -35,7 +35,7 @@ class IOKitError: Error {
     }
     
     @objc func setCapsLockLed(_ state: Bool) {
-        IOHIDSetModifierLockState(self.id, Int32(kIOHIDCapsLockState), state);
+        IOHIDSetModifierLockState(self.id, Int32(kIOHIDCapsLockState), state)
     }
 }
 
@@ -53,12 +53,12 @@ class IOKitError: Error {
         self.init(id: id)
     }
     convenience init(name: String) throws {
-        let matching = IOServiceMatching(name);
+        let matching = IOServiceMatching(name)
         try! self.init(port: kIOMasterPortDefault, matching: matching)
     }
 
     deinit {
-        IOObjectRelease(self.id);
+        IOObjectRelease(self.id)
     }
 
     func open(owningTask: mach_port_t, type: Int) -> IOConnect? {

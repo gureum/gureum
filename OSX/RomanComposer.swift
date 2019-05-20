@@ -15,19 +15,19 @@ class QwertyComposer: CIMComposer {
 
     override var composedString: String {
         get {
-            return "";
+            return ""
         }
     }
 
     override var originalString: String {
         get {
-            return self._commitString ?? "";
+            return self._commitString ?? ""
         }
     }
 
     override var commitString: String {
         get {
-            return self._commitString ?? "";
+            return self._commitString ?? ""
         }
     }
 
@@ -45,12 +45,10 @@ class QwertyComposer: CIMComposer {
     }
 
     override var hasCandidates: Bool {
-        get {
-            return false
-        }
+        return false
     }
 
-    override var candidates: [String]? {
+    override var candidates: [NSAttributedString]? {
         return nil
     }
 
@@ -66,7 +64,7 @@ class QwertyComposer: CIMComposer {
                 let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
                 newString = String(newChr)
                 self._commitString = newString
-                return CIMInputTextProcessResult.processed;
+                return CIMInputTextProcessResult.processed
             }
         }
         self._commitString = nil
@@ -104,19 +102,19 @@ class RomanDataComposer: CIMComposer {
 
     override var composedString: String {
         get {
-            return "";
+            return ""
         }
     }
 
     override var originalString: String {
         get {
-            return self._commitString ?? "";
+            return self._commitString ?? ""
         }
     }
 
     override var commitString: String {
         get {
-            return self._commitString ?? "";
+            return self._commitString ?? ""
         }
     }
 
@@ -134,12 +132,10 @@ class RomanDataComposer: CIMComposer {
     }
 
     override var hasCandidates: Bool {
-        get {
-            return false
-        }
+        return false
     }
 
-    override var candidates: [String]! {
+    override var candidates: [NSAttributedString]? {
         return nil
     }
 

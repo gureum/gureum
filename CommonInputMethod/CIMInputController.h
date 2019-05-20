@@ -28,18 +28,6 @@ static const int CIMKeyMapSize = 0x33;
 
 @class CIMInputController;
 
-/*!
- @enum
- @brief  최종적으로 CIMInputController가 처리할 결과
- */
-typedef NS_ENUM(int, CIMInputTextProcessResult) {
-    CIMInputTextProcessResultNotProcessedAndNeedsCommit = -2,
-    CIMInputTextProcessResultNotProcessedAndNeedsCancel = -1,
-    CIMInputTextProcessResultNotProcessed = 0,
-    CIMInputTextProcessResultProcessed = 1,
-};
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class CIMInputReceiver;

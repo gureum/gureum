@@ -28,7 +28,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         case .contentsClicked:
             NSWorkspace.shared.open(URL(string: download)!)
         default:
-            break;
+            break
         }
     }
 }
@@ -59,11 +59,6 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
 
         // IMKServer를 띄워야만 입력기가 동작한다
         let _ = CIMInputManager.shared
-    }
-
-    @objc func composer(server: IMKServer!, client: Any!) -> CIMComposer {
-        let composer: CIMComposer = GureumComposer()
-        return composer
     }
 
 }

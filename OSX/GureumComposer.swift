@@ -61,7 +61,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2015 : "3-2015",
 ]
 
-@objcMembers public class GureumComposer: CIMComposer {
+class GureumComposer: CIMComposer {
     var romanComposer: CIMComposer
     let qwertyComposer: QwertyComposer = QwertyComposer()
     let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
@@ -88,7 +88,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
         self.delegate = qwertyComposer
     }
     
-    @objc override public var inputMode: String {
+    override public var inputMode: String {
         get {
             return super.inputMode
         }
@@ -118,11 +118,11 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
         }
     }
     
-    @objc override public func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
+    override func input(controller: CIMInputController, command string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: Any) -> CIMInputTextProcessResult {
         let configuration = GureumConfiguration.shared
         let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
         var need_exchange = false
-        var delegatedComposer: CIMComposerDelegate? = nil
+        var need_candidtes = false
 //    if (string == nil) {
 //        NSUInteger modifierKey = flags & 0xff;
 //        if (self->lastModifier != 0 && modifierKey == 0) {
@@ -175,7 +175,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
             guard configuration.enableCapslockToToggleInputMode else {
                 return CIMInputTextProcessResult.processed
             }
-            if self.delegate === romanComposer || self.delegate === hangulComposer {
+            if (self.delegate as? CIMComposer) === romanComposer || (self.delegate as? HangulComposer) === hangulComposer {
                 need_exchange = true
             }
             self.ioConnect.setCapsLockLed(false)
@@ -205,54 +205,54 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     //            need_exchange = YES;
     //        }
             if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
-                delegatedComposer = hanjaComposer
+                need_candidtes = true
             }
-    //        if (inputModifier, keyCode) == configuration.inputModeEmoticonKey {
-    //            delegatedComposer = emoticonComposer
-    //        }
-    //    }
         }
         
         if need_exchange {
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             self.delegate.cancelComposition()
-            if self.delegate === romanComposer {
+            if (self.delegate as? CIMComposer) === romanComposer {
                 let lastHangulInputMode = GureumConfiguration.shared.lastHangulInputMode
-                (sender as AnyObject).selectMode(lastHangulInputMode)
+                if let sender = sender as? IMKTextInput {
+                    sender.selectMode(lastHangulInputMode)
+                }
             } else {
                 let lastRomanInputMode = GureumConfiguration.shared.lastRomanInputMode
-                (sender as AnyObject).selectMode(lastRomanInputMode)
+                if let sender = sender as? IMKTextInput {
+                    sender.selectMode(lastRomanInputMode)
+                }
             }
             return CIMInputTextProcessResult.processed
         }
         
-        if self.delegate === hanjaComposer {
-            if !hanjaComposer.mode && hanjaComposer.composedString.count == 0 && hanjaComposer.commitString.count == 0 {
+        if (self.delegate as? HanjaComposer) === hanjaComposer {
+            if hanjaComposer.mode == .single && hanjaComposer.composedString.count == 0 && hanjaComposer.commitString.count == 0 {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 self.delegate = hangulComposer
             }
         }
         
-        if self.delegate === emoticonComposer {
+        if (self.delegate as? EmoticonComposer) === emoticonComposer {
             if !emoticonComposer.mode {
                 self.emoticonComposer.mode = true
                 self.delegate = romanComposer
             }
         }
 
-        if delegatedComposer === hanjaComposer {
+        if need_candidtes {
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
-            if self.delegate === hangulComposer {
+            if (self.delegate as? HangulComposer) === hangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = hangulComposer.composedString.count > 0
-                hanjaComposer.mode = !isComposing // 조합 중이 아니면 1회만 사전을 띄운다
+                hanjaComposer.mode = isComposing ? .single : .continuous
                 self.delegate = hanjaComposer
-                self.delegate.composerSelected!(self)
+                self.delegate.composerSelected(self)
                 hanjaComposer.update(fromController: controller)
                 return CIMInputTextProcessResult.processed
             }
             // 영어 입력 상태에서 이모티콘 입력기로 전환
-            if self.delegate === romanComposer {
+            if (self.delegate as? CIMComposer) === romanComposer {
                 emoticonComposer.delegate = self.delegate
                 self.delegate = emoticonComposer
                 emoticonComposer.update(fromController: controller)
@@ -260,7 +260,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
             }
         }
 
-        if self.delegate === hangulComposer {
+        if (self.delegate as? HangulComposer) === hangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if GureumConfiguration.shared.romanModeByEscapeKey {
                 if keyCode == kVK_Escape || (keyCode, inputModifier) == (kVK_ANSI_LeftBracket, NSEvent.ModifierFlags.control) {
