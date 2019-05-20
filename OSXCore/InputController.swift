@@ -66,6 +66,10 @@ public class InputController: IMKInputController {
         super.init()
     }
 
+    public override func inputControllerWillClose() {
+        super.inputControllerWillClose()
+    }
+
     func asClient(_ sender: Any) -> IMKTextInput & IMKUnicodeTextInput {
         #if DEBUG
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
@@ -109,7 +113,7 @@ extension InputController {
 public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
-    public override func handle(_ event: NSEvent, client sender: Any) -> Bool {
+    override func handle(_ event: NSEvent, client sender: Any) -> Bool {
         // dlog(DEBUG_INPUTCONTROLLER, "event: \(event)")
         // sender is (IMKTextInput & IMKUnicodeTextInput & IMTSMSupport)
         let client = asClient(sender)
@@ -324,7 +328,7 @@ public extension InputController { // IMKServerInput
             // COMMIT triggered
         }
 
-        public override func updateComposition() {
+        override func updateComposition() {
             receiver.updateCompositionEvent()
 
             let client = receiver.inputClient
@@ -334,7 +338,7 @@ public extension InputController { // IMKServerInput
             view.setMarkedText(composed, selectedRange: NSRange(location: 0, length: composed.count), replacementRange: markedRange)
         }
 
-        public override func cancelComposition() {
+        override func cancelComposition() {
             receiver.cancelCompositionEvent()
 
             let client = receiver.inputClient
@@ -345,39 +349,39 @@ public extension InputController { // IMKServerInput
 
         // Getting Input Strings and Candidates
         // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
-        public override func composedString(_ sender: Any) -> Any {
+        override func composedString(_ sender: Any) -> Any {
             let client = asClient(sender)
             return receiver.composedString(client)
         }
 
-        public override func originalString(_ sender: Any) -> NSAttributedString {
+        override func originalString(_ sender: Any) -> NSAttributedString {
             let client = asClient(sender)
             return receiver.originalString(client)
         }
 
-        public override func candidates(_ sender: Any) -> [Any]? {
+        override func candidates(_ sender: Any) -> [Any]? {
             let client = asClient(sender)
             return receiver.candidates(client)
         }
 
-        public override func candidateSelected(_ candidateString: NSAttributedString!) {
+        override func candidateSelected(_ candidateString: NSAttributedString!) {
             receiver.candidateSelected(candidateString)
         }
 
-        public override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
+        override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
             receiver.candidateSelectionChanged(candidateString)
         }
     }
 
     public extension MockInputController { // IMKStateSetting
         //! @brief  마우스 이벤트를 잡을 수 있게 한다.
-        public override func recognizedEvents(_ sender: Any) -> Int {
+        override func recognizedEvents(_ sender: Any) -> Int {
             let client = asClient(sender)
             return Int(receiver.recognizedEvents(client).rawValue)
         }
 
         //! @brief 자판 전환을 감지한다.
-        public override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
+        override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
             let client = asClient(sender)
             receiver.setValue(value, forTag: tag, client: client)
         }
