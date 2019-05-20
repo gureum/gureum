@@ -57,7 +57,6 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeExchangeKey.rawValue: Configuration.convertShortcutToConfiguration((0x31, .shift)),
             ConfigurationName.inputModeEmoticonKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, [.shift, .option])),
             ConfigurationName.inputModeHanjaKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, .option)),
             ConfigurationName.optionKeyBehavior.rawValue: 0,
