@@ -19,24 +19,24 @@ class TenkeyKeyboardView: KeyboardView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.deleteButton.keycode = 0x0e
-        self.numberButton = GRInputButton()
-        self.numberButton.captionLabel.text = "123"
-        self.numberButton.tag = 2
-        self.alphabetButton = GRInputButton()
-        self.alphabetButton.captionLabel.text = "ABC"
-        self.alphabetButton.tag = 1
-        self.hangeulButton = GRInputButton()
-        self.hangeulButton.captionLabel.text = "한글"
-        self.hangeulButton.tag = 0
+        deleteButton.keycode = 0x0E
+        numberButton = GRInputButton()
+        numberButton.captionLabel.text = "123"
+        numberButton.tag = 2
+        alphabetButton = GRInputButton()
+        alphabetButton.captionLabel.text = "ABC"
+        alphabetButton.tag = 1
+        hangeulButton = GRInputButton()
+        hangeulButton.captionLabel.text = "한글"
+        hangeulButton.tag = 0
 
-        self.spaceButton.keycode = 12
-        self.spaceButton.addTarget(nil, action: "input:", for: .touchUpInside)
-        self.doneButton.keycode = 13
+        spaceButton.keycode = 12
+        spaceButton.addTarget(nil, action: "input:", for: .touchUpInside)
+        doneButton.keycode = 13
 
-        self.numberButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
-        self.alphabetButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
-        self.hangeulButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
+        numberButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
+        alphabetButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
+        hangeulButton.addTarget(nil, action: "selectLayout:", for: .touchUpInside)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -46,13 +46,10 @@ class TenkeyKeyboardView: KeyboardView {
 
 class TenkeyKeyboardLayout: KeyboardLayout {
     var tenkeyView: TenkeyKeyboardView {
-        get {
-            return self.view as! TenkeyKeyboardView
-        }
+        return self.view as! TenkeyKeyboardView
     }
 
-    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton : ThemeCaption] {
-
+    override func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
         func layoutCaption(name: String, row: Int) -> ThemeCaption {
             return trait.captionForIdentifier(identifier: "tenkey-\(name)", needsMargin: type(of: self).needsMargin, classes: {
                 trait.captionClassesForGetters(getters: [
@@ -71,7 +68,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.function },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.tenkey, trait.common])
             })
         }
         func specialCaption(name: String, row: Int) -> ThemeCaption {
@@ -81,7 +78,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.special },
                     { $0.base },
-                    ], inGroups: [trait.tenkey, trait.common])
+                ], inGroups: [trait.tenkey, trait.common])
             })
         }
 
@@ -111,8 +108,8 @@ class TenkeyKeyboardLayout: KeyboardLayout {
     }
 
     override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
-        let keycode = "\(self.keycodeForPosition(position: position))"
-        let title = self.helper(helper: self.helper, titleForPosition: position)
+        let keycode = "\(keycodeForPosition(position: position))"
+        let title = helper(helper: helper, titleForPosition: position)
 
         let identifier = "\(type(of: self))-\(title)-\(keycode))"
         return trait.captionForIdentifier(identifier: identifier, needsMargin: type(of: self).needsMargin, classes: {
@@ -135,23 +132,23 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    override func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         return 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow _: Int) -> Int {
         return 3
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, heightOfRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.height / 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.width / 5
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 0:
             return [self.tenkeyView.numberButton]
@@ -167,7 +164,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 0:
             return [self.tenkeyView.deleteButton]
@@ -183,9 +180,9 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    override func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton(type: .system)
-        let keycode = self.keycodeForPosition(position: position)
+        let keycode = keycodeForPosition(position: position)
 
         let shift = [3, 5, 6, 8, 11].contains(keycode) ? 2 : 1
         button.keycodes = [keycode, keycode + shift * 0x100]
@@ -193,8 +190,8 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         return button
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = keycodeForPosition(position: position)
         let titles = "123456789*0#"
         let idx = titles.index(titles.startIndex, offsetBy: keycode)
         return "\(titles[idx])"
@@ -212,11 +209,11 @@ class TenKeyAlphabetKeyboardLayout: TenkeyKeyboardLayout {
         return view
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = keycodeForPosition(position: position)
         let titles1 = ["@#/&_", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz", "⇨", ".,?!", ""]
         let titles2 = ["@#/&_", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ", "⇨", ".,?!", ""]
-        let label = (self.view.shiftButton.isSelected ? titles2 : titles1)[keycode]
+        let label = (view.shiftButton.isSelected ? titles2 : titles1)[keycode]
 
         return "\(label)"
     }
@@ -233,11 +230,11 @@ class TenKeyNumberKeyboardLayout: TenkeyKeyboardLayout {
         return view
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = keycodeForPosition(position: position)
         let titles1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "0", "."]
         let titles2 = titles1
-        let label = (self.view.shiftButton.isSelected ? titles2 : titles1)[keycode]
+        let label = (view.shiftButton.isSelected ? titles2 : titles1)[keycode]
         return "\(label)"
     }
 }
@@ -253,31 +250,30 @@ class CheonjiinKeyboardLayout: TenkeyKeyboardLayout {
         return view
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = keycodeForPosition(position: position)
         let titles1 = ["ㅣ", "·", "ㅡ", "ㄱㅋ", "ㄴㄹ", "ㄷㅌ", "ㅂㅍ", "ㅅㅎ", "ㅈㅊ", "⇨", "ㅇㅁ", ".,?!"]
         let titles2 = ["ㅣ", "· ·", "ㅡ", "ㄲ", "ㄹ", "ㄸ", "ㅃ", "ㅆ", "ㅉ", "⇨", "ㅁ", "?"]
-        let label = (self.view.shiftButton.isSelected ? titles2 : titles1)[keycode]
+        let label = (view.shiftButton.isSelected ? titles2 : titles1)[keycode]
         return "\(label)"
     }
 }
 
 class CheonjiinPlusKeyboardLayout: TenkeyKeyboardLayout {
-
     override func keycodeForPosition(position: GRKeyboardLayoutHelper.Position) -> Int {
         return position.row * 6 + position.column
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
-            case 0: return 4
-            case 1, 2: return 6
-            case 3: return 5
-            default: return 0
+        case 0: return 4
+        case 1, 2: return 6
+        case 3: return 5
+        default: return 0
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.width / 5
     }
 
@@ -285,11 +281,11 @@ class CheonjiinPlusKeyboardLayout: TenkeyKeyboardLayout {
         return context_create(cheonjiin_from_tenkey_handler(), cheonjiin_from_tenkey_handler(), cheonjiin_decoder())
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycode = self.keycodeForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycode = keycodeForPosition(position: position)
         let titles1 = ["ㅣ", "·", "··", "ㅡ", "ㄱ", "ㅋ", "ㄴ", "ㄹ", "ㄷ", "ㅌ", "ㅂ", "ㅍ", "ㅅ", "ㅎ", "ㅈ", "ㅊ", "⇨", "ㅇ", "ㅁ", ".,", "?!"]
         let titles2 = titles1
-        let label = (self.view.shiftButton.isSelected ? titles2 : titles1)[keycode]
+        let label = (view.shiftButton.isSelected ? titles2 : titles1)[keycode]
         return "\(label)"
     }
 }

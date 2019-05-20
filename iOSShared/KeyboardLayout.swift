@@ -16,14 +16,15 @@ class KeyboardViewEventView: UIView {
     var touchingTimer: Timer = Timer()
     var touchingButtons: NSArray = NSArray()
 
-    //var untouchingTimer: NSTimer = NSTimer()
+    // var untouchingTimer: NSTimer = NSTimer()
 
     var touchedButtons: NSMutableArray = NSMutableArray()
     func addButton(button: GRInputButton) {
-        if !self.touchedButtons.contains(button) {
-            self.touchedButtons.add(button)
+        if !touchedButtons.contains(button) {
+            touchedButtons.add(button)
         }
     }
+
 //    var touchedSpots: [UIView] = {
 //        var spots: [UIView] = []
 //        for i in 0...10 {
@@ -40,42 +41,40 @@ class KeyboardViewEventView: UIView {
 //    }()
 
     var keyboardView: KeyboardView {
-        get {
-            return self.superview! as! KeyboardView
-        }
+        return superview! as! KeyboardView
     }
 
     func resetTouching() {
-        self.stopTouching()
-        //self.untouchingTimer.invalidate()
-        self.touchingButtons = self.touchedButtons.copy() as! NSArray
-        self.touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: #selector(KeyboardViewEventView.checkTouchingTimer(_:)), userInfo: nil, repeats: true)
+        stopTouching()
+        // self.untouchingTimer.invalidate()
+        touchingButtons = touchedButtons.copy() as! NSArray
+        touchingTimer = Timer.scheduledTimer(timeInterval: 0.014, target: self, selector: #selector(KeyboardViewEventView.checkTouchingTimer(_:)), userInfo: nil, repeats: true)
     }
 
     func stopTouching() {
-        self.touchingDate = Date()
-        self.touchingCount = 0
-        self.touchingTimer.invalidate()
+        touchingDate = Date()
+        touchingCount = 0
+        touchingTimer.invalidate()
     }
 
-    @objc func checkTouchingTimer(_ timer: Timer) {
-        if self.touchedButtons.count != 1 {
-            self.stopTouching()
+    @objc func checkTouchingTimer(_: Timer) {
+        if touchedButtons.count != 1 {
+            stopTouching()
             return
         }
 
-        if !self.touchedButtons.isEqual(self.touchedButtons) {
-            self.resetTouching()
+        if !touchedButtons.isEqual(touchedButtons) {
+            resetTouching()
             return
         }
 
-        self.touchingCount += 1
+        touchingCount += 1
 
-        if self.touchingCount >= MINIMAL_COUNT && self.touchingCount % 10 == 0 || self.touchingCount >= MINIMAL_COUNT * 4 && self.touchingCount % 5 == 0 {
-            let button = self.touchedButtons[0] as! GRInputButton
+        if touchingCount >= MINIMAL_COUNT && touchingCount % 10 == 0 || touchingCount >= MINIMAL_COUNT * 4 && touchingCount % 5 == 0 {
+            let button = touchedButtons[0] as! GRInputButton
             button.sendActions(for: .touchUpInside)
         }
-        //println("touching \(self.touchingCount)")
+        // println("touching \(self.touchingCount)")
     }
 
 //    func checkUntouchingTimer(timer: NSTimer) {
@@ -83,50 +82,50 @@ class KeyboardViewEventView: UIView {
 //    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //println("touch began?")
+        // println("touch began?")
         if touches.count == 1 {
-            self.resetTouching()
+            resetTouching()
         } else {
-            self.stopTouching()
+            stopTouching()
         }
-        self.touchesMoved(touches, with: event)
+        touchesMoved(touches, with: event)
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesMoved(_: Set<UITouch>, with event: UIEvent?) {
         var buttons: [GRInputButton: Bool] = [:]
         var orphans: [GRInputButton] = []
 
         for rawTouch in (event?.allTouches!)! {
             let touch = rawTouch as UITouch
             let prevPoint = touch.previousLocation(in: self)
-            let prevButton = self.keyboardView.layout.correspondingButtonForPoint(point: prevPoint, size: self.frame.size)
+            let prevButton = keyboardView.layout.correspondingButtonForPoint(point: prevPoint, size: frame.size)
             let point = touch.location(in: self)
-            let button = self.keyboardView.layout.correspondingButtonForPoint(point: point, size: self.frame.size)
+            let button = keyboardView.layout.correspondingButtonForPoint(point: point, size: frame.size)
             if prevButton != button {
                 buttons[prevButton] = nil
                 prevButton.hideEffect()
-                self.resetTouching()
-                //println("--touch moved point: \(point) \(button.captionLabel.text)")
+                resetTouching()
+                // println("--touch moved point: \(point) \(button.captionLabel.text)")
             } else {
-                //println("--touch point: \(point) \(button.captionLabel.text)")
+                // println("--touch point: \(point) \(button.captionLabel.text)")
             }
             button.showEffect()
             buttons[button] = true
         }
 
-        for raw in self.touchedButtons {
+        for raw in touchedButtons {
             let button = raw as! GRInputButton
             if buttons[button] == nil {
                 button.hideEffect()
                 orphans.append(button)
             }
         }
-        
+
         for button in orphans {
-            self.touchedButtons.remove(button)
+            touchedButtons.remove(button)
         }
         for button in buttons.keys {
-            self.addButton(button: button)
+            addButton(button: button)
         }
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
@@ -141,32 +140,32 @@ class KeyboardViewEventView: UIView {
 //        }
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_: Set<UITouch>, with event: UIEvent?) {
         for touch in event!.allTouches! {
             if touch.phase != .ended {
                 continue
             }
             let point = touch.location(in: self)
-            var button = self.keyboardView.layout.correspondingButtonForPoint(point: point, size: self.frame.size)
-            if !self.touchedButtons.contains(button) {
+            var button = keyboardView.layout.correspondingButtonForPoint(point: point, size: frame.size)
+            if !touchedButtons.contains(button) {
                 let point = touch.previousLocation(in: self)
-                button = self.keyboardView.layout.correspondingButtonForPoint(point: point, size: self.frame.size)
+                button = keyboardView.layout.correspondingButtonForPoint(point: point, size: frame.size)
             }
-            if self.touchedButtons.contains(button) {
-                while self.touchedButtons.count > 0 {
-                    let poppedButton = self.touchedButtons[0] as! GRInputButton
-                    self.touchedButtons.removeObject(at: 0)
-                    if (self.touchingButtons.count != 1 || self.touchingCount < MINIMAL_COUNT) && poppedButton.isEnabled {
+            if touchedButtons.contains(button) {
+                while touchedButtons.count > 0 {
+                    let poppedButton = touchedButtons[0] as! GRInputButton
+                    touchedButtons.removeObject(at: 0)
+                    if touchingButtons.count != 1 || touchingCount < MINIMAL_COUNT, poppedButton.isEnabled {
                         poppedButton.sendActions(for: .touchUpInside)
                     }
                     poppedButton.hideEffect()
-                    //println("--touch ended: \(poppedButton.captionLabel.text)")
+                    // println("--touch ended: \(poppedButton.captionLabel.text)")
                     if button == poppedButton {
                         break
                     }
                 }
             } else {
-                //println("already popped? \(button.captionLabel.text)")
+                // println("already popped? \(button.captionLabel.text)")
             }
         }
 
@@ -180,18 +179,18 @@ class KeyboardViewEventView: UIView {
 //        }
     }
 
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesCancelled(_: Set<UITouch>, with event: UIEvent?) {
         for touch in event!.allTouches! {
             if touch.phase != .cancelled {
                 continue
             }
             let point = touch.location(in: self)
-            let button = self.keyboardView.layout.correspondingButtonForPoint(point: point, size: self.frame.size)
+            let button = keyboardView.layout.correspondingButtonForPoint(point: point, size: frame.size)
             button.hideEffect()
-            //println("touch cancelled: \(button.captionLabel.text)")
+            // println("touch cancelled: \(button.captionLabel.text)")
         }
 
-        self.stopTouching()
+        stopTouching()
 //        for spot in self.touchedSpots {
 //            spot.hidden = true
 //        }
@@ -199,34 +198,26 @@ class KeyboardViewEventView: UIView {
 }
 
 class KeyboardView: UIView {
-    weak var layout: KeyboardLayout! = nil
+    weak var layout: KeyboardLayout!
 
-    @IBOutlet var nextKeyboardButton: GRInputButton! = nil
-    @IBOutlet var deleteButton: GRInputButton! = nil
-    @IBOutlet var spaceButton: GRInputButton! = nil
-    @IBOutlet var doneButton: GRInputButton! = nil
+    @IBOutlet var nextKeyboardButton: GRInputButton!
+    @IBOutlet var deleteButton: GRInputButton!
+    @IBOutlet var spaceButton: GRInputButton!
+    @IBOutlet var doneButton: GRInputButton!
 
-    @IBOutlet var toggleKeyboardButton: GRInputButton! = nil
-    @IBOutlet var shiftButton: GRInputButton! = nil
+    @IBOutlet var toggleKeyboardButton: GRInputButton!
+    @IBOutlet var shiftButton: GRInputButton!
 
-    var URLButtons: [GRInputButton] {
-        get { return [] }
-    }
+    var URLButtons: [GRInputButton] { return [] }
 
-    var emailButtons: [GRInputButton] {
-        get { return [] }
-    }
+    var emailButtons: [GRInputButton] { return [] }
 
-    var twitterButtons: [GRInputButton] {
-        get { return [] }
-    }
+    var twitterButtons: [GRInputButton] { return [] }
 
-    var visibleButtons: [GRInputButton] {
-        get { return [] }
-    }
+    var visibleButtons: [GRInputButton] { return [] }
 
-    let errorButton = GRInputButton(frame: CGRect(x : -1000, y : -1000, width : 0, height : 0))
-    let untouchButton = GRInputButton(frame: CGRect(x : -1000, y : -1000, width : 0, height : 0))
+    let errorButton = GRInputButton(frame: CGRect(x: -1000, y: -1000, width: 0, height: 0))
+    let untouchButton = GRInputButton(frame: CGRect(x: -1000, y: -1000, width: 0, height: 0))
 
     func needsMargin() -> Bool {
         return true
@@ -234,20 +225,20 @@ class KeyboardView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
-        self.nextKeyboardButton = GRInputButton()
-        self.deleteButton = GRInputButton()
-        self.doneButton = GRInputButton()
-        self.toggleKeyboardButton = GRInputButton()
-        self.shiftButton = GRInputButton()
-        self.spaceButton = GRInputButton()
+        backgroundColor = UIColor.clear
+        nextKeyboardButton = GRInputButton()
+        deleteButton = GRInputButton()
+        doneButton = GRInputButton()
+        toggleKeyboardButton = GRInputButton()
+        shiftButton = GRInputButton()
+        spaceButton = GRInputButton()
 
-        self.preset()
+        preset()
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
     }
 
     override func awakeFromNib() {
@@ -255,53 +246,52 @@ class KeyboardView: UIView {
 
         func reset(button: GRInputButton?) -> GRInputButton {
             if let button = button {
-                //button.setTitleColor(UIColor.clearColor(), forState: .Normal)
+                // button.setTitleColor(UIColor.clearColor(), forState: .Normal)
                 return button
             } else {
                 return GRInputButton()
             }
         }
 
-        self.nextKeyboardButton = reset(button: self.nextKeyboardButton)
-        self.deleteButton = reset(button: self.deleteButton)
-        self.doneButton = reset(button: self.doneButton)
-        self.toggleKeyboardButton = reset(button: self.toggleKeyboardButton)
-        self.shiftButton = reset(button: self.shiftButton)
-        self.spaceButton = reset(button: self.spaceButton)
+        nextKeyboardButton = reset(button: nextKeyboardButton)
+        deleteButton = reset(button: deleteButton)
+        doneButton = reset(button: doneButton)
+        toggleKeyboardButton = reset(button: toggleKeyboardButton)
+        shiftButton = reset(button: shiftButton)
+        spaceButton = reset(button: spaceButton)
 
-        self.preset()
+        preset()
     }
 
     func preset() {
-        self.nextKeyboardButton.captionLabel.text = "🌐"
-        self.deleteButton.captionLabel.text = "⌫"
-        self.deleteButton.keycode = 0x7f
-        self.doneButton.captionLabel.text = "다음문장"
-        self.doneButton.keycode = UnicodeScalar("\n").value
-        self.spaceButton.captionLabel.text = "간격"
-        self.spaceButton.keycode = UnicodeScalar(" ").value
+        nextKeyboardButton.captionLabel.text = "🌐"
+        deleteButton.captionLabel.text = "⌫"
+        deleteButton.keycode = 0x7F
+        doneButton.captionLabel.text = "다음문장"
+        doneButton.keycode = UnicodeScalar("\n").value
+        spaceButton.captionLabel.text = "간격"
+        spaceButton.keycode = UnicodeScalar(" ").value
 
-        self.nextKeyboardButton.addTarget(nil, action: Selector("mode:"), for: .touchUpInside)
-        self.deleteButton.addTarget(nil, action: Selector("inputDelete:"), for: .touchUpInside)
-        self.shiftButton.addTarget(nil, action: Selector("shift:"), for: .touchUpInside)
-        self.doneButton.addTarget(nil, action: Selector("done:"), for: .touchUpInside)
-        self.toggleKeyboardButton.addTarget(nil, action: Selector("toggleLayout:"), for: .touchUpInside)
+        nextKeyboardButton.addTarget(nil, action: Selector("mode:"), for: .touchUpInside)
+        deleteButton.addTarget(nil, action: Selector("inputDelete:"), for: .touchUpInside)
+        shiftButton.addTarget(nil, action: Selector("shift:"), for: .touchUpInside)
+        doneButton.addTarget(nil, action: Selector("done:"), for: .touchUpInside)
+        toggleKeyboardButton.addTarget(nil, action: Selector("toggleLayout:"), for: .touchUpInside)
 
-        self.insertSubview(self.errorButton, at: 0)
-        self.insertSubview(self.untouchButton, at: 0)
-        self.errorButton.addTarget(nil, action: Selector("error:"), for: .touchUpInside)
-        self.untouchButton.addTarget(nil, action: Selector("untouch:"), for: .touchUpInside)
-
+        insertSubview(errorButton, at: 0)
+        insertSubview(untouchButton, at: 0)
+        errorButton.addTarget(nil, action: Selector("error:"), for: .touchUpInside)
+        untouchButton.addTarget(nil, action: Selector("untouch:"), for: .touchUpInside)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.backgroundImageView.removeFromSuperview()
-        self.insertSubview(self.backgroundImageView, at: 0)
-        self.foregroundImageView.removeFromSuperview()
-        self.addSubview(self.foregroundImageView)
-        self.foregroundEventView.removeFromSuperview()
-        self.addSubview(self.foregroundEventView)
+        backgroundImageView.removeFromSuperview()
+        insertSubview(backgroundImageView, at: 0)
+        foregroundImageView.removeFromSuperview()
+        addSubview(foregroundImageView)
+        foregroundEventView.removeFromSuperview()
+        addSubview(foregroundEventView)
     }
 
     lazy var backgroundImageView: UIImageView = {
@@ -326,41 +316,34 @@ class KeyboardView: UIView {
     }()
 }
 
-class NoKeyboardView: KeyboardView {
-}
+class NoKeyboardView: KeyboardView {}
 
 class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
-    
     enum ShiftState {
         case Off
         case On
         case Auto
     }
 
-    var context: UnsafeMutableRawPointer? = nil
+    var context: UnsafeMutableRawPointer?
     var togglable = true {
         didSet {
-            self.view.toggleKeyboardButton.isEnabled = togglable
-            self.view.toggleKeyboardButton.alpha = togglable ? 1.0 : 0.0
+            view.toggleKeyboardButton.isEnabled = togglable
+            view.toggleKeyboardButton.alpha = togglable ? 1.0 : 0.0
         }
     }
-    class var capitalizable: Bool {
-        get { return false }
-    }
-    class var autounshift: Bool {
-        get { return false }
-    }
-    class var shiftCaption: String {
-        get { return "⬆︎" }
-    }
-    class var toggleCaption: String {
-        get { return "123" }
-    }
-    class var needsMargin: Bool {
-        get { return false }
-    }
 
-    func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
+    class var capitalizable: Bool { return false }
+
+    class var autounshift: Bool { return false }
+
+    class var shiftCaption: String { return "⬆︎" }
+
+    class var toggleCaption: String { return "123" }
+
+    class var needsMargin: Bool { return false }
+
+    func themesForTrait(trait _: ThemeTrait) -> [GRInputButton: ThemeCaption] {
         return [:]
     }
 
@@ -380,16 +363,16 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
 
     var shift: ShiftState {
         get {
-            switch (self.view.shiftButton.isSelected, self.autocapitalized) {
+            switch (view.shiftButton.isSelected, autocapitalized) {
             case (true, true): return .Auto
             case (true, false): return .On
             default: return .Off
             }
         }
         set {
-            self.view.shiftButton.isSelected = newValue != .Off
-            self.autocapitalized = newValue == .Auto
-            self.helper.updateCaptionLabel()
+            view.shiftButton.isSelected = newValue != .Off
+            autocapitalized = newValue == .Auto
+            helper.updateCaptionLabel()
         }
     }
 
@@ -406,30 +389,30 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
     override init() {
         super.init()
         let view = self.view
-        self.helper.createButtonsInView(view: view)
+        helper.createButtonsInView(view: view)
     }
 
-    func transitionViewToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
-        var rect = self.view.bounds
+    func transitionViewToSize(size: CGSize, withTransitionCoordinator _: UIViewControllerTransitionCoordinator!) {
+        var rect = view.bounds
         rect.size = size
-        self.helper.layoutButtonsInRect(rect: rect)
+        helper.layoutButtonsInRect(rect: rect)
     }
 
-    func correspondingButtonForPoint(point: CGPoint, size: CGSize) -> GRInputButton {
+    func correspondingButtonForPoint(point: CGPoint, size _: CGSize) -> GRInputButton {
         var newPoint = point
         if point.x < 0 {
             newPoint.x = 0
         }
-        if point.x >= self.view.frame.size.width {
-            newPoint.x = self.view.frame.size.width - 1
+        if point.x >= view.frame.size.width {
+            newPoint.x = view.frame.size.width - 1
         }
         if point.y < 0 {
             newPoint.y = 0
         }
-        if point.y >= self.view.frame.size.height {
-            newPoint.y = self.view.frame.size.height - 1
+        if point.y >= view.frame.size.height {
+            newPoint.y = view.frame.size.height - 1
         }
-        for view in self.view.subviews {
+        for view in view.subviews {
             if !(view is GRInputButton) {
                 continue
             }
@@ -442,35 +425,33 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
             }
         }
 
-        self.view.errorButton.tag = Int(newPoint.x) * 10000 + Int(newPoint.y)
-        return self.view.errorButton
+        view.errorButton.tag = Int(newPoint.x) * 10000 + Int(newPoint.y)
+        return view.errorButton
     }
 
-    func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
+    func captionThemeForTrait(trait: ThemeTrait, position _: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
         assert(false)
         return trait._baseCaption
     }
 
-    func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
-        for subview in self.view.visibleButtons {
-            self.view.addSubview(subview)
+    func layoutWillLoad(helper _: GRKeyboardLayoutHelper) {
+        for subview in view.visibleButtons {
+            view.addSubview(subview)
         }
     }
 
-    func layoutDidLoad(helper: GRKeyboardLayoutHelper) {
-    }
+    func layoutDidLoad(helper _: GRKeyboardLayoutHelper) {}
 
+    func layoutWillLayout(helper _: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = theme(helper: helper).traitForSize(size: rect.size)
 
-    func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.theme(helper: self.helper).traitForSize(size: rect.size)
-
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait: trait, position: position)
+        for (position, button) in helper.buttons {
+            let captionTheme = captionThemeForTrait(trait: trait, position: position)
             captionTheme.appealButton(button: button)
         }
 
-        let themeMap = self.themesForTrait(trait: trait)
-        for button in self.view.visibleButtons {
+        let themeMap = themesForTrait(trait: trait)
+        for button in view.visibleButtons {
             if let theme = themeMap[button] {
                 theme.appealButton(button: button)
             } else {
@@ -482,15 +463,15 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         }
     }
 
-    func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect rect: CGRect) {
-        let trait = self.theme(helper: self.helper).traitForSize(size: rect.size)
-        for (position, button) in self.helper.buttons {
-            let captionTheme = self.captionThemeForTrait(trait: trait, position: position)
+    func layoutDidLayout(helper _: GRKeyboardLayoutHelper, forRect rect: CGRect) {
+        let trait = theme(helper: helper).traitForSize(size: rect.size)
+        for (position, button) in helper.buttons {
+            let captionTheme = captionThemeForTrait(trait: trait, position: position)
             captionTheme.arrangeButton(button: button)
         }
 
-        let themeMap = self.themesForTrait(trait: trait)
-        for button in self.view.visibleButtons {
+        let themeMap = themesForTrait(trait: trait)
+        for button in view.visibleButtons {
             if let theme = themeMap[button] {
                 theme.arrangeButton(button: button)
             } else {
@@ -502,51 +483,51 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         }
     }
 
-    func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
+    func insetsForHelper(helper _: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
 
-    func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         assert(false)
         return 0
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow _: Int) -> Int {
         assert(false)
         return 0
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat {
+    func helper(helper _: GRKeyboardLayoutHelper, heightOfRow _: Int, forSize _: CGSize) -> CGFloat {
         assert(false)
         return 0
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat {
+    func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize _: CGSize) -> CGFloat {
         assert(false)
         return 0
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> Array<UIButton> {
         assert(false)
         return []
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
         assert(false)
         return []
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition _: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         assert(false)
         return GRInputButton()
     }
 
-    func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+    func helper(helper _: GRKeyboardLayoutHelper, titleForPosition _: GRKeyboardLayoutHelper.Position) -> String {
         assert(false)
         return ""
     }
 
-    func theme(helper: GRKeyboardLayoutHelper) -> Theme {
+    func theme(helper _: GRKeyboardLayoutHelper) -> Theme {
         if let inputViewController = globalInputViewController {
             return inputViewController.inputMethodView.theme
         } else {
@@ -554,15 +535,14 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         }
     }
 
-    func adjustTraits(traits: UITextInputTraits) {
+    func adjustTraits(traits _: UITextInputTraits) {
         //
     }
 }
 
 class NoKeyboardLayout: KeyboardLayout {
-
     override class func loadView() -> KeyboardView {
-        let view = KeyboardView(frame: CGRect(x:0, y:0, width:200, height:100))
+        let view = KeyboardView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
 
         view.nextKeyboardButton = GRInputButton()
         view.deleteButton = GRInputButton()
@@ -580,55 +560,51 @@ class NoKeyboardLayout: KeyboardLayout {
         return nil
     }
 
-    override func layoutWillLoad(helper: GRKeyboardLayoutHelper) {
-    }
+    override func layoutWillLoad(helper _: GRKeyboardLayoutHelper) {}
 
-    override func layoutDidLoad(helper: GRKeyboardLayoutHelper) {
-    }
+    override func layoutDidLoad(helper _: GRKeyboardLayoutHelper) {}
 
-    override func layoutWillLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
-    }
+    override func layoutWillLayout(helper _: GRKeyboardLayoutHelper, forRect _: CGRect) {}
 
-    override func layoutDidLayout(helper: GRKeyboardLayoutHelper, forRect: CGRect) {
-    }
+    override func layoutDidLayout(helper _: GRKeyboardLayoutHelper, forRect _: CGRect) {}
 
-    override func insetsForHelper(helper: GRKeyboardLayoutHelper) -> UIEdgeInsets {
+    override func insetsForHelper(helper _: GRKeyboardLayoutHelper) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
 
-    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    override func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         return 1
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow _: Int) -> Int {
         return 1
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, heightOfRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.height
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.width
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> Array<UIButton> {
         return []
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
         return []
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    override func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition _: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton(type: .system)
         button.keycode = UnicodeScalar(" ").value
         button.sizeToFit()
-        //button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
+        // button.backgroundColor = UIColor(white: 1.0 - 72.0/255.0, alpha: 1.0)
         return button
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition _: GRKeyboardLayoutHelper.Position) -> String {
         return "ERROR: This is a bug."
     }
 }
@@ -637,9 +613,7 @@ class KeyboardLayoutCollection {
     let layouts: [KeyboardLayout]
     var selectedLayoutIndex = 0
     var selectedLayout: KeyboardLayout {
-        get {
-            return self.layouts[self.selectedLayoutIndex]
-        }
+        return layouts[self.selectedLayoutIndex]
     }
 
     init(layouts: [KeyboardLayout]) {
@@ -647,22 +621,22 @@ class KeyboardLayoutCollection {
     }
 
     func selectLayoutIndex(index: Int) {
-        if self.selectedLayoutIndex == index {
+        if selectedLayoutIndex == index {
             return
         }
-        let oldLayout = self.selectedLayout
-        self.selectedLayoutIndex = index
-        let newLayout = self.selectedLayout
+        let oldLayout = selectedLayout
+        selectedLayoutIndex = index
+        let newLayout = selectedLayout
         newLayout.view.frame = oldLayout.view.frame
         oldLayout.view.superview!.addSubview(newLayout.view)
         oldLayout.view.removeFromSuperview()
     }
 
     func switchLayout() {
-        var layoutIndex = self.selectedLayoutIndex + 1
-        if layoutIndex >= self.layouts.count {
+        var layoutIndex = selectedLayoutIndex + 1
+        if layoutIndex >= layouts.count {
             layoutIndex = 0
         }
-        self.selectLayoutIndex(index: layoutIndex)
+        selectLayoutIndex(index: layoutIndex)
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit
 
 
 @class GRInputEffectView;

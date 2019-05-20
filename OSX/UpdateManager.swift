@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationExtension
 
 class UpdateManager {
     static let shared = UpdateManager()

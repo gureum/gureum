@@ -12,9 +12,8 @@ let QuickHelperResult: NSMutableDictionary = NSMutableDictionary()
 var QuickHelperJoined = false
 
 class QuickHelperTableViewController: UITableViewController {
-    var doneButtonTitle: String? {
-        get { return NSLocalizedString("Next", comment: "Next button of wizard") }
-    }
+    var doneButtonTitle: String? { return NSLocalizedString("Next", comment: "Next button of wizard") }
+
     lazy var doneButton: UIBarButtonItem = {
         let button: UIBarButtonItem
         if let title = self.doneButtonTitle {
@@ -28,7 +27,7 @@ class QuickHelperTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = self.doneButton
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     func helperKey() -> String {
@@ -42,7 +41,7 @@ class QuickHelperTableViewController: UITableViewController {
     }
 
     @objc func done(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: self.nextSegueIdentifier(), sender: sender)
+        performSegue(withIdentifier: nextSegueIdentifier(), sender: sender)
     }
 }
 
@@ -50,32 +49,32 @@ class QuickHelperTableViewController: UITableViewController {
     var selectedIndexPaths: [IndexPath] = []
     var needsSelection: Bool = true
 
-    override func viewWillDisappear(_ animated: Bool) {
-        let key = self.helperKey()
-        QuickHelperResult[key] = self.selectedIndexPaths
+    override func viewWillDisappear(_: Bool) {
+        let key = helperKey()
+        QuickHelperResult[key] = selectedIndexPaths
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.selectedIndexPaths.contains(indexPath) {
-            self.selectedIndexPaths = self.selectedIndexPaths.filter({ indexPath != $0 })
+        if selectedIndexPaths.contains(indexPath) {
+            selectedIndexPaths = selectedIndexPaths.filter({ indexPath != $0 })
         } else {
-            self.selectedIndexPaths.append(indexPath)
+            selectedIndexPaths.append(indexPath)
         }
-        self.doneButton.isEnabled = !self.needsSelection || self.selectedIndexPaths.count > 0
+        doneButton.isEnabled = !needsSelection || selectedIndexPaths.count > 0
         tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.accessoryType = self.selectedIndexPaths.contains(indexPath) ? .checkmark : .none
+        cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
         return cell
     }
 }
 
 class SingleSelectableQuickHelperTableViewController: SelectableQuickHelperTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedIndexPaths = [indexPath]
-        self.doneButton.isEnabled = self.selectedIndexPaths.count > 0
+        selectedIndexPaths = [indexPath]
+        doneButton.isEnabled = selectedIndexPaths.count > 0
         tableView.reloadData()
     }
 }
@@ -83,7 +82,7 @@ class SingleSelectableQuickHelperTableViewController: SelectableQuickHelperTable
 class MainLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView(self.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         QuickHelperJoined = true
     }
 
@@ -102,10 +101,9 @@ class MainLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTable
 }
 
 class RomanLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTableViewController {
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView(self.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
 
     override func helperKey() -> String {
@@ -118,7 +116,6 @@ class RomanLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTabl
 }
 
 class TenKeyLeftLayoutQuickHelperTableViewController: SingleSelectableQuickHelperTableViewController {
-
     override func helperKey() -> String {
         return "left"
     }
@@ -129,16 +126,15 @@ class TenKeyLeftLayoutQuickHelperTableViewController: SingleSelectableQuickHelpe
 }
 
 class RightLayoutQuickHelperTableViewController: SelectableQuickHelperTableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndexPaths = [IndexPath(row: 0, section: 0)]
+        selectedIndexPaths = [IndexPath(row: 0, section: 0)]
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.needsSelection = false
-        self.doneButton.isEnabled = true
+        needsSelection = false
+        doneButton.isEnabled = true
     }
 
     override func helperKey() -> String {
@@ -151,11 +147,10 @@ class RightLayoutQuickHelperTableViewController: SelectableQuickHelperTableViewC
 }
 
 class SettingsQuickHelperTableViewController: SelectableQuickHelperTableViewController {
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.selectedIndexPaths = [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)]
-        self.doneButton.isEnabled = true
+        selectedIndexPaths = [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)]
+        doneButton.isEnabled = true
     }
 
     override func helperKey() -> String {

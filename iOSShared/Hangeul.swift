@@ -11,7 +11,7 @@ func context_get_composed_unicodes(context: UnsafeMutableRawPointer) -> [Unicode
     context_get_composed(context, buffer)
     let size = unicodevector_size(buffer)
     var result: [UnicodeScalar] = []
-    for i in 0..<size {
+    for i in 0 ..< size {
         let unicode = unicodevector_get(buffer, i)
         result.append(UnicodeScalar(unicode)!)
     }
@@ -20,12 +20,12 @@ func context_get_composed_unicodes(context: UnsafeMutableRawPointer) -> [Unicode
 }
 
 func context_get_commited_unicodes(context: UnsafeMutableRawPointer) -> [UnicodeScalar] {
-    return []; // temp
+    return [] // temp
     let buffer = unicodevector_create()
     context_get_commited(context, buffer)
     let size = unicodevector_size(buffer)
     var result: [UnicodeScalar] = []
-    for i in 0..<size {
+    for i in 0 ..< size {
         let unicode = unicodevector_get(buffer, i)
         result.append(UnicodeScalar(unicode)!)
     }
@@ -51,7 +51,7 @@ func unicodes_nfc_to_nfd(unicodes: [UnicodeScalar]) -> [UnicodeScalar] {
     nfc_to_nfd(nfc_buffer, nfd_buffer)
 
     var result: [UnicodeScalar] = []
-    for i in 0..<unicodevector_size(nfd_buffer) {
+    for i in 0 ..< unicodevector_size(nfd_buffer) {
         let unicode = unicodevector_get(nfd_buffer, i)
         result.append(UnicodeScalar(unicode)!)
     }

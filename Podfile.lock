@@ -1,8 +1,8 @@
 PODS:
   - cdebug (1.2)
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
-  - Fabric (1.9.0)
+  - Crashlytics (3.13.1):
+    - Fabric (~> 1.10.1)
+  - Fabric (1.10.1)
   - FoundationExtension (2.0.0):
     - cdebug (~> 1.1)
     - FoundationExtension/FoundationExtension (= 2.0.0)
@@ -12,26 +12,14 @@ PODS:
     - FoundationExtension/FoundationExtensionRC
   - FoundationExtension/FoundationExtensionRC (2.0.0):
     - cdebug (~> 1.1)
-  - GlobalActivityIndicatorView (0.1.1):
-    - cdebug (~> 1.0)
-  - GoogleMobileAds (7.8.0)
   - MASShortcut (2.3.6)
-  - UIKitExtension (2.0.0):
-    - cdebug (~> 1.1)
-    - UIKitExtension/UIKitExtension (= 2.0.0)
-  - UIKitExtension/UIKitExtension (2.0.0):
-    - cdebug (~> 1.1)
-    - FoundationExtension/FoundationExtension
 
 DEPENDENCIES:
   - cdebug
   - Crashlytics
   - Fabric
   - FoundationExtension (~> 2.0.0)
-  - GlobalActivityIndicatorView (>= 0.1.1)
-  - GoogleMobileAds
   - MASShortcut
-  - UIKitExtension (~> 2.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -39,21 +27,15 @@ SPEC REPOS:
     - Crashlytics
     - Fabric
     - FoundationExtension
-    - GlobalActivityIndicatorView
-    - GoogleMobileAds
     - MASShortcut
-    - UIKitExtension
 
 SPEC CHECKSUMS:
   cdebug: 55a96da647360590f0d292baebb34c4066cbca02
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
+  Fabric: f6f21452846788bb44595d73e9909d79d328e617
   FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
-  GlobalActivityIndicatorView: 012695aa501b1476325b2076f522cc61c539ed04
-  GoogleMobileAds: 0ed4d41b03fe768e2e2945df68707fd4ff97c179
   MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
-  UIKitExtension: bde32a28933d00591fc7b6a36088fa3428028dbc
 
-PODFILE CHECKSUM: 793336420ccd8156a6366bb3aff70718fdb5da66
+PODFILE CHECKSUM: ad8cfc76fc64d900dbda949a1f7c5b241feb451d
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.7.0.rc.2

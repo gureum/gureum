@@ -18,9 +18,9 @@ extension UIActivityIndicatorView {
         set {
             _UIActivityIndicatorViewAnimatedCounters[self] = newValue
             if newValue > 0 {
-                self.startAnimating()
+                startAnimating()
             } else {
-                self.stopAnimating()
+                stopAnimating()
             }
         }
     }
@@ -29,11 +29,11 @@ extension UIActivityIndicatorView {
         if let superview = self.superview {
             superview.bringSubview(toFront: self)
         }
-        self._animatingCount += 1
+        _animatingCount += 1
     }
 
     func popAnimating() {
-        self._animatingCount -= 1
+        _animatingCount -= 1
     }
 }
 
@@ -54,8 +54,6 @@ func UIActivityIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorVi
 
 extension UIWindow {
     var activityIndicatorView: UIActivityIndicatorView {
-        get {
-            return UIActivityIndicatorViewForWindow(window: self)
-        }
+        return UIActivityIndicatorViewForWindow(window: self)
     }
 }

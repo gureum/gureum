@@ -6,38 +6,36 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-import UIKit
 import StoreKit
+import UIKit
 
 class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
-    @IBOutlet var tableView: UITableView! = nil
+    @IBOutlet var tableView: UITableView!
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_: Bool) {
         let window = sharedAppDelegate.window!
         UIActivityIndicatorViewForWindow(window: window).pushAnimating()
 
-        
         store.backgroundQueue.async {
             let previousCount = store.entries.count
             store.refresh()
-            
+
             let mainQueue = DispatchQueue.main
             mainQueue.async {
                 if previousCount > store.entries.count {
                     self.tableView.reloadData()
                 }
                 UIActivityIndicatorViewForWindow(window: window).popAnimating()
-                
             }
         }
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView _: UITableView) -> Int {
         return store.entries.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let items: [String: Any] = store.entries[section]["items"]! as! [String : Any]
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let items: [String: Any] = store.entries[section]["items"]! as! [String: Any]
         return items.count
     }
 
@@ -62,15 +60,15 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
 
-    private func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
+    private func tableView(tableView _: UITableView, titleForHeaderInSection section: Int) -> String! {
         return store.categoryForSection(section: section).title
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !store.canMakePayments() {
             let alert = UIAlertController(title: "구매 불가", message: "일시적인 문제로 지금은 iTunes Store를 이용할 수 없습니다. 잠시 후에 다시 시도해 주세요.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
             return
         }
 
@@ -85,8 +83,8 @@ class ThemeShopViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        let (section, row) = (alertView.tag >> 15, alertView.tag & 0xffff)
+    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex _: Int) {
+        let (section, row) = (alertView.tag >> 15, alertView.tag & 0xFFFF)
         let item = store.categoryForSection(section: section).itemForRow(row: row)
         let payment = SKPayment(product: item.product)
         SKPaymentQueue.default().add(payment)

@@ -19,9 +19,9 @@ class StoreCategory {
 
     lazy var title = self.data["section"] as! String
     func itemForRow(row: Int) -> StoreItem {
-        let items: Any? = self.data["items"]
+        let items: Any? = data["items"]
         assert(items != nil)
-        return StoreItem(owner: self.owner, data: (items as! NSArray)[row] as! NSDictionary)
+        return StoreItem(owner: owner, data: (items as! NSArray)[row] as! NSDictionary)
     }
 }
 
@@ -56,22 +56,22 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         SKPaymentQueue.default().add(self)
 
         backgroundQueue.async {
-             self.refresh()
+            self.refresh()
         }
     }
 
     func refresh() {
-        let url =  NSURL(string: "http://w.youknowone.org/gureum/store.json")
+        let url = NSURL(string: "http://w.youknowone.org/gureum/store.json")
         guard let data = try? Data(contentsOf: url! as URL, options: Data.ReadingOptions(rawValue: 0)) else {
             print("fixme: internet not availble")
             return
         }
 
-        guard let items: [[String: Any]] = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [[String : Any]] else {
+        guard let items: [[String: Any]] = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [[String: Any]] else {
             print("FIXME: store not available")
             return
         }
-        self.entries = items
+        entries = items
 
         var names = Set<String>()
         for category in entries {
@@ -95,17 +95,17 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
 
     func categoryForSection(section: Int) -> StoreCategory {
-        let data = self.entries[section] as NSDictionary
+        let data = entries[section] as NSDictionary
         return StoreCategory(owner: self, data: data)
     }
 
     func itemForIndexPath(indexPath: NSIndexPath) -> StoreItem {
-        return self.categoryForSection(section: indexPath.section).itemForRow(row: indexPath.row)
+        return categoryForSection(section: indexPath.section).itemForRow(row: indexPath.row)
     }
 
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         for product in response.products {
-            self.products[product.productIdentifier] = product
+            products[product.productIdentifier] = product
         }
 
         for invalidProductIdentifier in response.invalidProductIdentifiers {
@@ -113,40 +113,40 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
     }
 
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             print("transaction: \(transaction)")
             switch transaction.transactionState {
-                    ///< 서버에 거래 처리중
+            /// < 서버에 거래 처리중
             case .purchasing:
-                print("InAppPurchase SKPaymentTransactionStatePurchasing");
-                    let alertView = UIAlertView(title: "구매를 시도합니다", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
-                    alertView.show()
-                    break;
-                    ///< 구매 완료
+                print("InAppPurchase SKPaymentTransactionStatePurchasing")
+                let alertView = UIAlertView(title: "구매를 시도합니다", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                alertView.show()
+                break
+            /// < 구매 완료
             case .purchased:
-                print("InAppPurchase SKPaymentTransactionStatePurchased");
+                print("InAppPurchase SKPaymentTransactionStatePurchased")
 //                let alertView = UIAlertView(title: "구매가 완료되었습니다.", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
 //                    alertView.show()
                 SKPaymentQueue.default().finishTransaction(transaction)
-                    ///< 거래 실패 또는 취소
+            /// < 거래 실패 또는 취소
             case .failed:
-                print("InAppPurchase SKPaymentTransactionStateFailed");
+                print("InAppPurchase SKPaymentTransactionStateFailed")
                 let alertView = UIAlertView(title: "구매 실패", message: (transaction.error?.localizedDescription)!, delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
-                    alertView.show()
+                alertView.show()
                 print("error code: \(String(describing: transaction.error))")
                 SKPaymentQueue.default().finishTransaction(transaction)
 
-                    ///< 재구매
+            /// < 재구매
             case .restored:
-                    let alertView = UIAlertView(title: "구매가 복원되었습니다.", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
-                    alertView.show()
-                    print("InAppPurchase SKPaymentTransactionStateRestore");
-                    SKPaymentQueue.default().finishTransaction(transaction)
+                let alertView = UIAlertView(title: "구매가 복원되었습니다.", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
+                alertView.show()
+                print("InAppPurchase SKPaymentTransactionStateRestore")
+                SKPaymentQueue.default().finishTransaction(transaction)
             case .deferred:
                 let alertView = UIAlertView(title: "뭐셔?", message: (transaction.error?.localizedDescription)!, delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
-                    alertView.show()
-                    print("InAppPurchase SKPaymentTransactionStateDeferred");
+                alertView.show()
+                print("InAppPurchase SKPaymentTransactionStateDeferred")
             }
         }
     }

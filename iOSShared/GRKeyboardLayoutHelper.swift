@@ -29,16 +29,14 @@ protocol GRKeyboardLayoutHelperDelegate: class {
 
 class GRKeyboardLayoutHelper {
     struct Position: Hashable {
-        let row: Int;
-        let column: Int;
+        let row: Int
+        let column: Int
         var hashValue: Int {
-            get {
-                return Int(row << 16 + column);
-            }
+            return Int(row << 16 + column)
         }
 
         init(tuple: (Int, Int)) {
-            (self.row, self.column) = tuple
+            (row, column) = tuple
         }
 
         init(row: Int, column: Int) {
@@ -50,28 +48,28 @@ class GRKeyboardLayoutHelper {
     var buttons: [Position: GRInputButton] = [:]
 
     init(delegate: GRKeyboardLayoutHelperDelegate?) {
-        self.delegate = delegate;
+        self.delegate = delegate
     }
 
     func buttonAt(position: Position) -> UIButton? {
-        if self.delegate == nil {
+        if delegate == nil {
             return nil
         }
 
-        return self.buttons[position]
+        return buttons[position]
     }
 
     func createButtonsInView(view: UIView) {
-        for (_, button) in self.buttons {
+        for (_, button) in buttons {
             button.removeFromSuperview()
         }
-        self.buttons.removeAll()
+        buttons.removeAll()
 
         if let delegate = self.delegate {
             delegate.layoutWillLoad(helper: self)
 
             let rowCount = delegate.numberOfRowsForHelper(helper: self)
-            for row in 0..<rowCount {
+            for row in 0 ..< rowCount {
                 let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
                 let leftButtons = delegate.helper(helper: self, leftButtonsForRow: row)
                 let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
@@ -79,12 +77,12 @@ class GRKeyboardLayoutHelper {
                 for button in delegate.helper(helper: self, leftButtonsForRow: row) {
                     view.insertSubview(button, belowSubview: view.subviews.last!)
                     button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-                    //button.preload()
+                    // button.preload()
                 }
-                for column in 0..<columnCount {
+                for column in 0 ..< columnCount {
                     let position = Position(tuple: (row, column))
                     var button = delegate.helper(helper: self, buttonForPosition: position)
-                    self.buttons[position] = button
+                    buttons[position] = button
                     assert(view.subviews.count > 0)
                     view.insertSubview(button, belowSubview: view.subviews.last!)
                     button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
@@ -92,12 +90,12 @@ class GRKeyboardLayoutHelper {
                 for button in delegate.helper(helper: self, rightButtonsForRow: row) {
                     view.insertSubview(button, belowSubview: view.subviews.last as! UIView)
                     button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-                    //button.preload()
+                    // button.preload()
                 }
             }
             delegate.layoutDidLoad(helper: self)
         }
-        self.updateCaptionLabel()
+        updateCaptionLabel()
     }
 
     func layoutButtonsInRect(rect: CGRect) {
@@ -111,16 +109,16 @@ class GRKeyboardLayoutHelper {
             let insets = delegate.insetsForHelper(helper: self)
             let insetFrame = UIEdgeInsetsInsetRect(rect, insets)
             let rowCount = delegate.numberOfRowsForHelper(helper: self)
-            for row in 0..<rowCount {
+            for row in 0 ..< rowCount {
                 let rowHeight = delegate.helper(helper: self, heightOfRow: row, forSize: rect.size)
                 let columnWidth = delegate.helper(helper: self, columnWidthInRow: row, forSize: rect.size)
                 let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
                 let leftButtons = delegate.helper(helper: self, leftButtonsForRow: row)
                 let rightButtons = delegate.helper(helper: self, rightButtonsForRow: row)
 
-                for column in 0..<columnCount {
+                for column in 0 ..< columnCount {
                     let position = Position(tuple: (row, column))
-                    let button = self.buttons[position]!
+                    let button = buttons[position]!
                     button.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: columnWidth, height: rowHeight))
                 }
 
@@ -141,9 +139,9 @@ class GRKeyboardLayoutHelper {
             }
 
             let rowSpace = rowCount > 1 ? (insetFrame.size.height - rowHeightSum) / CGFloat(rowCount - 1) : 0.0
-            //println("\(rowHeightSum) \(rowSpace)")
+            // println("\(rowHeightSum) \(rowSpace)")
             var rowHeightSum2: CGFloat = 0.0
-            for row in 0..<rowCount {
+            for row in 0 ..< rowCount {
                 let rowHeight = delegate.helper(helper: self, heightOfRow: row, forSize: rect.size)
                 let columnWidth = delegate.helper(helper: self, columnWidthInRow: row, forSize: rect.size)
                 let columnCount = delegate.helper(helper: self, numberOfColumnsInRow: row)
@@ -158,9 +156,9 @@ class GRKeyboardLayoutHelper {
                     button.frame = CGRect(x: left, y: rowTop, width: width, height: rowHeight)
                     left += width + columnSpace
                 }
-                for column in 0..<columnCount {
+                for column in 0 ..< columnCount {
                     let position = Position(tuple: (row, column))
-                    var button = self.buttons[position]!
+                    var button = buttons[position]!
                     button.frame.origin = CGPoint(x: left, y: rowTop)
                     left += columnWidth + columnSpace
                 }
@@ -177,7 +175,7 @@ class GRKeyboardLayoutHelper {
 
     func updateCaptionLabel() {
         if let delegate = self.delegate {
-            for (position, button) in self.buttons {
+            for (position, button) in buttons {
                 if button.title(for: .normal) == nil {
                     let label = delegate.helper(helper: self, titleForPosition: position)
                     button.title = label
@@ -187,6 +185,6 @@ class GRKeyboardLayoutHelper {
     }
 }
 
-func ==(lhs: GRKeyboardLayoutHelper.Position, rhs: GRKeyboardLayoutHelper.Position) -> Bool {
+func == (lhs: GRKeyboardLayoutHelper.Position, rhs: GRKeyboardLayoutHelper.Position) -> Bool {
     return lhs.row == rhs.row && lhs.column == rhs.column
 }

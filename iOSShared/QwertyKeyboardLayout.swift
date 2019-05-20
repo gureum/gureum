@@ -13,39 +13,31 @@ class QwertyKeyboardView: KeyboardView {
     @IBOutlet var leftSpaceButton: GRInputButton!
     @IBOutlet var rightSpaceButton: GRInputButton!
 
-    @IBOutlet var URLDotButton: GRInputButton! = nil
-    @IBOutlet var URLSlashButton: GRInputButton! = nil
-    @IBOutlet var URLDotComButton: GRInputButton! = nil
+    @IBOutlet var URLDotButton: GRInputButton!
+    @IBOutlet var URLSlashButton: GRInputButton!
+    @IBOutlet var URLDotComButton: GRInputButton!
 
-    @IBOutlet var emailSpaceButton: GRInputButton! = nil
-    @IBOutlet var emailSnailButton: GRInputButton! = nil
-    @IBOutlet var emailDotButton: GRInputButton! = nil
+    @IBOutlet var emailSpaceButton: GRInputButton!
+    @IBOutlet var emailSnailButton: GRInputButton!
+    @IBOutlet var emailDotButton: GRInputButton!
 
-    @IBOutlet var twitterSnailButton: GRInputButton! = nil
-    @IBOutlet var twitterHashButton: GRInputButton! = nil
+    @IBOutlet var twitterSnailButton: GRInputButton!
+    @IBOutlet var twitterHashButton: GRInputButton!
 
     override var URLButtons: [GRInputButton] {
-        get {
-            return [URLDotButton!, URLSlashButton!, URLDotComButton!]
-        }
+        return [URLDotButton!, URLSlashButton!, URLDotComButton!]
     }
 
     override var emailButtons: [GRInputButton] {
-        get {
-            return [emailSpaceButton!, emailSnailButton!, emailDotButton!]
-        }
+        return [emailSpaceButton!, emailSnailButton!, emailDotButton!]
     }
 
     override var twitterButtons: [GRInputButton] {
-        get {
-            return [twitterSnailButton!, twitterHashButton!]
-        }
+        return [twitterSnailButton!, twitterHashButton!]
     }
 
     override var visibleButtons: [GRInputButton] {
-        get {
-            return [self.toggleKeyboardButton, self.shiftButton, self.nextKeyboardButton, self.spaceButton, self.deleteButton, self.doneButton] + self.URLButtons + self.emailButtons + self.twitterButtons
-        }
+        return [self.toggleKeyboardButton, self.shiftButton, self.nextKeyboardButton, self.spaceButton, self.deleteButton, self.doneButton] + self.URLButtons + self.emailButtons + self.twitterButtons
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -55,42 +47,42 @@ class QwertyKeyboardView: KeyboardView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.URLDotButton = GRInputButton()
-        self.URLDotButton.captionLabel.text = "."
-        self.URLDotButton.keycode = UnicodeScalar(".").value
-        self.URLSlashButton = GRInputButton()
-        self.URLSlashButton.captionLabel.text = "/"
-        self.URLSlashButton.keycode = UnicodeScalar("/").value
-        self.URLDotComButton = GRInputButton()
-        self.URLDotComButton.captionLabel.text = ".com"
-        self.URLDotComButton.sequence = ".com"
+        URLDotButton = GRInputButton()
+        URLDotButton.captionLabel.text = "."
+        URLDotButton.keycode = UnicodeScalar(".").value
+        URLSlashButton = GRInputButton()
+        URLSlashButton.captionLabel.text = "/"
+        URLSlashButton.keycode = UnicodeScalar("/").value
+        URLDotComButton = GRInputButton()
+        URLDotComButton.captionLabel.text = ".com"
+        URLDotComButton.sequence = ".com"
 
-        self.emailSpaceButton = GRInputButton()
-        self.emailSpaceButton.captionLabel.text = self.spaceButton.captionLabel.text
-        self.emailSpaceButton.keycode = self.spaceButton.keycode
-        self.emailSnailButton = GRInputButton()
-        self.emailSnailButton.captionLabel.text = "@"
-        self.emailSnailButton.keycode = UnicodeScalar("@").value
-        self.emailDotButton = GRInputButton()
-        self.emailDotButton.captionLabel.text = "."
-        self.emailDotButton.keycode = UnicodeScalar(".").value
+        emailSpaceButton = GRInputButton()
+        emailSpaceButton.captionLabel.text = spaceButton.captionLabel.text
+        emailSpaceButton.keycode = spaceButton.keycode
+        emailSnailButton = GRInputButton()
+        emailSnailButton.captionLabel.text = "@"
+        emailSnailButton.keycode = UnicodeScalar("@").value
+        emailDotButton = GRInputButton()
+        emailDotButton.captionLabel.text = "."
+        emailDotButton.keycode = UnicodeScalar(".").value
 
-        self.twitterSnailButton = GRInputButton()
-        self.twitterSnailButton.captionLabel.text = "@"
-        self.twitterSnailButton.keycode = UnicodeScalar("@").value
-        self.twitterHashButton = GRInputButton()
-        self.twitterHashButton.captionLabel.text = "#"
-        self.twitterHashButton.keycode = UnicodeScalar("#").value
+        twitterSnailButton = GRInputButton()
+        twitterSnailButton.captionLabel.text = "@"
+        twitterSnailButton.keycode = UnicodeScalar("@").value
+        twitterHashButton = GRInputButton()
+        twitterHashButton.captionLabel.text = "#"
+        twitterHashButton.keycode = UnicodeScalar("#").value
 
-        self.leftSpaceButton = GRInputButton()
-        self.rightSpaceButton = GRInputButton()
+        leftSpaceButton = GRInputButton()
+        rightSpaceButton = GRInputButton()
 
-        for subview in self.URLButtons + self.emailButtons + self.twitterButtons {
+        for subview in URLButtons + emailButtons + twitterButtons {
             subview.alpha = 0
         }
 
-        self.spaceButton.addTarget(nil, action: "space:", for: .touchUpInside)
-        for button in self.URLButtons + self.emailButtons + self.twitterButtons {
+        spaceButton.addTarget(nil, action: "space:", for: .touchUpInside)
+        for button in URLButtons + emailButtons + twitterButtons {
             button.addTarget(nil, action: "input:", for: .touchUpInside)
         }
     }
@@ -106,17 +98,12 @@ func getKey(keylines: [String], position: GRKeyboardLayoutHelper.Position) -> Un
 
 class QwertyBaseKeyboardLayout: KeyboardLayout {
     var qwertyView: QwertyKeyboardView {
-        get {
-            return self.view as! QwertyKeyboardView
-        }
+        return self.view as! QwertyKeyboardView
     }
 
-    override class var needsMargin: Bool {
-        get { return true }
-    }
+    override class var needsMargin: Bool { return true }
 
     override func themesForTrait(trait: ThemeTrait) -> [GRInputButton: ThemeCaption] {
-
         func functionCaption(name: String, row: Int) -> ThemeCaption {
             return trait.captionForIdentifier(identifier: "qwerty-\(name)", needsMargin: type(of: self).needsMargin, classes: {
                 trait.captionClassesForGetters(getters: [
@@ -124,7 +111,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.function },
                     { $0.base },
-                    ], inGroups: [trait.qwerty, trait.common])
+                ], inGroups: [trait.qwerty, trait.common])
             })
         }
         func specialCaption(name: String, row: Int) -> ThemeCaption {
@@ -134,7 +121,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.special },
                     { $0.base },
-                    ], inGroups: [trait.qwerty, trait.common])
+                ], inGroups: [trait.qwerty, trait.common])
             })
         }
 
@@ -146,7 +133,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                     { $0.row(row: row) },
                     { $0.special },
                     { $0.base },
-                    ], inGroups: [trait.qwerty, trait.common])
+                ], inGroups: [trait.qwerty, trait.common])
             })
         }
 
@@ -173,19 +160,22 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
         let view = QwertyKeyboardView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
 
         for subview in [view.nextKeyboardButton, view.deleteButton, view.doneButton, view.toggleKeyboardButton, view.shiftButton, view.spaceButton] + view.URLButtons + view.emailButtons + view.twitterButtons {
+            guard let subview = subview else {
+                assert(false)
+            }
             view.addSubview(subview)
         }
         return view
     }
 
-    func keycodesForPosition(position: GRKeyboardLayoutHelper.Position) -> [UInt] {
+    func keycodesForPosition(position _: GRKeyboardLayoutHelper.Position) -> [UInt] {
         assert(false)
         return [0, 0]
     }
 
     override func captionThemeForTrait(trait: ThemeTrait, position: GRKeyboardLayoutHelper.Position) -> ThemeCaption {
-        let keycodes = self.keycodesForPosition(position: position)
-        let title = self.helper(helper: self.helper, titleForPosition: position)
+        let keycodes = keycodesForPosition(position: position)
+        let title = helper(helper: helper, titleForPosition: position)
         let keycode = "\(UnicodeScalar(UInt32(keycodes[0])))" // FIXME:
 
         let identifier = "\(type(of: self))-\(title)-\(keycode)"
@@ -196,7 +186,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                 { $0.row(row: position.row + 1) },
                 { $0.key },
                 { $0.base },
-                ], inGroups: [trait.qwerty, trait.common])
+            ], inGroups: [trait.qwerty, trait.common])
         })
     }
 
@@ -217,12 +207,12 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
 
         for button in [self.qwertyView.doneButton!] {
             let height = self.helper(helper: self.helper, heightOfRow: 3, forSize: size)
-            button.frame.size = CGSize(width: (rect.size.width - self.qwertyView.spaceButton.frame.size.width) / 2, height: height)
+            button.frame.size = CGSize(width: (rect.size.width - qwertyView.spaceButton.frame.size.width) / 2, height: height)
         }
 
         for button in [self.qwertyView.toggleKeyboardButton!, self.qwertyView.nextKeyboardButton!] {
             let height = self.helper(helper: self.helper, heightOfRow: 3, forSize: size)
-            button.frame.size = CGSize(width: (rect.size.width - self.qwertyView.spaceButton.frame.size.width) / 4, height: height)
+            button.frame.size = CGSize(width: (rect.size.width - qwertyView.spaceButton.frame.size.width) / 4, height: height)
         }
 
         for button in [self.qwertyView.leftSpaceButton!, self.qwertyView.rightSpaceButton!] {
@@ -240,46 +230,45 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
             return newRect
         }
 
-        let spaceFrame = self.qwertyView.spaceButton.frame
+        let spaceFrame = qwertyView.spaceButton.frame
 
         var URLRect = spaceFrame
         URLRect.size.width /= 3
-        self.qwertyView.URLDotButton.frame = URLRect
+        qwertyView.URLDotButton.frame = URLRect
         URLRect = step(rect: URLRect)
-        self.qwertyView.URLSlashButton.frame = URLRect
+        qwertyView.URLSlashButton.frame = URLRect
         URLRect = step(rect: URLRect)
-        self.qwertyView.URLDotComButton.frame = URLRect
+        qwertyView.URLDotComButton.frame = URLRect
 
         var emailRect = spaceFrame
         emailRect.size.width /= 2
-        self.qwertyView.emailSpaceButton.frame = emailRect
+        qwertyView.emailSpaceButton.frame = emailRect
         emailRect = step(rect: emailRect)
         emailRect.size.width /= 2
-        self.qwertyView.emailSnailButton.frame = emailRect
+        qwertyView.emailSnailButton.frame = emailRect
         emailRect = step(rect: emailRect)
-        self.qwertyView.emailDotButton.frame = emailRect
+        qwertyView.emailDotButton.frame = emailRect
 
-        var twitterRect = self.qwertyView.doneButton.frame
+        var twitterRect = qwertyView.doneButton.frame
         twitterRect.size.width /= 2
-        self.qwertyView.twitterSnailButton.frame = twitterRect
+        qwertyView.twitterSnailButton.frame = twitterRect
         twitterRect = step(rect: twitterRect)
-        self.qwertyView.twitterHashButton.frame = twitterRect
-
+        qwertyView.twitterHashButton.frame = twitterRect
 
         super.layoutDidLayout(helper: helper, forRect: rect)
     }
 
-    override func numberOfRowsForHelper(helper: GRKeyboardLayoutHelper) -> Int {
+    override func numberOfRowsForHelper(helper _: GRKeyboardLayoutHelper) -> Int {
         return 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, heightOfRow _: Int, forSize size: CGSize) -> CGFloat {
         return size.height / 4
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
+    override func helper(helper _: GRKeyboardLayoutHelper, buttonForPosition position: GRKeyboardLayoutHelper.Position) -> GRInputButton {
         let button = GRInputButton(type: .system)
-        button.keycodes = self.keycodesForPosition(position: position)
+        button.keycodes = keycodesForPosition(position: position)
         button.addTarget(nil, action: "input:", for: .touchUpInside)
         return button
     }
@@ -287,7 +276,7 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
     override func adjustTraits(traits: UITextInputTraits) {
         let traitsKeyboardType = traits.keyboardType ?? .default
         if traitsKeyboardType == .URL {
-            if self.view.spaceButton.alpha > 0.0 {
+            if view.spaceButton.alpha > 0.0 {
                 UIView.animate(defaultDurationAnimations: {
                     for button in self.view.URLButtons {
                         button.alpha = 1.0
@@ -295,12 +284,12 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                 })
             }
         } else {
-            for button in self.view.URLButtons {
+            for button in view.URLButtons {
                 button.alpha = 0.0
             }
         }
         if traitsKeyboardType == .emailAddress {
-            if self.view.spaceButton.alpha > 0.0 {
+            if view.spaceButton.alpha > 0.0 {
                 UIView.animate(defaultDurationAnimations: {
                     for button in self.view.emailButtons {
                         button.alpha = 1.0
@@ -308,24 +297,24 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
                 })
             }
         } else {
-            for button in self.view.emailButtons {
+            for button in view.emailButtons {
                 button.alpha = 0.0
             }
         }
-        if traitsKeyboardType != .URL && traitsKeyboardType != .emailAddress {
-            self.view.spaceButton.alpha = 1.0
+        if traitsKeyboardType != .URL, traitsKeyboardType != .emailAddress {
+            view.spaceButton.alpha = 1.0
         } else {
-            self.view.spaceButton.alpha = 0.0
+            view.spaceButton.alpha = 0.0
         }
 
         if traitsKeyboardType == .twitter {
-            self.view.doneButton.alpha = 0.0
-            for button in self.view.twitterButtons {
+            view.doneButton.alpha = 0.0
+            for button in view.twitterButtons {
                 button.alpha = 1.0
             }
         } else {
-            self.view.doneButton.alpha = 1.0
-            for button in self.view.twitterButtons {
+            view.doneButton.alpha = 1.0
+            for button in view.twitterButtons {
                 button.alpha = 0.0
             }
         }
@@ -333,15 +322,11 @@ class QwertyBaseKeyboardLayout: KeyboardLayout {
 }
 
 class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
-    override class var toggleCaption: String {
-        get { return "ABC" }
-    }
-    override class var capitalizable: Bool {
-        get { return true }
-    }
-    override class var autounshift: Bool {
-        get { return true }
-    }
+    override class var toggleCaption: String { return "ABC" }
+
+    override class var capitalizable: Bool { return true }
+
+    override class var autounshift: Bool { return true }
 
     override class func loadContext() -> UnsafeMutableRawPointer {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
@@ -354,7 +339,7 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         return [keycode, (position.row == 3) ? keycode : (keycode - 32)]
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
         case 0:
             return 10
@@ -367,7 +352,7 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
         if row == 3 {
             return size.width / 2
         } else {
@@ -375,41 +360,41 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return [self.qwertyView.leftSpaceButton]
         case 2:
-            assert(self.qwertyView.shiftButton != nil)
+            assert(qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
         case 3:
-            assert(self.view.toggleKeyboardButton != nil)
-            assert(self.view.nextKeyboardButton != nil)
-            assert(self.view.spaceButton != nil)
+            assert(view.toggleKeyboardButton != nil)
+            assert(view.nextKeyboardButton != nil)
+            assert(view.spaceButton != nil)
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton, self.view.spaceButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return [self.qwertyView.rightSpaceButton]
         case 2:
-            assert(self.view.deleteButton != nil)
+            assert(view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
 //            assert(self.qwertyView.spaceButton != nil)
-            assert(self.view.doneButton != nil)
-            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
+            assert(view.doneButton != nil)
+            return [ /* self.qwertyView.spaceButton, */ self.view.doneButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycodes =  self.keycodesForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycodes = keycodesForPosition(position: position)
         return "\(Character(UnicodeScalar(UInt32(keycodes[1]))!))"
     }
 
@@ -421,21 +406,18 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
             newPoint.x -= 2
         }
         var button = super.correspondingButtonForPoint(point: point, size: size)
-        if button == self.qwertyView.leftSpaceButton {
-            button = self.helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 0)]!
-        }
-        else if button == self.qwertyView.rightSpaceButton {
-            button = self.helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 8)]!
+        if button == qwertyView.leftSpaceButton {
+            button = helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 0)]!
+        } else if button == qwertyView.rightSpaceButton {
+            button = helper.buttons[GRKeyboardLayoutHelper.Position(row: 1, column: 8)]!
         }
         return button
     }
-
 }
 
 class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
-    override class var toggleCaption: String {
-        get { return "123" }
-    }
+    override class var toggleCaption: String { return "123" }
+
     override class func loadContext() -> UnsafeMutableRawPointer {
         return context_create(bypass_phase(), bypass_phase(), bypass_decoder())
     }
@@ -448,7 +430,7 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         return [UInt(key1.value), UInt(key2.value)]
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
         case 0:
             return 10
@@ -461,40 +443,40 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return []
         case 2:
-            assert(self.qwertyView.shiftButton != nil)
+            assert(qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
         case 3:
-            assert(self.view.toggleKeyboardButton != nil)
-            assert(self.view.nextKeyboardButton != nil)
-            assert(self.view.spaceButton != nil)
+            assert(view.toggleKeyboardButton != nil)
+            assert(view.nextKeyboardButton != nil)
+            assert(view.spaceButton != nil)
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton, self.view.spaceButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return []
         case 2:
-            assert(self.view.deleteButton != nil)
+            assert(view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
 //            assert(self.qwertyView.spaceButton != nil)
-            assert(self.view.doneButton != nil)
-            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
+            assert(view.doneButton != nil)
+            return [ /* self.qwertyView.spaceButton, */ self.view.doneButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
         if row == 3 {
             return size.width / 2
         } else if row == 2 {
@@ -504,21 +486,18 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycodes = self.keycodesForPosition(position: position)
-        let keycode = self.qwertyView.shiftButton.isSelected ? keycodes[1] : keycodes[0]
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycodes = keycodesForPosition(position: position)
+        let keycode = qwertyView.shiftButton.isSelected ? keycodes[1] : keycodes[0]
         let text = "\(Character(UnicodeScalar(UInt32(keycode))!))"
         return text
     }
 }
 
 class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
-    override class var toggleCaption: String {
-        get { return "한글" }
-    }
-    override class var autounshift: Bool {
-        get { return true }
-    }
+    override class var toggleCaption: String { return "한글" }
+
+    override class var autounshift: Bool { return true }
 
     override class func loadContext() -> UnsafeMutableRawPointer {
         return context_create(ksx5002_from_qwerty_handler(), ksx5002_combinator(), ksx5002_decoder())
@@ -530,15 +509,15 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         return [keycode, position.row == 3 ? keycode : (keycode - 32)]
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
-        let keycodes = self.keycodesForPosition(position: position)
+    override func helper(helper _: GRKeyboardLayoutHelper, titleForPosition position: GRKeyboardLayoutHelper.Position) -> String {
+        let keycodes = keycodesForPosition(position: position)
         let keycode = keycodes[0]
         let label = ksx5002_label(Int8(keycode))
         let text = "\(Character(UnicodeScalar(label)!))"
         return text
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
         case 0:
             return 10
@@ -551,7 +530,7 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
         if row == 3 {
             return size.width / 2
         } else {
@@ -559,39 +538,38 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return [self.qwertyView.leftSpaceButton]
         case 2:
-            assert(self.qwertyView.shiftButton != nil)
+            assert(qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
         case 3:
-            assert(self.view.toggleKeyboardButton != nil)
-            assert(self.view.nextKeyboardButton != nil)
-            assert(self.view.spaceButton != nil)
+            assert(view.toggleKeyboardButton != nil)
+            assert(view.nextKeyboardButton != nil)
+            assert(view.spaceButton != nil)
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton, self.view.spaceButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 1:
             return [self.qwertyView.rightSpaceButton]
         case 2:
-            assert(self.view.deleteButton != nil)
+            assert(view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
             //            assert(self.qwertyView.spaceButton != nil)
-            assert(self.view.doneButton != nil)
-            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
+            assert(view.doneButton != nil)
+            return [ /* self.qwertyView.spaceButton, */ self.view.doneButton]
         default:
             return []
         }
     }
-
 }
 
 class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
@@ -608,7 +586,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         return context_create(danmoum_from_qwerty_handler(), danmoum_combinator(), danmoum_decoder())
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
+    override func helper(helper _: GRKeyboardLayoutHelper, numberOfColumnsInRow row: Int) -> Int {
         switch row {
         case 0:
             return 8
@@ -621,7 +599,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
+    override func helper(helper _: GRKeyboardLayoutHelper, columnWidthInRow row: Int, forSize size: CGSize) -> CGFloat {
         if row == 3 {
             return size.width / 2
         } else {
@@ -629,30 +607,30 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 2:
-            assert(self.qwertyView.shiftButton != nil)
+            assert(qwertyView.shiftButton != nil)
             return [self.qwertyView.shiftButton]
         case 3:
-            assert(self.view.toggleKeyboardButton != nil)
-            assert(self.view.nextKeyboardButton != nil)
-            assert(self.view.spaceButton != nil)
+            assert(view.toggleKeyboardButton != nil)
+            assert(view.nextKeyboardButton != nil)
+            assert(view.spaceButton != nil)
             return [self.view.toggleKeyboardButton, self.view.nextKeyboardButton, self.view.spaceButton]
         default:
             return []
         }
     }
 
-    override func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
         switch row {
         case 2:
-            assert(self.view.deleteButton != nil)
+            assert(view.deleteButton != nil)
             return [self.view.deleteButton]
         case 3:
 //            assert(self.qwertyView.spaceButton != nil)
-            assert(self.view.doneButton != nil)
-            return [/*self.qwertyView.spaceButton, */self.view.doneButton]
+            assert(view.doneButton != nil)
+            return [ /* self.qwertyView.spaceButton, */ self.view.doneButton]
         default:
             return []
         }

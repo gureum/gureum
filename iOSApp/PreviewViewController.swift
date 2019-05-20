@@ -8,18 +8,17 @@
 
 import UIKit
 
-
 @objc class PreviewInputViewController: InputViewController {
-    var previewController: PreviewViewController! = nil
+    var previewController: PreviewViewController!
 
     override func input(_ sender: GRInputButton) {
         super.input(sender)
-        self.previewController.update()
+        previewController.update()
     }
 
     override func inputDelete(_ sender: GRInputButton) {
         super.inputDelete(sender)
-        self.previewController.update()
+        previewController.update()
     }
 }
 
@@ -29,48 +28,47 @@ import UIKit
     let inputPreviewController = PreviewInputViewController()
     var loaded = false
 
-    override func viewDidLoad()  {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.inputPreviewController.view.frame = self.preview.bounds
-        //println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
-        self.inputPreviewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.inputPreviewController.previewController = self
-        self.preview.addSubview(self.inputPreviewController.view)
+        inputPreviewController.view.frame = preview.bounds
+        // println("preview bounds: \(self.preview.frame) / input bounds: \(self.inputPreviewController.view.frame)")
+        inputPreviewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        inputPreviewController.previewController = self
+        preview.addSubview(inputPreviewController.view)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.inputPreviewController.viewWillAppear(animated)
+        inputPreviewController.viewWillAppear(animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        self.loaded = true
+        loaded = true
         super.viewDidAppear(animated)
-        self.inputPreviewController.viewDidAppear(animated)
+        inputPreviewController.viewDidAppear(animated)
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if loaded {
-            self.inputPreviewController.view.frame = self.preview.bounds
-            self.inputPreviewController.viewWillLayoutSubviews()
+            inputPreviewController.view.frame = preview.bounds
+            inputPreviewController.viewWillLayoutSubviews()
         }
     }
 
     override func viewDidLayoutSubviews() {
         if loaded {
-            self.inputPreviewController.viewDidLayoutSubviews()
+            inputPreviewController.viewDidLayoutSubviews()
         }
         super.viewDidLayoutSubviews()
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        //print out the previousTrait's info
-        //println("previous tarit collection: \(previousTraitCollection)")
-        //println("current tarit collection: \(self.traitCollection)")
+    override func traitCollectionDidChange(_: UITraitCollection?) {
+        // print out the previousTrait's info
+        // println("previous tarit collection: \(previousTraitCollection)")
+        // println("current tarit collection: \(self.traitCollection)")
     }
 
-    func update() {
-    }
+    func update() {}
 }

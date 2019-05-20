@@ -6,24 +6,23 @@
 //  Copyright (c) 2015년 youknowone.org. All rights reserved.
 //
 
-import UIKit
 import GoogleMobileAds
+import UIKit
 
 let ADMOB_BANNER_ID: String = ""
 let ADMOB_INTERSTITIAL_ID: String = ""
 
 @objc extension UIViewController {
-
-    var bannerAdsView: GADBannerView! { get { return nil; } }
+    var bannerAdsView: GADBannerView! { return nil }
 
     func loadBannerAds() {
         if ADMOB_BANNER_ID != "" {
-            self.bannerAdsView.adUnitID = ADMOB_BANNER_ID
-            self.bannerAdsView.rootViewController = self
+            bannerAdsView.adUnitID = ADMOB_BANNER_ID
+            bannerAdsView.rootViewController = self
 
             let request = GADRequest()
             request.testDevices = [kGADSimulatorID]
-            self.bannerAdsView.load(request)
+            bannerAdsView.load(request)
         }
     }
 
@@ -33,12 +32,11 @@ let ADMOB_INTERSTITIAL_ID: String = ""
             interstitial.delegate = self as? GADInterstitialDelegate
 
             let request = GADRequest()
-            //request.testDevices = [kGADSimulatorID]
+            // request.testDevices = [kGADSimulatorID]
             interstitial.load(request)
             return interstitial
         } else {
             return nil
         }
     }
-
 }
