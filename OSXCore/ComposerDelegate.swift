@@ -35,8 +35,9 @@ protocol InputTextDelegate {
  */
 
 protocol ComposerDelegate: InputTextDelegate {
+    func clear()
     //! @brief  입력기가 선택 됨
-    func composerSelected(_ sender: Any!)
+    func composerSelected()
 
     //! @brief  합성 중인 문자로 보여줄 문자열
     var composedString: String { get }
@@ -68,10 +69,10 @@ protocol ComposerDelegate: InputTextDelegate {
  @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref BaseComposer 를 사용한다.
  */
 class DelegatedComposer: ComposerDelegate {
-    func composerSelected(_: Any!) {}
+    func clear() {}
+    func composerSelected() {}
 
     var delegate: ComposerDelegate!
-    var inputMode: String = ""
 
     var composedString: String {
         return delegate.composedString

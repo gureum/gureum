@@ -71,7 +71,7 @@ public class InputController: IMKInputController {
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
         #else
             guard let sender = sender as? (IMKTextInput & IMKUnicodeTextInput) else {
-                return self.client() as! (IMKTextInput & IMKUnicodeTextInput)
+                return client() as! (IMKTextInput & IMKUnicodeTextInput)
             }
             return sender
         #endif
@@ -355,7 +355,7 @@ public extension InputController { // IMKServerInput
             return receiver.originalString(client)
         }
 
-        public override func candidates(_ sender: Any) -> [Any]! {
+        public override func candidates(_ sender: Any) -> [Any]? {
             let client = asClient(sender)
             return receiver.candidates(client)
         }
