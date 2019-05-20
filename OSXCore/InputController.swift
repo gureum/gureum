@@ -66,6 +66,10 @@ public class InputController: IMKInputController {
         super.init()
     }
 
+    public override func inputControllerWillClose() {
+        super.inputControllerWillClose()
+    }
+
     func asClient(_ sender: Any) -> IMKTextInput & IMKUnicodeTextInput {
         #if DEBUG
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
