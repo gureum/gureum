@@ -270,7 +270,7 @@ extension InputReceiver { // IMKStateSetting
         InputMethodServer.shared.io.capsLockDate = nil
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CHANGE-%lu-%@", tag, value as? String ?? "(nonstring)")
         dlog(DEBUG_INPUTCONTROLLER, "** InputController -setValue:forTag:client: with value: %@ / tag: %lx / client: %@", value as? String ?? "(nonstring)", tag, String(describing: controller.client as AnyObject))
-        sender.overrideKeyboard(withKeyboardNamed: "com.apple.keylayout.US")
+        sender.overrideKeyboard(withKeyboardNamed: Configuration.shared.overridingKeyboardName)
         switch tag {
         case kTextServiceInputModePropertyTag:
             guard let value = value as? String else {

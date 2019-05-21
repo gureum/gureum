@@ -19,6 +19,7 @@ enum ConfigurationName: String {
     case inputModeEnglishKey = "InputModeEnglishKey"
     case inputModeKoreanKey = "InputModeKoreanKey"
     case optionKeyBehavior = "OptionKeyBehavior"
+    case overridingKeyboardName = "OverridingKeyboardName"
 
     case romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
     case showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
@@ -60,6 +61,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.inputModeEmoticonKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, [.shift, .option])),
             ConfigurationName.inputModeHanjaKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, .option)),
             ConfigurationName.optionKeyBehavior.rawValue: 0,
+            ConfigurationName.overridingKeyboardName.rawValue: "com.apple.keylayout.US",
 
             ConfigurationName.romanModeByEscapeKey.rawValue: false,
             ConfigurationName.showsInputForHanjaCandidates.rawValue: false,
@@ -115,6 +117,15 @@ public class Configuration: UserDefaults {
         }
         set {
             `set`(newValue, forKey: ConfigurationName.optionKeyBehavior.rawValue)
+        }
+    }
+
+    var overridingKeyboardName: String {
+        get {
+            return string(forKey: ConfigurationName.overridingKeyboardName.rawValue)!
+        }
+        set {
+            `set`(newValue, forKey: ConfigurationName.overridingKeyboardName.rawValue)
         }
     }
 
