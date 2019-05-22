@@ -174,6 +174,20 @@ import PreferencePanes
         return inputSources[index].localizedName
     }
 
+    func comboBox(_: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
+        return inputSources.firstIndex(where: { $0.localizedName == string }) ?? NSNotFound
+    }
+
+    func comboBox(_: NSComboBox, completedString string: String) -> String? {
+        for source in inputSources {
+            if source.localizedName.starts(with: string) {
+                return source.localizedName
+            }
+        }
+        overridingKeyboardNameComboBox.stringValue = ""
+        return ""
+    }
+
     @IBAction func overridingKeyboardNameComboBoxValueChanged(_ sender: NSComboBox) {
         configuration.overridingKeyboardName = inputSources[sender.indexOfSelectedItem].identifier
     }
