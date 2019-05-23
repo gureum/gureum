@@ -103,6 +103,7 @@
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
+		8044BCD822940EE7009996E0 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186A721EB34FA004B7FDB /* TISInputSource.swift */; };
 		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
 		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
@@ -909,7 +910,7 @@
 			};
 			buildConfigurationList = 38863C53140E62D100A8ED76 /* Build configuration list for PBXProject "Gureum" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1226,6 +1227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8044BCD822940EE7009996E0 /* TISInputSource.swift in Sources */,
 				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
 				388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */,
 			);

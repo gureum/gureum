@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="300"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,17 +25,17 @@
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="6I9-vn-Dbb">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
-                            <rect key="frame" x="0.0" y="0.0" width="385" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
-                                    <rect key="frame" x="0.0" y="-250" width="385" height="550"/>
+                                    <rect key="frame" x="0.0" y="-250" width="400" height="550"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="63" width="345" height="470"/>
+                                            <rect key="frame" x="20" y="32" width="360" height="501"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="359" width="345" height="111"/>
+                                                    <rect key="frame" x="0.0" y="390" width="360" height="111"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
                                                             <rect key="frame" x="-2" y="94" width="101" height="17"/>
@@ -76,10 +76,10 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="166" width="345" height="173"/>
+                                                    <rect key="frame" x="0.0" y="166" width="352" height="204"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
-                                                            <rect key="frame" x="-2" y="156" width="116" height="17"/>
+                                                            <rect key="frame" x="-2" y="187" width="116" height="17"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글 입력기 고급 설정" id="HIp-u9-CIf">
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Bold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -87,10 +87,10 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
-                                                            <rect key="frame" x="0.0" y="125" width="345" height="20"/>
+                                                            <rect key="frame" x="0.0" y="156" width="352" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
-                                                                    <rect key="frame" x="-2" y="2" width="109" height="17"/>
+                                                                    <rect key="frame" x="-2" y="2" width="116" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -98,7 +98,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe" userLabel="option 키 동작 Combo Box">
-                                                                    <rect key="frame" x="185" y="-4" width="163" height="26"/>
+                                                                    <rect key="frame" x="192" y="-4" width="163" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
                                                                         <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
@@ -114,6 +114,43 @@
                                                                     </comboBoxCell>
                                                                     <connections>
                                                                         <action selector="optionKeyComboBoxValueChanged:" target="DMm-2g-KCR" id="AAm-WX-QJf"/>
+                                                                    </connections>
+                                                                </comboBox>
+                                                            </subviews>
+                                                            <visibilityPriorities>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                            </visibilityPriorities>
+                                                            <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                            </customSpacing>
+                                                        </stackView>
+                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwy-Ul-fDb">
+                                                            <rect key="frame" x="0.0" y="125" width="352" height="20"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TKK-is-ROX">
+                                                                    <rect key="frame" x="-2" y="2" width="116" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기본 키보드 레이아웃:" id="fcn-6t-Jdv">
+                                                                        <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crR-nL-R9N" userLabel="기본 키보드 레이아웃 Combo Box">
+                                                                    <rect key="frame" x="192" y="-4" width="163" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="160" id="G3O-6L-dgF"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="igh-sw-xvN"/>
+                                                                    </constraints>
+                                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="djp-BV-Tu6">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </comboBoxCell>
+                                                                    <connections>
+                                                                        <action selector="overridingKeyboardNameComboBoxValueChanged:" target="DMm-2g-KCR" id="Quw-RG-GBZ"/>
+                                                                        <outlet property="dataSource" destination="DMm-2g-KCR" id="Dxx-qj-8vZ"/>
                                                                     </connections>
                                                                 </comboBox>
                                                             </subviews>
@@ -177,7 +214,12 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="4dQ-Ty-1Es" secondAttribute="trailing" id="EGt-hS-keK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Vwy-Ul-fDb" secondAttribute="trailing" id="RER-cL-vdt"/>
+                                                    </constraints>
                                                     <visibilityPriorities>
+                                                        <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
@@ -194,10 +236,11 @@
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="146"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="146"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
                                                             <rect key="frame" x="-2" y="129" width="90" height="17"/>
@@ -395,11 +438,11 @@
                             <constraint firstAttribute="height" constant="300" id="Jso-1l-2z0"/>
                         </constraints>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
-                            <rect key="frame" x="0.0" y="285" width="385" height="15"/>
+                            <rect key="frame" x="0.0" y="285" width="384" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
-                            <rect key="frame" x="385" y="0.0" width="15" height="300"/>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.59200000000000008" horizontal="NO" id="E1U-9N-bFJ">
+                            <rect key="frame" x="384" y="0.0" width="16" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -424,6 +467,7 @@
                 <outlet property="inputModeHanjaShortcutView" destination="H7u-hL-ncz" id="31Z-g1-m5g"/>
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="YTt-oL-VCC"/>
                 <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
+                <outlet property="overridingKeyboardNameComboBox" destination="djp-BV-Tu6" id="zKK-rV-G9N"/>
                 <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>
                 <outlet property="view" destination="se5-gp-TjO" id="x0B-I2-MHL"/>
             </connections>

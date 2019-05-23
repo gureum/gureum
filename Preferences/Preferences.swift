@@ -26,6 +26,7 @@ import PreferencePanes
     @IBOutlet var inputModeKoreanShortcutView: MASShortcutView!
     @IBOutlet var hangulWonCurrencySymbolForBackQuoteButton: NSButton!
     @IBOutlet var optionKeyComboBox: NSComboBoxCell!
+    @IBOutlet var overridingKeyboardNameComboBox: NSComboBoxCell!
     @IBOutlet var romanModeByEscapeKeyButton: NSButton!
     @IBOutlet var hangulAutoReorderButton: NSButton!
     @IBOutlet var hangulNonChoseongCombinationButton: NSButton!
@@ -34,6 +35,29 @@ import PreferencePanes
     var configuration = Configuration()
     let pane: GureumPreferencePane! = nil
     let shortcutValidator = GureumShortcutValidator()
+
+    lazy var inputSources: [(identifier: String, localizedName: String)] = {
+        let usIdentifier = "com.apple.keylayout.US"
+
+        guard let rawSources = TISInputSource.sources(withProperties: [kTISPropertyInputSourceType!: kTISTypeKeyboardLayout!, kTISPropertyInputSourceIsASCIICapable!: true], includeAllInstalled: true) else {
+            return []
+        }
+
+        let unsortedSources = rawSources.map { (identifier: $0.identifier, localizedName: $0.localizedName, enabled: $0.enabled) }
+        let sortedSources = unsortedSources.sorted {
+            if $0.identifier == usIdentifier {
+                return true
+            } else if $1.identifier == usIdentifier {
+                return false
+            }
+            if $0.enabled != $1.enabled {
+                return $0.enabled
+            }
+            return $0.localizedName < $1.localizedName
+        }
+        let sources = sortedSources.map { (identifier: $0.identifier, localizedName: $0.localizedName) }
+        return sources
+    }()
 
 //    @IBOutlet var _window: NSWindow!
 
@@ -112,6 +136,12 @@ import PreferencePanes
         if (0 ..< optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
             optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
         }
+
+        overridingKeyboardNameComboBox.reloadData()
+        if let selectedIndex = inputSources.firstIndex(where: { $0.identifier == configuration.overridingKeyboardName }) {
+            overridingKeyboardNameComboBox.selectItem(at: selectedIndex)
+        }
+
         inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
         inputModeHanjaShortcutView.shortcutValidator = shortcutValidator
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
@@ -134,6 +164,32 @@ import PreferencePanes
 
     @IBAction func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
         configuration.optionKeyBehavior = sender.indexOfSelectedItem
+    }
+
+    func numberOfItems(in _: NSComboBox) -> Int {
+        return inputSources.count
+    }
+
+    func comboBox(_: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+        return inputSources[index].localizedName
+    }
+
+    func comboBox(_: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
+        return inputSources.firstIndex(where: { $0.localizedName == string }) ?? NSNotFound
+    }
+
+    func comboBox(_: NSComboBox, completedString string: String) -> String? {
+        for source in inputSources {
+            if source.localizedName.starts(with: string) {
+                return source.localizedName
+            }
+        }
+        overridingKeyboardNameComboBox.stringValue = ""
+        return ""
+    }
+
+    @IBAction func overridingKeyboardNameComboBoxValueChanged(_ sender: NSComboBox) {
+        configuration.overridingKeyboardName = inputSources[sender.indexOfSelectedItem].identifier
     }
 
     @IBAction func romanModeByEscapeKeyValueChanged(_ sender: NSButton) {
