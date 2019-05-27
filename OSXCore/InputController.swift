@@ -102,13 +102,6 @@ public class InputController: IMKInputController {
     #endif
 }
 
-extension InputController {
-    @IBAction func showStandardAboutPanel(_ sender: Any) {
-        NSApp.activate(ignoringOtherApps: true)
-        NSApp.orderFrontStandardAboutPanel(sender)
-    }
-}
-
 // IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
 public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
@@ -193,15 +186,15 @@ public extension InputController { // IMKStateSetting
 
     override func activateServer(_ sender: Any!) {
         dlog(true, "server activated")
-        let client = asClient(sender)
-        super.activateServer(client)
+        super.activateServer(sender)
     }
 
     override func deactivateServer(_ sender: Any!) {
         dlog(true, "server deactivating")
-        commitComposition(sender)
-        let client = asClient(sender)
-        super.deactivateServer(client)
+        if responds(to: #selector(commitComposition(_:))) {
+            self.commitComposition(sender)
+        }
+        super.deactivateServer(sender)
     }
 }
 

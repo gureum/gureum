@@ -10,7 +10,13 @@ import Cocoa
 import Foundation
 import GureumCore
 
-extension GureumAppDelegate {
+// 왜 App delegate가 아니라 여기 붙는건지 모르겠다
+extension InputController {
+    @IBAction func showStandardAboutPanel(_ sender: Any) {
+        NSApp.activate(ignoringOtherApps: true)
+        NSApp.orderFrontStandardAboutPanel(sender)
+    }
+
     @IBAction func checkRecentVersion(_: Any) {
         guard let info = UpdateManager.shared.requestRecentVersion() else {
             return
@@ -45,26 +51,22 @@ extension GureumAppDelegate {
     }
 
     @IBAction func openWebsite(_: Any) {
-        if let url = URL(string: "http://gureum.io") {
-            NSWorkspace.shared.open(url)
-        }
+        let url = URL(string: "http://gureum.io")!
+        NSWorkspace.shared.open(url)
     }
 
     @IBAction func openWebsiteHelp(_: Any) {
-        if let url = URL(string: "http://dan.gureum.io") {
-            NSWorkspace.shared.open(url)
-        }
+        let url = URL(string: "http://dan.gureum.io")!
+        NSWorkspace.shared.open(url)
     }
 
     @IBAction func openWebsiteSource(_: Any) {
-        if let url = URL(string: "http://ssi.gureum.io") {
-            NSWorkspace.shared.open(url)
-        }
+        let url = URL(string: "http://ssi.gureum.io")!
+        NSWorkspace.shared.open(url)
     }
 
     @IBAction func openWebsiteIssues(_: Any) {
-        if let url = URL(string: "http://meok.gureum.io") {
-            NSWorkspace.shared.open(url)
-        }
+        let url = URL(string: "http://meok.gureum.io")!
+        NSWorkspace.shared.open(url)
     }
 }

@@ -37,7 +37,7 @@ import PreferencePanes
     let shortcutValidator = GureumShortcutValidator()
 
     lazy var inputSources: [(identifier: String, localizedName: String)] = {
-        let usIdentifier = "com.apple.keylayout.US"
+        let abcIdentifier = "com.apple.keylayout.ABC"
 
         guard let rawSources = TISInputSource.sources(withProperties: [kTISPropertyInputSourceType!: kTISTypeKeyboardLayout!, kTISPropertyInputSourceIsASCIICapable!: true], includeAllInstalled: true) else {
             return []
@@ -45,9 +45,9 @@ import PreferencePanes
 
         let unsortedSources = rawSources.map { (identifier: $0.identifier, localizedName: $0.localizedName, enabled: $0.enabled) }
         let sortedSources = unsortedSources.sorted {
-            if $0.identifier == usIdentifier {
+            if $0.identifier == abcIdentifier {
                 return true
-            } else if $1.identifier == usIdentifier {
+            } else if $1.identifier == abcIdentifier {
                 return false
             }
             if $0.enabled != $1.enabled {
@@ -189,6 +189,9 @@ import PreferencePanes
     }
 
     @IBAction func overridingKeyboardNameComboBoxValueChanged(_ sender: NSComboBox) {
+        guard sender.indexOfSelectedItem != NSNotFound else {
+            return
+        }
         configuration.overridingKeyboardName = inputSources[sender.indexOfSelectedItem].identifier
     }
 

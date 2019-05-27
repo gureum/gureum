@@ -285,41 +285,5 @@ extension InputReceiver { // IMKStateSetting
         default:
             dlog(true, "**** UNKNOWN TAG %ld !!! ****", tag)
         }
-
-        return
-
-            // 미국자판으로 기본자판 잡는 것도 임시로 포기
-            /*
-                TISInputSource *mainSource = _USSource();
-                NSString *mainSourceID = mainSource.identifier;
-                TISInputSource *currentSource = [TISInputSource currentSource];
-                dlog(1, @"current source: %@", currentSource);
-
-                [TISInputSource setInputMethodKeyboardLayoutOverride:mainSource];
-
-                TISInputSource *override = [TISInputSource inputMethodKeyboardLayoutOverride];
-                if (override == nil) {
-                dlog(1, @"override fail");
-                TISInputSource *currentASCIISource = [TISInputSource currentASCIICapableLayoutSource];
-                dlog(1, @"ascii: %@", currentASCIISource);
-                id ASCIISourceID = currentASCIISource.identifier;
-                if (![ASCIISourceID isEqualToString:mainSourceID]) {
-                dlog(1, @"id: %@ != %@", ASCIISourceID, mainSourceID);
-                BOOL mainSourceIsEnabled = mainSource.enabled;
-                //if (!mainSourceIsEnabled) {
-                //    [mainSource enable];
-                //}
-                if (mainSourceIsEnabled) {
-                [mainSource select];
-                [currentSource select];
-                }
-                //if (!mainSourceIsEnabled) {
-                //    [mainSource disable];
-                //}
-                }
-                } else {
-                dlog(1, @"overrided");
-                }
-                */
     }
 }
