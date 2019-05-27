@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject">
+        <customObject id="-3" userLabel="Application">
             <connections>
                 <outlet property="delegate" destination="494" id="537"/>
             </connections>
@@ -21,36 +21,39 @@
             <items>
                 <menuItem title="구름 입력기에 관하여" id="539">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showStandardAboutPanel:" target="-1" id="yba-6W-HBg"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="업데이트 확인" id="557">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="checkRecentVersion:" target="494" id="iAc-Fb-XKV"/>
+                        <action selector="checkRecentVersion:" target="-1" id="YEc-yG-BVR"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="561"/>
                 <menuItem title="웹사이트..." id="555">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openWebsite:" target="494" id="qXD-LJ-2eV"/>
+                        <action selector="openWebsite:" target="-1" id="eec-B8-qkM"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  도움말..." id="553">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openWebsiteHelp:" target="494" id="3GP-kp-Nx0"/>
+                        <action selector="openWebsiteHelp:" target="-1" id="VZu-lL-IGx"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  버그 알리기..." id="564">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openWebsiteIssues:" target="494" id="eEb-ZD-TRB"/>
+                        <action selector="openWebsiteIssues:" target="-1" id="PPJ-ho-kct"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  소스 코드..." id="562">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openWebsiteSource:" target="494" id="9e7-Ql-FjA"/>
+                        <action selector="openWebsiteSource:" target="-1" id="MXc-ok-c68"/>
                     </connections>
                 </menuItem>
             </items>

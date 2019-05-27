@@ -102,13 +102,6 @@ public class InputController: IMKInputController {
     #endif
 }
 
-extension InputController {
-    @IBAction func showStandardAboutPanel(_ sender: Any) {
-        NSApp.activate(ignoringOtherApps: true)
-        NSApp.orderFrontStandardAboutPanel(sender)
-    }
-}
-
 // IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
 public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
