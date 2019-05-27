@@ -22,7 +22,7 @@ BUILT_PRODUCT_PATH="${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app"
 rm ~/Downloads/"$PACKAGE_NAME.pkg" ~/Downloads/"$PACKAGE_NAME.app.tar.gz"
 rm -rf "${BUILT_PRODUCT_PATH}"
 
-xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "$CONFIGURATION" && \
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "$CONFIGURATION" | xcpretty) && \
 productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.app" '/Library/Input Methods' --sign "Developer ID Installer: YunWon Jeong" ~/Downloads/"$PACKAGE_NAME.pkg"
 #tar -zcf "$PACKAGE_NAME.app.tar.gz" "$PRODUCT_NAME.app"
 

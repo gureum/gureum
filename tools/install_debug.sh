@@ -3,7 +3,7 @@
 SCRIPT_DIR=`dirname "${BASH_SOURCE[0]}"`
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
-xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" || exit $?
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | xcpretty) || exit $?
 if [ ! "${INSTALL_PATH}" ]; then
     echo "something wrong" && exit 255
 fi
