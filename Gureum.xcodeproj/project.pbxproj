@@ -332,7 +332,6 @@
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		38863C68140E64EB00A8ED76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		38863C96140E669000A8ED76 /* CIMInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMInputController.m; sourceTree = "<group>"; };
 		388E2A601469249700ADBDA5 /* Hangul.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Hangul.strings; sourceTree = "<group>"; };
 		388FD02A175EDB5500469B76 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		389289BC217B331B00F94F2C /* ComposerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerDelegate.swift; sourceTree = "<group>"; };
@@ -470,7 +469,6 @@
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
-				38863C96140E669000A8ED76 /* CIMInputController.m */,
 				E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,

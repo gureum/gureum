@@ -61,7 +61,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.inputModeEmoticonKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, [.shift, .option])),
             ConfigurationName.inputModeHanjaKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, .option)),
             ConfigurationName.optionKeyBehavior.rawValue: 0,
-            ConfigurationName.overridingKeyboardName.rawValue: "com.apple.keylayout.US",
+            ConfigurationName.overridingKeyboardName.rawValue: "com.apple.keylayout.ABC",
 
             ConfigurationName.romanModeByEscapeKey.rawValue: false,
             ConfigurationName.showsInputForHanjaCandidates.rawValue: false,

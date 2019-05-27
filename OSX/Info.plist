@@ -373,7 +373,7 @@
 			<key>org.youknowone.inputmethod.Gureum.qwerty</key>
 			<dict>
 				<key>KeyboardLayout</key>
-				<string>com.apple.keylayout.US</string>
+				<string>com.apple.keylayout.ABC</string>
 				<key>TISInputSourceID</key>
 				<string>org.youknowone.inputmethod.Gureum.qwerty</string>
 				<key>TISIntendedLanguage</key>
