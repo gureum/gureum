@@ -189,6 +189,9 @@ import PreferencePanes
     }
 
     @IBAction func overridingKeyboardNameComboBoxValueChanged(_ sender: NSComboBox) {
+        guard sender.indexOfSelectedItem != NSNotFound else {
+            return
+        }
         configuration.overridingKeyboardName = inputSources[sender.indexOfSelectedItem].identifier
     }
 
