@@ -186,15 +186,15 @@ public extension InputController { // IMKStateSetting
 
     override func activateServer(_ sender: Any!) {
         dlog(true, "server activated")
-        let client = asClient(sender)
-        super.activateServer(client)
+        super.activateServer(sender)
     }
 
     override func deactivateServer(_ sender: Any!) {
         dlog(true, "server deactivating")
-        commitComposition(sender)
-        let client = asClient(sender)
-        super.deactivateServer(client)
+        if responds(to: #selector(commitComposition(_:))) {
+            self.commitComposition(sender)
+        }
+        super.deactivateServer(sender)
     }
 }
 

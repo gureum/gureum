@@ -42,7 +42,7 @@ class TestViewController: NSViewController {
             }
             let selected = self.inputClient.selectedRange()
             let marked = self.inputClient.markedRange()
-            if event.keyCode == kVK_Delete, (selected.length > 0 && selected != marked) {
+            if event.keyCode == kVK_Delete, selected.length > 0, selected != marked {
                 self.inputController.cancelComposition()
                 self.inputClient.insertText("", replacementRange: selected)
                 self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
