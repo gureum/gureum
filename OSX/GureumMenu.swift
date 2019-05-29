@@ -75,4 +75,10 @@ extension InputController {
         NSWorkspace.shared.open(url)
         answers.logMenu(name: "website-issues")
     }
+
+    @IBAction func openWebsiteDonation(_: Any) {
+        let url = URL(string: "http://donation.gureum.io")!
+        NSWorkspace.shared.open(url)
+        answers.logMenu(name: "website-donation")
+    }
 }
