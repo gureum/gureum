@@ -15,9 +15,11 @@ extension InputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
         NSApp.activate(ignoringOtherApps: true)
         NSApp.orderFrontStandardAboutPanel(sender)
+        answers.logMenu(name: "about")
     }
 
     @IBAction func checkRecentVersion(_: Any) {
+        answers.logMenu(name: "check-version")
         guard let info = UpdateManager.shared.requestRecentVersion() else {
             return
         }
@@ -53,20 +55,24 @@ extension InputController {
     @IBAction func openWebsite(_: Any) {
         let url = URL(string: "http://gureum.io")!
         NSWorkspace.shared.open(url)
+        answers.logMenu(name: "website")
     }
 
     @IBAction func openWebsiteHelp(_: Any) {
         let url = URL(string: "http://dan.gureum.io")!
         NSWorkspace.shared.open(url)
+        answers.logMenu(name: "website-help")
     }
 
     @IBAction func openWebsiteSource(_: Any) {
         let url = URL(string: "http://ssi.gureum.io")!
         NSWorkspace.shared.open(url)
+        answers.logMenu(name: "website-source")
     }
 
     @IBAction func openWebsiteIssues(_: Any) {
         let url = URL(string: "http://meok.gureum.io")!
         NSWorkspace.shared.open(url)
+        answers.logMenu(name: "website-issues")
     }
 }
