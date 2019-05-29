@@ -35,6 +35,13 @@ class AnswersHelper {
                                contentId: "menu-\(name)",
                                customAttributes: ["name": name])
     }
+
+    func logUpdateNotification(updating: Bool) {
+        Answers.logContentView(withName: "Notification",
+                               contentType: "Indicator",
+                               contentId: "update-\(updating)",
+                               customAttributes: ["updating": updating])
+    }
 }
 
 let answers = AnswersHelper()

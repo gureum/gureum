@@ -23,14 +23,19 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         guard let download = userInfo["download"] as? String else {
             return
         }
+        var updating: Bool = false
         switch notification.activationType {
         case .actionButtonClicked:
             fallthrough
         case .contentsClicked:
-            NSWorkspace.shared.open(URL(string: download)!)
+            updating = true
         default:
             break
         }
+        if updating {
+            NSWorkspace.shared.open(URL(string: download)!)
+        }
+        answers.logUpdateNotification(updating: updating)
     }
 }
 
