@@ -82,6 +82,10 @@ public class Configuration: UserDefaults {
         self.init(suiteName: Configuration.sharedSuiteName)!
     }
 
+    public func persistentDomain() -> [String: Any] {
+        return persistentDomain(forName: Configuration.sharedSuiteName) ?? [:]
+    }
+
     func getShortcut(forKey key: String) -> Shortcut? {
         guard let value = self.dictionary(forKey: key) else {
             return nil

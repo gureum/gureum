@@ -39,6 +39,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
 
     let configuration = Configuration.shared
     let notificationCenterDelegate = NotificationCenterDelegate()
+    let launchedTime = Date()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
@@ -52,9 +53,9 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
             notification.hasReplyButton = false
             notification.informativeText = "이 버전은 디버그 빌드입니다. 키 입력이 로그로 남을 수 있어 안전하지 않습니다."
             notificationCenter.deliver(notification)
+        // Fabric.with([Answers.self])
         #else
-            Fabric.with([Crashlytics.self])
-            Fabric.with([Answers.self])
+            Fabric.with([Crashlytics.self, Answers.self])
         #endif
 
         UpdateManager.shared.notifyUpdateIfNeeded()
@@ -62,11 +63,21 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
         // IMKServer를 띄워야만 입력기가 동작한다
         _ = InputMethodServer.shared
 
-        reportLastInputMode()
+        sendAnswersLog()
     }
 
-    func reportLastInputMode() {
-        let lastInputModes = ["Roman": self.configuration.lastRomanInputMode, "Hangul": self.configuration.lastHangulInputMode]
-        Answers.logCustomEvent(withName: "LastInputMode", customAttributes: lastInputModes)
+    func sendAnswersLog() {
+        let report = configuration.persistentDomain().mapValues { "\($0)" }
+        Answers.logLogin(withMethod: "Launch",
+                         success: true,
+                         customAttributes: report)
+
+        Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
+            let uptime = -self.launchedTime.timeIntervalSinceNow
+            Answers.logContentView(withName: "Uptime",
+                                   contentType: "Indicator",
+                                   contentId: "uptime",
+                                   customAttributes: ["uptime": uptime])
+        }
     }
 }
