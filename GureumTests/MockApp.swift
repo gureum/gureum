@@ -34,10 +34,12 @@ class VirtualApp: NSObject {
 
     @discardableResult
     func inputKey(_ keyCode: Int, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
-        assert(keyCode <= 0x33) // use inputText:key:modifiers:
-        var string = KeyMapLower[keyCode]
-        if !flags.intersection([.shift]).isEmpty {
-            string = KeyMapUpper[keyCode]
+        var string: String?
+        if keyCode <= 0x33 {
+            string = KeyMapLower[keyCode]
+            if !flags.intersection([.shift]).isEmpty {
+                string = KeyMapUpper[keyCode]
+            }
         }
         return inputText(string, key: keyCode, modifiers: flags)
     }
@@ -48,7 +50,7 @@ class ModerateApp: VirtualApp {
         let processed = super.inputText(string, key: keyCode, modifiers: flags)
         let specialFlags = flags.intersection([.command, .control])
 
-        if !processed, specialFlags.isEmpty {
+        if !processed, specialFlags.isEmpty, string != nil {
             client.insertText(string, replacementRange: client.markedRange())
         }
         return processed

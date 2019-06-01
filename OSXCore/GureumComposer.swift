@@ -236,7 +236,7 @@ class GureumComposer: DelegatedComposer {
         // Handle SpecialKeyCode first
         let inputKey = (UInt(keyCode), inputModifier)
         if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
-            return .changeLayout(.toggle)
+            return .changeLayout(.toggle, true)
         }
         //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
         //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
@@ -247,7 +247,7 @@ class GureumComposer: DelegatedComposer {
         //            need_exchange = YES;
         //        }
         if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
-            return .changeLayout(.hanja)
+            return .changeLayout(.hanja, true)
         }
 
         if (delegate as? HanjaComposer) === hanjaComposer {
@@ -268,7 +268,7 @@ class GureumComposer: DelegatedComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
                 if keyCode == kVK_Escape || (keyCode, inputModifier) == (kVK_ANSI_LeftBracket, NSEvent.ModifierFlags.control) {
-                    return .changeLayout(.roman)
+                    return .changeLayout(.roman, false)
                 }
             }
         }
