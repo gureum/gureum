@@ -206,6 +206,7 @@ class GureumTests: XCTestCase {
     }
 
     func testBackQuoteHan2() {
+        Configuration.shared.hangulWonCurrencySymbolForBackQuote = true
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
@@ -219,6 +220,7 @@ class GureumTests: XCTestCase {
     }
 
     func testBackQuoteOnComposing() {
+        Configuration.shared.hangulWonCurrencySymbolForBackQuote = true
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
@@ -515,7 +517,7 @@ class GureumTests: XCTestCase {
         }
     }
 
-    func testEscapeOrCtrlAndLeftBracketHan3Gureum() {
+    func testViModeEscape() {
         XCTAssertFalse(Configuration.shared.romanModeByEscapeKey)
         Configuration.shared.romanModeByEscapeKey = true
         for app in apps {
@@ -525,7 +527,25 @@ class GureumTests: XCTestCase {
             app.inputKey(kVK_ANSI_M)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-            app.inputKey(kVK_ANSI_LeftBracket, modifiers: [.control])
+            let processed = app.inputKey(kVK_Escape)
+            XCTAssertFalse(processed)
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
+        }
+    }
+
+    func testViModeCtrlAndLeftBracket() {
+        XCTAssertFalse(Configuration.shared.romanModeByEscapeKey)
+        Configuration.shared.romanModeByEscapeKey = true
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputKey(kVK_ANSI_M)
+            XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            let processed = app.inputKey(kVK_ANSI_LeftBracket, modifiers: [.control])
+            XCTAssertFalse(processed)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
 

@@ -43,7 +43,7 @@ enum ChangeLayout {
 }
 
 enum InputEvent {
-    case changeLayout(ChangeLayout)
+    case changeLayout(ChangeLayout, Bool)
 }
 
 @objc(GureumInputController)
@@ -130,7 +130,7 @@ public extension InputController { // IMKServerInputHandleEvent
             if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
                 if InputMethodServer.shared.io.capsLockTriggered {
                     dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
-                    _ = receiver.input(event: .changeLayout(.toggleByCapsLock), client: client)
+                    _ = receiver.input(event: .changeLayout(.toggleByCapsLock, true), client: client)
                 } else {
                     (sender as! IMKTextInput).selectMode(receiver.composer.inputMode)
                 }
@@ -296,7 +296,7 @@ public extension InputController { // IMKServerInput
     public extension MockInputController { // IMKServerInputTextData
         func inputFlags(_: Int, client sender: Any) -> Bool {
             let client = asClient(sender)
-            let result = receiver.input(event: .changeLayout(.toggle), client: client)
+            let result = receiver.input(event: .changeLayout(.toggle, true), client: client)
             if !result.processed {
                 // [self cancelComposition]
             }
