@@ -20,9 +20,11 @@ class UpdateManager {
     }
 
     func requestRecentVersion() -> VersionInfo? {
-        let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+            return nil
+        }
         var url: URL
-        if currentVersion.contains("-pre") {
+        if currentVersion.contains("-pre") || currentVersion.contains("-rc") {
             url = URL(string: "http://gureum.io/version-pre.txt")!
         } else {
             url = URL(string: "http://gureum.io/version.txt")!
