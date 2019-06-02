@@ -13,11 +13,11 @@ import XCTest
 
 class GureumTests: XCTestCase {
     static let domainName = "org.youknowone.Gureum.test"
-    let moderate: VirtualApp = ModerateApp()
-    // let xcode: VirtualApp = XcodeApp()
-    let terminal: VirtualApp! = nil
-//    let terminal: VirtualApp = TerminalApp()
-//    let greedy: VirtualApp = GreedyApp()
+    lazy var moderate: VirtualApp = ModerateApp()
+    // lazy var xcode: VirtualApp = XcodeApp()
+    lazy var terminal: VirtualApp! = nil
+    // lazy var terminal: VirtualApp = TerminalApp()
+    // lazy var greedy: VirtualApp = GreedyApp()
     lazy var apps: [VirtualApp] = [moderate]
 
     override class func setUp() {
