@@ -32,7 +32,7 @@
 				<string>org.youknowone.inputmethod.Gureum.colemak</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
-				<key>tsInputModeAlternateMenuLconFileKey</key>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
 				<true/>
@@ -53,7 +53,7 @@
 				<string>org.youknowone.inputmethod.Gureum.dvorak</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
-				<key>tsInputModeAlternateMenuLconFileKey</key>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
 				<true/>
