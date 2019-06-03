@@ -72,14 +72,12 @@
 		3881869121EB2DC0004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
 		3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
-		3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		3881869D21EB3055004B7FDB /* EmoticonComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F007652160B09700501606 /* EmoticonComposer.swift */; };
 		3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3E42A21213E9700751191 /* HangulComposer.swift */; };
 		3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38162D7B140F64B70077AA2D /* HanjaComposer.swift */; };
 		388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75C8B1F153A74004BE02A /* RomanComposer.swift */; };
 		388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B8381214299EB00527218 /* GureumComposer.swift */; };
 		388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; };
-		388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186A721EB34FA004B7FDB /* TISInputSource.swift */; };
 		388186AA21EB3D61004B7FDB /* TISInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE977A1A00148D00AD19B8 /* TISInputSource.m */; };
 		388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
 		388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
@@ -89,7 +87,6 @@
 		388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */; };
 		388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EC0BFFBE505587BF06F373 /* Pods_OSXTestApp.framework */; };
 		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		388534FD213A740600885C87 /* IOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388534FC213A740600885C87 /* IOKit.swift */; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
 		38B9547B229ED9BC00A9D6E1 /* AnswersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9547A229ED9BC00A9D6E1 /* AnswersHelper.swift */; };
@@ -104,7 +101,6 @@
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
-		8044BCD822940EE7009996E0 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388186A721EB34FA004B7FDB /* TISInputSource.swift */; };
 		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
 		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
@@ -326,9 +322,7 @@
 		3881867A21EB2D7D004B7FDB /* GureumCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GureumCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3881867C21EB2D7D004B7FDB /* OSXCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSXCore.h; sourceTree = "<group>"; };
 		3881867D21EB2D7D004B7FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		388186A721EB34FA004B7FDB /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
 		388186B321EB4E4C004B7FDB /* MockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApp.swift; sourceTree = "<group>"; };
-		388534FC213A740600885C87 /* IOKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOKit.swift; sourceTree = "<group>"; };
 		38863C63140E64EB00A8ED76 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		38863C66140E64EB00A8ED76 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		38863C67140E64EB00A8ED76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -595,7 +589,6 @@
 			children = (
 				3881867C21EB2D7D004B7FDB /* OSXCore.h */,
 				3881867D21EB2D7D004B7FDB /* Info.plist */,
-				388186A721EB34FA004B7FDB /* TISInputSource.swift */,
 				381DB19A21678B74005A37B9 /* Debug.swift */,
 				E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */,
 				38C2AE4C208795E700FE211A /* Configuration.swift */,
@@ -609,7 +602,6 @@
 				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
-				388534FC213A740600885C87 /* IOKit.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
@@ -1101,10 +1093,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FoundationExtension/FoundationExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCarbon/SwiftCarbon.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftIOKit/SwiftIOKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoundationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCarbon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIOKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1196,11 +1192,15 @@
 				"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FoundationExtension/FoundationExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCarbon/SwiftCarbon.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftIOKit/SwiftIOKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoundationExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCarbon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIOKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1221,7 +1221,6 @@
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
 				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */,
-				388534FD213A740600885C87 /* IOKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,7 +1228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8044BCD822940EE7009996E0 /* TISInputSource.swift in Sources */,
 				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
 				388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */,
 			);
@@ -1262,8 +1260,6 @@
 				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
 				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
 				3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */,
-				3881869721EB2E0F004B7FDB /* IOKit.swift in Sources */,
-				388186A821EB34FA004B7FDB /* TISInputSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

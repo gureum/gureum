@@ -10,6 +10,7 @@ import Cocoa
 import Foundation
 import MASShortcut
 import PreferencePanes
+import SwiftCarbon
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
     @IBOutlet var viewController: NSViewController!

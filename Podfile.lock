@@ -13,6 +13,13 @@ PODS:
   - FoundationExtension/FoundationExtensionRC (2.0.0):
     - cdebug (~> 1.1)
   - MASShortcut (2.3.6)
+  - SwiftCarbon (0.1.0):
+    - SwiftCarbon/HIToolbox (= 0.1.0)
+    - SwiftCarbon/SwiftCarbon (= 0.1.0)
+  - SwiftCarbon/HIToolbox (0.1.0)
+  - SwiftCarbon/SwiftCarbon (0.1.0):
+    - SwiftCarbon/HIToolbox
+  - SwiftIOKit (0.1.0)
 
 DEPENDENCIES:
   - cdebug
@@ -20,6 +27,8 @@ DEPENDENCIES:
   - Fabric
   - FoundationExtension (~> 2.0.0)
   - MASShortcut
+  - SwiftCarbon
+  - SwiftIOKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -28,6 +37,8 @@ SPEC REPOS:
     - Fabric
     - FoundationExtension
     - MASShortcut
+    - SwiftCarbon
+    - SwiftIOKit
 
 SPEC CHECKSUMS:
   cdebug: 55a96da647360590f0d292baebb34c4066cbca02
@@ -35,7 +46,9 @@ SPEC CHECKSUMS:
   Fabric: f6f21452846788bb44595d73e9909d79d328e617
   FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
   MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
+  SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
+  SwiftIOKit: 9dce3dec67e00dc74b95fde86f257aca78239853
 
-PODFILE CHECKSUM: ad8cfc76fc64d900dbda949a1f7c5b241feb451d
+PODFILE CHECKSUM: 09ed8ee4b5f8a5b490e474da126dc82f42e846c5
 
 COCOAPODS: 1.7.1

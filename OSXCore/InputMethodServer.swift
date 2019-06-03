@@ -8,7 +8,7 @@
 
 import Foundation
 import InputMethodKit
-import IOKit
+import SwiftIOKit
 
 let DEBUG_INPUT_SERVER = false
 let DEBUG_IOKIT_EVENT = false
@@ -46,23 +46,23 @@ extension IMKServer {
 class IOKitty {
     var ref: IOKitty!
 
-    let service: IOService
-    let connect: IOConnect
+    let service: SIOService
+    let connect: SIOConnect
     let manager: IOHIDManager
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
 
     init?() {
-        guard let _service = IOService(name: kIOHIDSystemClass) else {
+        guard let _service = SIOService(name: kIOHIDSystemClass) else {
             return nil
         }
         service = _service
-        guard let _connect = try? service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType) else {
+        guard let _connect = try? service.open(owningTask: mach_task_self_, type: kIOHIDParamConnectType).get() else {
             return nil
         }
         connect = _connect
 
-        defaultCapsLockState = (try? connect.getModifierLock(selector: .capsLock)) ?? false
+        defaultCapsLockState = (try? connect.getModifierLock(selector: .capsLock).get()) ?? false
 
         manager = IOHIDManager.create()
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
@@ -74,6 +74,9 @@ class IOKitty {
             _self in
             manager.registerInputValueCallback({
                 inContext, _, _, value in
+                guard Configuration.shared.enableCapslockToToggleInputMode else {
+                    return
+                }
                 guard let inContext = inContext else {
                     dlog(true, "IOKit callback inContext is nil - impossible")
                     return
