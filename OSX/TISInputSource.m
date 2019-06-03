@@ -136,71 +136,9 @@ NSArray *_TISSourceInputRefToObject(NSArray *refs) {
     }];
 }
 
-+ (NSArray *)sourcesWithProperties:(NSDictionary *)properties includeAllInstalled:(BOOL)includeAllInstalled {
-    CFArrayRef refs = TISCreateInputSourceList((__bridge CFDictionaryRef)properties, includeAllInstalled);
-    NSArray *sources = _TISSourceInputRefToObject((__bridge NSArray *)refs);
-    CFRelease(refs);
-    return sources;
-}
-
-+ (instancetype)currentSource {
-    TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
-    return [[self alloc] initWithRef:ref];
-}
-
-+ (instancetype)currentLayoutSource {
-    TISInputSourceRef ref = TISCopyCurrentKeyboardLayoutInputSource();
-    return [[self alloc] initWithRef:ref];
-}
-
-+ (instancetype)currentASCIICapableSource {
-    TISInputSourceRef ref = TISCopyCurrentASCIICapableKeyboardInputSource();
-    return [[self alloc] initWithRef:ref];
-}
-
-+ (instancetype)currentASCIICapableLayoutSource {
-    TISInputSourceRef ref = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
-    return [[self alloc] initWithRef:ref];
-}
-
 + (instancetype)sourceForLanguage:(NSString *)language {
     TISInputSourceRef ref = TISCopyInputSourceForLanguage((__bridge CFStringRef)language);
     return [[self alloc] initWithRef:ref];
-}
-
-+ (NSArray *)ASCIICapableSources {
-    CFArrayRef refs = TISCreateASCIICapableInputSourceList();
-    NSArray *sources = _TISSourceInputRefToObject((__bridge NSArray *)refs);
-    CFRelease(refs);
-    return sources;
-}
-
-- (void)select {
-    OSStatus err = TISSelectInputSource(self->_ref);
-    if (err != 0) {
-        @throw [TISInputSourceError errorWithCode:err];
-    }
-}
-
-- (void)deselect {
-    OSStatus err = TISDeselectInputSource(self->_ref);
-    if (err != 0) {
-        @throw [TISInputSourceError errorWithCode:err];
-    }
-}
-
-- (void)enable {
-    OSStatus err = TISEnableInputSource(self->_ref);
-    if (err != 0) {
-        @throw [TISInputSourceError errorWithCode:err];
-    }
-}
-
-- (void)disable {
-    OSStatus err = TISDisableInputSource(self->_ref);
-    if (err != 0) {
-        @throw [TISInputSourceError errorWithCode:err];
-    }
 }
 
 + (void)setInputMethodKeyboardLayoutOverride:(TISInputSource *)source {
@@ -216,13 +154,6 @@ NSArray *_TISSourceInputRefToObject(NSArray *refs) {
         return nil;
     }
     return [[self alloc] initWithRef:ref];
-}
-
-+ (void)register:(NSURL *)location {
-    OSStatus err = TISRegisterInputSource((__bridge CFURLRef)location);
-    if (err != 0) {
-        @throw [TISInputSourceError errorWithCode:err];
-    }
 }
 
 @end

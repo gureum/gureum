@@ -58,21 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly) NSData *layoutData;
 @property(nonatomic,readonly) NSURL *iconImageURL;
 
-- (void)select;
-- (void)deselect;
-- (void)enable;
-- (void)disable;
-
-+ (NSArray *)sourcesWithProperties:(NSDictionary *)properties includeAllInstalled:(BOOL)includeAllInstalled;
-+ (instancetype)currentSource;
-+ (instancetype)currentLayoutSource;
-+ (instancetype)currentASCIICapableSource;
-+ (instancetype)currentASCIICapableLayoutSource;
 + (instancetype)sourceForLanguage:(NSString *)language;
-+ (NSArray *)ASCIICapableSources;
 + (void)setInputMethodKeyboardLayoutOverride:(TISInputSource *)source;
 + (TISInputSource *)inputMethodKeyboardLayoutOverride;
-+ (void)register:(NSURL *)location;
 
 @end
 
