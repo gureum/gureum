@@ -8,6 +8,7 @@ target 'OSXCore' do
     pod 'FoundationExtension', '~> 2.0.0'
     pod 'SwiftIOKit'
     pod 'SwiftCarbon'
+    pod 'SwiftCoreServices'
 end
 target 'OSX' do
     platform :osx, "10.13"

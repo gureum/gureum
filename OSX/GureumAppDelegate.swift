@@ -71,5 +71,6 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
         Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
             answers.logUptime()
         }
+        watcher.reloadConfiguration()
     }
 }

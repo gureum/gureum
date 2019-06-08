@@ -19,6 +19,7 @@ PODS:
   - SwiftCarbon/HIToolbox (0.1.0)
   - SwiftCarbon/SwiftCarbon (0.1.0):
     - SwiftCarbon/HIToolbox
+  - SwiftCoreServices (0.1.1)
   - SwiftIOKit (0.1.0)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - FoundationExtension (~> 2.0.0)
   - MASShortcut
   - SwiftCarbon
+  - SwiftCoreServices
   - SwiftIOKit
 
 SPEC REPOS:
@@ -38,6 +40,7 @@ SPEC REPOS:
     - FoundationExtension
     - MASShortcut
     - SwiftCarbon
+    - SwiftCoreServices
     - SwiftIOKit
 
 SPEC CHECKSUMS:
@@ -47,8 +50,9 @@ SPEC CHECKSUMS:
   FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
   MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
+  SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
   SwiftIOKit: 9dce3dec67e00dc74b95fde86f257aca78239853
 
-PODFILE CHECKSUM: 09ed8ee4b5f8a5b490e474da126dc82f42e846c5
+PODFILE CHECKSUM: f267d6545e41b1c9581e708a70198800d75eae36
 
 COCOAPODS: 1.7.1

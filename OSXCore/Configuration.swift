@@ -33,7 +33,7 @@ public class Configuration: UserDefaults {
     public static let sharedSuiteName = "org.youknowone.Gureum"
     public static var shared = Configuration()
 
-    var enableCapslockToToggleInputMode: Bool = true
+    var enableCapslockToToggleInputMode: Bool = false
 
     typealias Shortcut = (UInt, NSEvent.ModifierFlags)
 
@@ -70,12 +70,6 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulNonChoseongCombination.rawValue: false,
             ConfigurationName.hangulForceStrictCombinationRule.rawValue: false,
         ])
-
-        // 시스템 설정 읽어와서 반영한다. 여기도 observer 설정 가능한지 확인 필요
-        let libraryUrl = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-        let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryUrl))!
-        let state: Int = (globalPreferences["TISRomanSwitchState"] as? NSNumber)?.intValue ?? 1
-        enableCapslockToToggleInputMode = state > 0
     }
 
     convenience init() {
