@@ -21,7 +21,6 @@ target 'Preferences' do
     platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
-    pod 'SwiftCarbon'
 end
 target 'OSXTestApp' do
     platform :osx, "10.13"
