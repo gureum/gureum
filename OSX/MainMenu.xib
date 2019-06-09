@@ -31,6 +31,12 @@
                         <action selector="checkRecentVersion:" target="-1" id="YEc-yG-BVR"/>
                     </connections>
                 </menuItem>
+                <menuItem title="  최신 실험 버전 확인" id="rQW-rj-VR5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkRecentVersion:" target="-1" id="snQ-Fs-kc8"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="561"/>
                 <menuItem title="웹사이트..." id="555">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -56,7 +62,7 @@
                         <action selector="openWebsiteSource:" target="-1" id="MXc-ok-c68"/>
                     </connections>
                 </menuItem>
-                <menuItem title="  기부하기..." id="3LO-k7-fXJ">
+                <menuItem title="  후원하기..." id="3LO-k7-fXJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openWebsiteDonation:" target="-1" id="UW3-RT-XwB"/>
