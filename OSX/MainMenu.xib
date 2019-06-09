@@ -34,7 +34,7 @@
                 <menuItem title="  최신 실험 버전 확인" id="rQW-rj-VR5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="checkRecentVersion:" target="-1" id="snQ-Fs-kc8"/>
+                        <action selector="checkExperimentalVersion:" target="-1" id="Dqw-TI-1yI"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="561"/>
