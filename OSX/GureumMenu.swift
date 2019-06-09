@@ -21,6 +21,11 @@ extension InputController {
     @IBAction func checkRecentVersion(_: Any) {
         answers.logMenu(name: "check-version")
         guard let info = UpdateManager.shared.fetchOfficialVersionInfo() else {
+            let alert = NSAlert()
+            alert.messageText = "구름 입력기 업데이트 확인"
+            alert.addButton(withTitle: "확인")
+            alert.informativeText = "업데이트 정보에 접근할 수 없습니다. 인터넷에 연결되어 있지 않거나 구름 업데이트의 버그일 수 있습니다."
+            alert.runModal()
             return
         }
 
