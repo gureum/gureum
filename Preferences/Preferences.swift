@@ -10,7 +10,6 @@ import Cocoa
 import Foundation
 import MASShortcut
 import PreferencePanes
-import SwiftCarbon
 
 @objcMembers class GureumPreferencePane: NSPreferencePane {
     @IBOutlet var viewController: NSViewController!
@@ -199,18 +198,7 @@ import SwiftCarbon
     @IBAction func romanModeByEscapeKeyValueChanged(_ sender: NSButton) {
         configuration.romanModeByEscapeKey = sender.state == .on
     }
-/*
-    @IBAction func didTapHelpShortCut(_ sender: NSButton) {
-        let helpAlert: NSAlert = {
-            let alert = NSAlert()
-            alert.messageText = "도움말"
-            alert.addButton(withTitle: "확인")
-            alert.informativeText = "Space 또는 ⇧Space 로 초기화하고 새로 설정할 수 있습니다."
-            return alert
-        }()
-        helpAlert.beginSheetModal(for: self.pane.mainView.window!, completionHandler: nil)
-    }
-*/
+
     @IBAction func hangulWonCurrencySymbolForBackQuoteValueChanged(_ sender: NSButton) {
         configuration.hangulWonCurrencySymbolForBackQuote = sender.state == .on
     }
@@ -283,5 +271,34 @@ class GureumShortcutValidator: MASShortcutValidator {
 
     override func isShortcut(_: MASShortcut!, alreadyTakenIn _: NSMenu!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
         return false
+    }
+}
+
+// pod으로 설치하면 정상적으로 불러와지지 않는다
+extension TISInputSource {
+    class func sources(withProperties properties: NSDictionary, includeAllInstalled: Bool) -> [TISInputSource]? {
+        guard let unmanaged = TISCreateInputSourceList(properties, includeAllInstalled) else {
+            return nil
+        }
+        return unmanaged.takeRetainedValue() as? [TISInputSource]
+    }
+
+    func property(forKey key: String) -> Any? {
+        guard let unmanaged = TISGetInputSourceProperty(self, key as CFString) else {
+            return nil
+        }
+        return Unmanaged<AnyObject>.fromOpaque(unmanaged).takeUnretainedValue()
+    }
+
+    var enabled: Bool {
+        return property(forKey: kTISPropertyInputSourceIsEnabled as String) as! Bool
+    }
+
+    var identifier: String {
+        return property(forKey: kTISPropertyInputSourceID as String) as! String
+    }
+
+    var localizedName: String {
+        return property(forKey: kTISPropertyLocalizedName as String) as! String
     }
 }
