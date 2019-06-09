@@ -20,7 +20,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         guard let userInfo = notification.userInfo else {
             return
         }
-        guard let download = userInfo["download"] as? String else {
+        guard let download = userInfo["url"] as? String else {
             return
         }
         var updating: Bool = false
