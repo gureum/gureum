@@ -80,7 +80,7 @@ class UpdateManager {
         notification.hasReplyButton = false
         notification.actionButtonTitle = "업데이트"
         notification.otherButtonTitle = "취소"
-        notification.informativeText = "최신 버전: \(info.recent ?? "-") 현재 버전: \(info.current ?? "-")\n\(info.description)"
+        notification.informativeText = "최신 버전: \(info.recent ?? "-") 현재 버전: \(info.current ?? "-")\n\(info.description ?? "")"
         if let url = info.url {
             // URL object is not delivered
             notification.userInfo = ["url": url.absoluteString]

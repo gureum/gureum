@@ -11,6 +11,14 @@ import Hangul
 import InputMethodKit
 import XCTest
 
+private var lastNotification: NSUserNotification!
+
+extension NSUserNotificationCenter {
+    func deliver(_ notification: NSUserNotification) {
+        lastNotification = notification
+    }
+}
+
 class GureumTests: XCTestCase {
     static let domainName = "org.youknowone.Gureum.test"
     lazy var moderate: VirtualApp = ModerateApp()
@@ -46,6 +54,24 @@ class GureumTests: XCTestCase {
         let bundle = NSPrefPaneBundle(path: path)!
         let loaded = bundle.instantiatePrefPaneObject()
         XCTAssertTrue(loaded)
+    }
+
+    func testNotifyUpdate() {
+        let versionInfoString = """
+        {
+            "version": "1.10.0",
+            "description": "Mojave 대응을 포함한 대형 업데이트",
+            "url": "https://github.com/gureum/gureum/releases/tag/1.10.0"
+        }
+        """
+        guard let versionInfoJSON = try? JSONSerialization.jsonObject(with: versionInfoString) as? [String: String] else {
+            XCTFail()
+            return
+        }
+        let versionInfo = UpdateManager.VersionInfo(data: versionInfoJSON)
+        UpdateManager.shared.notifyUpdate(info: versionInfo)
+        XCTAssertEqual("최신 버전: 1.10.0 현재 버전: \(UpdateManager.bundleVersion ?? "-")\nMojave 대응을 포함한 대형 업데이트", lastNotification.informativeText)
+        XCTAssertEqual(["url": "https://github.com/gureum/gureum/releases/tag/1.10.0"], lastNotification.userInfo as! [String: String])
     }
 
     func testLayoutChange() {
