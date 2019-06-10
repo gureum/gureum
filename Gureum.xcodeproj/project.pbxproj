@@ -102,6 +102,7 @@
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
+		80983E8022AE2A7000A69C08 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831983B21DB744900E20D78 /* UpdateManager.swift */; };
 		80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B22217E1AA90018E658 /* hangul-keyboard-2y-full.xml */; };
 		80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80A02B23217E1AA90018E658 /* hangul-keyboard-2-full.xml */; };
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
@@ -1278,6 +1279,7 @@
 				A34E20012168B21B00B12476 /* GureumTests.swift in Sources */,
 				388186B521EB4E98004B7FDB /* MockApp.swift in Sources */,
 				3881866421EB23F3004B7FDB /* MockInputClient.m in Sources */,
+				80983E8022AE2A7000A69C08 /* UpdateManager.swift in Sources */,
 				38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
