@@ -94,7 +94,7 @@ class HangulComposer: NSObject, ComposerDelegate {
 
     override func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
         if keyPath == ConfigurationName.hangulForceStrictCombinationRule.rawValue {
-            let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? "2"
+            let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!
             setKeyboard(identifier: keyboard)
         } else {
             inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)

@@ -68,7 +68,7 @@ class GureumComposer: DelegatedComposer {
     let qwertyComposer: QwertyComposer = QwertyComposer()
     let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
     let colemakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
-    let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: "2")!
+    let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!)!
     let hanjaComposer: HanjaComposer = HanjaComposer()
     let emoticonComposer: EmoticonComposer = EmoticonComposer()
     let romanComposersByIdentifier: [String: DelegatedComposer]
