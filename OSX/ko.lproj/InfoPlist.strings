@@ -15,8 +15,6 @@ org.youknowone.inputmethod.Gureum.hanahnmatae = "안마태";
 org.youknowone.inputmethod.Gureum.han3-2011 = "세벌식 2011";
 org.youknowone.inputmethod.Gureum.han3-2012 = "세벌식 2012";
 org.youknowone.inputmethod.Gureum.han3finalnoshift = "세벌식 최종 순아래";
-org.youknowone.inputmethod.Gureum.han3-2014 = "세벌식 모아치기 2015";
-org.youknowone.inputmethod.Gureum.han3-2015 = "세벌식 2015";
 
 CFBundleName = "구름";
 CFBundleDisplayName = "구름 입력기";

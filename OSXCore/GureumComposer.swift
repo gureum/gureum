@@ -31,8 +31,6 @@ enum GureumInputSourceIdentifier: String {
     case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
     case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
     case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
-    case han3_2014 = "org.youknowone.inputmethod.Gureum.han3-2014"
-    case han3_2015 = "org.youknowone.inputmethod.Gureum.han3-2015"
 
     var keyboardIdentifier: String {
         guard let value = GureumInputSourceToHangulKeyboardIdentifierTable[self] else {
@@ -59,8 +57,6 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3FinalNoShift: "3gs",
     .han3_2011: "3-2011",
     .han3_2012: "3-2012",
-    .han3_2014: "3-2014",
-    .han3_2015: "3-2015",
 ]
 
 class GureumComposer: DelegatedComposer {
