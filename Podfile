@@ -1,8 +1,8 @@
 workspace 'Gureum'
 use_frameworks!
+platform :osx, "10.13"
 
 target 'OSXCore' do
-    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'cdebug'
     pod 'FoundationExtension', '~> 2.0.0'
@@ -11,25 +11,21 @@ target 'OSXCore' do
     pod 'SwiftCoreServices'
 end
 target 'OSX' do
-    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'FoundationExtension', '~> 2.0.0'
     pod 'Fabric'
     pod 'Crashlytics'
 end
 target 'Preferences' do
-    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
 end
 target 'OSXTestApp' do
-    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
     pod 'FoundationExtension', '~> 2.0.0'
 end
 target 'OSXTests' do
-    platform :osx, "10.13"
     project 'Gureum.xcodeproj'
 end
 

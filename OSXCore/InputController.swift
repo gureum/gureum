@@ -70,7 +70,7 @@ public class InputController: IMKInputController {
         super.inputControllerWillClose()
     }
 
-    func asClient(_ sender: Any) -> IMKTextInput & IMKUnicodeTextInput {
+    func asClient(_ sender: Any!) -> IMKTextInput & IMKUnicodeTextInput {
         #if DEBUG
             return sender as! (IMKTextInput & IMKUnicodeTextInput)
         #else
@@ -90,13 +90,13 @@ public class InputController: IMKInputController {
 
         public override func modes(_ sender: Any!) -> [AnyHashable: Any]! {
             let modes = super.modes(sender)
-            dlog(DEBUG_SPYING, "modes: \(modes)")
+            dlog(DEBUG_SPYING, "modes: \(String(describing: modes))")
             return modes
         }
 
         public override func value(forTag tag: Int, client _: Any!) -> Any! {
             let v = super.value(forTag: tag, client: client)
-            dlog(DEBUG_SPYING, "value: \(v) for tag: \(tag)")
+            dlog(DEBUG_SPYING, "value: \(String(describing: v)) for tag: \(tag)")
             return v
         }
     #endif
