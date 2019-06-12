@@ -44,13 +44,12 @@ extension IMKServer {
 }
 
 class IOKitty {
-    var ref: IOKitty!
-
     let service: SIOService
     let connect: SIOConnect
     let manager: IOHIDManager
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
+    var rollback: (() -> Void)?
 
     init?() {
         guard let _service = SIOService(name: kIOHIDSystemClass) else {
@@ -68,39 +67,39 @@ class IOKitty {
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
         manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
 
-        ref = self
+        let _self = Unmanaged.passUnretained(self)
         // Set input value callback
-        withUnsafeMutablePointer(to: &ref) {
-            _self in
-            manager.registerInputValueCallback({
-                inContext, _, _, value in
-                guard Configuration.shared.enableCapslockToToggleInputMode else {
-                    return
-                }
-                guard let inContext = inContext else {
-                    dlog(true, "IOKit callback inContext is nil - impossible")
-                    return
-                }
+        manager.registerInputValueCallback({
+            inContext, _, _, value in
+            guard Configuration.shared.enableCapslockToToggleInputMode else {
+                return
+            }
+            guard let inContext = inContext else {
+                dlog(true, "IOKit callback inContext is nil - impossible")
+                return
+            }
 
-                let pressed = value.integerValue > 0
-                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
-                let _self = inContext.assumingMemoryBound(to: IOKitty.self).pointee
-                if pressed {
-                    _self.capsLockDate = Date()
-                    dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+            let pressed = value.integerValue > 0
+            dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
+            let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
+            if pressed {
+                _self.capsLockDate = Date()
+                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+            } else {
+                if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
+                    // long pressed
+                    _self.defaultCapsLockState = !_self.defaultCapsLockState
+                    _self.rollback?()
+                    _self.rollback = nil
                 } else {
-                    if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
-                        // long pressed
-                        _self.defaultCapsLockState = !_self.defaultCapsLockState
-                    } else {
-                        // short pressed
-                        try? _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
-                    }
+                    // short pressed
+                    try? _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
                     _self.capsLockDate = nil
                 }
-                // NSEvent.otherEvent(with: .applicationDefined, location: .zero, modifierFlags: .capsLock, timestamp: 0, windowNumber: 0, context: nil, subtype: 0, data1: 0, data2: 0)!
-            }, context: _self)
-        }
+            }
+            // NSEvent.otherEvent(with: .applicationDefined, location: .zero, modifierFlags: .capsLock, timestamp: 0, windowNumber: 0, context: nil, subtype: 0, data1: 0, data2: 0)!
+        }, context: _self.toOpaque())
+
         manager.schedule(runloop: .current, mode: .default)
         let r = manager.open()
         if r != kIOReturnSuccess {
@@ -116,10 +115,12 @@ class IOKitty {
     }
 
     var capsLockTriggered: Bool {
+        dlog(DEBUG_IOKIT_EVENT, "  triggered: date \(capsLockDate)")
         guard let capsLockDate = capsLockDate else {
             return false
         }
         let interval = Date().timeIntervalSince(capsLockDate)
+        dlog(DEBUG_IOKIT_EVENT, "  triggered: interval \(interval)")
         return interval < 0.5
     }
 }

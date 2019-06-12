@@ -123,15 +123,18 @@ public extension InputController { // IMKServerInputHandleEvent
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
             return result.processed
         case .flagsChanged:
-            // dlog(DEBUG_INPUTCONTROLLER, @"** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, -1, modifierFlags, nil, nil, [[self client] bundleIdentifier])
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / client: %@", event, -1, event.modifierFlags.rawValue, client.bundleIdentifier())
             let changed = lastFlags.symmetricDifference(event.modifierFlags)
             lastFlags = event.modifierFlags
 
             if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
                 if InputMethodServer.shared.io.capsLockTriggered {
-                    dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
-                    _ = receiver.input(event: .changeLayout(.toggleByCapsLock, true), client: client)
+                    dlog(DEBUG_IOKIT_EVENT, "controller detected capslock to change layout")
+                    let toggle = { [weak self] in _ = self?.receiver.input(event: .changeLayout(.toggleByCapsLock, true), client: client) }
+                    toggle()
+                    InputMethodServer.shared.io.rollback = toggle
                 } else {
+                    dlog(DEBUG_IOKIT_EVENT, "controller detected capslock")
                     (sender as! IMKTextInput).selectMode(receiver.composer.inputMode)
                 }
             }
