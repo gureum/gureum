@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0378CCB6A8DC8069FA2B6B55 /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
 		38098F0A215A3DB30001F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38098F09215A3DB30001F159 /* Assets.xcassets */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
@@ -108,7 +109,6 @@
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
-		AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
 		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
@@ -415,7 +415,7 @@
 			files = (
 				388186C021EB9E11004B7FDB /* Pods_OSXTestApp.framework in Frameworks */,
 				388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */,
-				AA545CB9A59263E4F8A12E2B /* Pods_OSXTestApp.framework in Frameworks */,
+				0378CCB6A8DC8069FA2B6B55 /* Pods_OSXTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +836,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = youknowone.org;
 				TargetAttributes = {
 					38162DF2141263270077AA2D = {

@@ -115,7 +115,7 @@ class IOKitty {
     }
 
     var capsLockTriggered: Bool {
-        dlog(DEBUG_IOKIT_EVENT, "  triggered: date \(capsLockDate)")
+        dlog(DEBUG_IOKIT_EVENT, "  triggered: date \(String(describing: capsLockDate))")
         guard let capsLockDate = capsLockDate else {
             return false
         }
