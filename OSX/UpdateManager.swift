@@ -16,8 +16,10 @@ class UpdateManager {
     class VersionInfo {
         let current: String? = UpdateManager.bundleVersion
         let data: [String: String]
-        init(data: [String: String]) {
+        let experimental: Bool
+        init(data: [String: String], experimental: Bool) {
             self.data = data
+            self.experimental = experimental
         }
 
         var recent: String? {
@@ -36,7 +38,7 @@ class UpdateManager {
         }
     }
 
-    func fetchVersionInfo(from url: URL) -> VersionInfo? {
+    func fetchVersionInfo(from url: URL, experimental: Bool) -> VersionInfo? {
         var request = URLRequest(url: url)
         request.timeoutInterval = 0.5
         request.cachePolicy = .reloadIgnoringCacheData
@@ -49,17 +51,17 @@ class UpdateManager {
         guard let info = try? JSONSerialization.jsonObject(with: data as Data) as? [String: String] else {
             return nil
         }
-        return VersionInfo(data: info)
+        return VersionInfo(data: info, experimental: experimental)
     }
 
     func fetchOfficialVersionInfo() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version.json")!
-        return fetchVersionInfo(from: url)
+        return fetchVersionInfo(from: url, experimental: false)
     }
 
     func fetchExperimentalVersionInfo() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version-experimental.json")!
-        return fetchVersionInfo(from: url)
+        return fetchVersionInfo(from: url, experimental: true)
     }
 
     func fetchAutoUpdateVersionInfo() -> VersionInfo? {
@@ -75,7 +77,11 @@ class UpdateManager {
 
     func notifyUpdate(info: VersionInfo) {
         let notification = NSUserNotification()
-        notification.title = "구름 입력기 업데이트 알림"
+        var title = "구름 입력기 업데이트 알림"
+        if info.experimental {
+            title += " (실험 버전)"
+        }
+        notification.title = title
         notification.hasActionButton = true
         notification.hasReplyButton = false
         notification.actionButtonTitle = "업데이트"

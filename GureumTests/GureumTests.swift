@@ -68,7 +68,7 @@ class GureumTests: XCTestCase {
             XCTFail()
             return
         }
-        let versionInfo = UpdateManager.VersionInfo(data: versionInfoJSON)
+        let versionInfo = UpdateManager.VersionInfo(data: versionInfoJSON, experimental: true)
         UpdateManager.shared.notifyUpdate(info: versionInfo)
         XCTAssertEqual("최신 버전: 1.10.0 현재 버전: \(UpdateManager.bundleVersion ?? "-")\nMojave 대응을 포함한 대형 업데이트", lastNotification.informativeText)
         XCTAssertEqual(["url": "https://github.com/gureum/gureum/releases/tag/1.10.0"], lastNotification.userInfo as! [String: String])
