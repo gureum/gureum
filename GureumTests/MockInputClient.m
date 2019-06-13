@@ -27,6 +27,7 @@
 }
 
 - (void)insertText:(id)string replacementRange:(NSRange)replacementRange {
+    // NSAssert(replacementRange.location == NSNotFound || replacementRange.length != 0, @"-");
     [super insertText:string replacementRange:replacementRange];
 }
 
