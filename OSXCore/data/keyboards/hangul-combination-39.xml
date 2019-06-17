@@ -20,6 +20,7 @@
     <item first="0x1175" second="0x116e" result="0x1171"/>  <!-- ᅮ   + ᅵ   → ᅱ  -->
     <item first="0x11a8" second="0x11ba" result="0x11aa"/>  <!-- ᆨ   + ᆺ   → ᆪ  -->
     <item first="0x11ab" second="0x11bd" result="0x11ac"/>  <!-- ᆫ   + ᆽ   → ᆬ  -->
+    <item first="0x11af" second="0x11b8" result="0x11b2"/>  <!-- ᆯ   + ᆸ   → ᆲ  -->
     <item first="0x11af" second="0x11c1" result="0x11b5"/>  <!-- ᆯ   + ᇁ   → ᆵ  -->
     <item first="0x11af" second="0x11ba" result="0x11b3"/>  <!-- ᆯ   + ᆺ   → ᆳ  -->
     <item first="0x11af" second="0x11c0" result="0x11b4"/>  <!-- ᆯ   + ᇀ   → ᆴ  -->
