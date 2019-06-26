@@ -32,7 +32,10 @@ public class SystemConfigurationWatcher {
     }
 
     public func reloadConfiguration() {
-        let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: SystemConfigurationWatcher.globalPreferencesPath))!
+        guard let globalPreferences = NSDictionary(contentsOf: URL(fileURLWithPath: SystemConfigurationWatcher.globalPreferencesPath)) else {
+            return
+        }
+
         let state: Int = (globalPreferences["TISRomanSwitchState"] as? NSNumber)?.intValue ?? 1
         configuration.enableCapslockToToggleInputMode = state > 0
     }
