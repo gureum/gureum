@@ -151,7 +151,13 @@ class RomanDataComposer: DelegatedComposer {
             } else {
                 newChr = chr
             }
-            _commitString = String(map[newChr]!)
+
+            guard let mappedChr = map[newChr] else {
+                _commitString = nil
+                return .notProcessed
+            }
+
+            _commitString = String(mappedChr)
             return .processed
         } else {
             _commitString = nil
