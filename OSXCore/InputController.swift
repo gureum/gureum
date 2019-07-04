@@ -110,10 +110,10 @@ public extension InputController { // IMKServerInputHandleEvent
         // dlog(DEBUG_INPUTCONTROLLER, "event: \(event)")
         // sender is (IMKTextInput & IMKUnicodeTextInput & IMTSMSupport)
         let client = asClient(sender)
-        let imkCandidtes = InputMethodServer.shared.candidates
-        let keys = imkCandidtes.selectionKeys() as! [NSNumber]
-        if event.type == .keyDown, imkCandidtes.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
-            imkCandidtes.interpretKeyEvents([event])
+        let imkCandidates = InputMethodServer.shared.candidates
+        let keys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
+        if event.type == .keyDown, imkCandidates.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
+            imkCandidates.interpretKeyEvents([event])
             return true
         }
         switch event.type {
