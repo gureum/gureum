@@ -147,10 +147,10 @@ class EmoticonComposer: DelegatedComposer {
         let markedRange: NSRange = sender.markedRange()
         let selectedRange: NSRange = sender.selectedRange()
 
-        let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.length == NSNotFound
+        let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.location == NSNotFound
 
         dlog(DEBUG_EMOTICON, "DEBUG 2, [update] MSG: DEBUG POINT 1")
-        if isInvalidMarkedRange, selectedRange.length > 0 {
+        if isInvalidMarkedRange, selectedRange.location != NSNotFound, selectedRange.length > 0 {
             let selectedString: String = sender.attributedSubstring(from: selectedRange).string
 
             sender.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
