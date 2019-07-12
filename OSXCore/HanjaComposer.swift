@@ -235,7 +235,7 @@ class HanjaComposer: DelegatedComposer {
         let markedRange: NSRange = client.markedRange()
         let selectedRange: NSRange = client.selectedRange()
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: marked: %@ selected: %@", NSStringFromRange(markedRange), NSStringFromRange(selectedRange))
-        if markedRange.length == 0 || markedRange.length == NSNotFound, selectedRange.length > 0 {
+        if markedRange.length == 0 || markedRange.location == NSNotFound, selectedRange.location != NSNotFound, selectedRange.length > 0 {
             let selectedString = client.attributedSubstring(from: selectedRange).string
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateFromController: selected string: %@", selectedString)
             client.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
