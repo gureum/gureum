@@ -23,3 +23,33 @@
 # 버그 신고
 입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 버그가 재현되는지 확인해 주시고 [이슈 페이지](https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
 
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/gureum/gureum/graphs/contributors"><img src="https://opencollective.com/gureum-app/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/gureum-app/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/gureum-app"><img src="https://opencollective.com/gureum-app/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/gureum-app/contribute)]
+
+<a href="https://opencollective.com/gureum-app/organization/0/website"><img src="https://opencollective.com/gureum-app/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/1/website"><img src="https://opencollective.com/gureum-app/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/2/website"><img src="https://opencollective.com/gureum-app/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/3/website"><img src="https://opencollective.com/gureum-app/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/4/website"><img src="https://opencollective.com/gureum-app/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/5/website"><img src="https://opencollective.com/gureum-app/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/6/website"><img src="https://opencollective.com/gureum-app/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/7/website"><img src="https://opencollective.com/gureum-app/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/8/website"><img src="https://opencollective.com/gureum-app/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/gureum-app/organization/9/website"><img src="https://opencollective.com/gureum-app/organization/9/avatar.svg"></a>
