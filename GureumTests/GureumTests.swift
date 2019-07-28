@@ -75,7 +75,7 @@ class GureumTests: XCTestCase {
     }
 
     func testLayoutChange() {
-        Configuration.shared.inputModeExchangeKey = Configuration.Shortcut(UInt(kVK_Space), .shift)
+        Configuration.shared.inputModeExchangeKey = Configuration.Shortcut(kVK_Space, .shift)
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
