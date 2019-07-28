@@ -13,20 +13,16 @@ if [ $CONFIGURATION != 'Release' ]; then
     read
 fi
 
-APP_KEY="3rd Party Mac Developer Application: YunWon Jeong"
-INSTALLER_KEY="3rd Party Mac Developer Installer: YunWon Jeong"
-DEVELOPER_KEY="Developer ID Installer: YunWon Jeong"
+APPLICATION_KEY="Developer ID Application: YunWon Jeong"
+INSTALLER_KEY="Developer ID Installer: YunWon Jeong"
 
 BUILT_PRODUCT_PATH="${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app"
 
-rm ~/Downloads/"$PACKAGE_NAME.pkg" ~/Downloads/"$PACKAGE_NAME.zip"
+rm ~/Downloads/"$PACKAGE_NAME.pkg"
 rm -rf "${BUILT_PRODUCT_PATH}"
 
 (xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "$CONFIGURATION" | xcpretty) && \
-pushd "${BUILT_PRODUCTS_DIR}" && \
-zip ~/Downloads/"$PACKAGE_NAME.zip" -r "$PRODUCT_NAME.app" && \
-popd && \
-productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.app" '/Library/Input Methods' --sign "Developer ID Installer: YunWon Jeong" ~/Downloads/"$PACKAGE_NAME.pkg"
+productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.app" '/Library/Input Methods' --sign "$INSTALLER_KEY" ~/Downloads/"$PACKAGE_NAME.pkg"
 #tar -zcf "$PACKAGE_NAME.app.tar.gz" "$PRODUCT_NAME.app"
 
 cat "${BUILT_PRODUCT_PATH}/Contents/Info.plist" | grep Copyright
