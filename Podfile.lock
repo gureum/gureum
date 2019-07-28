@@ -1,8 +1,8 @@
 PODS:
   - cdebug (1.2)
-  - Crashlytics (3.13.1):
-    - Fabric (~> 1.10.1)
-  - Fabric (1.10.1)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
   - FoundationExtension (2.0.0):
     - cdebug (~> 1.1)
     - FoundationExtension/FoundationExtension (= 2.0.0)
@@ -12,7 +12,7 @@ PODS:
     - FoundationExtension/FoundationExtensionRC
   - FoundationExtension/FoundationExtensionRC (2.0.0):
     - cdebug (~> 1.1)
-  - MASShortcut (2.3.6)
+  - MASShortcut (2.4.0)
   - SwiftCarbon (0.1.0):
     - SwiftCarbon/HIToolbox (= 0.1.0)
     - SwiftCarbon/SwiftCarbon (= 0.1.0)
@@ -45,10 +45,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   cdebug: 55a96da647360590f0d292baebb34c4066cbca02
-  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
-  Fabric: f6f21452846788bb44595d73e9909d79d328e617
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
-  MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
+  MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
   SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
   SwiftIOKit: 9dce3dec67e00dc74b95fde86f257aca78239853

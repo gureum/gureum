@@ -67,25 +67,25 @@ import PreferencePanes
 
     func loadShortcutValues() {
         if let key = configuration.inputModeExchangeKey {
-            inputModeExchangeShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+            inputModeExchangeShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1)
         } else {
             inputModeExchangeShortcutView.shortcutValue = nil
         }
 
         if let key = configuration.inputModeHanjaKey {
-            inputModeHanjaShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+            inputModeHanjaShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1)
         } else {
             inputModeHanjaShortcutView.shortcutValue = nil
         }
 
         if let key = configuration.inputModeEnglishKey {
-            inputModeEnglishShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+            inputModeEnglishShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1)
         } else {
             inputModeEnglishShortcutView.shortcutValue = nil
         }
 
         if let key = configuration.inputModeKoreanKey {
-            inputModeKoreanShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1.rawValue)
+            inputModeKoreanShortcutView.shortcutValue = MASShortcut(keyCode: key.0, modifierFlags: key.1)
         } else {
             inputModeKoreanShortcutView.shortcutValue = nil
         }
@@ -96,7 +96,7 @@ import PreferencePanes
             guard let mas = mas else {
                 return nil
             }
-            return (mas.keyCode, NSEvent.ModifierFlags(rawValue: mas.modifierFlags))
+            return (mas.keyCode, mas.modifierFlags)
         }
         inputModeExchangeShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
@@ -263,7 +263,7 @@ class GureumShortcutValidator: MASShortcutValidator {
         }
         let modifiers = shortcut.modifierFlags
         let keyCode = shortcut.keyCode
-        guard (modifiers & NSEvent.ModifierFlags.shift.rawValue) > 0 else {
+        guard (modifiers.rawValue & NSEvent.ModifierFlags.shift.rawValue) > 0 else {
             return false
         }
         return keyCode >= 0x33 || [kVK_Return, kVK_Tab, kVK_Space].contains(Int(keyCode))
