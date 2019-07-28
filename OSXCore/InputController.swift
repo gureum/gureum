@@ -111,10 +111,13 @@ public extension InputController { // IMKServerInputHandleEvent
         // sender is (IMKTextInput & IMKUnicodeTextInput & IMTSMSupport)
         let client = asClient(sender)
         let imkCandidates = InputMethodServer.shared.candidates
-        let keys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-        if event.type == .keyDown, imkCandidates.isVisible(), keys.contains(NSNumber(value: event.keyCode)) {
-            imkCandidates.interpretKeyEvents([event])
-            return true
+        if imkCandidates.isVisible() {
+            let arrowKeys = [kVK_UpArrow, kVK_DownArrow, kVK_LeftArrow, kVK_RightArrow]
+            let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
+            if arrowKeys.contains(Int(event.keyCode)) || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+                imkCandidates.interpretKeyEvents([event])
+                return true
+            }
         }
         switch event.type {
         case .keyDown:

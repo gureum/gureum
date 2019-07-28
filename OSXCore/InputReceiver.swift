@@ -100,9 +100,6 @@ public class InputReceiver: InputTextDelegate {
         let hadComposedString = !_internalComposedString.isEmpty
         let result = input2(text: string, key: keyCode, modifiers: flags, client: sender)
 
-        // 합성 후보가 있다면 보여준다
-        InputMethodServer.shared.showOrHideCandidates(controller: controller)
-
         inputting = true
 
         if result.action != .none {
