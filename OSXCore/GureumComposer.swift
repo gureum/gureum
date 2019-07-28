@@ -230,7 +230,7 @@ class GureumComposer: DelegatedComposer {
 //    {
 
         // Handle SpecialKeyCode first
-        let inputKey = (UInt(keyCode), inputModifier)
+        let inputKey = (keyCode, inputModifier)
         if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
             return .changeLayout(.toggle, true)
         }

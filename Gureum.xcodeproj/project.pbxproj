@@ -204,9 +204,9 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		3835B5231F5DAADF00896BEC /* Copy Hanja Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/hanja";
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = Hangul.framework/Resources/hanja;
+			dstSubfolderSpec = 16;
 			files = (
 				A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */,
 				A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */,
@@ -219,9 +219,9 @@
 		};
 		3835B5241F5DAB2700896BEC /* Copy Keyboards Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "${BUILT_PRODUCTS_DIR}/Hangul.framework/Resources/keyboards";
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = Hangul.framework/Resources/keyboards;
+			dstSubfolderSpec = 16;
 			files = (
 				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
 				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
@@ -846,6 +846,9 @@
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
 							};
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
@@ -1377,6 +1380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1397,6 +1401,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application: YunWon Jeong (9384JEL3M9)";
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1526,6 +1532,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application: YunWon Jeong (9384JEL3M9)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
