@@ -846,6 +846,9 @@
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
 							};
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
@@ -1377,6 +1380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1397,6 +1401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
