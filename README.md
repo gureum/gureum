@@ -24,14 +24,15 @@
 입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 버그가 재현되는지 확인해 주시고 [이슈 페이지](https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
 
 
-## Contributors
+## 만든 사람들
 
-### Code Contributors
+구름 입력기는 많은 분들의 도움으로 함께 개발되고 있습니다.
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+### 코드 기여자
+
 <a href="https://github.com/gureum/gureum/graphs/contributors"><img src="https://opencollective.com/gureum-app/contributors.svg?width=890&button=false" /></a>
 
-### Financial Contributors
+### 재정 후원
 
 Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/gureum-app/contribute)]
 
