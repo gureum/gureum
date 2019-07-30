@@ -30,7 +30,7 @@
 
 ### 코드 기여자
 
-<a href="https://github.com/gureum/gureum/graphs/contributors"><img src="https://opencollective.com/gureum-app/contributors.svg?width=890&button=false" /></a>
+[![](https://opencollective.com/gureum-app/contributors.svg?width=890&button=false)](https://github.com/gureum/gureum/graphs/contributors)
 
 ### 재정 후원
 
@@ -38,19 +38,19 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 
 #### Individuals
 
-<a href="https://opencollective.com/gureum-app"><img src="https://opencollective.com/gureum-app/individuals.svg?width=890"></a>
+[![](https://opencollective.com/gureum-app/individuals.svg?width=890)](https://opencollective.com/gureum-app)
 
 #### Organizations
 
 Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/gureum-app/contribute)]
 
-<a href="https://opencollective.com/gureum-app/organization/0/website"><img src="https://opencollective.com/gureum-app/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/1/website"><img src="https://opencollective.com/gureum-app/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/2/website"><img src="https://opencollective.com/gureum-app/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/3/website"><img src="https://opencollective.com/gureum-app/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/4/website"><img src="https://opencollective.com/gureum-app/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/5/website"><img src="https://opencollective.com/gureum-app/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/6/website"><img src="https://opencollective.com/gureum-app/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/7/website"><img src="https://opencollective.com/gureum-app/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/8/website"><img src="https://opencollective.com/gureum-app/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/gureum-app/organization/9/website"><img src="https://opencollective.com/gureum-app/organization/9/avatar.svg"></a>
+[![](https://opencollective.com/gureum-app/organization/0/avatar.svg)](https://opencollective.com/gureum-app/organization/0/website)
+[![](https://opencollective.com/gureum-app/organization/1/avatar.svg)](https://opencollective.com/gureum-app/organization/1/website)
+[![](https://opencollective.com/gureum-app/organization/2/avatar.svg)](https://opencollective.com/gureum-app/organization/2/website)
+[![](https://opencollective.com/gureum-app/organization/3/avatar.svg)](https://opencollective.com/gureum-app/organization/3/website)
+[![](https://opencollective.com/gureum-app/organization/4/avatar.svg)](https://opencollective.com/gureum-app/organization/4/website)
+[![](https://opencollective.com/gureum-app/organization/5/avatar.svg)](https://opencollective.com/gureum-app/organization/5/website)
+[![](https://opencollective.com/gureum-app/organization/6/avatar.svg)](https://opencollective.com/gureum-app/organization/6/website)
+[![](https://opencollective.com/gureum-app/organization/7/avatar.svg)](https://opencollective.com/gureum-app/organization/7/website)
+[![](https://opencollective.com/gureum-app/organization/8/avatar.svg)](https://opencollective.com/gureum-app/organization/8/website)
+[![](https://opencollective.com/gureum-app/organization/9/avatar.svg)](https://opencollective.com/gureum-app/organization/9/website)
