@@ -234,14 +234,12 @@ class GureumComposer: DelegatedComposer {
         if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
             return .changeLayout(.toggle, true)
         }
-        //        else if (self.delegate == self->hangulComposer && inputModifier == CIMSharedConfiguration->inputModeEnglishKeyModifier && keyCode == CIMSharedConfiguration->inputModeEnglishKeyCode) {
-        //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english shortcut ****");
-        //            need_exchange = YES;
-        //        }
-        //        else if (self.delegate == self->romanComposer && inputModifier == CIMSharedConfiguration->inputModeKoreanKeyModifier && keyCode == CIMSharedConfiguration->inputModeKoreanKeyCode) {
-        //            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean shortcut ****");
-        //            need_exchange = YES;
-        //        }
+        if (delegate as? HangulComposer) === hangulComposer, let shortcutKey = configuration.inputModeEnglishKey, shortcutKey == inputKey {
+            return .changeLayout(.roman, true)
+        }
+        if (delegate as? DelegatedComposer) === romanComposer, let shortcutKey = configuration.inputModeKoreanKey, shortcutKey == inputKey {
+            return .changeLayout(.hangul, true)
+        }
         if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
             return .changeLayout(.hanja, true)
         }
