@@ -22,7 +22,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 
 Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
 
-# 테스트
+# 디버그 빌드 테스트
 디버그 모드로 빌드한 입력기를 설치합니다.
 
     cd tools
@@ -32,6 +32,28 @@ Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 �
 언어 및 입력기 설정을 다시 열고 입력기를 설정해 줍니다.
 
 Console.app 에서 로그를 확인할 수 있습니다.
+
+## xcode-select 에러나는 경우
+
+설치 과정에서 xcode-select 관련 에러가 나타나는 경우
+
+    xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance something wrong
+
+아래 명령어를 실행해줍니다.
+
+    which xcodebuild
+    sudo xcode-select -s /Applications/Xcode.app/
+
+## xcpretty 에러나는 경우
+
+설치 과정에서 xcpretty 에러가 나타나는 경우
+
+    ./install_debug.sh: line 6: xcpretty: command not found
+    
+아래 명령어를 실행해줍니다
+
+    sudo gem install xcpretty
+
 
 XCode에서 Attach to process 기능을 이용하여 디버거를 동작시킬 수는 있지만, 브레이크 포인트를 만들면 디버거 조작 입력이 처리가 되지 않아 디버그하기가 어렵습니다.
 
