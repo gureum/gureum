@@ -1423,6 +1423,7 @@
 			baseConfigurationReference = ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Preferences/Info.plist;
