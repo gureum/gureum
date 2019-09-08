@@ -187,7 +187,7 @@ class HanjaComposer: DelegatedComposer {
     }
 
     func buildHanjaCandidates() -> [NSAttributedString]? {
-        let keyword = originalString
+        let keyword = originalString.trimmingCharacters(in: .whitespaces)
         guard !keyword.isEmpty else {
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates no keywords")
             return nil
