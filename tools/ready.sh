@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "$0")"
-cd "${SCRIPT_DIR}/.."
+cd "${SCRIPT_DIR}/.." || exit $?
 
 TMPSCRIPT="${TMPDIR}gureumbuild"
 
@@ -17,10 +17,12 @@ fi
 echo "Configuration: ${CONFIGURATION}"
 
 xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}"
+# shellcheck disable=1090
 . "${TMPSCRIPT}" > /dev/null 2>&1
 rm "${TMPSCRIPT}"
 
 XCVERSION="$(cat OSX/Version.xcconfig)"
+# shellcheck disable=2034
 PACKAGE_NAME="Gureum-${XCVERSION#VERSION = }"
 
 if [ "${PRODUCT_NAME}" != "Gureum" ]; then

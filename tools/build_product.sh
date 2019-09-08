@@ -5,14 +5,16 @@ if [ ! "${CONFIGURATION}" ]; then
     CONFIGURATION='Release'
 fi
 SCRIPT_DIR="$(dirname "$0")"
+# shellcheck source=tools/ready.sh
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
 if [ "${CONFIGURATION}" != 'Release' ]; then
     echo "Configuration is not Release: ${CONFIGURATION}"
     echo "Keep going?"
-    read
+    read -r
 fi
 
+# shellcheck disable=2034
 APPLICATION_KEY="Developer ID Application: YunWon Jeong"
 INSTALLER_KEY="Developer ID Installer: YunWon Jeong"
 
@@ -25,4 +27,4 @@ rm -rf "${BUILT_PRODUCT_PATH}"
 productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app" '/Library/Input Methods' --sign "${INSTALLER_KEY}" ~/Downloads/"${PACKAGE_NAME}.pkg"
 #tar -zcf "${PACKAGE_NAME}.app.tar.gz" "${PRODUCT_NAME}.app"
 
-cat "${BUILT_PRODUCT_PATH}/Contents/Info.plist" | grep Copyright
+grep Copyright "${BUILT_PRODUCT_PATH}/Contents/Info.plist"

@@ -5,6 +5,7 @@ run_with_echo() {
 }
 
 SCRIPT_DIR="$(dirname "$0")"
+# shellcheck source=tools/ready.sh
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
 (xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | xcpretty) || exit $?
