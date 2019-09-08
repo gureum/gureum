@@ -20,6 +20,11 @@
 1. 오른쪽 위 막대에 입력 소스에서 구름 입력기를 선택할 수 있습니다.
 1. 주 한글 자판을 선택하기 위해 사용할 한글 자판을 수동으로 한번 선택해 줍니다. 다음부터는 Shift+Space 로 자동으로 선택한 자판으로 이동합니다.
 
+## 제거
+1. 사용 중인 입력기를 OS 기본 입력기로 전환합니다.
+1. `활성 상태 보기.app (Activity Monitor.app)`를 열어 구름 입력기를 찾아 프로세스를 종료합니다.
+1. Finder에서 `/Library/Input Methods/` 경로로 이동해 `Gureum.app`을 삭제합니다.
+
 ## 개발 환경 설정
 구름 입력기의 개발 환경을 설정하고 디버깅 할 수 있는 방법을 제공합니다. [개발 환경 설정법](https://github.com/gureum/gureum/blob/master/HACKING.md)
 
