@@ -12,6 +12,7 @@
 
 # 설치
 1. [다운로드 페이지](http://bi.gureum.org)에서 가장 높은 버전의 GureumKIM1.x.pkg를 다운받아 실행하고 지시대로 설치합니다. 설치 할 디스크는 바꾸시면 안됩니다.
+  - brew 사용자라면 `brew cask install gureumkim` 명령으로도 설치할 수 있습니다.
 1. 시스템 환경설정 -> 언어 & 텍스트 -> 입력 소스 에 들어가 구름 입력기를 선택합니다.
  * 여기서 입력기가 나타나지 않으면 설치 패키지가 입력기를 올바르게 설치하지 못한 것입니다. 다음 방법으로 수동으로 설치합니다.
    1. 위 다운로드 페이지에서 가장 높은 버전의 GureumKIM1.x.zip을 다운받아 압축을 해제합니다.
@@ -24,6 +25,7 @@
 1. 사용 중인 입력기를 OS 기본 입력기로 전환합니다.
 1. `활성 상태 보기.app (Activity Monitor.app)`를 열어 구름 입력기를 찾아 프로세스를 종료합니다.
 1. Finder에서 `/Library/Input Methods/` 경로로 이동해 `Gureum.app`을 삭제합니다.
+  - brew를 이용해 설치했다면 `brew cask uninstall gureumkim` 명령으로 삭제할 수 있습니다.
 
 ## 개발 환경 설정
 구름 입력기의 개발 환경을 설정하고 디버깅 할 수 있는 방법을 제공합니다. [개발 환경 설정법](https://github.com/gureum/gureum/blob/master/HACKING.md)
