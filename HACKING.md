@@ -2,7 +2,7 @@
 libhangul의 라이선스 전파성을 피하기 위해 프로젝트를 분리하여 준비가 조금 복잡합니다.
 git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
 
-    git clone git://github.com/gureum/gureum.git # 클론
+    git clone https://github.com/gureum/gureum.git  # 클론
     cd gureum
     git submodule update --init --recursive
     pod install # cocoapod을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
