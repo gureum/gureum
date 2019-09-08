@@ -209,6 +209,38 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
         }
     }
+    
+    func testHanjaBlank() {
+        for app in apps {
+            if app == terminal {
+                continue // 터미널은 한자 모드 진입이 불가능
+            }
+            app.client.string = ""
+            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            // hanja search mode
+            app.inputText("\n", key: kVK_Return, modifiers: .option)
+            app.inputText(" ", key: kVK_Space)
+            app.inputKey(kVK_ANSI_A)
+            app.inputKey(kVK_ANSI_N)
+            app.inputKey(kVK_ANSI_F)
+            XCTAssertEqual(" 물", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputText(" ", key: kVK_Space)
+            XCTAssertEqual(" 물 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputKey(kVK_ANSI_T)
+            app.inputKey(kVK_ANSI_N)
+            app.inputText(" ", key: kVK_Space)
+            XCTAssertEqual(" 물 수 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 수 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
+            XCTAssertEqual(" 물 수 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 수 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelected(NSAttributedString(string: "水: 물 수, 고를 수"))
+            XCTAssertEqual(" 水", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+        }
+    }
 
     func testHanjaSelection() {
         for app in apps {
