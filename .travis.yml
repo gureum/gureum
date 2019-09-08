@@ -5,6 +5,7 @@ osx_image: xcode10.2
 install:
   - gem update cocoapods
   - pod install --repo-update
+  - brew install shellcheck
 matrix:
   include:
     - osx_image: xcode10.2
@@ -15,3 +16,6 @@ matrix:
     # xcode_sdk: iphonesimulator
     # xcode_scheme: App
     # xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+script:
+  - shellcheck tools/*.sh
+  - set -o pipefail && xcodebuild -workspace Gureum.xcworkspace -scheme OSX -sdk macosx -destination platform\=macOS build test | xcpretty
