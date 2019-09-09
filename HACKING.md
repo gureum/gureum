@@ -1,14 +1,17 @@
 # 개발환경 설정
+
 libhangul의 라이선스 전파성을 피하기 위해 프로젝트를 분리하여 준비가 조금 복잡합니다.
 git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
 
-    git clone https://github.com/gureum/gureum.git  # 클론
-    cd gureum
-    git submodule update --init --recursive
-    pod install # cocoapod을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
-    open Gureum.xcworkspace
+``` sh
+git clone https://github.com/gureum/gureum.git  # 클론
+cd gureum
+git submodule update --init --recursive
+pod install # cocoapods을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
+open Gureum.xcworkspace
+```
 
-또한, Cocoa Pod 1.6 베타 이상의 환경이 필요합니다. 경우에 따라 빌드 결과물의 경로가 변경될 수 있습니다. Xcode 10을 기준으로 Build Location 은 Unique 세팅으로 워크스페이스가 구성되어 있는지 확인해주세요.
+또한, CocoaPods 1.6 베타 이상의 환경이 필요합니다. 경우에 따라 빌드 결과물의 경로가 변경될 수 있습니다. Xcode 10을 기준으로 Build Location 은 Unique 세팅으로 워크스페이스가 구성되어 있는지 확인해주세요.
 
 > Xcode > Preferences > Locations > Derived Data > Advanced... > Unique
 
@@ -23,10 +26,13 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
 
 # 디버그 빌드 테스트
+
 디버그 모드로 빌드한 입력기를 설치합니다.
 
-    cd tools
-    ./install_debug.sh
+``` sh
+cd tools
+./install_debug.sh
+```
 
 설치 후에는 구름 입력기가 사라질 수 있습니다.
 언어 및 입력기 설정을 다시 열고 입력기를 설정해 줍니다.
@@ -37,29 +43,37 @@ Console.app 에서 로그를 확인할 수 있습니다.
 
 설치 과정에서 xcode-select 관련 에러가 나타나는 경우
 
-    xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance something wrong
+```
+xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance something wrong
+```
 
 아래 명령어를 실행해줍니다.
 
-    which xcodebuild
-    sudo xcode-select -s /Applications/Xcode.app/
+``` sh
+sudo xcode-select -s /Applications/Xcode.app/
+```
 
 ## xcpretty 에러나는 경우
 
 설치 과정에서 xcpretty 에러가 나타나는 경우
 
-    ./install_debug.sh: line 6: xcpretty: command not found
-    
-아래 명령어를 실행해줍니다
+```
+./install_debug.sh: line 6: xcpretty: command not found
+```
 
-    sudo gem install xcpretty
+아래 명령어를 실행해줍니다.
+
+``` sh
+sudo gem install xcpretty
+```
 
 
-XCode에서 Attach to process 기능을 이용하여 디버거를 동작시킬 수는 있지만, 브레이크 포인트를 만들면 디버거 조작 입력이 처리가 되지 않아 디버그하기가 어렵습니다.
+Xcode에서 Attach to process 기능을 이용하여 디버거를 동작시킬 수는 있지만, 브레이크 포인트를 만들면 디버거 조작 입력이 처리가 되지 않아 디버그하기가 어렵습니다.
 
 더 좋은 방법이 있으면 알려주세요.
 
 # 커밋하기 전에
+
 입력기의 동작을 고치셨다면, 최소한 다음의 프로그램에서 입력기가 정상적으로 동작하는지 확인해 주면 좋습니다.
 
 * TextEdit.app : 아주 일반적인 맥의 입력환경입니다.
