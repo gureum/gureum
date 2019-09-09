@@ -163,6 +163,7 @@ public class InputMethodServer {
 
         server = IMKServer(name: name, bundleIdentifier: Bundle.main.bundleIdentifier)
         candidates = IMKCandidates(server: server, panelType: kIMKSingleColumnScrollingCandidatePanel)
+        candidates.setAttributes([NSAttributedString.Key.foregroundColor: NSColor.red])
         // candidates.setSelectionKeysKeylayout(TISInputSource.currentKeyboardLayout())
 
         io = IOKitty()!

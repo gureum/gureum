@@ -194,7 +194,7 @@ class HanjaComposer: DelegatedComposer {
         }
 
         // dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidates")
-        var candidates: [String] = []
+        var candidates: [NSAttributedString] = []
         if keyword.count == 1 {
             for table in [HanjaComposer.msSymbolTable, HanjaComposer.characterTable] {
                 let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
@@ -207,13 +207,13 @@ class HanjaComposer: DelegatedComposer {
         }
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating")
         if candidates.count > 0, Configuration.shared.showsInputForHanjaCandidates {
-            candidates.insert(keyword, at: 0)
+            candidates.insert(.init(string: keyword), at: 0)
         }
-        return candidates.map { s in NSAttributedString(string: s) }
+        return candidates
     }
 
-    func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
-        var candidates: [String] = []
+    func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [NSAttributedString] {
+        var candidates: [NSAttributedString] = []
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates getting list for table: %@", table)
         guard let list: HGHanjaList = table.hanjas(byPrefixSearching: keyword) else {
             return candidates
@@ -222,9 +222,9 @@ class HanjaComposer: DelegatedComposer {
             let hanja = _hanja as! HGHanja
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates hanja: %@", hanja)
             if hanja.comment.isEmpty {
-                candidates.append("\(hanja.value)")
+                candidates.append(.init(string: hanja.value))
             } else {
-                candidates.append("\(hanja.value): \(hanja.comment)")
+                candidates.append(.init(string: "\(hanja.value) \(hanja.comment)", attributes: [.foregroundColor: NSColor.red]))
             }
         }
         return candidates
