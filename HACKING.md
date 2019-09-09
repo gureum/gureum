@@ -11,6 +11,15 @@ pod install # cocoapods을 처음 사용하면 http://cocoapods.org 에서 설�
 open Gureum.xcworkspace
 ```
 
+submodule의 URL 변경 등을 이유로 submodule이 제대로 클론되지 않을 경우에는 다음
+명령어로 다시 가져올 수 있습니다.
+
+``` sh
+git submodule deinit -f --all
+rm -rf .git/modules/*
+git submodule update --init --recursive
+```
+
 또한, CocoaPods 1.6 베타 이상의 환경이 필요합니다. 경우에 따라 빌드 결과물의 경로가 변경될 수 있습니다. Xcode 10을 기준으로 Build Location 은 Unique 세팅으로 워크스페이스가 구성되어 있는지 확인해주세요.
 
 > Xcode > Preferences > Locations > Derived Data > Advanced... > Unique
