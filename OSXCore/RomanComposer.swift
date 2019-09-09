@@ -10,14 +10,13 @@ import Cocoa
 import Foundation
 import InputMethodKit
 
-protocol RomanComposer: Composer { }
+protocol RomanComposer: Composer {}
 
 final class QwertyComposer: RomanComposer {
-    
     private var _commitString: String?
-    
+
     // MARK: Composer 프로토콜 구현
-    
+
     var composedString: String {
         return ""
     }
@@ -29,11 +28,11 @@ final class QwertyComposer: RomanComposer {
     var commitString: String {
         return _commitString ?? ""
     }
-    
+
     var hasCandidates: Bool {
         return false
     }
-    
+
     var candidates: [NSAttributedString]? {
         return nil
     }
@@ -47,8 +46,8 @@ final class QwertyComposer: RomanComposer {
     func clearCompositionContext() {
         _commitString = nil
     }
-    
-    func cancelComposition() { }
+
+    func cancelComposition() {}
 
     func input(text string: String?,
                key keyCode: Int,
@@ -97,7 +96,7 @@ final class RomanDataComposer: RomanComposer {
     init(keyboardData: String) {
         _keyboard = keyboardData
     }
-    
+
     // MARK: Composer 프로토콜 구현
 
     var composedString: String {
@@ -105,21 +104,20 @@ final class RomanDataComposer: RomanComposer {
     }
 
     var originalString: String {
-        return self._commitString ?? ""
+        return _commitString ?? ""
     }
 
     var commitString: String {
-        return self._commitString ?? ""
+        return _commitString ?? ""
     }
-    
+
     var hasCandidates: Bool {
         return false
     }
-    
+
     var candidates: [NSAttributedString]? {
         return nil
     }
-
 
     func dequeueCommitString() -> String {
         let dequeued = _commitString
@@ -127,8 +125,8 @@ final class RomanDataComposer: RomanComposer {
         return dequeued ?? ""
     }
 
-    func cancelComposition() { }
-    
+    func cancelComposition() {}
+
     func clearCompositionContext() {
         _commitString = nil
     }

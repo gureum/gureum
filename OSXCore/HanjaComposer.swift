@@ -43,7 +43,7 @@ final class HanjaComposer: Composer {
         /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
         static let emoji = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
     }
-    
+
     /// 한자 후보 문자열 배열.
     private var _candidates: [NSAttributedString]?
     /// 임시 저장한 문자열.
@@ -54,31 +54,32 @@ final class HanjaComposer: Composer {
     private var _commitString: String = ""
     /// 마지막 문자열.
     private var _lastString: String = ""
-    
+
     /// 한글 조합기.
     var hangulComposer: HangulComposer {
         return delegate as! HangulComposer
     }
+
     /// 한자 조합 모드.
     var mode: HanjaMode = .single
-    
+
     // MARK: Composer 프로토콜 구현
-    
+
     var delegate: Composer!
-    
+
     var composedString: String {
         return _composedString
     }
-    
+
     /// 현재 진행 중인 조합 + 한글 입력기가 지금까지 완료한 조합.
     var originalString: String {
         return _bufferedString + hangulComposer.composedString
     }
-    
+
     var commitString: String {
         return _commitString
     }
-    
+
     var candidates: [NSAttributedString]? {
         let changed = _lastString != originalString
         if changed {
@@ -87,11 +88,11 @@ final class HanjaComposer: Composer {
         }
         return _candidates
     }
-    
+
     var hasCandidates: Bool {
         return !(candidates?.isEmpty ?? true)
     }
-    
+
     func dequeueCommitString() -> String {
         let result = _commitString
         if !result.isEmpty {
@@ -100,7 +101,7 @@ final class HanjaComposer: Composer {
         }
         return result
     }
-    
+
     func cancelComposition() {
         hangulComposer.cancelComposition()
         hangulComposer.dequeueCommitString()
@@ -108,13 +109,13 @@ final class HanjaComposer: Composer {
         _bufferedString = ""
         _composedString = ""
     }
-    
+
     func composerSelected() {
         _bufferedString = ""
         _commitString = ""
         _lastString = ""
     }
-    
+
     func candidateSelected(_ candidateString: NSAttributedString) {
         let hanjaWord = candidateString.string.components(separatedBy: ":").first!
         _bufferedString = ""
@@ -124,7 +125,7 @@ final class HanjaComposer: Composer {
         hangulComposer.dequeueCommitString()
         prepareHanjaCandidates()
     }
-    
+
     func candidateSelectionChanged(_: NSAttributedString) {
         // TODO: 설정 추가
         //        if (candidateString.length == 0) {
@@ -133,7 +134,7 @@ final class HanjaComposer: Composer {
         //            self._composedString = candidateString.string.components(separatedBy: ":")[0]
         //        }
     }
-    
+
     func input(text string: String?,
                key keyCode: Int,
                modifiers flags: NSEvent.ModifierFlags,
@@ -145,9 +146,9 @@ final class HanjaComposer: Composer {
         default:
             break
         }
-        
+
         var result = hangulComposer.input(text: string, key: keyCode, modifiers: flags, client: sender)
-        
+
         switch keyCode {
         // backspace
         case kVK_Delete:
@@ -190,9 +191,9 @@ final class HanjaComposer: Composer {
         default:
             break
         }
-        
+
         prepareHanjaCandidates()
-        
+
         if !result.processed, result.action == .commit {
             cancelComposition()
             return result
@@ -239,7 +240,7 @@ private extension HanjaComposer {
         // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step3")
     }
-    
+
     /// 한자 입력을 위한 후보를 만든다.
     ///
     /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
@@ -249,7 +250,7 @@ private extension HanjaComposer {
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates no keywords")
             return nil
         }
-        
+
         // dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidates")
         var candidates = [String]()
         if keyword.count == 1 {
@@ -268,7 +269,7 @@ private extension HanjaComposer {
         }
         return candidates.map { NSAttributedString(string: $0) }
     }
-    
+
     /// 한자 입력을 위한 후보를 검색한다.
     ///
     /// - Parameters:

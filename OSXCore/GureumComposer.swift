@@ -71,7 +71,7 @@ final class GureumComposer: Composer {
 
     private var _inputMode: String = ""
     private var _commitStrings: [String] = []
-    
+
     init() {
         romanComposer = qwertyComposer
         hanjaComposer.delegate = hangulComposer
@@ -80,14 +80,14 @@ final class GureumComposer: Composer {
             "dvorak": dvorakComposer,
             "colemak": colemakComposer,
         ]
-        
+
         delegate = qwertyComposer
     }
-    
+
     // MARK: Composer 프로토콜 구현
-    
+
     var delegate: Composer!
-    
+
     var commitString: String {
         return _commitStrings.joined() + delegate.commitString
     }
@@ -112,7 +112,6 @@ final class GureumComposer: Composer {
 }
 
 extension GureumComposer {
-
     var inputMode: String {
         get {
             return _inputMode
@@ -257,14 +256,14 @@ extension GureumComposer {
                 delegate = hangulComposer
             }
         }
-        
+
         if delegate is EmoticonComposer {
             if !emoticonComposer.mode {
                 emoticonComposer.mode = true
                 delegate = romanComposer
             }
         }
-        
+
         if delegate is HangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {

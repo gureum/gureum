@@ -43,37 +43,37 @@ protocol Composer: InputTextDelegate {
     ///
     /// 기본값은 `nil`이다.
     var delegate: Composer! { get }
-    
+
     /// 합성 중인 문자로 보여줄 문자열.
     ///
     /// 기본적으로 델리게이트 객체의 `composedString`을 반환한다.
     var composedString: String { get }
-    
+
     /// 합성을 취소하면 사용할 문자열.
     ///
     /// 기본적으로 델리게이트 객체의 `originalString`을 반환한다.
     var originalString: String { get }
-    
+
     /// 합성이 완료된 문자열.
     ///
     /// 기본적으로 델리게이트 객체의 `commitString`을 반환한다.
     var commitString: String { get }
-    
+
     /// 변환 후보 문자열 리스트.
     ///
     /// 기본적으로 델리게이트 객체의 `candidates`를 반환한다.
     var candidates: [NSAttributedString]? { get }
-    
+
     /// 변환 후보 문자열 존재 여부.
     ///
     /// 기본적으로 델리게이트 객체의 `hasCandidates`를 반환한다.
     var hasCandidates: Bool { get }
-    
+
     /// 초기화 작업을 수행한다.
     ///
     /// 기본적으로 아무 동작도 하지 않는다.
     func clear()
-    
+
     /// 합성이 완료된 문자열(`commitString`)을 반환하며 비운다.
     ///
     /// 기본적으로 델리게이트 객체의 `dequeueCommitString()` 메소드의 실행 결과를 반환한다.
@@ -81,29 +81,29 @@ protocol Composer: InputTextDelegate {
     /// - Returns: 합성이 완료된 문자열.
     @discardableResult
     func dequeueCommitString() -> String
-    
+
     /// 조합을 취소한다.
     ///
     /// 기본적으로 델리게이트 객체의 `cancelComposition()` 메소드를 호출한다.
     func cancelComposition()
-    
+
     /// 조합 문맥을 초기화한다.
     ///
     /// 기본적으로 델리게이트 객체의 `clearCompositionContext()` 메소드를 호출한다.
     func clearCompositionContext()
-    
+
     /// 입력기가 선택되었을 때 수행할 작업을 정의한다.
     ///
     /// 기본적으로 아무 동작도 하지 않는다.
     func composerSelected()
-    
+
     /// 변환 후보 문자열이 선택된 후 수행할 작업을 정의한다.
     ///
     /// 기본적으로 델리게이트 객체의 `candidateSelected(_:)` 메소드를 호출한다.
     ///
     /// - Parameter candidateString: 선택된 후보 문자열.
     func candidateSelected(_ candidateString: NSAttributedString)
-    
+
     /// 변환 후보 문자열이 변경된 후 수행할 작업을 정의한다.
     ///
     /// 기본적으로 델리게이트 객체의 `candidateSelectionChanged(_:)` 메소드를 호출한다.
@@ -118,42 +118,51 @@ extension Composer {
     var delegate: Composer! {
         return nil
     }
+
     var composedString: String {
         return delegate.composedString
     }
+
     var originalString: String {
         return delegate.originalString
     }
+
     var commitString: String {
         return delegate.commitString
     }
+
     var candidates: [NSAttributedString]? {
         return delegate.candidates
     }
+
     var hasCandidates: Bool {
         return delegate.hasCandidates
     }
-    
-    func clear() { }
+
+    func clear() {}
     func dequeueCommitString() -> String {
         return delegate.dequeueCommitString()
     }
+
     func cancelComposition() {
         delegate.cancelComposition()
     }
+
     func clearCompositionContext() {
         delegate.clearCompositionContext()
     }
-    func composerSelected() { }
+
+    func composerSelected() {}
     func candidateSelected(_ candidateString: NSAttributedString) {
         delegate.candidateSelected(candidateString)
     }
+
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         delegate.candidateSelectionChanged(candidateString)
     }
-    
+
     // MARK: InputTextDelegate
-    
+
     func input(text: String?,
                key: Int,
                modifiers: NSEvent.ModifierFlags,

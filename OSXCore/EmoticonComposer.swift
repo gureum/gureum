@@ -20,14 +20,14 @@ final class EmoticonComposer: Composer {
     private var _bufferedString: String = ""
     private var _composedString: String = ""
     private var _commitString: String = ""
-    
+
     var mode: Bool = true
     var romanComposer: Composer {
         return delegate
     }
-    
+
     // MARK: Composer 프로토콜 구현
-    
+
     var delegate: Composer!
 
     var candidates: [NSAttributedString]? {
