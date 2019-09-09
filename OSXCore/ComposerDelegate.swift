@@ -17,7 +17,7 @@ import InputMethodKit
 protocol InputTextDelegate {
     /// 입력을 수행한다.
     ///
-    /// 기본적으로 델리게이틔 객체의 `input(text:key:modifiers:client)` 메소드를 호출한다.
+    /// 기본적으로 델리게이트 객체의 `input(text:key:modifiers:client)` 메소드를 호출한다.
     ///
     /// - Parameters:
     ///   - text: 문자열로 표현된 입력 값.
