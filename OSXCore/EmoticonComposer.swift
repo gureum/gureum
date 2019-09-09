@@ -99,7 +99,7 @@ final class EmoticonComposer: Composer {
         _candidates = nil
         // step 3. get all composing characters
         romanComposer.cancelComposition()
-        _bufferedString += romanComposer.dequeueCommitString()
+        _bufferedString.append(romanComposer.dequeueCommitString())
         // step 4. commit all
         _composedString = originalString
         cancelComposition()
@@ -109,8 +109,8 @@ final class EmoticonComposer: Composer {
         // Step 1: Get string from romanComposer
         let dequeued: String = romanComposer.dequeueCommitString()
         // Step 2: Show the string
-        _bufferedString += dequeued
-        _bufferedString += romanComposer.composedString
+        _bufferedString.append(dequeued)
+        _bufferedString.append(romanComposer.composedString)
         let originalString = _bufferedString
         _composedString = originalString
         let keyword = originalString

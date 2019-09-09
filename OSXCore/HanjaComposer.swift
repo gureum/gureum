@@ -104,7 +104,7 @@ final class HanjaComposer: Composer {
     func cancelComposition() {
         hangulComposer.cancelComposition()
         hangulComposer.dequeueCommitString()
-        _commitString += _composedString
+        _commitString.append(_composedString)
         _bufferedString = ""
         _composedString = ""
     }
@@ -167,10 +167,10 @@ final class HanjaComposer: Composer {
         // space
         case kVK_Space:
             hangulComposer.cancelComposition() // 강제로 조합중인 문자 추출
-            _bufferedString += hangulComposer.dequeueCommitString()
+            _bufferedString.append(hangulComposer.dequeueCommitString())
             // 단어 뜻 검색을 위해 공백 문자도 후보 검색에 포함한다.
             if !_bufferedString.isEmpty {
-                _bufferedString += " "
+                _bufferedString.append(" ")
                 result = .processed
             } else {
                 result = InputResult(processed: false, action: .commit)
@@ -180,7 +180,7 @@ final class HanjaComposer: Composer {
             mode = .single
             // step 1: 조합중인 한글을 모두 가져옴
             hangulComposer.cancelComposition()
-            _bufferedString += hangulComposer.dequeueCommitString()
+            _bufferedString.append(hangulComposer.dequeueCommitString())
             // step 2: 한글을 그대로 커밋
             _composedString = originalString
             cancelComposition()
@@ -232,7 +232,7 @@ private extension HanjaComposer {
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
         let hangulString = hangulComposer.dequeueCommitString()
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step1")
-        _bufferedString += hangulString
+        _bufferedString.append(hangulString)
         // step 2: 일단 화면에 한글이 표시되도록 조정
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates step2")
         _composedString = originalString

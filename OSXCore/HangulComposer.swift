@@ -137,7 +137,7 @@ final class HangulComposer: NSObject, Composer {
     
     func cancelComposition() {
         let flushedString: String! = representableString(ucsString: inputContext.flushUCSString())
-        _commitString += flushedString
+        _commitString.append(flushedString)
     }
     
     func clearCompositionContext() {
@@ -179,15 +179,15 @@ final class HangulComposer: NSObject, Composer {
         let recentCommitString = representableString(ucsString: ucsString)
         if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == kVK_ANSI_Grave, flags.isSubset(of: .capsLock) {
             if !handled {
-                _commitString += recentCommitString + "₩"
+                _commitString.append(recentCommitString + "₩")
                 return .processed
             } else if recentCommitString.last! == "`" {
-                _commitString += recentCommitString.dropLast() + "₩"
+                _commitString.append(recentCommitString.dropLast() + "₩")
                 return .processed
             }
         }
         
-        _commitString += recentCommitString
+        _commitString.append(recentCommitString)
         // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString)
         return handled ? .processed : InputResult(processed: false, action: .cancel)
     }
