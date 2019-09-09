@@ -59,34 +59,20 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2012: "3-2012",
 ]
 
-class GureumComposer: DelegatedComposer {
-    var romanComposer: DelegatedComposer
-    let qwertyComposer: QwertyComposer = QwertyComposer()
-    let dvorakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
-    let colemakComposer: RomanDataComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
-    let hangulComposer: HangulComposer = HangulComposer(keyboardIdentifier: GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!)!
-    let hanjaComposer: HanjaComposer = HanjaComposer()
-    let emoticonComposer: EmoticonComposer = EmoticonComposer()
-    let romanComposersByIdentifier: [String: DelegatedComposer]
+final class GureumComposer: Composer {
+    var romanComposer: RomanComposer
+    let qwertyComposer = QwertyComposer()
+    let dvorakComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
+    let colemakComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
+    let hangulComposer = HangulComposer(keyboardIdentifier: GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!)!
+    let hanjaComposer = HanjaComposer()
+    let emoticonComposer = EmoticonComposer()
+    let romanComposersByIdentifier: [String: RomanComposer]
 
-    var _inputMode: String = ""
-    var _commitStrings: [String] = []
-    override var commitString: String {
-        return _commitStrings.joined() + delegate.commitString
-    }
-
-    func enqueueCommitString(_ string: String) {
-        _commitStrings.append(string)
-    }
-
-    override func dequeueCommitString() -> String {
-        let r = commitString
-        delegate.dequeueCommitString()
-        _commitStrings.removeAll()
-        return r
-    }
-
-    override init() {
+    private var _inputMode: String = ""
+    private var _commitStrings: [String] = []
+    
+    init() {
         romanComposer = qwertyComposer
         hanjaComposer.delegate = hangulComposer
         romanComposersByIdentifier = [
@@ -94,17 +80,38 @@ class GureumComposer: DelegatedComposer {
             "dvorak": dvorakComposer,
             "colemak": colemakComposer,
         ]
-
-        super.init()
+        
         delegate = qwertyComposer
     }
+    
+    // MARK: Composer 프로토콜 구현
+    
+    var delegate: Composer!
+    
+    var commitString: String {
+        return _commitStrings.joined() + delegate.commitString
+    }
 
-    override func clear() {
+    func enqueueCommitString(_ string: String) {
+        _commitStrings.append(string)
+    }
+
+    func dequeueCommitString() -> String {
+        let r = commitString
+        delegate.dequeueCommitString()
+        _commitStrings.removeAll()
+        return r
+    }
+
+    func clear() {
         hangulComposer.clear()
         romanComposer.clear()
         hanjaComposer.clear()
         emoticonComposer.clear()
     }
+}
+
+extension GureumComposer {
 
     var inputMode: String {
         get {
@@ -139,9 +146,9 @@ class GureumComposer: DelegatedComposer {
     func changeLayout(_ layout: ChangeLayout, client sender: Any) -> InputResult {
         var layout = layout
         if layout == .toggle {
-            if (delegate as AnyObject) === romanComposer {
+            if delegate is RomanComposer {
                 layout = .hangul
-            } else if (delegate as AnyObject) === hangulComposer {
+            } else if delegate is HangulComposer {
                 layout = .roman
             } else {
                 return .notProcessed
@@ -159,14 +166,14 @@ class GureumComposer: DelegatedComposer {
 
         if layout == .hanja {
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
-            if (delegate as? HangulComposer) === hangulComposer {
+            if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = hangulComposer.composedString.count > 0
                 hanjaComposer.mode = isComposing ? .single : .continuous
                 delegate = hanjaComposer
                 delegate.composerSelected()
                 hanjaComposer.update(client: sender as! IMKTextInput)
-            } else if (delegate as? DelegatedComposer) === romanComposer {
+            } else if delegate is RomanComposer {
                 emoticonComposer.delegate = delegate
                 delegate = emoticonComposer
                 emoticonComposer.update(client: sender as! IMKTextInput)
@@ -234,31 +241,31 @@ class GureumComposer: DelegatedComposer {
         if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
             return .changeLayout(.toggle, true)
         }
-        if (delegate as? HangulComposer) === hangulComposer, let shortcutKey = configuration.inputModeEnglishKey, shortcutKey == inputKey {
+        if delegate is HangulComposer, let shortcutKey = configuration.inputModeEnglishKey, shortcutKey == inputKey {
             return .changeLayout(.roman, true)
         }
-        if (delegate as? DelegatedComposer) === romanComposer, let shortcutKey = configuration.inputModeKoreanKey, shortcutKey == inputKey {
+        if delegate is RomanComposer, let shortcutKey = configuration.inputModeKoreanKey, shortcutKey == inputKey {
             return .changeLayout(.hangul, true)
         }
         if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
             return .changeLayout(.hanja, true)
         }
 
-        if (delegate as? HanjaComposer) === hanjaComposer {
-            if hanjaComposer.mode == .single, hanjaComposer.composedString.count == 0, hanjaComposer.commitString.count == 0 {
+        if delegate is HanjaComposer {
+            if hanjaComposer.mode == .single, hanjaComposer.composedString.isEmpty, hanjaComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
             }
         }
-
-        if (delegate as? EmoticonComposer) === emoticonComposer {
+        
+        if delegate is EmoticonComposer {
             if !emoticonComposer.mode {
                 emoticonComposer.mode = true
                 delegate = romanComposer
             }
         }
-
-        if (delegate as? HangulComposer) === hangulComposer {
+        
+        if delegate is HangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
                 if keyCode == kVK_Escape || (keyCode, inputModifier) == (kVK_ANSI_LeftBracket, NSEvent.ModifierFlags.control) {
