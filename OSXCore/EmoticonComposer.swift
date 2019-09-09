@@ -12,38 +12,41 @@ import Hangul
 
 let DEBUG_EMOTICON = false
 
-class EmoticonComposer: DelegatedComposer {
-    static let emoticonTable: HGHanjaTable = HGHanjaTable(contentOfFile: Bundle(for: HGKeyboard.self).path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
+final class EmoticonComposer: Composer {
+    static let emoticonTable = HGHanjaTable(contentOfFile: Bundle(for: HGKeyboard.self).path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 
-    var _candidates: [NSAttributedString]?
-    var _bufferedString: String = ""
-    var _composedString: String = ""
-    var _commitString: String = ""
+    private var _candidates: [NSAttributedString]?
+    private var _selectedCandidate: NSAttributedString?
+    private var _bufferedString: String = ""
+    private var _composedString: String = ""
+    private var _commitString: String = ""
+    
     var mode: Bool = true
-
-    var _selectedCandidate: NSAttributedString?
-
-    var romanComposer: ComposerDelegate {
-        return self.delegate
+    var romanComposer: Composer {
+        return delegate
     }
+    
+    // MARK: Composer 프로토콜 구현
+    
+    var delegate: Composer!
 
-    override var candidates: [NSAttributedString]? {
+    var candidates: [NSAttributedString]? {
         return _candidates
     }
 
-    override var composedString: String {
+    var composedString: String {
         return _composedString
     }
 
-    override var commitString: String {
+    var commitString: String {
         return _commitString
     }
 
-    override var originalString: String {
+    var originalString: String {
         return _bufferedString
     }
 
-    override func dequeueCommitString() -> String {
+    func dequeueCommitString() -> String {
         let result = _commitString
         if !result.isEmpty {
             _bufferedString = ""
@@ -52,26 +55,24 @@ class EmoticonComposer: DelegatedComposer {
         return result
     }
 
-    override func cancelComposition() {
+    func cancelComposition() {
         romanComposer.cancelComposition()
-        _ = romanComposer.dequeueCommitString()
+        romanComposer.dequeueCommitString()
         _commitString.append(_composedString)
         _bufferedString = ""
         _composedString = ""
     }
 
-    override func clearContext() {
+    func clearCompositionContext() {
         _commitString = ""
     }
 
-    override var hasCandidates: Bool {
-        guard let candidates = self._candidates else {
-            return false
-        }
-        return candidates.count > 0 ? true : false
+    var hasCandidates: Bool {
+        guard let candidates = _candidates else { return false }
+        return !candidates.isEmpty
     }
 
-    override func candidateSelected(_ candidateString: NSAttributedString) {
+    func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [candidateSelected] MSG: function called")
         let value: String = candidateString.string.components(separatedBy: ":")[0]
         dlog(DEBUG_EMOTICON, "DEBUG 2, [candidateSelected] MSG: value == %@", value)
@@ -79,15 +80,15 @@ class EmoticonComposer: DelegatedComposer {
         _composedString = ""
         _commitString = value
         romanComposer.cancelComposition()
-        _ = romanComposer.dequeueCommitString()
+        romanComposer.dequeueCommitString()
     }
 
-    override func candidateSelectionChanged(_ candidateString: NSAttributedString) {
+    func candidateSelectionChanged(_ candidateString: NSAttributedString) {
         if candidateString.length == 0 {
             _selectedCandidate = nil
         } else {
-            let value: String = candidateString.string.components(separatedBy: ":")[0]
-            _selectedCandidate = NSAttributedString(string: value)
+            let emoticon = candidateString.string.components(separatedBy: ":").first!
+            _selectedCandidate = NSAttributedString(string: emoticon)
         }
     }
 
@@ -98,7 +99,7 @@ class EmoticonComposer: DelegatedComposer {
         _candidates = nil
         // step 3. get all composing characters
         romanComposer.cancelComposition()
-        _bufferedString.append(romanComposer.dequeueCommitString())
+        _bufferedString += romanComposer.dequeueCommitString()
         // step 4. commit all
         _composedString = originalString
         cancelComposition()
@@ -108,11 +109,11 @@ class EmoticonComposer: DelegatedComposer {
         // Step 1: Get string from romanComposer
         let dequeued: String = romanComposer.dequeueCommitString()
         // Step 2: Show the string
-        _bufferedString.append(dequeued)
-        _bufferedString.append(romanComposer.composedString)
-        let originalString: String = _bufferedString
+        _bufferedString += dequeued
+        _bufferedString += romanComposer.composedString
+        let originalString = _bufferedString
         _composedString = originalString
-        let keyword: String = originalString
+        let keyword = originalString
 
         dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
         if keyword.isEmpty {
@@ -165,8 +166,11 @@ class EmoticonComposer: DelegatedComposer {
         dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
-    override func input(text string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
-        dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string, keyCode)
+    func input(text string: String?,
+               key keyCode: Int,
+               modifiers flags: NSEvent.ModifierFlags,
+               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+        dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string!, keyCode)
         var result = delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
 
         switch keyCode {
@@ -199,19 +203,19 @@ class EmoticonComposer: DelegatedComposer {
         case kVK_Return:
             candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
         default:
-            dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string)
+            dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string!)
             if result == .notProcessed, string != nil, keyCode < 0x33 {
-                _bufferedString.append(string)
+                _bufferedString.append(string!)
                 result = .processed
             }
         }
 
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: %@", string)
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: %@", string!)
         updateEmoticonCandidates()
 
-        dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: %@", string)
+        dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: %@", string!)
 
-        if result == InputResult(processed: false, action: .commit) {
+        if !result.processed, result.action == .commit {
             cancelComposition()
             return result
         }
