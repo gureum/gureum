@@ -10,42 +10,49 @@ import Cocoa
 import Foundation
 import InputMethodKit
 
-class QwertyComposer: DelegatedComposer {
-    var _commitString: String?
+protocol RomanComposer: Composer {}
 
-    override var composedString: String {
+final class QwertyComposer: RomanComposer {
+    private var _commitString: String?
+
+    // MARK: Composer 프로토콜 구현
+
+    var composedString: String {
         return ""
     }
 
-    override var originalString: String {
-        return self._commitString ?? ""
+    var originalString: String {
+        return _commitString ?? ""
     }
 
-    override var commitString: String {
-        return self._commitString ?? ""
+    var commitString: String {
+        return _commitString ?? ""
     }
 
-    override func dequeueCommitString() -> String {
+    var hasCandidates: Bool {
+        return false
+    }
+
+    var candidates: [NSAttributedString]? {
+        return nil
+    }
+
+    func dequeueCommitString() -> String {
         let dequeued = _commitString
         _commitString = ""
         return dequeued ?? ""
     }
 
-    override func cancelComposition() {}
-
-    override func clearContext() {
+    func clearCompositionContext() {
         _commitString = nil
     }
 
-    override var hasCandidates: Bool {
-        return false
-    }
+    func cancelComposition() {}
 
-    override var candidates: [NSAttributedString]? {
-        return nil
-    }
-
-    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+    func input(text string: String?,
+               key keyCode: Int,
+               modifiers flags: NSEvent.ModifierFlags,
+               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
@@ -65,7 +72,7 @@ class QwertyComposer: DelegatedComposer {
     }
 }
 
-class RomanDataComposer: DelegatedComposer {
+final class RomanDataComposer: RomanComposer {
     static let dvorakData: String = ["`1234567890[]\\",
                                      "',.pyfgcrl/=",
                                      "aoeuidhtns-",
@@ -83,47 +90,51 @@ class RomanDataComposer: DelegatedComposer {
                                       "ARSTDHNEIO\"",
                                       "ZXCVBKM<>?"].reduce("", +)
 
-    var _commitString: String?
-    var _keyboard: String = ""
+    private var _commitString: String?
+    private var _keyboard: String = ""
 
     init(keyboardData: String) {
-        super.init()
         _keyboard = keyboardData
     }
 
-    override var composedString: String {
+    // MARK: Composer 프로토콜 구현
+
+    var composedString: String {
         return ""
     }
 
-    override var originalString: String {
-        return self._commitString ?? ""
+    var originalString: String {
+        return _commitString ?? ""
     }
 
-    override var commitString: String {
-        return self._commitString ?? ""
+    var commitString: String {
+        return _commitString ?? ""
     }
 
-    override func dequeueCommitString() -> String {
+    var hasCandidates: Bool {
+        return false
+    }
+
+    var candidates: [NSAttributedString]? {
+        return nil
+    }
+
+    func dequeueCommitString() -> String {
         let dequeued = _commitString
         _commitString = nil
         return dequeued ?? ""
     }
 
-    override func cancelComposition() {}
+    func cancelComposition() {}
 
-    override func clearContext() {
+    func clearCompositionContext() {
         _commitString = nil
     }
 
-    override var hasCandidates: Bool {
-        return false
-    }
-
-    override var candidates: [NSAttributedString]? {
-        return nil
-    }
-
-    override func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+    func input(text string: String?,
+               key keyCode: Int,
+               modifiers flags: NSEvent.ModifierFlags,
+               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed

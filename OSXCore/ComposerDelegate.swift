@@ -10,69 +10,114 @@ import Cocoa
 import Foundation
 import InputMethodKit
 
-/*!
- @protocol
- @brief  입력을 처리하는 클래스의 관한 공통 형식
- @discussion TextData형식으로 @ref IMKServerInput 을 처리할 클래스의 공통 인터페이스. 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구현한다.
- */
+/// 입력을 처리하는 클래스에 관한 공통 형식을 정의한 프로토콜.
+///
+/// `TextData` 형식으로 `IMKServerInput`을 처리할 클래스의 공통 인터페이스.
+/// 입력 값을 보고 처리하는 모든 클래스는 이 프로토콜을 구헌한다.
 protocol InputTextDelegate {
-    /*!
-     @method
-     @param  controller  서버에서 입력을 받은 컨트롤러
-     @param  string  문자열로 표현된 입력 값
-     @param  keyCode 입력된 raw key code
-     @param  flags   입력된 modifier flag
-     @param  sender  입력 값을 전달한 외부 오브젝트
-     @return 입력 처리 여부. YES를 반환하면 이미 처리된 입력으로 보고 NO를 반환하면 외부에서 입력을 다시 처리한다.
-     @see    IMKServerInput
-     */
-    func input(text: String?, key: Int, modifiers: NSEvent.ModifierFlags, client: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    /// 입력을 수행한다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `input(text:key:modifiers:client)` 메소드를 호출한다.
+    ///
+    /// - Parameters:
+    ///   - text: 문자열로 표현된 입력 값.
+    ///   - key: 입력된 키의 raw key code.
+    ///   - modifiers: 입력된 modifier flag.
+    ///   - client: 입력 값을 전달한 외부 오브젝트.
+    ///
+    /// - Returns: 입력 결과.
+    ///
+    /// - Note: 반환 값의 `processed`가 `true`이면 이미 처리된 입력으로 보고, `false`이면 외부에서 입력을 다시 처리한다.
+    func input(text: String?,
+               key: Int,
+               modifiers: NSEvent.ModifierFlags,
+               client: IMKTextInput & IMKUnicodeTextInput) -> InputResult
 }
 
-/*!
- @brief 실제로 문자를 합성하는 합성기의 프로토콜
- @discussion 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 DelegatedComposer로 입력을 전달한다. 기본적으로 자판마다 하나씩 구현하게 된다.
- */
+/// 문자를 합성하는 합성기의 프로토콜.
+///
+/// 입력기 전체의 상태에 영향을 끼치는 처리를 마친 후 출력할 글자를 조합하기 위해 `DelegatedComposer`로 입력을 전달한다.
+/// 기본적으로 자판마다 하나씩 구현하게 된다.
+protocol Composer: InputTextDelegate {
+    /// 델리게이트 객체.
+    ///
+    /// 기본값은 `nil`이다.
+    var delegate: Composer! { get }
 
-protocol ComposerDelegate: InputTextDelegate {
-    func clear()
-    //! @brief  입력기가 선택 됨
-    func composerSelected()
-
-    //! @brief  합성 중인 문자로 보여줄 문자열
+    /// 합성 중인 문자로 보여줄 문자열.
+    ///
+    /// 기본적으로 델리게이트 객체의 `composedString`을 반환한다.
     var composedString: String { get }
-    //! @brief  합성을 취소하면 사용할 문자열
-    var originalString: String { get }
-    //! @brief  합성이 완료된 문자열
-    var commitString: String { get }
-    //! @brief  -commitString 을 반환하며 비움
-    func dequeueCommitString() -> String
-    //! @brief  조합을 중지
-    func cancelComposition()
-    //! @brief  조합 문맥 초기화
-    func clearContext()
 
-    //! @brief  변환 후보 문자열 존재 여부
+    /// 합성을 취소하면 사용할 문자열.
+    ///
+    /// 기본적으로 델리게이트 객체의 `originalString`을 반환한다.
+    var originalString: String { get }
+
+    /// 합성이 완료된 문자열.
+    ///
+    /// 기본적으로 델리게이트 객체의 `commitString`을 반환한다.
+    var commitString: String { get }
+
+    /// 변환 후보 문자열 리스트.
+    ///
+    /// 기본적으로 델리게이트 객체의 `candidates`를 반환한다.
+    var candidates: [NSAttributedString]? { get }
+
+    /// 변환 후보 문자열 존재 여부.
+    ///
+    /// 기본적으로 델리게이트 객체의 `hasCandidates`를 반환한다.
     var hasCandidates: Bool { get }
 
-    //! @brief  변환 후보 문자열 리스트
-    var candidates: [NSAttributedString]? { get }
-    //! @brief  변환 후보 문자열 선택
+    /// 초기화 작업을 수행한다.
+    ///
+    /// 기본적으로 아무 동작도 하지 않는다.
+    func clear()
+
+    /// 합성이 완료된 문자열(`commitString`)을 반환하며 비운다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `dequeueCommitString()` 메소드의 실행 결과를 반환한다.
+    ///
+    /// - Returns: 합성이 완료된 문자열.
+    @discardableResult
+    func dequeueCommitString() -> String
+
+    /// 조합을 취소한다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `cancelComposition()` 메소드를 호출한다.
+    func cancelComposition()
+
+    /// 조합 문맥을 초기화한다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `clearCompositionContext()` 메소드를 호출한다.
+    func clearCompositionContext()
+
+    /// 입력기가 선택되었을 때 수행할 작업을 정의한다.
+    ///
+    /// 기본적으로 아무 동작도 하지 않는다.
+    func composerSelected()
+
+    /// 변환 후보 문자열이 선택된 후 수행할 작업을 정의한다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `candidateSelected(_:)` 메소드를 호출한다.
+    ///
+    /// - Parameter candidateString: 선택된 후보 문자열.
     func candidateSelected(_ candidateString: NSAttributedString)
-    //! @brief  변환 후보 문자열 변경
+
+    /// 변환 후보 문자열이 변경된 후 수행할 작업을 정의한다.
+    ///
+    /// 기본적으로 델리게이트 객체의 `candidateSelectionChanged(_:)` 메소드를 호출한다.
+    ///
+    /// - Parameter candidateString: 선택된 후보 문자열.
     func candidateSelectionChanged(_ candidateString: NSAttributedString)
 }
 
-/*!
- @brief  일반적인 합성기 구조
+// MARK: - Composer 프로토콜 초기 구현
 
- @warning    이 자체로는 동작하지 않는다. 상속하여 동작을 구현하거나 @ref BaseComposer 를 사용한다.
- */
-class DelegatedComposer: ComposerDelegate {
-    func clear() {}
-    func composerSelected() {}
-
-    var delegate: ComposerDelegate!
+extension Composer {
+    var delegate: Composer! {
+        return nil
+    }
 
     var composedString: String {
         return delegate.composedString
@@ -86,6 +131,15 @@ class DelegatedComposer: ComposerDelegate {
         return delegate.commitString
     }
 
+    var candidates: [NSAttributedString]? {
+        return delegate.candidates
+    }
+
+    var hasCandidates: Bool {
+        return delegate.hasCandidates
+    }
+
+    func clear() {}
     func dequeueCommitString() -> String {
         return delegate.dequeueCommitString()
     }
@@ -94,27 +148,25 @@ class DelegatedComposer: ComposerDelegate {
         delegate.cancelComposition()
     }
 
-    func clearContext() {
-        delegate.clearContext()
+    func clearCompositionContext() {
+        delegate.clearCompositionContext()
     }
 
-    var hasCandidates: Bool {
-        return delegate.hasCandidates
-    }
-
-    var candidates: [NSAttributedString]? {
-        return delegate.candidates ?? nil
-    }
-
+    func composerSelected() {}
     func candidateSelected(_ candidateString: NSAttributedString) {
-        return delegate.candidateSelected(candidateString)
+        delegate.candidateSelected(candidateString)
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        return delegate.candidateSelectionChanged(candidateString)
+        delegate.candidateSelectionChanged(candidateString)
     }
 
-    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
-        return delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
+    // MARK: InputTextDelegate
+
+    func input(text: String?,
+               key: Int,
+               modifiers: NSEvent.ModifierFlags,
+               client: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+        return delegate.input(text: text, key: key, modifiers: modifiers, client: client)
     }
 }

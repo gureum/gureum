@@ -69,7 +69,6 @@
 		3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */; };
 		3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC8D49217C4EDA00E4B332 /* InputReceiver.swift */; };
 		3881868D21EB2D8D004B7FDB /* ComposerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389289BC217B331B00F94F2C /* ComposerDelegate.swift */; };
-		3881869021EB2D8D004B7FDB /* BaseComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC158A0A213A847D00E4ABAC /* BaseComposer.swift */; };
 		3881869121EB2DC0004B7FDB /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DB19A21678B74005A37B9 /* Debug.swift */; };
 		3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B807B2153DDFA0013EE69 /* InputMethodServer.swift */; };
 		3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2AE4C208795E700FE211A /* Configuration.swift */; };
@@ -383,7 +382,6 @@
 		E5BB72CC214A788100E35558 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		E5D234EE2141260E00595FA0 /* GureumApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumApplicationDelegate.swift; sourceTree = "<group>"; };
 		E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumMenu.swift; sourceTree = "<group>"; };
-		FC158A0A213A847D00E4ABAC /* BaseComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,7 +598,6 @@
 				E5BB72CC214A788100E35558 /* InputController.swift */,
 				871B807B2153DDFA0013EE69 /* InputMethodServer.swift */,
 				389289BC217B331B00F94F2C /* ComposerDelegate.swift */,
-				FC158A0A213A847D00E4ABAC /* BaseComposer.swift */,
 				A3F007652160B09700501606 /* EmoticonComposer.swift */,
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
 				38162D7B140F64B70077AA2D /* HanjaComposer.swift */,
@@ -1264,7 +1261,6 @@
 				388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */,
 				3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */,
 				3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */,
-				3881869021EB2D8D004B7FDB /* BaseComposer.swift in Sources */,
 				388186B121EB453E004B7FDB /* InputController.swift in Sources */,
 				3881869F21EB3055004B7FDB /* HanjaComposer.swift in Sources */,
 				38B9551022A833E900A9D6E1 /* SystemConfigurationWatcher.swift in Sources */,
