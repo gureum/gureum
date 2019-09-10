@@ -153,16 +153,16 @@ final class HangulComposer: NSObject, Composer {
     }
 
     func input(text string: String?,
-               key keyCode: Int,
+               key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
                client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
-        if keyCode == kVK_Delete {
+        if keyCode == .delete {
             return inputContext.backspace() ? .processed : .notProcessed
         }
 
-        if keyCode > 50 || [kVK_Delete, kVK_Return, kVK_Tab, kVK_Space].contains(keyCode) {
-            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode)
+        if keyCode.isSpecial || [.delete, .return, .tab, .space].contains(keyCode) {
+            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode.rawValue)
             return InputResult(processed: false, action: .commit)
         }
 
@@ -176,7 +176,7 @@ final class HangulComposer: NSObject, Composer {
         let handled = inputContext.process(string.unicodeScalars.first!.value)
         let ucsString = inputContext.commitUCSString
         let recentCommitString = representableString(ucsString: ucsString)
-        if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == kVK_ANSI_Grave, flags.isSubset(of: .capsLock) {
+        if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == .grave, flags.isSubset(of: .capsLock) {
             if !handled {
                 _commitString.append(recentCommitString + "₩")
                 return .processed

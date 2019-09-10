@@ -155,6 +155,13 @@ public extension KeyCode {
     var isSpecial: Bool {
         return self >= .delete
     }
+    
+    /// 방향키 위치에 있는 키들을 반환한다.
+    ///
+    /// `.upArrow`, `.downArrow`, `.leftArrow`, `.rightArrow` 케이스를 포함하는 키 코드 배열을 나타낸다.
+    var arrows: [KeyCode] {
+        return [.upArrow, .downArrow, .leftArrow, .rightArrow]
+    }
 }
 
 // MARK: - Comparable 프로토콜 준수

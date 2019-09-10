@@ -35,17 +35,19 @@ public class Configuration: UserDefaults {
 
     var enableCapslockToToggleInputMode: Bool = false
 
-    typealias Shortcut = (Int, NSEvent.ModifierFlags)
+    typealias Shortcut = (KeyCode, NSEvent.ModifierFlags)
 
     class func convertShortcutToConfiguration(_ shortcut: Shortcut?) -> [String: Any] {
         guard let shortcut = shortcut else {
             return [:]
         }
-        return ["modifier": shortcut.1.rawValue, "keyCode": shortcut.0]
+        return ["modifier": shortcut.1.rawValue, "keyCode": shortcut.0.rawValue]
     }
 
     class func convertConfigurationToShortcut(_ configuration: [String: Any]) -> Shortcut? {
-        guard let modifier = configuration["modifier"] as? UInt, let keyCode = configuration["keyCode"] as? Int else {
+        guard let modifier = configuration["modifier"] as? UInt,
+            let keyCodeRawValue = configuration["keyCode"] as? Int,
+            let keyCode = KeyCode(rawValue: keyCodeRawValue) else {
             return nil
         }
         return (keyCode, NSEvent.ModifierFlags(rawValue: modifier))

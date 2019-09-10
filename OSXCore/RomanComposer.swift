@@ -50,14 +50,14 @@ final class QwertyComposer: RomanComposer {
     func cancelComposition() {}
 
     func input(text string: String?,
-               key keyCode: Int,
+               key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
                client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
             assert(false)
             return .notProcessed
         }
-        if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
+        if !string.isEmpty, keyCode.isNormal, !flags.contains(.option) {
             var newString = string
             let chr = string.first!
             if flags.contains(.capsLock), chr >= "a", chr <= "z" {
@@ -132,7 +132,7 @@ final class RomanDataComposer: RomanComposer {
     }
 
     func input(text string: String?,
-               key keyCode: Int,
+               key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
                client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         guard let string = string else {
@@ -154,7 +154,7 @@ final class RomanDataComposer: RomanComposer {
             map[$0] = $1
         }
 
-        if !string.isEmpty, keyCode < 0x33, !flags.contains(.option) {
+        if !string.isEmpty, keyCode.isNormal, !flags.contains(.option) {
             let newChr: Character
             let chr = string.first!
             if flags.contains(.capsLock), chr >= "a", chr <= "z" {
