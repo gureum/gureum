@@ -73,13 +73,13 @@ final class HangulComposer: NSObject, Composer {
         self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
         self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
         super.init()
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder.rawValue, options: .new, context: nil)
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination.rawValue, options: .new, context: nil)
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule.rawValue, options: .new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder, options: .new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination, options: .new, context: nil)
+        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule, options: .new, context: nil)
     }
 
     override func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
-        if keyPath == ConfigurationName.hangulForceStrictCombinationRule.rawValue {
+        if keyPath == ConfigurationName.hangulForceStrictCombinationRule {
             let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!
             setKeyboard(identifier: keyboard)
         } else {
@@ -89,9 +89,9 @@ final class HangulComposer: NSObject, Composer {
     }
 
     deinit {
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder.rawValue)
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination.rawValue)
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule.rawValue)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination)
+        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule)
     }
 
     // MARK: Composer 프로토콜 구현

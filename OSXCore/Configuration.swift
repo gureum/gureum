@@ -9,26 +9,28 @@
 import AppKit
 import Foundation
 
-enum ConfigurationName: String {
-    case lastHangulInputMode = "LastHangulInputMode"
-    case lastRomanInputMode = "LastRomanInputMode"
+/// 환경 설정 이름을 정의한 열거형.
+enum ConfigurationName {
+    static let lastHangulInputMode = "LastHangulInputMode"
+    static let lastRomanInputMode = "LastRomanInputMode"
 
-    case inputModeExchangeKey = "InputModeExchangeKey"
-    case inputModeEmoticonKey = "InputModeEmoticonKey"
-    case inputModeHanjaKey = "InputModeHanjaKey"
-    case inputModeEnglishKey = "InputModeEnglishKey"
-    case inputModeKoreanKey = "InputModeKoreanKey"
-    case optionKeyBehavior = "OptionKeyBehavior"
-    case overridingKeyboardName = "OverridingKeyboardName"
+    static let inputModeExchangeKey = "InputModeExchangeKey"
+    static let inputModeEmoticonKey = "InputModeEmoticonKey"
+    static let inputModeHanjaKey = "InputModeHanjaKey"
+    static let inputModeEnglishKey = "InputModeEnglishKey"
+    static let inputModeKoreanKey = "InputModeKoreanKey"
+    static let optionKeyBehavior = "OptionKeyBehavior"
+    static let overridingKeyboardName = "OverridingKeyboardName"
 
-    case romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
-    case showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
-    case hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
-    case hangulAutoReorder = "HangulAutoReorder"
-    case hangulNonChoseongCombination = "HangulNonChoseongCombination"
-    case hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
+    static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
+    static let showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
+    static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
+    static let hangulAutoReorder = "HangulAutoReorder"
+    static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
+    static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
 }
 
+/// 입력기의 환경 설정을 담당하는 오브젝트.
 public class Configuration: UserDefaults {
     public static let sharedSuiteName = "org.youknowone.Gureum"
     public static var shared = Configuration()
@@ -57,20 +59,20 @@ public class Configuration: UserDefaults {
         super.init(suiteName: suiteName)
 
         register(defaults: [
-            ConfigurationName.lastHangulInputMode.rawValue: "org.youknowone.inputmethod.Gureum.han2",
-            ConfigurationName.lastRomanInputMode.rawValue: "org.youknowone.inputmethod.Gureum.qwerty",
+            ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
+            ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeEmoticonKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, [.shift, .option])),
-            ConfigurationName.inputModeHanjaKey.rawValue: Configuration.convertShortcutToConfiguration((0x24, .option)),
-            ConfigurationName.optionKeyBehavior.rawValue: 0,
-            ConfigurationName.overridingKeyboardName.rawValue: "com.apple.keylayout.ABC",
+            ConfigurationName.inputModeEmoticonKey: Configuration.convertShortcutToConfiguration((.return, [.shift, .option])),
+            ConfigurationName.inputModeHanjaKey: Configuration.convertShortcutToConfiguration((.return, .option)),
+            ConfigurationName.optionKeyBehavior: 0,
+            ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
 
-            ConfigurationName.romanModeByEscapeKey.rawValue: false,
-            ConfigurationName.showsInputForHanjaCandidates.rawValue: false,
-            ConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue: true,
-            ConfigurationName.hangulAutoReorder.rawValue: false,
-            ConfigurationName.hangulNonChoseongCombination.rawValue: false,
-            ConfigurationName.hangulForceStrictCombinationRule.rawValue: false,
+            ConfigurationName.romanModeByEscapeKey: false,
+            ConfigurationName.showsInputForHanjaCandidates: false,
+            ConfigurationName.hangulWonCurrencySymbolForBackQuote: true,
+            ConfigurationName.hangulAutoReorder: false,
+            ConfigurationName.hangulNonChoseongCombination: false,
+            ConfigurationName.hangulForceStrictCombinationRule: false,
         ])
     }
 
@@ -95,136 +97,136 @@ public class Configuration: UserDefaults {
 
     var lastHangulInputMode: String {
         get {
-            return string(forKey: ConfigurationName.lastHangulInputMode.rawValue)!
+            return string(forKey: ConfigurationName.lastHangulInputMode)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.lastHangulInputMode.rawValue)
+            `set`(newValue, forKey: ConfigurationName.lastHangulInputMode)
         }
     }
 
     var lastRomanInputMode: String {
         get {
-            return string(forKey: ConfigurationName.lastRomanInputMode.rawValue)!
+            return string(forKey: ConfigurationName.lastRomanInputMode)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.lastRomanInputMode.rawValue)
+            `set`(newValue, forKey: ConfigurationName.lastRomanInputMode)
         }
     }
 
     var optionKeyBehavior: Int {
         get {
-            return integer(forKey: ConfigurationName.optionKeyBehavior.rawValue)
+            return integer(forKey: ConfigurationName.optionKeyBehavior)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.optionKeyBehavior.rawValue)
+            `set`(newValue, forKey: ConfigurationName.optionKeyBehavior)
         }
     }
 
     var overridingKeyboardName: String {
         get {
-            return string(forKey: ConfigurationName.overridingKeyboardName.rawValue)!
+            return string(forKey: ConfigurationName.overridingKeyboardName)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.overridingKeyboardName.rawValue)
+            `set`(newValue, forKey: ConfigurationName.overridingKeyboardName)
         }
     }
 
     var showsInputForHanjaCandidates: Bool {
         get {
-            return bool(forKey: ConfigurationName.showsInputForHanjaCandidates.rawValue)
+            return bool(forKey: ConfigurationName.showsInputForHanjaCandidates)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.showsInputForHanjaCandidates.rawValue)
+            `set`(newValue, forKey: ConfigurationName.showsInputForHanjaCandidates)
         }
     }
 
     var inputModeExchangeKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeExchangeKey.rawValue)
+            return getShortcut(forKey: ConfigurationName.inputModeExchangeKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeExchangeKey.rawValue)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeExchangeKey)
         }
     }
 
     var inputModeEmoticonKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeEmoticonKey.rawValue)
+            return getShortcut(forKey: ConfigurationName.inputModeEmoticonKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeEmoticonKey.rawValue)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeEmoticonKey)
         }
     }
 
     var inputModeHanjaKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeHanjaKey.rawValue)
+            return getShortcut(forKey: ConfigurationName.inputModeHanjaKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeHanjaKey.rawValue)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeHanjaKey)
         }
     }
 
     var inputModeEnglishKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeEnglishKey.rawValue)
+            return getShortcut(forKey: ConfigurationName.inputModeEnglishKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeEnglishKey.rawValue)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeEnglishKey)
         }
     }
 
     var inputModeKoreanKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeKoreanKey.rawValue)
+            return getShortcut(forKey: ConfigurationName.inputModeKoreanKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeKoreanKey.rawValue)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeKoreanKey)
         }
     }
 
     var romanModeByEscapeKey: Bool {
         get {
-            return bool(forKey: ConfigurationName.romanModeByEscapeKey.rawValue)
+            return bool(forKey: ConfigurationName.romanModeByEscapeKey)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.romanModeByEscapeKey.rawValue)
+            `set`(newValue, forKey: ConfigurationName.romanModeByEscapeKey)
         }
     }
 
     var hangulWonCurrencySymbolForBackQuote: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue)
+            return bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote.rawValue)
+            `set`(newValue, forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
         }
     }
 
     var hangulAutoReorder: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulAutoReorder.rawValue)
+            return bool(forKey: ConfigurationName.hangulAutoReorder)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulAutoReorder.rawValue)
+            `set`(newValue, forKey: ConfigurationName.hangulAutoReorder)
         }
     }
 
     var hangulNonChoseongCombination: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulNonChoseongCombination.rawValue)
+            return bool(forKey: ConfigurationName.hangulNonChoseongCombination)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulNonChoseongCombination.rawValue)
+            `set`(newValue, forKey: ConfigurationName.hangulNonChoseongCombination)
         }
     }
 
     var hangulForceStrictCombinationRule: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulForceStrictCombinationRule.rawValue)
+            return bool(forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule.rawValue)
+            `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
     }
 }
