@@ -161,7 +161,7 @@ final class HangulComposer: NSObject, Composer {
             return inputContext.backspace() ? .processed : .notProcessed
         }
 
-        if keyCode.isSpecial || [.delete, .return, .tab, .space].contains(keyCode) {
+        if !keyCode.isKeyMappable || [.delete, .return, .tab, .space].contains(keyCode) {
             dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode.rawValue)
             return InputResult(processed: false, action: .commit)
         }

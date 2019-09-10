@@ -141,19 +141,12 @@ public enum KeyCode: Int {
 }
 
 public extension KeyCode {
-    /// 키보드 상에 있는 일반적인 키인지를 나타낸다.
+    /// 구름 입력기의 키와 매핑 가능한지를 나타낸다.
     ///
-    /// `KeyMapLower` 및 `KeyMapUpper`에 정의된 문자인지를 나타낸다.
+    /// `KeyMapLower` 및 `KeyMapUpper`에 정의된 문자와 매핑될 수 있는지를 나타낸다.
     /// 일반적인 키보드 상에서 영문자, 숫자, 리턴, 탭, 스페이스, 역따옴표가 위치해 있는 키를 포함한다.
-    var isNormal: Bool {
+    var isKeyMappable: Bool {
         return self <= .ansiGrave
-    }
-
-    /// 키보드 상에 있는 특수한 키인지를 나타낸다.
-    ///
-    /// `KeyMapLower` 및 `KeyMapUpper`에 정의되지 않은 문자인지를 나타낸다.
-    var isSpecial: Bool {
-        return self >= .delete
     }
 
     /// 방향키 위치에 있는 키들을 반환한다.

@@ -39,7 +39,7 @@ public class InputReceiver: InputTextDelegate {
                 return InputResult(processed: false, action: .commit)
             case 1:
                 // ignore
-                if keyCode.isNormal {
+                if keyCode.isKeyMappable {
                     if flags.contains(.capsLock) || flags.contains(.shift) {
                         string = KeyMapUpper[keyCode.rawValue] ?? string
                     } else {
@@ -50,7 +50,7 @@ public class InputReceiver: InputTextDelegate {
                 assert(false)
             }
         } else {
-            if keyCode.isNormal {
+            if keyCode.isKeyMappable {
                 if flags.contains(.shift) {
                     string = KeyMapUpper[keyCode.rawValue] ?? string
                 } else {

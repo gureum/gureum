@@ -71,7 +71,7 @@ class TestViewController: NSViewController {
                     let marking = NSRange(location: deleted.location, length: 0)
                     self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: marking)
                 }
-            } else if keyCode.isNormal {
+            } else if keyCode.isKeyMappable {
                 self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
             } else {
                 return event

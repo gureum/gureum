@@ -265,7 +265,7 @@ class GureumShortcutValidator: MASShortcutValidator {
             return false
         }
         guard let key = KeyCode(rawValue: keyCode) else { return false }
-        return key.isSpecial || [.return, .tab, .space].contains(key)
+        return !key.isKeyMappable || [.return, .tab, .space].contains(key)
     }
     
     override func isShortcut(_: MASShortcut!, alreadyTakenIn _: NSMenu!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {

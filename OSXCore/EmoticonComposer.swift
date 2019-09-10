@@ -205,7 +205,7 @@ final class EmoticonComposer: Composer {
             candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
         default:
             dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string!)
-            if result == .notProcessed, string != nil, keyCode.isNormal {
+            if result == .notProcessed, string != nil, keyCode.isKeyMappable {
                 _bufferedString.append(string!)
                 result = .processed
             }

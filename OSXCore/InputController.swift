@@ -95,9 +95,9 @@ public class InputController: IMKInputController {
         }
 
         public override func value(forTag tag: Int, client _: Any!) -> Any! {
-            let ansiV = super.value(forTag: tag, client: client)
-            dlog(DEBUG_SPYING, "value: \(String(describing: ansiV)) for tag: \(tag)")
-            return ansiV
+            let v = super.value(forTag: tag, client: client)
+            dlog(DEBUG_SPYING, "value: \(String(describing: v)) for tag: \(tag)")
+            return v
         }
     #endif
 }

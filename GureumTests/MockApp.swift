@@ -35,7 +35,7 @@ class VirtualApp: NSObject {
     @discardableResult
     func inputKey(_ keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
         var string: String?
-        if keyCode.isNormal {
+        if keyCode.isKeyMappable {
             string = KeyMapLower[keyCode.rawValue]
             if !flags.intersection([.shift]).isEmpty {
                 string = KeyMapUpper[keyCode.rawValue]

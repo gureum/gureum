@@ -57,7 +57,7 @@ final class QwertyComposer: RomanComposer {
             assert(false)
             return .notProcessed
         }
-        if !string.isEmpty, keyCode.isNormal, !flags.contains(.option) {
+        if !string.isEmpty, keyCode.isKeyMappable, !flags.contains(.option) {
             var newString = string
             let chr = string.first!
             if flags.contains(.capsLock), chr >= "a", chr <= "z" {
@@ -154,7 +154,7 @@ final class RomanDataComposer: RomanComposer {
             map[$0] = $1
         }
 
-        if !string.isEmpty, keyCode.isNormal, !flags.contains(.option) {
+        if !string.isEmpty, keyCode.isKeyMappable, !flags.contains(.option) {
             let newChr: Character
             let chr = string.first!
             if flags.contains(.capsLock), chr >= "a", chr <= "z" {
