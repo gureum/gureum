@@ -10,71 +10,71 @@
 public enum KeyCode: Int {
     // MARK: ANSI-standard US keyboard
 
-    case a = 0x00
-    case s = 0x01
-    case d = 0x02
-    case f = 0x03
-    case h = 0x04
-    case g = 0x05
-    case z = 0x06
-    case x = 0x07
-    case c = 0x08
-    case v = 0x09
-    case b = 0x0B
-    case q = 0x0C
-    case w = 0x0D
-    case e = 0x0E
-    case r = 0x0F
-    case y = 0x10
-    case t = 0x11
-    case number1 = 0x12
-    case number2 = 0x13
-    case number3 = 0x14
-    case number4 = 0x15
-    case number6 = 0x16
-    case number5 = 0x17
-    case equal = 0x18
-    case number9 = 0x19
-    case number7 = 0x1A
-    case minus = 0x1B
-    case number8 = 0x1C
-    case number0 = 0x1D
-    case rightBracket = 0x1E
-    case o = 0x1F
-    case u = 0x20
-    case leftBracket = 0x21
-    case i = 0x22
-    case p = 0x23
-    case l = 0x25
-    case j = 0x26
-    case quote = 0x27
-    case k = 0x28
-    case semicolon = 0x29
-    case backslash = 0x2A
-    case comma = 0x2B
-    case slash = 0x2C
-    case n = 0x2D
-    case m = 0x2E
-    case period = 0x2F
-    case grave = 0x32
-    case keypadDecimal = 0x41
-    case keypadMultiply = 0x43
-    case keypadPlus = 0x45
-    case keypadClear = 0x47
-    case keypadDivide = 0x4B
-    case keypadEnter = 0x4C
-    case keypadMinus = 0x4E
-    case keypadEquals = 0x51
-    case keypad0 = 0x52
-    case keypad1 = 0x53
-    case keypad2 = 0x54
-    case keypad3 = 0x55
-    case keypad4 = 0x56
-    case keypad5 = 0x57
-    case keypad6 = 0x58
-    case keypad7 = 0x59
-    case keypad8 = 0x5B
-    case keypad9 = 0x5C
+    case ansiA = 0x00
+    case ansiS = 0x01
+    case ansiD = 0x02
+    case ansiF = 0x03
+    case ansiH = 0x04
+    case ansiG = 0x05
+    case ansiZ = 0x06
+    case ansiX = 0x07
+    case ansiC = 0x08
+    case ansiV = 0x09
+    case ansiB = 0x0B
+    case ansiQ = 0x0C
+    case ansiW = 0x0D
+    case ansiE = 0x0E
+    case ansiR = 0x0F
+    case ansiY = 0x10
+    case ansiT = 0x11
+    case ansi1 = 0x12
+    case ansi2 = 0x13
+    case ansi3 = 0x14
+    case ansi4 = 0x15
+    case ansi6 = 0x16
+    case ansi5 = 0x17
+    case ansiEqual = 0x18
+    case ansi9 = 0x19
+    case ansi7 = 0x1A
+    case ansiMinus = 0x1B
+    case ansi8 = 0x1C
+    case ansi0 = 0x1D
+    case ansiRightBracket = 0x1E
+    case ansiO = 0x1F
+    case ansiU = 0x20
+    case ansiLeftBracket = 0x21
+    case ansiI = 0x22
+    case ansiP = 0x23
+    case ansiL = 0x25
+    case ansiJ = 0x26
+    case ansiQuote = 0x27
+    case ansiK = 0x28
+    case ansiSemicolon = 0x29
+    case ansiBackslash = 0x2A
+    case ansiComma = 0x2B
+    case ansiSlash = 0x2C
+    case ansiN = 0x2D
+    case ansiM = 0x2E
+    case ansiPeriod = 0x2F
+    case ansiGrave = 0x32
+    case ansiKeypadDecimal = 0x41
+    case ansiKeypadMultiply = 0x43
+    case ansiKeypadPlus = 0x45
+    case ansiKeypadClear = 0x47
+    case ansiKeypadDivide = 0x4B
+    case ansiKeypadEnter = 0x4C
+    case ansiKeypadMinus = 0x4E
+    case ansiKeypadEquals = 0x51
+    case ansiKeypad0 = 0x52
+    case ansiKeypad1 = 0x53
+    case ansiKeypad2 = 0x54
+    case ansiKeypad3 = 0x55
+    case ansiKeypad4 = 0x56
+    case ansiKeypad5 = 0x57
+    case ansiKeypad6 = 0x58
+    case ansiKeypad7 = 0x59
+    case ansiKeypad8 = 0x5B
+    case ansiKeypad9 = 0x5C
 
     // MARK: Keycodes for keys that are independent of keyboard layout
 
@@ -129,15 +129,15 @@ public enum KeyCode: Int {
 
     // MARK: ISO keyboards only
 
-    case section = 0x0A
+    case isoSection = 0x0A
 
     // MARK: JIS keyboards only
 
-    case yen = 0x5D
-    case underscore = 0x5E
-    case keypadComma = 0x5F
-    case eisu = 0x66
-    case kana = 0x68
+    case jisYen = 0x5D
+    case jisUnderscore = 0x5E
+    case jisKeypadComma = 0x5F
+    case jisEisu = 0x66
+    case jisKana = 0x68
 }
 
 public extension KeyCode {
@@ -146,7 +146,7 @@ public extension KeyCode {
     /// `KeyMapLower` 및 `KeyMapUpper`에 정의된 문자인지를 나타낸다.
     /// 일반적인 키보드 상에서 영문자, 숫자, 리턴, 탭, 스페이스, 역따옴표가 위치해 있는 키를 포함한다.
     var isNormal: Bool {
-        return self <= .grave
+        return self <= .ansiGrave
     }
 
     /// 키보드 상에 있는 특수한 키인지를 나타낸다.
@@ -155,7 +155,7 @@ public extension KeyCode {
     var isSpecial: Bool {
         return self >= .delete
     }
-    
+
     /// 방향키 위치에 있는 키들을 반환한다.
     ///
     /// `.upArrow`, `.downArrow`, `.leftArrow`, `.rightArrow` 케이스를 포함하는 키 코드 배열을 나타낸다.

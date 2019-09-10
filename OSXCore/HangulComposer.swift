@@ -176,7 +176,7 @@ final class HangulComposer: NSObject, Composer {
         let handled = inputContext.process(string.unicodeScalars.first!.value)
         let ucsString = inputContext.commitUCSString
         let recentCommitString = representableString(ucsString: ucsString)
-        if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == .grave, flags.isSubset(of: .capsLock) {
+        if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == .ansiGrave, flags.isSubset(of: .capsLock) {
             if !handled {
                 _commitString.append(recentCommitString + "₩")
                 return .processed

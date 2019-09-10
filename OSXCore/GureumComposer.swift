@@ -269,7 +269,7 @@ extension GureumComposer {
         if delegate is HangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
-                if keyCode == .escape || (keyCode, inputModifier) == (.leftBracket, .control) {
+                if keyCode == .escape || (keyCode, inputModifier) == (.ansiLeftBracket, .control) {
                     return .changeLayout(.roman, false)
                 }
             }
