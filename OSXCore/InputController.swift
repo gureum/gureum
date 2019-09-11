@@ -83,9 +83,9 @@ public class InputController: IMKInputController {
 
     #if DEBUG
         public override func responds(to aSelector: Selector) -> Bool {
-            let ansiR = super.responds(to: aSelector)
-            dlog(DEBUG_SPYING, "controller responds to: \(aSelector) \(ansiR)")
-            return ansiR
+            let r = super.responds(to: aSelector)
+            dlog(DEBUG_SPYING, "controller responds to: \(aSelector) \(r)")
+            return r
         }
 
         public override func modes(_ sender: Any!) -> [AnyHashable: Any]! {
