@@ -21,7 +21,7 @@ protocol InputTextDelegate {
     ///
     /// - Parameters:
     ///   - text: 문자열로 표현된 입력 값.
-    ///   - key: 입력된 키의 raw key code.
+    ///   - key: 입력된 키의 key code.
     ///   - modifiers: 입력된 modifier flag.
     ///   - client: 입력 값을 전달한 외부 오브젝트.
     ///
@@ -29,7 +29,7 @@ protocol InputTextDelegate {
     ///
     /// - Note: 반환 값의 `processed`가 `true`이면 이미 처리된 입력으로 보고, `false`이면 외부에서 입력을 다시 처리한다.
     func input(text: String?,
-               key: Int,
+               key: KeyCode,
                modifiers: NSEvent.ModifierFlags,
                client: IMKTextInput & IMKUnicodeTextInput) -> InputResult
 }
@@ -164,7 +164,7 @@ extension Composer {
     // MARK: InputTextDelegate
 
     func input(text: String?,
-               key: Int,
+               key: KeyCode,
                modifiers: NSEvent.ModifierFlags,
                client: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         return delegate.input(text: text, key: key, modifiers: modifiers, client: client)

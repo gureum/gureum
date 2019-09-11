@@ -5,11 +5,6 @@
 //  Created by Hyewon on 2018. 9. 7..
 //  Copyright © 2018 youknowone.org. All rights reserved.
 //
-/*!
- @brief  구름 입력기의 합성기
-
- 입력 모드에 따라 libhangul을 이용하여 문자를 합성해 준다.
- */
 
 import Carbon
 import Cocoa
@@ -59,6 +54,9 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifi
     .han3_2012: "3-2012",
 ]
 
+/// 구름 입력기의 합성기 오브젝트.
+///
+/// 입력 모드에 따라 `libhangul`을 이용하여 문자를 합성해 준다.
 final class GureumComposer: Composer {
     var romanComposer: RomanComposer
     let qwertyComposer = QwertyComposer()
@@ -186,9 +184,13 @@ extension GureumComposer {
         return .notProcessed
     }
 
-    func filterCommand(key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client _: Any) -> InputEvent? {
+    func filterCommand(keyCode: KeyCode,
+                       modifiers flags: NSEvent.ModifierFlags,
+                       client _: Any) -> InputEvent? {
         let configuration = Configuration.shared
-        let inputModifier = flags.intersection(NSEvent.ModifierFlags.deviceIndependentFlagsMask).intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
+        let inputModifier = flags
+            .intersection(.deviceIndependentFlagsMask)
+            .intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
 //    if (string == nil) {
 //        NSUInteger modifierKey = flags & 0xff;
 //        if (self->lastModifier != 0 && modifierKey == 0) {
@@ -267,7 +269,7 @@ extension GureumComposer {
         if delegate is HangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
-                if keyCode == kVK_Escape || (keyCode, inputModifier) == (kVK_ANSI_LeftBracket, NSEvent.ModifierFlags.control) {
+                if keyCode == .escape || (keyCode, inputModifier) == (.ansiLeftBracket, .control) {
                     return .changeLayout(.roman, false)
                 }
             }

@@ -167,28 +167,29 @@ final class EmoticonComposer: Composer {
     }
 
     func input(text string: String?,
-               key keyCode: Int,
+               key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
                client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
-        dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string!, keyCode)
+        dlog(DEBUG_EMOTICON, "DEBUG 1, [inputController] MSG: %@, [[%d]]", string!, keyCode.rawValue)
         var result = delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
 
         switch keyCode {
         // BackSpace
-        case kVK_Delete: if result == .notProcessed {
-            if !originalString.isEmpty {
-                dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", _bufferedString)
-                _bufferedString.removeLast()
-                dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: after deletion, buffer (%@)", _bufferedString)
-                _composedString = originalString
-                result = .processed
-            } else {
-                // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
-                mode = false
+        case .delete:
+            if result == .notProcessed {
+                if !originalString.isEmpty {
+                    dlog(DEBUG_EMOTICON, "DEBUG 2, [inputController] MSG: before deletion, buffer (%@)", _bufferedString)
+                    _bufferedString.removeLast()
+                    dlog(DEBUG_EMOTICON, "DEBUG 3, [inputController] MSG: after deletion, buffer (%@)", _bufferedString)
+                    _composedString = originalString
+                    result = .processed
+                } else {
+                    // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
+                    mode = false
+                }
             }
-        }
         // Space
-        case kVK_Space:
+        case .space:
             if !_bufferedString.isEmpty {
                 _bufferedString.append(" ")
                 result = .processed
@@ -196,15 +197,15 @@ final class EmoticonComposer: Composer {
                 result = InputResult(processed: false, action: .commit)
             }
         // ESC
-        case kVK_Escape:
+        case .escape:
             exitComposer()
             return InputResult(processed: false, action: .commit)
         // Enter
-        case kVK_Return:
+        case .return:
             candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
         default:
             dlog(DEBUG_EMOTICON, "DEBUG 4, [inputController] MSG: %@", string!)
-            if result == .notProcessed, string != nil, keyCode < 0x33 {
+            if result == .notProcessed, string != nil, keyCode.isKeyMappable {
                 _bufferedString.append(string!)
                 result = .processed
             }

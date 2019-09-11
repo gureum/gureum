@@ -26,7 +26,7 @@ public class InputReceiver: InputTextDelegate {
 
     // MARK: - IMKServerInputTextData
 
-    func input2(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+    func input2(text string: String?, keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // 옵션 키 변환 처리
         var string = string
         if flags.contains(.option) {
@@ -39,22 +39,22 @@ public class InputReceiver: InputTextDelegate {
                 return InputResult(processed: false, action: .commit)
             case 1:
                 // ignore
-                if keyCode < 0x33 {
+                if keyCode.isKeyMappable {
                     if flags.contains(.capsLock) || flags.contains(.shift) {
-                        string = KeyMapUpper[keyCode] ?? string
+                        string = KeyMapUpper[keyCode.rawValue] ?? string
                     } else {
-                        string = KeyMapLower[keyCode] ?? string
+                        string = KeyMapLower[keyCode.rawValue] ?? string
                     }
                 }
             default:
                 assert(false)
             }
         } else {
-            if keyCode < 0x33 {
+            if keyCode.isKeyMappable {
                 if flags.contains(.shift) {
-                    string = KeyMapUpper[keyCode] ?? string
+                    string = KeyMapUpper[keyCode.rawValue] ?? string
                 } else {
-                    string = KeyMapLower[keyCode] ?? string
+                    string = KeyMapLower[keyCode.rawValue] ?? string
                 }
             }
         }
@@ -74,8 +74,13 @@ public class InputReceiver: InputTextDelegate {
         return result
     }
 
+    // MARK: InputTextDelegate 프로토콜 구현
+
     // IMKServerInput 프로토콜에 대한 공용 핸들러
-    func input(text string: String?, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+    func input(text string: String?,
+               key keyCode: KeyCode,
+               modifiers flags: NSEvent.ModifierFlags,
+               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         let selected = sender.selectedRange()
         let marked = sender.markedRange()
         if selected.location != marked.location {
@@ -88,21 +93,21 @@ public class InputReceiver: InputTextDelegate {
         }
 
         // 입력기용 특수 커맨드 처리
-        if let command = composer.filterCommand(key: keyCode, modifiers: flags, client: sender) {
+        if let command = composer.filterCommand(keyCode: keyCode, modifiers: flags, client: sender) {
             let result = input(event: command, client: sender)
             if result.processed {
                 return result
             }
         }
 
-        dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode, flags.rawValue)
+        dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode.rawValue, flags.rawValue)
 
         let hadComposedString = !_internalComposedString.isEmpty
-        let result = input2(text: string, key: keyCode, modifiers: flags, client: sender)
+        let result = input2(text: string, keyCode: keyCode, modifiers: flags, client: sender)
 
         // 합성 후보가 있다면 보여준다
         InputMethodServer.shared.showOrHideCandidates(controller: controller)
-        
+
         inputting = true
 
         if result.action != .none {

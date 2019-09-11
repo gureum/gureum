@@ -24,29 +24,30 @@ class VirtualApp: NSObject {
         controller.updateComposition()
         return processed
     }
-
+    
     @discardableResult
-    func inputText(_ string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
-        let processed = controller.inputText(string, key: keyCode, modifiers: Int(flags.rawValue), client: client)
+    func inputText(_ string: String!, key keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
+        let processed = controller.inputText(string, key: keyCode.rawValue, modifiers: Int(flags.rawValue), client: client)
         controller.updateComposition()
         return processed
     }
 
     @discardableResult
-    func inputKey(_ keyCode: Int, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
+    func inputKey(_ keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
         var string: String?
-        if keyCode <= 0x33 {
-            string = KeyMapLower[keyCode]
+        if keyCode.isKeyMappable {
+            string = KeyMapLower[keyCode.rawValue]
             if !flags.intersection([.shift]).isEmpty {
-                string = KeyMapUpper[keyCode]
+                string = KeyMapUpper[keyCode.rawValue]
             }
         }
         return inputText(string, key: keyCode, modifiers: flags)
     }
+        
 }
 
 class ModerateApp: VirtualApp {
-    override func inputText(_ string: String!, key keyCode: Int, modifiers flags: NSEvent.ModifierFlags) -> Bool {
+    override func inputText(_ string: String!, key keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags) -> Bool {
         let processed = super.inputText(string, key: keyCode, modifiers: flags)
         let specialFlags = flags.intersection([.command, .control])
 

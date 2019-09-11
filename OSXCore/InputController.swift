@@ -23,7 +23,7 @@ public enum InputAction: Equatable {
     case commit
     case cancel
     case layout(String)
-    case candidatesEvent(Int) // keyCode
+    case candidatesEvent(KeyCode) // keyCode
 }
 
 struct InputResult: Equatable {
@@ -109,12 +109,12 @@ public extension InputController { // IMKServerInputHandleEvent
     override func handle(_ event: NSEvent, client sender: Any) -> Bool {
         // dlog(DEBUG_INPUTCONTROLLER, "event: \(event)")
         // sender is (IMKTextInput & IMKUnicodeTextInput & IMTSMSupport)
+        guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else { return false }
         let client = asClient(sender)
         let imkCandidates = InputMethodServer.shared.candidates
         if imkCandidates.isVisible() {
-            let arrowKeys = [kVK_UpArrow, kVK_DownArrow, kVK_LeftArrow, kVK_RightArrow]
             let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-            if arrowKeys.contains(Int(event.keyCode)) || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+            if KeyCode.arrows.contains(keyCode) || selectionKeys.contains(NSNumber(value: event.keyCode)) {
                 imkCandidates.interpretKeyEvents([event])
                 return true
             }
@@ -122,7 +122,8 @@ public extension InputController { // IMKServerInputHandleEvent
         switch event.type {
         case .keyDown:
             dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier())
-            let result = receiver.input(text: event.characters, key: Int(event.keyCode), modifiers: event.modifierFlags, client: client)
+            guard let key = KeyCode(rawValue: Int(event.keyCode)) else { return false }
+            let result = receiver.input(text: event.characters, key: key, modifiers: event.modifierFlags, client: client)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
             return result.processed
         case .flagsChanged:
@@ -312,7 +313,8 @@ public extension InputController { // IMKServerInput
         override func inputText(_ string: String!, key keyCode: Int, modifiers flags: Int, client sender: Any) -> Bool {
             let client = asClient(sender)
             print("** InputController -inputText:key:modifiers:client  with string: \(string ?? "(nil)") / keyCode: \(keyCode) / modifier flags: \(flags) / client: \(String(describing: client))")
-            let result = receiver.input(text: string, key: keyCode, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: client)
+            guard let key = KeyCode(rawValue: keyCode) else { return false }
+            let result = receiver.input(text: string, key: key, modifiers: NSEvent.ModifierFlags(rawValue: UInt(flags)), client: client)
             if !result.processed {
                 // [self cancelComposition]
             }

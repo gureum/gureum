@@ -40,9 +40,10 @@ class TestViewController: NSViewController {
                 _ = self.inputController.handle(event, client: self.inputClient)
                 return nil
             }
+            guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else { return nil }
             let selected = self.inputClient.selectedRange()
             let marked = self.inputClient.markedRange()
-            if event.keyCode == kVK_Delete, selected.length > 0, selected != marked {
+            if keyCode == .delete, selected.length > 0, selected != marked {
                 self.inputController.cancelComposition()
                 self.inputClient.insertText("", replacementRange: selected)
                 self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
@@ -59,7 +60,7 @@ class TestViewController: NSViewController {
             }
             self.inputController.cancelComposition()
             self.inputController.commitComposition(self.inputClient)
-            if event.keyCode == kVK_Delete {
+            if keyCode == .delete {
                 NSLog("\(self.inputClient.selectedRange())")
                 // let marked = self.inputClient.markedRange()
                 if self.inputClient.hasMarkedText() {
@@ -70,7 +71,7 @@ class TestViewController: NSViewController {
                     let marking = NSRange(location: deleted.location, length: 0)
                     self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: marking)
                 }
-            } else if event.keyCode <= 0x33 {
+            } else if keyCode.isKeyMappable {
                 self.inputClient.insertText(event.characters, replacementRange: self.inputClient.markedRange())
             } else {
                 return event

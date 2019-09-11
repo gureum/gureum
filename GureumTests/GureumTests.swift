@@ -75,14 +75,14 @@ class GureumTests: XCTestCase {
     }
 
     func testLayoutChange() {
-        Configuration.shared.inputModeExchangeKey = Configuration.Shortcut(kVK_Space, .shift)
+        Configuration.shared.inputModeExchangeKey = Configuration.Shortcut(.space, .shift)
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputFlags(.capsLock)
 
-            app.inputText(" ", key: kVK_Space, modifiers: .shift)
-            app.inputText(" ", key: kVK_Space, modifiers: .shift)
+            app.inputText(" ", key: .space, modifiers: .shift)
+            app.inputText(" ", key: .space, modifiers: .shift)
             XCTAssertEqual("", app.client.string, "buffer: \(app.client.string), app: \(app)")
         }
     }
@@ -91,7 +91,7 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.han2", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_G)
+            app.inputKey(.ansiG)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             app.inputFlags(.capsLock)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
@@ -110,8 +110,8 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_A, modifiers: .command)
-            app.inputKey(kVK_ANSI_A, modifiers: .control)
+            app.inputKey(.ansiA, modifiers: .command)
+            app.inputKey(.ansiA, modifiers: .control)
             XCTAssertEqual("", app.client.string, "")
             XCTAssertEqual("", app.client.markedString(), "")
         }
@@ -121,15 +121,15 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_R)
-            app.inputKey(kVK_ANSI_2)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiR)
+            app.inputKey(.ansi2)
             XCTAssertEqual("mr2", app.client.string, "buffer: \(app.client.string), app: \(app)")
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_M, modifiers: .capsLock)
-            app.inputKey(kVK_ANSI_R, modifiers: .capsLock)
-            app.inputKey(kVK_ANSI_2, modifiers: .capsLock)
+            app.inputKey(.ansiM, modifiers: .capsLock)
+            app.inputKey(.ansiR, modifiers: .capsLock)
+            app.inputKey(.ansi2, modifiers: .capsLock)
             XCTAssertEqual("MR2", app.client.string, "buffer: \(app.client.string), app: \(app)")
         }
     }
@@ -138,12 +138,12 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiS)
             XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputText("\n", key: kVK_Return, modifiers: .option)
+            app.inputText("\n", key: .return, modifiers: .option)
             XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "韓: 나라 이름 한"))
@@ -163,17 +163,17 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             // hanja search mode
-            app.inputText("\n", key: kVK_Return, modifiers: .option)
-            app.inputKey(kVK_ANSI_I)
-            app.inputKey(kVK_ANSI_B)
-            app.inputKey(kVK_ANSI_W)
+            app.inputText("\n", key: .return, modifiers: .option)
+            app.inputKey(.ansiI)
+            app.inputKey(.ansiB)
+            app.inputKey(.ansiW)
             XCTAssertEqual("물", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("물 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputKey(kVK_ANSI_N)
-            app.inputKey(kVK_ANSI_B)
+            app.inputKey(.ansiN)
+            app.inputKey(.ansiB)
             XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
@@ -184,21 +184,21 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
 
             // 연달아 다음 한자 입력에 들어간다
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("水 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputKey(kVK_ANSI_I)
+            app.inputKey(.ansiI)
             XCTAssertEqual("水 ㅁ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("ㅁ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputKey(kVK_ANSI_B)
-            app.inputKey(kVK_ANSI_W)
+            app.inputKey(.ansiB)
+            app.inputKey(.ansiW)
             XCTAssertEqual("水 물", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("水 물 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputKey(kVK_ANSI_N)
-            app.inputKey(kVK_ANSI_B)
+            app.inputKey(.ansiN)
+            app.inputKey(.ansiB)
             XCTAssertEqual("水 물 수", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
@@ -218,19 +218,19 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
             // hanja search mode
-            app.inputText("\n", key: kVK_Return, modifiers: .option)
-            app.inputText(" ", key: kVK_Space)
-            app.inputKey(kVK_ANSI_A)
-            app.inputKey(kVK_ANSI_N)
-            app.inputKey(kVK_ANSI_F)
+            app.inputText("\n", key: .return, modifiers: .option)
+            app.inputText(" ", key: .space)
+            app.inputKey(.ansiA)
+            app.inputKey(.ansiN)
+            app.inputKey(.ansiF)
             XCTAssertEqual(" 물", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual(" 물 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
-            app.inputKey(kVK_ANSI_T)
-            app.inputKey(kVK_ANSI_N)
-            app.inputText(" ", key: kVK_Space)
+            app.inputKey(.ansiT)
+            app.inputKey(.ansiN)
+            app.inputText(" ", key: .space)
             XCTAssertEqual(" 물 수 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             XCTAssertEqual("물 수 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
@@ -252,7 +252,7 @@ class GureumTests: XCTestCase {
                                     forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.client.setSelectedRange(NSMakeRange(0, 3))
             XCTAssertEqual("물 수", app.client.selectedString(), "")
-            app.inputText("\n", key: kVK_Return, modifiers: .option)
+            app.inputText("\n", key: .return, modifiers: .option)
             XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
             XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string) app: \(app)")
@@ -269,10 +269,10 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_Grave)
+            app.inputKey(.ansiGrave)
             XCTAssertEqual("₩", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-            app.inputKey(kVK_ANSI_Grave, modifiers: .shift)
+            app.inputKey(.ansiGrave, modifiers: .shift)
             XCTAssertEqual("₩~", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -283,11 +283,11 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_R)
-            app.inputKey(kVK_ANSI_K)
+            app.inputKey(.ansiR)
+            app.inputKey(.ansiK)
             XCTAssertEqual("가", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-            app.inputKey(kVK_ANSI_Grave)
+            app.inputKey(.ansiGrave)
             XCTAssertEqual("가₩", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -297,7 +297,7 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_Grave)
+            app.inputKey(.ansiGrave)
             XCTAssertEqual("`", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -307,7 +307,7 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputText("`", key: kVK_ANSI_Grave)
+            app.inputText("`", key: .ansiGrave)
             XCTAssertEqual("*", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -317,7 +317,7 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_Quote, modifiers: .shift)
+            app.inputKey(.ansiQuote, modifiers: .shift)
             XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -327,11 +327,11 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.dvorak", forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_J)
-            app.inputKey(kVK_ANSI_D)
-            app.inputKey(kVK_ANSI_P)
-            app.inputKey(kVK_ANSI_P)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiJ)
+            app.inputKey(.ansiD)
+            app.inputKey(.ansiP)
+            app.inputKey(.ansiP)
+            app.inputKey(.ansiS)
             XCTAssertEqual("hello", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -340,7 +340,7 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_K, modifiers: .shift)
+            app.inputKey(.ansiK, modifiers: .shift)
             XCTAssertEqual("2", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
         }
@@ -350,22 +350,22 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_S)
-            app.inputKey(kVK_ANSI_K)
-            app.inputKey(kVK_ANSI_G)
-            app.inputKey(kVK_ANSI_W)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiS)
+            app.inputKey(.ansiK)
+            app.inputKey(.ansiG)
+            app.inputKey(.ansiW)
             XCTAssertEqual("mfskgw", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
 
-            app.inputText("", key: kVK_LeftArrow)
-            app.inputText("", key: kVK_LeftArrow)
-            app.inputText("", key: kVK_LeftArrow)
-            app.inputText("", key: kVK_LeftArrow)
-            app.inputText("", key: kVK_LeftArrow)
-            app.inputText("", key: kVK_LeftArrow)
+            app.inputText("", key: .leftArrow)
+            app.inputText("", key: .leftArrow)
+            app.inputText("", key: .leftArrow)
+            app.inputText("", key: .leftArrow)
+            app.inputText("", key: .leftArrow)
+            app.inputText("", key: .leftArrow)
         }
     }
 
@@ -373,38 +373,38 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue("org.youknowone.inputmethod.Gureum.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiS)
             XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_K)
+            app.inputKey(.ansiK)
             XCTAssertEqual("한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_G)
+            app.inputKey(.ansiG)
             XCTAssertEqual("한그", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("그", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_W)
+            app.inputKey(.ansiW)
             XCTAssertEqual("한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("한글 ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_M)
+            app.inputKey(.ansiM)
             XCTAssertEqual("한글 ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㅎ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiS)
             XCTAssertEqual("한글 한", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_K)
+            app.inputKey(.ansiK)
             XCTAssertEqual("한글 한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_G)
-            app.inputKey(kVK_ANSI_W)
+            app.inputKey(.ansiG)
+            app.inputKey(.ansiW)
             XCTAssertEqual("한글 한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText("\n", key: kVK_Return)
+            app.inputText("\n", key: .return)
             if app != terminal {
                 XCTAssertEqual("한글 한글\n", app.client.string, "buffer: \(app.client.string) app: \(app)")
             }
@@ -416,12 +416,12 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.colemak.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_H)
-            app.inputKey(kVK_ANSI_K)
-            app.inputKey(kVK_ANSI_U)
-            app.inputKey(kVK_ANSI_U)
-            app.inputKey(kVK_ANSI_Semicolon)
-            app.inputKey(kVK_ANSI_Slash, modifiers: .shift)
+            app.inputKey(.ansiH)
+            app.inputKey(.ansiK)
+            app.inputKey(.ansiU)
+            app.inputKey(.ansiU)
+            app.inputKey(.ansiSemicolon)
+            app.inputKey(.ansiSlash, modifiers: .shift)
             XCTAssertEqual("hello?", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -431,37 +431,37 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_G)
-            app.inputKey(kVK_ANSI_K)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiG)
+            app.inputKey(.ansiK)
+            app.inputKey(.ansiS)
             XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_R)
+            app.inputKey(.ansiR)
             XCTAssertEqual("한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_F)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiF)
             XCTAssertEqual("한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("한글 ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
 
-            app.inputKey(kVK_ANSI_G)
+            app.inputKey(.ansiG)
             XCTAssertEqual("한글 ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㅎ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_K)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiK)
+            app.inputKey(.ansiS)
             XCTAssertEqual("한글 한", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_R)
+            app.inputKey(.ansiR)
             XCTAssertEqual("한글 한ㄱ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_F)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiF)
             XCTAssertEqual("한글 한글", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("글", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText("\n", key: kVK_Return)
+            app.inputText("\n", key: .return)
             if app != terminal {
                 XCTAssertEqual("한글 한글\n", app.client.string, "buffer: \(app.client.string) app: \(app)")
             }
@@ -473,18 +473,18 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3Final.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_M)
-            app.inputKey(kVK_ANSI_R)
-            app.inputKey(kVK_ANSI_2)
+            app.inputKey(.ansiM)
+            app.inputKey(.ansiR)
+            app.inputKey(.ansi2)
             XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
 
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
 
             app.client.string = ""
-            app.inputKey(kVK_ANSI_M, modifiers: .capsLock)
-            app.inputKey(kVK_ANSI_R, modifiers: .capsLock)
-            app.inputKey(kVK_ANSI_2, modifiers: .capsLock)
+            app.inputKey(.ansiM, modifiers: .capsLock)
+            app.inputKey(.ansiR, modifiers: .capsLock)
+            app.inputKey(.ansi2, modifiers: .capsLock)
             XCTAssertEqual("했", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("했", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
         }
@@ -503,21 +503,21 @@ class GureumTests: XCTestCase {
             emoticonComposer.delegate = composer.delegate // roman?
             composer.delegate = emoticonComposer
 
-            app.inputKey(kVK_ANSI_S)
-            app.inputKey(kVK_ANSI_L)
-            app.inputKey(kVK_ANSI_E)
-            app.inputKey(kVK_ANSI_E)
-            app.inputKey(kVK_ANSI_P)
-            app.inputKey(kVK_ANSI_Y)
+            app.inputKey(.ansiS)
+            app.inputKey(.ansiL)
+            app.inputKey(.ansiE)
+            app.inputKey(.ansiE)
+            app.inputKey(.ansiP)
+            app.inputKey(.ansiY)
             XCTAssertEqual("sleepy", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("sleepy", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("sleepy ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("sleepy ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_A)
-            app.inputKey(kVK_ANSI_C)
-            app.inputKey(kVK_ANSI_E)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiA)
+            app.inputKey(.ansiC)
+            app.inputKey(.ansiE)
             XCTAssertEqual("sleepy face", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("sleepy face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "😪: sleepy face"))
@@ -528,21 +528,21 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
 
             app.client.string = ""
-            app.inputKey(kVK_ANSI_H)
-            app.inputKey(kVK_ANSI_U)
-            app.inputKey(kVK_ANSI_S)
-            app.inputKey(kVK_ANSI_H)
-            app.inputKey(kVK_ANSI_E)
-            app.inputKey(kVK_ANSI_D)
+            app.inputKey(.ansiH)
+            app.inputKey(.ansiU)
+            app.inputKey(.ansiS)
+            app.inputKey(.ansiH)
+            app.inputKey(.ansiE)
+            app.inputKey(.ansiD)
             XCTAssertEqual("hushed", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("hushed", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
             XCTAssertEqual("hushed ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("hushed ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_F)
-            app.inputKey(kVK_ANSI_A)
-            app.inputKey(kVK_ANSI_C)
-            app.inputKey(kVK_ANSI_E)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiA)
+            app.inputKey(.ansiC)
+            app.inputKey(.ansiE)
             XCTAssertEqual("hushed face", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("hushed face", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
             app.controller.candidateSelectionChanged(NSAttributedString(string: "😯: hushed face"))
@@ -559,18 +559,18 @@ class GureumTests: XCTestCase {
             // 두벌식 ㅑㄴ
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_I)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiI)
+            app.inputKey(.ansiS)
             XCTAssertEqual("ㅑㄴ", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
             let han2 = app.client.string
-            app.inputText(" ", key: kVK_Space)
+            app.inputText(" ", key: .space)
 
             // 세벌식 ㅑㄴ
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_6)
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansi6)
+            app.inputKey(.ansiS)
             XCTAssertEqual(han2, app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -582,10 +582,10 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_M)
+            app.inputKey(.ansiM)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-            let processed = app.inputKey(kVK_Escape)
+            let processed = app.inputKey(.escape)
             XCTAssertFalse(processed)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
@@ -599,15 +599,15 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_M)
+            app.inputKey(.ansiM)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
 
-            let processed = app.inputKey(kVK_ANSI_LeftBracket, modifiers: [.control])
+            let processed = app.inputKey(.ansiLeftBracket, modifiers: [.control])
             XCTAssertFalse(processed)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
 
-            app.inputKey(kVK_ANSI_LeftBracket, modifiers: [.control, .shift])
+            app.inputKey(.ansiLeftBracket, modifiers: [.control, .shift])
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertTrue(app.controller.receiver.composer.inputMode.hasSuffix("qwerty"))
         }
@@ -618,13 +618,13 @@ class GureumTests: XCTestCase {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han3Classic.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
-            app.inputKey(kVK_ANSI_M)
+            app.inputKey(.ansiM)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_F)
+            app.inputKey(.ansiF)
             XCTAssertEqual("하", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_F)
+            app.inputKey(.ansiF)
             XCTAssertEqual("ᄒᆞ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(kVK_ANSI_S)
+            app.inputKey(.ansiS)
             XCTAssertEqual("ᄒᆞᆫ", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
@@ -633,10 +633,10 @@ class GureumTests: XCTestCase {
         for app in apps {
             app.client.string = ""
             app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-            app.inputKey(kVK_ANSI_D)
+            app.inputKey(.ansiD)
             XCTAssertEqual("ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("ㅇ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputText("", key: kVK_Delete)
+            app.inputText("", key: .delete)
             XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
         }

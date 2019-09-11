@@ -136,12 +136,12 @@ final class HanjaComposer: Composer {
     }
 
     func input(text string: String?,
-               key keyCode: Int,
+               key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
                client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         switch keyCode {
         // Arrow
-        case kVK_DownArrow, kVK_UpArrow:
+        case .upArrow, .downArrow:
             return InputResult(processed: false, action: .candidatesEvent(keyCode))
         default:
             break
@@ -151,7 +151,7 @@ final class HanjaComposer: Composer {
 
         switch keyCode {
         // backspace
-        case kVK_Delete:
+        case .delete:
             if result == .notProcessed {
                 if !originalString.isEmpty {
                     // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
@@ -166,7 +166,7 @@ final class HanjaComposer: Composer {
                 }
             }
         // space
-        case kVK_Space:
+        case .space:
             hangulComposer.cancelComposition() // 강제로 조합중인 문자 추출
             _bufferedString.append(hangulComposer.dequeueCommitString())
             // 단어 뜻 검색을 위해 공백 문자도 후보 검색에 포함한다.
@@ -177,7 +177,7 @@ final class HanjaComposer: Composer {
                 result = InputResult(processed: false, action: .commit)
             }
         // esc
-        case kVK_Escape:
+        case .escape:
             mode = .single
             // step 1: 조합중인 한글을 모두 가져옴
             hangulComposer.cancelComposition()
