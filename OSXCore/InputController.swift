@@ -114,7 +114,7 @@ public extension InputController { // IMKServerInputHandleEvent
         let imkCandidates = InputMethodServer.shared.candidates
         if imkCandidates.isVisible() {
             let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-            if KeyCode.arrows.contains(keyCode) || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+            if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
                 imkCandidates.interpretKeyEvents([event])
                 return true
             }
