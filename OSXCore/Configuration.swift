@@ -11,24 +11,41 @@ import Foundation
 
 /// 환경 설정 이름을 정의한 열거형.
 enum ConfigurationName {
+    /// 마지막 한글 입력 모드.
     static let lastHangulInputMode = "LastHangulInputMode"
+    /// 마지막 로마자 입력 모드.
     static let lastRomanInputMode = "LastRomanInputMode"
 
+    /// 입력기 바꾸기 단축키.
     static let inputModeExchangeKey = "InputModeExchangeKey"
+    /// 이모티콘 단축키.
     static let inputModeEmoticonKey = "InputModeEmoticonKey"
+    /// 한자 단축키.
     static let inputModeHanjaKey = "InputModeHanjaKey"
+    /// 로마자로 바꾸기 단축키.
     static let inputModeEnglishKey = "InputModeEnglishKey"
+    /// 한글로 바꾸기 단축키.
     static let inputModeKoreanKey = "InputModeKoreanKey"
+    /// 옵션 키 동작.
     static let optionKeyBehavior = "OptionKeyBehavior"
+    /// 기본 키보드 레이아웃.
     static let overridingKeyboardName = "OverridingKeyboardName"
 
+    /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
+    /// 한자 선택 후보 창에서 입력 문자 표시.
     static let showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
+    /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
     static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
+    /// 완성되지 않은 낱자 자동 교정 (모아치기).
     static let hangulAutoReorder = "HangulAutoReorder"
+    /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
     static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
+    /// 세벌식 정석 강요.
     static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
 }
+
+// MARK: - Configuration 클래스
 
 /// 입력기의 환경 설정을 담당하는 오브젝트.
 public class Configuration: UserDefaults {
@@ -84,17 +101,7 @@ public class Configuration: UserDefaults {
         return persistentDomain(forName: Configuration.sharedSuiteName) ?? [:]
     }
 
-    func getShortcut(forKey key: String) -> Shortcut? {
-        guard let value = self.dictionary(forKey: key) else {
-            return nil
-        }
-        return Configuration.convertConfigurationToShortcut(value)
-    }
-
-    func setShortcut(_ newValue: Shortcut?, forKey key: String) {
-        `set`(Configuration.convertShortcutToConfiguration(newValue), forKey: key)
-    }
-
+    /// 마지막 한글 입력 모드.
     var lastHangulInputMode: String {
         get {
             return string(forKey: ConfigurationName.lastHangulInputMode)!
@@ -104,6 +111,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 마지막 로마자 입력 모드.
     var lastRomanInputMode: String {
         get {
             return string(forKey: ConfigurationName.lastRomanInputMode)!
@@ -113,6 +121,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 옵션 키 동작.
     var optionKeyBehavior: Int {
         get {
             return integer(forKey: ConfigurationName.optionKeyBehavior)
@@ -122,6 +131,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 기본 키보드 레이아웃.
     var overridingKeyboardName: String {
         get {
             return string(forKey: ConfigurationName.overridingKeyboardName)!
@@ -131,6 +141,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 한자 선택 후보 창에서 입력 문자 표시.
     var showsInputForHanjaCandidates: Bool {
         get {
             return bool(forKey: ConfigurationName.showsInputForHanjaCandidates)
@@ -140,6 +151,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 입력기 바꾸기 단축키.
     var inputModeExchangeKey: Shortcut? {
         get {
             return getShortcut(forKey: ConfigurationName.inputModeExchangeKey)
@@ -149,6 +161,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 이모티콘 단축키.
     var inputModeEmoticonKey: Shortcut? {
         get {
             return getShortcut(forKey: ConfigurationName.inputModeEmoticonKey)
@@ -158,6 +171,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 한자 단축키.
     var inputModeHanjaKey: Shortcut? {
         get {
             return getShortcut(forKey: ConfigurationName.inputModeHanjaKey)
@@ -167,6 +181,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 로마자로 바꾸기 단축키.
     var inputModeEnglishKey: Shortcut? {
         get {
             return getShortcut(forKey: ConfigurationName.inputModeEnglishKey)
@@ -176,6 +191,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 한글로 바꾸기 단축키.
     var inputModeKoreanKey: Shortcut? {
         get {
             return getShortcut(forKey: ConfigurationName.inputModeKoreanKey)
@@ -185,6 +201,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     var romanModeByEscapeKey: Bool {
         get {
             return bool(forKey: ConfigurationName.romanModeByEscapeKey)
@@ -194,6 +211,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
     var hangulWonCurrencySymbolForBackQuote: Bool {
         get {
             return bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
@@ -203,6 +221,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 완성되지 않은 낱자 자동 교정 (모아치기).
     var hangulAutoReorder: Bool {
         get {
             return bool(forKey: ConfigurationName.hangulAutoReorder)
@@ -212,6 +231,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
     var hangulNonChoseongCombination: Bool {
         get {
             return bool(forKey: ConfigurationName.hangulNonChoseongCombination)
@@ -221,6 +241,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 세벌식 정석 강요.
     var hangulForceStrictCombinationRule: Bool {
         get {
             return bool(forKey: ConfigurationName.hangulForceStrictCombinationRule)
@@ -228,5 +249,16 @@ public class Configuration: UserDefaults {
         set {
             `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
+    }
+}
+
+private extension Configuration {
+    func getShortcut(forKey key: String) -> Shortcut? {
+        guard let value = dictionary(forKey: key) else { return nil }
+        return Configuration.convertConfigurationToShortcut(value)
+    }
+
+    func setShortcut(_ newValue: Shortcut?, forKey key: String) {
+        `set`(Configuration.convertShortcutToConfiguration(newValue), forKey: key)
     }
 }

@@ -14,9 +14,9 @@ public class SystemConfigurationWatcher {
     var configuration: Configuration
 
     static let globalPreferencesPath: String = {
-        let libraryUrl = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-        let fileUrl = URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryUrl)
-        return fileUrl.path
+        let libraryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+        let fileURL = URL(fileURLWithPath: "Preferences/.GlobalPreferences.plist", relativeTo: libraryURL)
+        return fileURL.path
     }()
 
     init(configuration: inout Configuration) {
