@@ -33,8 +33,6 @@ enum ConfigurationName {
 
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
-    /// 한자 선택 후보 창에서 입력 문자 표시.
-    static let showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
     /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
     static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     /// 완성되지 않은 낱자 자동 교정 (모아치기).
@@ -85,7 +83,6 @@ public class Configuration: UserDefaults {
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
 
             ConfigurationName.romanModeByEscapeKey: false,
-            ConfigurationName.showsInputForHanjaCandidates: false,
             ConfigurationName.hangulWonCurrencySymbolForBackQuote: true,
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
@@ -138,16 +135,6 @@ public class Configuration: UserDefaults {
         }
         set {
             `set`(newValue, forKey: ConfigurationName.overridingKeyboardName)
-        }
-    }
-
-    /// 한자 선택 후보 창에서 입력 문자 표시.
-    var showsInputForHanjaCandidates: Bool {
-        get {
-            return bool(forKey: ConfigurationName.showsInputForHanjaCandidates)
-        }
-        set {
-            `set`(newValue, forKey: ConfigurationName.showsInputForHanjaCandidates)
         }
     }
 
