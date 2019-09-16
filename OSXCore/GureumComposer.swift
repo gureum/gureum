@@ -10,76 +10,71 @@ import Carbon
 import Cocoa
 import Foundation
 
-enum GureumInputSourceIdentifier: String {
+/// 구름 입력기에서 사용하는 인풋 소스를 정의한 열거형.
+///
+/// 각 케이스의 원시 값은 그에 대응하는 input method의 번들 식별자를 나타낸다.
+enum GureumInputSource: String {
+    /// 로마자 쿼티 자판.
     case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
+    /// 로마자 드보락 자판.
     case dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
+    /// 로마자 콜맥 자판.
     case colemak = "org.youknowone.inputmethod.Gureum.colemak"
+    /// 한글 두벌식 자판.
     case han2 = "org.youknowone.inputmethod.Gureum.han2"
+    /// 한글 두벌식 옛글 자판.
     case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
+    /// 한글 세벌식 최종 자판.
     case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    /// 한글 세벌식 390 자판.
     case han390 = "org.youknowone.inputmethod.Gureum.han390"
+    /// 한글 세벌식 순아래 자판.
     case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    /// 한글 세벌식 옛글 자판.
     case han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
+    /// 한글 세벌식 두벌식 배치 자판.
     case han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
+    /// 한글 안마태 자판.
     case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
+    /// 한글 로마자 자판.
     case hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
+    /// 한글 세벌식 최종 순아래 자판.
     case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
+    /// 한글 세벌식 2011 자판.
     case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
+    /// 한글 세벌식 2012 자판.
     case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
-
-    var keyboardIdentifier: String {
-        guard let value = GureumInputSourceToHangulKeyboardIdentifierTable[self] else {
-            assert(false)
-            return "qwerty"
-        }
-        return value
-    }
 }
 
-let GureumInputSourceToHangulKeyboardIdentifierTable: [GureumInputSourceIdentifier: String] = [
-    .qwerty: "qwerty",
-    .dvorak: "dvorak",
-    .colemak: "colemak",
-    .han2: "2-full",
-    .han2Classic: "2y-full",
-    .han3Final: "3f",
-    .han390: "39",
-    .han3NoShift: "3s",
-    .han3Classic: "3y",
-    .han3Layout2: "32",
-    .hanRoman: "ro",
-    .hanAhnmatae: "ahn",
-    .han3FinalNoShift: "3gs",
-    .han3_2011: "3-2011",
-    .han3_2012: "3-2012",
-]
+// MARK: - GureumComposer 클래스
 
 /// 구름 입력기의 합성기 오브젝트.
 ///
 /// 입력 모드에 따라 `libhangul`을 이용하여 문자를 합성해 준다.
 final class GureumComposer: Composer {
+    /// 실제 사용되는 로마자 합성기.
     var romanComposer: RomanComposer
-    let qwertyComposer = QwertyComposer()
-    let dvorakComposer = RomanDataComposer(keyboardData: RomanDataComposer.dvorakData)
-    let colemakComposer = RomanDataComposer(keyboardData: RomanDataComposer.colemakData)
-    let hangulComposer = HangulComposer(keyboardIdentifier: GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!)!
+
+    /// 한글 합성기.
+    let hangulComposer = HangulComposer(composer: .han2)
+    /// 한자 합성기.
     let hanjaComposer = HanjaComposer()
+    /// 이모티콘 합성기.
     let emoticonComposer = EmoticonComposer()
-    let romanComposersByIdentifier: [String: RomanComposer]
+    /// 로마자 쿼티 합성기.
+    let qwertyComposer = RomanComposer(composer: .qwerty)
+    /// 로마자 드보락 합성기.
+    let dvorakComposer = RomanComposer(composer: .dvorak)
+    /// 로마자 콜맥 합성기.
+    let colemakComposer = RomanComposer(composer: .colemak)
 
     private var _inputMode: String = ""
     private var _commitStrings: [String] = []
 
     init() {
         romanComposer = qwertyComposer
+        delegate = romanComposer
         hanjaComposer.delegate = hangulComposer
-        romanComposersByIdentifier = [
-            "qwerty": qwertyComposer,
-            "dvorak": dvorakComposer,
-            "colemak": colemakComposer,
-        ]
-
-        delegate = qwertyComposer
     }
 
     // MARK: Composer 프로토콜 구현
@@ -90,8 +85,11 @@ final class GureumComposer: Composer {
         return _commitStrings.joined() + delegate.commitString
     }
 
-    func enqueueCommitString(_ string: String) {
-        _commitStrings.append(string)
+    func clear() {
+        hangulComposer.clear()
+        romanComposer.clear()
+        hanjaComposer.clear()
+        emoticonComposer.clear()
     }
 
     func dequeueCommitString() -> String {
@@ -99,13 +97,6 @@ final class GureumComposer: Composer {
         delegate.dequeueCommitString()
         _commitStrings.removeAll()
         return r
-    }
-
-    func clear() {
-        hangulComposer.clear()
-        romanComposer.clear()
-        hanjaComposer.clear()
-        emoticonComposer.clear()
     }
 }
 
@@ -115,19 +106,19 @@ extension GureumComposer {
             return _inputMode
         }
         set {
-            guard self.inputMode != newValue else {
+            guard inputMode != newValue else {
                 return
             }
 
-            guard let keyboardIdentifier = GureumInputSourceIdentifier(rawValue: newValue)?.keyboardIdentifier else {
+            guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
                 #if DEBUG
                     assert(false)
                 #endif
                 return
             }
 
-            if romanComposersByIdentifier.keys.contains(keyboardIdentifier) {
-                romanComposer = romanComposersByIdentifier[keyboardIdentifier]!
+            if let romanComposerType = RomanComposerType(rawValue: keyboardIdentifier) {
+                changeRomanComposer(by: romanComposerType)
                 delegate = romanComposer
                 Configuration.shared.lastRomanInputMode = newValue
             } else {
@@ -136,6 +127,7 @@ extension GureumComposer {
                 hangulComposer.setKeyboard(identifier: keyboardIdentifier)
                 Configuration.shared.lastHangulInputMode = newValue
             }
+
             _inputMode = newValue
         }
     }
@@ -165,7 +157,7 @@ extension GureumComposer {
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
-                let isComposing = hangulComposer.composedString.count > 0
+                let isComposing = !hangulComposer.composedString.isEmpty
                 hanjaComposer.mode = isComposing ? .single : .continuous
                 delegate = hanjaComposer
                 delegate.composerSelected()
@@ -269,12 +261,67 @@ extension GureumComposer {
         if delegate is HangulComposer {
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
-                if keyCode == .escape || (keyCode, inputModifier) == (.ansiLeftBracket, .control) {
+                if keyCode == .escape || inputKey == (.ansiLeftBracket, .control) {
                     return .changeLayout(.roman, false)
                 }
             }
         }
 
         return nil
+    }
+
+    private func enqueueCommitString(_ string: String) {
+        _commitStrings.append(string)
+    }
+
+    private func changeRomanComposer(by romanComposerType: RomanComposerType) {
+        switch romanComposerType {
+        case .qwerty:
+            romanComposer = qwertyComposer
+        case .dvorak:
+            romanComposer = dvorakComposer
+        case .colemak:
+            romanComposer = colemakComposer
+        }
+    }
+}
+
+// MARK: - GureumInputSource 열거형 확장
+
+extension GureumInputSource {
+    /// 키보드 식별자.
+    var keyboardIdentifier: String {
+        switch self {
+        case .qwerty:
+            return "qwerty"
+        case .dvorak:
+            return "dvorak"
+        case .colemak:
+            return "colemak"
+        case .han2:
+            return "2-full"
+        case .han2Classic:
+            return "2y-full"
+        case .han3Final:
+            return "3f"
+        case .han390:
+            return "39"
+        case .han3NoShift:
+            return "3s"
+        case .han3Classic:
+            return "3y"
+        case .han3Layout2:
+            return "32"
+        case .hanAhnmatae:
+            return "ahn"
+        case .hanRoman:
+            return "ro"
+        case .han3FinalNoShift:
+            return "3gs"
+        case .han3_2011:
+            return "3-2011"
+        case .han3_2012:
+            return "3-2012"
+        }
     }
 }

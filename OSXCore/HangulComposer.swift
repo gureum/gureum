@@ -20,7 +20,7 @@ let table: [HGUCSChar: HGUCSChar] = [
     0x0000: 0x0000, 0x11A8: 0x3131, 0x11A9: 0x3132, 0x11AA: 0x3133, 0x11AB: 0x3134, 0x11AC: 0x3135, 0x11AD: 0x3136, 0x11AE: 0x3137, 0x11AF: 0x3139, 0x11B0: 0x313A, 0x11B1: 0x313B, 0x11B2: 0x313C, 0x11B3: 0x313D, 0x11B4: 0x313E, 0x11B5: 0x313F, 0x11B6: 0x3140, 0x11B7: 0x3141, 0x11B8: 0x3142, 0x11B9: 0x3144, 0x11BA: 0x3145, 0x11BB: 0x3146, 0x11BC: 0x3147, 0x11BD: 0x3148, 0x11BE: 0x314A, 0x11BF: 0x314B, 0x11C0: 0x314C, 0x11C1: 0x314D, 0x11C2: 0x314E,
 ]
 
-// 한글호환 자모 유니코드로 바꿔주는 함수
+/// 한글호환 자모 유니코드로 바꿔주는 함수.
 func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> UnsafeMutablePointer<HGUCSChar> {
     var index: Int = 0
     let newUcsString = UnsafeMutablePointer<HGUCSChar>.allocate(capacity: 4)
@@ -53,22 +53,54 @@ func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
     return NSString(ucsString: ucsString) as String
 }
 
+/// 한글 합성기의 종류를 정의한 열거형.
+///
+/// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
+enum HangulComposerType: String {
+    /// 두벌식 자판.
+    case han2 = "2-full"
+    /// 두벌식 옛글 자판.
+    case han2Classic = "2y-full"
+    /// 세벌식 최종 자판.
+    case han3Final = "3f"
+    /// 세벌식 390 자판.
+    case han390 = "39"
+    /// 세벌식 순아래 자판.
+    case han3NoShift = "3s"
+    /// 세벌식 옛글 자판.
+    case han3Classic = "3y"
+    /// 세벌식 두벌식 배치 자판.
+    case han3Layout2 = "32"
+    /// 세벌식 로마자 자판.
+    case hanRoman = "ro"
+    /// 안마태 자판.
+    case hanAhnmatae = "ahn"
+    /// 세벌식 최종 순아래 자판.
+    case han3FinalNoShift = "3gs"
+    /// 세벌식 2011 자판.
+    case han3_2011 = "3-2011"
+    /// 세벌식 2012 자판.
+    case han3_2012 = "3-2012"
+}
+
+// MARK: - HangulComposer 클래스
+
 /// `libhangul`을 사용하는 한글 합성기.
 ///
-/// `libhangul`의 input context를 사용하는 합성기다. `init()`으로는 두벌식 합성기가 설정된다.
+/// `libhangul`의 input context를 사용하는 합성기다.
 ///
-/// HGInputContext 클래스를 참고한다.
+/// `HGInputContext` 클래스를 참고한다.
 final class HangulComposer: NSObject, Composer {
+    /// 합성을 완료한 문자열.
     private var _commitString: String
 
     let inputContext: HGInputContext
     let configuration = Configuration.shared
 
-    init?(keyboardIdentifier: String) {
-        _commitString = String()
-        guard let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier) else {
-            return nil
-        }
+    init(composer hangulComposerType: HangulComposerType) {
+        _commitString = ""
+        let keyboardIdentifier = hangulComposerType.rawValue
+        let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
         self.inputContext = inputContext
         self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
         self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
@@ -80,7 +112,9 @@ final class HangulComposer: NSObject, Composer {
 
     override func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
         if keyPath == ConfigurationName.hangulForceStrictCombinationRule {
-            let keyboard = GureumInputSourceIdentifier(rawValue: configuration.lastHangulInputMode)?.keyboardIdentifier ?? GureumInputSourceToHangulKeyboardIdentifierTable[.han2]!
+            let lastHangulInputMode = configuration.lastHangulInputMode
+            let inputSource = GureumInputSource(rawValue: lastHangulInputMode) ?? .han2
+            let keyboard = inputSource.keyboardIdentifier
             setKeyboard(identifier: keyboard)
         } else {
             inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
@@ -96,10 +130,6 @@ final class HangulComposer: NSObject, Composer {
 
     // MARK: Composer 프로토콜 구현
 
-    var commitString: String {
-        return _commitString
-    }
-
     var composedString: String {
         let preedit = inputContext.preeditUCSString
         return representableString(ucsString: preedit)
@@ -108,6 +138,10 @@ final class HangulComposer: NSObject, Composer {
     var originalString: String {
         let preedit = inputContext.preeditUCSString
         return representableString(ucsString: preedit)
+    }
+
+    var commitString: String {
+        return _commitString
     }
 
     var candidates: [NSAttributedString]? {
@@ -121,10 +155,6 @@ final class HangulComposer: NSObject, Composer {
     func clear() {
         inputContext.reset()
         _commitString = ""
-    }
-
-    func composerSelected() {
-        clear()
     }
 
     @discardableResult
@@ -142,6 +172,10 @@ final class HangulComposer: NSObject, Composer {
     func clearCompositionContext() {
         inputContext.reset()
         _commitString = ""
+    }
+
+    func composerSelected() {
+        clear()
     }
 
     func candidateSelected(_: NSAttributedString) {
@@ -205,7 +239,7 @@ extension HangulComposer {
         }
     }
 
-    func input(controller _: InputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
+    private func input(controller _: InputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
         assert(false)
         return .notProcessed
     }

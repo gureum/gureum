@@ -12,13 +12,17 @@ import Hangul
 
 let DEBUG_EMOTICON = false
 
+/// 이모티콘 합성기.
 final class EmoticonComposer: Composer {
-    static let emoticonTable = HGHanjaTable(contentOfFile: Bundle(for: HGKeyboard.self).path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
-
+    /// 이모티콘 후보 문자열 배열.
     private var _candidates: [NSAttributedString]?
+    /// 선택된 이모티콘 후보 문자열.
     private var _selectedCandidate: NSAttributedString?
+    /// 임시 저장한 문자열.
     private var _bufferedString: String = ""
+    /// 합성 중인 문자열.
     private var _composedString: String = ""
+    /// 합성을 완료한 문자열.
     private var _commitString: String = ""
 
     var mode: Bool = true
@@ -30,20 +34,25 @@ final class EmoticonComposer: Composer {
 
     var delegate: Composer!
 
-    var candidates: [NSAttributedString]? {
-        return _candidates
-    }
-
     var composedString: String {
         return _composedString
+    }
+
+    var originalString: String {
+        return _bufferedString
     }
 
     var commitString: String {
         return _commitString
     }
 
-    var originalString: String {
-        return _bufferedString
+    var candidates: [NSAttributedString]? {
+        return _candidates
+    }
+
+    var hasCandidates: Bool {
+        guard let candidates = _candidates else { return false }
+        return !candidates.isEmpty
     }
 
     func dequeueCommitString() -> String {
@@ -67,11 +76,6 @@ final class EmoticonComposer: Composer {
         _commitString = ""
     }
 
-    var hasCandidates: Bool {
-        guard let candidates = _candidates else { return false }
-        return !candidates.isEmpty
-    }
-
     func candidateSelected(_ candidateString: NSAttributedString) {
         dlog(DEBUG_EMOTICON, "DEBUG 1, [candidateSelected] MSG: function called")
         let value: String = candidateString.string.components(separatedBy: ":")[0]
@@ -90,80 +94,6 @@ final class EmoticonComposer: Composer {
             let emoticon = candidateString.string.components(separatedBy: ":").first!
             _selectedCandidate = NSAttributedString(string: emoticon)
         }
-    }
-
-    func exitComposer() {
-        // step 1. mode false
-        mode = false
-        // step 2. cancel candidates
-        _candidates = nil
-        // step 3. get all composing characters
-        romanComposer.cancelComposition()
-        _bufferedString.append(romanComposer.dequeueCommitString())
-        // step 4. commit all
-        _composedString = originalString
-        cancelComposition()
-    }
-
-    func updateEmoticonCandidates() {
-        // Step 1: Get string from romanComposer
-        let dequeued: String = romanComposer.dequeueCommitString()
-        // Step 2: Show the string
-        _bufferedString.append(dequeued)
-        _bufferedString.append(romanComposer.composedString)
-        let originalString = _bufferedString
-        _composedString = originalString
-        let keyword = originalString
-
-        dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
-        if keyword.isEmpty {
-            _candidates = nil
-        } else {
-            let loweredKeyword = keyword.lowercased() // case insensitive searching
-            _candidates = []
-            for table: HGHanjaTable in [EmoticonComposer.emoticonTable] {
-                dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
-                dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", loweredKeyword)
-                dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", EmoticonComposer.emoticonTable.debugDescription)
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
-                dlog(DEBUG_EMOTICON, "DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
-
-                dlog(DEBUG_EMOTICON, "DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
-                if list.count > 0 {
-                    for idx in 0 ... list.count - 1 {
-                        let emoticon = list.hanja(at: idx)
-                        dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        _candidates!.append(
-                            NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
-                        )
-                    }
-                }
-            }
-        }
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", _candidates ?? [])
-    }
-
-    func update(client sender: IMKTextInput) {
-        dlog(DEBUG_EMOTICON, "DEBUG 1, [update] MSG: function called")
-        let markedRange: NSRange = sender.markedRange()
-        let selectedRange: NSRange = sender.selectedRange()
-
-        let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.location == NSNotFound
-
-        dlog(DEBUG_EMOTICON, "DEBUG 2, [update] MSG: DEBUG POINT 1")
-        if isInvalidMarkedRange, selectedRange.location != NSNotFound, selectedRange.length > 0 {
-            let selectedString: String = sender.attributedSubstring(from: selectedRange).string
-
-            sender.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
-            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: marking: %@ / selected: %@", NSStringFromRange(sender.markedRange()), NSStringFromRange(sender.selectedRange()))
-
-            _bufferedString = selectedString
-            dlog(DEBUG_EMOTICON, "DEBUG 4, [update] MSG: %@", _bufferedString)
-        }
-
-        dlog(DEBUG_EMOTICON, "DEBUG 5, [update] MSG: before updateEmoticonCandidates")
-        updateEmoticonCandidates()
-        dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
     }
 
     func input(text string: String?,
@@ -225,5 +155,81 @@ final class EmoticonComposer: Composer {
         } else {
             return InputResult(processed: false, action: .commit)
         }
+    }
+}
+
+extension EmoticonComposer {
+    func update(client sender: IMKTextInput) {
+        dlog(DEBUG_EMOTICON, "DEBUG 1, [update] MSG: function called")
+        let markedRange: NSRange = sender.markedRange()
+        let selectedRange: NSRange = sender.selectedRange()
+
+        let isInvalidMarkedRange: Bool = markedRange.length == 0 || markedRange.location == NSNotFound
+
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [update] MSG: DEBUG POINT 1")
+        if isInvalidMarkedRange, selectedRange.location != NSNotFound, selectedRange.length > 0 {
+            let selectedString: String = sender.attributedSubstring(from: selectedRange).string
+
+            sender.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
+            dlog(DEBUG_EMOTICON, "DEBUG 3, [update] MSG: marking: %@ / selected: %@", NSStringFromRange(sender.markedRange()), NSStringFromRange(sender.selectedRange()))
+
+            _bufferedString = selectedString
+            dlog(DEBUG_EMOTICON, "DEBUG 4, [update] MSG: %@", _bufferedString)
+        }
+
+        dlog(DEBUG_EMOTICON, "DEBUG 5, [update] MSG: before updateEmoticonCandidates")
+        updateEmoticonCandidates()
+        dlog(DEBUG_EMOTICON, "DEBUG 6, [update] MSG: after updateEmoticonCandidates")
+    }
+
+    private func exitComposer() {
+        // step 1. mode false
+        mode = false
+        // step 2. cancel candidates
+        _candidates = nil
+        // step 3. get all composing characters
+        romanComposer.cancelComposition()
+        _bufferedString.append(romanComposer.dequeueCommitString())
+        // step 4. commit all
+        _composedString = originalString
+        cancelComposition()
+    }
+
+    private func updateEmoticonCandidates() {
+        // Step 1: Get string from romanComposer
+        let dequeued: String = romanComposer.dequeueCommitString()
+        // Step 2: Show the string
+        _bufferedString.append(dequeued)
+        _bufferedString.append(romanComposer.composedString)
+        let originalString = _bufferedString
+        _composedString = originalString
+        let keyword = originalString
+
+        dlog(DEBUG_EMOTICON, "DEBUG 1, [updateEmoticonCandidates] MSG: %@", originalString)
+        if keyword.isEmpty {
+            _candidates = nil
+        } else {
+            let loweredKeyword = keyword.lowercased() // case insensitive searching
+            _candidates = []
+            for table: HGHanjaTable in [HanjaTable.emoji] {
+                dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
+                dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", loweredKeyword)
+                dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", HanjaTable.emoji.debugDescription)
+                let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
+                dlog(DEBUG_EMOTICON, "DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
+
+                dlog(DEBUG_EMOTICON, "DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
+                if list.count > 0 {
+                    for idx in 0 ... list.count - 1 {
+                        let emoticon = list.hanja(at: idx)
+                        dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
+                        _candidates!.append(
+                            NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
+                        )
+                    }
+                }
+            }
+        }
+        dlog(DEBUG_EMOTICON, "DEBUG 2, [updateEmoticonCandidates] MSG: %@", _candidates ?? [])
     }
 }

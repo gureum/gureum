@@ -18,6 +18,20 @@ extension HGHanjaList: Sequence {
     }
 }
 
+/// 한자 테이블을 정리한 열거형.
+enum HanjaTable {
+    /// 한자 문자를 모아 놓은 테이블.
+    static let character = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
+    /// 한자 단어를 모아 놓은 테이블.
+    static let word = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
+    static let reversed = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
+    static let msSymbol = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
+    /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
+    static let emojiKorean = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
+    /// 로마자로 연결되는 이모지를 모아 놓은 테이블.
+    static let emoji = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
+}
+
 /// 한자를 조합하는 모드를 정의한 열거형.
 enum HanjaMode {
     /// 하나의 문자.
@@ -32,18 +46,6 @@ private let hangulBundle = Bundle(for: HGKeyboard.self)
 ///
 /// 입력된 한글 단어가 한자로 변환되어야 하므로, 한글 합성기를 참조하는 구조를 갖는다.
 final class HanjaComposer: Composer {
-    /// 한자 테이블 상수 정의.
-    private enum HanjaTable {
-        /// 한자 문자를 모아 놓은 테이블.
-        static let character = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
-        /// 한자 단어를 모아 놓은 테이블.
-        static let word = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
-        static let reversed = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
-        static let msSymbol = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
-        /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
-        static let emoji = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
-    }
-
     /// 한자 후보 문자열 배열.
     private var _candidates: [NSAttributedString]?
     /// 임시 저장한 문자열.
@@ -224,11 +226,9 @@ extension HanjaComposer {
         }
         prepareHanjaCandidates()
     }
-}
 
-private extension HanjaComposer {
     /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
-    func prepareHanjaCandidates() {
+    private func prepareHanjaCandidates() {
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
         let hangulString = hangulComposer.dequeueCommitString()
@@ -244,7 +244,7 @@ private extension HanjaComposer {
     /// 한자 입력을 위한 후보를 만든다.
     ///
     /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
-    func buildHanjaCandidates() -> [NSAttributedString]? {
+    private func buildHanjaCandidates() -> [NSAttributedString]? {
         let keyword = originalString.trimmingCharacters(in: .whitespaces)
         guard !keyword.isEmpty else {
             dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates no keywords")
@@ -259,7 +259,7 @@ private extension HanjaComposer {
                 candidates.append(contentsOf: tableCandidates)
             }
         }
-        for table in [HanjaTable.word, HanjaTable.reversed, HanjaTable.emoji] {
+        for table in [HanjaTable.word, HanjaTable.reversed, HanjaTable.emojiKorean] {
             let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
             candidates.append(contentsOf: tableCandidates)
         }
@@ -277,7 +277,7 @@ private extension HanjaComposer {
     ///   - keyword: prefix search의 쿼리로 사용될 키워드.
     ///
     /// - Returns: 검색한 후보의 문자열 배열.
-    func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
+    private func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
         var candidates = [String]()
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -searchCandidates getting list for table: %@", table)
         guard let list = table.hanjas(byPrefixSearching: keyword) else { return [] }
