@@ -21,6 +21,8 @@ extension Character {
 ///
 /// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
 enum RomanComposerType: String {
+    /// 시스템 자판.
+    case system
     /// 쿼티 자판.
     case qwerty
     /// 드보락 자판.
@@ -36,8 +38,12 @@ final class RomanComposer: Composer {
     private var _commitString: String?
     private var _composerType: RomanComposerType
 
+    private let keyMap: [Character: Character]
+
     init(composer romanComposerType: RomanComposerType) {
         _composerType = romanComposerType
+        keyMap = zip(RomanComposerType.qwerty.keyboardData, romanComposerType.keyboardData)
+            .reduce(into: [:]) { $0[$1.0] = $1.1 }
     }
 
     // MARK: Composer 프로토콜 구현
@@ -83,40 +89,31 @@ final class RomanComposer: Composer {
             return .notProcessed
         }
 
-        if !string.isEmpty, keyCode.isKeyMappable, !flags.contains(.option) {
-            if _composerType == .qwerty {
-                var newString = string
-                let chr = string.first!
-                if flags.contains(.capsLock), chr.isLowercaseCharacter {
-                    let newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
-                    newString = String(newChr)
-                    _commitString = newString
-                    return .processed
-                }
-            } else {
-                let qwerty = RomanComposerType.qwerty.keyboardData
-                let keyboardData = _composerType.keyboardData
-                let map = zip(qwerty, keyboardData).reduce(into: [:]) { $0[$1.0] = $1.1 }
-
-                let newChr: Character
-                let chr = string.first!
-                if flags.contains(.capsLock), chr.isLowercaseCharacter {
-                    newChr = Character(UnicodeScalar(String(chr).unicodeScalars.first!.value - 0x20)!)
-                } else {
-                    newChr = chr
-                }
-
-                guard let mappedChr = map[newChr] else {
-                    _commitString = nil
-                    return .notProcessed
-                }
-
-                _commitString = String(mappedChr)
-                return .processed
-            }
+        guard !string.isEmpty, keyCode.isKeyMappable, !flags.contains(.option) else {
+            _commitString = nil
+            return .notProcessed
         }
-        _commitString = nil
-        return .notProcessed
+
+        guard _composerType != .system else {
+            _commitString = nil
+            return .notProcessed
+        }
+
+        let character = string.first!
+        let newCharacter: Character = {
+            if flags.contains(.capsLock), character.isLowercaseCharacter {
+                return Character(UnicodeScalar(String(character).unicodeScalars.first!.value - 0x20)!)
+            } else {
+                return character
+            }
+        }()
+        guard let mappedCharacter = keyMap[newCharacter] else {
+            _commitString = nil
+            return .notProcessed
+        }
+
+        _commitString = "\(mappedCharacter)"
+        return .processed
     }
 }
 
@@ -126,6 +123,8 @@ extension RomanComposerType {
     /// 자판 배열 데이터.
     var keyboardData: String {
         switch self {
+        case .system:
+            return ""
         case .qwerty:
             return ["`1234567890-=\\",
                     "qwertyuiop[]",

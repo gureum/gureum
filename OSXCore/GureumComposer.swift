@@ -61,6 +61,8 @@ final class GureumComposer: Composer {
     let hanjaComposer = HanjaComposer()
     /// 이모티콘 합성기.
     let emoticonComposer = EmoticonComposer()
+    /// 로마자 시스템 합성기.
+    let systemRomanComposer = RomanComposer(composer: .system)
     /// 로마자 쿼티 합성기.
     let qwertyComposer = RomanComposer(composer: .qwerty)
     /// 로마자 드보락 합성기.
@@ -276,6 +278,8 @@ extension GureumComposer {
 
     private func changeRomanComposer(by romanComposerType: RomanComposerType) {
         switch romanComposerType {
+        case .system:
+            romanComposer = systemRomanComposer
         case .qwerty:
             romanComposer = qwertyComposer
         case .dvorak:
