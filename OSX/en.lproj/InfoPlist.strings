@@ -1,5 +1,6 @@
 /* Localized versions of Info.plist keys */
 
+org.youknowone.inputmethod.Gureum.system = "System";
 org.youknowone.inputmethod.Gureum.qwerty = "QWERTY";
 org.youknowone.inputmethod.Gureum.dvorak = "Dvorak";
 org.youknowone.inputmethod.Gureum.colemak = "Colemak";

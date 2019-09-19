@@ -14,6 +14,8 @@ import Foundation
 ///
 /// 각 케이스의 원시 값은 그에 대응하는 input method의 번들 식별자를 나타낸다.
 enum GureumInputSource: String {
+    /// 로마자 시스템 자판.
+    case system = "org.youknowone.inputmethod.Gureum.system"
     /// 로마자 쿼티 자판.
     case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
     /// 로마자 드보락 자판.
@@ -296,6 +298,8 @@ extension GureumInputSource {
     /// 키보드 식별자.
     var keyboardIdentifier: String {
         switch self {
+        case .system:
+            return "system"
         case .qwerty:
             return "qwerty"
         case .dvorak:
