@@ -1090,7 +1090,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
+			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n\n /usr/bin/codesign --force --sign - --entitlements \"${CONFIGURATION_TEMP_DIR}/Preferences.build/Preferences.prefPane.xcent\" --timestamp=none \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9248550919B356340823B139 /* [CP] Embed Pods Frameworks */ = {
@@ -1425,7 +1425,7 @@
 			baseConfigurationReference = ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Preferences/Info.plist;

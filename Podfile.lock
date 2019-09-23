@@ -1,6 +1,6 @@
 PODS:
   - cdebug (1.2)
-  - Crashlytics (3.13.4):
+  - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
   - FoundationExtension (2.0.0):
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - SwiftIOKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - cdebug
     - Crashlytics
     - Fabric
@@ -45,7 +45,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   cdebug: 55a96da647360590f0d292baebb34c4066cbca02
-  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
@@ -55,4 +55,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e925c41ce712d2063ff0a1d1979b3aa17c3d7854
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.0
