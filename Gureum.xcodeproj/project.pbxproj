@@ -1090,7 +1090,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n\n /usr/bin/codesign --force --sign - --entitlements \"${CONFIGURATION_TEMP_DIR}/Preferences.build/Preferences.prefPane.xcent\" --timestamp=none \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
+			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n\n/usr/bin/codesign --force --sign - --entitlements \"${CONFIGURATION_TEMP_DIR}/Preferences.build/Preferences.prefPane.xcent\" --timestamp=none \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9248550919B356340823B139 /* [CP] Embed Pods Frameworks */ = {
@@ -1382,7 +1382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
-				ENABLE_HARDENED_RUNTIME = YES;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1498,6 +1498,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1685,6 +1686,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
