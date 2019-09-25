@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/gureum/gureum.svg?branch=master)](https://travis-ci.org/gureum/gureum)
 
-# 소개
+## 소개
 구름 입력기는 libhangul 기반의 작고 가벼운 한글 입력기입니다.
 
 # 장점
@@ -22,10 +22,25 @@
 1. 주 한글 자판을 선택하기 위해 사용할 한글 자판을 수동으로 한번 선택해 줍니다. 다음부터는 Shift+Space 로 자동으로 선택한 자판으로 이동합니다.
 
 ## 제거
-1. 사용 중인 입력기를 OS 기본 입력기로 전환합니다.
-1. `활성 상태 보기.app (Activity Monitor.app)`를 열어 구름 입력기를 찾아 프로세스를 종료합니다.
-1. Finder에서 `/Library/Input Methods/` 경로로 이동해 `Gureum.app`을 삭제합니다.
-  - brew를 이용해 설치했다면 `brew cask uninstall gureumkim` 명령으로 삭제할 수 있습니다.
+
+제거하기 전에 **사용 중인 입력기를 OS 기본 입력기로 전환**해 주세요.
+
+### 빠른 삭제
+
+1. `터미널.app (Terminal.app)`을 실행합니다.
+2. 다음의 명령을 터미널에 입력하고 Enter 키를 눌러 명령을 실행합니다. 패스워드를 요구한다면 패스워드를 입력해 줍니다.
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/gureum/gureum/master/tools/uninstall.sh | bash
+```
+
+> brew로 설치한 경우 `brew cask uninstall gureumkim` 명령으로 삭제할 수 있습니다.
+
+### 수동 삭제
+
+1. `활성 상태 보기.app (Activity Monitor.app)`을 실행하고, 구름 입력기를 찾아 프로세스를 종료합니다.
+   - 찾기 힘들다면 `gureum`을 검색해서 찾아보세요.
+2. Finder에서 `/Library/Input Methods` 경로로 이동하여 `Gureum.app`을 삭제합니다.
 
 ## 개발 환경 설정
 구름 입력기의 개발 환경을 설정하고 디버깅 할 수 있는 방법을 제공합니다. [개발 환경 설정법](https://github.com/gureum/gureum/blob/master/HACKING.md)
