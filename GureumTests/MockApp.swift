@@ -40,6 +40,8 @@ class VirtualApp: NSObject {
             if !flags.intersection([.shift]).isEmpty {
                 string = KeyMapUpper[keyCode.rawValue]
             }
+        } else if keyCode == .delete {
+            string = ""
         }
         return inputText(string, key: keyCode, modifiers: flags)
     }
