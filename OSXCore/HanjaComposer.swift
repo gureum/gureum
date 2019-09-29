@@ -29,7 +29,7 @@ enum HanjaTable {
     /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
     static let emojiKorean = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
     /// 로마자로 연결되는 이모지를 모아 놓은 테이블.
-    static let emoji = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
+    static let emoji = try! String(contentsOfFile: hangulBundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!, encoding: .utf8).components(separatedBy: .newlines)
 }
 
 /// 한자를 조합하는 모드를 정의한 열거형.

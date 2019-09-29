@@ -9,6 +9,7 @@
 import Carbon
 import Cocoa
 import Hangul
+import Fuse
 
 let DEBUG_EMOTICON = false
 
@@ -211,22 +212,22 @@ extension EmoticonComposer {
         } else {
             let loweredKeyword = keyword.lowercased() // case insensitive searching
             _candidates = []
-            for table: HGHanjaTable in [HanjaTable.emoji] {
+            let fuse = Fuse()
+            for table in [HanjaTable.emoji] {
                 dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
                 dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", loweredKeyword)
                 dlog(DEBUG_EMOTICON, "DEBUG 14, [updateEmoticonCandidates] MSG: %@", HanjaTable.emoji.debugDescription)
-                let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
+                let searchResult = fuse.search(keyword, in: table)
+                // change searchResult(index, score, ranges) to candidate(emoticon, comment)
                 dlog(DEBUG_EMOTICON, "DEBUG 5, [updateEmoticonCandidates] MSG: after hanjasByPrefixSearching")
-
-                dlog(DEBUG_EMOTICON, "DEBUG 9, [updateEmoticonCandidates] MSG: count is %d", list.count)
-                if list.count > 0 {
-                    for idx in 0 ... list.count - 1 {
-                        let emoticon = list.hanja(at: idx)
-                        dlog(DEBUG_EMOTICON, "DEBUG 6, [updateEmoticonCandidates] MSG: %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        _candidates!.append(
-                            NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
-                        )
-                    }
+                if searchResult.count <= 0 {
+                    break
+                }
+                for result in searchResult {
+                    let emoticonLine: String = table[result.index]
+                    let emoticon: String = String(emoticonLine.split(separator: ":")[1])
+                    let comment: String = String(emoticonLine.split(separator: ":")[0])
+                    _candidates!.append(NSAttributedString(string: emoticon + ": " + comment))
                 }
             }
         }
