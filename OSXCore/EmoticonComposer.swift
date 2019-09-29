@@ -12,6 +12,8 @@ import Hangul
 
 let DEBUG_EMOTICON = false
 
+// MARK: - 이모지 합성기 클래스
+
 /// 이모티콘 합성기.
 final class EmoticonComposer: Composer {
     /// 이모티콘 후보 문자열 배열.
@@ -25,7 +27,7 @@ final class EmoticonComposer: Composer {
     /// 합성을 완료한 문자열.
     private var _commitString: String = ""
 
-    var mode: Bool = true
+    var showsCandidateWindow: Bool = true
     var romanComposer: Composer {
         return delegate
     }
@@ -115,7 +117,7 @@ final class EmoticonComposer: Composer {
                     result = .processed
                 } else {
                     // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
-                    mode = false
+                    showsCandidateWindow = false
                 }
             }
         // Space
@@ -184,7 +186,7 @@ extension EmoticonComposer {
 
     private func exitComposer() {
         // step 1. mode false
-        mode = false
+        showsCandidateWindow = false
         // step 2. cancel candidates
         _candidates = nil
         // step 3. get all composing characters

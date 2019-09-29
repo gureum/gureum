@@ -256,8 +256,8 @@ extension GureumComposer {
         }
 
         if delegate is EmoticonComposer {
-            if !emoticonComposer.mode {
-                emoticonComposer.mode = true
+            if !emoticonComposer.showsCandidateWindow {
+                emoticonComposer.showsCandidateWindow = true
                 delegate = romanComposer
             }
         }

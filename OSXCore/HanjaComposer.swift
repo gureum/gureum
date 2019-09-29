@@ -42,6 +42,8 @@ enum HanjaMode {
 
 private let hangulBundle = Bundle(for: HGKeyboard.self)
 
+// MARK: - 한자 합성기 클래스
+
 /// 한자 합성기 오브젝트.
 ///
 /// 입력된 한글 단어가 한자로 변환되어야 하므로, 한글 합성기를 참조하는 구조를 갖는다.
