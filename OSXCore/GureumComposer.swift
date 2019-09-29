@@ -54,7 +54,7 @@ enum GureumInputSource: String {
 final class GureumComposer: Composer {
     /// 실제 사용되는 로마자 합성기.
     var romanComposer: RomanComposer
-
+    
     /// 한글 합성기.
     let hangulComposer = HangulComposer(composer: .han2)
     /// 한자 합성기.
@@ -67,31 +67,31 @@ final class GureumComposer: Composer {
     let dvorakComposer = RomanComposer(composer: .dvorak)
     /// 로마자 콜맥 합성기.
     let colemakComposer = RomanComposer(composer: .colemak)
-
+    
     private var _inputMode: String = ""
     private var _commitStrings: [String] = []
-
+    
     init() {
         romanComposer = qwertyComposer
         delegate = romanComposer
         hanjaComposer.delegate = hangulComposer
     }
-
+    
     // MARK: Composer 프로토콜 구현
-
+    
     var delegate: Composer!
-
+    
     var commitString: String {
         return _commitStrings.joined() + delegate.commitString
     }
-
+    
     func clear() {
         hangulComposer.clear()
         romanComposer.clear()
         hanjaComposer.clear()
         emoticonComposer.clear()
     }
-
+    
     func dequeueCommitString() -> String {
         let r = commitString
         delegate.dequeueCommitString()
@@ -109,14 +109,14 @@ extension GureumComposer {
             guard inputMode != newValue else {
                 return
             }
-
+            
             guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
                 #if DEBUG
-                    assert(false)
+                assert(false)
                 #endif
                 return
             }
-
+            
             if let romanComposerType = RomanComposerType(rawValue: keyboardIdentifier) {
                 changeRomanComposer(by: romanComposerType)
                 delegate = romanComposer
@@ -127,11 +127,11 @@ extension GureumComposer {
                 hangulComposer.setKeyboard(identifier: keyboardIdentifier)
                 Configuration.shared.lastHangulInputMode = newValue
             }
-
+            
             _inputMode = newValue
         }
     }
-
+    
     func changeLayout(_ layout: ChangeLayout, client sender: Any) -> InputResult {
         var layout = layout
         if layout == .toggle {
@@ -143,7 +143,7 @@ extension GureumComposer {
                 return .notProcessed
             }
         }
-
+        
         if [.hangul, .roman].contains(layout) {
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             let config = Configuration.shared
@@ -152,7 +152,7 @@ extension GureumComposer {
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
         }
-
+        
         if layout == .hanja {
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if delegate is HangulComposer {
@@ -174,17 +174,16 @@ extension GureumComposer {
         
         if layout == .emoticon {
             dlog(DEBUG_EMOTICON, "========LAYOUT EMOTICON=======")
-            
             emoticonComposer.delegate = delegate
             delegate = emoticonComposer
             emoticonComposer.update(client: sender as! IMKTextInput)
             return .processed
         }
-
+        
         assert(false)
         return .notProcessed
     }
-
+    
     func filterCommand(keyCode: KeyCode,
                        modifiers flags: NSEvent.ModifierFlags,
                        client _: Any) -> InputEvent? {
@@ -192,54 +191,55 @@ extension GureumComposer {
         let inputModifier = flags
             .intersection(.deviceIndependentFlagsMask)
             .intersection(NSEvent.ModifierFlags(rawValue: ~NSEvent.ModifierFlags.capsLock.rawValue))
-//    if (string == nil) {
-//        NSUInteger modifierKey = flags & 0xff;
-//        if (self->lastModifier != 0 && modifierKey == 0) {
-//            dlog(DEBUG_SHORTCUT, @"**** Trigger modifier: %lx ****", self->lastModifier);
-//            NSDictionary *correspondedConfigurations = @{
-//                                                         @(0x01): @(CIMSharedConfiguration->leftControlKeyShortcutBehavior),
-//                                                         @(0x20): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
-//                                                         @(0x08): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
-//                                                         @(0x10): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
-//                                                         @(0x40): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
-//                                                         };
-//            for (NSNumber *marker in @[@(0x01), @(0x20), @(0x08), @(0x10), @(0x40)]) {
-//                if (self->lastModifier == marker.unsignedIntegerValue ) {
-//                    NSInteger configuration = [correspondedConfigurations[marker] integerValue];
-//                    switch (configuration) {
-//                        case 0:
-//                            break;
-//                        case 1: {
-//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange modifier ****");
-//                            need_exchange = YES;
-//                        }   break;
-//                        case 2: {
-//                            dlog(DEBUG_SHORTCUT, @"**** Hanja mode by hanja modifier ****");
-//                            need_hanjamode = YES;
-//                        }   break;
-//                        case 3: if (self.delegate == self->hangulComposer) {
-//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english modifier ****");
-//                            need_exchange = YES;
-//                        }   break;
-//                        case 4: if (self.delegate == self->romanComposer) {
-//                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean modifier ****");
-//                            need_exchange = YES;
-//                        }   break;
-//                        default:
-//                            dassert(NO);
-//                            break;
-//                    }
-//                }
-//            }
-//        } else {
-//            self->lastModifier = modifierKey;
-//            dlog(DEBUG_SHORTCUT, @"**** Save modifier: %lx ****", self->lastModifier);
-//        }
-//    } else
-//    {
-
+        //    if (string == nil) {
+        //        NSUInteger modifierKey = flags & 0xff;
+        //        if (self->lastModifier != 0 && modifierKey == 0) {
+        //            dlog(DEBUG_SHORTCUT, @"**** Trigger modifier: %lx ****", self->lastModifier);
+        //            NSDictionary *correspondedConfigurations = @{
+        //                                                         @(0x01): @(CIMSharedConfiguration->leftControlKeyShortcutBehavior),
+        //                                                         @(0x20): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+        //                                                         @(0x08): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+        //                                                         @(0x10): @(CIMSharedConfiguration->leftCommandKeyShortcutBehavior),
+        //                                                         @(0x40): @(CIMSharedConfiguration->leftOptionKeyShortcutBehavior),
+        //                                                         };
+        //            for (NSNumber *marker in @[@(0x01), @(0x20), @(0x08), @(0x10), @(0x40)]) {
+        //                if (self->lastModifier == marker.unsignedIntegerValue ) {
+        //                    NSInteger configuration = [correspondedConfigurations[marker] integerValue];
+        //                    switch (configuration) {
+        //                        case 0:
+        //                            break;
+        //                        case 1: {
+        //                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by exchange modifier ****");
+        //                            need_exchange = YES;
+        //                        }   break;
+        //                        case 2: {
+        //                            dlog(DEBUG_SHORTCUT, @"**** Hanja mode by hanja modifier ****");
+        //                            need_hanjamode = YES;
+        //                        }   break;
+        //                        case 3: if (self.delegate == self->hangulComposer) {
+        //                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to english modifier ****");
+        //                            need_exchange = YES;
+        //                        }   break;
+        //                        case 4: if (self.delegate == self->romanComposer) {
+        //                            dlog(DEBUG_SHORTCUT, @"**** Layout exchange by change to korean modifier ****");
+        //                            need_exchange = YES;
+        //                        }   break;
+        //                        default:
+        //                            dassert(NO);
+        //                            break;
+        //                    }
+        //                }
+        //            }
+        //        } else {
+        //            self->lastModifier = modifierKey;
+        //            dlog(DEBUG_SHORTCUT, @"**** Save modifier: %lx ****", self->lastModifier);
+        //        }
+        //    } else
+        //    {
+        
         // Handle SpecialKeyCode first
         let inputKey = (keyCode, inputModifier)
+        
         if let shortcutKey = configuration.inputModeExchangeKey, shortcutKey == inputKey {
             return .changeLayout(.toggle, true)
         }
@@ -252,10 +252,7 @@ extension GureumComposer {
         if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
             return .changeLayout(.hanja, true)
         }
-        if let emoticonKey = configuration.inputModeEmoticonKey, emoticonKey == inputKey {
-            return .changeLayout(.emoticon, true)
-        }
-
+        
         if delegate is HanjaComposer {
             dlog(DEBUG_EMOTICON, "========HANJA COMPOSER=======")
             if hanjaComposer.mode == .single, hanjaComposer.composedString.isEmpty, hanjaComposer.commitString.isEmpty {
@@ -263,7 +260,7 @@ extension GureumComposer {
                 delegate = hangulComposer
             }
         }
-
+        
         if delegate is EmoticonComposer {
             dlog(DEBUG_EMOTICON, "========EMOTICON COMPOSER=======")
             if !emoticonComposer.mode {
@@ -271,8 +268,9 @@ extension GureumComposer {
                 delegate = romanComposer
             }
         }
-
+        
         if delegate is HangulComposer {
+            dlog(DEBUG_EMOTICON, "========77777777777 COMPOSER=======")
             // Vi-mode: esc로 로마자 키보드로 전환
             if Configuration.shared.romanModeByEscapeKey {
                 if keyCode == .escape || inputKey == (.ansiLeftBracket, .control) {
@@ -280,14 +278,21 @@ extension GureumComposer {
                 }
             }
         }
-
+        
+        
+        if inputKey.0 == .ansiSemicolon {
+            dlog(DEBUG_EMOTICON, "===============SEMICOLON COMPOSER \(delegate)==============")
+//            return .changeLayout(.emoticon, true)
+            
+        }
+        
         return nil
     }
-
+    
     private func enqueueCommitString(_ string: String) {
         _commitStrings.append(string)
     }
-
+    
     private func changeRomanComposer(by romanComposerType: RomanComposerType) {
         switch romanComposerType {
         case .qwerty:

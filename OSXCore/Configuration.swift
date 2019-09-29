@@ -79,7 +79,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeEmoticonKey: Configuration.convertShortcutToConfiguration((.ansiSemicolon, .shift)),
+            ConfigurationName.inputModeEmoticonKey: ":",
             ConfigurationName.inputModeHanjaKey: Configuration.convertShortcutToConfiguration((.return, .option)),
             ConfigurationName.optionKeyBehavior: 0,
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
@@ -162,12 +162,12 @@ public class Configuration: UserDefaults {
     }
 
     /// 이모티콘 단축키.
-    var inputModeEmoticonKey: Shortcut? {
+    var inputModeEmoticonKey: String {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeEmoticonKey)
+            return ":"
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeEmoticonKey)
+            `set`(newValue, forKey: ConfigurationName.inputModeEmoticonKey)
         }
     }
 

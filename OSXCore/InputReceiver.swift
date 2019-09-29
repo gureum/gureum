@@ -92,12 +92,17 @@ public class InputReceiver: InputTextDelegate {
 //            marked = selected
         }
 
-        // 입력기용 특수 커맨드 처리
+        // 입력기 이모티콘 입력, 모드변환할 경우 InputEvent를 반환하며 진입
         if let command = composer.filterCommand(keyCode: keyCode, modifiers: flags, client: sender) {
             let result = input(event: command, client: sender)
+            
+            // processed 처리하면 입력이 안됨
             if result.processed {
                 return result
             }
+            
+            // 쌍점일 경우에는 notprocessed처리하면 쌍점은 지킴
+            // 
         }
 
         dlog(DEBUG_LOGGING, "LOGGING::KEY::(%@)(%ld)(%lu)", string?.replacingOccurrences(of: "\n", with: "\\n") ?? "(nil)", keyCode.rawValue, flags.rawValue)
