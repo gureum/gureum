@@ -1,5 +1,6 @@
 /* Localized versions of Info.plist keys */
 
+org.youknowone.inputmethod.Gureum.system = "시스템";
 org.youknowone.inputmethod.Gureum.qwerty = "쿼티";
 org.youknowone.inputmethod.Gureum.dvorak = "드보락";
 org.youknowone.inputmethod.Gureum.colemak = "콜맥";

@@ -14,6 +14,8 @@ import Foundation
 ///
 /// 각 케이스의 원시 값은 그에 대응하는 input method의 번들 식별자를 나타낸다.
 enum GureumInputSource: String {
+    /// 로마자 시스템 자판.
+    case system = "org.youknowone.inputmethod.Gureum.system"
     /// 로마자 쿼티 자판.
     case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
     /// 로마자 드보락 자판.
@@ -61,6 +63,8 @@ final class GureumComposer: Composer {
     let hanjaComposer = HanjaComposer()
     /// 이모티콘 합성기.
     let emoticonComposer = EmoticonComposer()
+    /// 로마자 시스템 합성기.
+    let systemRomanComposer = RomanComposer(composer: .system)
     /// 로마자 쿼티 합성기.
     let qwertyComposer = RomanComposer(composer: .qwerty)
     /// 로마자 드보락 합성기.
@@ -276,6 +280,8 @@ extension GureumComposer {
 
     private func changeRomanComposer(by romanComposerType: RomanComposerType) {
         switch romanComposerType {
+        case .system:
+            romanComposer = systemRomanComposer
         case .qwerty:
             romanComposer = qwertyComposer
         case .dvorak:
@@ -292,6 +298,8 @@ extension GureumInputSource {
     /// 키보드 식별자.
     var keyboardIdentifier: String {
         switch self {
+        case .system:
+            return "system"
         case .qwerty:
             return "qwerty"
         case .dvorak:
