@@ -264,7 +264,7 @@ extension HanjaComposer {
             candidates.append(contentsOf: tableCandidates)
         }
         dlog(DEBUG_HANJACOMPOSER, "HanjaComposer -updateHanjaCandidates candidating")
-        if !candidates.isEmpty, Configuration.shared.showsInputForHanjaCandidates {
+        if !candidates.isEmpty {
             candidates.insert(keyword, at: 0)
         }
         return candidates.map { NSAttributedString(string: $0) }
