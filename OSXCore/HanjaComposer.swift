@@ -290,6 +290,7 @@ extension HanjaComposer {
                 candidates.append("\(hanja.value): \(hanja.comment)")
             }
         }
+        candidates.append(keyword)
         return candidates
     }
 }
