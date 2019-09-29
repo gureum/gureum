@@ -209,7 +209,7 @@ class GureumTests: XCTestCase {
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
         }
     }
-    
+
     func testHanjaBlank() {
         for app in apps {
             if app == terminal {
