@@ -212,7 +212,7 @@ extension EmoticonComposer {
         } else {
             let loweredKeyword = keyword.lowercased() // case insensitive searching
             _candidates = []
-            let fuse = Fuse()
+            let fuse = Fuse(threshold: 0.2)
             for table in [HanjaTable.emoji] {
                 dlog(DEBUG_EMOTICON, "DEBUG 3, [updateEmoticonCandidates] MSG: before hanjasByPrefixSearching")
                 dlog(DEBUG_EMOTICON, "DEBUG 4, [updateEmoticonCandidates] MSG: [keyword: %@]", loweredKeyword)
