@@ -79,7 +79,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeEmoticonKey: Configuration.convertShortcutToConfiguration((.return, [.shift, .option])),
+            ConfigurationName.inputModeEmoticonKey: Configuration.convertShortcutToConfiguration((.ansiSemicolon, .shift)),
             ConfigurationName.inputModeHanjaKey: Configuration.convertShortcutToConfiguration((.return, .option)),
             ConfigurationName.optionKeyBehavior: 0,
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",

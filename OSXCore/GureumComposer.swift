@@ -171,6 +171,15 @@ extension GureumComposer {
             }
             return .processed
         }
+        
+        if layout == .emoticon {
+            dlog(DEBUG_EMOTICON, "========LAYOUT EMOTICON=======")
+            
+            emoticonComposer.delegate = delegate
+            delegate = emoticonComposer
+            emoticonComposer.update(client: sender as! IMKTextInput)
+            return .processed
+        }
 
         assert(false)
         return .notProcessed
@@ -243,8 +252,12 @@ extension GureumComposer {
         if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
             return .changeLayout(.hanja, true)
         }
+        if let emoticonKey = configuration.inputModeEmoticonKey, emoticonKey == inputKey {
+            return .changeLayout(.emoticon, true)
+        }
 
         if delegate is HanjaComposer {
+            dlog(DEBUG_EMOTICON, "========HANJA COMPOSER=======")
             if hanjaComposer.mode == .single, hanjaComposer.composedString.isEmpty, hanjaComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
@@ -252,6 +265,7 @@ extension GureumComposer {
         }
 
         if delegate is EmoticonComposer {
+            dlog(DEBUG_EMOTICON, "========EMOTICON COMPOSER=======")
             if !emoticonComposer.mode {
                 emoticonComposer.mode = true
                 delegate = romanComposer

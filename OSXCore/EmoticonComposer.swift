@@ -10,7 +10,7 @@ import Carbon
 import Cocoa
 import Hangul
 
-let DEBUG_EMOTICON = false
+let DEBUG_EMOTICON = true
 
 /// 이모티콘 합성기.
 final class EmoticonComposer: Composer {

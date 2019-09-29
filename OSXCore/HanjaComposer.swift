@@ -10,7 +10,7 @@ import Carbon
 import Cocoa
 import Hangul
 
-let DEBUG_HANJACOMPOSER = false
+let DEBUG_HANJACOMPOSER = true
 
 extension HGHanjaList: Sequence {
     public func makeIterator() -> NSFastEnumerationIterator {

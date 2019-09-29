@@ -40,6 +40,7 @@ enum ChangeLayout {
     case hangul
     case roman
     case hanja
+    case emoticon
 }
 
 enum InputEvent {
