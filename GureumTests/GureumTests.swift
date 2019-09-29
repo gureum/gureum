@@ -499,7 +499,7 @@ class GureumTests: XCTestCase {
             app.controller.setValue(GureumInputSource.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
             let composer = app.controller.receiver.composer
-            let emoticonComposer = composer.emoticonComposer
+            let emoticonComposer = composer.emojiComposer
             emoticonComposer.delegate = composer.delegate // roman?
             composer.delegate = emoticonComposer
 

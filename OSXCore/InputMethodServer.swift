@@ -93,7 +93,7 @@ class IOKitty {
                     _self.rollback = nil
                 } else {
                     // short pressed
-                    try? _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
+                    _ = _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
                     _self.capsLockDate = nil
                 }
             }

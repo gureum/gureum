@@ -10,12 +10,16 @@ import Cocoa
 import Foundation
 import InputMethodKit
 
+// MARK: - Character 구조체 확장
+
 extension Character {
     /// 문자가 소문자인지 나타낸다.
     var isLowercaseCharacter: Bool {
         return self >= "a" && self <= "z"
     }
 }
+
+// MARK: - RomanComposerType 열거형
 
 /// 로마자 합성기의 종류를 정의한 열거형.
 ///
@@ -40,9 +44,9 @@ final class RomanComposer: Composer {
 
     private let keyMap: [Character: Character]
 
-    init(composer romanComposerType: RomanComposerType) {
-        _composerType = romanComposerType
-        keyMap = zip(RomanComposerType.qwerty.keyboardData, romanComposerType.keyboardData)
+    init(type: RomanComposerType) {
+        _composerType = type
+        keyMap = zip(RomanComposerType.qwerty.keyboardData, type.keyboardData)
             .reduce(into: [:]) { $0[$1.0] = $1.1 }
     }
 

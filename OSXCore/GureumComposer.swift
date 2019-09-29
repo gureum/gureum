@@ -10,6 +10,8 @@ import Carbon
 import Cocoa
 import Foundation
 
+// MARK: - GureumInputSource 열거형
+
 /// 구름 입력기에서 사용하는 인풋 소스를 정의한 열거형.
 ///
 /// 각 케이스의 원시 값은 그에 대응하는 input method의 번들 식별자를 나타낸다.
@@ -54,26 +56,26 @@ enum GureumInputSource: String {
 ///
 /// 입력 모드에 따라 `libhangul`을 이용하여 문자를 합성해 준다.
 final class GureumComposer: Composer {
-    /// 실제 사용되는 로마자 합성기.
-    var romanComposer: RomanComposer
-
     /// 한글 합성기.
-    let hangulComposer = HangulComposer(composer: .han2)
+    let hangulComposer = HangulComposer(type: .han2)
     /// 한자 합성기.
-    let hanjaComposer = HanjaComposer()
-    /// 이모티콘 합성기.
-    let emoticonComposer = EmoticonComposer()
+    let hanjaComposer = DelegatedComposer(type: .hanja)
+    /// 이모지 합성기.
+    let emojiComposer = DelegatedComposer(type: .emoji)
     /// 로마자 시스템 합성기.
-    let systemRomanComposer = RomanComposer(composer: .system)
+    let systemRomanComposer = RomanComposer(type: .system)
     /// 로마자 쿼티 합성기.
-    let qwertyComposer = RomanComposer(composer: .qwerty)
+    let qwertyComposer = RomanComposer(type: .qwerty)
     /// 로마자 드보락 합성기.
-    let dvorakComposer = RomanComposer(composer: .dvorak)
+    let dvorakComposer = RomanComposer(type: .dvorak)
     /// 로마자 콜맥 합성기.
-    let colemakComposer = RomanComposer(composer: .colemak)
+    let colemakComposer = RomanComposer(type: .colemak)
 
     private var _inputMode: String = ""
     private var _commitStrings: [String] = []
+
+    /// 실제 사용되는 로마자 합성기.
+    var romanComposer: RomanComposer
 
     init() {
         romanComposer = qwertyComposer
@@ -93,7 +95,7 @@ final class GureumComposer: Composer {
         hangulComposer.clear()
         romanComposer.clear()
         hanjaComposer.clear()
-        emoticonComposer.clear()
+        emojiComposer.clear()
     }
 
     func dequeueCommitString() -> String {
@@ -148,36 +150,35 @@ extension GureumComposer {
             }
         }
 
-        if [.hangul, .roman].contains(layout) {
+        switch layout {
+        case .hangul, .roman:
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             let config = Configuration.shared
             delegate.cancelComposition()
             enqueueCommitString(delegate.dequeueCommitString())
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
-        }
-
-        if layout == .hanja {
+        case .hanja:
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = !hangulComposer.composedString.isEmpty
-                hanjaComposer.mode = isComposing ? .single : .continuous
+                hanjaComposer.hanjaComposingMode = isComposing ? .single : .continuous
                 delegate = hanjaComposer
                 delegate.composerSelected()
                 hanjaComposer.update(client: sender as! IMKTextInput)
             } else if delegate is RomanComposer {
-                emoticonComposer.delegate = delegate
-                delegate = emoticonComposer
-                emoticonComposer.update(client: sender as! IMKTextInput)
+                emojiComposer.delegate = delegate
+                delegate = emojiComposer
+                emojiComposer.update(client: sender as! IMKTextInput)
             } else {
                 return .notProcessed
             }
             return .processed
+        default:
+            assert(false)
+            return .notProcessed
         }
-
-        assert(false)
-        return .notProcessed
     }
 
     func filterCommand(keyCode: KeyCode,
@@ -248,17 +249,15 @@ extension GureumComposer {
             return .changeLayout(.hanja, true)
         }
 
-        if delegate is HanjaComposer {
-            if hanjaComposer.mode == .single, hanjaComposer.composedString.isEmpty, hanjaComposer.commitString.isEmpty {
+        if let dependentComposer = delegate as? DelegatedComposer {
+            if dependentComposer.type == .hanja, dependentComposer.hanjaComposingMode == .single, dependentComposer.composedString.isEmpty, dependentComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
-            }
-        }
-
-        if delegate is EmoticonComposer {
-            if !emoticonComposer.showsCandidateWindow {
-                emoticonComposer.showsCandidateWindow = true
-                delegate = romanComposer
+            } else if dependentComposer.type == .emoji {
+                if !dependentComposer.isInEmojiMode {
+                    dependentComposer.isInEmojiMode = true
+                    delegate = romanComposer
+                }
             }
         }
 

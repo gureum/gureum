@@ -97,9 +97,9 @@ final class HangulComposer: NSObject, Composer {
     let inputContext: HGInputContext
     let configuration = Configuration.shared
 
-    init(composer hangulComposerType: HangulComposerType) {
+    init(type: HangulComposerType) {
         _commitString = ""
-        let keyboardIdentifier = hangulComposerType.rawValue
+        let keyboardIdentifier = type.rawValue
         let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
         self.inputContext = inputContext
         self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
