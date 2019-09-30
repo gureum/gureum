@@ -267,6 +267,7 @@ extension HanjaComposer {
         if !candidates.isEmpty {
             candidates.insert(keyword, at: 0)
         }
+         candidates.append(keyword)
         return candidates.map { NSAttributedString(string: $0) }
     }
 
@@ -290,7 +291,7 @@ extension HanjaComposer {
                 candidates.append("\(hanja.value): \(hanja.comment)")
             }
         }
-        candidates.append(keyword)
+       
         return candidates
     }
 }
