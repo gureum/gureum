@@ -10,7 +10,7 @@ import Carbon
 import Cocoa
 import Hangul
 
-let DEBUG_DELEGATE_COMPOSER = false
+let DEBUG_SEARCHING_COMPOSER = false
 
 // MARK: - HGHanjaList 클래스 확장
 
@@ -18,16 +18,6 @@ extension HGHanjaList: Sequence {
     public func makeIterator() -> NSFastEnumerationIterator {
         return NSFastEnumerationIterator(self)
     }
-}
-
-// MARK: - HanjaComposingMode 열거형
-
-/// 한자를 조합하는 모드를 정의한 열거형.
-enum HanjaComposingMode {
-    /// 하나의 문자.
-    case single
-    /// 두 개 이상의 문자 조합 - 단어.
-    case continuous
 }
 
 // MARK: - HanjaTable 열거형
@@ -47,23 +37,29 @@ enum HanjaTable {
     static let emoji = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!)!
 }
 
-// MARK: - DelegatedComposerType 열거형
+// MARK: - SearchingComposer 클래스
 
-/// 다른 합성기를 위임받는 합성기의 종류를 정의한 열거형.
-enum DelegatedComposerType {
-    /// 한자 합성.
-    case hanja
-    /// 이모지 합성.
-    case emoji
-}
-
-// MARK: - DelegatedComposer 클래스
-
-/// 다른 합성기를 위임받아 문자를 입력하는 합성기 오브젝트.
+/// 문자를 검색하여 입력하는 합성기 오브젝트.
 ///
 /// 한자 및 이모지 합성기의 동작을 구현한다.
-final class DelegatedComposer: Composer {
-    private let _type: DelegatedComposerType
+final class SearchingComposer: Composer {
+    /// 문자를 검색하여 입력하는 합성기의 종류를 정의한 구조체.
+    struct ComposerType: OptionSet {
+        let rawValue: Int
+
+        static let hanja = ComposerType(rawValue: 1 << 0)
+        static let emoji = ComposerType(rawValue: 1 << 1)
+    }
+
+    /// 한자를 조합하는 모드를 정의한 열거형.
+    enum HanjaComposingMode {
+        /// 하나의 문자.
+        case single
+        /// 두 개 이상의 문자 조합 - 단어.
+        case continuous
+    }
+
+    private let _type: SearchingComposer.ComposerType
 
     // MARK: 공통 프로퍼티
 
@@ -90,11 +86,11 @@ final class DelegatedComposer: Composer {
     }
 
     /// 오브젝트가 입력할 수 있는 문자의 종류.
-    var type: DelegatedComposerType {
+    var type: SearchingComposer.ComposerType {
         return _type
     }
 
-    init(type: DelegatedComposerType) {
+    init(type: SearchingComposer.ComposerType) {
         _type = type
     }
 
@@ -109,10 +105,12 @@ final class DelegatedComposer: Composer {
     // 한자 합성의 경우 현재 진행 중인 조합 + 한글 입력기가 지금까지 완료한 조합.
     var originalString: String {
         switch type {
-        case .hanja:
+        case [.hanja, .emoji]:
             return _bufferedString + dependentComposer.composedString
         case .emoji:
             return _bufferedString
+        default:
+            return ""
         }
     }
 
@@ -122,7 +120,7 @@ final class DelegatedComposer: Composer {
 
     var candidates: [NSAttributedString]? {
         switch type {
-        case .hanja:
+        case [.hanja, .emoji]:
             if _lastString != originalString {
                 _candidates = buildHanjaCandidates()
                 _lastString = originalString
@@ -130,6 +128,8 @@ final class DelegatedComposer: Composer {
             return _candidates
         case .emoji:
             return _candidates
+        default:
+            return nil
         }
     }
 
@@ -161,9 +161,9 @@ final class DelegatedComposer: Composer {
     }
 
     func candidateSelected(_ candidateString: NSAttributedString) {
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 1, DelegatedComposer.candidateSelected(_:) function called")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegatedComposer.candidateSelected(_:) function called")
         guard let word = candidateString.string.components(separatedBy: ":").first else { return }
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 2, DelegatedComposer.candidateSelected(_:) value == %@", word)
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegatedComposer.candidateSelected(_:) value == %@", word)
         _bufferedString = ""
         _composedString = ""
         _commitString = word
@@ -206,19 +206,21 @@ final class DelegatedComposer: Composer {
             if result == .notProcessed {
                 if !originalString.isEmpty {
                     // 조합 중인 글자가 없을 때 backspace가 들어오면 조합이 완료된 글자 중 마지막 글자를 지운다.
-                    dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 1, DelegateComposer.input(text:key:modifiers:client:) before (%@)", _bufferedString)
+                    dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegateComposer.input(text:key:modifiers:client:) before (%@)", _bufferedString)
                     _bufferedString.removeLast()
-                    dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 2, DelegateComposer.input(text:key:modifiers:client:) after (%@)", _bufferedString)
+                    dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegateComposer.input(text:key:modifiers:client:) after (%@)", _bufferedString)
                     _composedString = originalString
                     result = .processed
                 } else {
                     switch type {
-                    case .hanja:
+                    case [.hanja, .emoji]:
                         // 글자를 모두 지우면 한자 모드에서 빠져 나간다.
                         hanjaComposingMode = .single
                     case .emoji:
                         // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
                         isInEmojiMode = false
+                    default:
+                        break
                     }
                 }
             }
@@ -237,7 +239,7 @@ final class DelegatedComposer: Composer {
             }
         case .escape:
             switch type {
-            case .hanja:
+            case [.hanja, .emoji]:
                 hanjaComposingMode = .single
                 // step 1. 조합 중인 한글을 모두 가져옴
                 dependentComposer.cancelComposition()
@@ -249,6 +251,8 @@ final class DelegatedComposer: Composer {
                 _candidates = nil
             case .emoji:
                 exitComposer()
+            default:
+                break
             }
             return InputResult(processed: false, action: .commit)
         case .return:
@@ -265,10 +269,12 @@ final class DelegatedComposer: Composer {
         }
 
         switch type {
-        case .hanja:
+        case [.hanja, .emoji]:
             prepareHanjaCandidates()
         case .emoji:
             updateEmojiCandidates()
+        default:
+            break
         }
 
         if !result.processed, result.action == .commit {
@@ -284,59 +290,61 @@ final class DelegatedComposer: Composer {
     }
 }
 
-// MARK: - DelegatedComposer 공통 메소드
+// MARK: - SearchingComposer 공통 메소드
 
-extension DelegatedComposer {
+extension SearchingComposer {
     func update(client sender: IMKTextInput) {
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 1, DelegatedComposer.update(client:) function called")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegatedComposer.update(client:) function called")
         let markedRange = sender.markedRange()
         let selectedRange = sender.selectedRange()
         let isInvalidMarkedRage = markedRange.length == 0 || markedRange.location == NSNotFound
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 2, DelegatedComposer.update(client:) DEBUG POINT 1")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegatedComposer.update(client:) DEBUG POINT 1")
         if isInvalidMarkedRage, selectedRange.location != NSNotFound, selectedRange.length > 0 {
             let selectedString = sender.attributedSubstring(from: selectedRange).string
             sender.setMarkedText(selectedString, selectionRange: selectedRange, replacementRange: selectedRange)
-            dlog(DEBUG_DELEGATE_COMPOSER,
+            dlog(DEBUG_SEARCHING_COMPOSER,
                  "DEBUG 3, DelegatedComposer.update(client:) marking: %@ / selected: %@",
                  NSStringFromRange(sender.markedRange()),
                  NSStringFromRange(sender.selectedRange()))
             _bufferedString = selectedString
-            dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
+            dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
             if type == .hanja {
                 hanjaComposingMode = .single
             }
         }
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
         switch type {
-        case .hanja:
+        case [.hanja, .emoji]:
             prepareHanjaCandidates()
         case .emoji:
             updateEmojiCandidates()
+        default:
+            break
         }
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) after update candidates")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) after update candidates")
     }
 }
 
-// MARK: - DelegatedComposer 한자 모드 전용 메소드
+// MARK: - SearchingComposer 한자 모드 전용 메소드
 
-private extension DelegatedComposer {
+private extension SearchingComposer {
     /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
     func prepareHanjaCandidates() {
         guard type == .hanja else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "INVALID: prepareHanjaCandidates() at emoji mode!")
+            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: prepareHanjaCandidates() at emoji mode!")
             return
         }
 
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.prepareHanjaCandidates()")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates()")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
         let hangulString = dependentComposer.dequeueCommitString()
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step1")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step1")
         _bufferedString.append(hangulString)
         // step 2: 일단 화면에 한글이 표시되도록 조정
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step2")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step2")
         _composedString = originalString
         // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step3")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step3")
     }
 
     /// 한자 입력을 위한 후보를 만든다.
@@ -344,17 +352,17 @@ private extension DelegatedComposer {
     /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
     func buildHanjaCandidates() -> [NSAttributedString]? {
         guard type == .hanja else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "INVALID: buildHanjaCandidates() at emoji mode!")
+            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: buildHanjaCandidates() at emoji mode!")
             return nil
         }
 
         let keyword = originalString.trimmingCharacters(in: .whitespaces)
         guard !keyword.isEmpty else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has no keywords")
+            dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has no keywords")
             return nil
         }
 
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
         var candidates = [String]()
         if keyword.count == 1 {
             for table in [HanjaTable.msSymbol, HanjaTable.character] {
@@ -366,8 +374,8 @@ private extension DelegatedComposer {
             let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
             candidates.append(contentsOf: tableCandidates)
         }
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.buildHanjaCandidates() candidating")
-        if !candidates.isEmpty, Configuration.shared.showsInputForHanjaCandidates {
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.buildHanjaCandidates() candidating")
+        if !candidates.isEmpty {
             candidates.insert(keyword, at: 0)
         }
         return candidates.map { NSAttributedString(string: $0) }
@@ -382,16 +390,16 @@ private extension DelegatedComposer {
     /// - Returns: 검색한 후보의 문자열 배열.
     func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
         guard type == .hanja else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "INVALID: searchCandidates(fromTable:byPrefixSearching:) at emoji mode!")
+            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: searchCandidates(fromTable:byPrefixSearching:) at emoji mode!")
             return []
         }
 
         var candidates = [String]()
-        dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) getting list for table: %@", table)
+        dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) getting list for table: %@", table)
         guard let list = table.hanjas(byPrefixSearching: keyword) else { return [] }
         for _hanja in list {
             let hanja = _hanja as! HGHanja
-            dlog(DEBUG_DELEGATE_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) hanja: %@", hanja)
+            dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) hanja: %@", hanja)
             if hanja.comment.isEmpty {
                 candidates.append("\(hanja.value)")
             } else {
@@ -402,12 +410,12 @@ private extension DelegatedComposer {
     }
 }
 
-// MARK: - DelegatedComposer 이모지 모드 전용 메소드
+// MARK: - SearchingComposer 이모지 모드 전용 메소드
 
-private extension DelegatedComposer {
+private extension SearchingComposer {
     func exitComposer() {
         guard type == .emoji else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "INVALID: exitComposer() at hanja mode!")
+            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: exitComposer() at hanja mode!")
             return
         }
 
@@ -425,7 +433,7 @@ private extension DelegatedComposer {
 
     func updateEmojiCandidates() {
         guard type == .emoji else {
-            dlog(DEBUG_DELEGATE_COMPOSER, "INVALID: updateEmojiCandidates() at hanja mode!")
+            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: updateEmojiCandidates() at hanja mode!")
             return
         }
 
@@ -438,31 +446,29 @@ private extension DelegatedComposer {
         _composedString = originalString
         let keyword = originalString
 
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 1, DelegatedComposer.updateCmojiCandidates() %@", originalString)
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegatedComposer.updateCmojiCandidates() %@", originalString)
         if keyword.isEmpty {
             _candidates = nil
         } else {
             let loweredKeyword = keyword.lowercased() // case insensitive searching
             _candidates = []
-            for table: HGHanjaTable in [HanjaTable.emoji] {
-                dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 3, DelegatedComposer.updateCmojiCandidates() before hanjasByPrefixSearching")
-                dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 4, DelegatedComposer.updateCmojiCandidates() [keyword: %@]", loweredKeyword)
-                dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 14, DelegatedComposer.updateCmojiCandidates() %@", HanjaTable.emoji.debugDescription)
+            for table in [HanjaTable.emoji] {
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 3, DelegatedComposer.updateCmojiCandidates() before hanjasByPrefixSearching")
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.updateCmojiCandidates() [keyword: %@]", loweredKeyword)
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 14, DelegatedComposer.updateCmojiCandidates() %@", HanjaTable.emoji.debugDescription)
                 let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
-                dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 5, DelegatedComposer.updateCmojiCandidates() after hanjasByPrefixSearching")
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.updateCmojiCandidates() after hanjasByPrefixSearching")
 
-                dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 9, DelegatedComposer.updateCmojiCandidates() count is %d", list.count)
-                if list.count > 0 {
-                    for idx in 0 ... list.count - 1 {
-                        let emoticon = list.hanja(at: idx)
-                        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 6, DelegatedComposer.updateCmojiCandidates() %@ %@ %@", list.hanja(at: idx).comment, list.hanja(at: idx).key, list.hanja(at: idx).value)
-                        _candidates!.append(
-                            NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
-                        )
-                    }
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 9, DelegatedComposer.updateCmojiCandidates() count is %d", list.count)
+                for index in 0 ..< list.count {
+                    let emoticon = list.hanja(at: index)
+                    dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 6, DelegatedComposer.updateCmojiCandidates() %@ %@ %@", list.hanja(at: index).comment, list.hanja(at: index).key, list.hanja(at: index).value)
+                    _candidates!.append(
+                        NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
+                    )
                 }
             }
         }
-        dlog(DEBUG_DELEGATE_COMPOSER, "DEBUG 2, DelegatedComposer.updateCmojiCandidates() %@", _candidates ?? [])
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegatedComposer.updateCmojiCandidates() %@", _candidates ?? [])
     }
 }
