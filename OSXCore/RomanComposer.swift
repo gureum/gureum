@@ -19,34 +19,32 @@ extension Character {
     }
 }
 
-// MARK: - RomanComposerType 열거형
-
-/// 로마자 합성기의 종류를 정의한 열거형.
-///
-/// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
-enum RomanComposerType: String {
-    /// 시스템 자판.
-    case system
-    /// 쿼티 자판.
-    case qwerty
-    /// 드보락 자판.
-    case dvorak
-    /// 콜맥 자판.
-    case colemak
-}
-
 // MARK: - RomanComposer 클래스
 
 /// 로마자 합성기 오브젝트.
 final class RomanComposer: Composer {
+    /// 로마자 합성기의 종류를 정의한 열거형.
+    ///
+    /// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
+    enum ComposerType: String {
+        /// 시스템 자판.
+        case system
+        /// 쿼티 자판.
+        case qwerty
+        /// 드보락 자판.
+        case dvorak
+        /// 콜맥 자판.
+        case colemak
+    }
+
     private var _commitString: String?
-    private var _composerType: RomanComposerType
+    private var _composerType: RomanComposer.ComposerType
 
     private let keyMap: [Character: Character]
 
-    init(type: RomanComposerType) {
+    init(type: RomanComposer.ComposerType) {
         _composerType = type
-        keyMap = zip(RomanComposerType.qwerty.keyboardData, type.keyboardData)
+        keyMap = zip(RomanComposer.ComposerType.qwerty.keyboardData, type.keyboardData)
             .reduce(into: [:]) { $0[$1.0] = $1.1 }
     }
 
@@ -123,7 +121,7 @@ final class RomanComposer: Composer {
 
 // MARK: - RomanComposerType 열거형 확장
 
-extension RomanComposerType {
+extension RomanComposer.ComposerType {
     /// 자판 배열 데이터.
     var keyboardData: String {
         switch self {
