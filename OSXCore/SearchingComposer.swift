@@ -169,7 +169,7 @@ final class SearchingComposer: Composer {
         _commitString = word
         dependentComposer.cancelComposition()
         dependentComposer.dequeueCommitString()
-        if type == .hanja {
+        if type == [.hanja, .emoji] {
             prepareHanjaCandidates()
         }
     }
@@ -190,7 +190,7 @@ final class SearchingComposer: Composer {
                modifiers flags: NSEvent.ModifierFlags,
                client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // 한자의 경우 위아래 화살표에 대한 처리 선행
-        if type == .hanja {
+        if type == [.hanja, .emoji] {
             switch keyCode {
             case .upArrow, .downArrow:
                 return InputResult(processed: false, action: .candidatesEvent(keyCode))
@@ -225,7 +225,7 @@ final class SearchingComposer: Composer {
                 }
             }
         case .space:
-            if type == .hanja {
+            if type == [.hanja, .emoji] {
                 // 강제로 조합 중인 문자 추출
                 dependentComposer.cancelComposition()
                 _bufferedString.append(dependentComposer.dequeueCommitString())
@@ -308,7 +308,7 @@ extension SearchingComposer {
                  NSStringFromRange(sender.selectedRange()))
             _bufferedString = selectedString
             dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
-            if type == .hanja {
+            if type == [.hanja, .emoji] {
                 hanjaComposingMode = .single
             }
         }
@@ -330,7 +330,7 @@ extension SearchingComposer {
 private extension SearchingComposer {
     /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
     func prepareHanjaCandidates() {
-        guard type == .hanja else {
+        guard type == [.hanja, .emoji] else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: prepareHanjaCandidates() at emoji mode!")
             return
         }
@@ -351,7 +351,7 @@ private extension SearchingComposer {
     ///
     /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
     func buildHanjaCandidates() -> [NSAttributedString]? {
-        guard type == .hanja else {
+        guard type == [.hanja, .emoji] else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: buildHanjaCandidates() at emoji mode!")
             return nil
         }
@@ -389,7 +389,7 @@ private extension SearchingComposer {
     ///
     /// - Returns: 검색한 후보의 문자열 배열.
     func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
-        guard type == .hanja else {
+        guard type == [.hanja, .emoji] else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: searchCandidates(fromTable:byPrefixSearching:) at emoji mode!")
             return []
         }

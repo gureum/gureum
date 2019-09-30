@@ -208,13 +208,13 @@ extension GureumComposer {
             return .changeLayout(.hanja, true)
         }
 
-        if let dependentComposer = delegate as? SearchingComposer {
-            if dependentComposer.type == .hanja, dependentComposer.hanjaComposingMode == .single, dependentComposer.composedString.isEmpty, dependentComposer.commitString.isEmpty {
+        if let searchingComposer = delegate as? SearchingComposer {
+            if searchingComposer.type == [.hanja, .emoji], searchingComposer.hanjaComposingMode == .single, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
-            } else if dependentComposer.type == .emoji {
-                if !dependentComposer.isInEmojiMode {
-                    dependentComposer.isInEmojiMode = true
+            } else if searchingComposer.type == .emoji {
+                if !searchingComposer.isInEmojiMode {
+                    searchingComposer.isInEmojiMode = true
                     delegate = romanComposer
                 }
             }
