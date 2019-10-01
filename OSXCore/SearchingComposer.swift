@@ -65,12 +65,10 @@ final class SearchingComposer: Composer {
     // MARK: 한자 전용 프로퍼티
 
     private var _lastString = ""
-//    var hanjaComposingMode: HanjaComposingMode = .single
 
     // MARK: 이모지 전용 프로퍼티
 
     private var _selectedCandidate: NSAttributedString?
-//    var isInEmojiMode = true
 
     /// 오브젝트가 의존하는 조합기.
     ///
@@ -149,8 +147,13 @@ final class SearchingComposer: Composer {
     }
 
     func clearCompositionContext() {
-        if type == .emoji {
+        switch type {
+        case [.hanja, .emoji]:
+            delegate.clearCompositionContext()
+        case .emoji:
             _commitString = ""
+        default:
+            break
         }
     }
 
@@ -223,22 +226,7 @@ final class SearchingComposer: Composer {
                 result = InputResult(processed: false, action: .commit)
             }
         case .escape:
-            switch type {
-            case [.hanja, .emoji]:
-                hanjaComposingMode = .single
-                // step 1. 조합 중인 한글을 모두 가져옴
-                dependentComposer.cancelComposition()
-                _bufferedString.append(dependentComposer.dequeueCommitString())
-                // step 2. 한글을 그대로 커밋
-                _composedString = originalString
-                cancelComposition()
-                // step 3. 한자 후보 취소
-                _candidates = nil
-            case .emoji:
-                exitComposer()
-            default:
-                break
-            }
+            exitComposer()
             return InputResult(processed: false, action: .commit)
         case .return:
             if type == .emoji {
@@ -307,6 +295,19 @@ extension SearchingComposer {
             break
         }
         dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) after update candidates")
+    }
+
+    func exitComposer() {
+        // 1. 모드 false
+        showsCandidateWindow = false
+        // 2. 후보 취소
+        _candidates = nil
+        // 3. 조합 중인 문자를 모두 가져옴
+        dependentComposer.cancelComposition()
+        _bufferedString.append(dependentComposer.dequeueCommitString())
+        // 4. 그대로 커밋
+        _composedString = originalString
+        cancelComposition()
     }
 }
 
@@ -398,24 +399,6 @@ private extension SearchingComposer {
 // MARK: - SearchingComposer 이모지 모드 전용 메소드
 
 private extension SearchingComposer {
-    func exitComposer() {
-        guard type == .emoji else {
-            dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: exitComposer() at hanja mode!")
-            return
-        }
-
-        // step 1. mode false
-        isInEmojiMode = false
-        // step 2. cancel candidates
-        _candidates = nil
-        // step 3. get all composing characters
-        dependentComposer.cancelComposition()
-        _bufferedString.append(dependentComposer.dequeueCommitString())
-        // step 4. commit all
-        _composedString = originalString
-        cancelComposition()
-    }
-
     func updateEmojiCandidates() {
         guard type == .emoji else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: updateEmojiCandidates() at hanja mode!")
