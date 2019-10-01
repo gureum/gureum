@@ -63,11 +63,11 @@ final class GureumComposer: Composer {
     /// 한글 합성기에 의존하여 문자를 검색하고 입력하는 합성기.
     ///
     /// 한자 및 이모지는 해당 합성기를 사용하여 입력이 이루어진다.
-    let hangulDependentSearchingComposer = SearchingComposer(type: [.hanja, .emoji])
+    let hangulDependentSearchingComposer = SearchingComposer(dependentComposerType: .hangul)
     /// 로마자 합성기에 의존하여 문자를 검색하고 입력하는 합성기.
     ///
     /// 이모지는 해당 합성기를 사용하여 입력이 이루어진다.
-    let romanDependentSearchingComposer = SearchingComposer(type: .emoji)
+    let romanDependentSearchingComposer = SearchingComposer(dependentComposerType: .roman)
     /// 로마자 시스템 합성기.
     let systemRomanComposer = RomanComposer(type: .system)
     /// 로마자 쿼티 합성기.
@@ -209,10 +209,10 @@ extension GureumComposer {
         }
 
         if let searchingComposer = delegate as? SearchingComposer {
-            if searchingComposer.type == [.hanja, .emoji], !searchingComposer.showsCandidateWindow, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
+            if searchingComposer.dependentComposerType == .hangul, !searchingComposer.showsCandidateWindow, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
-            } else if searchingComposer.type == .emoji {
+            } else if searchingComposer.dependentComposerType == .roman {
                 if !searchingComposer.showsCandidateWindow {
                     searchingComposer.showsCandidateWindow = true
                     delegate = romanComposer

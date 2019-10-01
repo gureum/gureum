@@ -43,15 +43,13 @@ enum HanjaTable {
 ///
 /// 한자 및 이모지 합성기의 동작을 구현한다.
 final class SearchingComposer: Composer {
-    /// 문자를 검색하여 입력하는 합성기의 종류를 정의한 구조체.
-    struct ComposerType: OptionSet {
-        let rawValue: Int
-
-        static let hanja = ComposerType(rawValue: 1 << 0)
-        static let emoji = ComposerType(rawValue: 1 << 1)
+    /// 문자를 검색하여 입력하는 합성기가 의존하는 합성기의 종류를 정의한 열거형.
+    enum DependentComposerType {
+        case hangul
+        case roman
     }
 
-    private let _type: SearchingComposer.ComposerType
+    private let _dependentComposerType: SearchingComposer.DependentComposerType
 
     // MARK: 공통 프로퍼티
 
@@ -70,20 +68,15 @@ final class SearchingComposer: Composer {
 
     private var _selectedCandidate: NSAttributedString?
 
-    /// 오브젝트가 의존하는 조합기.
+    /// 오브젝트가 의존하는 합성기의 종류.
     ///
     /// 한자 합성은 한글 합성기에 의존하고, 이모지 합성은 한글 및 로마자 합성기에 의존한다.
-    var dependentComposer: Composer {
-        return delegate
+    var dependentComposerType: SearchingComposer.DependentComposerType {
+        return _dependentComposerType
     }
 
-    /// 오브젝트가 입력할 수 있는 문자의 종류.
-    var type: SearchingComposer.ComposerType {
-        return _type
-    }
-
-    init(type: SearchingComposer.ComposerType) {
-        _type = type
+    init(dependentComposerType: SearchingComposer.DependentComposerType) {
+        _dependentComposerType = dependentComposerType
     }
 
     // MARK: Composer 프로토콜 구현
@@ -96,13 +89,11 @@ final class SearchingComposer: Composer {
 
     // 한자 합성의 경우 현재 진행 중인 조합 + 한글 입력기가 지금까지 완료한 조합.
     var originalString: String {
-        switch type {
-        case [.hanja, .emoji]:
-            return _bufferedString + dependentComposer.composedString
-        case .emoji:
+        switch dependentComposerType {
+        case .hangul:
+            return _bufferedString + delegate.composedString
+        case .roman:
             return _bufferedString
-        default:
-            return ""
         }
     }
 
@@ -111,17 +102,15 @@ final class SearchingComposer: Composer {
     }
 
     var candidates: [NSAttributedString]? {
-        switch type {
-        case [.hanja, .emoji]:
+        switch dependentComposerType {
+        case .hangul:
             if _lastString != originalString {
                 _candidates = buildHanjaCandidates()
                 _lastString = originalString
             }
             return _candidates
-        case .emoji:
+        case .roman:
             return _candidates
-        default:
-            return nil
         }
     }
 
@@ -139,21 +128,19 @@ final class SearchingComposer: Composer {
     }
 
     func cancelComposition() {
-        dependentComposer.cancelComposition()
-        dependentComposer.dequeueCommitString()
+        delegate.cancelComposition()
+        delegate.dequeueCommitString()
         _commitString.append(_composedString)
         _bufferedString = ""
         _composedString = ""
     }
 
     func clearCompositionContext() {
-        switch type {
-        case [.hanja, .emoji]:
+        switch dependentComposerType {
+        case .hangul:
             delegate.clearCompositionContext()
-        case .emoji:
+        case .roman:
             _commitString = ""
-        default:
-            break
         }
     }
 
@@ -164,15 +151,15 @@ final class SearchingComposer: Composer {
         _bufferedString = ""
         _composedString = ""
         _commitString = word
-        dependentComposer.cancelComposition()
-        dependentComposer.dequeueCommitString()
-        if type == [.hanja, .emoji] {
+        delegate.cancelComposition()
+        delegate.dequeueCommitString()
+        if dependentComposerType == .hangul {
             prepareHanjaCandidates()
         }
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        if type == .emoji {
+        if dependentComposerType == .roman {
             if candidateString.length == 0 {
                 _selectedCandidate = nil
             } else {
@@ -187,7 +174,7 @@ final class SearchingComposer: Composer {
                modifiers flags: NSEvent.ModifierFlags,
                client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         // 한자의 경우 위아래 화살표에 대한 처리 선행
-        if type == [.hanja, .emoji] {
+        if dependentComposerType == .hangul {
             switch keyCode {
             case .upArrow, .downArrow:
                 return InputResult(processed: false, action: .candidatesEvent(keyCode))
@@ -196,7 +183,7 @@ final class SearchingComposer: Composer {
             }
         }
 
-        var result = dependentComposer.input(text: text, key: keyCode, modifiers: flags, client: sender)
+        var result = delegate.input(text: text, key: keyCode, modifiers: flags, client: sender)
 
         switch keyCode {
         case .delete:
@@ -213,10 +200,10 @@ final class SearchingComposer: Composer {
                 }
             }
         case .space:
-            if type == [.hanja, .emoji] {
+            if dependentComposerType == .hangul {
                 // 강제로 조합 중인 문자 추출
-                dependentComposer.cancelComposition()
-                _bufferedString.append(dependentComposer.dequeueCommitString())
+                delegate.cancelComposition()
+                _bufferedString.append(delegate.dequeueCommitString())
             }
             // 단어 뜻 검색을 위해 공백 문자도 후보 검색에 포함한다.
             if !_bufferedString.isEmpty {
@@ -229,11 +216,11 @@ final class SearchingComposer: Composer {
             exitComposer()
             return InputResult(processed: false, action: .commit)
         case .return:
-            if type == .emoji {
+            if dependentComposerType == .roman {
                 candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
             }
         default:
-            if type == .emoji {
+            if dependentComposerType == .roman {
                 if result == .notProcessed, let text = text, keyCode.isKeyMappable {
                     _bufferedString.append(text)
                     result = .processed
@@ -241,13 +228,11 @@ final class SearchingComposer: Composer {
             }
         }
 
-        switch type {
-        case [.hanja, .emoji]:
+        switch dependentComposerType {
+        case .hangul:
             prepareHanjaCandidates()
-        case .emoji:
+        case .roman:
             updateEmojiCandidates()
-        default:
-            break
         }
 
         if !result.processed, result.action == .commit {
@@ -281,18 +266,16 @@ extension SearchingComposer {
                  NSStringFromRange(sender.selectedRange()))
             _bufferedString = selectedString
             dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
-            if type == [.hanja, .emoji] {
+            if dependentComposerType == .hangul {
                 showsCandidateWindow = false
             }
         }
         dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
-        switch type {
-        case [.hanja, .emoji]:
+        switch dependentComposerType {
+        case .hangul:
             prepareHanjaCandidates()
-        case .emoji:
+        case .roman:
             updateEmojiCandidates()
-        default:
-            break
         }
         dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) after update candidates")
     }
@@ -303,8 +286,8 @@ extension SearchingComposer {
         // 2. 후보 취소
         _candidates = nil
         // 3. 조합 중인 문자를 모두 가져옴
-        dependentComposer.cancelComposition()
-        _bufferedString.append(dependentComposer.dequeueCommitString())
+        delegate.cancelComposition()
+        _bufferedString.append(delegate.dequeueCommitString())
         // 4. 그대로 커밋
         _composedString = originalString
         cancelComposition()
@@ -316,14 +299,14 @@ extension SearchingComposer {
 private extension SearchingComposer {
     /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
     func prepareHanjaCandidates() {
-        guard type == [.hanja, .emoji] else {
+        guard dependentComposerType == .hangul else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: prepareHanjaCandidates() at emoji mode!")
             return
         }
 
         dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates()")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
-        let hangulString = dependentComposer.dequeueCommitString()
+        let hangulString = delegate.dequeueCommitString()
         dlog(DEBUG_SEARCHING_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step1")
         _bufferedString.append(hangulString)
         // step 2: 일단 화면에 한글이 표시되도록 조정
@@ -337,7 +320,7 @@ private extension SearchingComposer {
     ///
     /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
     func buildHanjaCandidates() -> [NSAttributedString]? {
-        guard type == [.hanja, .emoji] else {
+        guard dependentComposerType == .hangul else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: buildHanjaCandidates() at emoji mode!")
             return nil
         }
@@ -375,7 +358,7 @@ private extension SearchingComposer {
     ///
     /// - Returns: 검색한 후보의 문자열 배열.
     func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
-        guard type == [.hanja, .emoji] else {
+        guard dependentComposerType == .hangul else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: searchCandidates(fromTable:byPrefixSearching:) at emoji mode!")
             return []
         }
@@ -400,16 +383,16 @@ private extension SearchingComposer {
 
 private extension SearchingComposer {
     func updateEmojiCandidates() {
-        guard type == .emoji else {
+        guard dependentComposerType == .roman else {
             dlog(DEBUG_SEARCHING_COMPOSER, "INVALID: updateEmojiCandidates() at hanja mode!")
             return
         }
 
         // Step 1: 의존 합성기로부터 문자열 가져오기
-        let dequeued = dependentComposer.dequeueCommitString()
+        let dequeued = delegate.dequeueCommitString()
         // Step 2: 문자열 보여주기
         _bufferedString.append(dequeued)
-        _bufferedString.append(dependentComposer.composedString)
+        _bufferedString.append(delegate.composedString)
         let originalString = _bufferedString
         _composedString = originalString
         let keyword = originalString
