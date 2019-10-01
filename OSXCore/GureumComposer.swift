@@ -167,7 +167,7 @@ extension GureumComposer {
             if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = !hangulComposer.composedString.isEmpty
-                hangulDependentSearchingComposer.hanjaComposingMode = isComposing ? .single : .continuous
+                hangulDependentSearchingComposer.showsCandidateWindow = !isComposing
                 delegate = hangulDependentSearchingComposer
                 delegate.composerSelected()
                 hangulDependentSearchingComposer.update(client: sender as! IMKTextInput)
@@ -209,12 +209,12 @@ extension GureumComposer {
         }
 
         if let searchingComposer = delegate as? SearchingComposer {
-            if searchingComposer.type == [.hanja, .emoji], searchingComposer.hanjaComposingMode == .single, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
+            if searchingComposer.type == [.hanja, .emoji], !searchingComposer.showsCandidateWindow, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
             } else if searchingComposer.type == .emoji {
-                if !searchingComposer.isInEmojiMode {
-                    searchingComposer.isInEmojiMode = true
+                if !searchingComposer.showsCandidateWindow {
+                    searchingComposer.showsCandidateWindow = true
                     delegate = romanComposer
                 }
             }

@@ -51,14 +51,6 @@ final class SearchingComposer: Composer {
         static let emoji = ComposerType(rawValue: 1 << 1)
     }
 
-    /// 한자를 조합하는 모드를 정의한 열거형.
-    enum HanjaComposingMode {
-        /// 하나의 문자.
-        case single
-        /// 두 개 이상의 문자 조합 - 단어.
-        case continuous
-    }
-
     private let _type: SearchingComposer.ComposerType
 
     // MARK: 공통 프로퍼티
@@ -68,15 +60,17 @@ final class SearchingComposer: Composer {
     private var _composedString = ""
     private var _commitString = ""
 
+    var showsCandidateWindow = true
+
     // MARK: 한자 전용 프로퍼티
 
     private var _lastString = ""
-    var hanjaComposingMode: HanjaComposingMode = .single
+//    var hanjaComposingMode: HanjaComposingMode = .single
 
     // MARK: 이모지 전용 프로퍼티
 
     private var _selectedCandidate: NSAttributedString?
-    var isInEmojiMode = true
+//    var isInEmojiMode = true
 
     /// 오브젝트가 의존하는 조합기.
     ///
@@ -212,16 +206,7 @@ final class SearchingComposer: Composer {
                     _composedString = originalString
                     result = .processed
                 } else {
-                    switch type {
-                    case [.hanja, .emoji]:
-                        // 글자를 모두 지우면 한자 모드에서 빠져 나간다.
-                        hanjaComposingMode = .single
-                    case .emoji:
-                        // 글자를 모두 지우면 이모티콘 모드에서 빠져 나간다.
-                        isInEmojiMode = false
-                    default:
-                        break
-                    }
+                    showsCandidateWindow = false
                 }
             }
         case .space:
@@ -309,7 +294,7 @@ extension SearchingComposer {
             _bufferedString = selectedString
             dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
             if type == [.hanja, .emoji] {
-                hanjaComposingMode = .single
+                showsCandidateWindow = false
             }
         }
         dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
