@@ -414,29 +414,29 @@ private extension SearchingComposer {
         _composedString = originalString
         let keyword = originalString
 
-        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegatedComposer.updateCmojiCandidates() %@", originalString)
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 1, DelegatedComposer.updateEmojiCandidates() %@", originalString)
         if keyword.isEmpty {
             _candidates = nil
         } else {
             let loweredKeyword = keyword.lowercased() // case insensitive searching
             _candidates = []
             for table in [HanjaTable.emoji] {
-                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 3, DelegatedComposer.updateCmojiCandidates() before hanjasByPrefixSearching")
-                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.updateCmojiCandidates() [keyword: %@]", loweredKeyword)
-                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 14, DelegatedComposer.updateCmojiCandidates() %@", HanjaTable.emoji.debugDescription)
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 3, DelegatedComposer.updateEmojiCandidates() before hanjasByPrefixSearching")
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 4, DelegatedComposer.updateEmojiCandidates() [keyword: %@]", loweredKeyword)
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 14, DelegatedComposer.updateEmojiCandidates() %@", HanjaTable.emoji.debugDescription)
                 let list: HGHanjaList = table.hanjas(byPrefixSearching: loweredKeyword) ?? HGHanjaList()
-                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.updateCmojiCandidates() after hanjasByPrefixSearching")
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 5, DelegatedComposer.updateEmojiCandidates() after hanjasByPrefixSearching")
 
-                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 9, DelegatedComposer.updateCmojiCandidates() count is %d", list.count)
+                dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 9, DelegatedComposer.updateEmojiCandidates() count is %d", list.count)
                 for index in 0 ..< list.count {
                     let emoticon = list.hanja(at: index)
-                    dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 6, DelegatedComposer.updateCmojiCandidates() %@ %@ %@", list.hanja(at: index).comment, list.hanja(at: index).key, list.hanja(at: index).value)
+                    dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 6, DelegatedComposer.updateEmojiCandidates() %@ %@ %@", list.hanja(at: index).comment, list.hanja(at: index).key, list.hanja(at: index).value)
                     _candidates!.append(
                         NSAttributedString(string: emoticon.value as String + ": " + emoticon.comment as String)
                     )
                 }
             }
         }
-        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegatedComposer.updateCmojiCandidates() %@", _candidates ?? [])
+        dlog(DEBUG_SEARCHING_COMPOSER, "DEBUG 2, DelegatedComposer.updateEmojiCandidates() %@", _candidates ?? [])
     }
 }
