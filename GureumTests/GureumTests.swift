@@ -319,6 +319,12 @@ class GureumTests: XCTestCase {
 
             app.inputKey(.ansiQuote, modifiers: .shift)
             XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            app.client.string = ""
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiD)
+            app.inputText("", key: .delete)
+            XCTAssertEqual("ㅏ", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
 
