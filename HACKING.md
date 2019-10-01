@@ -1,5 +1,11 @@
 # 개발환경 설정
 
+구름 입력기는 CocoaPods으로 의존성을 관리합니다. Xcode를 사용해 개발하기 전에 CocoaPods을 설치해야 합니다.
+
+``` sh
+sudo gem install cocoapods
+```
+
 libhangul의 라이선스 전파성을 피하기 위해 프로젝트를 분리하여 준비가 조금 복잡합니다.
 git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도록 해야합니다.
 
@@ -32,7 +38,7 @@ git submodule update --init --recursive
 
 ![image](https://user-images.githubusercontent.com/906974/48977284-c5fc8e80-f0da-11e8-9ad2-7a40b8e774ea.png)
 
-Debug Configuration으로 빌드하면 Console.app 에서 로그를 확인할 수 있습니다.
+Debug Configuration으로 빌드하면 Console.app에서 로그를 확인할 수 있습니다.
 
 # 디버그 빌드 테스트
 
