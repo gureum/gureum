@@ -21,8 +21,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 ``` sh
 git clone https://github.com/gureum/gureum.git  # 클론
 cd gureum
-git submodule update --init --recursive
-pod install # cocoapods을 처음 사용하면 http://cocoapods.org 에서 설치법을 확인하세요
+make init
 open Gureum.xcworkspace
 ```
 
