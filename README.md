@@ -1,11 +1,14 @@
 ![logo](OSX/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
 
-![platform](https://img.shields.io/badge/platform-macos-lightgrey) [![Build Status](https://travis-ci.org/gureum/gureum.svg?branch=master)](https://travis-ci.org/gureum/gureum) 
+![platform](https://img.shields.io/badge/platform-macos-lightgrey)
+[![Build Status](https://travis-ci.org/gureum/gureum.svg?branch=master)](https://travis-ci.org/gureum/gureum)
 
 # 구름 입력기
+
 macOS를 위한 새로운 한글 입력기
 
 ## 소개
+
 구름 입력기는 빠르고 쓰기 편한 macOS용 한글 입력기입니다. 세 가지 가치를 목표로 개발하고 있습니다.
 
 - **편리하게.** `libhangul` 기반으로 모아치기를 지원합니다. 모아치기 기능은 세벌식 사용자에게 특히 더 유용합니다.
@@ -13,6 +16,7 @@ macOS를 위한 새로운 한글 입력기
 - **자유롭게.** 구름 입력기는 오픈 소스 소프트웨어입니다. 소스 코드는 BSD와 LGPL로 배포됩니다.
 
 ## 장점
+
 - `libhangul` 기반으로 만들어져 한글 두벌식 및 세벌식 등 다양한 자판을 지원하고, 드보락 및 콜맥 등 다양한 로마자 자판도 지원합니다.
 - `libhangul` 이외의 기능을 거의 사용하지 않아 가볍습니다.
 - 입력기 전환을 막기 위해 쿼티 자판을 추가로 내장하고 있어 한글-쿼티 전환이 빠릅니다. 일부 환경에서 자판 전환이 느릴 때 도움을 줍니다.
@@ -81,7 +85,7 @@ brew cask uninstall gureumkim
 
 ## 버그 신고
 
-입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다. 
+입력기 사용 중 문제가 있으면 어떤 문제가 있나 알려주시면 도움이 됩니다.
 
 버그가 재현되는지 확인해 주시고 [이슈 페이지](https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
 

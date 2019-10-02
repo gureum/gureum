@@ -125,7 +125,7 @@ sudo gem install xcpretty
 
 ### swiftformat 실행
 
-변경한 소스 코드에 대해 swiftformat을 실행하여 코드의 일관성을 유지해 주세요. 
+변경한 소스 코드에 대해 swiftformat을 실행하여 코드의 일관성을 유지해 주세요.
 
 CI 과정에서 swiftformat으로 인한 변경 사항이 발견되면 빌드는 통과되지 않습니다.
 
