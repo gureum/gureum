@@ -157,7 +157,6 @@ public class InputReceiver: InputTextDelegate {
 
             return processed ? .processed : .notProcessed
         }
-        return .notProcessed
     }
 }
 
@@ -181,6 +180,7 @@ extension InputReceiver { // IMKServerInput
 
     // Committing a Composition
     // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+    @discardableResult
     func commitCompositionEvent(_ sender: IMKTextInput & IMKUnicodeTextInput) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
         if !inputting {

@@ -140,6 +140,7 @@ extension Composer {
     }
 
     func clear() {}
+
     func dequeueCommitString() -> String {
         return delegate.dequeueCommitString()
     }
@@ -153,6 +154,7 @@ extension Composer {
     }
 
     func composerSelected() {}
+
     func candidateSelected(_ candidateString: NSAttributedString) {
         delegate.candidateSelected(candidateString)
     }
