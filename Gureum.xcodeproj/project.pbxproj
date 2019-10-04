@@ -24,13 +24,16 @@
 /* Begin PBXBuildFile section */
 		0378CCB6A8DC8069FA2B6B55 /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
 		19136D73234090AA00A0BF3C /* SearchingComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19136D72234090AA00A0BF3C /* SearchingComposer.swift */; };
+		19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A1229923477D2700525AEC /* TISInputSource+.swift */; };
+		19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A223477DE900525AEC /* GureumShortcutValidator.swift */; };
+		19A122A523477E1D00525AEC /* GureumPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A423477E1D00525AEC /* GureumPreferencePane.swift */; };
 		19E257A42327412500952E64 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E257A12327412500952E64 /* KeyCode.swift */; };
 		19E257A52327432500952E64 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E257A12327412500952E64 /* KeyCode.swift */; };
 		38098F0A215A3DB30001F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38098F09215A3DB30001F159 /* Assets.xcassets */; };
 		38162DF5141263270077AA2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38863C63140E64EB00A8ED76 /* Cocoa.framework */; };
 		38162DFB141263280077AA2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38162DF9141263280077AA2D /* InfoPlist.strings */; };
 		38162E4814128A740077AA2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38162E4914128A740077AA2D /* MainMenu.xib */; };
-		381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* Preferences.swift */; };
+		381CA2EF1FCE16EA00DDB81D /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CA2EE1FCE16EA00DDB81D /* PreferenceViewController.swift */; };
 		381CA2F11FCE208A00DDB81D /* Example.png in Resources */ = {isa = PBXBuildFile; fileRef = 381CA2F01FCE208A00DDB81D /* Example.png */; };
 		382E686D1A1314D900031D1D /* Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 382E686C1A1314D900031D1D /* Preferences.tiff */; };
 		382E68701A1314D900031D1D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382E686E1A1314D900031D1D /* Preferences.xib */; };
@@ -268,6 +271,9 @@
 /* Begin PBXFileReference section */
 		0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		19136D72234090AA00A0BF3C /* SearchingComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingComposer.swift; sourceTree = "<group>"; };
+		19A1229923477D2700525AEC /* TISInputSource+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TISInputSource+.swift"; sourceTree = "<group>"; };
+		19A122A223477DE900525AEC /* GureumShortcutValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumShortcutValidator.swift; sourceTree = "<group>"; };
+		19A122A423477E1D00525AEC /* GureumPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumPreferencePane.swift; sourceTree = "<group>"; };
 		19E257A12327412500952E64 /* KeyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,7 +285,7 @@
 		38162E4914128A740077AA2D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		381B32731DA826B100EA1975 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		381CA2ED1FCE16EA00DDB81D /* Preferences-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preferences-Bridging-Header.h"; sourceTree = "<group>"; };
-		381CA2EE1FCE16EA00DDB81D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		381CA2EE1FCE16EA00DDB81D /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		381CA2F01FCE208A00DDB81D /* Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Example.png; sourceTree = "<group>"; };
 		381DB19A21678B74005A37B9 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		382AF2DC21563C0600701F90 /* OSXTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -494,7 +500,10 @@
 		382E68651A1314D900031D1D /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				381CA2EE1FCE16EA00DDB81D /* Preferences.swift */,
+				19A1229923477D2700525AEC /* TISInputSource+.swift */,
+				19A122A423477E1D00525AEC /* GureumPreferencePane.swift */,
+				19A122A223477DE900525AEC /* GureumShortcutValidator.swift */,
+				381CA2EE1FCE16EA00DDB81D /* PreferenceViewController.swift */,
 				382E686C1A1314D900031D1D /* Preferences.tiff */,
 				382E686E1A1314D900031D1D /* Preferences.xib */,
 				381CA2F01FCE208A00DDB81D /* Example.png */,
@@ -1237,7 +1246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				381CA2EF1FCE16EA00DDB81D /* Preferences.swift in Sources */,
+				19A122A523477E1D00525AEC /* GureumPreferencePane.swift in Sources */,
+				19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */,
+				19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */,
+				381CA2EF1FCE16EA00DDB81D /* PreferenceViewController.swift in Sources */,
 				19E257A52327432500952E64 /* KeyCode.swift in Sources */,
 				388186AB21EB3E72004B7FDB /* Configuration.swift in Sources */,
 			);
