@@ -63,11 +63,11 @@ final class GureumComposer: Composer {
     /// 한글 합성기에 의존하여 문자를 검색하고 입력하는 합성기.
     ///
     /// 한자 및 이모지는 해당 합성기를 사용하여 입력이 이루어진다.
-    let hangulDependentSearchingComposer = SearchingComposer(dependentComposerType: .hangul)
+    let hangulDependentSearchComposer = SearchComposer(dependentComposerType: .hangul)
     /// 로마자 합성기에 의존하여 문자를 검색하고 입력하는 합성기.
     ///
     /// 이모지는 해당 합성기를 사용하여 입력이 이루어진다.
-    let romanDependentSearchingComposer = SearchingComposer(dependentComposerType: .roman)
+    let romanDependentSearchComposer = SearchComposer(dependentComposerType: .roman)
     /// 로마자 시스템 합성기.
     let systemRomanComposer = RomanComposer(type: .system)
     /// 로마자 쿼티 합성기.
@@ -86,7 +86,7 @@ final class GureumComposer: Composer {
     init() {
         romanComposer = qwertyComposer
         delegate = romanComposer
-        hangulDependentSearchingComposer.delegate = hangulComposer
+        hangulDependentSearchComposer.delegate = hangulComposer
     }
 
     // MARK: Composer 프로토콜 구현
@@ -100,8 +100,8 @@ final class GureumComposer: Composer {
     func clear() {
         hangulComposer.clear()
         romanComposer.clear()
-        hangulDependentSearchingComposer.clear()
-        romanDependentSearchingComposer.clear()
+        hangulDependentSearchComposer.clear()
+        romanDependentSearchComposer.clear()
     }
 
     func dequeueCommitString() -> String {
@@ -162,19 +162,19 @@ extension GureumComposer {
             enqueueCommitString(delegate.dequeueCommitString())
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
-        case .hanja:
+        case .search:
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
                 let isComposing = !hangulComposer.composedString.isEmpty
-                hangulDependentSearchingComposer.showsCandidateWindow = !isComposing
-                delegate = hangulDependentSearchingComposer
+                hangulDependentSearchComposer.showsCandidateWindow = !isComposing
+                delegate = hangulDependentSearchComposer
                 delegate.composerSelected()
-                hangulDependentSearchingComposer.update(client: sender as! IMKTextInput)
+                hangulDependentSearchComposer.update(client: sender as! IMKTextInput)
             } else if delegate is RomanComposer {
-                romanDependentSearchingComposer.delegate = delegate
-                delegate = romanDependentSearchingComposer
-                romanDependentSearchingComposer.update(client: sender as! IMKTextInput)
+                romanDependentSearchComposer.delegate = delegate
+                delegate = romanDependentSearchComposer
+                romanDependentSearchComposer.update(client: sender as! IMKTextInput)
             } else {
                 return .notProcessed
             }
@@ -204,11 +204,11 @@ extension GureumComposer {
         if delegate is RomanComposer, let shortcutKey = configuration.inputModeKoreanKey, shortcutKey == inputKey {
             return .changeLayout(.hangul, true)
         }
-        if let shortcutKey = configuration.inputModeHanjaKey, shortcutKey == inputKey {
-            return .changeLayout(.hanja, true)
+        if let shortcutKey = configuration.inputModeSearchKey, shortcutKey == inputKey {
+            return .changeLayout(.search, true)
         }
 
-        if let searchingComposer = delegate as? SearchingComposer {
+        if let searchingComposer = delegate as? SearchComposer {
             if searchingComposer.dependentComposerType == .hangul, !searchingComposer.showsCandidateWindow, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
