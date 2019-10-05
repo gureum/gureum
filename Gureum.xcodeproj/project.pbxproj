@@ -23,7 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		0378CCB6A8DC8069FA2B6B55 /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10FF4A81E4501FB2F71251 /* Pods_OSXTestApp.framework */; };
-		19136D73234090AA00A0BF3C /* SearchingComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19136D72234090AA00A0BF3C /* SearchingComposer.swift */; };
+		19136D73234090AA00A0BF3C /* SearchComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19136D72234090AA00A0BF3C /* SearchComposer.swift */; };
 		19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A1229923477D2700525AEC /* TISInputSource+.swift */; };
 		19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A223477DE900525AEC /* GureumShortcutValidator.swift */; };
 		19A122A523477E1D00525AEC /* GureumPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A423477E1D00525AEC /* GureumPreferencePane.swift */; };
@@ -270,7 +270,7 @@
 
 /* Begin PBXFileReference section */
 		0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.release.xcconfig"; sourceTree = "<group>"; };
-		19136D72234090AA00A0BF3C /* SearchingComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingComposer.swift; sourceTree = "<group>"; };
+		19136D72234090AA00A0BF3C /* SearchComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComposer.swift; sourceTree = "<group>"; };
 		19A1229923477D2700525AEC /* TISInputSource+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TISInputSource+.swift"; sourceTree = "<group>"; };
 		19A122A223477DE900525AEC /* GureumShortcutValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumShortcutValidator.swift; sourceTree = "<group>"; };
 		19A122A423477E1D00525AEC /* GureumPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumPreferencePane.swift; sourceTree = "<group>"; };
@@ -610,7 +610,7 @@
 				389289BC217B331B00F94F2C /* Composer.swift */,
 				38D3E42A21213E9700751191 /* HangulComposer.swift */,
 				38C75C8B1F153A74004BE02A /* RomanComposer.swift */,
-				19136D72234090AA00A0BF3C /* SearchingComposer.swift */,
+				19136D72234090AA00A0BF3C /* SearchComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
 				19E257A12327412500952E64 /* KeyCode.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
@@ -1277,7 +1277,7 @@
 				3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */,
 				3881869321EB2DC0004B7FDB /* Configuration.swift in Sources */,
 				388186B121EB453E004B7FDB /* InputController.swift in Sources */,
-				19136D73234090AA00A0BF3C /* SearchingComposer.swift in Sources */,
+				19136D73234090AA00A0BF3C /* SearchComposer.swift in Sources */,
 				38B9551022A833E900A9D6E1 /* SystemConfigurationWatcher.swift in Sources */,
 				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
 				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
