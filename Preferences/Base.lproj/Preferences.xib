@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="618"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
                             <rect key="frame" x="0.0" y="0.0" width="400" height="618"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
                                     <rect key="frame" x="0.0" y="-250" width="400" height="550"/>
@@ -464,8 +463,8 @@
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
                 <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="i8N-tR-KEH"/>
                 <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="LGg-vP-YF5"/>
-                <outlet property="inputModeHanjaEmojiShortcutView" destination="H7u-hL-ncz" id="31Z-g1-m5g"/>
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="YTt-oL-VCC"/>
+                <outlet property="inputModeSearchShortcutView" destination="H7u-hL-ncz" id="31Z-g1-m5g"/>
                 <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
                 <outlet property="overridingKeyboardNameComboBox" destination="djp-BV-Tu6" id="zKK-rV-G9N"/>
                 <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>

@@ -39,7 +39,7 @@ enum ChangeLayout {
     case toggleByCapsLock
     case hangul
     case roman
-    case hanjaEmoji
+    case search
 }
 
 enum InputEvent {

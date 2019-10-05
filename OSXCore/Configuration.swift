@@ -18,8 +18,8 @@ enum ConfigurationName {
 
     /// 입력기 바꾸기 단축키.
     static let inputModeExchangeKey = "InputModeExchangeKey"
-    /// 한자 및 이모지 단축키.
-    static let inputModeHanjaEmojiKey = "InputModeHanjaKey"
+    /// 한자 및 이모지 검색 단축키.
+    static let inputModeSearchKey = "InputModeHanjaKey"
     /// 로마자로 바꾸기 단축키.
     static let inputModeEnglishKey = "InputModeEnglishKey"
     /// 한글로 바꾸기 단축키.
@@ -75,7 +75,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeHanjaEmojiKey: Configuration.convertShortcutToConfiguration((.return, .option)),
+            ConfigurationName.inputModeSearchKey: Configuration.convertShortcutToConfiguration((.return, .option)),
             ConfigurationName.optionKeyBehavior: 0,
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
 
@@ -145,13 +145,13 @@ public class Configuration: UserDefaults {
         }
     }
 
-    /// 한자 및 이모지 단축키.
-    var inputModeHanjaEmojiKey: Shortcut? {
+    /// 한자 및 이모지 검색 단축키.
+    var inputModeSearchKey: Shortcut? {
         get {
-            return shortcut(forKey: ConfigurationName.inputModeHanjaEmojiKey)
+            return shortcut(forKey: ConfigurationName.inputModeSearchKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeHanjaEmojiKey)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeSearchKey)
         }
     }
 

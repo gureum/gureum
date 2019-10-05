@@ -30,8 +30,8 @@ final class PreferenceViewController: NSViewController {
 
     /// 입력기 바꾸기 단축키.
     @IBOutlet private var inputModeExchangeShortcutView: MASShortcutView!
-    /// 한자 및 이모지 단축키.
-    @IBOutlet private var inputModeHanjaEmojiShortcutView: MASShortcutView!
+    /// 한자 및 이모지 검색 단축키.
+    @IBOutlet private var inputModeSearchShortcutView: MASShortcutView!
     /// 로마자로 바꾸기 단축키.
     @IBOutlet private var inputModeEnglishShortcutView: MASShortcutView!
     /// 한글로 바꾸기 단축키.
@@ -80,7 +80,7 @@ final class PreferenceViewController: NSViewController {
         }
 
         inputModeExchangeShortcutView.shortcutValidator = shortcutValidator
-        inputModeHanjaEmojiShortcutView.shortcutValidator = shortcutValidator
+        inputModeSearchShortcutView.shortcutValidator = shortcutValidator
         inputModeEnglishShortcutView.shortcutValidator = shortcutValidator
         inputModeKoreanShortcutView.shortcutValidator = shortcutValidator
 
@@ -147,10 +147,10 @@ private extension PreferenceViewController {
             inputModeExchangeShortcutView.shortcutValue = nil
         }
 
-        if let key = configuration.inputModeHanjaEmojiKey {
-            inputModeHanjaEmojiShortcutView.shortcutValue = MASShortcut(keyCode: key.0.rawValue, modifierFlags: key.1)
+        if let key = configuration.inputModeSearchKey {
+            inputModeSearchShortcutView.shortcutValue = MASShortcut(keyCode: key.0.rawValue, modifierFlags: key.1)
         } else {
-            inputModeHanjaEmojiShortcutView.shortcutValue = nil
+            inputModeSearchShortcutView.shortcutValue = nil
         }
 
         if let key = configuration.inputModeEnglishKey {
@@ -178,11 +178,11 @@ private extension PreferenceViewController {
             self.configuration.inputModeExchangeKey = masShortcutToShortcut(sender.shortcutValue)
         }
 
-        inputModeHanjaEmojiShortcutView.shortcutValueChange = { sender in
+        inputModeSearchShortcutView.shortcutValueChange = { sender in
             guard let sender = sender else {
                 return
             }
-            self.configuration.inputModeHanjaEmojiKey = masShortcutToShortcut(sender.shortcutValue)
+            self.configuration.inputModeSearchKey = masShortcutToShortcut(sender.shortcutValue)
         }
 
         inputModeEnglishShortcutView.shortcutValueChange = { sender in

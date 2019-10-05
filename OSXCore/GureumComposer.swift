@@ -162,7 +162,7 @@ extension GureumComposer {
             enqueueCommitString(delegate.dequeueCommitString())
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
-        case .hanjaEmoji:
+        case .search:
             // 한글 입력 상태에서 한자 및 이모티콘 입력기로 전환
             if delegate is HangulComposer {
                 // 현재 조합 중 여부에 따라 한자 모드 여부를 결정
@@ -204,8 +204,8 @@ extension GureumComposer {
         if delegate is RomanComposer, let shortcutKey = configuration.inputModeKoreanKey, shortcutKey == inputKey {
             return .changeLayout(.hangul, true)
         }
-        if let shortcutKey = configuration.inputModeHanjaEmojiKey, shortcutKey == inputKey {
-            return .changeLayout(.hanjaEmoji, true)
+        if let shortcutKey = configuration.inputModeSearchKey, shortcutKey == inputKey {
+            return .changeLayout(.search, true)
         }
 
         if let searchingComposer = delegate as? SearchingComposer {
