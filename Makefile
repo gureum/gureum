@@ -13,7 +13,7 @@ format:
 	swiftformat OSXCore/ OSX/ GureumTests/ Preferences/ OSXTestApp/
 
 brew-install:
-	@command -v brew >/dev/null || { echo 'Homebrew is not installed. See https://brew.sh'; exit 1; }
+	@command -v brew >/dev/null || { echo 'Error: Homebrew is not installed. See https://brew.sh'; exit 1; }
 	@if ! command -v shellcheck >/dev/null; then \
 		echo 'brew install shellcheck'; \
 		brew install shellcheck; \
@@ -26,11 +26,11 @@ brew-install:
 gem-install:
 	@if ! command -v pod >/dev/null; then \
 		echo 'gem install cocoapods'; \
-		gem install cocoapods || { echo 'gem-install failed. Try sudo make gem-install.'; exit 1; }; \
+		gem install cocoapods || { echo 'Error: gem-install failed. Try sudo make gem-install.'; exit 1; }; \
 	fi
 	@if ! command -v xcpretty >/dev/null; then \
 		echo 'gem install xcpretty'; \
-		gem install xcpretty || { echo 'gem-install failed. Try sudo make gem-install.'; exit 1; }; \
+		gem install xcpretty || { echo 'Error: gem-install failed. Try sudo make gem-install.'; exit 1; }; \
 	fi
 
 .PHONY: all init format brew-install gem-install
