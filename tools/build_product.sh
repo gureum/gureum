@@ -23,7 +23,13 @@ BUILT_PRODUCT_PATH="${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app"
 rm ~/Downloads/"${PACKAGE_NAME}.pkg"
 rm -rf "${BUILT_PRODUCT_PATH}"
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | xcpretty) && \
+if command -v xcpretty >/dev/null; then
+    PRINTER="xcpretty"
+else
+    PRINTER="cat"
+fi
+
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | $PRINTER) && \
 productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app" '/Library/Input Methods' --sign "${INSTALLER_KEY}" ~/Downloads/"${PACKAGE_NAME}.pkg"
 #tar -zcf "${PACKAGE_NAME}.app.tar.gz" "${PRODUCT_NAME}.app"
 

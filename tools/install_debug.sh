@@ -8,7 +8,13 @@ SCRIPT_DIR="$(dirname "$0")"
 # shellcheck source=tools/ready.sh
 . "${SCRIPT_DIR}/ready.sh" || exit $?
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | xcpretty) || exit $?
+if command -v xcpretty >/dev/null; then
+    PRINTER="xcpretty"
+else
+    PRINTER="cat"
+fi
+
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | $PRINTER ) || exit $?
 if [ ! "${INSTALL_PATH}" ]; then
     echo "something wrong" && exit 255
 fi
