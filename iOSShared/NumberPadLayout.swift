@@ -108,7 +108,7 @@ class NumberPadLayout: KeyboardLayout {
         return size.width / 3
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 0, 1, 2:
             return []
@@ -120,7 +120,7 @@ class NumberPadLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 0, 1, 2:
             return []

@@ -507,12 +507,12 @@ class KeyboardLayout: NSObject, GRKeyboardLayoutHelperDelegate {
         return 0
     }
 
-    func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> Array<UIButton> {
+    func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> [UIButton] {
         assert(false)
         return []
     }
 
-    func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
+    func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> [UIButton] {
         assert(false)
         return []
     }
@@ -588,11 +588,11 @@ class NoKeyboardLayout: KeyboardLayout {
         return size.width
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow _: Int) -> [UIButton] {
         return []
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> [UIButton] {
         return []
     }
 

@@ -108,7 +108,7 @@ class DoneQuickHelperTableViewController: QuickHelperTableViewController {
             cell.detailTextLabel!.text = NSLocalizedString(result["left"] as! String, comment: "")
         case 2:
             cell.textLabel!.text = "오른쪽 보조자판"
-            let parts = (result["right"] as! Array).map({ NSLocalizedString($0, comment: "") })
+            let parts = (result["right"] as! Array).map { NSLocalizedString($0, comment: "") }
             let text = parts.joined()
             cell.detailTextLabel!.text = text.count > 0 ? text : "없음"
         case 3:

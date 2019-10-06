@@ -56,7 +56,7 @@ class QuickHelperTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedIndexPaths.contains(indexPath) {
-            selectedIndexPaths = selectedIndexPaths.filter({ indexPath != $0 })
+            selectedIndexPaths = selectedIndexPaths.filter { indexPath != $0 }
         } else {
             selectedIndexPaths.append(indexPath)
         }
