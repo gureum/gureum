@@ -29,6 +29,7 @@ enum HanjaTable {
     static let character = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
     /// 한자 단어를 모아 놓은 테이블.
     static let word = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
+    /// 한자 뜻을 모아 놓은 테이블.
     static let reversed = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
     static let msSymbol = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
     /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
@@ -332,50 +333,31 @@ private extension SearchComposer {
         }
 
         dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
+
         var candidates = [String]()
-        if keyword.count == 1 {
-            for table in [HanjaTable.msSymbol, HanjaTable.character] {
-                let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
-                candidates.append(contentsOf: tableCandidates)
+        let tables = keyword.count == 1
+            ? [HanjaTable.msSymbol, HanjaTable.character, HanjaTable.emojiKorean]
+            : [HanjaTable.word, HanjaTable.reversed, HanjaTable.emojiKorean]
+        let exactSearchPool = HanjaTableSearchPool(tables: tables, method: .exact)
+        let prefixSearchPool = HanjaTableSearchPool(tables: tables, method: .prefix)
+        let exactResult = exactSearchPool.candidates(matching: keyword)
+        let prefixResult = prefixSearchPool.candidates(matching: keyword)
+        let exactResultCandidates = exactResult.candidates
+        var prefixResultCandidates = prefixResult.candidates
+        candidates.append(contentsOf: exactResultCandidates)
+
+        // TODO: 중복 제거 로직 개선
+        exactResultCandidates.forEach {
+            if let index = prefixResultCandidates.firstIndex(of: $0) {
+                prefixResultCandidates.remove(at: index)
             }
         }
-        for table in [HanjaTable.word, HanjaTable.reversed, HanjaTable.emojiKorean] {
-            let tableCandidates = searchCandidates(fromTable: table, byPrefixSearching: keyword)
-            candidates.append(contentsOf: tableCandidates)
-        }
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() candidating")
-        if !candidates.isEmpty {
-            candidates.insert(keyword, at: 0)
-        }
+        candidates.append(contentsOf: prefixResultCandidates)
+
+        // TODO: fuzzy search
+
+        candidates.append(keyword)
         return candidates.map { NSAttributedString(string: $0) }
-    }
-
-    /// 한자 입력을 위한 후보를 검색한다.
-    ///
-    /// - Parameters:
-    ///   - table: 검색 소스가 위치한 테이블.
-    ///   - keyword: prefix search의 쿼리로 사용될 키워드.
-    ///
-    /// - Returns: 검색한 후보의 문자열 배열.
-    func searchCandidates(fromTable table: HGHanjaTable, byPrefixSearching keyword: String) -> [String] {
-        guard dependentComposerType == .hangul else {
-            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: searchCandidates(fromTable:byPrefixSearching:) at emoji mode!")
-            return []
-        }
-
-        var candidates = [String]()
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) getting list for table: %@", table)
-        guard let list = table.hanjas(byPrefixSearching: keyword) else { return [] }
-        for _hanja in list {
-            let hanja = _hanja as! HGHanja
-            dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.searchCandidates(fromTable:byPrefixSearching:) hanja: %@", hanja)
-            if hanja.comment.isEmpty {
-                candidates.append("\(hanja.value)")
-            } else {
-                candidates.append("\(hanja.value): \(hanja.comment)")
-            }
-        }
-        return candidates
     }
 }
 

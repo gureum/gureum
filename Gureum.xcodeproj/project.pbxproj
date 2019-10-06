@@ -27,6 +27,7 @@
 		19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A1229923477D2700525AEC /* TISInputSource+.swift */; };
 		19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A223477DE900525AEC /* GureumShortcutValidator.swift */; };
 		19A122A523477E1D00525AEC /* GureumPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A423477E1D00525AEC /* GureumPreferencePane.swift */; };
+		19A122B42349D18A00525AEC /* SearchPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122B32349D18A00525AEC /* SearchPool.swift */; };
 		19E257A42327412500952E64 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E257A12327412500952E64 /* KeyCode.swift */; };
 		19E257A52327432500952E64 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E257A12327412500952E64 /* KeyCode.swift */; };
 		38098F0A215A3DB30001F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38098F09215A3DB30001F159 /* Assets.xcassets */; };
@@ -274,6 +275,7 @@
 		19A1229923477D2700525AEC /* TISInputSource+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TISInputSource+.swift"; sourceTree = "<group>"; };
 		19A122A223477DE900525AEC /* GureumShortcutValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumShortcutValidator.swift; sourceTree = "<group>"; };
 		19A122A423477E1D00525AEC /* GureumPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumPreferencePane.swift; sourceTree = "<group>"; };
+		19A122B32349D18A00525AEC /* SearchPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPool.swift; sourceTree = "<group>"; };
 		19E257A12327412500952E64 /* KeyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 				19136D72234090AA00A0BF3C /* SearchComposer.swift */,
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
 				19E257A12327412500952E64 /* KeyCode.swift */,
+				19A122B32349D18A00525AEC /* SearchPool.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
@@ -1272,6 +1275,7 @@
 				3881869221EB2DC0004B7FDB /* InputMethodServer.swift in Sources */,
 				3881869E21EB3055004B7FDB /* HangulComposer.swift in Sources */,
 				3881868D21EB2D8D004B7FDB /* Composer.swift in Sources */,
+				19A122B42349D18A00525AEC /* SearchPool.swift in Sources */,
 				388186A021EB3055004B7FDB /* RomanComposer.swift in Sources */,
 				19E257A42327412500952E64 /* KeyCode.swift in Sources */,
 				3881868821EB2D8D004B7FDB /* GureumApplicationDelegate.swift in Sources */,
