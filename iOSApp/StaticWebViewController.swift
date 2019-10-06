@@ -17,6 +17,8 @@ class StaticWebViewController: UIViewController {
 
     class func url() -> URL {
         assert(false)
+        let url = URL(string: "")
+        return url!
     }
 
     override func viewDidLoad() {
