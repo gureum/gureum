@@ -296,7 +296,7 @@ extension SearchComposer {
     }
 }
 
-// MARK: - SearchComposer 한자 모드 전용 메소드
+// MARK: - SearchComposer 한글 합성기 의존시 전용 메소드
 
 private extension SearchComposer {
     /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
@@ -348,9 +348,9 @@ private extension SearchComposer {
         candidates.append(contentsOf: exactResultCandidates)
 
         // TODO: 중복 제거 로직 개선
-        exactResultCandidates.forEach {
-            if let index = prefixResultCandidates.firstIndex(of: $0) {
-                prefixResultCandidates.remove(at: index)
+        exactResultCandidates.forEach { // O(n)
+            if let index = prefixResultCandidates.firstIndex(of: $0) { // O(n)
+                prefixResultCandidates.remove(at: index) // O(n)
             }
         }
         candidates.append(contentsOf: prefixResultCandidates)
@@ -362,7 +362,7 @@ private extension SearchComposer {
     }
 }
 
-// MARK: - SearchComposer 이모지 모드 전용 메소드
+// MARK: - SearchComposer 로마자 합성기 의존시 전용 메소드
 
 private extension SearchComposer {
     func updateEmojiCandidates() {

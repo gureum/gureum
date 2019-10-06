@@ -13,7 +13,7 @@ protocol SearchPool {
     func candidates(matching: String) -> (candidates: [String], score: Int)
 }
 
-/// `HGHanjaTable`을 검색하는 클래스.
+/// `HGHanjaTable`을 검색하는 풀을 나타내는 클래스.
 final class HanjaTableSearchPool: SearchPool {
     enum Method {
         case exact
@@ -30,12 +30,13 @@ final class HanjaTableSearchPool: SearchPool {
         self.method = method
     }
 
-    /// 입력할 후보를 검색한다.
+    /// 키워드를 기준으로 입력할 후보를 검색한다.
     ///
     /// - Parameter keyword: 검색 키워드.
     ///
     /// - Returns: 후보 문자열과 검색 점수로 이루어진 튜플.
     func candidates(matching keyword: String) -> (candidates: [String], score: Int) {
+        // TODO: 각 검색 방법 할당 점수
         let score: Int = {
             switch method {
             case .exact:
