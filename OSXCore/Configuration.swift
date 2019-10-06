@@ -18,10 +18,8 @@ enum ConfigurationName {
 
     /// 입력기 바꾸기 단축키.
     static let inputModeExchangeKey = "InputModeExchangeKey"
-    /// 이모티콘 단축키.
-    static let inputModeEmoticonKey = "InputModeEmoticonKey"
-    /// 한자 단축키.
-    static let inputModeHanjaKey = "InputModeHanjaKey"
+    /// 한자 및 이모지 검색 단축키.
+    static let inputModeSearchKey = "InputModeHanjaKey"
     /// 로마자로 바꾸기 단축키.
     static let inputModeEnglishKey = "InputModeEnglishKey"
     /// 한글로 바꾸기 단축키.
@@ -33,8 +31,6 @@ enum ConfigurationName {
 
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
-    /// 한자 선택 후보 창에서 입력 문자 표시.
-    static let showsInputForHanjaCandidates = "ShowsInputForHanjaCandidates"
     /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
     static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     /// 완성되지 않은 낱자 자동 교정 (모아치기).
@@ -79,13 +75,11 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
             ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
-            ConfigurationName.inputModeEmoticonKey: Configuration.convertShortcutToConfiguration((.return, [.shift, .option])),
-            ConfigurationName.inputModeHanjaKey: Configuration.convertShortcutToConfiguration((.return, .option)),
+            ConfigurationName.inputModeSearchKey: Configuration.convertShortcutToConfiguration((.return, .option)),
             ConfigurationName.optionKeyBehavior: 0,
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
 
             ConfigurationName.romanModeByEscapeKey: false,
-            ConfigurationName.showsInputForHanjaCandidates: false,
             ConfigurationName.hangulWonCurrencySymbolForBackQuote: true,
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
@@ -141,50 +135,30 @@ public class Configuration: UserDefaults {
         }
     }
 
-    /// 한자 선택 후보 창에서 입력 문자 표시.
-    var showsInputForHanjaCandidates: Bool {
-        get {
-            return bool(forKey: ConfigurationName.showsInputForHanjaCandidates)
-        }
-        set {
-            `set`(newValue, forKey: ConfigurationName.showsInputForHanjaCandidates)
-        }
-    }
-
     /// 입력기 바꾸기 단축키.
     var inputModeExchangeKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeExchangeKey)
+            return shortcut(forKey: ConfigurationName.inputModeExchangeKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeExchangeKey)
         }
     }
 
-    /// 이모티콘 단축키.
-    var inputModeEmoticonKey: Shortcut? {
+    /// 한자 및 이모지 검색 단축키.
+    var inputModeSearchKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeEmoticonKey)
+            return shortcut(forKey: ConfigurationName.inputModeSearchKey)
         }
         set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeEmoticonKey)
-        }
-    }
-
-    /// 한자 단축키.
-    var inputModeHanjaKey: Shortcut? {
-        get {
-            return getShortcut(forKey: ConfigurationName.inputModeHanjaKey)
-        }
-        set {
-            setShortcut(newValue, forKey: ConfigurationName.inputModeHanjaKey)
+            setShortcut(newValue, forKey: ConfigurationName.inputModeSearchKey)
         }
     }
 
     /// 로마자로 바꾸기 단축키.
     var inputModeEnglishKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeEnglishKey)
+            return shortcut(forKey: ConfigurationName.inputModeEnglishKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeEnglishKey)
@@ -194,7 +168,7 @@ public class Configuration: UserDefaults {
     /// 한글로 바꾸기 단축키.
     var inputModeKoreanKey: Shortcut? {
         get {
-            return getShortcut(forKey: ConfigurationName.inputModeKoreanKey)
+            return shortcut(forKey: ConfigurationName.inputModeKoreanKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeKoreanKey)
@@ -253,7 +227,7 @@ public class Configuration: UserDefaults {
 }
 
 private extension Configuration {
-    func getShortcut(forKey key: String) -> Shortcut? {
+    func shortcut(forKey key: String) -> Shortcut? {
         guard let value = dictionary(forKey: key) else { return nil }
         return Configuration.convertConfigurationToShortcut(value)
     }

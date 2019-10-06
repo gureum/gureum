@@ -319,6 +319,12 @@ class GureumTests: XCTestCase {
 
             app.inputKey(.ansiQuote, modifiers: .shift)
             XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            app.client.string = ""
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiD)
+            app.inputText("", key: .delete)
+            XCTAssertEqual("ㅏ", app.client.string, "buffer: \(app.client.string) app: \(app)")
         }
     }
 
@@ -499,7 +505,7 @@ class GureumTests: XCTestCase {
             app.controller.setValue(GureumInputSource.qwerty.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
 
             let composer = app.controller.receiver.composer
-            let emoticonComposer = composer.emoticonComposer
+            let emoticonComposer = composer.romanDependentSearchComposer
             emoticonComposer.delegate = composer.delegate // roman?
             composer.delegate = emoticonComposer
 

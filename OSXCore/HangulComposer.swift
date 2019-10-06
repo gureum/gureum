@@ -53,36 +53,6 @@ func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
     return NSString(ucsString: ucsString) as String
 }
 
-/// 한글 합성기의 종류를 정의한 열거형.
-///
-/// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
-enum HangulComposerType: String {
-    /// 두벌식 자판.
-    case han2 = "2-full"
-    /// 두벌식 옛글 자판.
-    case han2Classic = "2y-full"
-    /// 세벌식 최종 자판.
-    case han3Final = "3f"
-    /// 세벌식 390 자판.
-    case han390 = "39"
-    /// 세벌식 순아래 자판.
-    case han3NoShift = "3s"
-    /// 세벌식 옛글 자판.
-    case han3Classic = "3y"
-    /// 세벌식 두벌식 배치 자판.
-    case han3Layout2 = "32"
-    /// 세벌식 로마자 자판.
-    case hanRoman = "ro"
-    /// 안마태 자판.
-    case hanAhnmatae = "ahn"
-    /// 세벌식 최종 순아래 자판.
-    case han3FinalNoShift = "3gs"
-    /// 세벌식 2011 자판.
-    case han3_2011 = "3-2011"
-    /// 세벌식 2012 자판.
-    case han3_2012 = "3-2012"
-}
-
 // MARK: - HangulComposer 클래스
 
 /// `libhangul`을 사용하는 한글 합성기.
@@ -91,15 +61,45 @@ enum HangulComposerType: String {
 ///
 /// `HGInputContext` 클래스를 참고한다.
 final class HangulComposer: NSObject, Composer {
+    /// 한글 합성기의 종류를 정의한 열거형.
+    ///
+    /// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
+    enum ComposerType: String {
+        /// 두벌식 자판.
+        case han2 = "2-full"
+        /// 두벌식 옛글 자판.
+        case han2Classic = "2y-full"
+        /// 세벌식 최종 자판.
+        case han3Final = "3f"
+        /// 세벌식 390 자판.
+        case han390 = "39"
+        /// 세벌식 순아래 자판.
+        case han3NoShift = "3s"
+        /// 세벌식 옛글 자판.
+        case han3Classic = "3y"
+        /// 세벌식 두벌식 배치 자판.
+        case han3Layout2 = "32"
+        /// 세벌식 로마자 자판.
+        case hanRoman = "ro"
+        /// 안마태 자판.
+        case hanAhnmatae = "ahn"
+        /// 세벌식 최종 순아래 자판.
+        case han3FinalNoShift = "3gs"
+        /// 세벌식 2011 자판.
+        case han3_2011 = "3-2011"
+        /// 세벌식 2012 자판.
+        case han3_2012 = "3-2012"
+    }
+
     /// 합성을 완료한 문자열.
     private var _commitString: String
 
     let inputContext: HGInputContext
     let configuration = Configuration.shared
 
-    init(composer hangulComposerType: HangulComposerType) {
+    init(type: HangulComposer.ComposerType) {
         _commitString = ""
-        let keyboardIdentifier = hangulComposerType.rawValue
+        let keyboardIdentifier = type.rawValue
         let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
         self.inputContext = inputContext
         self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
