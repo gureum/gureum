@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,16 +26,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="618"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Psn-Uh-zb1">
                             <rect key="frame" x="0.0" y="0.0" width="400" height="618"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
                                     <rect key="frame" x="0.0" y="-250" width="400" height="550"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="56" width="360" height="477"/>
+                                            <rect key="frame" x="20" y="31" width="360" height="502"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="382" width="360" height="95"/>
+                                                    <rect key="frame" x="0.0" y="407" width="360" height="95"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
                                                             <rect key="frame" x="-2" y="82" width="101" height="13"/>
@@ -75,10 +76,10 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="162" width="352" height="200"/>
+                                                    <rect key="frame" x="0.0" y="162" width="352" height="225"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
-                                                            <rect key="frame" x="-2" y="187" width="116" height="13"/>
+                                                            <rect key="frame" x="-2" y="212" width="116" height="13"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글 입력기 고급 설정" id="HIp-u9-CIf">
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Bold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -86,7 +87,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
-                                                            <rect key="frame" x="0.0" y="156" width="352" height="20"/>
+                                                            <rect key="frame" x="0.0" y="181" width="352" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
                                                                     <rect key="frame" x="-2" y="2" width="116" height="16"/>
@@ -126,7 +127,7 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwy-Ul-fDb">
-                                                            <rect key="frame" x="0.0" y="125" width="352" height="20"/>
+                                                            <rect key="frame" x="0.0" y="150" width="352" height="20"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TKK-is-ROX">
                                                                     <rect key="frame" x="-2" y="4" width="116" height="13"/>
@@ -163,7 +164,7 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JYx-Sc-lao">
-                                                            <rect key="frame" x="-2" y="98" width="281" height="18"/>
+                                                            <rect key="frame" x="-2" y="123" width="281" height="18"/>
                                                             <buttonCell key="cell" type="check" title="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2iT-lY-Scx" userLabel="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
@@ -173,7 +174,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DXg-Ha-7zY">
-                                                            <rect key="frame" x="-2" y="73" width="228" height="18"/>
+                                                            <rect key="frame" x="-2" y="98" width="228" height="18"/>
                                                             <buttonCell key="cell" type="check" title="완성되지 않은 낱자 자동 교정 (모아치기)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HZu-6J-gbz">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
@@ -183,7 +184,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AHr-Ou-hBi">
-                                                            <rect key="frame" x="-2" y="48" width="300" height="18"/>
+                                                            <rect key="frame" x="-2" y="73" width="300" height="18"/>
                                                             <buttonCell key="cell" type="check" title="두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Phf-eg-t0A">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
@@ -193,7 +194,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-3z-VAl" userLabel="Strict Combination">
-                                                            <rect key="frame" x="-2" y="23" width="108" height="18"/>
+                                                            <rect key="frame" x="-2" y="48" width="108" height="18"/>
                                                             <buttonCell key="cell" type="check" title="세벌식 정석 강요" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cQP-uo-ggW" userLabel="세벌식 종성 결합 허용하지 않음">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
@@ -203,13 +204,23 @@
                                                             </connections>
                                                         </button>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
-                                                            <rect key="frame" x="-2" y="-2" width="232" height="18"/>
+                                                            <rect key="frame" x="-2" y="23" width="232" height="18"/>
                                                             <buttonCell key="cell" type="check" title="Esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="romanModeByEscapeKeyValueChanged:" target="DMm-2g-KCR" id="CNF-QS-ke4"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wcU-fG-o83">
+                                                            <rect key="frame" x="-2" y="-2" width="224" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="이모지를 한자보다 우선적으로 보여주기" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bTX-ro-cDE">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="emojiOverHanjaValueChanged:" target="DMm-2g-KCR" id="hhB-oO-adA"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -226,8 +237,10 @@
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
+                                                        <integer value="1000"/>
                                                     </visibilityPriorities>
                                                     <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
@@ -457,6 +470,7 @@
         </window>
         <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
+                <outlet property="emojiOverHanjaButton" destination="wcU-fG-o83" id="vvb-Fh-IeP"/>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
                 <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
                 <outlet property="hangulNonChoseongCombinationButton" destination="AHr-Ou-hBi" id="A1C-aF-9IN"/>
