@@ -8,8 +8,8 @@
 
 import Carbon
 import Cocoa
-import Hangul
 import Fuse
+import Hangul
 
 let DEBUG_SEARCH_COMPOSER = false
 

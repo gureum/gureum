@@ -8,7 +8,7 @@
 
 import UIKit
 
-var _UIActivityIndicatorViewAnimatedCounters = Dictionary<UIActivityIndicatorView, Int>()
+var _UIActivityIndicatorViewAnimatedCounters = [UIActivityIndicatorView: Int]()
 
 extension UIActivityIndicatorView {
     var _animatingCount: Int {
@@ -37,7 +37,7 @@ extension UIActivityIndicatorView {
     }
 }
 
-var _UIWindowActivityIndicatorViews = Dictionary<UIWindow, UIActivityIndicatorView>()
+var _UIWindowActivityIndicatorViews = [UIWindow: UIActivityIndicatorView]()
 
 func UIActivityIndicatorViewForWindow(window: UIWindow) -> UIActivityIndicatorView {
     let indicator_ = _UIWindowActivityIndicatorViews[window]

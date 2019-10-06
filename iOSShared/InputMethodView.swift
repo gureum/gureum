@@ -10,7 +10,7 @@ import UIKit
 
 class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var collections: [KeyboardLayoutCollection] = []
-    var layoutNames: Array<String> = []
+    var layoutNames: [String] = []
     var theme: Theme = {
         var theme: Theme = preferences.theme
         if theme.dataForFilename(name: "config.json") == nil {
@@ -163,7 +163,7 @@ class InputMethodView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate
         }
     }
 
-    func layoutNamesForKeyboardType(type: UIKeyboardType?) -> Array<String> {
+    func layoutNamesForKeyboardType(type: UIKeyboardType?) -> [String] {
         if let type = type {
             switch type {
             case .asciiCapable:
