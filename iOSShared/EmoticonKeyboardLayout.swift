@@ -80,7 +80,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
     var frequencyHistory = preferences.emoticonHistory
     lazy var favorites: [String] = self.populateFavorites()
     func populateFavorites() -> [String] {
-        let scores = Array(frequencyMap.keys.map({ ($0, self.frequencyMap[$0]!) }))
+        let scores = Array(frequencyMap.keys.map { ($0, self.frequencyMap[$0]!) })
         let sorted = scores.sorted(by: {
             let (text1, score1) = $0
             let (text2, score2) = $1
@@ -91,7 +91,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
             }
         })
 
-        var emoticons: [String] = Array(sorted[0 ..< min(sorted.count, 24)].map({ (emoticon: String, _: UInt) -> String in emoticon }))
+        var emoticons: [String] = Array(sorted[0 ..< min(sorted.count, 24)].map { (emoticon: String, _: UInt) -> String in emoticon })
         for emoticon in frequencyHistory as! [String] {
             if emoticons.contains(emoticon) {
                 continue
@@ -203,15 +203,15 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         if row == 0 {
             return []
         } else {
-            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons.map({ $0 }) + [self.view.deleteButton]
+            return [self.view.nextKeyboardButton] + self.emoticonView.sectionButtons.map { $0 } + [self.view.deleteButton]
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow _: Int) -> [UIButton] {
         return []
     }
 
@@ -269,7 +269,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
         let section = indexPath.section
         if indexPath.row == 0 || indexPath.row == self.tableView(tableView, numberOfRowsInSection: section) - 1 {
             let identifier = "margin"
-            let cell = (tableView.dequeueReusableCell(withIdentifier: identifier)) ?? {
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ?? {
                 let cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
                 cell.backgroundColor = UIColor.clear
                 return cell
@@ -279,7 +279,7 @@ class EmoticonKeyboardLayout: KeyboardLayout, UITableViewDataSource, UITableView
 
         let identifier = "cell_\(section)"
         let numberOfColumns = type(of: self).numbersOfColumns[indexPath.section]
-        let cell = (tableView.dequeueReusableCell(withIdentifier: identifier)) ?? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ?? {
             let cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
             cell.backgroundColor = UIColor.clear
             for _ in 0 ..< numberOfColumns {

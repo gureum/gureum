@@ -9,6 +9,7 @@ target 'OSXCore' do
     pod 'SwiftIOKit'
     pod 'SwiftCarbon'
     pod 'SwiftCoreServices'
+    pod 'Fuse'
 end
 target 'OSX' do
     project 'Gureum.xcodeproj'

@@ -19,7 +19,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 
     var themePath = preferences.themePath
 
-    var entries: Array<Dictionary<String, Any>> = []
+    var entries: [[String: Any]] = []
 
     func loadEntries() {
         let url = NSURL(string: "http://w.youknowone.org/gureum/shop-preview.json")!
@@ -27,7 +27,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
             return
         }
 
-        guard let items = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! Array<Dictionary<String, Any>> else {
+        guard let items = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [[String: Any]] else {
             assert(false)
             return
         }
@@ -86,7 +86,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
         if entries.count > 0 {
             let sub: Any? = entries[section]["items"]
             assert(sub != nil)
-            let items = sub! as! Array<Any>
+            let items = sub! as! [Any]
             return items.count
         } else {
             return 0
@@ -122,7 +122,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sub: Any? = entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub! as! Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub! as! [[String: String]])[indexPath.row]
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? {
             cell.textLabel?.text = item["title"]
@@ -150,7 +150,7 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sub: Any? = entries[indexPath.section]["items"]
         assert(sub != nil)
-        let item = (sub as! Array<Dictionary<String, String>>)[indexPath.row]
+        let item = (sub as! [[String: String]])[indexPath.row]
         themePath = item["addr"]!
 
         readyTheme()
@@ -174,23 +174,23 @@ class ThemeViewController: PreviewViewController, UITableViewDataSource, UITable
 }
 
 // nested function cause swiftc fault
-func collectResources(node: Any!) -> Dictionary<String, Bool> {
+func collectResources(node: Any!) -> [String: Bool] {
     // println("\(node)")
     if node is String {
         let str = node as! String
         return [str: true]
-    } else if node is Dictionary<String, Any> {
-        var resources: Dictionary<String, Bool> = [:]
-        for subnode in (node as! Dictionary<String, Any>).values {
+    } else if node is [String: Any] {
+        var resources: [String: Bool] = [:]
+        for subnode in (node as! [String: Any]).values {
             let collection = collectResources(node: subnode)
             for collected in collection.keys {
                 resources[collected] = true
             }
         }
         return resources
-    } else if node is Array<Any> {
-        var resources: Dictionary<String, Bool> = [:]
-        for subnode in node as! Array<Any> {
+    } else if node is [Any] {
+        var resources: [String: Bool] = [:]
+        for subnode in node as! [Any] {
             let collection = collectResources(node: subnode)
             for collected in collection.keys {
                 resources[collected] = true
@@ -260,7 +260,7 @@ extension Theme {
 
     func dumpData() -> [String: String] {
         let traitsConfiguration = mainConfiguration["trait"] as! NSDictionary?
-        var resources = Dictionary<String, String>()
+        var resources = [String: String]()
         assert(traitsConfiguration != nil, "config.json에서 trait 속성을 찾을 수 없습니다.")
         for traitFilename in traitsConfiguration!.allValues {
             let datastr = encodedDataForFilename(filename: traitFilename as! String)

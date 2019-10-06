@@ -18,7 +18,7 @@ class Preferences {
         return result
     }
 
-    func getArrayForKey(key: String, defaultValue: Array<Any>) -> Array<Any> {
+    func getArrayForKey(key: String, defaultValue: [Any]) -> [Any] {
         if let object = self.defaults.array(forKey: key) {
             if object.count == 0 {
                 return defaultValue

@@ -121,8 +121,8 @@ public class ThemeTrait {
     let configuration: NSDictionary!
     weak var owner: Theme!
     let topMargin: CGFloat
-    var _captions: Dictionary<String, ThemeCaption> = [:]
-    var _captionClasses: Dictionary<String, ThemeCaptionClass> = [:]
+    var _captions: [String: ThemeCaption] = [:]
+    var _captionClasses: [String: ThemeCaptionClass] = [:]
 
     init(owner: Theme, configuration: Any?, topMargin: CGFloat) {
         self.owner = owner
@@ -201,20 +201,20 @@ public class ThemeCaptionClass {
 
     init(trait: ThemeTrait, configuration: Any?) {
         self.trait = trait
-        var given: Any = configuration ?? Dictionary<String, Any>()
+        var given: Any = configuration ?? [String: Any]()
         var full: [String: Any] = [
-            "image": Array<String>(),
-            "label": Dictionary<String, Any>(),
+            "image": [String](),
+            "label": [String: Any](),
         ]
 
         if given is String {
             var sub: Any? = full["image"]
-            var image = sub as! Array<NSString>
+            var image = sub as! [NSString]
             image.append(given as! NSString)
         } else if given is [String?] {
             full["image"] = configuration
             var sub: Any? = full["image"]
-            var image = sub as! Array<NSString>
+            var image = sub as! [NSString]
         } else {
             full = given as! [String: Any?]
         }
@@ -230,13 +230,13 @@ public class ThemeCaptionClass {
         }
     }
 
-    lazy var backgroundConfiguration: Dictionary<String, Any> = self.configuration["background"] as? Dictionary<String, Any> ?? [:]
+    lazy var backgroundConfiguration: [String: Any] = self.configuration["background"] as? [String: Any] ?? [:]
 
-    lazy var labelConfiguration: Dictionary<String, Any> = self.configuration["label"] as? Dictionary<String, Any> ?? [:]
+    lazy var labelConfiguration: [String: Any] = self.configuration["label"] as? [String: Any] ?? [:]
 
-    lazy var fontConfiguration: Dictionary<String, Any> = self.labelConfiguration["font"] as? Dictionary<String, Any> ?? [:]
+    lazy var fontConfiguration: [String: Any] = self.labelConfiguration["font"] as? [String: Any] ?? [:]
 
-    lazy var effectConfiguration: Dictionary<String, Any> = self.configuration["effect"] as? Dictionary<String, Any> ?? [:]
+    lazy var effectConfiguration: [String: Any] = self.configuration["effect"] as? [String: Any] ?? [:]
 }
 
 public class ThemeCaptionGroup {

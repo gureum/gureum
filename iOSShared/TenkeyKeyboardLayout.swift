@@ -148,7 +148,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         return size.width / 5
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 0:
             return [self.tenkeyView.numberButton]
@@ -164,7 +164,7 @@ class TenkeyKeyboardLayout: KeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 0:
             return [self.tenkeyView.deleteButton]

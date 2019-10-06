@@ -49,7 +49,7 @@ class StoreItem {
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
     var entries: [[String: Any]] = []
-    var products: Dictionary<String, SKProduct> = [:]
+    var products: [String: SKProduct] = [:]
 
     override init() {
         super.init()
@@ -122,7 +122,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 print("InAppPurchase SKPaymentTransactionStatePurchasing")
                 let alertView = UIAlertView(title: "구매를 시도합니다", message: "", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "other...")
                 alertView.show()
-                break
             /// < 구매 완료
             case .purchased:
                 print("InAppPurchase SKPaymentTransactionStatePurchased")

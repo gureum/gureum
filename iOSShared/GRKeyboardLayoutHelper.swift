@@ -20,8 +20,8 @@ protocol GRKeyboardLayoutHelperDelegate: class {
     func helper(helper: GRKeyboardLayoutHelper, numberOfColumnsInRow: Int) -> Int
     func helper(helper: GRKeyboardLayoutHelper, heightOfRow: Int, forSize: CGSize) -> CGFloat
     func helper(helper: GRKeyboardLayoutHelper, columnWidthInRow: Int, forSize: CGSize) -> CGFloat
-    func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow: Int) -> Array<UIButton>
-    func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow: Int) -> Array<UIButton>
+    func helper(helper: GRKeyboardLayoutHelper, leftButtonsForRow: Int) -> [UIButton]
+    func helper(helper: GRKeyboardLayoutHelper, rightButtonsForRow: Int) -> [UIButton]
 
     func helper(helper: GRKeyboardLayoutHelper, buttonForPosition: GRKeyboardLayoutHelper.Position) -> GRInputButton
     func helper(helper: GRKeyboardLayoutHelper, titleForPosition: GRKeyboardLayoutHelper.Position) -> String
@@ -104,7 +104,7 @@ class GRKeyboardLayoutHelper {
             let theme = delegate.theme(helper: self)
 
             var rowHeightSum: CGFloat = 0.0
-            var columnWidthSums = Array<CGFloat>()
+            var columnWidthSums = [CGFloat]()
 
             let insets = delegate.insetsForHelper(helper: self)
             let insetFrame = UIEdgeInsetsInsetRect(rect, insets)

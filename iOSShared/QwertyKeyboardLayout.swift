@@ -360,7 +360,7 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return [self.qwertyView.leftSpaceButton]
@@ -377,7 +377,7 @@ class QwertyKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return [self.qwertyView.rightSpaceButton]
@@ -443,7 +443,7 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return []
@@ -460,7 +460,7 @@ class QwertySymbolKeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return []
@@ -538,7 +538,7 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return [self.qwertyView.leftSpaceButton]
@@ -555,7 +555,7 @@ class KSX5002KeyboardLayout: QwertyBaseKeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 1:
             return [self.qwertyView.rightSpaceButton]
@@ -607,7 +607,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, leftButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 2:
             assert(qwertyView.shiftButton != nil)
@@ -622,7 +622,7 @@ class DanmoumKeyboardLayout: KSX5002KeyboardLayout {
         }
     }
 
-    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> Array<UIButton> {
+    override func helper(helper _: GRKeyboardLayoutHelper, rightButtonsForRow row: Int) -> [UIButton] {
         switch row {
         case 2:
             assert(view.deleteButton != nil)
