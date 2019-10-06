@@ -124,7 +124,6 @@ class IOKitty {
             if pressed {
                 _self.rightGuiPressedCount += 1
                 dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
-                try? _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
             }
             
         }, context: _self.toOpaque())
