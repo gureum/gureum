@@ -336,9 +336,7 @@ private extension SearchComposer {
         dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
 
         var candidates = [String]()
-        let tables = keyword.count == 1
-            ? [HanjaTable.msSymbol, HanjaTable.character, HanjaTable.emojiKorean]
-            : [HanjaTable.word, HanjaTable.reversed, HanjaTable.emojiKorean]
+        let tables = searchHanjaTables(withKeywordCount: keyword.count)
         let exactSearchPool = HanjaTableSearchPool(tables: tables, method: .exact)
         let prefixSearchPool = HanjaTableSearchPool(tables: tables, method: .prefix)
         let exactResult = exactSearchPool.candidates(matching: keyword)
@@ -359,6 +357,23 @@ private extension SearchComposer {
 
         candidates.append(keyword)
         return candidates.map { NSAttributedString(string: $0) }
+    }
+
+    func searchHanjaTables(withKeywordCount count: Int) -> [HGHanjaTable] {
+        var tables = [HGHanjaTable]()
+
+        if count == 1 {
+            tables = [HanjaTable.msSymbol, HanjaTable.character]
+        } else {
+            tables = [HanjaTable.word, HanjaTable.reversed]
+        }
+
+        if Configuration.shared.emojiOverHanja {
+            tables.insert(HanjaTable.emojiKorean, at: 0)
+        } else {
+            tables.append(HanjaTable.emojiKorean)
+        }
+        return tables
     }
 }
 
