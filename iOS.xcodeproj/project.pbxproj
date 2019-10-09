@@ -72,6 +72,7 @@
 		38D9A395199B7F8A0087A965 /* default in Resources */ = {isa = PBXBuildFile; fileRef = 38D9A394199B7F8A0087A965 /* default */; };
 		63308B9956045FBCF78F4172 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D588A7F09C93311122F32A31 /* Pods_App.framework */; };
 		89E5B7EF8F47FFBCBB4D5A8B /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED2B95A0390214D67DCA8BD /* Pods_iOS.framework */; };
+		CEAFC23C234DC377000DBC4B /* iOSApp in Resources */ = {isa = PBXBuildFile; fileRef = CEAFC23A234DC377000DBC4B /* iOSApp */; };
 		E50A76C798A63ADE55718E7B /* Pods_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6071571F5F30B10ADFA3281 /* Pods_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,7 @@
 		7D1F3ED1266694BD441611D7 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8395526EE9D8DAF4200A5B40 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		B6071571F5F30B10ADFA3281 /* Pods_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEAFC23A234DC377000DBC4B /* iOSApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iOSApp; sourceTree = "<group>"; };
 		D1CABEEBED4D133157D77D7C /* Pods-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D588A7F09C93311122F32A31 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -300,6 +302,7 @@
 				388802F32145309B0050DEE8 /* QuickHelperViewController2.swift */,
 				388802F42145309C0050DEE8 /* StaticWebViewController.swift */,
 				3882BA02193F9E6600076C26 /* Images.xcassets */,
+				CEAFC23A234DC377000DBC4B /* iOSApp */,
 				380136AD199C67F200355D69 /* help */,
 				3882B9F9193F9E6600076C26 /* Supporting Files */,
 			);
@@ -574,6 +577,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAFC23C234DC377000DBC4B /* iOSApp in Resources */,
 				38880317214565090050DEE8 /* emoticon.json in Resources */,
 				388802E321452F280050DEE8 /* NumpadLayout.xib in Resources */,
 				388802E921452F3B0050DEE8 /* EmoticonLayout.xib in Resources */,
