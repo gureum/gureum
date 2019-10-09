@@ -44,7 +44,7 @@ class TestViewController: NSViewController {
             assert(self.inputController != nil)
             assert(self.inputClient != nil)
             guard event.type == .keyDown else {
-                _ = self.inputController.handle(event, client: self.inputClient)
+                _ = self.inputController.handle(event, client: self.inputClient!)
                 return nil
             }
             guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else { return nil }
@@ -56,7 +56,7 @@ class TestViewController: NSViewController {
                 self.inputClient.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
                 return nil
             }
-            let processed = self.inputController.handle(event, client: self.inputClient)
+            let processed = self.inputController.handle(event, client: self.inputClient!)
             if processed {
                 // self.inputController.updateComposition()
                 return nil
