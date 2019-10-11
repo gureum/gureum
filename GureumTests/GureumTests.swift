@@ -648,6 +648,17 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testSearchPool() {
+        for (pool, key, test) in [
+            (SearchSourceConst.emojiKorean, "사과", "사과"),
+            (SearchSourceConst.hanjaReversed, "물 수", "水"),
+        ] {
+            let candidates = pool.collect(key)
+            let c = candidates[0]
+            XCTAssertTrue(c.candidate == test || c.description.contains(test))
+        }
+    }
+
 //    func testSelection() {
 //        for app in apps {
 //            app.client.string = "한"
