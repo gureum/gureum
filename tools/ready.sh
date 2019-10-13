@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail
 
 SCRIPT_DIR="$(dirname "$0")"
 cd "${SCRIPT_DIR}/.." || exit $?
@@ -16,7 +17,7 @@ fi
 
 echo "Configuration: ${CONFIGURATION}"
 
-xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}"
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}") || exit $?
 # shellcheck disable=1090
 . "${TMPSCRIPT}" > /dev/null 2>&1
 rm "${TMPSCRIPT}"

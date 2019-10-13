@@ -21,24 +21,6 @@ extension HGHanjaList: Sequence {
     }
 }
 
-// MARK: - HanjaTable 열거형
-
-/// 한자 테이블을 정리한 열거형.
-enum HanjaTable {
-    private static let hangulBundle = Bundle(for: HGKeyboard.self)
-    /// 한자 문자를 모아 놓은 테이블.
-    static let character = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjac", ofType: "txt", inDirectory: "hanja")!)!
-    /// 한자 단어를 모아 놓은 테이블.
-    static let word = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjaw", ofType: "txt", inDirectory: "hanja")!)!
-    /// 한자 뜻을 모아 놓은 테이블.
-    static let reversed = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "hanjar", ofType: "txt", inDirectory: "hanja")!)!
-    static let msSymbol = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "mssymbol", ofType: "txt", inDirectory: "hanja")!)!
-    /// 한국어로 연결되는 이모지를 모아 놓은 테이블.
-    static let emojiKorean = HGHanjaTable(contentOfFile: hangulBundle.path(forResource: "emoji_ko", ofType: "txt", inDirectory: "hanja")!)!
-    /// 로마자로 연결되는 이모지를 모아 놓은 테이블.
-    static let emoji = try! String(contentsOfFile: hangulBundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")!, encoding: .utf8).components(separatedBy: .newlines)
-}
-
 // MARK: - SearchComposer 클래스
 
 /// 문자를 검색하여 입력하는 합성기 오브젝트.
@@ -335,28 +317,10 @@ private extension SearchComposer {
 
         dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
 
-        var candidates = [String]()
-        let tables = searchHanjaTables(withKeywordCount: keyword.count)
-        let exactSearchPool = HanjaTableSearchPool(tables: tables, method: .exact)
-        let prefixSearchPool = HanjaTableSearchPool(tables: tables, method: .prefix)
-        let exactResult = exactSearchPool.candidates(matching: keyword)
-        let prefixResult = prefixSearchPool.candidates(matching: keyword)
-        let exactResultCandidates = exactResult.candidates
-        var prefixResultCandidates = prefixResult.candidates
-        candidates.append(contentsOf: exactResultCandidates)
+        let pool = keyword.count == 1
+            ? SearchSourceConst.koreanSingle : SearchSourceConst.korean
 
-        // TODO: 중복 제거 로직 개선
-        exactResultCandidates.forEach { // O(n)
-            if let index = prefixResultCandidates.firstIndex(of: $0) { // O(n)
-                prefixResultCandidates.remove(at: index) // O(n)
-            }
-        }
-        candidates.append(contentsOf: prefixResultCandidates)
-
-        // TODO: fuzzy search
-
-        candidates.append(keyword)
-        return candidates.map { NSAttributedString(string: $0) }
+        return pool.search(keyword)
     }
 
     func searchHanjaTables(withKeywordCount count: Int) -> [HGHanjaTable] {
@@ -399,26 +363,7 @@ private extension SearchComposer {
         if keyword.isEmpty {
             _candidates = nil
         } else {
-            let loweredKeyword = keyword.lowercased() // case insensitive searching
-            _candidates = []
-            let fuse = Fuse(threshold: 0.2)
-            for table in [HanjaTable.emoji] {
-                dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 3, DelegatedComposer.updateEmojiCandidates() before hanjasByPrefixSearching")
-                dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 4, DelegatedComposer.updateEmojiCandidates() [keyword: %@]", loweredKeyword)
-                dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 14, DelegatedComposer.updateEmojiCandidates() %@", HanjaTable.emoji.debugDescription)
-                let searchResult = fuse.search(keyword, in: table)
-                // change searchResult(index, score, ranges) to candidate(emoticon, comment)
-                dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 5, DelegatedComposer.updateEmojiCandidates() after hanjasByPrefixSearching")
-                if searchResult.count <= 0 {
-                    break
-                }
-                for result in searchResult {
-                    let emoticonLine: String = table[result.index]
-                    let emoticon: String = String(emoticonLine.split(separator: ":")[1])
-                    let comment: String = String(emoticonLine.split(separator: ":")[0])
-                    _candidates!.append(NSAttributedString(string: emoticon + ": " + comment))
-                }
-            }
+            _candidates = SearchSourceConst.emoji.search(keyword)
         }
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 2, DelegatedComposer.updateEmojiCandidates() %@", _candidates ?? [])
     }
