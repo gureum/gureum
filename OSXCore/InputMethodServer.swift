@@ -114,6 +114,9 @@ class IOKitty {
         
         rightGuiManager.registerInputValueCallback({
             inContext, _, _, value in
+            guard Configuration.shared.switchLanguageForRightGui else {
+                return
+            }
             guard let inContext = inContext else {
                 dlog(true, "IOKit callback inContext is nil - impossible")
                 return

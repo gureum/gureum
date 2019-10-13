@@ -39,6 +39,8 @@ enum ConfigurationName {
     static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
     /// 세벌식 정석 강요.
     static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
+    /// 우측 커맨드 키로 언어 전환
+    static let switchLanguageForRightGui = "SwitchLanguageForRightGui"
 }
 
 // MARK: - Configuration 클래스
@@ -84,6 +86,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
+            ConfigurationName.switchLanguageForRightGui: false
         ])
     }
 
@@ -222,6 +225,16 @@ public class Configuration: UserDefaults {
         }
         set {
             `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
+        }
+    }
+    
+    /// 우측 커맨드 키로 언어 전환
+    var switchLanguageForRightGui: Bool {
+        get {
+            return bool(forKey: ConfigurationName.switchLanguageForRightGui)
+        }
+        set {
+            `set`(newValue, forKey: ConfigurationName.switchLanguageForRightGui)
         }
     }
 }
