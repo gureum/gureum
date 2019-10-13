@@ -1408,7 +1408,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1431,7 +1430,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1541,7 +1539,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1572,7 +1569,6 @@
 				PRODUCT_NAME = GureumCore;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1727,7 +1723,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
-				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1760,7 +1755,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.youknowone.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = GureumTests/Bridge.h;
-				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
