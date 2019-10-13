@@ -322,23 +322,6 @@ private extension SearchComposer {
 
         return pool.search(keyword)
     }
-
-    func searchHanjaTables(withKeywordCount count: Int) -> [HGHanjaTable] {
-        var tables = [HGHanjaTable]()
-
-        if count == 1 {
-            tables = [HanjaTable.msSymbol, HanjaTable.character]
-        } else {
-            tables = [HanjaTable.word, HanjaTable.reversed]
-        }
-
-        if Configuration.shared.emojiOverHanja {
-            tables.insert(HanjaTable.emojiKorean, at: 0)
-        } else {
-            tables.append(HanjaTable.emojiKorean)
-        }
-        return tables
-    }
 }
 
 // MARK: - SearchComposer 로마자 합성기 의존시 전용 메소드
