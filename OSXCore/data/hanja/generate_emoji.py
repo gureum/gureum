@@ -179,10 +179,10 @@ if __name__ == '__main__':
     ko_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotations/ko.xml"
     ko_d_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotationsDerived/ko.xml"
 
-    download(ko_url, f"{tag}.ko_annotations.xml")
-    download(ko_d_url, f"{tag}.ko_annotations_derived.xml")
+    download(ko_url, f"ko_annotations.{tag}.xml")
+    download(ko_d_url, f"ko_annotations_derived.{tag}.xml")
 
-    ko_emoji_files = [f'{tag}.ko_annotations.xml', f'{tag}.ko_annotations_derived.xml']
+    ko_emoji_files = [f'ko_annotations.{tag}.xml', f'ko_annotations_derived.{tag}.xml']
     generate_ko_emoji(ko_emoji_files)
 
     unittest.main(exit=False)
