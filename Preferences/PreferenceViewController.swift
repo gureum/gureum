@@ -27,6 +27,8 @@ final class PreferenceViewController: NSViewController {
     @IBOutlet private var hangulForceStrictCombinationRuleButton: NSButton!
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     @IBOutlet private var romanModeByEscapeKeyButton: NSButton!
+    /// 이모지를 한자보다 우선적으로 보여주기.
+    @IBOutlet private var emojiOverHanjaButton: NSButton!
 
     /// 입력기 바꾸기 단축키.
     @IBOutlet private var inputModeExchangeShortcutView: MASShortcutView!
@@ -70,6 +72,7 @@ final class PreferenceViewController: NSViewController {
         hangulAutoReorderButton.state = isOn(configuration.hangulAutoReorder)
         hangulNonChoseongCombinationButton.state = isOn(configuration.hangulNonChoseongCombination)
         hangulForceStrictCombinationRuleButton.state = isOn(configuration.hangulForceStrictCombinationRule)
+        emojiOverHanjaButton.state = isOn(configuration.emojiOverHanja)
         if (0 ..< optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
             optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
         }
@@ -130,6 +133,10 @@ final class PreferenceViewController: NSViewController {
 
     @IBAction private func hangulForceStrictCombinationRuleValueChanged(_ sender: NSButton) {
         configuration.hangulForceStrictCombinationRule = sender.state == .on
+    }
+
+    @IBAction private func emojiOverHanjaValueChanged(_ sender: NSButton) {
+        configuration.emojiOverHanja = sender.state == .on
     }
 }
 

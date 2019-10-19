@@ -194,7 +194,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-3z-VAl" userLabel="Strict Combination">
-                                                            <rect key="frame" x="-2" y="23" width="108" height="18"/>
+                                                            <rect key="frame" x="-2" y="48" width="108" height="18"/>
                                                             <buttonCell key="cell" type="check" title="세벌식 정석 강요" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cQP-uo-ggW" userLabel="세벌식 종성 결합 허용하지 않음">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
@@ -204,13 +204,23 @@
                                                             </connections>
                                                         </button>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjk-Ru-yFr">
-                                                            <rect key="frame" x="-2" y="-2" width="232" height="18"/>
+                                                            <rect key="frame" x="-2" y="23" width="232" height="18"/>
                                                             <buttonCell key="cell" type="check" title="Esc 키로 로마자 자판으로 전환 (vi 모드)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYM-mR-7hZ">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="romanModeByEscapeKeyValueChanged:" target="DMm-2g-KCR" id="CNF-QS-ke4"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wcU-fG-o83">
+                                                            <rect key="frame" x="-2" y="-2" width="224" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="이모지를 한자보다 우선적으로 보여주기" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bTX-ro-cDE">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="emojiOverHanjaValueChanged:" target="DMm-2g-KCR" id="hhB-oO-adA"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -227,8 +237,10 @@
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
+                                                        <integer value="1000"/>
                                                     </visibilityPriorities>
                                                     <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
@@ -458,6 +470,7 @@
         </window>
         <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences" customModuleProvider="target">
             <connections>
+                <outlet property="emojiOverHanjaButton" destination="wcU-fG-o83" id="vvb-Fh-IeP"/>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
                 <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
                 <outlet property="hangulNonChoseongCombinationButton" destination="AHr-Ou-hBi" id="A1C-aF-9IN"/>
