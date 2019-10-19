@@ -149,7 +149,7 @@ final class FuseSearchSource: SearchSource {
         return searchResult.map {
             result in
             let word = source[result.index]
-            return (word.completion, word.description, result.score + 0.01 * Double(word.description.count))
+            return (word.completion, word.description, result.score + 0.0085 * Double(word.description.count))
         }
     }
 }
