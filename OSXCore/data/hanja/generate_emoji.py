@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import logging
 
 import unittest
+import requests
 
 
 data = []
@@ -167,8 +168,21 @@ class TestGenerateemoji(unittest.TestCase):
         self.assertEqual(desc, 'man swimming; light skin tone')
 
 
+def download(url, file_name):
+    with open(file_name, "wb") as file:
+        response = requests.get(url)
+        file.write(response.content)
+
+
 if __name__ == '__main__':
-    ko_emoji_files = ['ko_annotations.xml', 'ko_annotations_derived.xml']
+    tag = 'release-36'
+    ko_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotations/ko.xml"
+    ko_d_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotationsDerived/ko.xml"
+
+    download(ko_url, f"ko_annotations.{tag}.xml")
+    download(ko_d_url, f"ko_annotations_derived.{tag}.xml")
+
+    ko_emoji_files = [f'ko_annotations.{tag}.xml', f'ko_annotations_derived.{tag}.xml']
     generate_ko_emoji(ko_emoji_files)
 
     unittest.main(exit=False)
