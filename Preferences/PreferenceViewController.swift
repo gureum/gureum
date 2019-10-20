@@ -134,7 +134,7 @@ final class PreferenceViewController: NSViewController {
     @IBAction private func hangulForceStrictCombinationRuleValueChanged(_ sender: NSButton) {
         configuration.hangulForceStrictCombinationRule = sender.state == .on
     }
-    
+
     @IBAction private func switchLanguageForRightGuiValueChanged(_ sender: NSButton) {
         configuration.switchLanguageForRightGui = sender.state == .on
     }

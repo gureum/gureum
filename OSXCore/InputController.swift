@@ -143,7 +143,7 @@ public extension InputController { // IMKServerInputHandleEvent
                     (sender as! IMKTextInput).selectMode(receiver.composer.inputMode)
                 }
             }
-            
+
             if InputMethodServer.shared.io.resolveRightGuiPressed() {
                 let result = receiver.input(event: .changeLayout(.toggleByRightGui, true), client: client)
                 dlog(DEBUG_IOKIT_EVENT, "controller detected right gui")

@@ -86,7 +86,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
-            ConfigurationName.switchLanguageForRightGui: false
+            ConfigurationName.switchLanguageForRightGui: false,
         ])
     }
 
@@ -227,7 +227,7 @@ public class Configuration: UserDefaults {
             `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
     }
-    
+
     /// 우측 커맨드 키로 언어 전환
     var switchLanguageForRightGui: Bool {
         get {

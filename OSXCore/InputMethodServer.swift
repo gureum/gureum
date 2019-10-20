@@ -111,7 +111,7 @@ class IOKitty {
         if r != kIOReturnSuccess {
             dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
         }
-        
+
         rightGuiManager.registerInputValueCallback({
             inContext, _, _, value in
             guard Configuration.shared.switchLanguageForRightGui else {
@@ -128,9 +128,9 @@ class IOKitty {
                 _self.rightGuiPressed = true
                 dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
             }
-            
+
         }, context: _self.toOpaque())
-        
+
         rightGuiManager.schedule(runloop: .current, mode: .default)
         if rightGuiManager.open() != kIOReturnSuccess {
             dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
@@ -156,9 +156,9 @@ class IOKitty {
         dlog(DEBUG_IOKIT_EVENT, "  triggered: interval \(interval)")
         return interval < 0.5
     }
-    
+
     func resolveRightGuiPressed() -> Bool {
-        if (!rightGuiPressed) {
+        if !rightGuiPressed {
             return false
         }
         rightGuiPressed = false
