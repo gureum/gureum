@@ -345,6 +345,7 @@ private extension SearchComposer {
         _composedString = originalString
         let keyword = originalString
 
+        dlog(DEBUG_SEARCH_COMPOSER, "Candidates before search, %@", _candidates ?? "nil")
         if !_searchWorkItem.isCancelled {
             _searchWorkItem.cancel()
         }
@@ -361,6 +362,6 @@ private extension SearchComposer {
         } else {
             queue.async(execute: _searchWorkItem)
         }
-        dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 2, DelegatedComposer.updateEmojiCandidates() %@", _candidates ?? [])
+        dlog(DEBUG_SEARCH_COMPOSER, "Candidates after search, %@", _candidates ?? "nil")
     }
 }
