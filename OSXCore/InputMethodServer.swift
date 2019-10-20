@@ -51,7 +51,7 @@ class IOKitty {
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
     var rollback: (() -> Void)?
-    var rightGuiPressedCount = 0
+    var rightGuiPressed = false
 
     init?() {
         guard let _service = SIOService(name: kIOHIDSystemClass) else {
@@ -125,7 +125,7 @@ class IOKitty {
             dlog(DEBUG_IOKIT_EVENT, "right gui pressed: \(pressed)")
             let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
             if pressed {
-                _self.rightGuiPressedCount += 1
+                _self.rightGuiPressed = true
                 dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
             }
             
@@ -158,10 +158,10 @@ class IOKitty {
     }
     
     func resolveRightGuiPressed() -> Bool {
-        if (rightGuiPressedCount == 0) {
+        if (!rightGuiPressed) {
             return false
         }
-        rightGuiPressedCount -= 1
+        rightGuiPressed = false
         return true
     }
 }
