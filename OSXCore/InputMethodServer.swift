@@ -47,7 +47,6 @@ class IOKitty {
     let service: SIOService
     let connect: SIOConnect
     let manager: IOHIDManager
-    let rightGuiManager: IOHIDManager
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
     var rollback: (() -> Void)?
@@ -67,17 +66,17 @@ class IOKitty {
 
         manager = IOHIDManager.create()
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
-        manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
-
-        rightGuiManager = IOHIDManager.create()
-        rightGuiManager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
-        rightGuiManager.setInputValueMatching(min: kHIDUsage_KeyboardRightGUI, max: kHIDUsage_KeyboardRightGUI)
+        manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardRightGUI)
 
         let _self = Unmanaged.passUnretained(self)
         // Set input value callback
         manager.registerInputValueCallback({
             inContext, _, _, value in
-            guard Configuration.shared.enableCapslockToToggleInputMode else {
+            let usage = Int(value.element.usage)
+            guard usage == kHIDUsage_KeyboardCapsLock || usage == kHIDUsage_KeyboardRightGUI else {
+                return
+            }
+            guard Configuration.shared.enableCapslockToToggleInputMode || Configuration.shared.switchLanguageForRightGui else {
                 return
             }
             guard let inContext = inContext else {
@@ -86,22 +85,40 @@ class IOKitty {
             }
 
             let pressed = value.integerValue > 0
-            dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
-            let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
-            if pressed {
-                _self.capsLockDate = Date()
-                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
-            } else {
-                if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
-                    // long pressed
-                    _self.defaultCapsLockState = !_self.defaultCapsLockState
-                    _self.rollback?()
-                    _self.rollback = nil
-                } else {
-                    // short pressed
-                    _ = _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
-                    _self.capsLockDate = nil
+            switch usage {
+            case kHIDUsage_KeyboardCapsLock:
+                guard Configuration.shared.enableCapslockToToggleInputMode else {
+                    return
                 }
+                dlog(DEBUG_IOKIT_EVENT, "caps lock pressed: \(pressed)")
+                let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
+                if pressed {
+                    _self.capsLockDate = Date()
+                    dlog(DEBUG_IOKIT_EVENT, "caps lock pressed set in context")
+                } else {
+                    if _self.defaultCapsLockState || (_self.capsLockDate != nil && !_self.capsLockTriggered) {
+                        // long pressed
+                        _self.defaultCapsLockState = !_self.defaultCapsLockState
+                        _self.rollback?()
+                        _self.rollback = nil
+                    } else {
+                        // short pressed
+                        _ = _self.connect.setModifierLock(selector: .capsLock, state: _self.defaultCapsLockState)
+                        _self.capsLockDate = nil
+                    }
+                }
+            case kHIDUsage_KeyboardRightGUI:
+                guard Configuration.shared.switchLanguageForRightGui else {
+                    return
+                }
+                dlog(DEBUG_IOKIT_EVENT, "right gui pressed: \(pressed)")
+                let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
+                if pressed {
+                    _self.rightGuiPressed = true
+                    dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
+                }
+            default:
+                break
             }
             // NSEvent.otherEvent(with: .applicationDefined, location: .zero, modifierFlags: .capsLock, timestamp: 0, windowNumber: 0, context: nil, subtype: 0, data1: 0, data2: 0)!
         }, context: _self.toOpaque())
@@ -111,30 +128,6 @@ class IOKitty {
         if r != kIOReturnSuccess {
             dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
         }
-
-        rightGuiManager.registerInputValueCallback({
-            inContext, _, _, value in
-            guard Configuration.shared.switchLanguageForRightGui else {
-                return
-            }
-            guard let inContext = inContext else {
-                dlog(true, "IOKit callback inContext is nil - impossible")
-                return
-            }
-            let pressed = value.integerValue > 0
-            dlog(DEBUG_IOKIT_EVENT, "right gui pressed: \(pressed)")
-            let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
-            if pressed {
-                _self.rightGuiPressed = true
-                dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
-            }
-
-        }, context: _self.toOpaque())
-
-        rightGuiManager.schedule(runloop: .current, mode: .default)
-        if rightGuiManager.open() != kIOReturnSuccess {
-            dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
-        }
     }
 
     deinit {
@@ -142,9 +135,6 @@ class IOKitty {
         manager.unregisterInputValueCallback()
         let r = manager.close()
         assert(r == 0)
-        rightGuiManager.unschedule(runloop: .current, mode: .default)
-        rightGuiManager.unregisterInputValueCallback()
-        assert(rightGuiManager.close() == 0)
     }
 
     var capsLockTriggered: Bool {
