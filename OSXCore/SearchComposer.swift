@@ -11,7 +11,7 @@ import Cocoa
 import Fuse
 import Hangul
 
-let DEBUG_SEARCH_COMPOSER = false
+let DEBUG_SEARCH_COMPOSER = true
 
 // MARK: - HGHanjaList 클래스 확장
 
@@ -44,6 +44,7 @@ final class SearchComposer: Composer {
 
     // 검색을 위한 백그라운드 스레드
     private var _searchWorkItem: DispatchWorkItem = DispatchWorkItem {}
+    private var _searchQueue: DispatchQueue = DispatchQueue.global(qos: .userInitiated)
 
     var showsCandidateWindow = true
 
@@ -350,9 +351,8 @@ private extension SearchComposer {
             _searchWorkItem.cancel()
         }
 
-        let queue: DispatchQueue = DispatchQueue(label: "searchCandidates")
         _searchWorkItem = DispatchWorkItem {
-            queue.async {
+            self._searchQueue.async {
                 self._candidates = SearchSourceConst.emoji.search(keyword)
             }
         }
@@ -360,7 +360,7 @@ private extension SearchComposer {
         if keyword.isEmpty {
             _candidates = nil
         } else {
-            queue.async(execute: _searchWorkItem)
+            _searchQueue.async(execute: _searchWorkItem)
         }
         dlog(DEBUG_SEARCH_COMPOSER, "Candidates after search, %@", _candidates ?? "nil")
     }
