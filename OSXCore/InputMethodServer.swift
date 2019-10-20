@@ -47,9 +47,11 @@ class IOKitty {
     let service: SIOService
     let connect: SIOConnect
     let manager: IOHIDManager
+    let rightGuiManager: IOHIDManager
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
     var rollback: (() -> Void)?
+    var rightGuiPressed = false
 
     init?() {
         guard let _service = SIOService(name: kIOHIDSystemClass) else {
@@ -66,6 +68,10 @@ class IOKitty {
         manager = IOHIDManager.create()
         manager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
         manager.setInputValueMatching(min: kHIDUsage_KeyboardCapsLock, max: kHIDUsage_KeyboardCapsLock)
+
+        rightGuiManager = IOHIDManager.create()
+        rightGuiManager.setDeviceMatching(page: kHIDPage_GenericDesktop, usage: kHIDUsage_GD_Keyboard)
+        rightGuiManager.setInputValueMatching(min: kHIDUsage_KeyboardRightGUI, max: kHIDUsage_KeyboardRightGUI)
 
         let _self = Unmanaged.passUnretained(self)
         // Set input value callback
@@ -105,6 +111,30 @@ class IOKitty {
         if r != kIOReturnSuccess {
             dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
         }
+
+        rightGuiManager.registerInputValueCallback({
+            inContext, _, _, value in
+            guard Configuration.shared.switchLanguageForRightGui else {
+                return
+            }
+            guard let inContext = inContext else {
+                dlog(true, "IOKit callback inContext is nil - impossible")
+                return
+            }
+            let pressed = value.integerValue > 0
+            dlog(DEBUG_IOKIT_EVENT, "right gui pressed: \(pressed)")
+            let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
+            if pressed {
+                _self.rightGuiPressed = true
+                dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
+            }
+
+        }, context: _self.toOpaque())
+
+        rightGuiManager.schedule(runloop: .current, mode: .default)
+        if rightGuiManager.open() != kIOReturnSuccess {
+            dlog(DEBUG_IOKIT_EVENT, "IOHIDManagerOpen failed")
+        }
     }
 
     deinit {
@@ -112,6 +142,9 @@ class IOKitty {
         manager.unregisterInputValueCallback()
         let r = manager.close()
         assert(r == 0)
+        rightGuiManager.unschedule(runloop: .current, mode: .default)
+        rightGuiManager.unregisterInputValueCallback()
+        assert(rightGuiManager.close() == 0)
     }
 
     var capsLockTriggered: Bool {
@@ -122,6 +155,14 @@ class IOKitty {
         let interval = Date().timeIntervalSince(capsLockDate)
         dlog(DEBUG_IOKIT_EVENT, "  triggered: interval \(interval)")
         return interval < 0.5
+    }
+
+    func resolveRightGuiPressed() -> Bool {
+        if !rightGuiPressed {
+            return false
+        }
+        rightGuiPressed = false
+        return true
     }
 }
 
