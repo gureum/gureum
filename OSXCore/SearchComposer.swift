@@ -350,10 +350,12 @@ private extension SearchComposer {
         if !_searchWorkItem.isCancelled {
             _searchWorkItem.cancel()
         }
+        _candidates = [NSAttributedString(string: "Searching...")] // default candidates
 
         _searchWorkItem = DispatchWorkItem {
-            self._searchQueue.async {
-                self._candidates = SearchSourceConst.emoji.search(keyword)
+            self._candidates = SearchSourceConst.emoji.search(keyword)
+            DispatchQueue.main.async {
+                InputMethodServer.shared.candidates.update()
             }
         }
 
