@@ -11,7 +11,7 @@ import Cocoa
 import Fuse
 import Hangul
 
-let DEBUG_SEARCH_COMPOSER = true
+let DEBUG_SEARCH_COMPOSER = false
 
 // MARK: - HGHanjaList 클래스 확장
 
