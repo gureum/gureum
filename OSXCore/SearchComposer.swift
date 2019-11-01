@@ -42,6 +42,10 @@ final class SearchComposer: Composer {
     private var _composedString = ""
     private var _commitString = ""
 
+    // 검색을 위한 백그라운드 스레드
+    private var _searchWorkItem: DispatchWorkItem = DispatchWorkItem {}
+    private var _searchQueue: DispatchQueue = DispatchQueue.global(qos: .userInitiated)
+
     var showsCandidateWindow = true
 
     // MARK: 한자 전용 프로퍼티
@@ -342,12 +346,24 @@ private extension SearchComposer {
         _composedString = originalString
         let keyword = originalString
 
-        dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 1, DelegatedComposer.updateEmojiCandidates() %@", originalString)
+        dlog(DEBUG_SEARCH_COMPOSER, "Candidates before search, %@", _candidates ?? "nil")
+        if !_searchWorkItem.isCancelled {
+            _searchWorkItem.cancel()
+        }
+        _candidates = [NSAttributedString(string: "Searching...")] // default candidates
+
+        _searchWorkItem = DispatchWorkItem {
+            self._candidates = SearchSourceConst.emoji.search(keyword)
+            DispatchQueue.main.async {
+                InputMethodServer.shared.candidates.update()
+            }
+        }
+
         if keyword.isEmpty {
             _candidates = nil
         } else {
-            _candidates = SearchSourceConst.emoji.search(keyword)
+            _searchQueue.async(execute: _searchWorkItem)
         }
-        dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 2, DelegatedComposer.updateEmojiCandidates() %@", _candidates ?? [])
+        dlog(DEBUG_SEARCH_COMPOSER, "Candidates after search, %@", _candidates ?? "nil")
     }
 }
