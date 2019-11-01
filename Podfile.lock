@@ -21,7 +21,7 @@ PODS:
   - SwiftCarbon/SwiftCarbon (0.1.0):
     - SwiftCarbon/HIToolbox
   - SwiftCoreServices (0.1.1)
-  - SwiftIOKit (0.1.0)
+  - SwiftIOKit (0.1.2)
 
 DEPENDENCIES:
   - cdebug
@@ -55,8 +55,8 @@ SPEC CHECKSUMS:
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
   SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
-  SwiftIOKit: 9dce3dec67e00dc74b95fde86f257aca78239853
+  SwiftIOKit: 58e9b718109ba7c6681fc45c5888838627df28f1
 
 PODFILE CHECKSUM: bd16d9e213df73a5a491232ac0d601cc5c52a6ff
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.8.4
