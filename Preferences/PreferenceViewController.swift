@@ -94,7 +94,12 @@ final class PreferenceViewController: NSViewController {
     // MARK: IBAction
 
     @IBAction private func openKeyboardPreference(sender _: NSControl) {
-        let myAppleScript = "reveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\""
+        let myAppleScript = [
+            "tell application \"System Preferences\"",
+            "\tactivate",
+            "\treveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\"",
+            "end tell",
+        ].joined(separator: "\n")
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: myAppleScript) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
