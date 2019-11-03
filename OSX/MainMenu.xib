@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -23,6 +23,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showStandardAboutPanel:" target="-1" id="yba-6W-HBg"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="환경설정..." id="b3F-HH-DpK">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferencesWindow:" target="-1" id="yCC-7G-ltn"/>
                     </connections>
                 </menuItem>
                 <menuItem title="업데이트 확인" id="557">
@@ -69,6 +75,7 @@
                     </connections>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="139" y="152"/>
         </menu>
     </objects>
 </document>

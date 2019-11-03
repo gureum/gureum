@@ -3,3 +3,4 @@
 //
 
 #import "TISInputSource.h"
+#import "OSXCore/NSPrefPaneBundle.h"

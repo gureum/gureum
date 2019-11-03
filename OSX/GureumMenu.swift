@@ -18,6 +18,13 @@ extension InputController {
         answers.logMenu(name: "about")
     }
 
+    @IBAction func showPreferencesWindow(_: Any) {
+        NSApp.activate(ignoringOtherApps: true)
+        let main = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
+        NSLog("main: \(main)")
+        main.showWindow(nil)
+    }
+
     @IBAction func checkRecentVersion(_: Any) {
         answers.logMenu(name: "check-version")
         guard let info = UpdateManager.shared.fetchOfficialVersionInfo() else {
