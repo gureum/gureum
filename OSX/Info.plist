@@ -56,7 +56,7 @@
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
-				<true/>
+				<false/>
 				<key>tsInputModeIsVisibleKey</key>
 				<true/>
 				<key>tsInputModeMenuIconFileKey</key>
@@ -77,7 +77,7 @@
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
-				<true/>
+				<false/>
 				<key>tsInputModeIsVisibleKey</key>
 				<true/>
 				<key>tsInputModeMenuIconFileKey</key>
@@ -360,7 +360,7 @@
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>qwerty.png</string>
 				<key>tsInputModeDefaultStateKey</key>
-				<true/>
+				<false/>
 				<key>tsInputModeIsVisibleKey</key>
 				<true/>
 				<key>tsInputModeMenuIconFileKey</key>
