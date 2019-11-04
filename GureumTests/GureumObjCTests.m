@@ -8,7 +8,7 @@
 
 @import XCTest;
 
-#import "NSPrefPaneBundle.h"
+#import "OSXCore/NSPrefPaneBundle.h"
 #import "Gureum-Swift.h"
 
 

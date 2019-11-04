@@ -7,4 +7,4 @@
 //
 
 #import "MockInputClient.h"
-#import "NSPrefPaneBundle.h"
+#import "OSXCore/NSPrefPaneBundle.h"

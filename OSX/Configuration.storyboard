@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pWa-Qg-gE8">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="lqC-Y3-iGO">
+            <objects>
+                <windowController id="pWa-Qg-gE8" customClass="ConfiguraionWindowController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="구름 환경설정" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="66I-Xz-bUA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="pWa-Qg-gE8" id="aoC-1O-t14"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="eDV-rs-6D0" kind="relationship" relationship="window.shadowedContentViewController" id="vdX-Ok-Cxc"/>
+                    </connections>
+                </windowController>
+                <customObject id="qIu-Nc-pzg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-48" y="70"/>
+        </scene>
+        <!--Preference View Controller-->
+        <scene sceneID="bc9-Ml-T2f">
+            <objects>
+                <viewController id="eDV-rs-6D0" customClass="PreferenceViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController"/>
+                <customObject id="Z4u-jb-X27" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="567" y="70"/>
+        </scene>
+    </scenes>
+</document>

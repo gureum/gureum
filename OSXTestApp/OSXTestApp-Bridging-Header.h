@@ -3,4 +3,4 @@
 //
 
 #import "MockInputClient.h"
-#import "GureumTests/NSPrefPaneBundle.h"
+#import "OSXCore/NSPrefPaneBundle.h"
