@@ -45,6 +45,7 @@ final class SearchComposer: Composer {
     // 검색을 위한 백그라운드 스레드
     private var _searchWorkItem: DispatchWorkItem = DispatchWorkItem {}
     private var _searchQueue: DispatchQueue = DispatchQueue.global(qos: .userInitiated)
+    private let _searchLock = NSLock()
 
     var showsCandidateWindow = true
 
@@ -272,7 +273,12 @@ extension SearchComposer {
         // 1. 모드 false
         showsCandidateWindow = false
         // 2. 후보 취소
+        if !_searchWorkItem.isCancelled {
+            _searchWorkItem.cancel()
+        }
+        _searchLock.lock()
         _candidates = nil
+        _searchLock.unlock()
         // 3. 조합 중인 문자를 모두 가져옴
         delegate.cancelComposition()
         _bufferedString.append(delegate.dequeueCommitString())
@@ -352,15 +358,32 @@ private extension SearchComposer {
         }
         _candidates = [NSAttributedString(string: "Searching...")] // default candidates
 
-        _searchWorkItem = DispatchWorkItem {
-            self._candidates = SearchSourceConst.emoji.search(keyword)
+        var workItem: DispatchWorkItem!
+        workItem = DispatchWorkItem {
+            let newCandidates = SearchSourceConst.emoji.search(keyword)
+            guard !workItem.isCancelled else { return }
+
+            self._searchLock.lock()
+            self._candidates = newCandidates
+            if workItem.isCancelled {
+                self._searchLock.unlock()
+                return
+            }
             DispatchQueue.main.async {
-                InputMethodServer.shared.candidates.update()
+                if workItem.isCancelled {
+                    self._searchLock.unlock()
+                    return
+                }
+                InputMethodServer.shared.showOrHideCandidates(composer: self)
+                self._searchLock.unlock()
             }
         }
+        _searchWorkItem = workItem
 
         if keyword.isEmpty {
+            _searchLock.lock()
             _candidates = nil
+            _searchLock.unlock()
         } else {
             _searchQueue.async(execute: _searchWorkItem)
         }

@@ -207,7 +207,11 @@ public class InputMethodServer {
     }
 
     func showOrHideCandidates(controller: InputController) {
-        if controller.receiver.composer.hasCandidates {
+        showOrHideCandidates(composer: controller.receiver.composer)
+    }
+
+    func showOrHideCandidates(composer: Composer) {
+        if composer.hasCandidates {
             candidates.update()
             candidates.show(kIMKLocateCandidatesLeftHint)
         } else if candidates.isVisible() {
