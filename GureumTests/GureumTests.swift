@@ -653,7 +653,8 @@ class GureumTests: XCTestCase {
             (SearchSourceConst.emojiKorean, "사과", "사과"),
             (SearchSourceConst.hanjaReversed, "물 수", "水"),
         ] {
-            let candidates = pool.collect(key)
+            let workItem = DispatchWorkItem {}
+            let candidates = pool.collect(key, workItem: workItem)
             let c = candidates[0]
             XCTAssertTrue(c.candidate == test || c.description.contains(test))
         }

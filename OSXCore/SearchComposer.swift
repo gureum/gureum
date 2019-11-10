@@ -314,7 +314,7 @@ private extension SearchComposer {
 
         var workItem: DispatchWorkItem!
         workItem = DispatchWorkItem {
-            let newCandidates = pool.search(keyword)
+            let newCandidates = pool.search(keyword, workItem: workItem)
             guard !workItem.isCancelled else { return }
 
             self._searchLock.lock()
@@ -363,7 +363,7 @@ private extension SearchComposer {
 
         var workItem: DispatchWorkItem!
         workItem = DispatchWorkItem {
-            let newCandidates = SearchSourceConst.emoji.search(keyword)
+            let newCandidates = SearchSourceConst.emoji.search(keyword, workItem: workItem)
             guard !workItem.isCancelled else { return }
 
             self._searchLock.lock()
