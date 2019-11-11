@@ -49,10 +49,6 @@ final class SearchComposer: Composer {
 
     var showsCandidateWindow = true
 
-    // MARK: 한자 전용 프로퍼티
-
-    private var _lastString = ""
-
     // MARK: 이모지 전용 프로퍼티
 
     private var _selectedCandidate: NSAttributedString?
@@ -91,16 +87,7 @@ final class SearchComposer: Composer {
     }
 
     var candidates: [NSAttributedString]? {
-        switch dependentComposerType {
-        case .hangul:
-            if _lastString != originalString {
-                _candidates = buildHanjaCandidates()
-                _lastString = originalString
-            }
-            return _candidates
-        case .roman:
-            return _candidates
-        }
+        return _candidates
     }
 
     var hasCandidates: Bool {
@@ -142,9 +129,6 @@ final class SearchComposer: Composer {
         _commitString = word
         delegate.cancelComposition()
         delegate.dequeueCommitString()
-        if dependentComposerType == .hangul {
-            prepareHanjaCandidates()
-        }
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
@@ -219,7 +203,7 @@ final class SearchComposer: Composer {
 
         switch dependentComposerType {
         case .hangul:
-            prepareHanjaCandidates()
+            updateHanjaCandidates()
         case .roman:
             updateEmojiCandidates()
         }
@@ -262,7 +246,7 @@ extension SearchComposer {
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
         switch dependentComposerType {
         case .hangul:
-            prepareHanjaCandidates()
+            updateHanjaCandidates()
         case .roman:
             updateEmojiCandidates()
         }
@@ -291,46 +275,65 @@ extension SearchComposer {
 // MARK: - SearchComposer 한글 합성기 의존시 전용 메소드
 
 private extension SearchComposer {
-    /// 한자 입력을 위한 후보를 생성할 준비를 수행한다.
-    func prepareHanjaCandidates() {
+    /// 한자 입력을 위한 후보를 만든다.
+    func updateHanjaCandidates() {
         guard dependentComposerType == .hangul else {
-            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: prepareHanjaCandidates() at emoji mode!")
+            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: updateHanjaCandidates() at emoji mode!")
             return
         }
 
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.prepareHanjaCandidates()")
+        dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates()")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
         let hangulString = delegate.dequeueCommitString()
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step1")
+        dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() step1")
         _bufferedString.append(hangulString)
         // step 2: 일단 화면에 한글이 표시되도록 조정
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step2")
+        dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() step2")
         _composedString = originalString
         // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.prepareHanjaCandidates() step3")
-    }
-
-    /// 한자 입력을 위한 후보를 만든다.
-    ///
-    /// - Returns: 한자 후보의 문자열 배열. `nil`을 반환할 수 있다.
-    func buildHanjaCandidates() -> [NSAttributedString]? {
-        guard dependentComposerType == .hangul else {
-            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: buildHanjaCandidates() at emoji mode!")
-            return nil
-        }
+        dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() step3")
 
         let keyword = originalString.trimmingCharacters(in: .whitespaces)
+        if !_searchWorkItem.isCancelled {
+            _searchWorkItem.cancel()
+        }
+        _candidates = [NSAttributedString(string: "검색 중...")] // default candidates
+
         guard !keyword.isEmpty else {
-            dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has no keywords")
-            return nil
+            dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() has no keywords")
+            _searchLock.lock()
+            _candidates = nil
+            _searchLock.unlock()
+            return
         }
 
-        dlog(DEBUG_SEARCH_COMPOSER, "DelegatedComposer.buildHanjaCandidates() has candidates")
+        dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() has candidates")
 
         let pool = keyword.count == 1
             ? SearchSourceConst.koreanSingle : SearchSourceConst.korean
 
-        return pool.search(keyword)
+        var workItem: DispatchWorkItem!
+        workItem = DispatchWorkItem {
+            let newCandidates = pool.search(keyword, workItem: workItem)
+            guard !workItem.isCancelled else { return }
+
+            self._searchLock.lock()
+            self._candidates = newCandidates
+            if workItem.isCancelled {
+                self._searchLock.unlock()
+                return
+            }
+            DispatchQueue.main.async {
+                if workItem.isCancelled {
+                    self._searchLock.unlock()
+                    return
+                }
+                InputMethodServer.shared.showOrHideCandidates(composer: self)
+                self._searchLock.unlock()
+            }
+        }
+        _searchWorkItem = workItem
+        _searchQueue.async(execute: _searchWorkItem)
     }
 }
 
@@ -360,7 +363,7 @@ private extension SearchComposer {
 
         var workItem: DispatchWorkItem!
         workItem = DispatchWorkItem {
-            let newCandidates = SearchSourceConst.emoji.search(keyword)
+            let newCandidates = SearchSourceConst.emoji.search(keyword, workItem: workItem)
             guard !workItem.isCancelled else { return }
 
             self._searchLock.lock()

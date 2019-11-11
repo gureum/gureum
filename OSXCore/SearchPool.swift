@@ -12,14 +12,14 @@ import Hangul
 /// 후보 검색 풀을 추상화한 프로토콜.
 protocol SearchSource {
     typealias Candidate = (candidate: String, description: String, score: Double)
-    func collect(_ keyword: String) -> [Candidate]
-    func search(_ keyword: String) -> [NSAttributedString]
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate]
+    func search(_ keyword: String, workItem: DispatchWorkItem!) -> [NSAttributedString]
 }
 
 extension SearchSource {
-    func search(_ keyword: String) -> [NSAttributedString] {
+    func search(_ keyword: String, workItem: DispatchWorkItem!) -> [NSAttributedString] {
         // TODO: 중복 제거?
-        collect(keyword).sorted(by: { $0.score < $1.score }).map {
+        collect(keyword, workItem: workItem).sorted(by: { $0.score < $1.score }).map {
             #if DEBUG
                 let s = "\($0.candidate): \($0.description) (\($0.score))"
             #else
@@ -50,8 +50,15 @@ struct SearchPool: SearchSource {
         self.sources = sources
     }
 
-    func collect(_ keyword: String) -> [Candidate] {
-        sources.map { $0.collect(keyword) }.flatMap { $0 }
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
+        var results = [Candidate]()
+        for source in sources {
+            guard !workItem.isCancelled else {
+                break
+            }
+            results.append(contentsOf: source.collect(keyword, workItem: workItem))
+        }
+        return results
     }
 }
 
@@ -75,7 +82,7 @@ final class HanjaTableSearchSource: SearchSource {
     /// - Parameter keyword: 검색 키워드.
     ///
     /// - Returns: 후보 문자열과 검색 점수로 이루어진 튜플.
-    func collect(_ keyword: String) -> [Candidate] {
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
         guard let list: HGHanjaList = {
             switch method {
             case .exact:
@@ -90,6 +97,9 @@ final class HanjaTableSearchSource: SearchSource {
 
         var candidates: [Candidate] = []
         for hanja in list {
+            guard !workItem.isCancelled else {
+                break
+            }
             let hanja = hanja as! HGHanja
             let score: Double
             if method == .exact || keyword == hanja.comment {
@@ -139,13 +149,16 @@ final class FuseSearchSource: SearchSource {
         self.init(source: source, threshold: threshold)
     }
 
-    func collect(_ keyword: String) -> [Candidate] {
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 3, DelegatedComposer.updateEmojiCandidates() before hanjasByPrefixSearching")
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 4, DelegatedComposer.updateEmojiCandidates() [keyword: %@]", keyword)
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 14, DelegatedComposer.updateEmojiCandidates() %@", source.debugDescription)
         let searchResult = fuse.search(keyword, in: strings)
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 5, DelegatedComposer.updateEmojiCandidates() after hanjasByPrefixSearching")
 
+        guard !workItem.isCancelled else {
+            return []
+        }
         return searchResult.map {
             result in
             let word = source[result.index]
