@@ -129,6 +129,8 @@ final class SearchComposer: Composer {
         _commitString = word
         delegate.cancelComposition()
         delegate.dequeueCommitString()
+
+        updateCandidates()
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
@@ -139,6 +141,15 @@ final class SearchComposer: Composer {
                 guard let emoji = candidateString.string.components(separatedBy: ":").first else { return }
                 _selectedCandidate = NSAttributedString(string: emoji)
             }
+        }
+    }
+
+    func updateCandidates() {
+        switch dependentComposerType {
+        case .hangul:
+            updateHanjaCandidates()
+        case .roman:
+            updateEmojiCandidates()
         }
     }
 
@@ -201,12 +212,7 @@ final class SearchComposer: Composer {
             }
         }
 
-        switch dependentComposerType {
-        case .hangul:
-            updateHanjaCandidates()
-        case .roman:
-            updateEmojiCandidates()
-        }
+        updateCandidates()
 
         if !result.processed, result.action == .commit {
             cancelComposition()
@@ -244,12 +250,7 @@ extension SearchComposer {
             }
         }
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) before update candidates")
-        switch dependentComposerType {
-        case .hangul:
-            updateHanjaCandidates()
-        case .roman:
-            updateEmojiCandidates()
-        }
+        updateCandidates()
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 5, DelegatedComposer.update(client:) after update candidates")
     }
 
