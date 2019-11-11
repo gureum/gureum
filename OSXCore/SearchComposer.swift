@@ -278,10 +278,7 @@ extension SearchComposer {
 private extension SearchComposer {
     /// 한자 입력을 위한 후보를 만든다.
     func updateHanjaCandidates() {
-        guard dependentComposerType == .hangul else {
-            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: updateHanjaCandidates() at emoji mode!")
-            return
-        }
+        assert(dependentComposerType == .hangul)
 
         dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates()")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
@@ -342,10 +339,7 @@ private extension SearchComposer {
 
 private extension SearchComposer {
     func updateEmojiCandidates() {
-        guard dependentComposerType == .roman else {
-            dlog(DEBUG_SEARCH_COMPOSER, "INVALID: updateEmojiCandidates() at hanja mode!")
-            return
-        }
+        assert(dependentComposerType == .roman)
 
         // Step 1: 의존 합성기로부터 문자열 가져오기
         let dequeued = delegate.dequeueCommitString()
