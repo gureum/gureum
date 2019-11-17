@@ -15,10 +15,6 @@ if [ "${CONFIGURATION}" != 'Release' ]; then
     read -r
 fi
 
-# shellcheck disable=2034
-APPLICATION_KEY="Developer ID Application: YunWon Jeong"
-INSTALLER_KEY="Developer ID Installer: YunWon Jeong"
-
 BUILT_PRODUCT_PATH="${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app"
 
 rm ~/Downloads/"${PACKAGE_NAME}.pkg"
@@ -30,8 +26,8 @@ else
     PRINTER="cat"
 fi
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | $PRINTER) && \
-productbuild --product "tools/preinst.plist" --component "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app" '/Library/Input Methods' --sign "${INSTALLER_KEY}" ~/Downloads/"${PACKAGE_NAME}.pkg"
-#tar -zcf "${PACKAGE_NAME}.app.tar.gz" "${PRODUCT_NAME}.app"
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" archive | $PRINTER) && \
+    echo "Archive dir path is required for further packaging (try paste)" && echo "Archive directory path>" && read -r archive_dir
 
-grep Copyright "${BUILT_PRODUCT_PATH}/Contents/Info.plist"
+bash "${SCRIPT_DIR}/package_product.sh" "$archive_dir"
+
