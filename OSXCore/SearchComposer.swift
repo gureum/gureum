@@ -64,10 +64,6 @@ final class SearchComposer: Composer {
 
     var showsCandidateWindow = true
 
-    // MARK: 이모지 전용 프로퍼티
-
-    private var _selectedCandidate: NSAttributedString?
-
     // MARK: Composer 프로토콜 구현
 
     public var delegate: Composer!
@@ -119,17 +115,8 @@ final class SearchComposer: Composer {
         updateCandidates()
     }
 
-    func candidateSelectionChanged(_ candidateString: NSAttributedString) {
-        if candidateString.length == 0 {
-            _selectedCandidate = nil
-        } else {
-            let components = candidateString.string.components(separatedBy: ":")
-            guard components.count >= 2 else {
-                return
-            }
-            let candidate = components.first!
-            _selectedCandidate = NSAttributedString(string: candidate)
-        }
+    func candidateSelectionChanged(_: NSAttributedString) {
+        // nothing to do
     }
 
     func updateCandidates() {
@@ -189,7 +176,7 @@ final class SearchComposer: Composer {
             exitComposer()
             return InputResult(processed: false, action: .commit)
         case .return:
-            candidateSelected(_selectedCandidate ?? NSAttributedString(string: composedString))
+            return InputResult(processed: false, action: .candidatesEvent(keyCode))
         default:
             if searchSource == .roman {
                 if result == .notProcessed, let text = text, keyCode.isKeyMappable {
