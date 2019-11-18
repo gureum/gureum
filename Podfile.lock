@@ -1,17 +1,17 @@
 PODS:
-  - cdebug (1.2)
+  - cdebug (1.3)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
-  - FoundationExtension (2.0.0):
-    - cdebug (~> 1.1)
-    - FoundationExtension/FoundationExtension (= 2.0.0)
-    - FoundationExtension/FoundationExtensionRC (= 2.0.0)
-  - FoundationExtension/FoundationExtension (2.0.0):
-    - cdebug (~> 1.1)
+  - FoundationExtension (2.1.0):
+    - cdebug (~> 1.3)
+    - FoundationExtension/FoundationExtension (= 2.1.0)
+    - FoundationExtension/FoundationExtensionRC (= 2.1.0)
+  - FoundationExtension/FoundationExtension (2.1.0):
+    - cdebug (~> 1.3)
     - FoundationExtension/FoundationExtensionRC
-  - FoundationExtension/FoundationExtensionRC (2.0.0):
-    - cdebug (~> 1.1)
+  - FoundationExtension/FoundationExtensionRC (2.1.0):
+    - cdebug (~> 1.3)
   - Fuse (1.2.0)
   - MASShortcut (2.4.0)
   - SwiftCarbon (0.1.0):
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - cdebug
   - Crashlytics
   - Fabric
-  - FoundationExtension (~> 2.0.0)
+  - FoundationExtension (~> 2.1.0)
   - Fuse
   - MASShortcut
   - SwiftCarbon
@@ -47,16 +47,16 @@ SPEC REPOS:
     - SwiftIOKit
 
 SPEC CHECKSUMS:
-  cdebug: 55a96da647360590f0d292baebb34c4066cbca02
+  cdebug: 0d0b7207fa996236ee9e07e5988e5e39a1d94a28
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FoundationExtension: 0c3615327b9d7844ca5f65bfb4dd7563baab197a
+  FoundationExtension: 56c1c923c9a3bc69c5a5ac08c47c8f2f57b06288
   Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
   SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
   SwiftIOKit: 58e9b718109ba7c6681fc45c5888838627df28f1
 
-PODFILE CHECKSUM: bd16d9e213df73a5a491232ac0d601cc5c52a6ff
+PODFILE CHECKSUM: 13f0d70a7f8250df0097bd371d33bec58437a674
 
 COCOAPODS: 1.8.4

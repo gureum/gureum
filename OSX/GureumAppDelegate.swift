@@ -68,9 +68,13 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
         _ = InputMethodServer.shared
 
         answers.logLaunch()
-        Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
-            answers.logUptime()
-        }
+
+        Timer.scheduledTimer(timeInterval: 3600, target: answers, selector: #selector(AnswersHelper.logUptime), userInfo: nil, repeats: true)
+        // for 10.12+
+        // Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
+        //   answers.logUptime()
+        // }
+
         watcher.reloadConfiguration()
     }
 }

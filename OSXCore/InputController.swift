@@ -110,21 +110,25 @@ public extension InputController { // IMKServerInputHandleEvent
     override func handle(_ event: NSEvent, client sender: Any) -> Bool {
         // dlog(DEBUG_INPUTCONTROLLER, "event: \(event)")
         // sender is (IMKTextInput & IMKUnicodeTextInput & IMTSMSupport)
-        guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else { return false }
         let client = asClient(sender)
-        let imkCandidates = InputMethodServer.shared.candidates
-        if imkCandidates.isVisible() {
-            let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-            if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
-                imkCandidates.interpretKeyEvents([event])
-                return true
-            }
-        }
+
         switch event.type {
         case .keyDown:
+            guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else {
+                return false
+            }
+            let imkCandidates = InputMethodServer.shared.candidates
+            if imkCandidates.isVisible() {
+                let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
+                if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+                    imkCandidates.interpretKeyEvents([event])
+                    return true
+                }
+            }
+
             dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier())
-            guard let key = KeyCode(rawValue: Int(event.keyCode)) else { return false }
-            let result = receiver.input(text: event.characters, key: key, modifiers: event.modifierFlags, client: client)
+
+            let result = receiver.input(text: event.characters, key: keyCode, modifiers: event.modifierFlags, client: client)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
             return result.processed
         case .flagsChanged:
