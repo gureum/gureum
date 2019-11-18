@@ -10,7 +10,7 @@ import Crashlytics
 import Fabric
 import GureumCore
 
-class AnswersHelper {
+@objc class AnswersHelper: NSObject {
     let configuration = Configuration.shared
     let launchedTime = Date()
 
@@ -21,7 +21,7 @@ class AnswersHelper {
                          customAttributes: report)
     }
 
-    func logUptime() {
+    @objc func logUptime() {
         let uptime = -launchedTime.timeIntervalSinceNow
         Answers.logContentView(withName: "Uptime",
                                contentType: "Indicator",

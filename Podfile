@@ -5,7 +5,7 @@ platform :osx, "10.13"
 target 'OSXCore' do
     project 'Gureum.xcodeproj'
     pod 'cdebug'
-    pod 'FoundationExtension', '~> 2.0.0'
+    pod 'FoundationExtension', '~> 2.1.0'
     pod 'SwiftIOKit'
     pod 'SwiftCarbon'
     pod 'SwiftCoreServices'
@@ -13,7 +13,7 @@ target 'OSXCore' do
 end
 target 'OSX' do
     project 'Gureum.xcodeproj'
-    pod 'FoundationExtension', '~> 2.0.0'
+    pod 'FoundationExtension', '~> 2.1.0'
     pod 'Fabric'
     pod 'Crashlytics'
 end
@@ -24,7 +24,7 @@ end
 target 'OSXTestApp' do
     project 'Gureum.xcodeproj'
     pod 'MASShortcut'
-    pod 'FoundationExtension', '~> 2.0.0'
+    pod 'FoundationExtension', '~> 2.1.0'
 end
 target 'OSXTests' do
     project 'Gureum.xcodeproj'
@@ -34,7 +34,7 @@ end
 target :'App' do
     platform :ios, "9.0"
     project 'iOS.xcodeproj'
-    pod 'UIKitExtension', '~> 2.0.1'
+    pod 'UIKitExtension', '~> 2.1.0'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'GoogleMobileAds'
