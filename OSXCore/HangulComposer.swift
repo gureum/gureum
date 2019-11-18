@@ -153,8 +153,7 @@ final class HangulComposer: NSObject, Composer {
     }
 
     func clear() {
-        inputContext.reset()
-        _commitString = ""
+        clearCompositionContext()
     }
 
     @discardableResult
