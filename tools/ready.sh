@@ -8,6 +8,8 @@ TMPSCRIPT="${TMPDIR}gureumbuild"
 
 if [ -e "${TMPSCRIPT}" ]; then
     echo "unexpected existing file: ${TMPSCRIPT}"
+    echo "현재 다른 구름 빌드가 진행중이거나, 이전의 구름 빌드가 불완전하게 종료되었을 수 있습니다."
+    echo "다른 구름 빌드가 실행중이 아니라면 이 파일을 삭제 후 다시 실행해 주세요."
     exit 255
 fi
 
@@ -17,7 +19,9 @@ fi
 
 echo "Configuration: ${CONFIGURATION}"
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}") || exit $?
+(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' \
+    -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}") || \
+    exit $?
 # shellcheck disable=1090
 . "${TMPSCRIPT}" > /dev/null 2>&1
 rm "${TMPSCRIPT}"
