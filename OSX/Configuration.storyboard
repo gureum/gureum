@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-48" y="70"/>
         </scene>
-        <!--Preference View Controller-->
+        <!--Preference Pane View Controller-->
         <scene sceneID="bc9-Ml-T2f">
             <objects>
-                <viewController id="eDV-rs-6D0" customClass="PreferenceViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController id="eDV-rs-6D0" customClass="PreferencePaneViewController" customModule="Gureum" customModuleProvider="target" sceneMemberID="viewController"/>
                 <customObject id="Z4u-jb-X27" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="567" y="70"/>

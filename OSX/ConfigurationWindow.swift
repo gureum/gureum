@@ -11,8 +11,7 @@ import Foundation
 
 final class ConfiguraionWindowController: NSWindowController {}
 
-@objc(PreferenceViewController)
-final class PreferenceViewController: NSViewController {
+final class PreferencePaneViewController: NSViewController {
     private let _isAtLeast10_15 = ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
 
     override func loadView() {
