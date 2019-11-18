@@ -262,6 +262,9 @@ extension SearchComposer {
             }
             DispatchQueue.main.async {
                 defer { self._searchLock.unlock() }
+                guard self.delegate != nil else {
+                    return
+                }
                 guard !workItem.isCancelled else {
                     return
                 }

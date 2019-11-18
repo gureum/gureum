@@ -202,14 +202,16 @@ extension GureumComposer {
             return .changeLayout(.search, true)
         }
 
-        if let searchingComposer = delegate as? SearchComposer {
-            if searchingComposer.delegate is HangulComposer, !searchingComposer.showsCandidateWindow, searchingComposer.composedString.isEmpty, searchingComposer.commitString.isEmpty {
+        if let searchComposer = delegate as? SearchComposer {
+            if searchComposer.delegate is HangulComposer, !searchComposer.showsCandidateWindow, searchComposer.composedString.isEmpty, searchComposer.commitString.isEmpty {
                 // 한자 입력이 완료되었고 한자 모드도 아님
                 delegate = hangulComposer
-            } else if searchingComposer.delegate is RomanComposer {
-                if !searchingComposer.showsCandidateWindow {
-                    searchingComposer.showsCandidateWindow = true
+                searchComposer.delegate = nil
+            } else if searchComposer.delegate is RomanComposer {
+                if !searchComposer.showsCandidateWindow {
+                    searchComposer.showsCandidateWindow = true
                     delegate = romanComposer
+                    searchComposer.delegate = nil
                 }
             }
         }
