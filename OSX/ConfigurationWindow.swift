@@ -9,9 +9,10 @@
 import Cocoa
 import Foundation
 
-class ConfiguraionWindowController: NSWindowController {}
+final class ConfiguraionWindowController: NSWindowController {}
 
-class PreferenceViewController: NSViewController {
+@objc(PreferenceViewController)
+final class PreferenceViewController: NSViewController {
     private let _isAtLeast10_15 = ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
 
     override func loadView() {
