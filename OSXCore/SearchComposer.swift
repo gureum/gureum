@@ -28,7 +28,7 @@ extension HGHanjaList: Sequence {
 /// 한자 및 이모지 합성기의 동작을 구현한다.
 final class SearchComposer: Composer {
     /// 문자를 검색하여 입력하는 합성기가 의존하는 합성기의 종류를 정의한 열거형.
-    enum SearchSource {
+    enum SourceType {
         case unknown
         case hangul
         case roman
@@ -39,9 +39,9 @@ final class SearchComposer: Composer {
     init() {}
 
     // 검색할 소스
-    var searchSource: SearchComposer.SearchSource {
+    var sourceType: SearchComposer.SourceType? {
         guard let delegate = delegate else {
-            return .unknown
+            return nil
         }
         if delegate is HangulComposer {
             return .hangul
@@ -120,7 +120,7 @@ final class SearchComposer: Composer {
     }
 
     func updateCandidates() {
-        switch searchSource {
+        switch sourceType {
         case .hangul:
             updateHanjaCandidates()
         case .roman:
@@ -128,6 +128,8 @@ final class SearchComposer: Composer {
         case .unknown:
             // TODO: both
             break
+        case nil:
+            assert(false)
         }
     }
 
@@ -160,7 +162,7 @@ final class SearchComposer: Composer {
                 }
             }
         case .space:
-            if searchSource == .hangul {
+            if sourceType == .hangul {
                 // 강제로 조합 중인 문자 추출
                 delegate.cancelComposition()
                 _bufferedString.append(delegate.dequeueCommitString())
@@ -178,7 +180,7 @@ final class SearchComposer: Composer {
         case .return:
             return InputResult(processed: false, action: .candidatesEvent(keyCode))
         default:
-            if searchSource == .roman {
+            if sourceType == .roman {
                 if result == .notProcessed, let text = text, keyCode.isKeyMappable {
                     _bufferedString.append(text)
                     result = .processed
@@ -219,7 +221,7 @@ extension SearchComposer {
                  NSStringFromRange(sender.selectedRange()))
             _bufferedString = selectedString
             dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 4, DelegatedComposer.update(client:) %@", _bufferedString)
-            if searchSource == .hangul {
+            if sourceType == .hangul {
                 showsCandidateWindow = false
             }
         }
@@ -245,15 +247,34 @@ extension SearchComposer {
         composedString = originalString
         cancelComposition()
     }
-}
 
-// MARK: - SearchComposer 한글 합성기 의존시 전용 메소드
+    func searchWorkItem(keyword: String, in source: SearchSource) -> DispatchWorkItem {
+        var workItem: DispatchWorkItem!
+        workItem = DispatchWorkItem {
+            let newCandidates = source.search(keyword, workItem: workItem)
+            guard !workItem.isCancelled else { return }
 
-private extension SearchComposer {
+            self._searchLock.lock()
+            self.candidates = newCandidates
+            if workItem.isCancelled {
+                self._searchLock.unlock()
+                return
+            }
+            DispatchQueue.main.async {
+                defer { self._searchLock.unlock() }
+                guard !workItem.isCancelled else {
+                    return
+                }
+                InputMethodServer.shared.showOrHideCandidates(composer: self)
+            }
+        }
+        return workItem
+    }
+
     /// 한자 입력을 위한 후보를 만든다.
     func updateHanjaCandidates() {
         assert(delegate != nil)
-        assert(searchSource == .hangul)
+        assert(sourceType == .hangul)
 
         dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates()")
         // step 1: 한글 입력기에서 조합 완료된 글자를 가져옴
@@ -285,35 +306,12 @@ private extension SearchComposer {
         let pool = keyword.count == 1
             ? SearchSourceConst.koreanSingle : SearchSourceConst.korean
 
-        var workItem: DispatchWorkItem!
-        workItem = DispatchWorkItem {
-            let newCandidates = pool.search(keyword, workItem: workItem)
-            guard !workItem.isCancelled else { return }
-
-            self._searchLock.lock()
-            self.candidates = newCandidates
-            if workItem.isCancelled {
-                self._searchLock.unlock()
-                return
-            }
-            DispatchQueue.main.async {
-                defer { self._searchLock.unlock() }
-                guard !workItem.isCancelled else {
-                    return
-                }
-                InputMethodServer.shared.showOrHideCandidates(composer: self)
-            }
-        }
-        _searchWorkItem = workItem
+        _searchWorkItem = searchWorkItem(keyword: keyword, in: pool)
         _searchQueue.async(execute: _searchWorkItem)
     }
-}
 
-// MARK: - SearchComposer 로마자 합성기 의존시 전용 메소드
-
-private extension SearchComposer {
     func updateEmojiCandidates() {
-        assert(searchSource == .roman)
+        assert(sourceType == .roman)
 
         // Step 1: 의존 합성기로부터 문자열 가져오기
         let dequeued = delegate.dequeueCommitString()
@@ -329,27 +327,9 @@ private extension SearchComposer {
             _searchWorkItem.cancel()
         }
         candidates = [NSAttributedString(string: "Searching...")] // default candidates
+        let pool = SearchSourceConst.emoji
 
-        var workItem: DispatchWorkItem!
-        workItem = DispatchWorkItem {
-            let newCandidates = SearchSourceConst.emoji.search(keyword, workItem: workItem)
-            guard !workItem.isCancelled else { return }
-
-            self._searchLock.lock()
-            self.candidates = newCandidates
-            if workItem.isCancelled {
-                self._searchLock.unlock()
-                return
-            }
-            DispatchQueue.main.async {
-                defer { self._searchLock.unlock() }
-                if workItem.isCancelled {
-                    return
-                }
-                InputMethodServer.shared.showOrHideCandidates(composer: self)
-            }
-        }
-        _searchWorkItem = workItem
+        _searchWorkItem = searchWorkItem(keyword: keyword, in: pool)
 
         if keyword.isEmpty {
             _searchLock.lock()
