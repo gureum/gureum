@@ -16,8 +16,15 @@ import Foundation
         NSLogv(format, getVaList(args))
     }
 
+    func dassert(_ assertion: Bool) {
+        assert(assertion)
+    }
 #else
     func dlog(_: CVarArg...) {
+        // do nothing in release mode
+    }
+
+    func dassert(_: Bool) {
         // do nothing in release mode
     }
 #endif

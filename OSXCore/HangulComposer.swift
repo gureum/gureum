@@ -178,11 +178,11 @@ final class HangulComposer: NSObject, Composer {
     }
 
     func candidateSelected(_: NSAttributedString) {
-        assert(false)
+        dassert(false)
     }
 
     func candidateSelectionChanged(_: NSAttributedString) {
-        assert(false)
+        dassert(false)
     }
 
     func input(text string: String?,
