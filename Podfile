@@ -9,7 +9,7 @@ target 'OSXCore' do
     pod 'SwiftIOKit'
     pod 'SwiftCarbon'
     pod 'SwiftCoreServices'
-    pod 'Fuse'
+    pod 'Fuse', :path => '../fuse-swift'
 end
 target 'OSX' do
     project 'Gureum.xcodeproj'
