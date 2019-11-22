@@ -11,6 +11,7 @@ import Foundation
 
 import MASShortcut
 
+@objc(PreferenceViewController)
 final class PreferenceViewController: NSViewController {
     /// 옵션 키 동작.
     @IBOutlet private var optionKeyComboBox: NSComboBoxCell!
