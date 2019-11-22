@@ -468,7 +468,7 @@
             </view>
             <point key="canvasLocation" x="-214" y="68"/>
         </window>
-        <customObject id="DMm-2g-KCR" customClass="PreferenceViewController" customModule="GureumPreferences">
+        <customObject id="DMm-2g-KCR" customClass="PreferenceViewController">
             <connections>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
                 <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
