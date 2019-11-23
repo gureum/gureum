@@ -101,7 +101,12 @@ final class RomanComposer: Composer {
             return .notProcessed
         }
 
-        let character = string.first!
+        let character: Character
+        if flags.contains(.shift) {
+            character = KeyMapUpper[keyCode.rawValue]?.first ?? string.first!
+        } else {
+            character = KeyMapLower[keyCode.rawValue]?.first ?? string.first!
+        }
         let newCharacter: Character = {
             if flags.contains(.capsLock), character.isLowercaseCharacter {
                 return Character(UnicodeScalar(String(character).unicodeScalars.first!.value - 0x20)!)
