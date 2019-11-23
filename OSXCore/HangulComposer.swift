@@ -201,10 +201,10 @@ final class HangulComposer: NSObject, Composer {
 
         var string = string!
         // 한글 입력에서 캡스락 무시
-        if flags.contains(.capsLock) {
-            if !flags.contains(.shift) {
-                string = string.lowercased()
-            }
+        if flags.contains(.shift) {
+            string = KeyMapUpper[keyCode.rawValue] ?? string
+        } else {
+            string = KeyMapLower[keyCode.rawValue] ?? string
         }
         let handled = inputContext.process(string.unicodeScalars.first!.value)
         let ucsString = inputContext.commitUCSString

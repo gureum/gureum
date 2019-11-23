@@ -49,14 +49,6 @@ public class InputReceiver: InputTextDelegate {
             default:
                 assert(false)
             }
-        } else {
-            if keyCode.isKeyMappable {
-                if flags.contains(.shift) {
-                    string = KeyMapUpper[keyCode.rawValue] ?? string
-                } else {
-                    string = KeyMapLower[keyCode.rawValue] ?? string
-                }
-            }
         }
 
         // 특정 애플리케이션에서 커맨드/옵션/컨트롤 키 입력을 선점하지 못하는 문제를 회피한다
