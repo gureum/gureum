@@ -15,7 +15,6 @@ import Foundation
         }
         NSLogv(format, getVaList(args))
     }
-
 #else
     func dlog(_: CVarArg...) {
         // do nothing in release mode

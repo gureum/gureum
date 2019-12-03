@@ -50,6 +50,7 @@ final class SearchComposer: Composer {
             return .roman
         }
         assert(false)
+        return nil
     }
 
     public private(set) var candidates: [NSAttributedString]?
