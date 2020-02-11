@@ -50,6 +50,7 @@ final class SearchComposer: Composer {
             return .roman
         }
         assert(false)
+        return nil
     }
 
     public private(set) var candidates: [NSAttributedString]?
@@ -240,6 +241,9 @@ extension SearchComposer {
         _searchLock.lock()
         candidates = nil
         _searchLock.unlock()
+
+        InputMethodServer.shared.candidates.hide()
+
         // 3. 조합 중인 문자를 모두 가져옴
         delegate.cancelComposition()
         _bufferedString.append(delegate.dequeueCommitString())
