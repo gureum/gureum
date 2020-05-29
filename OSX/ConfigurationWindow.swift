@@ -21,8 +21,7 @@ final class PreferencePaneViewController: NSViewController {
         assert(bundle.bundle.principalClass != nil)
         if _isAtLeast10_15 {
             let pane = NSPreferencePane(bundle: bundle.bundle)
-            pane.loadMainView()
-            view = pane.mainView
+            view = pane.loadMainView()
         } else {
             let loaded = bundle.instantiatePrefPaneObject()
             assert(loaded)
