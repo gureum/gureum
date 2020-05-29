@@ -104,7 +104,7 @@ public class Configuration: UserDefaults {
             return string(forKey: ConfigurationName.lastHangulInputMode)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.lastHangulInputMode)
+            set(newValue, forKey: ConfigurationName.lastHangulInputMode)
         }
     }
 
@@ -114,7 +114,7 @@ public class Configuration: UserDefaults {
             return string(forKey: ConfigurationName.lastRomanInputMode)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.lastRomanInputMode)
+            set(newValue, forKey: ConfigurationName.lastRomanInputMode)
         }
     }
 
@@ -124,7 +124,7 @@ public class Configuration: UserDefaults {
             return integer(forKey: ConfigurationName.optionKeyBehavior)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.optionKeyBehavior)
+            set(newValue, forKey: ConfigurationName.optionKeyBehavior)
         }
     }
 
@@ -134,7 +134,7 @@ public class Configuration: UserDefaults {
             return string(forKey: ConfigurationName.overridingKeyboardName)!
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.overridingKeyboardName)
+            set(newValue, forKey: ConfigurationName.overridingKeyboardName)
         }
     }
 
@@ -184,7 +184,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.romanModeByEscapeKey)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.romanModeByEscapeKey)
+            set(newValue, forKey: ConfigurationName.romanModeByEscapeKey)
         }
     }
 
@@ -194,7 +194,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
+            set(newValue, forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
         }
     }
 
@@ -204,7 +204,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.hangulAutoReorder)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulAutoReorder)
+            set(newValue, forKey: ConfigurationName.hangulAutoReorder)
         }
     }
 
@@ -214,7 +214,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.hangulNonChoseongCombination)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulNonChoseongCombination)
+            set(newValue, forKey: ConfigurationName.hangulNonChoseongCombination)
         }
     }
 
@@ -224,7 +224,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
+            set(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
     }
 
@@ -234,7 +234,7 @@ public class Configuration: UserDefaults {
             return bool(forKey: ConfigurationName.switchLanguageForRightGui)
         }
         set {
-            `set`(newValue, forKey: ConfigurationName.switchLanguageForRightGui)
+            set(newValue, forKey: ConfigurationName.switchLanguageForRightGui)
         }
     }
 }
@@ -246,6 +246,6 @@ private extension Configuration {
     }
 
     func setShortcut(_ newValue: Shortcut?, forKey key: String) {
-        `set`(Configuration.convertShortcutToConfiguration(newValue), forKey: key)
+        set(Configuration.convertShortcutToConfiguration(newValue), forKey: key)
     }
 }
