@@ -28,7 +28,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FoundationExtension (~> 2.1.0)
-  - Fuse
+  - Fuse (from `../fuse-swift`)
   - MASShortcut
   - SwiftCarbon
   - SwiftCoreServices
@@ -40,18 +40,21 @@ SPEC REPOS:
     - Crashlytics
     - Fabric
     - FoundationExtension
-    - Fuse
     - MASShortcut
     - SwiftCarbon
     - SwiftCoreServices
     - SwiftIOKit
+
+EXTERNAL SOURCES:
+  Fuse:
+    :path: "../fuse-swift"
 
 SPEC CHECKSUMS:
   cdebug: 0d0b7207fa996236ee9e07e5988e5e39a1d94a28
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FoundationExtension: 56c1c923c9a3bc69c5a5ac08c47c8f2f57b06288
-  Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
+  Fuse: c13bd9fc4d939fc46034f0350394536ac4b6257f
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
   SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
