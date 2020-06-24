@@ -95,22 +95,34 @@ final class PreferenceViewController: NSViewController {
         setupShortcutViewValueChangeEvents()
     }
 
-    // MARK: IBAction
-
-    @IBAction private func openKeyboardPreference(sender _: NSControl) {
-        let myAppleScript = [
-            "tell application \"System Preferences\"",
-            "\tactivate",
-            "\treveal anchor \"ShortcutsTab\" of pane id \"com.apple.preference.keyboard\"",
-            "end tell",
-        ].joined(separator: "\n")
+    private func runAppleScript(_ script: String) {
         var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: myAppleScript) {
+        if let scriptObject = NSAppleScript(source: script) {
             let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
                 &error
             )
             print("pref event descriptor: \(output.stringValue ?? "nil")")
         }
+    }
+
+    // MARK: IBAction
+
+    @IBAction private func openKeyboardPreference(sender _: NSControl) {
+        runAppleScript("""
+            tell application "System Preferences"
+                activate
+                reveal anchor "ShortcutsTab" of pane id "com.apple.preference.keyboard"
+            end tell
+        """)
+    }
+
+    @IBAction private func openSecurityPreference(sender _: NSControl) {
+        runAppleScript("""
+            tell application "System Preferences"
+                activate
+                reveal anchor "Privacy" of pane id "com.apple.preference.security"
+            end tell
+        """)
     }
 
     @IBAction private func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
