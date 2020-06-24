@@ -121,7 +121,8 @@ public extension InputController { // IMKServerInputHandleEvent
             if imkCandidates.isVisible() {
                 let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
                 if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
-                    imkCandidates.interpretKeyEvents([event])
+                    // https://github.com/pkamb/NumberInput_IMKit_Sample/issues/1#issuecomment-633264470
+                    imkCandidates.perform(Selector(("handleKeyboardEvent:")), with: event)
                     return true
                 }
             }
