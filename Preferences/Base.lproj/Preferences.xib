@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane" customModule="GureumPreferences" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="GureumPreferencePane" customModule="Gureum" customModuleProvider="target">
             <connections>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="KJ8-tk-g3I"/>
             </connections>
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="400" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2137"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="618"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,13 +32,173 @@
                                     <rect key="frame" x="0.0" y="-265" width="393" height="550"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="13" width="353" height="520"/>
+                                            <rect key="frame" x="20" y="-45" width="353" height="578"/>
                                             <subviews>
+                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
+                                                    <rect key="frame" x="0.0" y="423" width="353" height="155"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
+                                                            <rect key="frame" x="-2" y="139" width="90" height="16"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="내부 단축키 설정" id="F6j-tJ-jrU">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coV-fo-vDP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                                            <subviews>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-Z3-oXo">
+                                                                    <rect key="frame" x="0.0" y="96" width="343" height="32"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Hf-Gu-mlf">
+                                                                            <rect key="frame" x="-2" y="8" width="157" height="16"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글/로마자 바꾸기 단축키:" id="Ahu-pQ-daK">
+                                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiY-Tt-T3F" customClass="MASShortcutView">
+                                                                            <rect key="frame" x="193" y="5" width="150" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="22" id="33S-IG-6rH"/>
+                                                                                <constraint firstAttribute="width" constant="150" id="RPf-wI-A0W"/>
+                                                                            </constraints>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="77" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loW-tI-esT">
+                                                                    <rect key="frame" x="0.0" y="64" width="343" height="22"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Whp-xY-Myz">
+                                                                            <rect key="frame" x="-2" y="3" width="120" height="16"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한자 및 이모지 단축키:" id="xOE-ud-vbw">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7u-hL-ncz" customClass="MASShortcutView">
+                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="150" id="red-Et-F2U"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="xak-t4-2LT"/>
+                                                                            </constraints>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="29" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1a4-nq-22i">
+                                                                    <rect key="frame" x="0.0" y="32" width="343" height="22"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-87-FKK">
+                                                                            <rect key="frame" x="-2" y="3" width="168" height="16"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="로마자로만 바꾸기 단축키:" id="Lqo-2U-8gt">
+                                                                                <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fCD-Cp-FQV" customClass="MASShortcutView">
+                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="22" id="lj8-e3-oz2"/>
+                                                                                <constraint firstAttribute="width" constant="150" id="sCI-eM-pKc"/>
+                                                                            </constraints>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-09-IxA">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="22"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHm-Gy-NR7" userLabel="한글로 바꾸기 단축키:">
+                                                                            <rect key="frame" x="-2" y="3" width="179" height="16"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글로만 바꾸기 단축키:" id="TQ3-aV-8d6" userLabel="한글로 바꾸기 단축키:">
+                                                                                <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZkS-XC-ybl" customClass="MASShortcutView">
+                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="22" id="UvI-vJ-gJa"/>
+                                                                                <constraint firstAttribute="width" constant="150" id="uwV-7f-e2L"/>
+                                                                            </constraints>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="UFA-Z3-oXo" secondAttribute="trailing" id="CbW-O2-uhl"/>
+                                                                <constraint firstItem="UFA-Z3-oXo" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="Df7-oY-6dg"/>
+                                                                <constraint firstItem="loW-tI-esT" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="E55-26-3tA"/>
+                                                                <constraint firstItem="1a4-nq-22i" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="Wd8-pN-xbm"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1a4-nq-22i" secondAttribute="trailing" id="b0f-uQ-h6Q"/>
+                                                                <constraint firstAttribute="trailing" secondItem="loW-tI-esT" secondAttribute="trailing" id="efG-0g-qus"/>
+                                                                <constraint firstItem="CcL-09-IxA" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="gy3-ok-zCH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="CcL-09-IxA" secondAttribute="trailing" id="iCY-uO-7bQ"/>
+                                                            </constraints>
+                                                            <visibilityPriorities>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                            </visibilityPriorities>
+                                                            <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                            </customSpacing>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="413" width="353" height="107"/>
+                                                    <rect key="frame" x="0.0" y="248" width="353" height="155"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
-                                                            <rect key="frame" x="-2" y="91" width="102" height="16"/>
+                                                            <rect key="frame" x="-2" y="139" width="102" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="시스템 단축키 설정" id="45X-EX-BbZ">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,9 +206,13 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-kH-2z7" userLabel="단축키 설정 설명">
-                                                            <rect key="frame" x="-2" y="32" width="343" height="48"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="시스템 환경설정 → 키보드 → 단축키 → 입력 소스에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)" id="Ndr-tA-evW">
-                                                                <font key="font" metaFont="system"/>
+                                                            <rect key="frame" x="-2" y="32" width="343" height="96"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Ndr-tA-evW">
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <string key="title">구름에서 제공하는 단축키 대신 시스템 단축키를 지정해 자판을
+전환할 수도 있습니다.
+
+시스템 환경설정 → 키보드 → 단축키 → 입력 소스에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)</string>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -76,7 +240,7 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="165" width="353" height="228"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="228"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
                                                             <rect key="frame" x="-2" y="212" width="116" height="16"/>
@@ -251,166 +415,6 @@
                                                         <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
                                                 </stackView>
-                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="145"/>
-                                                    <subviews>
-                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
-                                                            <rect key="frame" x="-2" y="129" width="90" height="16"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="내부 단축키 설정" id="F6j-tJ-jrU">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coV-fo-vDP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="118"/>
-                                                            <subviews>
-                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-Z3-oXo">
-                                                                    <rect key="frame" x="0.0" y="96" width="343" height="22"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Hf-Gu-mlf">
-                                                                            <rect key="frame" x="-2" y="3" width="157" height="16"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="입력기 바꾸기 단축키:" id="Ahu-pQ-daK">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="XiY-Tt-T3F" customClass="MASShortcutView">
-                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="22" id="33S-IG-6rH"/>
-                                                                                <constraint firstAttribute="width" constant="150" id="RPf-wI-A0W"/>
-                                                                            </constraints>
-                                                                        </customView>
-                                                                    </subviews>
-                                                                    <visibilityPriorities>
-                                                                        <integer value="1000"/>
-                                                                        <integer value="1000"/>
-                                                                    </visibilityPriorities>
-                                                                    <customSpacing>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                    </customSpacing>
-                                                                </stackView>
-                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="77" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loW-tI-esT">
-                                                                    <rect key="frame" x="0.0" y="64" width="343" height="22"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Whp-xY-Myz">
-                                                                            <rect key="frame" x="-2" y="3" width="120" height="16"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한자 및 이모지 단축키:" id="xOE-ud-vbw">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="H7u-hL-ncz" customClass="MASShortcutView">
-                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="150" id="red-Et-F2U"/>
-                                                                                <constraint firstAttribute="height" constant="22" id="xak-t4-2LT"/>
-                                                                            </constraints>
-                                                                        </customView>
-                                                                    </subviews>
-                                                                    <visibilityPriorities>
-                                                                        <integer value="1000"/>
-                                                                        <integer value="1000"/>
-                                                                    </visibilityPriorities>
-                                                                    <customSpacing>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                    </customSpacing>
-                                                                </stackView>
-                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="29" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1a4-nq-22i">
-                                                                    <rect key="frame" x="0.0" y="32" width="343" height="22"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-87-FKK">
-                                                                            <rect key="frame" x="-2" y="3" width="168" height="16"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="로마자로 바꾸기 단축키:" id="Lqo-2U-8gt">
-                                                                                <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="fCD-Cp-FQV" customClass="MASShortcutView">
-                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="22" id="lj8-e3-oz2"/>
-                                                                                <constraint firstAttribute="width" constant="150" id="sCI-eM-pKc"/>
-                                                                            </constraints>
-                                                                        </customView>
-                                                                    </subviews>
-                                                                    <visibilityPriorities>
-                                                                        <integer value="1000"/>
-                                                                        <integer value="1000"/>
-                                                                    </visibilityPriorities>
-                                                                    <customSpacing>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                    </customSpacing>
-                                                                </stackView>
-                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-09-IxA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="22"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BHm-Gy-NR7" userLabel="한글로 바꾸기 단축키:">
-                                                                            <rect key="frame" x="-2" y="3" width="179" height="16"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글로 바꾸기 단축키:" id="TQ3-aV-8d6" userLabel="한글로 바꾸기 단축키:">
-                                                                                <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZkS-XC-ybl" customClass="MASShortcutView">
-                                                                            <rect key="frame" x="193" y="0.0" width="150" height="22"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="22" id="UvI-vJ-gJa"/>
-                                                                                <constraint firstAttribute="width" constant="150" id="uwV-7f-e2L"/>
-                                                                            </constraints>
-                                                                        </customView>
-                                                                    </subviews>
-                                                                    <visibilityPriorities>
-                                                                        <integer value="1000"/>
-                                                                        <integer value="1000"/>
-                                                                    </visibilityPriorities>
-                                                                    <customSpacing>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                        <real value="3.4028234663852886e+38"/>
-                                                                    </customSpacing>
-                                                                </stackView>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="UFA-Z3-oXo" secondAttribute="trailing" id="CbW-O2-uhl"/>
-                                                                <constraint firstItem="UFA-Z3-oXo" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="Df7-oY-6dg"/>
-                                                                <constraint firstItem="loW-tI-esT" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="E55-26-3tA"/>
-                                                                <constraint firstItem="1a4-nq-22i" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="Wd8-pN-xbm"/>
-                                                                <constraint firstAttribute="trailing" secondItem="1a4-nq-22i" secondAttribute="trailing" id="b0f-uQ-h6Q"/>
-                                                                <constraint firstAttribute="trailing" secondItem="loW-tI-esT" secondAttribute="trailing" id="efG-0g-qus"/>
-                                                                <constraint firstItem="CcL-09-IxA" firstAttribute="leading" secondItem="coV-fo-vDP" secondAttribute="leading" id="gy3-ok-zCH"/>
-                                                                <constraint firstAttribute="trailing" secondItem="CcL-09-IxA" secondAttribute="trailing" id="iCY-uO-7bQ"/>
-                                                            </constraints>
-                                                            <visibilityPriorities>
-                                                                <integer value="1000"/>
-                                                                <integer value="1000"/>
-                                                                <integer value="1000"/>
-                                                                <integer value="1000"/>
-                                                            </visibilityPriorities>
-                                                            <customSpacing>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                                <real value="3.4028234663852886e+38"/>
-                                                            </customSpacing>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <visibilityPriorities>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
-                                                    </visibilityPriorities>
-                                                    <customSpacing>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                    </customSpacing>
-                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="4Td-o5-z1h" secondAttribute="trailing" id="GBc-YF-UIw"/>
@@ -450,7 +454,7 @@
                             <constraint firstAttribute="height" constant="300" id="Jso-1l-2z0"/>
                         </constraints>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
-                            <rect key="frame" x="0.0" y="285" width="391" height="15"/>
+                            <rect key="frame" x="0.0" y="603" width="400" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
