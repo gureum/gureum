@@ -12,7 +12,7 @@ PODS:
     - FoundationExtension/FoundationExtensionRC
   - FoundationExtension/FoundationExtensionRC (2.1.0):
     - cdebug (~> 1.3)
-  - Fuse (1.2.0)
+  - Fuse (1.4.0)
   - MASShortcut (2.4.0)
   - SwiftCarbon (0.1.0):
     - SwiftCarbon/HIToolbox (= 0.1.0)
@@ -51,12 +51,12 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FoundationExtension: 56c1c923c9a3bc69c5a5ac08c47c8f2f57b06288
-  Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
+  Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   SwiftCarbon: c48bbbff6c451022e89c46b85d0e9b44c64ef61b
   SwiftCoreServices: e4aebffc7143ff3e06920ecb89654f7c81f9768a
   SwiftIOKit: 58e9b718109ba7c6681fc45c5888838627df28f1
 
-PODFILE CHECKSUM: 13f0d70a7f8250df0097bd371d33bec58437a674
+PODFILE CHECKSUM: e09ce692ebbd19d338c05f88465817a1baf19c00
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

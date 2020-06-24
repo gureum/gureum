@@ -67,7 +67,7 @@ public class InputController: IMKInputController {
         super.init()
     }
 
-    public override func inputControllerWillClose() {
+    override public func inputControllerWillClose() {
         super.inputControllerWillClose()
     }
 
@@ -83,19 +83,19 @@ public class InputController: IMKInputController {
     }
 
     #if DEBUG
-        public override func responds(to aSelector: Selector) -> Bool {
+        override public func responds(to aSelector: Selector) -> Bool {
             let r = super.responds(to: aSelector)
             dlog(DEBUG_SPYING, "controller responds to: \(aSelector) \(r)")
             return r
         }
 
-        public override func modes(_ sender: Any!) -> [AnyHashable: Any]! {
+        override public func modes(_ sender: Any!) -> [AnyHashable: Any]! {
             let modes = super.modes(sender)
             dlog(DEBUG_SPYING, "modes: \(String(describing: modes))")
             return modes
         }
 
-        public override func value(forTag tag: Int, client _: Any!) -> Any! {
+        override public func value(forTag tag: Int, client _: Any!) -> Any! {
             let v = super.value(forTag: tag, client: client)
             dlog(DEBUG_SPYING, "value: \(String(describing: v)) for tag: \(tag)")
             return v
@@ -285,7 +285,7 @@ public extension InputController { // IMKServerInput
 
 #if DEBUG
     @objcMembers public class MockInputController: InputController {
-        public override init(server: IMKServer, delegate: Any!, client: Any) {
+        override public init(server: IMKServer, delegate: Any!, client: Any) {
             super.init()
             receiver = InputReceiver(server: server, delegate: delegate, client: client as! (IMKTextInput & IMKUnicodeTextInput), controller: self)
         }
@@ -302,11 +302,11 @@ public extension InputController { // IMKServerInput
             }
         }
 
-        public override func client() -> (IMKTextInput & NSObjectProtocol)! {
+        override public func client() -> (IMKTextInput & NSObjectProtocol)! {
             return receiver.inputClient as? (IMKTextInput & NSObjectProtocol)
         }
 
-        public override func selectionRange() -> NSRange {
+        override public func selectionRange() -> NSRange {
             return client().selectedRange()
         }
     }

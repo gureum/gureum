@@ -7,8 +7,11 @@
 //
 
 import Foundation
-
 import MASShortcut
+
+#if !USE_PREFPANE
+    import GureumCore
+#endif
 
 final class GureumShortcutValidator: MASShortcutValidator {
     override init() {

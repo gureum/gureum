@@ -10,6 +10,12 @@ import Cocoa
 import Foundation
 import GureumCore
 
+func GureumShowPreferencesWindow() {
+    let main = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
+    NSLog("main: \(main)")
+    main.showWindow(nil)
+}
+
 // 왜 App delegate가 아니라 여기 붙는건지 모르겠다
 extension InputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
@@ -20,9 +26,7 @@ extension InputController {
 
     @IBAction func showPreferencesWindow(_: Any) {
         NSApp.activate(ignoringOtherApps: true)
-        let main = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
-        NSLog("main: \(main)")
-        main.showWindow(nil)
+        GureumShowPreferencesWindow()
     }
 
     @IBAction func checkRecentVersion(_: Any) {

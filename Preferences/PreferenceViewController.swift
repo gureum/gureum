@@ -10,6 +10,9 @@ import Cocoa
 import Foundation
 
 import MASShortcut
+#if !USE_PREFPANE
+    import GureumCore
+#endif
 
 @objc(PreferenceViewController)
 final class PreferenceViewController: NSViewController {

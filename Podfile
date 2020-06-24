@@ -16,6 +16,7 @@ target 'OSX' do
     pod 'FoundationExtension', '~> 2.1.0'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'MASShortcut'
 end
 target 'Preferences' do
     project 'Gureum.xcodeproj'
@@ -28,6 +29,7 @@ target 'OSXTestApp' do
 end
 target 'OSXTests' do
     project 'Gureum.xcodeproj'
+    pod 'MASShortcut'
 end
 
 =begin
