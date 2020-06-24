@@ -5,7 +5,7 @@ osx_image: xcode11
 install:
   - gem update cocoapods
   - pod install --repo-update
-  - brew install shellcheck swiftformat
+  - brew update && brew install shellcheck swiftformat
 matrix:
   include:
     - osx_image: xcode11
