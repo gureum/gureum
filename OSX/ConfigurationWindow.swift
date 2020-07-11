@@ -50,7 +50,7 @@ final class PreferencePaneViewController: NSViewController {
         }
         guard let vc = nibObjects.filter({
             ($0 as! NSObject).className == "PreferenceViewController"
-            }).first as? PreferenceViewController else {
+        }).first as? PreferenceViewController else {
             NSLog("Preferences lookup failed.")
             return viewForFailure()
         }
