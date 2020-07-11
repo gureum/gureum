@@ -10,10 +10,10 @@ import Cocoa
 import Foundation
 import GureumCore
 
+let preferencesWindow: NSWindowController = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
+
 func GureumShowPreferencesWindow() {
-    let main = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
-    NSLog("main: \(main)")
-    main.showWindow(nil)
+    preferencesWindow.showWindow(nil)
 }
 
 // 왜 App delegate가 아니라 여기 붙는건지 모르겠다
