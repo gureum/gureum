@@ -8,13 +8,13 @@
 
 import Foundation
 import FoundationExtension
+import GureumCore
 
 class UpdateManager {
     static let shared = UpdateManager()
-    static let bundleVersion: String? = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
 
     class VersionInfo {
-        let current: String? = UpdateManager.bundleVersion
+        let current: String? = Bundle.main.version
         let data: [String: String]
         let experimental: Bool
         init(data: [String: String], experimental: Bool) {
@@ -54,7 +54,7 @@ class UpdateManager {
         return VersionInfo(data: info, experimental: experimental)
     }
 
-    func fetchOfficialVersionInfo() -> VersionInfo? {
+    func fetchStableVersionInfo() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version.json")!
         return fetchVersionInfo(from: url, experimental: false)
     }
@@ -65,17 +65,17 @@ class UpdateManager {
     }
 
     func fetchAutoUpdateVersionInfo() -> VersionInfo? {
-        guard let current = UpdateManager.bundleVersion else {
+        switch Configuration.shared.updateMode {
+        case .None:
             return nil
-        }
-        if current.contains("-experimental") || current.contains("-rc") {
+        case .Stable:
+            return fetchStableVersionInfo()
+        case .Experimental:
             return fetchExperimentalVersionInfo()
-        } else {
-            return fetchOfficialVersionInfo()
         }
     }
 
-    func notifyUpdate(info: VersionInfo) {
+    class func notifyUpdate(info: VersionInfo) {
         let notification = NSUserNotification()
         var title = "구름 입력기 업데이트 알림"
         if info.experimental {
@@ -105,6 +105,6 @@ class UpdateManager {
         guard info.url != nil else {
             return
         }
-        notifyUpdate(info: info)
+        UpdateManager.notifyUpdate(info: info)
     }
 }
