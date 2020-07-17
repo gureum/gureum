@@ -41,6 +41,11 @@ enum ConfigurationName {
     public static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
     /// 우측 커맨드 키로 언어 전환
     public static let switchLanguageForRightGui = "SwitchLanguageForRightGui"
+
+    /// 업데이트 알림 받기
+    public static let updateNotification = "UpdateNotification"
+    /// 실험버전 업데이트 알림 받기
+    public static let updateNotificationExperimental = "UpdateNotificationExperimental"
 }
 
 // MARK: - Configuration 클래스
@@ -53,6 +58,12 @@ public class Configuration: UserDefaults {
     var enableCapslockToToggleInputMode: Bool = false
 
     public typealias Shortcut = (KeyCode, NSEvent.ModifierFlags)
+
+    public enum UpdateMode {
+        case None
+        case Stable
+        case Experimental
+    }
 
     class func convertShortcutToConfiguration(_ shortcut: Shortcut?) -> [String: Any] {
         guard let shortcut = shortcut else {
@@ -87,6 +98,9 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulNonChoseongCombination: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
             ConfigurationName.switchLanguageForRightGui: false,
+
+            ConfigurationName.updateNotification: true,
+            ConfigurationName.updateNotificationExperimental: false,
         ])
     }
 
@@ -98,10 +112,12 @@ public class Configuration: UserDefaults {
         return persistentDomain(forName: Configuration.sharedSuiteName) ?? [:]
     }
 
+    // TODO: code generation
+
     /// 마지막 한글 입력 모드.
     public var lastHangulInputMode: String {
         get {
-            return string(forKey: ConfigurationName.lastHangulInputMode)!
+            string(forKey: ConfigurationName.lastHangulInputMode)!
         }
         set {
             set(newValue, forKey: ConfigurationName.lastHangulInputMode)
@@ -111,7 +127,7 @@ public class Configuration: UserDefaults {
     /// 마지막 로마자 입력 모드.
     public var lastRomanInputMode: String {
         get {
-            return string(forKey: ConfigurationName.lastRomanInputMode)!
+            string(forKey: ConfigurationName.lastRomanInputMode)!
         }
         set {
             set(newValue, forKey: ConfigurationName.lastRomanInputMode)
@@ -121,7 +137,7 @@ public class Configuration: UserDefaults {
     /// 옵션 키 동작.
     public var optionKeyBehavior: Int {
         get {
-            return integer(forKey: ConfigurationName.optionKeyBehavior)
+            integer(forKey: ConfigurationName.optionKeyBehavior)
         }
         set {
             set(newValue, forKey: ConfigurationName.optionKeyBehavior)
@@ -131,7 +147,7 @@ public class Configuration: UserDefaults {
     /// 기본 키보드 레이아웃.
     public var overridingKeyboardName: String {
         get {
-            return string(forKey: ConfigurationName.overridingKeyboardName)!
+            string(forKey: ConfigurationName.overridingKeyboardName)!
         }
         set {
             set(newValue, forKey: ConfigurationName.overridingKeyboardName)
@@ -141,7 +157,7 @@ public class Configuration: UserDefaults {
     /// 입력기 바꾸기 단축키.
     public var inputModeExchangeKey: Shortcut? {
         get {
-            return shortcut(forKey: ConfigurationName.inputModeExchangeKey)
+            shortcut(forKey: ConfigurationName.inputModeExchangeKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeExchangeKey)
@@ -151,7 +167,7 @@ public class Configuration: UserDefaults {
     /// 한자 및 이모지 검색 단축키.
     public var inputModeSearchKey: Shortcut? {
         get {
-            return shortcut(forKey: ConfigurationName.inputModeSearchKey)
+            shortcut(forKey: ConfigurationName.inputModeSearchKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeSearchKey)
@@ -161,7 +177,7 @@ public class Configuration: UserDefaults {
     /// 로마자로 바꾸기 단축키.
     public var inputModeEnglishKey: Shortcut? {
         get {
-            return shortcut(forKey: ConfigurationName.inputModeEnglishKey)
+            shortcut(forKey: ConfigurationName.inputModeEnglishKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeEnglishKey)
@@ -171,7 +187,7 @@ public class Configuration: UserDefaults {
     /// 한글로 바꾸기 단축키.
     public var inputModeKoreanKey: Shortcut? {
         get {
-            return shortcut(forKey: ConfigurationName.inputModeKoreanKey)
+            shortcut(forKey: ConfigurationName.inputModeKoreanKey)
         }
         set {
             setShortcut(newValue, forKey: ConfigurationName.inputModeKoreanKey)
@@ -181,7 +197,7 @@ public class Configuration: UserDefaults {
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     public var romanModeByEscapeKey: Bool {
         get {
-            return bool(forKey: ConfigurationName.romanModeByEscapeKey)
+            bool(forKey: ConfigurationName.romanModeByEscapeKey)
         }
         set {
             set(newValue, forKey: ConfigurationName.romanModeByEscapeKey)
@@ -191,7 +207,7 @@ public class Configuration: UserDefaults {
     /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
     public var hangulWonCurrencySymbolForBackQuote: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
+            bool(forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
         }
         set {
             set(newValue, forKey: ConfigurationName.hangulWonCurrencySymbolForBackQuote)
@@ -201,7 +217,7 @@ public class Configuration: UserDefaults {
     /// 완성되지 않은 낱자 자동 교정 (모아치기).
     public var hangulAutoReorder: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulAutoReorder)
+            bool(forKey: ConfigurationName.hangulAutoReorder)
         }
         set {
             set(newValue, forKey: ConfigurationName.hangulAutoReorder)
@@ -211,7 +227,7 @@ public class Configuration: UserDefaults {
     /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
     public var hangulNonChoseongCombination: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulNonChoseongCombination)
+            bool(forKey: ConfigurationName.hangulNonChoseongCombination)
         }
         set {
             set(newValue, forKey: ConfigurationName.hangulNonChoseongCombination)
@@ -221,7 +237,7 @@ public class Configuration: UserDefaults {
     /// 세벌식 정석 강요.
     public var hangulForceStrictCombinationRule: Bool {
         get {
-            return bool(forKey: ConfigurationName.hangulForceStrictCombinationRule)
+            bool(forKey: ConfigurationName.hangulForceStrictCombinationRule)
         }
         set {
             set(newValue, forKey: ConfigurationName.hangulForceStrictCombinationRule)
@@ -231,10 +247,44 @@ public class Configuration: UserDefaults {
     /// 우측 커맨드 키로 언어 전환
     public var switchLanguageForRightGui: Bool {
         get {
-            return bool(forKey: ConfigurationName.switchLanguageForRightGui)
+            bool(forKey: ConfigurationName.switchLanguageForRightGui)
         }
         set {
             set(newValue, forKey: ConfigurationName.switchLanguageForRightGui)
+        }
+    }
+
+    public var updateNotification: Bool {
+        get {
+            bool(forKey: ConfigurationName.updateNotification)
+        }
+        set {
+            set(newValue, forKey: ConfigurationName.updateNotification)
+        }
+    }
+
+    public var updateNotificationExperimental: Bool {
+        get {
+            if Bundle.main.isExperimental {
+                return true
+            } else {
+                return bool(forKey: ConfigurationName.updateNotificationExperimental)
+            }
+        }
+        set {
+            assert(!Bundle.main.isExperimental)
+            set(newValue, forKey: ConfigurationName.updateNotificationExperimental)
+        }
+    }
+
+    public var updateMode: UpdateMode {
+        switch (updateNotification, updateNotificationExperimental) {
+        case (false, _):
+            return .None
+        case (true, false):
+            return .Stable
+        case (true, true):
+            return .Experimental
         }
     }
 }

@@ -107,6 +107,8 @@
 		38B9551022A833E900A9D6E1 /* SystemConfigurationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9550D22A833E900A9D6E1 /* SystemConfigurationWatcher.swift */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
 		38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumObjCTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38C4A39B24C21965001B5208 /* BundleVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4A39A24C21965001B5208 /* BundleVersion.swift */; };
+		38C4A39C24C21B0A001B5208 /* BundleVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4A39A24C21965001B5208 /* BundleVersion.swift */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
@@ -363,6 +365,7 @@
 		38BFE81F18B4F181004B2B2E /* NSPrefPaneBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPrefPaneBundle.h; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38C2AE4C208795E700FE211A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38C4A39A24C21965001B5208 /* BundleVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleVersion.swift; sourceTree = "<group>"; };
 		38C75C8B1F153A74004BE02A /* RomanComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanComposer.swift; sourceTree = "<group>"; };
 		38D3E42A21213E9700751191 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
 		38D6F1CB194003C7003F25EE /* command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = command.png; path = Icons/command.png; sourceTree = "<group>"; };
@@ -630,6 +633,7 @@
 				E54B8381214299EB00527218 /* GureumComposer.swift */,
 				19E257A12327412500952E64 /* KeyCode.swift */,
 				19A122B32349D18A00525AEC /* SearchPool.swift */,
+				38C4A39A24C21965001B5208 /* BundleVersion.swift */,
 				3835B4E21F5DAA7100896BEC /* data */,
 			);
 			path = OSXCore;
@@ -1291,6 +1295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C4A39C24C21B0A001B5208 /* BundleVersion.swift in Sources */,
 				19A122A523477E1D00525AEC /* GureumPreferencePane.swift in Sources */,
 				19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */,
 				19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */,
@@ -1328,6 +1333,7 @@
 				3881869121EB2DC0004B7FDB /* Debug.swift in Sources */,
 				388186A121EB3055004B7FDB /* GureumComposer.swift in Sources */,
 				3881868921EB2D8D004B7FDB /* InputReceiver.swift in Sources */,
+				38C4A39B24C21965001B5208 /* BundleVersion.swift in Sources */,
 				386BEC5524A388A90066BF95 /* TISInputSource+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1559,7 +1565,7 @@
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${VERSION}";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1575,6 +1581,7 @@
 				INFOPLIST_FILE = OSXCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = "${VERSION}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.OSXCore;
@@ -1597,7 +1604,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${VERSION}";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9384JEL3M9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1608,6 +1615,7 @@
 				INFOPLIST_FILE = OSXCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = "${VERSION}";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.OSXCore;
 				PRODUCT_NAME = GureumCore;

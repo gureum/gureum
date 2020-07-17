@@ -43,6 +43,9 @@ final class PreferenceViewController: NSViewController {
     /// 한글로 바꾸기 단축키.
     @IBOutlet private var inputModeKoreanShortcutView: MASShortcutView!
 
+    @IBOutlet private var updateNotificationButton: NSButton!
+    @IBOutlet private var updateNotificationExperimentalButton: NSButton!
+
     private let configuration = Configuration()
     private let pane: GureumPreferencePane! = nil
     private let shortcutValidator = GureumShortcutValidator()
@@ -93,6 +96,14 @@ final class PreferenceViewController: NSViewController {
 
         loadShortcutValues()
         setupShortcutViewValueChangeEvents()
+
+        updateNotificationButton.state = isOn(configuration.updateNotification)
+        if Bundle.main.isExperimental {
+            updateNotificationExperimentalButton.state = .on
+            updateNotificationExperimentalButton.isEnabled = false
+        } else {
+            updateNotificationExperimentalButton.state = isOn(configuration.updateNotificationExperimental)
+        }
     }
 
     private func runAppleScript(_ script: String) {
@@ -158,6 +169,24 @@ final class PreferenceViewController: NSViewController {
 
     @IBAction private func switchLanguageForRightGuiValueChanged(_ sender: NSButton) {
         configuration.switchLanguageForRightGui = sender.state == .on
+    }
+
+    @IBAction private func updateNotificationValueChanged(_ sender: NSButton) {
+        configuration.updateNotification = sender.state == .on
+        #if !USE_PREFPANE
+            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
+                UpdateManager.notifyUpdate(info: info)
+            }
+        #endif
+    }
+
+    @IBAction private func updateNotificationExperimentalValueChanged(_ sender: NSButton) {
+        configuration.updateNotificationExperimental = sender.state == .on
+        #if !USE_PREFPANE
+            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
+                UpdateManager.notifyUpdate(info: info)
+            }
+        #endif
     }
 }
 

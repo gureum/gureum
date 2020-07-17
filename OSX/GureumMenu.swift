@@ -31,7 +31,7 @@ extension InputController {
 
     @IBAction func checkRecentVersion(_: Any) {
         answers.logMenu(name: "check-version")
-        guard let info = UpdateManager.shared.fetchOfficialVersionInfo() else {
+        guard let info = UpdateManager.shared.fetchStableVersionInfo() else {
             let alert = NSAlert()
             alert.messageText = "구름 입력기 업데이트 확인"
             alert.addButton(withTitle: "확인")
