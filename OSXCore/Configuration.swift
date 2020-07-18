@@ -254,6 +254,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 업데이트 알림 받기
     public var updateNotification: Bool {
         get {
             bool(forKey: ConfigurationName.updateNotification)
@@ -263,6 +264,7 @@ public class Configuration: UserDefaults {
         }
     }
 
+    /// 실험버전 업데이트 알림 받기
     public var updateNotificationExperimental: Bool {
         get {
             if Bundle.main.isExperimental {

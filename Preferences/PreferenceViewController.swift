@@ -43,7 +43,9 @@ final class PreferenceViewController: NSViewController {
     /// 한글로 바꾸기 단축키.
     @IBOutlet private var inputModeKoreanShortcutView: MASShortcutView!
 
+    /// 업데이트 알림 받기
     @IBOutlet private var updateNotificationButton: NSButton!
+    /// 실험버전 업데이트 알림 받기
     @IBOutlet private var updateNotificationExperimentalButton: NSButton!
 
     private let configuration = Configuration()
@@ -173,6 +175,9 @@ final class PreferenceViewController: NSViewController {
 
     @IBAction private func updateNotificationValueChanged(_ sender: NSButton) {
         configuration.updateNotification = sender.state == .on
+        if !Bundle.main.isExperimental {
+            updateNotificationExperimentalButton.isEnabled = sender.state == .on
+        }
         #if !USE_PREFPANE
             if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
                 UpdateManager.notifyUpdate(info: info)
