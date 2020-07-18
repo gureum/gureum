@@ -51,6 +51,7 @@ final class PreferenceViewController: NSViewController {
     private let configuration = Configuration()
     private let pane: GureumPreferencePane! = nil
     private let shortcutValidator = GureumShortcutValidator()
+    private let backgroundQueue = DispatchQueue.global(qos: .background)
 
     private lazy var inputSources: [(identifier: String, localizedName: String)] = {
         let abcIdentifier = "com.apple.keylayout.ABC"
@@ -138,6 +139,10 @@ final class PreferenceViewController: NSViewController {
         """)
     }
 
+    @IBAction private func updateCheck(sender _: NSControl) {
+        updateCheck()
+    }
+
     @IBAction private func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
         configuration.optionKeyBehavior = sender.indexOfSelectedItem
     }
@@ -178,20 +183,16 @@ final class PreferenceViewController: NSViewController {
         if !Bundle.main.isExperimental {
             updateNotificationExperimentalButton.isEnabled = sender.state == .on
         }
-        #if !USE_PREFPANE
-            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
-                UpdateManager.notifyUpdate(info: info)
-            }
-        #endif
+        backgroundQueue.async {
+            self.updateCheck()
+        }
     }
 
     @IBAction private func updateNotificationExperimentalValueChanged(_ sender: NSButton) {
         configuration.updateNotificationExperimental = sender.state == .on
-        #if !USE_PREFPANE
-            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
-                UpdateManager.notifyUpdate(info: info)
-            }
-        #endif
+        backgroundQueue.async {
+            self.updateCheck()
+        }
     }
 }
 
@@ -260,6 +261,14 @@ private extension PreferenceViewController {
             }
             self.configuration.inputModeKoreanKey = masShortcutToShortcut(sender.shortcutValue)
         }
+    }
+
+    func updateCheck() {
+        #if !USE_PREFPANE
+            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
+                UpdateManager.notifyUpdate(info: info)
+            }
+        #endif
     }
 }
 
