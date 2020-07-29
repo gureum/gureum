@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -275,7 +275,7 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-Zd-3HE" userLabel="단축키 설정 설명">
                                                             <rect key="frame" x="-2" y="32" width="343" height="80"/>
                                                             <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" id="Cbq-10-2mL">
-                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <font key="font" metaFont="system"/>
                                                                 <string key="title">구름에서 제공하는 단축키 대신 시스템 단축키를 지정해 자판을
 전환할 수도 있습니다.
 시스템 환경설정 → 키보드 → 단축키 → 입력 소스에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)</string>
@@ -549,6 +549,7 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="TrR-dR-6Bo" firstAttribute="leading" secondItem="epY-p9-ex8" secondAttribute="leading" id="dml-AL-b43"/>
+                                                        <constraint firstItem="Qtg-ji-dS0" firstAttribute="leading" secondItem="epY-p9-ex8" secondAttribute="leading" constant="20" id="mAR-z3-eFN"/>
                                                         <constraint firstAttribute="trailing" secondItem="TrR-dR-6Bo" secondAttribute="trailing" id="or3-eb-as8"/>
                                                     </constraints>
                                                     <visibilityPriorities>
@@ -602,12 +603,12 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                             </constraints>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.66666666666666663" horizontal="YES" id="Kcx-Qf-mei">
-                            <rect key="frame" x="0.0" y="903" width="415" height="15"/>
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kcx-Qf-mei">
+                            <rect key="frame" x="0.0" y="903" width="414" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
-                            <rect key="frame" x="415" y="0.0" width="15" height="918"/>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.77777777777777779" horizontal="NO" id="E1U-9N-bFJ">
+                            <rect key="frame" x="399" y="0.0" width="16" height="918"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
