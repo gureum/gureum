@@ -85,7 +85,8 @@ final class RomanComposer: Composer {
     func input(text string: String?,
                key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
-               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    {
         guard let string = string else {
             assert(false)
             return .notProcessed
