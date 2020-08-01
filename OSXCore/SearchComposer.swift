@@ -137,7 +137,8 @@ final class SearchComposer: Composer {
     func input(text: String?,
                key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
-               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    {
         // 위아래 화살표에 대한 처리 선행
         switch keyCode {
         case .upArrow, .downArrow:

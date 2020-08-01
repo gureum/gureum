@@ -168,7 +168,8 @@ extension Composer {
     func input(text: String?,
                key: KeyCode,
                modifiers: NSEvent.ModifierFlags,
-               client: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+               client: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    {
         return delegate.input(text: text, key: key, modifiers: modifiers, client: client)
     }
 }
