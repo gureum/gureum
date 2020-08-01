@@ -72,7 +72,8 @@ public class InputReceiver: InputTextDelegate {
     func input(text string: String?,
                key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
-               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+               client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    {
         let selected = sender.selectedRange()
         let marked = sender.markedRange()
         if selected.location != marked.location {

@@ -181,7 +181,8 @@ extension GureumComposer {
 
     func filterCommand(keyCode: KeyCode,
                        modifiers flags: NSEvent.ModifierFlags,
-                       client _: Any) -> InputEvent? {
+                       client _: Any) -> InputEvent?
+    {
         let configuration = Configuration.shared
         let inputModifier = flags
             .intersection(.deviceIndependentFlagsMask)
