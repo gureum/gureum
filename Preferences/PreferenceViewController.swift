@@ -121,11 +121,20 @@ final class PreferenceViewController: NSViewController {
 
     // MARK: IBAction
 
-    @IBAction private func openKeyboardPreference(sender _: NSControl) {
+    @IBAction private func openKeyboardShortcutsPreference(sender _: NSControl) {
         runAppleScript("""
             tell application "System Preferences"
                 activate
                 reveal anchor "ShortcutsTab" of pane id "com.apple.preference.keyboard"
+            end tell
+        """)
+    }
+
+    @IBAction private func openKeyboardInputSourcesPreference(sender _: NSControl) {
+        runAppleScript("""
+            tell application "System Preferences"
+                activate
+                reveal anchor "InputSources" of pane id "com.apple.preference.keyboard"
             end tell
         """)
     }

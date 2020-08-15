@@ -270,7 +270,7 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="openKeyboardPreferenceWithSender:" target="DMm-2g-KCR" id="zi4-Wn-x2u"/>
+                                                                <action selector="openKeyboardInputSourcesPreferenceWithSender:" target="DMm-2g-KCR" id="chs-d6-2SE"/>
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-Zd-3HE" userLabel="단축키 설정 설명">
@@ -293,7 +293,7 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="openKeyboardPreferenceWithSender:" target="DMm-2g-KCR" id="6Ub-WI-1T5"/>
+                                                                <action selector="openKeyboardShortcutsPreferenceWithSender:" target="DMm-2g-KCR" id="Po7-lt-mKd"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
