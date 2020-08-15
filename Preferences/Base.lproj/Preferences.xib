@@ -224,7 +224,8 @@
                                                                 <string key="title">맥 내장 입력기와 마찬가지로 Caps Lock으로 언어 전환을 하거나,
 PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
 
-&lt;시스템 환경설정 → 키보드 → 단축키 → 입력 소스&gt;에서 &lt;Caps Lock 키로 마지막으로 사용한 라틴 입력 소스 전환&gt; 설정을 켜고,
+&lt;시스템 환경설정 → 키보드 → 입력 소스&gt;에서
+&lt;Caps Lock 키로 마지막으로 사용한 라틴 입력 소스 전환&gt; 설정을 켜고,
 &lt;시스템 환경설정 → 보안 및 개인 정보 보호 → 개인 정보 보호 →
 입력 모니터링&gt;에서 &lt;구름 입력기&gt; 설정을 켜주세요.</string>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -252,12 +253,12 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M08-TU-Mtg" userLabel="단축키 설정 설명">
-                                                            <rect key="frame" x="-2" y="155" width="361" height="48"/>
+                                                            <rect key="frame" x="-2" y="155" width="369" height="48"/>
                                                             <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" id="hoy-bb-wPo">
                                                                 <font key="font" metaFont="system"/>
-                                                                <string key="title">Caps Lock을 사용하려면 &lt;시스템 환경설정 → 키보드 → 단축키 →
-입력 소스&gt;에서 &lt;Caps Lock 키로 마지막으로 사용한 라틴 입력 소스
-전환&gt; 설정을 켜주세요.</string>
+                                                                <string key="title">Caps Lock을 사용하려면 &lt;시스템 환경설정 → 키보드 → 입력
+소스&gt;에서 &lt;Caps Lock 키로 마지막으로 사용한 라틴 입력 소스 전환&gt;
+설정을 켜주세요.</string>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -273,12 +274,14 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-Zd-3HE" userLabel="단축키 설정 설명">
-                                                            <rect key="frame" x="-2" y="32" width="343" height="80"/>
+                                                            <rect key="frame" x="-2" y="32" width="351" height="80"/>
                                                             <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" id="Cbq-10-2mL">
                                                                 <font key="font" metaFont="system"/>
                                                                 <string key="title">구름에서 제공하는 단축키 대신 시스템 단축키를 지정해 자판을
 전환할 수도 있습니다.
-시스템 환경설정 → 키보드 → 단축키 → 입력 소스에서 설정 ⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께 눌러주세요. (예: Fn+⇧+스페이스)</string>
+&lt;시스템 환경설정 → 키보드 → 단축키 → 입력 소스&gt;에서 설정하며,
+⇧스페이스와 같이 ⇧가 포함된 단축키로 설정하려면 Fn 키와 함께
+눌러주세요. (예: Fn+⇧+스페이스)</string>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -537,7 +540,7 @@ PC처럼 오른쪽 커맨드 키로 언어 전환을 할 수 있습니다.
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-ji-dS0">
-                                                            <rect key="frame" x="-2" y="-2" width="318" height="18"/>
+                                                            <rect key="frame" x="18" y="-2" width="318" height="18"/>
                                                             <buttonCell key="cell" type="check" title="실험 버전이 있으면 실험 버전 업데이트 알림을 받겠습니다" bezelStyle="regularSquare" imagePosition="left" inset="2" id="76s-8b-LUT">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
