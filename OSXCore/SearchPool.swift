@@ -18,8 +18,7 @@ protocol SearchSource {
 
 extension SearchSource {
     func search(_ keyword: String, workItem: DispatchWorkItem!) -> [NSAttributedString] {
-        // TODO: 중복 제거?
-        collect(keyword, workItem: workItem).sorted(by: { $0.score < $1.score }).map {
+        let collection: [NSAttributedString] = collect(keyword, workItem: workItem).sorted(by: { $0.score < $1.score }).map {
             #if DEBUG
                 let s = "\($0.candidate): \($0.description) (\($0.score))"
             #else
@@ -27,6 +26,15 @@ extension SearchSource {
             #endif
             return NSAttributedString(string: s)
         }
+
+        var keys: Set<NSAttributedString> = []
+        var result: [NSAttributedString] = []
+        for item in collection {
+            if keys.insert(item).inserted {
+                result.append(item)
+            }
+        }
+        return result
     }
 }
 
