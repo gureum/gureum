@@ -59,8 +59,8 @@ final class SearchComposer: Composer {
     public private(set) var commitString = ""
 
     // 검색을 위한 백그라운드 스레드
-    private var _searchWorkItem: DispatchWorkItem = DispatchWorkItem {}
-    private var _searchQueue: DispatchQueue = DispatchQueue.global(qos: .userInitiated)
+    private var _searchWorkItem = DispatchWorkItem {}
+    private var _searchQueue = DispatchQueue.global(qos: .userInitiated)
     private let _searchLock = NSLock()
 
     var showsCandidateWindow = true

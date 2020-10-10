@@ -50,7 +50,7 @@ enum InputEvent {
 @objc(GureumInputController)
 public class InputController: IMKInputController {
     var receiver: InputReceiver!
-    var lastFlags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)
+    var lastFlags = NSEvent.ModifierFlags(rawValue: 0)
     var updating = false
 
     override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
