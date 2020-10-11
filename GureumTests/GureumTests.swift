@@ -660,6 +660,16 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testSearchPoolWithoutDuplicate() {
+        for (pool, key, test) in [
+            (SearchSourceConst.koreanSingle, "구", "九"),
+        ] {
+            let workItem = DispatchWorkItem {}
+            let candidates = pool.collect(key, workItem: workItem)
+            XCTAssertEqual(1, candidates.filter { $0.candidate.value == test }.count)
+        }
+    }
+
 //    func testSelection() {
 //        for app in apps {
 //            app.client.string = "한"
