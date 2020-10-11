@@ -9,32 +9,28 @@
 import Fuse
 import Hangul
 
+struct Candidate: Hashable {
+    var value: String
+    var description: String
+}
+
 /// 후보 검색 풀을 추상화한 프로토콜.
 protocol SearchSource {
-    typealias Candidate = (candidate: String, description: String, score: Double)
-    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate]
+    typealias ScoredCandidate = (candidate: Candidate, score: Double)
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [ScoredCandidate]
     func search(_ keyword: String, workItem: DispatchWorkItem!) -> [NSAttributedString]
 }
 
 extension SearchSource {
     func search(_ keyword: String, workItem: DispatchWorkItem!) -> [NSAttributedString] {
-        let collection: [NSAttributedString] = collect(keyword, workItem: workItem).sorted(by: { $0.score < $1.score }).map {
+        collect(keyword, workItem: workItem).sorted(by: { $0.score < $1.score }).map {
             #if DEBUG
-                let s = "\($0.candidate): \($0.description) (\($0.score))"
+                let s = "\($0.candidate.value): \($0.candidate.description) (\($0.score))"
             #else
-                let s = "\($0.candidate): \($0.description)"
+                let s = "\($0.candidate.value): \($0.candidate.description)"
             #endif
             return NSAttributedString(string: s)
         }
-
-        var keys: Set<NSAttributedString> = []
-        var result: [NSAttributedString] = []
-        for item in collection {
-            if keys.insert(item).inserted {
-                result.append(item)
-            }
-        }
-        return result
     }
 }
 
@@ -58,13 +54,24 @@ struct SearchPool: SearchSource {
         self.sources = sources
     }
 
-    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
-        var results = [Candidate]()
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [ScoredCandidate] {
+        var candidates: [Candidate: (Double, Int)] = [:]
+        var results: [ScoredCandidate] = []
         for source in sources {
             guard !workItem.isCancelled else {
                 break
             }
-            results.append(contentsOf: source.collect(keyword, workItem: workItem))
+            for item in source.collect(keyword, workItem: workItem) {
+                if let (score, index) = candidates[item.candidate] {
+                    if item.score < score {
+                        candidates[item.candidate] = (item.score, index)
+                        results[index] = item
+                    }
+                } else {
+                    candidates[item.candidate] = (item.score, results.count)
+                    results.append(item)
+                }
+            }
         }
         return results
     }
@@ -90,7 +97,7 @@ final class HanjaTableSearchSource: SearchSource {
     /// - Parameter keyword: 검색 키워드.
     ///
     /// - Returns: 후보 문자열과 검색 점수로 이루어진 튜플.
-    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [ScoredCandidate] {
         guard let list: HGHanjaList = {
             switch method {
             case .exact:
@@ -103,7 +110,7 @@ final class HanjaTableSearchSource: SearchSource {
             return []
         }
 
-        var candidates: [Candidate] = []
+        var results: [ScoredCandidate] = []
         for hanja in list {
             guard !workItem.isCancelled else {
                 break
@@ -115,13 +122,16 @@ final class HanjaTableSearchSource: SearchSource {
             } else {
                 score = 0.025 * Double(hanja.comment.count)
             }
-            if hanja.comment.isEmpty {
-                candidates.append((hanja.value, "", score))
-            } else {
-                candidates.append((hanja.value, hanja.comment, score))
-            }
+            let candidate: Candidate = {
+                if hanja.comment.isEmpty {
+                    return Candidate(value: hanja.value, description: "")
+                } else {
+                    return Candidate(value: hanja.value, description: hanja.comment)
+                }
+            }()
+            results.append((candidate: candidate, score: score))
         }
-        return candidates
+        return results
     }
 }
 
@@ -157,7 +167,7 @@ final class FuseSearchSource: SearchSource {
         self.init(source: source, threshold: threshold)
     }
 
-    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [Candidate] {
+    func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [ScoredCandidate] {
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 3, DelegatedComposer.updateEmojiCandidates() before hanjasByPrefixSearching")
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 4, DelegatedComposer.updateEmojiCandidates() [keyword: %@]", keyword)
         dlog(DEBUG_SEARCH_COMPOSER, "DEBUG 14, DelegatedComposer.updateEmojiCandidates() %@", source.debugDescription)
@@ -170,7 +180,8 @@ final class FuseSearchSource: SearchSource {
         return searchResult.map {
             result in
             let word = source[result.index]
-            return (word.completion, word.description, result.score + 0.0085 * Double(word.description.count))
+            let candidate = Candidate(value: word.completion, description: word.description)
+            return (candidate: candidate, score: result.score + 0.0085 * Double(word.description.count))
         }
     }
 }

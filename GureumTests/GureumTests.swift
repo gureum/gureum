@@ -656,7 +656,7 @@ class GureumTests: XCTestCase {
             let workItem = DispatchWorkItem {}
             let candidates = pool.collect(key, workItem: workItem)
             let c = candidates[0]
-            XCTAssertTrue(c.candidate == test || c.description.contains(test))
+            XCTAssertTrue(c.candidate.value == test || c.candidate.description.contains(test))
         }
     }
 
