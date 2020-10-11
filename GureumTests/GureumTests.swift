@@ -101,7 +101,7 @@ class GureumTests: XCTestCase {
     func testSearchEmoticonTable() {
         let bundle = Bundle(for: HGKeyboard.self)
         let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")
-        let table: HGHanjaTable = HGHanjaTable(contentOfFile: path!)!
+        let table = HGHanjaTable(contentOfFile: path!)!
         let list: HGHanjaList = table.hanjas(byPrefixSearching: "hushed") ?? HGHanjaList() // 현재 5글자 이상만 가능
         XCTAssert(list.count > 0)
     }

@@ -45,7 +45,7 @@ func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
         return NSString(ucsString: convertUnicode(ucsString) + 1) as String
     }
     if ucsString[1] == 0x1160 {
-        let fill: NSMutableString = NSMutableString(ucsString: ucsString, length: 1)
+        let fill = NSMutableString(ucsString: ucsString, length: 1)!
         fill.append(NSString(ucsString: ucsString + 2, length: 1) as String)
         return fill as String
     }

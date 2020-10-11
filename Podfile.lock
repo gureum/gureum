@@ -48,8 +48,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   cdebug: 0d0b7207fa996236ee9e07e5988e5e39a1d94a28
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   FoundationExtension: 56c1c923c9a3bc69c5a5ac08c47c8f2f57b06288
   Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
