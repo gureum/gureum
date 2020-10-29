@@ -74,8 +74,8 @@ public class Configuration: UserDefaults {
 
     class func convertConfigurationToShortcut(_ configuration: [String: Any]) -> Shortcut? {
         guard let modifier = configuration["modifier"] as? UInt,
-            let keyCodeRawValue = configuration["keyCode"] as? Int,
-            let keyCode = KeyCode(rawValue: keyCodeRawValue)
+              let keyCodeRawValue = configuration["keyCode"] as? Int,
+              let keyCode = KeyCode(rawValue: keyCodeRawValue)
         else {
             return nil
         }
