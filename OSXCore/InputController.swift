@@ -127,13 +127,13 @@ public extension InputController { // IMKServerInputHandleEvent
                 }
             }
 
-            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier())
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier() ?? "(no client bundle)")
 
             let result = receiver.input(text: event.characters, key: keyCode, modifiers: event.modifierFlags, client: client)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
             return result.processed
         case .flagsChanged:
-            dlog(DEBUG_INPUTCONTROLLER, "** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / client: %@", event, -1, event.modifierFlags.rawValue, client.bundleIdentifier())
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController FLAGCHANGED -handleEvent:client: with event: %@ / key: %d / modifier: %lu / client: %@", event, -1, event.modifierFlags.rawValue, client.bundleIdentifier() ?? "(no client bundle)")
             let changed = lastFlags.symmetricDifference(event.modifierFlags)
             lastFlags = event.modifierFlags
 
