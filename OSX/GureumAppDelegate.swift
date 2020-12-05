@@ -7,8 +7,7 @@
 //
 
 import Cocoa
-import Crashlytics
-import Fabric
+import FirebaseCrashlytics
 import Foundation
 import GureumCore
 import Hangul

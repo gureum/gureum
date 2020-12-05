@@ -757,7 +757,6 @@
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
-				388FB6471A12320E00DCB995 /* Run Fabric */,
 				9248550919B356340823B139 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1060,21 +1059,6 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${PROJECT_DIR}\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\nif [ $CONFIGURATION != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
 		};
-		388FB6471A12320E00DCB995 /* Run Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Run Fabric";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1b5d8443c3eabba778b0d97bff234647af846181 34aaecdde99dce1f9408a963ba788143536760a1c73ce21b46a14f888c5d54c1\n";
-		};
 		38E9024E21344640005DF76A /* Print environment variables */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1131,7 +1115,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCarbon/SwiftCarbon.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCoreServices/SwiftCoreServices.framework",
@@ -1139,7 +1126,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCarbon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCoreServices.framework",
