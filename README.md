@@ -28,7 +28,7 @@ macOS를 위한 새로운 한글 입력기
 Homebrew 사용자는 다음의 명령으로 간편하게 설치할 수 있습니다.
 
 ```sh
-brew cask install gureumkim
+brew install --cask gureumkim
 ```
 
 ### 패키지 설치
@@ -59,7 +59,7 @@ brew cask install gureumkim
 Homebrew로 설치한 경우 다음의 명령으로 간편하게 삭제할 수 있습니다.
 
 ```sh
-brew cask uninstall gureumkim
+brew uninstall --cask gureumkim
 ```
 
 ### 빠른 삭제
