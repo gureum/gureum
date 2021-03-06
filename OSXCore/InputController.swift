@@ -123,7 +123,14 @@ public extension InputController { // IMKServerInputHandleEvent
             let imkCandidates = InputMethodServer.shared.candidates
             if imkCandidates.isVisible() {
                 let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-                if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+                let arrowModifier = NSEvent.ModifierFlags.numericPad.union(.function)
+                let emptyModifier = NSEvent.ModifierFlags(rawValue: 0)
+
+                let inputModifier = event.modifierFlags
+                    .intersection(.deviceIndependentFlagsMask)
+                    .subtracting(.capsLock)
+
+                if inputModifier == arrowModifier && KeyCode.arrows.contains(keyCode) || inputModifier == emptyModifier && (keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode))) {
                     // https://github.com/pkamb/NumberInput_IMKit_Sample/issues/1#issuecomment-633264470
                     imkCandidates.perform(Selector(("handleKeyboardEvent:")), with: event)
                     return true
