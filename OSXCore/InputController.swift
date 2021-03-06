@@ -117,6 +117,9 @@ public extension InputController { // IMKServerInputHandleEvent
             guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else {
                 return false
             }
+
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier() ?? "(no client bundle)")
+
             let imkCandidates = InputMethodServer.shared.candidates
             if imkCandidates.isVisible() {
                 let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
@@ -126,8 +129,6 @@ public extension InputController { // IMKServerInputHandleEvent
                     return true
                 }
             }
-
-            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier() ?? "(no client bundle)")
 
             let result = receiver.input(text: event.characters, key: keyCode, modifiers: event.modifierFlags, client: client)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")
