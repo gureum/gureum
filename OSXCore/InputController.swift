@@ -117,17 +117,25 @@ public extension InputController { // IMKServerInputHandleEvent
             guard let keyCode = KeyCode(rawValue: Int(event.keyCode)) else {
                 return false
             }
+
+            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier() ?? "(no client bundle)")
+
             let imkCandidates = InputMethodServer.shared.candidates
             if imkCandidates.isVisible() {
                 let selectionKeys = imkCandidates.selectionKeys() as? [NSNumber] ?? []
-                if KeyCode.arrows.contains(keyCode) || keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode)) {
+                let arrowModifier = NSEvent.ModifierFlags.numericPad.union(.function)
+                let emptyModifier = NSEvent.ModifierFlags(rawValue: 0)
+
+                let inputModifier = event.modifierFlags
+                    .intersection(.deviceIndependentFlagsMask)
+                    .subtracting(.capsLock)
+
+                if inputModifier == arrowModifier && KeyCode.arrows.contains(keyCode) || inputModifier == emptyModifier && (keyCode == .return || selectionKeys.contains(NSNumber(value: event.keyCode))) {
                     // https://github.com/pkamb/NumberInput_IMKit_Sample/issues/1#issuecomment-633264470
                     imkCandidates.perform(Selector(("handleKeyboardEvent:")), with: event)
                     return true
                 }
             }
-
-            dlog(DEBUG_INPUTCONTROLLER, "** InputController KEYDOWN -handleEvent:client: with event: %@ / key: %d / modifier: %lu / chars: %@ / chars ignoreMod: %@ / client: %@", event, event.keyCode, event.modifierFlags.rawValue, event.characters ?? "(empty)", event.charactersIgnoringModifiers ?? "(empty)", client.bundleIdentifier() ?? "(no client bundle)")
 
             let result = receiver.input(text: event.characters, key: keyCode, modifiers: event.modifierFlags, client: client)
             dlog(DEBUG_LOGGING, "LOGGING::PROCESSED::\(result)")

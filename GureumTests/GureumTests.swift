@@ -263,6 +263,83 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testHanjaEscapeSyllable() {
+        for app in apps {
+            if app == terminal {
+                continue // 터미널은 한자 모드 진입이 불가능
+            }
+            app.client.string = ""
+            app.controller.setValue(GureumInputSource.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.inputKey(.ansiG)
+            app.inputKey(.ansiK)
+            app.inputKey(.ansiS)
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputText("\n", key: .return, modifiers: .option)
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string: "韓: 나라 이름 한"))
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("한", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            // Escape from Hanja mode
+            app.inputText("\n", key: .return, modifiers: .option)
+            XCTAssertEqual("한", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
+    func testHanjaEscapeWord() {
+        for app in apps {
+            if app == terminal {
+                continue // 터미널은 한자 모드 진입이 불가능
+            }
+            app.client.string = ""
+            app.controller.setValue(GureumInputSource.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            // hanja search mode
+            app.inputText("\n", key: .return, modifiers: .option)
+            app.inputKey(.ansiA)
+            app.inputKey(.ansiN)
+            app.inputKey(.ansiF)
+            XCTAssertEqual("물", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputText(" ", key: .space)
+            XCTAssertEqual("물 ", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 ", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.inputKey(.ansiT)
+            app.inputKey(.ansiN)
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+            // Escape from Hanja mode
+            app.inputText("\n", key: .return, modifiers: .option)
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string), app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string), app: \(app)")
+        }
+    }
+
+    func testHanjaEscapeSelection() {
+        for app in apps {
+            if app == terminal {
+                continue // 터미널은 한자 모드 진입이 불가능
+            }
+            app.client.string = "물 수"
+            app.controller.setValue(GureumInputSource.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.client.setSelectedRange(NSMakeRange(0, 3))
+            XCTAssertEqual("물 수", app.client.selectedString(), "")
+            app.inputText("\n", key: .return, modifiers: .option)
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.controller.candidateSelectionChanged(NSAttributedString(string: "水: 물 수, 고를 수"))
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            // Escape from Hanja mode
+            app.inputText("\n", key: .return, modifiers: .option)
+            XCTAssertEqual("물 수", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        }
+    }
+
     func testBackQuoteHan2() {
         Configuration.shared.hangulWonCurrencySymbolForBackQuote = true
         for app in apps {

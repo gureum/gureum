@@ -200,6 +200,15 @@ extension GureumComposer {
             return .changeLayout(.hangul, true)
         }
         if let shortcutKey = configuration.inputModeSearchKey, shortcutKey == inputKey {
+            // 이미 연속 입력모드라면 한자 단축키로 탈출
+            if let searchComposer = delegate as? SearchComposer {
+                searchComposer.exitComposer()
+                if searchComposer.delegate is HangulComposer {
+                    return .changeLayout(.hangul, true)
+                } else if searchComposer.delegate is RomanComposer {
+                    return .changeLayout(.roman, true)
+                }
+            }
             return .changeLayout(.search, true)
         }
 
