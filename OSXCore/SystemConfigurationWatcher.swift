@@ -6,6 +6,7 @@
 //  Copyright © 2019 youknowone.org. All rights reserved.
 //
 
+import Foundation
 import SwiftCoreServices
 
 typealias FSEventStream = SFSEventStream

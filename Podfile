@@ -6,9 +6,6 @@ target 'OSXCore' do
     project 'Gureum.xcodeproj'
     pod 'cdebug'
     pod 'FoundationExtension', '~> 2.1.0'
-    pod 'SwiftIOKit'
-    pod 'SwiftCarbon'
-    pod 'SwiftCoreServices'
     pod 'Fuse'
 end
 target 'OSX' do
