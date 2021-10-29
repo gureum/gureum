@@ -41,3 +41,10 @@ jobs:
           sdk: macosx
           destination: platform=macOS
           action: build test
+      #- uses: sersoft-gmbh/xcodebuild-action@v1
+      #  with:
+      #    workspace: Gureum.xcworkspace
+      #    scheme: App
+      #    sdk: iphonesimulator
+      #    destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+      #    action: build test
