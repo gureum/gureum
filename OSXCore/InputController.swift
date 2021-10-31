@@ -37,7 +37,7 @@ struct InputResult: Equatable {
 enum ChangeLayout {
     case toggle
     case toggleByCapsLock
-    case toggleByRightGui
+    case toggleByRightKey
     case hangul
     case roman
     case search
@@ -157,9 +157,9 @@ public extension InputController { // IMKServerInputHandleEvent
                 }
             }
 
-            if InputMethodServer.shared.io.resolveRightGuiPressed() {
-                let result = receiver.input(event: .changeLayout(.toggleByRightGui, true), client: client)
-                dlog(DEBUG_IOKIT_EVENT, "controller detected right gui")
+            if InputMethodServer.shared.io.resolveRightKeyPressed() {
+                let result = receiver.input(event: .changeLayout(.toggleByRightKey, true), client: client)
+                dlog(DEBUG_IOKIT_EVENT, "controller detected right key")
                 return result.processed
             }
 

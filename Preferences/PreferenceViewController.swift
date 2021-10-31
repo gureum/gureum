@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import SwiftIOKit
 
 import MASShortcut
 #if !USE_PREFPANE
@@ -31,8 +32,8 @@ final class PreferenceViewController: NSViewController {
     @IBOutlet private var hangulForceStrictCombinationRuleButton: NSButton!
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
     @IBOutlet private var romanModeByEscapeKeyButton: NSButton!
-    /// 우측 커맨드 키로 언어 전환
-    @IBOutlet private var switchLanguageForRightGuiButton: NSButton!
+    /// 우측 키로 언어 전환
+    @IBOutlet private var rightToggleKeyButton: NSPopUpButton!
 
     /// 입력기 바꾸기 단축키.
     @IBOutlet private var inputModeExchangeShortcutView: MASShortcutView!
@@ -82,7 +83,16 @@ final class PreferenceViewController: NSViewController {
         hangulAutoReorderButton.state = isOn(configuration.hangulAutoReorder)
         hangulNonChoseongCombinationButton.state = isOn(configuration.hangulNonChoseongCombination)
         hangulForceStrictCombinationRuleButton.state = isOn(configuration.hangulForceStrictCombinationRule)
-        switchLanguageForRightGuiButton.state = isOn(configuration.switchLanguageForRightGui)
+        switch configuration.rightToggleKey {
+        case kHIDUsage_KeyboardRightGUI:
+            rightToggleKeyButton.selectItem(at: 1)
+        case kHIDUsage_KeyboardRightAlt:
+            rightToggleKeyButton.selectItem(at: 2)
+        case kHIDUsage_KeyboardRightControl:
+            rightToggleKeyButton.selectItem(at: 3)
+        default:
+            rightToggleKeyButton.selectItem(at: 0)
+        }
         if (0 ..< optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
             optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
         }
@@ -183,8 +193,19 @@ final class PreferenceViewController: NSViewController {
         configuration.hangulForceStrictCombinationRule = sender.state == .on
     }
 
-    @IBAction private func switchLanguageForRightGuiValueChanged(_ sender: NSButton) {
-        configuration.switchLanguageForRightGui = sender.state == .on
+    @IBAction private func rightToggleKeyValueChanged(_ sender: NSPopUpButton) {
+        configuration.rightToggleKey = {
+            switch sender.indexOfSelectedItem {
+            case 1:
+                return kHIDUsage_KeyboardRightGUI
+            case 2:
+                return kHIDUsage_KeyboardRightAlt
+            case 3:
+                return kHIDUsage_KeyboardRightControl
+            default:
+                return 0
+            }
+        }()
     }
 
     @IBAction private func updateNotificationValueChanged(_ sender: NSButton) {

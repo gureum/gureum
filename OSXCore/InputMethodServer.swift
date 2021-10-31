@@ -50,7 +50,7 @@ class IOKitty {
     private var defaultCapsLockState: Bool = false
     var capsLockDate: Date?
     var rollback: (() -> Void)?
-    var rightGuiPressed = false
+    var rightKeyPressed = false
 
     init?() {
         guard let _service = SIOService(name: kIOHIDSystemClass) else {
@@ -73,10 +73,10 @@ class IOKitty {
         manager.registerInputValueCallback({
             inContext, _, _, value in
             let usage = Int(value.element.usage)
-            guard usage == kHIDUsage_KeyboardCapsLock || usage == kHIDUsage_KeyboardRightGUI else {
+            guard usage == kHIDUsage_KeyboardCapsLock || (usage >= kHIDUsage_KeyboardRightControl && usage <= kHIDUsage_KeyboardRightGUI) else {
                 return
             }
-            guard Configuration.shared.enableCapslockToToggleInputMode || Configuration.shared.switchLanguageForRightGui else {
+            guard Configuration.shared.enableCapslockToToggleInputMode || Configuration.shared.rightToggleKey > 0 else {
                 return
             }
             guard let inContext = inContext else {
@@ -107,15 +107,12 @@ class IOKitty {
                         _self.capsLockDate = nil
                     }
                 }
-            case kHIDUsage_KeyboardRightGUI:
-                guard Configuration.shared.switchLanguageForRightGui else {
-                    return
-                }
-                dlog(DEBUG_IOKIT_EVENT, "right gui pressed: \(pressed)")
+            case Configuration.shared.rightToggleKey:
+                dlog(DEBUG_IOKIT_EVENT, "right toggle key pressed: \(pressed)")
                 let _self = Unmanaged<IOKitty>.fromOpaque(inContext).takeUnretainedValue()
                 if pressed {
-                    _self.rightGuiPressed = true
-                    dlog(DEBUG_IOKIT_EVENT, "right gui pressed set in context")
+                    _self.rightKeyPressed = true
+                    dlog(DEBUG_IOKIT_EVENT, "right toggle key pressed set in context")
                 }
             default:
                 break
@@ -147,11 +144,11 @@ class IOKitty {
         return interval < 0.5
     }
 
-    func resolveRightGuiPressed() -> Bool {
-        if !rightGuiPressed {
+    func resolveRightKeyPressed() -> Bool {
+        if !rightKeyPressed {
             return false
         }
-        rightGuiPressed = false
+        rightKeyPressed = false
         return true
     }
 }

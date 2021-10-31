@@ -127,7 +127,7 @@ public class InputReceiver: InputTextDelegate {
     func input(event: InputEvent, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
         switch event {
         case let .changeLayout(layout, processed):
-            let innerLayout = layout == .toggleByCapsLock || layout == .toggleByRightGui ? .toggle : layout
+            let innerLayout = layout == .toggleByCapsLock || layout == .toggleByRightKey ? .toggle : layout
             let result = composer.changeLayout(innerLayout, client: sender)
             // 합성 후보가 있다면 보여준다
             InputMethodServer.shared.showOrHideCandidates(controller: controller)
