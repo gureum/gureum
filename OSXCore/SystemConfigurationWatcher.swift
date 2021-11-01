@@ -25,8 +25,8 @@ public class SystemConfigurationWatcher {
 
         let stream = FSEventStream.create(paths: [SystemConfigurationWatcher.globalPreferencesPath], eventId: FSEventStream.EventIdSinceNow, latancy: 5.0, flags: FSEventStream.CreateFlag.fileEvents) {
             [weak self] _, _ in
-            NSLog("Reloading system configuration by watcher")
-            self?.reloadConfiguration()
+                NSLog("Reloading system configuration by watcher")
+                self?.reloadConfiguration()
         }!
         stream.schedule(runLoop: .current, mode: .default)
         stream.start()
