@@ -39,8 +39,8 @@ enum ConfigurationName {
     public static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
     /// 세벌식 정석 강요.
     public static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
-    /// 우측 커맨드 키로 언어 전환
-    public static let switchLanguageForRightGui = "SwitchLanguageForRightGui"
+    /// 우측 키로 언어 전환
+    public static let rightToggleKey = "RightToggleKey"
 
     /// 업데이트 알림 받기
     public static let updateNotification = "UpdateNotification"
@@ -98,7 +98,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
-            ConfigurationName.switchLanguageForRightGui: false,
+            ConfigurationName.rightToggleKey: 0,
 
             ConfigurationName.updateNotification: true,
             ConfigurationName.updateNotificationExperimental: false,
@@ -245,13 +245,13 @@ public class Configuration: UserDefaults {
         }
     }
 
-    /// 우측 커맨드 키로 언어 전환
-    public var switchLanguageForRightGui: Bool {
+    /// 우측 키로 언어 전환
+    public var rightToggleKey: Int {
         get {
-            bool(forKey: ConfigurationName.switchLanguageForRightGui)
+            integer(forKey: ConfigurationName.rightToggleKey)
         }
         set {
-            set(newValue, forKey: ConfigurationName.switchLanguageForRightGui)
+            set(newValue, forKey: ConfigurationName.rightToggleKey)
         }
     }
 
