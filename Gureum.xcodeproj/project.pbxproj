@@ -125,6 +125,11 @@
 		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
+		CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */; };
+		CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */; };
+		CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEF280A0F6300B54371 /* FirebasePerformance */; };
+		CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */; };
+		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
 		CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE47F1D92809FD1200480AF3 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
@@ -446,7 +451,12 @@
 			files = (
 				CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */,
 				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
+				CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */,
+				CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */,
+				CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */,
+				CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */,
 				C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */,
+				CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,7 +759,6 @@
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
-				9248550919B356340823B139 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -798,7 +807,6 @@
 				386ECB7B21537DE70060D9BE /* Sources */,
 				386ECB7C21537DE70060D9BE /* Frameworks */,
 				386ECB7D21537DE70060D9BE /* Resources */,
-				FF731DA68ABE84003384699B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -831,6 +839,11 @@
 			name = OSXCore;
 			packageProductDependencies = (
 				CE47F1D92809FD1200480AF3 /* SwiftUp */,
+				CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */,
+				CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */,
+				CE21ADEF280A0F6300B54371 /* FirebasePerformance */,
+				CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */,
+				CE21ADF5280A0FC800B54371 /* Fuse */,
 			);
 			productName = OSXCore;
 			productReference = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */;
@@ -947,6 +960,8 @@
 			packageReferences = (
 				CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 				CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */,
+				CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 			);
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
@@ -1094,40 +1109,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9248550919B356340823B139 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1202,24 +1183,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF731DA68ABE84003384699B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1897,6 +1860,22 @@
 				kind = branch;
 			};
 		};
+		CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krisk/fuse-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youknowone/SwiftUp";
@@ -1912,6 +1891,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */;
 			productName = MASShortcut;
+		};
+		CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseAnalytics;
+		};
+		CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseCrashlytics;
+		};
+		CE21ADEF280A0F6300B54371 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebasePerformance;
+		};
+		CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseRemoteConfig;
+		};
+		CE21ADF5280A0FC800B54371 /* Fuse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */;
+			productName = Fuse;
 		};
 		CE47F1D92809FD1200480AF3 /* SwiftUp */ = {
 			isa = XCSwiftPackageProductDependency;
