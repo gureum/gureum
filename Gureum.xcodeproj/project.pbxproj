@@ -131,6 +131,7 @@
 		CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */; };
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
 		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
+		CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21AE05280B068B00B54371 /* TISInputSource.swift */; };
 		CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE47F1D92809FD1200480AF3 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
@@ -405,6 +406,7 @@
 		A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
 		CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE21AE05280B068B00B54371 /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
 		E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
+				CE21AE05280B068B00B54371 /* TISInputSource.swift */,
 				E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
@@ -1204,6 +1207,7 @@
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				38710C06236EE9A100405D41 /* ConfigurationWindow.swift in Sources */,
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
+				CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */,
 				386BEC4B24A386160066BF95 /* GureumShortcutValidator.swift in Sources */,
 				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */,

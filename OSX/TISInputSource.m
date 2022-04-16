@@ -6,8 +6,6 @@
 //  Copyright (c) 2014년 youknowone.org. All rights reserved.
 //
 
-@import FoundationExtension;
-
 #import "TISInputSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -60,10 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (self->_ref) {
         CFRelease(self->_ref);
     }
-}
-
-- (NSString *)description {
-    return [@"<%@(%@)>" format:self.class.name, self.identifier];
 }
 
 - (id)propertyForKey:(NSString *)key {
@@ -124,16 +118,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURL *)iconImageURL {
     return [self propertyForKey:TISPropertyIconImageURL];
-}
-
-NSArray *_TISSourceInputRefToObject(NSArray *refs) {
-    return [refs arrayByMappingOperator:^id(id obj) {
-        TISInputSourceRef ref = (__bridge TISInputSourceRef)obj;
-        CFRetain(ref);
-        id source = [[TISInputSource alloc] initWithRef:ref];
-        assert(source);
-        return source;
-    }];
 }
 
 + (instancetype)sourceForLanguage:(NSString *)language {

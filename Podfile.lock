@@ -1,27 +1,3 @@
-PODS:
-  - cdebug (1.3)
-  - FoundationExtension (2.1.0):
-    - cdebug (~> 1.3)
-    - FoundationExtension/FoundationExtension (= 2.1.0)
-    - FoundationExtension/FoundationExtensionRC (= 2.1.0)
-  - FoundationExtension/FoundationExtension (2.1.0):
-    - cdebug (~> 1.3)
-    - FoundationExtension/FoundationExtensionRC
-  - FoundationExtension/FoundationExtensionRC (2.1.0):
-    - cdebug (~> 1.3)
-
-DEPENDENCIES:
-  - FoundationExtension (~> 2.1.0)
-
-SPEC REPOS:
-  trunk:
-    - cdebug
-    - FoundationExtension
-
-SPEC CHECKSUMS:
-  cdebug: 0d0b7207fa996236ee9e07e5988e5e39a1d94a28
-  FoundationExtension: 56c1c923c9a3bc69c5a5ac08c47c8f2f57b06288
-
-PODFILE CHECKSUM: 65886ccfef50968348f559355960d33879234b1d
+PODFILE CHECKSUM: 9c9fc04e9bd6e7fa40e07f838ca6aab6b629dde4
 
 COCOAPODS: 1.11.3
