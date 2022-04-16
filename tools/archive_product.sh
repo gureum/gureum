@@ -26,7 +26,7 @@ else
     PRINTER="cat"
 fi
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" archive | $PRINTER) && \
+(xcodebuild -project 'Gureum.xcodeproj' -scheme 'OSX' -configuration "${CONFIGURATION}" archive | $PRINTER) && \
     echo "Archive dir path is required for further packaging (try paste)" && echo "Archive directory path>" && read -r archive_dir || \
     exit $?
 

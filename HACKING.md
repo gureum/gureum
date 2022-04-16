@@ -2,16 +2,6 @@
 
 ## 개발환경 설정
 
-### CocoaPods 설치
-
-구름 입력기는 CocoaPods으로 의존성을 관리합니다. Xcode를 사용해 개발하기 전에 CocoaPods을 설치해야 합니다.
-
-CocoaPods는 1.6 베타 버전 이상의 환경이 필요합니다.
-
-``` sh
-sudo gem install cocoapods
-```
-
 ### git submodule 가져오기
 
 libhangul의 라이선스 전파성을 피하기 위해 프로젝트를 분리하여 준비가 조금 복잡합니다.
@@ -22,7 +12,7 @@ git submodule을 포함하고 있으므로 클론 후 submodule도 가져오도�
 git clone https://github.com/gureum/gureum.git  # 클론
 cd gureum
 make init
-open Gureum.xcworkspace
+open Gureum.xcodeproj
 ```
 
 submodule의 URL 변경 등을 이유로 submodule이 제대로 클론되지 않을 경우에는 다음 명령어로 다시 가져올 수 있습니다.
@@ -43,7 +33,7 @@ git submodule update --init --recursive
 
 ## 빌드
 
-`OSX` 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
+`Gureum` 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
 
 ![image](https://user-images.githubusercontent.com/906974/48977284-c5fc8e80-f0da-11e8-9ad2-7a40b8e774ea.png)
 

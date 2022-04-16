@@ -15,7 +15,7 @@ else
     PRINTER="cat"
 fi
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'OSX' -configuration "${CONFIGURATION}" | $PRINTER) || exit $?
+(xcodebuild -project 'Gureum.xcodeproj' -scheme 'OSX' -configuration "${CONFIGURATION}" | $PRINTER) || exit $?
 if [ ! "${INSTALL_PATH}" ]; then
     echo "something wrong" && exit 255
 fi

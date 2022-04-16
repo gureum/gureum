@@ -22,8 +22,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		039CD9672B79A0A6E62CD97D /* Pods_OSXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */; };
-		0929B3CEBD93FE1ED506F24A /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */; };
 		19136D73234090AA00A0BF3C /* SearchComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19136D72234090AA00A0BF3C /* SearchComposer.swift */; };
 		19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A1229923477D2700525AEC /* TISInputSource+.swift */; };
 		19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A223477DE900525AEC /* GureumShortcutValidator.swift */; };
@@ -111,8 +109,6 @@
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
-		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
-		66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */; };
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
@@ -122,7 +118,6 @@
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
-		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
 		CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */; };
@@ -132,7 +127,7 @@
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
 		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
 		CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21AE05280B068B00B54371 /* TISInputSource.swift */; };
-		CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE47F1D92809FD1200480AF3 /* SwiftUp */; };
+		CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
@@ -426,7 +421,6 @@
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
-				66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */,
 				CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,7 +430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */,
-				5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +438,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */,
-				0929B3CEBD93FE1ED506F24A /* Pods_OSXTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,14 +445,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */,
 				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
 				CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */,
 				CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */,
 				CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */,
 				CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */,
-				C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */,
 				CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */,
+				CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +459,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				039CD9672B79A0A6E62CD97D /* Pods_OSXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +749,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
-				D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
@@ -786,7 +775,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382E68711A1314D900031D1D /* Build configuration list for PBXNativeTarget "Preferences" */;
 			buildPhases = (
-				7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */,
 				382E685F1A1314D900031D1D /* Sources */,
 				382E68601A1314D900031D1D /* Frameworks */,
 				382E68611A1314D900031D1D /* Headers */,
@@ -809,7 +797,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "OSXTestApp" */;
 			buildPhases = (
-				B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */,
 				386ECB7B21537DE70060D9BE /* Sources */,
 				386ECB7C21537DE70060D9BE /* Frameworks */,
 				386ECB7D21537DE70060D9BE /* Resources */,
@@ -829,7 +816,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3881868721EB2D7D004B7FDB /* Build configuration list for PBXNativeTarget "OSXCore" */;
 			buildPhases = (
-				D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */,
 				3881867521EB2D7D004B7FDB /* Headers */,
 				3881867621EB2D7D004B7FDB /* Sources */,
 				3881867721EB2D7D004B7FDB /* Frameworks */,
@@ -844,12 +830,12 @@
 			);
 			name = OSXCore;
 			packageProductDependencies = (
-				CE47F1D92809FD1200480AF3 /* SwiftUp */,
 				CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */,
 				CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */,
 				CE21ADEF280A0F6300B54371 /* FirebasePerformance */,
 				CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */,
 				CE21ADF5280A0FC800B54371 /* Fuse */,
+				CE21AE0F280B0B2200B54371 /* SwiftUp */,
 			);
 			productName = OSXCore;
 			productReference = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */;
@@ -859,7 +845,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */;
 			buildPhases = (
-				D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */,
 				38BFE7F618B45419004B2B2E /* Sources */,
 				38BFE7F718B45419004B2B2E /* Frameworks */,
 				38BFE7F818B45419004B2B2E /* Resources */,
@@ -964,11 +949,11 @@
 			);
 			mainGroup = 38863C4E140E62D100A8ED76;
 			packageReferences = (
-				CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 				CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */,
 				CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 				CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 			);
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
@@ -1097,100 +1082,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
-		};
-		7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Preferences-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXTestApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXCore-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSX-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1362,7 +1253,6 @@
 /* Begin XCBuildConfiguration section */
 		38162E09141263280077AA2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B185969033D59E37DA605FD /* Pods-OSX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1385,7 +1275,6 @@
 		};
 		38162E0A141263280077AA2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1411,7 +1300,6 @@
 		};
 		382E68721A1314D900031D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -1437,7 +1325,6 @@
 		};
 		382E68731A1314D900031D1D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -1463,7 +1350,6 @@
 		};
 		386ECBA221537DEA0060D9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1483,7 +1369,6 @@
 		};
 		386ECBA321537DEA0060D9BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1503,7 +1388,6 @@
 		};
 		3881868321EB2D7D004B7FDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -1545,7 +1429,6 @@
 		};
 		3881868421EB2D7D004B7FDB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -1703,7 +1586,6 @@
 		};
 		38BFE80918B45419004B2B2E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1741,7 +1623,6 @@
 		};
 		38BFE80A18B45419004B2B2E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1892,7 +1773,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
+		CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youknowone/SwiftUp";
 			requirement = {
@@ -1938,9 +1819,9 @@
 			package = CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		CE47F1D92809FD1200480AF3 /* SwiftUp */ = {
+		CE21AE0F280B0B2200B54371 /* SwiftUp */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */;
+			package = CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */;
 			productName = SwiftUp;
 		};
 /* End XCSwiftPackageProductDependency section */
