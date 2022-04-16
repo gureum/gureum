@@ -265,30 +265,18 @@ private extension PreferenceViewController {
             return (keyCode, mas.modifierFlags)
         }
         inputModeExchangeShortcutView.shortcutValueChange = { sender in
-            guard let sender = sender else {
-                return
-            }
             self.configuration.inputModeExchangeKey = masShortcutToShortcut(sender.shortcutValue)
         }
 
         inputModeSearchShortcutView.shortcutValueChange = { sender in
-            guard let sender = sender else {
-                return
-            }
             self.configuration.inputModeSearchKey = masShortcutToShortcut(sender.shortcutValue)
         }
 
         inputModeEnglishShortcutView.shortcutValueChange = { sender in
-            guard let sender = sender else {
-                return
-            }
             self.configuration.inputModeEnglishKey = masShortcutToShortcut(sender.shortcutValue)
         }
 
         inputModeKoreanShortcutView.shortcutValueChange = { sender in
-            guard let sender = sender else {
-                return
-            }
             self.configuration.inputModeKoreanKey = masShortcutToShortcut(sender.shortcutValue)
         }
     }

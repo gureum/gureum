@@ -46,7 +46,6 @@ PODS:
     - GoogleUtilities/Environment
   - GoogleUtilities/UserDefaults (7.6.0):
     - GoogleUtilities/Logger
-  - MASShortcut (2.4.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -59,7 +58,6 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - FoundationExtension (~> 2.1.0)
   - Fuse
-  - MASShortcut
 
 SPEC REPOS:
   trunk:
@@ -73,7 +71,6 @@ SPEC REPOS:
     - Fuse
     - GoogleDataTransport
     - GoogleUtilities
-    - MASShortcut
     - nanopb
     - PromisesObjC
 
@@ -88,10 +85,9 @@ SPEC CHECKSUMS:
   Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
-  MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 93339a2702bcf395f3b599825650486dfcb15fe8
+PODFILE CHECKSUM: e396fe927e4634d3c0cdb5a6e9163b734e2c0e5d
 
 COCOAPODS: 1.11.3
