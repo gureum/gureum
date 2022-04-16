@@ -22,7 +22,7 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
         guard let download = userInfo["url"] as? String else {
             return
         }
-        var updating: Bool = false
+        var updating = false
         switch notification.activationType {
         case .actionButtonClicked:
             fallthrough

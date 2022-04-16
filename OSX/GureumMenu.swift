@@ -40,7 +40,7 @@ extension InputController {
             return
         }
 
-        if info.recent == info.current {
+        if info.update.version == info.current {
             let fmt = "현재 사용하고 있는 구름 입력기 \(info.current ?? "-") 는 최신 버전입니다."
             let alert = NSAlert()
             alert.messageText = "구름 입력기 업데이트 확인"
@@ -48,11 +48,11 @@ extension InputController {
             alert.informativeText = fmt
             alert.runModal()
         } else {
-            var message = "현재 사용하고 있는 구름 입력기는 \(info.current ?? "-") 이고 최신 버전은 \(info.recent ?? "-") 입니다. 업데이트는 로그아웃하거나 재부팅해야 적용됩니다."
-            if let description = info.description {
-                message += " 업데이트 요약은 '\(description)' 입니다."
+            var message = "현재 사용하고 있는 구름 입력기는 \(info.current ?? "-") 이고 최신 버전은 \(info.update.version) 입니다. 업데이트는 로그아웃하거나 재부팅해야 적용됩니다."
+            if !info.update.description.isEmpty {
+                message += " 업데이트 요약은 '\(info.update.description)' 입니다."
             }
-            if let url = info.url {
+            if let url = URL(string: info.update.url) {
                 NSWorkspace.shared.open(url)
             } else {
                 message += " 현재 업데이트 링크를 찾을 수 없습니다. 버그 리포트를 부탁드립니다."
@@ -67,7 +67,7 @@ extension InputController {
 
     @IBAction func checkExperimentalVersion(_: Any) {
         answers.logMenu(name: "check-experimental")
-        guard let info = UpdateManager.shared.fetchExperimentalVersionInfo(), let url = info.url else {
+        guard let info = UpdateManager.shared.fetchExperimentalVersionInfo(), let url = URL(string: info.update.url) else {
             let alert = NSAlert()
             alert.messageText = "구름 입력기 실험 버전 확인"
             alert.addButton(withTitle: "확인")

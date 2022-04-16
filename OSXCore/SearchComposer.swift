@@ -49,7 +49,7 @@ final class SearchComposer: Composer {
         if delegate is RomanComposer {
             return .roman
         }
-        assert(false)
+        assertionFailure()
         return nil
     }
 
@@ -130,7 +130,7 @@ final class SearchComposer: Composer {
             // TODO: both
             break
         case nil:
-            assert(false)
+            assertionFailure()
         }
     }
 

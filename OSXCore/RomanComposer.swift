@@ -88,7 +88,7 @@ final class RomanComposer: Composer {
                client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult
     {
         guard let string = string else {
-            assert(false)
+            assertionFailure()
             return .notProcessed
         }
 

@@ -130,6 +130,7 @@
 		CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEF280A0F6300B54371 /* FirebasePerformance */; };
 		CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */; };
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
+		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
 		CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE47F1D92809FD1200480AF3 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
@@ -418,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3881868121EB2D7D004B7FDB /* GureumCore.framework in Frameworks */,
+				CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */,
 				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
@@ -771,6 +773,7 @@
 			name = OSX;
 			packageProductDependencies = (
 				CE21ADD8280A026300B54371 /* MASShortcut */,
+				CE21ADFE280A11A600B54371 /* Alamofire */,
 			);
 			productName = OSX;
 			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
@@ -960,8 +963,9 @@
 			packageReferences = (
 				CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 				CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */,
-				CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */,
+				CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
@@ -1860,7 +1864,7 @@
 				kind = branch;
 			};
 		};
-		CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1874,6 +1878,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 		CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
@@ -1894,28 +1906,33 @@
 		};
 		CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		CE21ADEF280A0F6300B54371 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebasePerformance;
 		};
 		CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
 		};
 		CE21ADF5280A0FC800B54371 /* Fuse */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */;
 			productName = Fuse;
+		};
+		CE21ADFE280A11A600B54371 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		CE47F1D92809FD1200480AF3 /* SwiftUp */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -22,7 +22,7 @@ private let table: [HGUCSChar: HGUCSChar] = [
 
 /// 한글호환 자모 유니코드로 바꿔주는 함수.
 func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> UnsafeMutablePointer<HGUCSChar> {
-    var index: Int = 0
+    var index = 0
     let newUcsString = UnsafeMutablePointer<HGUCSChar>.allocate(capacity: 4)
     while ucsString[index] != UInt32(0) {
         if let chr = table[ucsString[index]] {
@@ -178,11 +178,11 @@ final class HangulComposer: NSObject, Composer {
     }
 
     func candidateSelected(_: NSAttributedString) {
-        assert(false)
+        assertionFailure()
     }
 
     func candidateSelectionChanged(_: NSAttributedString) {
-        assert(false)
+        assertionFailure()
     }
 
     func input(text string: String?,
@@ -240,7 +240,7 @@ extension HangulComposer {
     }
 
     private func input(controller _: InputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
-        assert(false)
+        assertionFailure()
         return .notProcessed
     }
 }

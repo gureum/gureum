@@ -4,8 +4,6 @@ platform :osx, "10.13"
 
 target 'OSXCore' do
     project 'Gureum.xcodeproj'
-    pod 'cdebug'
-    pod 'FoundationExtension', '~> 2.1.0'
 end
 target 'OSX' do
     project 'Gureum.xcodeproj'
@@ -16,7 +14,6 @@ target 'Preferences' do
 end
 target 'OSXTestApp' do
     project 'Gureum.xcodeproj'
-    pod 'FoundationExtension', '~> 2.1.0'
 end
 target 'OSXTests' do
     project 'Gureum.xcodeproj'

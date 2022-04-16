@@ -57,18 +57,16 @@ class GureumTests: XCTestCase {
     }
 
     func testNotifyUpdate() {
-        let versionInfoString = """
+        let data = """
         {
             "version": "1.10.0",
             "description": "Mojave 대응을 포함한 대형 업데이트",
             "url": "https://github.com/gureum/gureum/releases/tag/1.10.0"
         }
-        """
-        guard let versionInfoJSON = try? JSONSerialization.jsonObject(with: versionInfoString) as? [String: String] else {
-            XCTFail()
-            return
-        }
-        let versionInfo = UpdateManager.VersionInfo(data: versionInfoJSON, experimental: true)
+        """.data(using: .utf8)
+        let update = try! JSONDecoder().decode(UpdateManager.UpdateInfo.self, from: data!)
+
+        let versionInfo = UpdateManager.VersionInfo(update: update, experimental: true)
         UpdateManager.notifyUpdate(info: versionInfo)
         XCTAssertEqual("최신 버전: 1.10.0 현재 버전: \(Bundle.main.version ?? "-")\nMojave 대응을 포함한 대형 업데이트", lastNotification.informativeText)
         XCTAssertEqual(["url": "https://github.com/gureum/gureum/releases/tag/1.10.0"], lastNotification.userInfo as! [String: String])
