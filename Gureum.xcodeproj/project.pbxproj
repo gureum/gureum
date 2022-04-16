@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		039CD9672B79A0A6E62CD97D /* Pods_OSXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */; };
+		0929B3CEBD93FE1ED506F24A /* Pods_OSXTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */; };
 		19136D73234090AA00A0BF3C /* SearchComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19136D72234090AA00A0BF3C /* SearchComposer.swift */; };
 		19A1229A23477D2700525AEC /* TISInputSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A1229923477D2700525AEC /* TISInputSource+.swift */; };
 		19A122A323477DE900525AEC /* GureumShortcutValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A122A223477DE900525AEC /* GureumShortcutValidator.swift */; };
@@ -122,6 +124,7 @@
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
 		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
+		CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE47F1D92809FD1200480AF3 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
@@ -286,6 +289,7 @@
 		19A122B32349D18A00525AEC /* SearchPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPool.swift; sourceTree = "<group>"; };
 		19E257A12327412500952E64 /* KeyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
+		258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +382,7 @@
 		4BBBDD5D65FE92A8E230117D /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.release.xcconfig"; sourceTree = "<group>"; };
+		789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
 		7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2012.xml"; sourceTree = "<group>"; };
@@ -428,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				388186BF21EB9E01004B7FDB /* GureumCore.framework in Frameworks */,
+				0929B3CEBD93FE1ED506F24A /* Pods_OSXTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A9A2312729877F00335F72 /* SwiftUp in Frameworks */,
+				CE47F1DA2809FD1200480AF3 /* SwiftUp in Frameworks */,
 				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
 				C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */,
 			);
@@ -445,6 +452,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039CD9672B79A0A6E62CD97D /* Pods_OSXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +678,8 @@
 				44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */,
 				CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */,
 				7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */,
+				789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */,
+				258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -814,6 +824,7 @@
 			name = OSXCore;
 			packageProductDependencies = (
 				38A9A2302729877F00335F72 /* SwiftUp */,
+				CE47F1D92809FD1200480AF3 /* SwiftUp */,
 			);
 			productName = OSXCore;
 			productReference = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */;
@@ -929,7 +940,7 @@
 			);
 			mainGroup = 38863C4E140E62D100A8ED76;
 			packageReferences = (
-				38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */,
+				CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 			);
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
@@ -1911,9 +1922,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
+		CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/youknowone/SwiftUp.git";
+			repositoryURL = "https://github.com/youknowone/SwiftUp";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.3;
@@ -1922,9 +1933,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38A9A2302729877F00335F72 /* SwiftUp */ = {
+		CE47F1D92809FD1200480AF3 /* SwiftUp */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */;
+			package = CE47F1D82809FD1200480AF3 /* XCRemoteSwiftPackageReference "SwiftUp" */;
 			productName = SwiftUp;
 		};
 /* End XCSwiftPackageProductDependency section */
