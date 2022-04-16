@@ -63,7 +63,7 @@ class UpdateManager {
         guard let update = fetchUpdateInfo(from: url) else {
             return nil
         }
-        return VersionInfo(update: update, experimental: false)
+        return VersionInfo(update: update, experimental: true)
     }
 
     func fetchAutoUpdateVersionInfo() -> VersionInfo? {
