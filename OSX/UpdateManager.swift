@@ -6,62 +6,64 @@
 //  Copyright © 2019 youknowone.org. All rights reserved.
 //
 
+import Alamofire
 import Foundation
-import FoundationExtension
 import GureumCore
 
 class UpdateManager {
     static let shared = UpdateManager()
 
-    class VersionInfo {
-        let current: String? = Bundle.main.version
-        let data: [String: String]
-        let experimental: Bool
-        init(data: [String: String], experimental: Bool) {
-            self.data = data
-            self.experimental = experimental
-        }
+    struct UpdateInfo: Decodable {
+        let version: String
+        let description: String
+        let url: String
 
-        var recent: String? {
-            return data["version"]
-        }
-
-        var url: URL? {
-            guard let URLString = data["url"] else {
-                return nil
-            }
-            return URL(string: URLString)
-        }
-
-        var description: String? {
-            return data["description"]
+        enum CodingKeys: String, CodingKey {
+            case version
+            case description
+            case url
         }
     }
 
-    func fetchVersionInfo(from url: URL, experimental: Bool) -> VersionInfo? {
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 0.5
-        request.cachePolicy = .reloadIgnoringCacheData
-        guard let data = try? NSData(contentsOf: request, error: ()) else {
-            return nil
+    struct VersionInfo {
+        let current: String? = Bundle.main.version
+        let update: UpdateInfo
+        let experimental: Bool
+    }
+
+    func fetchUpdateInfo(from url: URL) -> UpdateInfo? {
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = 0.5
+        urlRequest.cachePolicy = .reloadIgnoringCacheData
+
+        let request = AF.request(urlRequest)
+//        request.responseJSON {
+//            data in
+//            print("data!", data)
+//        }
+
+        var info: UpdateInfo?
+        request.validate().responseDecodable(of: UpdateInfo.self) { response in
+            guard let result = response.value else { return }
+            info = result
         }
-        if data.length == 0 { // 위에서 제대로 안걸림
-            return nil
-        }
-        guard let info = try? JSONSerialization.jsonObject(with: data as Data) as? [String: String] else {
-            return nil
-        }
-        return VersionInfo(data: info, experimental: experimental)
+        return info
     }
 
     func fetchStableVersionInfo() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version.json")!
-        return fetchVersionInfo(from: url, experimental: false)
+        guard let update = fetchUpdateInfo(from: url) else {
+            return nil
+        }
+        return VersionInfo(update: update, experimental: false)
     }
 
     func fetchExperimentalVersionInfo() -> VersionInfo? {
         let url = URL(string: "http://gureum.io/version-experimental.json")!
-        return fetchVersionInfo(from: url, experimental: true)
+        guard let update = fetchUpdateInfo(from: url) else {
+            return nil
+        }
+        return VersionInfo(update: update, experimental: true)
     }
 
     func fetchAutoUpdateVersionInfo() -> VersionInfo? {
@@ -86,11 +88,8 @@ class UpdateManager {
         notification.hasReplyButton = false
         notification.actionButtonTitle = "업데이트"
         notification.otherButtonTitle = "취소"
-        notification.informativeText = "최신 버전: \(info.recent ?? "-") 현재 버전: \(info.current ?? "-")\n\(info.description ?? "")"
-        if let url = info.url {
-            // URL object is not delivered
-            notification.userInfo = ["url": url.absoluteString]
-        }
+        notification.informativeText = "최신 버전: \(info.update.version) 현재 버전: \(info.current ?? "-")\n\(info.update.description)"
+        notification.userInfo = ["url": info.update.url]
 
         NSUserNotificationCenter.default.deliver(notification)
     }
@@ -99,10 +98,7 @@ class UpdateManager {
         guard let info = fetchAutoUpdateVersionInfo() else {
             return
         }
-        guard info.recent != info.current else {
-            return
-        }
-        guard info.url != nil else {
+        guard info.update.version != info.current else {
             return
         }
         UpdateManager.notifyUpdate(info: info)

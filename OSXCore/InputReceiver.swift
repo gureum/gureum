@@ -47,7 +47,7 @@ public class InputReceiver: InputTextDelegate {
                     }
                 }
             default:
-                assert(false)
+                assertionFailure()
             }
         }
 
@@ -279,7 +279,7 @@ extension InputReceiver { // IMKStateSetting
         case kTextServiceInputModePropertyTag:
             guard let value = value as? String else {
                 NSLog("Failed to change keyboard layout")
-                assert(false)
+                assertionFailure()
                 break
             }
             if value != composer.inputMode {

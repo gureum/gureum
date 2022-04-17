@@ -36,7 +36,7 @@ jobs:
       - run: pod install --repo-update
       - uses: sersoft-gmbh/xcodebuild-action@v1
         with:
-          workspace: Gureum.xcworkspace
+          project: Gureum.xcodeproj
           scheme: OSX
           sdk: macosx
           destination: platform=macOS

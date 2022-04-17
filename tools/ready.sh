@@ -19,7 +19,7 @@ fi
 
 echo "Configuration: ${CONFIGURATION}"
 
-(xcodebuild -workspace 'Gureum.xcworkspace' -scheme 'ScriptSupport' \
+(xcodebuild -project 'Gureum.xcodeproj' -scheme 'ScriptSupport' \
     -configuration "${CONFIGURATION}" | grep export > "${TMPSCRIPT}") || \
     exit $?
 # shellcheck disable=1090

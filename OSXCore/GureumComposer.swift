@@ -117,7 +117,7 @@ extension GureumComposer {
 
             guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
                 #if DEBUG
-                    assert(false)
+                    assertionFailure()
                 #endif
                 return
             }
@@ -174,7 +174,7 @@ extension GureumComposer {
             searchComposer.update(client: sender as! IMKTextInput)
             return .processed
         default:
-            assert(false)
+            assertionFailure()
             return .notProcessed
         }
     }

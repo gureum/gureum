@@ -100,7 +100,6 @@
 		388186D321EE339B004B7FDB /* Hangul.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 389A387D1423477F00A2ED88 /* Hangul.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		388E2A611469249700ADBDA5 /* Hangul.strings in Resources */ = {isa = PBXBuildFile; fileRef = 388E2A601469249700ADBDA5 /* Hangul.strings */; };
 		38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38946A6A19F4F3FD00920E09 /* InputMethodKit.framework */; };
-		38A9A2312729877F00335F72 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = 38A9A2302729877F00335F72 /* SwiftUp */; };
 		38B9547B229ED9BC00A9D6E1 /* AnswersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9547A229ED9BC00A9D6E1 /* AnswersHelper.swift */; };
 		38B9551022A833E900A9D6E1 /* SystemConfigurationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9550D22A833E900A9D6E1 /* SystemConfigurationWatcher.swift */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
@@ -110,8 +109,6 @@
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
-		5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */; };
-		66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */; };
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
@@ -121,7 +118,16 @@
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
-		C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */; };
+		CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
+		CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
+		CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */; };
+		CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */; };
+		CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEF280A0F6300B54371 /* FirebasePerformance */; };
+		CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */; };
+		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
+		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
+		CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21AE05280B068B00B54371 /* TISInputSource.swift */; };
+		CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
@@ -286,6 +292,7 @@
 		19A122B32349D18A00525AEC /* SearchPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPool.swift; sourceTree = "<group>"; };
 		19E257A12327412500952E64 /* KeyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
 		236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
+		258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38098F09215A3DB30001F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38162DF3141263270077AA2D /* Gureum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gureum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +385,7 @@
 		4BBBDD5D65FE92A8E230117D /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.release.xcconfig"; sourceTree = "<group>"; };
+		789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.release.xcconfig"; sourceTree = "<group>"; };
 		7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2012.xml"; sourceTree = "<group>"; };
@@ -393,6 +401,7 @@
 		A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXCore/Pods-OSXCore.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
 		CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE21AE05280B068B00B54371 /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
 		E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -407,11 +416,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3881868121EB2D7D004B7FDB /* GureumCore.framework in Frameworks */,
+				CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */,
 				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
-				66FC090F94B4FAABDCEB4B89 /* Pods_OSX.framework in Frameworks */,
+				CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +429,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BFD1CC577B7F0E1650E54BA /* Pods_Preferences.framework in Frameworks */,
+				CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,9 +445,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38A9A2312729877F00335F72 /* SwiftUp in Frameworks */,
 				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
-				C436BD92FF277CDB5B16D657 /* Pods_OSXCore.framework in Frameworks */,
+				CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */,
+				CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */,
+				CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */,
+				CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */,
+				CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */,
+				CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +494,7 @@
 				388FD02A175EDB5500469B76 /* Version.xcconfig */,
 				38EE97791A00148D00AD19B8 /* TISInputSource.h */,
 				38EE977A1A00148D00AD19B8 /* TISInputSource.m */,
+				CE21AE05280B068B00B54371 /* TISInputSource.swift */,
 				E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */,
 				E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */,
 				3831983B21DB744900E20D78 /* UpdateManager.swift */,
@@ -670,6 +685,8 @@
 				44C08D5450D78FCDA4226ECE /* Pods_Preferences.framework */,
 				CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */,
 				7DA458745AD2EA657697D90D /* Pods_OSXCore.framework */,
+				789B00A976252543C2401DDC /* Pods_OSXTestApp.framework */,
+				258F1A6499F83FB37B316A2B /* Pods_OSXTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -732,12 +749,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38162E08141263280077AA2D /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
-				D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */,
 				38162DEF141263270077AA2D /* Sources */,
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
-				9248550919B356340823B139 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -748,6 +763,10 @@
 				3881868021EB2D7D004B7FDB /* PBXTargetDependency */,
 			);
 			name = OSX;
+			packageProductDependencies = (
+				CE21ADD8280A026300B54371 /* MASShortcut */,
+				CE21ADFE280A11A600B54371 /* Alamofire */,
+			);
 			productName = OSX;
 			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
 			productType = "com.apple.product-type.application";
@@ -756,12 +775,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382E68711A1314D900031D1D /* Build configuration list for PBXNativeTarget "Preferences" */;
 			buildPhases = (
-				7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */,
 				382E685F1A1314D900031D1D /* Sources */,
 				382E68601A1314D900031D1D /* Frameworks */,
 				382E68611A1314D900031D1D /* Headers */,
 				382E68621A1314D900031D1D /* Resources */,
-				8A3D8D1C9CB40042C727B583 /* Copy MASShortcut from Pods */,
 			);
 			buildRules = (
 			);
@@ -769,6 +786,9 @@
 				382AF2CE2156284800701F90 /* PBXTargetDependency */,
 			);
 			name = Preferences;
+			packageProductDependencies = (
+				CE21ADD8280A026300B54371 /* MASShortcut */,
+			);
 			productName = Preferences;
 			productReference = 382E68641A1314D900031D1D /* Preferences.prefPane */;
 			productType = "com.apple.product-type.bundle";
@@ -777,11 +797,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 386ECBAA21537DEA0060D9BE /* Build configuration list for PBXNativeTarget "OSXTestApp" */;
 			buildPhases = (
-				B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */,
 				386ECB7B21537DE70060D9BE /* Sources */,
 				386ECB7C21537DE70060D9BE /* Frameworks */,
 				386ECB7D21537DE70060D9BE /* Resources */,
-				FF731DA68ABE84003384699B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -798,7 +816,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3881868721EB2D7D004B7FDB /* Build configuration list for PBXNativeTarget "OSXCore" */;
 			buildPhases = (
-				D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */,
 				3881867521EB2D7D004B7FDB /* Headers */,
 				3881867621EB2D7D004B7FDB /* Sources */,
 				3881867721EB2D7D004B7FDB /* Frameworks */,
@@ -813,7 +830,12 @@
 			);
 			name = OSXCore;
 			packageProductDependencies = (
-				38A9A2302729877F00335F72 /* SwiftUp */,
+				CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */,
+				CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */,
+				CE21ADEF280A0F6300B54371 /* FirebasePerformance */,
+				CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */,
+				CE21ADF5280A0FC800B54371 /* Fuse */,
+				CE21AE0F280B0B2200B54371 /* SwiftUp */,
 			);
 			productName = OSXCore;
 			productReference = 3881867A21EB2D7D004B7FDB /* GureumCore.framework */;
@@ -823,11 +845,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38BFE80818B45419004B2B2E /* Build configuration list for PBXNativeTarget "OSXTests" */;
 			buildPhases = (
-				D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */,
 				38BFE7F618B45419004B2B2E /* Sources */,
 				38BFE7F718B45419004B2B2E /* Frameworks */,
 				38BFE7F818B45419004B2B2E /* Resources */,
-				D76FDAE7B74FB3BA0D138976 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -929,7 +949,11 @@
 			);
 			mainGroup = 38863C4E140E62D100A8ED76;
 			packageReferences = (
-				38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */,
+				CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */,
+				CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */,
+				CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */,
 			);
 			productRefGroup = 38863C60140E64EB00A8ED76 /* Products */;
 			projectDirPath = "";
@@ -1059,191 +1083,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
-		7503FCD177EE3F4AE581D3E4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Preferences-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8A3D8D1C9CB40042C727B583 /* Copy MASShortcut from Pods */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework",
-			);
-			name = "Copy MASShortcut from Pods";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\" ]; then\n  rm -rf \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\nfi\nif [ ! -e \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\" ]; then\n    mkdir -p \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks\"\nfi\ncp -R \"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.framework\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n\n/usr/bin/codesign --force --sign \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CONFIGURATION_TEMP_DIR}/Preferences.build/Preferences.prefPane.xcent\" --timestamp=none \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/../Frameworks/MASShortcut.framework\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9248550919B356340823B139 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSX/Pods-OSX-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B93D666453B7EA4F921F9475 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXTestApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D03425EAD09C5CFF54E8944B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXCore-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D411EA0A46AD6D5A12CFE191 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSXTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6A0081C4D143DFDA8D1BCD4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OSX-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D76FDAE7B74FB3BA0D138976 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OSXTests/Pods-OSXTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSXTests/Pods-OSXTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF731DA68ABE84003384699B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
-				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1259,6 +1098,7 @@
 				38F85961215BD27000CD80AE /* main.swift in Sources */,
 				38710C06236EE9A100405D41 /* ConfigurationWindow.swift in Sources */,
 				3831983C21DB744900E20D78 /* UpdateManager.swift in Sources */,
+				CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */,
 				386BEC4B24A386160066BF95 /* GureumShortcutValidator.swift in Sources */,
 				388186AC21EB3FDD004B7FDB /* Debug.swift in Sources */,
 				E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */,
@@ -1413,7 +1253,6 @@
 /* Begin XCBuildConfiguration section */
 		38162E09141263280077AA2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B185969033D59E37DA605FD /* Pods-OSX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1436,7 +1275,6 @@
 		};
 		38162E0A141263280077AA2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0432504D10DBDF90212C4042 /* Pods-OSX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1462,7 +1300,6 @@
 		};
 		382E68721A1314D900031D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -1488,7 +1325,6 @@
 		};
 		382E68731A1314D900031D1D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78BEAE5CCC50FE6F6B301872 /* Pods-Preferences.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -1514,7 +1350,6 @@
 		};
 		386ECBA221537DEA0060D9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55B8CD34CE4EC2A0597D11C3 /* Pods-OSXTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1534,7 +1369,6 @@
 		};
 		386ECBA321537DEA0060D9BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
@@ -1554,7 +1388,6 @@
 		};
 		3881868321EB2D7D004B7FDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7DFB5991543F2531F28F4A5 /* Pods-OSXCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -1596,7 +1429,6 @@
 		};
 		3881868421EB2D7D004B7FDB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 561064BBDB0084288F87B8A1 /* Pods-OSXCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -1754,7 +1586,6 @@
 		};
 		38BFE80918B45419004B2B2E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32842EC3B8B92F2C1EFA62F6 /* Pods-OSXTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1792,7 +1623,6 @@
 		};
 		38BFE80A18B45419004B2B2E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 236921790DBF83DCE3CCBB11 /* Pods-OSXTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gureum.app/Contents/MacOS/Gureum";
@@ -1911,9 +1741,41 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
+		CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/youknowone/SwiftUp.git";
+			repositoryURL = "https://github.com/shpakovski/MASShortcut";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krisk/fuse-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youknowone/SwiftUp";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.3;
@@ -1922,9 +1784,44 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38A9A2302729877F00335F72 /* SwiftUp */ = {
+		CE21ADD8280A026300B54371 /* MASShortcut */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38A9A22F2729877F00335F72 /* XCRemoteSwiftPackageReference "SwiftUp" */;
+			package = CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */;
+			productName = MASShortcut;
+		};
+		CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		CE21ADEF280A0F6300B54371 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		CE21ADF5280A0FC800B54371 /* Fuse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */;
+			productName = Fuse;
+		};
+		CE21ADFE280A11A600B54371 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADFD280A11A600B54371 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CE21AE0F280B0B2200B54371 /* SwiftUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */;
 			productName = SwiftUp;
 		};
 /* End XCSwiftPackageProductDependency section */
