@@ -6,7 +6,6 @@
 //  Copyright © 2019 youknowone.org. All rights reserved.
 //
 
-import FirebaseCrashlytics
 import GureumCore
 
 @objc class AnswersHelper: NSObject {

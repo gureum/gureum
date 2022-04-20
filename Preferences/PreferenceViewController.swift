@@ -17,6 +17,7 @@ import MASShortcut
 
 @objc(PreferenceViewController)
 final class PreferenceViewController: NSViewController {
+    @IBOutlet private var debugButton: NSButton!
     /// 옵션 키 동작.
     @IBOutlet private var optionKeyComboBox: NSComboBoxCell!
     /// 기본 키보드 레이아웃.
@@ -117,6 +118,10 @@ final class PreferenceViewController: NSViewController {
         } else {
             updateNotificationExperimentalButton.state = isOn(configuration.updateNotificationExperimental)
         }
+
+        #if DEBUG
+            debugButton.isHidden = false
+        #endif
     }
 
     private func runAppleScript(_ script: String) {
@@ -130,6 +135,12 @@ final class PreferenceViewController: NSViewController {
     }
 
     // MARK: IBAction
+
+    @IBAction private func debug(sender _: NSControl) {
+        print("killing myself")
+        let x = [0]
+        _ = x[1]
+    }
 
     @IBAction private func openKeyboardShortcutsPreference(sender _: NSControl) {
         runAppleScript("""

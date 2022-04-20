@@ -33,7 +33,7 @@ class UpdateManager {
 
     func fetchUpdateInfo(from url: URL) -> UpdateInfo? {
         var urlRequest = URLRequest(url: url)
-        urlRequest.timeoutInterval = 0.5
+        urlRequest.timeoutInterval = 1.0
         urlRequest.cachePolicy = .reloadIgnoringCacheData
 
         let request = AF.request(urlRequest)
