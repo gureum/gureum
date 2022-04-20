@@ -1290,7 +1290,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
 				PRODUCT_NAME = Gureum;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
@@ -1316,7 +1315,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_MODULE_NAME = GureumPreferences;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = prefPane;
@@ -1342,7 +1340,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Korean.Preferences;
 				PRODUCT_MODULE_NAME = GureumPreferences;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Preferences/Preferences-Bridging-Header.h";
 				WRAPPER_EXTENSION = prefPane;
 			};
@@ -1362,7 +1359,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.OSXTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "OSXTestApp/OSXTestApp-Bridging-Header.h";
 			};
 			name = Debug;
@@ -1381,7 +1377,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.gureum.OSXTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "OSXTestApp/OSXTestApp-Bridging-Header.h";
 			};
 			name = Release;
