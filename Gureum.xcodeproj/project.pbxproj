@@ -120,14 +120,12 @@
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
 		CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
-		CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */; };
-		CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */; };
-		CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADEF280A0F6300B54371 /* FirebasePerformance */; };
-		CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */; };
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
 		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
 		CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21AE05280B068B00B54371 /* TISInputSource.swift */; };
 		CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
+		CE31CC0A28109975004659B0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE31CC0928109975004659B0 /* FirebaseCrashlytics */; };
+		CE31CC0D28109B95004659B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31CC0C28109B95004659B0 /* GoogleService-Info.plist */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
@@ -402,6 +400,7 @@
 		ACF9BC1D0ED009626F8CD0E5 /* Pods-Preferences.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preferences.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preferences/Pods-Preferences.debug.xcconfig"; sourceTree = "<group>"; };
 		CACD7E2EF02A059110B1FF42 /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE21AE05280B068B00B54371 /* TISInputSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TISInputSource.swift; sourceTree = "<group>"; };
+		CE31CC0C28109B95004659B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E11BC1D12A9F1C006F3A053C /* Pods-OSXTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXTestApp/Pods-OSXTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		E54B8381214299EB00527218 /* GureumComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumComposer.swift; sourceTree = "<group>"; };
 		E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GureumAppDelegate.swift; sourceTree = "<group>"; };
@@ -420,6 +419,7 @@
 				38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */,
 				38531F441B0E7E7C00E2C16D /* SystemConfiguration.framework in Frameworks */,
 				38946A6B19F4F3FD00920E09 /* InputMethodKit.framework in Frameworks */,
+				CE31CC0A28109975004659B0 /* FirebaseCrashlytics in Frameworks */,
 				38531F431B0E7E7C00E2C16D /* Security.framework in Frameworks */,
 				CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */,
 			);
@@ -446,10 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				388186A621EB3080004B7FDB /* Hangul.framework in Frameworks */,
-				CE21ADF0280A0F6300B54371 /* FirebasePerformance in Frameworks */,
-				CE21ADF2280A0F6300B54371 /* FirebaseRemoteConfig in Frameworks */,
-				CE21ADEE280A0F6300B54371 /* FirebaseCrashlytics in Frameworks */,
-				CE21ADEC280A0F6300B54371 /* FirebaseAnalytics in Frameworks */,
 				CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */,
 				CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */,
 			);
@@ -487,6 +483,7 @@
 		38162DF6141263270077AA2D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				CE31CC0C28109B95004659B0 /* GoogleService-Info.plist */,
 				38531F3D1B0E7E7C00E2C16D /* Security.framework */,
 				38531F3E1B0E7E7C00E2C16D /* SystemConfiguration.framework */,
 				38C253EA19F4EE320020FE92 /* Gureum.entitlements */,
@@ -753,6 +750,7 @@
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
+				CE31CC0B281099D9004659B0 /* Run Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -766,6 +764,7 @@
 			packageProductDependencies = (
 				CE21ADD8280A026300B54371 /* MASShortcut */,
 				CE21ADFE280A11A600B54371 /* Alamofire */,
+				CE31CC0928109975004659B0 /* FirebaseCrashlytics */,
 			);
 			productName = OSX;
 			productReference = 38162DF3141263270077AA2D /* Gureum.app */;
@@ -830,10 +829,6 @@
 			);
 			name = OSXCore;
 			packageProductDependencies = (
-				CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */,
-				CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */,
-				CE21ADEF280A0F6300B54371 /* FirebasePerformance */,
-				CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */,
 				CE21ADF5280A0FC800B54371 /* Fuse */,
 				CE21AE0F280B0B2200B54371 /* SwiftUp */,
 			);
@@ -1011,6 +1006,7 @@
 				382E68761A13156700031D1D /* Preferences.prefPane in Resources */,
 				38162DFB141263280077AA2D /* InfoPlist.strings in Resources */,
 				38162E4814128A740077AA2D /* MainMenu.xib in Resources */,
+				CE31CC0D28109B95004659B0 /* GoogleService-Info.plist in Resources */,
 				388E2A611469249700ADBDA5 /* Hangul.strings in Resources */,
 				38098F0A215A3DB30001F159 /* Assets.xcassets in Resources */,
 			);
@@ -1082,6 +1078,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		CE31CC0B281099D9004659B0 /* Run Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1784,26 +1800,6 @@
 			package = CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */;
 			productName = MASShortcut;
 		};
-		CE21ADEB280A0F6300B54371 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		CE21ADED280A0F6300B54371 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		CE21ADEF280A0F6300B54371 /* FirebasePerformance */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebasePerformance;
-		};
-		CE21ADF1280A0F6300B54371 /* FirebaseRemoteConfig */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
-		};
 		CE21ADF5280A0FC800B54371 /* Fuse */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE21ADF4280A0FC800B54371 /* XCRemoteSwiftPackageReference "fuse-swift" */;
@@ -1818,6 +1814,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */;
 			productName = SwiftUp;
+		};
+		CE31CC0928109975004659B0 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
