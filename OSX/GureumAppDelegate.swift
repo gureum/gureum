@@ -59,7 +59,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
             // Fabric.with([Answers.self])
             GureumShowPreferencesWindow()
         #else
-            Fabric.with([Crashlytics.self, Answers.self])
+            // Fabric.with([Crashlytics.self, Answers.self])
         #endif
 
         UpdateManager.shared.notifyUpdateIfNeeded()
