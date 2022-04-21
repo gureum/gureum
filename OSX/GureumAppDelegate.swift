@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import FirebaseCrashlytics
+import Firebase
 import Foundation
 import GureumCore
 import Hangul
@@ -45,6 +45,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
     let notificationCenterDelegate = NotificationCenterDelegate()
 
     func applicationDidFinishLaunching(_: Notification) {
+        FirebaseApp.configure()
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
 
         NSUserNotificationCenter.default.delegate = notificationCenterDelegate
@@ -57,7 +58,7 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
             notification.informativeText = "이 버전은 디버그 빌드입니다. 키 입력이 로그로 남을 수 있어 안전하지 않습니다."
             notificationCenter.deliver(notification)
             // Fabric.with([Answers.self])
-            GureumShowPreferencesWindow()
+            preferencesWindow.showWindow(nil)
         #else
             // Fabric.with([Crashlytics.self, Answers.self])
         #endif
