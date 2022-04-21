@@ -97,25 +97,25 @@ brew uninstall --cask gureumkim
 
 ### 코드 기여자
 
-[![](https://opencollective.com/gureum-app/contributors.svg?width=890&button=false)](https://github.com/gureum/gureum/graphs/contributors)
+[![](https://opencollective.com/gureum/contributors.svg?width=890&button=false)](https://github.com/gureum/gureum/graphs/contributors)
 
 ### 재정 후원
 
-재정 후원은 프로젝트의 유지에 큰 힘이 됩니다. [후원하기](https://opencollective.com/gureum-app/contribute)
+재정 후원은 프로젝트의 유지에 큰 힘이 됩니다. [후원하기](https://opencollective.com/gureum/contribute)
 
 #### 개인
 
-[![](https://opencollective.com/gureum-app/individuals.svg?width=890)](https://opencollective.com/gureum-app)
+[![](https://opencollective.com/gureum/individuals.svg?width=890)](https://opencollective.com/gureum-app)
 
 #### 단체
 
-[![](https://opencollective.com/gureum-app/organization/0/avatar.svg)](https://opencollective.com/gureum-app/organization/0/website)
-[![](https://opencollective.com/gureum-app/organization/1/avatar.svg)](https://opencollective.com/gureum-app/organization/1/website)
-[![](https://opencollective.com/gureum-app/organization/2/avatar.svg)](https://opencollective.com/gureum-app/organization/2/website)
-[![](https://opencollective.com/gureum-app/organization/3/avatar.svg)](https://opencollective.com/gureum-app/organization/3/website)
-[![](https://opencollective.com/gureum-app/organization/4/avatar.svg)](https://opencollective.com/gureum-app/organization/4/website)
-[![](https://opencollective.com/gureum-app/organization/5/avatar.svg)](https://opencollective.com/gureum-app/organization/5/website)
-[![](https://opencollective.com/gureum-app/organization/6/avatar.svg)](https://opencollective.com/gureum-app/organization/6/website)
-[![](https://opencollective.com/gureum-app/organization/7/avatar.svg)](https://opencollective.com/gureum-app/organization/7/website)
-[![](https://opencollective.com/gureum-app/organization/8/avatar.svg)](https://opencollective.com/gureum-app/organization/8/website)
-[![](https://opencollective.com/gureum-app/organization/9/avatar.svg)](https://opencollective.com/gureum-app/organization/9/website)
+[![](https://opencollective.com/gureum/organization/0/avatar.svg)](https://opencollective.com/gureum-app/organization/0/website)
+[![](https://opencollective.com/gureum/organization/1/avatar.svg)](https://opencollective.com/gureum-app/organization/1/website)
+[![](https://opencollective.com/gureum/organization/2/avatar.svg)](https://opencollective.com/gureum-app/organization/2/website)
+[![](https://opencollective.com/gureum/organization/3/avatar.svg)](https://opencollective.com/gureum-app/organization/3/website)
+[![](https://opencollective.com/gureum/organization/4/avatar.svg)](https://opencollective.com/gureum-app/organization/4/website)
+[![](https://opencollective.com/gureum/organization/5/avatar.svg)](https://opencollective.com/gureum-app/organization/5/website)
+[![](https://opencollective.com/gureum/organization/6/avatar.svg)](https://opencollective.com/gureum-app/organization/6/website)
+[![](https://opencollective.com/gureum/organization/7/avatar.svg)](https://opencollective.com/gureum-app/organization/7/website)
+[![](https://opencollective.com/gureum/organization/8/avatar.svg)](https://opencollective.com/gureum-app/organization/8/website)
+[![](https://opencollective.com/gureum/organization/9/avatar.svg)](https://opencollective.com/gureum-app/organization/9/website)
