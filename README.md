@@ -1,7 +1,7 @@
 ![logo](OSX/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
 
 ![platform](https://img.shields.io/badge/platform-macos-lightgrey)
-[![Build Status](https://travis-ci.org/gureum/gureum.svg?branch=master)](https://travis-ci.org/gureum/gureum)
+[![CI](https://github.com/gureum/gureum/actions/workflows/ci.yml/badge.svg)](https://github.com/gureum/gureum/actions/workflows/ci.yml)
 
 # 구름 입력기
 
