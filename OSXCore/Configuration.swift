@@ -98,7 +98,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
-            ConfigurationName.rightToggleKey: 0,
+            ConfigurationName.rightToggleKey: kHIDUsage_KeyboardRightAlt,
 
             ConfigurationName.updateNotification: true,
             ConfigurationName.updateNotificationExperimental: false,
