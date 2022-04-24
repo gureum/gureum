@@ -67,7 +67,7 @@ brew uninstall --cask gureumkim
 2. 다음의 명령을 터미널에 입력하고 Enter 키를 눌러 명령을 실행합니다. 패스워드를 요구한다면 패스워드를 입력해 줍니다.
 
    ```sh
-   curl -fsSL https://raw.githubusercontent.com/gureum/gureum/master/tools/uninstall.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/gureum/gureum/main/tools/uninstall.sh | bash
    ```
 
 ### 수동 삭제
@@ -78,9 +78,9 @@ brew uninstall --cask gureumkim
 
 ## 개발 환경 설정
 
-구름 입력기의 개발 환경을 설정하고 디버깅 할 수 있는 방법을 제공합니다. [개발하기](https://github.com/gureum/gureum/blob/master/HACKING.md) 문서를 참고해 주세요.
+구름 입력기의 개발 환경을 설정하고 디버깅 할 수 있는 방법을 제공합니다. [개발하기](https://github.com/gureum/gureum/blob/main/HACKING.md) 문서를 참고해 주세요.
 
-개선 제안과 관련된 사항은 [기여하기](https://github.com/gureum/gureum/blob/master/CONTRIBUTING.md) 문서를 참고해 주세요.
+개선 제안과 관련된 사항은 [기여하기](https://github.com/gureum/gureum/blob/main/CONTRIBUTING.md) 문서를 참고해 주세요.
 
 ## 버그 신고
 
@@ -88,7 +88,7 @@ brew uninstall --cask gureumkim
 
 버그가 재현되는지 확인해 주시고 [이슈 페이지](https://github.com/gureum/gureum/issues)에 사용 환경과 버그를 재현하는 방법을 알려주시면 고치도록 노력하겠습니다.
 
-이슈 템플릿 작성은 [기여하기](https://github.com/gureum/gureum/blob/master/CONTRIBUTING.md) 문서를 참고해 주세요.
+이슈 템플릿 작성은 [기여하기](https://github.com/gureum/gureum/blob/main/CONTRIBUTING.md) 문서를 참고해 주세요.
 
 ## 만든 사람들
 
