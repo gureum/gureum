@@ -294,7 +294,10 @@ private extension PreferenceViewController {
 
     func updateCheck() {
         #if !USE_PREFPANE
-            if let info = UpdateManager.shared.fetchAutoUpdateVersionInfo() {
+            UpdateManager.shared.requestAutoUpdateVersionInfo { info in
+                guard let info = info else {
+                    return
+                }
                 UpdateManager.notifyUpdate(info: info)
             }
         #endif

@@ -31,7 +31,14 @@ class UpdateManager {
         let experimental: Bool
     }
 
-    func fetchUpdateInfo(from url: URL) -> UpdateInfo? {
+    func requestVersionInfo(mode: UpdateMode, _ done: @escaping ((VersionInfo?) -> Void)) {
+        let url: URL
+        switch mode {
+        case .Stable:
+            url = URL(string: "https://gureum.io/version.json")!
+        case .Experimental:
+            url = URL(string: "https://gureum.io/version-experimental.json")!
+        }
         var urlRequest = URLRequest(url: url)
         urlRequest.timeoutInterval = 1.0
         urlRequest.cachePolicy = .reloadIgnoringCacheData
@@ -41,40 +48,18 @@ class UpdateManager {
 //            data in
 //            print("data!", data)
 //        }
-
-        var info: UpdateInfo?
         request.validate().responseDecodable(of: UpdateInfo.self) { response in
-            guard let result = response.value else { return }
-            info = result
+            guard let update = response.value else { return done(nil) }
+            let version = VersionInfo(update: update, experimental: mode == .Experimental)
+            done(version)
         }
-        return info
     }
 
-    func fetchStableVersionInfo() -> VersionInfo? {
-        let url = URL(string: "http://gureum.io/version.json")!
-        guard let update = fetchUpdateInfo(from: url) else {
-            return nil
+    func requestAutoUpdateVersionInfo(_ done: @escaping ((VersionInfo?) -> Void)) {
+        guard let mode = Configuration.shared.updateMode else {
+            return
         }
-        return VersionInfo(update: update, experimental: false)
-    }
-
-    func fetchExperimentalVersionInfo() -> VersionInfo? {
-        let url = URL(string: "http://gureum.io/version-experimental.json")!
-        guard let update = fetchUpdateInfo(from: url) else {
-            return nil
-        }
-        return VersionInfo(update: update, experimental: true)
-    }
-
-    func fetchAutoUpdateVersionInfo() -> VersionInfo? {
-        switch Configuration.shared.updateMode {
-        case .None:
-            return nil
-        case .Stable:
-            return fetchStableVersionInfo()
-        case .Experimental:
-            return fetchExperimentalVersionInfo()
-        }
+        requestVersionInfo(mode: mode, done)
     }
 
     class func notifyUpdate(info: VersionInfo) {
@@ -95,12 +80,14 @@ class UpdateManager {
     }
 
     func notifyUpdateIfNeeded() {
-        guard let info = fetchAutoUpdateVersionInfo() else {
-            return
+        requestAutoUpdateVersionInfo { info in
+            guard let info = info else {
+                return
+            }
+            guard info.update.version != info.current else {
+                return
+            }
+            UpdateManager.notifyUpdate(info: info)
         }
-        guard info.update.version != info.current else {
-            return
-        }
-        UpdateManager.notifyUpdate(info: info)
     }
 }

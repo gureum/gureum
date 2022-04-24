@@ -50,6 +50,11 @@ enum ConfigurationName {
 
 // MARK: - Configuration 클래스
 
+public enum UpdateMode {
+    case Stable
+    case Experimental
+}
+
 /// 입력기의 환경 설정을 담당하는 오브젝트.
 public class Configuration: UserDefaults {
     public static let sharedSuiteName = "org.youknowone.Gureum"
@@ -58,12 +63,6 @@ public class Configuration: UserDefaults {
     var enableCapslockToToggleInputMode: Bool = false
 
     public typealias Shortcut = (KeyCode, NSEvent.ModifierFlags)
-
-    public enum UpdateMode {
-        case None
-        case Stable
-        case Experimental
-    }
 
     class func convertShortcutToConfiguration(_ shortcut: Shortcut?) -> [String: Any] {
         guard let shortcut = shortcut else {
@@ -280,10 +279,10 @@ public class Configuration: UserDefaults {
         }
     }
 
-    public var updateMode: UpdateMode {
+    public var updateMode: UpdateMode? {
         switch (updateNotification, updateNotificationExperimental) {
         case (false, _):
-            return .None
+            return nil
         case (true, false):
             return .Stable
         case (true, true):
