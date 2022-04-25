@@ -81,7 +81,8 @@ final class GureumComposer: Composer {
     var romanComposer: RomanComposer
 
     init() {
-        romanComposer = qwertyComposer
+        romanComposer = systemRomanComposer
+        inputMode = Configuration.shared.lastRomanInputMode
         delegate = romanComposer
     }
 
