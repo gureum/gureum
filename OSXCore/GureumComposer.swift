@@ -120,7 +120,8 @@ final class GureumComposer: Composer {
                     return InputResult(processed: false, action: .commit)
                 case 1:
                     // roman
-                    let character = romanComposer.map(text: string, key: keyCode, modifiers: flags)
+                    let mappingComposer = romanComposer !== systemRomanComposer ? romanComposer : qwertyComposer
+                    let character = mappingComposer.map(text: string, key: keyCode, modifiers: flags)
                     dlog(DEBUG_INPUT_RECEIVER, " ** ESCAPE from option-key roman mapping `\(string ?? " ")` -> `\(character ?? " ")` by \(keyCode) \(flags) \(String(describing: romanComposer))")
                     guard let character = character else {
                         return InputResult(processed: false, action: .commit)
