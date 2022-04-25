@@ -236,9 +236,7 @@ extension SearchComposer {
         // 1. 모드 false
         showsCandidateWindow = false
         // 2. 후보 취소
-        if !_searchWorkItem.isCancelled {
-            _searchWorkItem.cancel()
-        }
+        cancelSearch()
         _searchLock.lock()
         candidates = nil
         _searchLock.unlock()
@@ -279,6 +277,12 @@ extension SearchComposer {
         return workItem
     }
 
+    public func cancelSearch() {
+        if !_searchWorkItem.isCancelled {
+            _searchWorkItem.cancel()
+        }
+    }
+
     /// 한자 입력을 위한 후보를 만든다.
     func updateHanjaCandidates() {
         assert(delegate != nil)
@@ -296,9 +300,7 @@ extension SearchComposer {
         dlog(DEBUG_SEARCH_COMPOSER, "SearchComposer.updateHanjaCandidates() step3")
 
         let keyword = originalString.trimmingCharacters(in: .whitespaces)
-        if !_searchWorkItem.isCancelled {
-            _searchWorkItem.cancel()
-        }
+        cancelSearch()
         candidates = [NSAttributedString(string: "검색 중...")] // default candidates
 
         guard !keyword.isEmpty else {
@@ -331,9 +333,7 @@ extension SearchComposer {
         let keyword = originalString
 
         dlog(DEBUG_SEARCH_COMPOSER, "Candidates before search, %@", candidates ?? "nil")
-        if !_searchWorkItem.isCancelled {
-            _searchWorkItem.cancel()
-        }
+        cancelSearch()
         candidates = [NSAttributedString(string: "Searching...")] // default candidates
         let pool = SearchSourceConst.emoji
 

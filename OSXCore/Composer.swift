@@ -156,10 +156,12 @@ extension Composer {
     func composerSelected() {}
 
     func candidateSelected(_ candidateString: NSAttributedString) {
+        assert(delegate != nil)
         delegate.candidateSelected(candidateString)
     }
 
     func candidateSelectionChanged(_ candidateString: NSAttributedString) {
+        assert(delegate != nil)
         delegate.candidateSelectionChanged(candidateString)
     }
 

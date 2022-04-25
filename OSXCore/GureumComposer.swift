@@ -149,6 +149,9 @@ extension GureumComposer {
             }
         }
 
+        if delegate is SearchComposer {
+            searchComposer.cancelSearch()
+        }
         switch layout {
         case .hangul, .roman:
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
