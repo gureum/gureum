@@ -35,6 +35,13 @@ final class RomanComposer: Composer {
         case dvorak
         /// 콜맥 자판.
         case colemak
+
+        init?(inputMode: String) {
+            guard let keyboardIdentifier = GureumInputSource(rawValue: inputMode)?.keyboardIdentifier else {
+                return nil
+            }
+            self.init(rawValue: keyboardIdentifier)
+        }
     }
 
     private var _commitString: String?
@@ -82,51 +89,69 @@ final class RomanComposer: Composer {
         _commitString = nil
     }
 
-    func input(text string: String?,
-               key keyCode: KeyCode,
-               modifiers flags: NSEvent.ModifierFlags,
-               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult
-    {
-        guard let string = string else {
-            assertionFailure()
-            return .notProcessed
+    func map(text: String?, key: KeyCode, modifiers: NSEvent.ModifierFlags) -> Character? {
+        guard let text = text else {
+            return nil
+        }
+        guard !text.isEmpty, key.isKeyMappable, _composerType != .system else {
+            return nil
         }
 
-        guard !string.isEmpty, keyCode.isKeyMappable, !flags.contains(.option) else {
-            _commitString = nil
-            return .notProcessed
-        }
-
-        guard _composerType != .system else {
-            _commitString = nil
-            return .notProcessed
-        }
-
-        let character: Character
-        if flags.contains(.shift) {
-            character = KeyMapUpper[keyCode.rawValue]?.first ?? string.first!
+        let character: Character?
+        if modifiers.contains(.shift) {
+            character = KeyMapUpper[key.rawValue]?.first ?? text.first!
         } else {
-            character = KeyMapLower[keyCode.rawValue]?.first ?? string.first!
+            character = KeyMapLower[key.rawValue]?.first ?? text.first!
+        }
+        guard let character = character else {
+            return nil
         }
         let newCharacter: Character = {
-            if flags.contains(.capsLock), character.isLowercaseCharacter {
+            if modifiers.contains(.capsLock), character.isLowercaseCharacter {
                 return Character(UnicodeScalar(String(character).unicodeScalars.first!.value - 0x20)!)
             } else {
                 return character
             }
         }()
         guard let mappedCharacter = keyMap[newCharacter] else {
+            return nil
+        }
+        return mappedCharacter
+    }
+
+    func input(text: String?,
+               key: KeyCode,
+               modifiers: NSEvent.ModifierFlags,
+               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult
+    {
+        guard let text = text else {
+            assertionFailure()
+            return .notProcessed
+        }
+
+        guard !modifiers.contains(.option) else {
             _commitString = nil
             return .notProcessed
         }
 
-        _commitString = "\(mappedCharacter)"
+        guard let character = map(text: text, key: key, modifiers: modifiers) else {
+            _commitString = nil
+            return .notProcessed
+        }
+
+        _commitString = "\(character)"
         return .processed
     }
 
     func candidateSelected(_: NSAttributedString) {}
 
     func candidateSelectionChanged(_: NSAttributedString) {}
+}
+
+extension RomanComposer: CustomStringConvertible {
+    var description: String {
+        "RomanComposer(.\(String(describing: _composerType)))"
+    }
 }
 
 // MARK: - RomanComposerType 열거형 확장

@@ -508,7 +508,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         <objectValues>
                                                                             <string>기본 특수 문자</string>
-                                                                            <string>무시</string>
+                                                                            <string>로마자</string>
                                                                         </objectValues>
                                                                     </comboBoxCell>
                                                                     <connections>

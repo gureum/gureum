@@ -106,6 +106,38 @@ final class GureumComposer: Composer {
         _commitStrings.removeAll()
         return r
     }
+
+    func input(text string: String?, key keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags, client sender: IMKTextInput & IMKUnicodeTextInput) -> InputResult {
+        if flags.contains(.option) {
+            if delegate is HangulComposer {
+                // 옵션 키 변환 처리
+                let configuration = Configuration.shared
+                dlog(DEBUG_INPUT_RECEIVER, "option key: %ld", configuration.optionKeyBehavior)
+                switch configuration.optionKeyBehavior {
+                case 0:
+                    // default
+                    dlog(DEBUG_INPUT_RECEIVER, " ** ESCAPE from option-key default behavior")
+                    return InputResult(processed: false, action: .commit)
+                case 1:
+                    // roman
+                    let character = romanComposer.map(text: string, key: keyCode, modifiers: flags)
+                    dlog(DEBUG_INPUT_RECEIVER, " ** ESCAPE from option-key roman mapping `\(string ?? " ")` -> `\(character ?? " ")` by \(keyCode) \(flags) \(String(describing: romanComposer))")
+                    guard let character = character else {
+                        return InputResult(processed: false, action: .commit)
+                    }
+
+                    cancelAndCommit()
+                    enqueueCommitString("\(character)")
+                    return InputResult(processed: true, action: .commit)
+                default:
+                    assertionFailure()
+                }
+            } else {
+                return .notProcessed
+            }
+        }
+        return delegate.input(text: string, key: keyCode, modifiers: flags, client: sender)
+    }
 }
 
 extension GureumComposer {
@@ -116,18 +148,17 @@ extension GureumComposer {
         set {
             guard inputMode != newValue else { return }
 
-            guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
-                #if DEBUG
-                    assertionFailure()
-                #endif
-                return
-            }
-
-            if let romanComposerType = RomanComposer.ComposerType(rawValue: keyboardIdentifier) {
-                changeRomanComposer(by: romanComposerType)
+            if let romanComposerType = RomanComposer.ComposerType(inputMode: newValue) {
+                romanComposer = romanComposer(by: romanComposerType)
                 delegate = romanComposer
                 Configuration.shared.lastRomanInputMode = newValue
             } else {
+                guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
+                    #if DEBUG
+                        assertionFailure()
+                    #endif
+                    return
+                }
                 delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
                 hangulComposer.setKeyboard(identifier: keyboardIdentifier)
@@ -136,6 +167,11 @@ extension GureumComposer {
 
             _inputMode = newValue
         }
+    }
+
+    func cancelAndCommit() {
+        delegate.cancelComposition()
+        enqueueCommitString(delegate.dequeueCommitString())
     }
 
     func changeLayout(_ layout: ChangeLayout, client sender: Any) -> InputResult {
@@ -157,8 +193,7 @@ extension GureumComposer {
         case .hangul, .roman:
             // 한영전환을 위해 현재 입력 중인 문자 합성 취소
             let config = Configuration.shared
-            delegate.cancelComposition()
-            enqueueCommitString(delegate.dequeueCommitString())
+            cancelAndCommit()
             inputMode = layout == .hangul ? config.lastHangulInputMode : config.lastRomanInputMode
             return InputResult(processed: true, action: .layout(inputMode))
         case .search:
@@ -246,16 +281,16 @@ extension GureumComposer {
         _commitStrings.append(string)
     }
 
-    private func changeRomanComposer(by romanComposerType: RomanComposer.ComposerType) {
+    func romanComposer(by romanComposerType: RomanComposer.ComposerType) -> RomanComposer {
         switch romanComposerType {
         case .system:
-            romanComposer = systemRomanComposer
+            return systemRomanComposer
         case .qwerty:
-            romanComposer = qwertyComposer
+            return qwertyComposer
         case .dvorak:
-            romanComposer = dvorakComposer
+            return dvorakComposer
         case .colemak:
-            romanComposer = colemakComposer
+            return colemakComposer
         }
     }
 }
