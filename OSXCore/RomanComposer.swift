@@ -123,6 +123,10 @@ final class RomanComposer: Composer {
         _commitString = "\(mappedCharacter)"
         return .processed
     }
+
+    func candidateSelected(_: NSAttributedString) {}
+
+    func candidateSelectionChanged(_: NSAttributedString) {}
 }
 
 // MARK: - RomanComposerType 열거형 확장
