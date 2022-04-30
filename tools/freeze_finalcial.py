@@ -29,7 +29,9 @@ def summarize(user):
     import pprint
 
     github_name = None
-    if user["profile"].startswith("https://opencollective.com/guest-"):
+    if user["name"] == "Guest" and user["profile"].startswith(
+        "https://opencollective.com/guest-"
+    ):
         link_name = "익명의 기여자"
     else:
         link_name = user["name"]
