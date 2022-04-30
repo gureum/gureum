@@ -89,7 +89,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
 
             ConfigurationName.inputModeSearchKey: Configuration.convertShortcutToConfiguration((.return, .option)),
-            ConfigurationName.optionKeyBehavior: 0,
+            ConfigurationName.optionKeyBehavior: 1,
             ConfigurationName.overridingKeyboardName: "com.apple.keylayout.ABC",
 
             ConfigurationName.romanModeByEscapeKey: false,
