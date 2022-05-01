@@ -178,7 +178,7 @@ final class PreferenceViewController: NSViewController {
     }
 
     @IBAction private func overridingKeyboardNameComboBoxValueChanged(_ sender: NSComboBox) {
-        guard sender.indexOfSelectedItem != NSNotFound else {
+        guard (0 ..< inputSources.count).contains(sender.indexOfSelectedItem) else {
             return
         }
         configuration.overridingKeyboardName = inputSources[sender.indexOfSelectedItem].identifier
