@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="100" width="400" height="918"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1085"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="415" height="918"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +425,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="84" width="346" height="182"/>
+                                                    <rect key="frame" x="0.0" y="84" width="307" height="182"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
                                                             <rect key="frame" x="-2" y="166" width="90" height="16"/>
@@ -486,9 +486,9 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                             </connections>
                                                         </button>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="80" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-Ty-1Es">
-                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="307" height="20"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-Vi-f1X">
                                                                     <rect key="frame" x="-2" y="2" width="110" height="16"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⌥(option) 키 동작:" id="jWu-1H-vJQ">
                                                                         <font key="font" metaFont="system"/>
@@ -496,30 +496,23 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Bk-yYe" userLabel="option 키 동작 Combo Box">
-                                                                    <rect key="frame" x="186" y="-4" width="163" height="26"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="OF1-Ax-F9a"/>
-                                                                        <constraint firstAttribute="width" constant="160" id="vV1-ZH-Rjt"/>
-                                                                    </constraints>
-                                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="l2R-fW-dqw">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                        <objectValues>
-                                                                            <string>기본 특수 문자</string>
-                                                                            <string>로마자</string>
-                                                                        </objectValues>
-                                                                    </comboBoxCell>
+                                                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-Q7-ATG" userLabel="option 키 동작">
+                                                                    <rect key="frame" x="183" y="-4" width="128" height="25"/>
+                                                                    <popUpButtonCell key="cell" type="push" title="기본 특수 문자" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="FE5-DM-KYV" id="hhB-K0-qj7" userLabel="option 키 동작">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="TvA-lm-MvE">
+                                                                            <items>
+                                                                                <menuItem title="기본 특수 문자" state="on" id="FE5-DM-KYV"/>
+                                                                                <menuItem title="로마자" id="NpE-Q1-rJd"/>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
                                                                     <connections>
-                                                                        <action selector="optionKeyComboBoxValueChanged:" target="DMm-2g-KCR" id="AAm-WX-QJf"/>
+                                                                        <action selector="optionKeyBehaviorValueChanged:" target="DMm-2g-KCR" id="rU7-6N-ekl"/>
                                                                     </connections>
-                                                                </comboBox>
+                                                                </popUpButton>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="F1x-Bk-yYe" secondAttribute="bottom" id="pYs-ON-pZO"/>
-                                                                <constraint firstItem="F1x-Bk-yYe" firstAttribute="top" secondItem="4dQ-Ty-1Es" secondAttribute="top" id="qHF-yp-bLS"/>
-                                                            </constraints>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
@@ -682,7 +675,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                 <outlet property="inputModeExchangeShortcutView" destination="XiY-Tt-T3F" id="LGg-vP-YF5"/>
                 <outlet property="inputModeKoreanShortcutView" destination="ZkS-XC-ybl" id="YTt-oL-VCC"/>
                 <outlet property="inputModeSearchShortcutView" destination="H7u-hL-ncz" id="31Z-g1-m5g"/>
-                <outlet property="optionKeyComboBox" destination="l2R-fW-dqw" id="lmx-bw-58h"/>
+                <outlet property="optionKeyBehaviorButton" destination="EaM-Q7-ATG" id="5uS-N2-0Kt"/>
                 <outlet property="overridingKeyboardNameComboBox" destination="djp-BV-Tu6" id="zKK-rV-G9N"/>
                 <outlet property="rightToggleKeyButton" destination="O2x-rR-7JO" id="QxE-Xf-9nc"/>
                 <outlet property="romanModeByEscapeKeyButton" destination="oYM-mR-7hZ" id="RSA-NS-Kza"/>
