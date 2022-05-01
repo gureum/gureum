@@ -19,7 +19,7 @@ import MASShortcut
 final class PreferenceViewController: NSViewController {
     @IBOutlet private var debugButton: NSButton!
     /// 옵션 키 동작.
-    @IBOutlet private var optionKeyComboBox: NSComboBoxCell!
+    @IBOutlet private var optionKeyBehaviorButton: NSPopUpButton!
     /// 기본 키보드 레이아웃.
     @IBOutlet private var overridingKeyboardNameComboBox: NSComboBoxCell!
 
@@ -94,8 +94,8 @@ final class PreferenceViewController: NSViewController {
         default:
             rightToggleKeyButton.selectItem(at: 0)
         }
-        if (0 ..< optionKeyComboBox.numberOfItems).contains(configuration.optionKeyBehavior) {
-            optionKeyComboBox.selectItem(at: configuration.optionKeyBehavior)
+        if (0 ..< optionKeyBehaviorButton.numberOfItems).contains(configuration.optionKeyBehavior) {
+            optionKeyBehaviorButton.selectItem(at: configuration.optionKeyBehavior)
         }
 
         overridingKeyboardNameComboBox.reloadData()
@@ -173,7 +173,7 @@ final class PreferenceViewController: NSViewController {
         updateCheck()
     }
 
-    @IBAction private func optionKeyComboBoxValueChanged(_ sender: NSComboBox) {
+    @IBAction private func optionKeyBehaviorValueChanged(_ sender: NSPopUpButton) {
         configuration.optionKeyBehavior = sender.indexOfSelectedItem
     }
 
