@@ -65,6 +65,11 @@ class GureumAppDelegate: NSObject, NSApplicationDelegate, GureumApplicationDeleg
 
         UpdateManager.shared.notifyUpdateIfNeeded()
 
+        // 입력 모니터링 권한 요청
+        if #available(macOS 10.15, *) {
+            IOHIDRequestAccess(kIOHIDRequestTypeListenEvent)
+        }
+
         // IMKServer를 띄워야만 입력기가 동작한다
         _ = InputMethodServer.shared
 
