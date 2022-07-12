@@ -8,5 +8,16 @@
 	<array/>
 	<key>com.apple.security.network.client</key>
 	<true/>
+	<key>com.apple.security.scripting-targets</key>
+	<dict>
+		<key>com.apple.systempreferences</key>
+		<array>
+			<string>preferencepane.reveal</string>
+		</array>
+	</dict>
+	<key>com.apple.security.temporary-exception.files.home-relative-path.read-only</key>
+	<array>
+		<string>/Library/Preferences/.GlobalPreferences.plist</string>
+	</array>
 </dict>
 </plist>
