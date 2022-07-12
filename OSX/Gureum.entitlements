@@ -19,5 +19,9 @@
 	<array>
 		<string>/Library/Preferences/.GlobalPreferences.plist</string>
 	</array>
+	<key>com.apple.security.temporary-exception.iokit-user-client-class</key>
+	<array>
+		<string>IOHIDLibUserClient</string>
+	</array>
 </dict>
 </plist>
