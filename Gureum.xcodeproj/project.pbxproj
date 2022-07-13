@@ -1715,8 +1715,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shpakovski/MASShortcut";
 			requirement = {
-				branch = master;
-				kind = branch;
+				revision = 6ddfd5f866f8f9679b5af656604dd33cc2540a48;
+				kind = revision;
 			};
 		};
 		CE21ADEA280A0F6300B54371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
