@@ -23,14 +23,6 @@ rm -rf .git/modules/*
 git submodule update --init --recursive
 ```
 
-### 워크스페이스 환경 설정
-
-경우에 따라 빌드 결과물의 경로가 변경될 수 있습니다. Xcode 10을 기준으로 워크스페이스의 Build Location이 Unique로 구성되어 있는지 확인해주세요.
-
-> Xcode > Preferences > Locations > Derived Data > Advanced... > Unique
-
-![image](https://user-images.githubusercontent.com/906974/48977266-9057a580-f0da-11e8-86a3-14a0fd4fcb48.png)
-
 ## 빌드
 
 `Gureum` 타겟을 빌드하면 의존성과 함께 구름 입력기가 빌드됩니다.
