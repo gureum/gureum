@@ -229,11 +229,17 @@ final class HangulComposer: NSObject, Composer {
                 if recentCommitString.isEmpty {
                     return .processed
                 } else {
-                    // 마지막 글자가 한글이 아닌 경우 비조합 문자열로 판단한다.
+                    // 커밋 대상 문자열 중 마지막 문자가 한글이 아닌 경우 비조합 문자로 판단한다.
                     let lastChar = String(recentCommitString.last!)
                     if lastChar.range(of: "[ㄱ-ㅎㅏ-ㅣ가-힣]", options: .regularExpression) == nil {
-                        _composedString = lastChar
-                        _commitString.append(String(recentCommitString.dropLast()))
+                        // 이 때, 마지막 문자가 입력기의 처리를 거치지 않은 것과 동일한 경우에는 deferred 모드를 사용하지 않는다.
+                        if lastChar == string {
+                            _commitString.append(recentCommitString)
+                            return .processed
+                        } else {
+                            _composedString = lastChar
+                            _commitString.append(String(recentCommitString.dropLast()))
+                        }
                     } else {
                         _commitString.append(recentCommitString)
                     }
