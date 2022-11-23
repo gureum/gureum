@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="100" width="400" height="918"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="415" height="918"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,13 +29,13 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-RP-qRv">
-                                    <rect key="frame" x="0.0" y="-56" width="415" height="974"/>
+                                    <rect key="frame" x="0.0" y="-81" width="415" height="999"/>
                                     <subviews>
                                         <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-bm-FOO">
-                                            <rect key="frame" x="20" y="16" width="375" height="942"/>
+                                            <rect key="frame" x="20" y="16" width="375" height="967"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-VJ-ONL">
-                                                    <rect key="frame" x="0.0" y="797" width="375" height="145"/>
+                                                    <rect key="frame" x="0.0" y="822" width="375" height="145"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-l9-yXh">
                                                             <rect key="frame" x="-2" y="129" width="90" height="16"/>
@@ -207,7 +207,7 @@
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-o5-z1h">
-                                                    <rect key="frame" x="0.0" y="380" width="375" height="397"/>
+                                                    <rect key="frame" x="0.0" y="405" width="375" height="397"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-ZG-wMG">
                                                             <rect key="frame" x="-2" y="381" width="101" height="16"/>
@@ -353,7 +353,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYw-Lc-Fgh">
-                                                    <rect key="frame" x="0.0" y="286" width="327" height="74"/>
+                                                    <rect key="frame" x="0.0" y="311" width="327" height="74"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCm-f8-tKJ">
                                                             <rect key="frame" x="-2" y="58" width="101" height="16"/>
@@ -375,7 +375,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crR-nL-R9N" userLabel="기본 키보드 레이아웃 Combo Box">
-                                                                    <rect key="frame" x="167" y="-4" width="163" height="26"/>
+                                                                    <rect key="frame" x="166" y="-2" width="164" height="23"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="160" id="G3O-6L-dgF"/>
                                                                         <constraint firstAttribute="height" constant="20" id="igh-sw-xvN"/>
@@ -425,10 +425,10 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                     </customSpacing>
                                                 </stackView>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="11" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-lz-J9a">
-                                                    <rect key="frame" x="0.0" y="84" width="307" height="182"/>
+                                                    <rect key="frame" x="0.0" y="84" width="307" height="207"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-ur-FpL">
-                                                            <rect key="frame" x="-2" y="166" width="90" height="16"/>
+                                                            <rect key="frame" x="-2" y="191" width="90" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="한글 입력기 설정" id="HIp-u9-CIf">
                                                                 <font key="font" metaFont="systemBold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -436,7 +436,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                             </textFieldCell>
                                                         </textField>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JYx-Sc-lao">
-                                                            <rect key="frame" x="-2" y="138" width="288" height="18"/>
+                                                            <rect key="frame" x="-2" y="163" width="288" height="18"/>
                                                             <buttonCell key="cell" type="check" title="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2iT-lY-Scx" userLabel="한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
@@ -446,7 +446,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DXg-Ha-7zY">
-                                                            <rect key="frame" x="-2" y="111" width="234" height="18"/>
+                                                            <rect key="frame" x="-2" y="136" width="234" height="18"/>
                                                             <buttonCell key="cell" type="check" title="완성되지 않은 낱자 자동 교정 (모아치기)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HZu-6J-gbz">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
@@ -456,13 +456,23 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AHr-Ou-hBi">
-                                                            <rect key="frame" x="-2" y="84" width="309" height="18"/>
+                                                            <rect key="frame" x="-2" y="109" width="309" height="18"/>
                                                             <buttonCell key="cell" type="check" title="두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Phf-eg-t0A">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="hangulNonChoseongCombinationValueChanged:" target="DMm-2g-KCR" id="RYe-GQ-ycc"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f9c-IQ-QKY">
+                                                            <rect key="frame" x="-2" y="83" width="257" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="모든 글자를 조합중인 글자로 취급 (JDK 호환)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J0M-iD-R8Y">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="hangulDeferredSymbolCommitValueChanged:" target="DMm-2g-KCR" id="QTw-vh-Z6k"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-3z-VAl" userLabel="Strict Combination">
@@ -534,8 +544,10 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
+                                                        <integer value="1000"/>
                                                     </visibilityPriorities>
                                                     <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
@@ -594,7 +606,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                     </customSpacing>
                                                 </stackView>
                                                 <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1p7-M2-qsA">
-                                                    <rect key="frame" x="-7" y="915" width="83" height="32"/>
+                                                    <rect key="frame" x="-7" y="940" width="83" height="32"/>
                                                     <buttonCell key="cell" type="push" title="DEBUG!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sGP-Ih-dUD">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -649,7 +661,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                             <rect key="frame" x="0.0" y="903" width="414" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E1U-9N-bFJ">
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.69135802469135799" horizontal="NO" id="E1U-9N-bFJ">
                             <rect key="frame" x="399" y="0.0" width="16" height="918"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -669,6 +681,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                 <outlet property="debugButton" destination="1p7-M2-qsA" id="YQp-QQ-dbE"/>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
                 <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
+                <outlet property="hangulDeferredSymbolCommitButton" destination="f9c-IQ-QKY" id="DnX-Jm-kHp"/>
                 <outlet property="hangulNonChoseongCombinationButton" destination="AHr-Ou-hBi" id="A1C-aF-9IN"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
                 <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="i8N-tR-KEH"/>

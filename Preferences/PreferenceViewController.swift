@@ -29,6 +29,8 @@ final class PreferenceViewController: NSViewController {
     @IBOutlet private var hangulAutoReorderButton: NSButton!
     /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
     @IBOutlet private var hangulNonChoseongCombinationButton: NSButton!
+    /// 모든 글자를 조합중인 글자로 취급 (JDK 호환).
+    @IBOutlet private var hangulDeferredSymbolCommitButton: NSButton!
     /// 세벌식 정석 강요.
     @IBOutlet private var hangulForceStrictCombinationRuleButton: NSButton!
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
@@ -83,6 +85,7 @@ final class PreferenceViewController: NSViewController {
         romanModeByEscapeKeyButton.state = isOn(configuration.romanModeByEscapeKey)
         hangulAutoReorderButton.state = isOn(configuration.hangulAutoReorder)
         hangulNonChoseongCombinationButton.state = isOn(configuration.hangulNonChoseongCombination)
+        hangulDeferredSymbolCommitButton.state = isOn(configuration.hangulDeferredSymbolCommit)
         hangulForceStrictCombinationRuleButton.state = isOn(configuration.hangulForceStrictCombinationRule)
         switch configuration.rightToggleKey {
         case kHIDUsage_KeyboardRightGUI:
@@ -198,6 +201,10 @@ final class PreferenceViewController: NSViewController {
 
     @IBAction private func hangulNonChoseongCombinationValueChanged(_ sender: NSButton) {
         configuration.hangulNonChoseongCombination = sender.state == .on
+    }
+
+    @IBAction private func hangulDeferredSymbolCommitValueChanged(_ sender: NSButton) {
+        configuration.hangulDeferredSymbolCommit = sender.state == .on
     }
 
     @IBAction private func hangulForceStrictCombinationRuleValueChanged(_ sender: NSButton) {
