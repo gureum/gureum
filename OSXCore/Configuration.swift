@@ -38,7 +38,7 @@ enum ConfigurationName {
     /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
     public static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
     /// 모든 글자를 조합 중인 글자로 취급 (JDK 호환).
-    public static let hangulJDKCompatible = "hangulJDKCompatible"
+    public static let hangulDeferredSymbolCommit = "HangulDeferredSymbolCommit"
     /// 세벌식 정석 강요.
     public static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
     /// 우측 키로 언어 전환
@@ -98,7 +98,7 @@ public class Configuration: UserDefaults {
             ConfigurationName.hangulWonCurrencySymbolForBackQuote: true,
             ConfigurationName.hangulAutoReorder: false,
             ConfigurationName.hangulNonChoseongCombination: false,
-            ConfigurationName.hangulJDKCompatible: false,
+            ConfigurationName.hangulDeferredSymbolCommit: false,
             ConfigurationName.hangulForceStrictCombinationRule: false,
             ConfigurationName.rightToggleKey: kHIDUsage_KeyboardRightAlt,
 
@@ -238,12 +238,12 @@ public class Configuration: UserDefaults {
     }
 
     /// 모든 글자를 조합중인 글자로 취급 (JDK 호환).
-    public var hangulJDKCompatible: Bool {
+    public var hangulDeferredSymbolCommit: Bool {
         get {
-            bool(forKey: ConfigurationName.hangulJDKCompatible)
+            bool(forKey: ConfigurationName.hangulDeferredSymbolCommit)
         }
         set {
-            set(newValue, forKey: ConfigurationName.hangulJDKCompatible)
+            set(newValue, forKey: ConfigurationName.hangulDeferredSymbolCommit)
         }
     }
 

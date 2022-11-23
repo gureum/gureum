@@ -93,15 +93,15 @@ final class HangulComposer: NSObject, Composer {
 
     /// 합성을 완료한 문자열.
     private var _commitString: String
-    /// JDK 호환성 모드를 위해 보관중인 문자열.
-    private var _compatiblePreeditString: String
+    /// 합성 중인 문자열. 현재는 JDK 호환 모드에만 사용된다.
+    private var _composedString: String
 
     let inputContext: HGInputContext
     let configuration = Configuration.shared
 
     init(type: HangulComposer.ComposerType) {
         _commitString = ""
-        _compatiblePreeditString = ""
+        _composedString = ""
         let keyboardIdentifier = type.rawValue
         let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
         self.inputContext = inputContext
@@ -135,12 +135,12 @@ final class HangulComposer: NSObject, Composer {
 
     var composedString: String {
         let preedit = inputContext.preeditUCSString
-        return _compatiblePreeditString + representableString(ucsString: preedit)
+        return _composedString + representableString(ucsString: preedit)
     }
 
     var originalString: String {
         let preedit = inputContext.preeditUCSString
-        return _compatiblePreeditString + representableString(ucsString: preedit)
+        return _composedString + representableString(ucsString: preedit)
     }
 
     var commitString: String {
@@ -168,15 +168,15 @@ final class HangulComposer: NSObject, Composer {
 
     func cancelComposition() {
         let flushedString: String! = representableString(ucsString: inputContext.flushUCSString())
-        _commitString.append(_compatiblePreeditString)
+        _commitString.append(_composedString)
         _commitString.append(flushedString)
-        _compatiblePreeditString = ""
+        _composedString = ""
     }
 
     func clearCompositionContext() {
         inputContext.reset()
         _commitString = ""
-        _compatiblePreeditString = ""
+        _composedString = ""
     }
 
     func composerSelected() {
@@ -198,9 +198,9 @@ final class HangulComposer: NSObject, Composer {
     {
         // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
         if keyCode == .delete {
-            // JDK 호환 모드의 경우, _compatiblePreeditString가 있을 경우 그 문자를 우선적으로 지운다
-            if configuration.hangulJDKCompatible, _compatiblePreeditString.isEmpty == false {
-                _compatiblePreeditString = ""
+            // JDK 호환 모드의 경우, _composedString가 있을 경우 그 문자를 우선적으로 지운다
+            if configuration.hangulDeferredSymbolCommit, !_composedString.isEmpty {
+                _composedString.removeLast()
                 return .processed
             }
             return inputContext.backspace() ? .processed : .notProcessed
@@ -222,18 +222,18 @@ final class HangulComposer: NSObject, Composer {
         let ucsString = inputContext.commitUCSString
         let recentCommitString = representableString(ucsString: ucsString)
 
-        if configuration.hangulJDKCompatible {
+        if configuration.hangulDeferredSymbolCommit {
             if handled {
-                _commitString.append(_compatiblePreeditString)
-                _compatiblePreeditString = ""
+                _commitString.append(_composedString)
+                _composedString = ""
                 if recentCommitString.isEmpty {
                     return .processed
                 } else {
                     // 마지막 글자가 한글이 아닌 경우 비조합 문자열로 판단한다.
-                    let lastChar = String(Array(recentCommitString).last!)
+                    let lastChar = String(recentCommitString.last!)
                     if lastChar.range(of: "[ㄱ-ㅎㅏ-ㅣ가-힣]", options: .regularExpression) == nil {
-                        _compatiblePreeditString = lastChar
-                        _commitString.append(String(Array(recentCommitString).dropLast()))
+                        _composedString = lastChar
+                        _commitString.append(String(recentCommitString.dropLast()))
                     } else {
                         _commitString.append(recentCommitString)
                     }
