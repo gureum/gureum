@@ -472,7 +472,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                                 <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="hangulJDKCompatibleValueChanged:" target="DMm-2g-KCR" id="QTw-vh-Z6k"/>
+                                                                <action selector="hangulDeferredSymbolCommitValueChanged:" target="DMm-2g-KCR" id="QTw-vh-Z6k"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-3z-VAl" userLabel="Strict Combination">
@@ -681,7 +681,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                 <outlet property="debugButton" destination="1p7-M2-qsA" id="YQp-QQ-dbE"/>
                 <outlet property="hangulAutoReorderButton" destination="DXg-Ha-7zY" id="3qx-dc-nRf"/>
                 <outlet property="hangulForceStrictCombinationRuleButton" destination="JOz-3z-VAl" id="9Gi-l9-DbM"/>
-                <outlet property="hangulJDKCompatibleButton" destination="f9c-IQ-QKY" id="DnX-Jm-kHp"/>
+                <outlet property="hangulDeferredSymbolCommitButton" destination="f9c-IQ-QKY" id="DnX-Jm-kHp"/>
                 <outlet property="hangulNonChoseongCombinationButton" destination="AHr-Ou-hBi" id="A1C-aF-9IN"/>
                 <outlet property="hangulWonCurrencySymbolForBackQuoteButton" destination="JYx-Sc-lao" id="5Kn-cE-sMA"/>
                 <outlet property="inputModeEnglishShortcutView" destination="fCD-Cp-FQV" id="i8N-tR-KEH"/>
