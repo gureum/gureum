@@ -172,12 +172,7 @@ extension InputReceiver { // IMKServerInput
         dlog(DEBUG_LOGGING, "LOGGING::COMMIT::%lu:%lu:%@", range.location, range.length, commitString)
         // NSLog("range1 \(range)")글
         if range.length == 0 {
-            range = sender.selectedRange()
-        }
-        // NSLog("range2 \(range)")
-        if range.length == 0 {
-            // 일부 프로그램이 길이가 0인 치환을 잘 처리하지 못하므로 특별히 처리한다
-            range = NSRange(location: NSNotFound, length: 0)
+            range = NSRange(location: NSNotFound, length: NSNotFound)
         }
         // NSLog("commit \(commitString) to \(range)")
         controller.client().insertText(commitString, replacementRange: range)
