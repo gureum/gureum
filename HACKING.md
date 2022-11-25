@@ -1,5 +1,11 @@
 # 개발하기
 
+## 개발자 채팅방
+
+![Discord Banner](https://discordapp.com/api/guilds/1043532404251430952/widget.png?style=banner2)
+
+구름 입력기의 코드를 직접 수정하고 싶은 분들을 위해 개발자 채널을 운영하고 있습니다.
+
 ## 개발환경 설정
 
 ### git submodule 가져오기
