@@ -109,6 +109,7 @@
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
 		38F85961215BD27000CD80AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F85960215BD27000CD80AE /* main.swift */; };
 		38F85969215BF4BA00CD80AE /* Preferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 382E68641A1314D900031D1D /* Preferences.prefPane */; };
+		5F9C0129BE6142FE4D4D9CDB /* hangul-combination-3fs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C0E22FD6549C16CC80600 /* hangul-combination-3fs.xml */; };
 		80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */; };
 		80383E6E2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */; };
 		80383E6F2161F0D300FC5FB6 /* hangul-combination-3p.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */; };
@@ -126,6 +127,7 @@
 		CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
 		CE31CC0A28109975004659B0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE31CC0928109975004659B0 /* FirebaseCrashlytics */; };
 		CE31CC0D28109B95004659B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31CC0C28109B95004659B0 /* GoogleService-Info.plist */; };
+		D98806252931170A0073EF2F /* hangul-combination-3fs.xml in Copy Keyboards Files */ = {isa = PBXBuildFile; fileRef = 5F9C0E22FD6549C16CC80600 /* hangul-combination-3fs.xml */; };
 		E5A0EA0A2139098800D4AD69 /* GureumAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0EA092139098800D4AD69 /* GureumAppDelegate.swift */; };
 		E5ED2DE4213030B700BD9B13 /* GureumMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED2DE3213030B700BD9B13 /* GureumMenu.swift */; };
 /* End PBXBuildFile section */
@@ -239,6 +241,7 @@
 			dstPath = Hangul.framework/Resources/keyboards;
 			dstSubfolderSpec = 16;
 			files = (
+				D98806252931170A0073EF2F /* hangul-combination-3fs.xml in Copy Keyboards Files */,
 				80A02B24217E1AA90018E658 /* hangul-keyboard-2y-full.xml in Copy Keyboards Files */,
 				80A02B25217E1AA90018E658 /* hangul-keyboard-2-full.xml in Copy Keyboards Files */,
 				80383E6D2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml in Copy Keyboards Files */,
@@ -374,6 +377,7 @@
 		38F85960215BD27000CD80AE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		38F85964215BEA3800CD80AE /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
 		38FA220114233FD900444D67 /* Hangul.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hangul.xcodeproj; path = "../libhangul-objc/Hangul.xcodeproj"; sourceTree = "<group>"; };
+		5F9C0E22FD6549C16CC80600 /* hangul-combination-3fs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hangul-combination-3fs.xml"; sourceTree = "<group>"; };
 		80383E6A2161F0D300FC5FB6 /* hangul-keyboard-3-2012.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2012.xml"; sourceTree = "<group>"; };
 		80383E6B2161F0D300FC5FB6 /* hangul-keyboard-3-2011.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-keyboard-3-2011.xml"; sourceTree = "<group>"; };
 		80383E6C2161F0D300FC5FB6 /* hangul-combination-3p.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hangul-combination-3p.xml"; sourceTree = "<group>"; };
@@ -554,6 +558,7 @@
 				3835B5011F5DAA7100896BEC /* hangul-keyboard-3y.xml */,
 				3835B5021F5DAA7100896BEC /* hangul-keyboard-ahn.xml */,
 				3835B5031F5DAA7100896BEC /* hangul-keyboard-ro.xml */,
+				5F9C0E22FD6549C16CC80600 /* hangul-combination-3fs.xml */,
 			);
 			path = keyboards;
 			sourceTree = "<group>";
@@ -995,6 +1000,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C0129BE6142FE4D4D9CDB /* hangul-combination-3fs.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
