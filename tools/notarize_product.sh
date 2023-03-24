@@ -40,8 +40,9 @@ cmd=(xcrun altool --notarize-app -t osx --primary-bundle-id org.youknowone.input
     -u "$apple_id" -p @keychain:developer.apple.com -itc_provider 9384JEL3M9 -f "${ZIP_PATH}")
 echo "${cmd[@]}"
 if ! "${cmd[@]}"; then
+    exit_code=$?
     echo "Signing app failed: ${ZIP_PATH}" >&2
-    exit $?
+    exit $exit_code
 fi
 
 echo "Notarizing pkg..."
@@ -49,8 +50,9 @@ cmd=(xcrun altool --notarize-app -t osx --primary-bundle-id org.youknowone.input
     -u "$apple_id" -p @keychain:developer.apple.com -f "$PKG_PATH")
 echo "${cmd[@]}"
 if ! "${cmd[@]}"; then
+    exit_code=$?
     echo "Signing pkg failed: ${PKG_PATH}" >&2
-    exit $?
+    exit $exit_code
 fi
 
 mv "$PKG_PATH" ~/Downloads/

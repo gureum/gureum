@@ -26,14 +26,6 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
-      - run: gem update cocoapods
-      - uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-      - run: pod install --repo-update
       - uses: sersoft-gmbh/xcodebuild-action@v1
         with:
           project: Gureum.xcodeproj
