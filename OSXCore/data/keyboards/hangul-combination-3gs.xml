@@ -13,14 +13,14 @@
     <item first="0x110c" second="0x1100" result="0x110d"/>  <!-- ᄌ   + ᄌ   → ᄍ  -->
     <item first="0x1100" second="0x110c" result="0x110d"/>  <!-- ᄌ   + ᄌ   → ᄍ  -->
 
-    <item first="0x1171" second="0x1175" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
-    <item first="0x1175" second="0x1171" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
+    <item first="0xe071" second="0x1175" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
+    <item first="0x1175" second="0xe071" result="0x1171"/>  <!-- ᅱ   + ᅵ   → ᅱ  -->
     <item first="0x116c" second="0x1161" result="0x116a"/>  <!-- ᅬ   + ᅡ   → ᅪ  -->
     <item first="0x1161" second="0x116c" result="0x116a"/>  <!-- ᅬ   + ᅡ   → ᅪ  -->
     <item first="0x116c" second="0x1162" result="0x116b"/>  <!-- ᅬ   + ᅢ   → ᅫ  -->
     <item first="0x1162" second="0x116c" result="0x116b"/>  <!-- ᅬ   + ᅢ   → ᅫ  -->
-    <item first="0x116c" second="0x1175" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
-    <item first="0x1175" second="0x116c" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
+    <item first="0xe06c" second="0x1175" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
+    <item first="0x1175" second="0xe06c" result="0x116c"/>  <!-- ᅬ   + ᅵ   → ᅬ  -->
     <item first="0x116c" second="0x1165" result="0x116f"/>  <!-- ᅬ   + ᅥ   → ᅯ  -->
     <item first="0x1165" second="0x116c" result="0x116f"/>  <!-- ᅬ   + ᅥ   → ᅯ  -->
     <item first="0x116c" second="0x1166" result="0x1170"/>  <!-- ᅬ   + ᅦ   → ᅰ  -->

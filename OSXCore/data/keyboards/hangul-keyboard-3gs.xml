@@ -18,7 +18,7 @@
         <item key="0x2c" value="0x2c"/>  <!-- , → ,  -->
         <item key="0x2d" value="0x2d"/>  <!-- - → -  -->
         <item key="0x2e" value="0x2e"/>  <!-- . → .  -->
-        <item key="0x2f" value="0x116c"/>  <!-- / → ᅟᅩ -->
+        <item key="0x2f" value="0xe06c"/>  <!-- / → ᅟᅩ -->
         <item key="0x30" value="0x110f"/>  <!-- 0 → ᄏᅠ -->
         <item key="0x31" value="0x11c2"/>  <!-- 1 → ᅟᅠᇂ -->
         <item key="0x32" value="0x11bb"/>  <!-- 2 → ᅟᅠᆻ -->
@@ -28,7 +28,7 @@
         <item key="0x36" value="0x1163"/>  <!-- 6 → ᅟᅣ -->
         <item key="0x37" value="0x1168"/>  <!-- 7 → ᅟᅨ -->
         <item key="0x38" value="0x1174"/>  <!-- 8 → ᅟᅴ -->
-        <item key="0x39" value="0x1171"/>  <!-- 9 → ᅟᅮ -->
+        <item key="0x39" value="0xe071"/>  <!-- 9 → ᅟᅮ -->
         <item key="0x3a" value="0x0034"/>  <!-- : → 4  -->
         <item key="0x3b" value="0x1107"/>  <!-- ; → ᄇᅠ -->
         <item key="0x3c" value="0x3c"/>  <!-- < → <  -->
