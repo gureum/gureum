@@ -28,7 +28,6 @@
     <item first="0xe06c" second="0x1173" result="0x1164"/>  <!-- ᅬ   + ㅡ  → ㅒ -->
     <item first="0x1173" second="0xe06c" result="0x1164"/>  <!-- ᅬ   + ㅡ  → ㅒ -->
 
-    <item first="0x116e" second="0x5b" result="0x3f"/>
     <!-- autogen -->
     <item first="0x1161" second="0x5b" result="0x11b1"/> <!-- ᅡ    ᆱ   autogen -->
     <item first="0x1162" second="0x5b" result="0x11b6"/> <!-- ᅢ    ᆶ   autogen -->
