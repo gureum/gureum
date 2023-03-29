@@ -11,6 +11,8 @@ import Cocoa
 import Foundation
 import Hangul
 
+let CHO_FILLER = 0x115F
+let JUNG_FILLER = 0x1160
 let DEBUG_HANGULCOMPOSER = false
 
 private let table: [HGUCSChar: HGUCSChar] = [
@@ -21,33 +23,31 @@ private let table: [HGUCSChar: HGUCSChar] = [
 ]
 
 /// 한글호환 자모 유니코드로 바꿔주는 함수.
-func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> UnsafeMutablePointer<HGUCSChar> {
-    var index = 0
-    let newUcsString = UnsafeMutablePointer<HGUCSChar>.allocate(capacity: 4)
-    while ucsString[index] != UInt32(0) {
+func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> [HGUCSChar] {
+    var newUcsString = [HGUCSChar]()
+    var skipped = 0
+    while ucsString[skipped + newUcsString.count] != UInt32(0) {
+        let index = skipped + newUcsString.count
+        let newChr: HGUCSChar
         if let chr = table[ucsString[index]] {
-            newUcsString[index] = chr
+            newChr = chr
         } else {
-            newUcsString[index] = ucsString[index]
+            newChr = ucsString[index]
         }
-        index += 1
+        if newChr == CHO_FILLER || newChr == JUNG_FILLER {
+            skipped += 1
+        } else {
+            newUcsString.append(newChr)
+        }
     }
-    newUcsString[index] = UInt32(0)
+    newUcsString.append(0)
     return newUcsString
 }
 
 func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
-    // 채움문자로 조합 중 판별
-    if !HGCharacterIsChoseong(ucsString[0]) {
+    let isCombinating = !HGCharacterIsChoseong(ucsString[0]) || ucsString[0] == CHO_FILLER || ucsString[1] == JUNG_FILLER
+    if isCombinating {
         return NSString(ucsString: convertUnicode(ucsString)) as String
-    }
-    if ucsString[0] == 0x115F {
-        return NSString(ucsString: convertUnicode(ucsString) + 1) as String
-    }
-    if ucsString[1] == 0x1160 {
-        let fill = NSMutableString(ucsString: ucsString, length: 1)!
-        fill.append(NSString(ucsString: ucsString + 2, length: 1) as String)
-        return fill as String
     }
     // 옛한글은 그대로
     return NSString(ucsString: ucsString) as String
