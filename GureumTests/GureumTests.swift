@@ -387,22 +387,6 @@ class GureumTests: XCTestCase {
         }
     }
 
-    func testHan3Gureum() {
-        for app in apps {
-            app.client.string = ""
-            app.controller.setValue(GureumInputSource.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-
-            app.inputKey(.ansiQuote, modifiers: .shift)
-            XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
-
-            app.client.string = ""
-            app.inputKey(.ansiF)
-            app.inputKey(.ansiD)
-            app.inputText("", key: .delete)
-            XCTAssertEqual("ㅏ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-        }
-    }
-
     func testDvorak() {
         for app in apps {
             app.client.string = ""
@@ -758,4 +742,75 @@ class GureumTests: XCTestCase {
 //            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
 //        }
 //    }
+
+    func testHan3FinalNoShift() {
+        for app in apps {
+            app.client.string = ""
+            app.controller.setValue(GureumInputSource.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+            app.inputKey(.ansiQuote, modifiers: .shift)
+            XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+
+            app.client.string = ""
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("[[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiD)
+            app.inputText("", key: .delete)
+            XCTAssertEqual("ㅏ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansi2)
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("ㄺ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansiI)
+            app.inputKey(.ansiU)
+            app.inputKey(.ansiB)
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("뚜[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiR)
+            XCTAssertEqual("뚫", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansiI)
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("맒", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiS)
+            XCTAssertEqual("많", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("많[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansiF)
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("ㅏㄻ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiN)
+            XCTAssertEqual("삶", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+
+            app.client.string = ""
+            app.inputKey(.ansiJ)
+            app.inputKey(.ansiT)
+            app.inputKey(.ansiLeftBracket)
+            XCTAssertEqual("엀", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.ansiE)
+            XCTAssertEqual("얹", app.client.string, "buffer: \(app.client.string) app: \(app)")
+            app.inputKey(.space)
+        }
+    }
 }
