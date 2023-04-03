@@ -13,27 +13,6 @@ import SwiftIOKit
 let DEBUG_INPUT_SERVER = false
 let DEBUG_IOKIT_EVENT = false
 
-let KeyMapLower = [
-    "a", "s", "d", "f", "h", "g", "z", "x",
-    "c", "v", nil, "b", "q", "w", "e", "r",
-    "y", "t", "1", "2", "3", "4", "6", "5",
-    "=", "9", "7", "-", "8", "0", "]", "o",
-    "u", "[", "i", "p", nil, "l", "j", "'",
-    "k", ";", "\\", ",", "/", "n", "m", ".",
-    nil, nil, "`",
-]
-// assert(keyMapLower.count == KeyMapSize)
-
-let KeyMapUpper = [
-    "A", "S", "D", "F", "H", "G", "Z", "X",
-    "C", "V", nil, "B", "Q", "W", "E", "R",
-    "Y", "T", "!", "@", "#", "$", "^", "%",
-    "+", "(", "&", "_", "*", ")", "}", "O",
-    "U", "{", "I", "P", nil, "L", "J", "\"",
-    "K", ":", "|", "<", "?", "N", "M", ">",
-    nil, nil, "~",
-]
-
 extension IMKServer {
     convenience init?(bundle: Bundle) {
         guard let connectionName = bundle.infoDictionary!["InputMethodConnectionName"] as? String else {

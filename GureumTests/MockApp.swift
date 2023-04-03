@@ -33,6 +33,11 @@ class VirtualApp: NSObject {
     }
 
     @discardableResult
+    func inputDelete() -> Bool {
+        inputText("", key: .delete)
+    }
+
+    @discardableResult
     func inputKey(_ keyCode: KeyCode, modifiers flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags(rawValue: 0)) -> Bool {
         var string: String?
         if keyCode.isKeyMappable {
@@ -45,6 +50,13 @@ class VirtualApp: NSObject {
         }
         return inputText(string, key: keyCode, modifiers: flags)
     }
+
+    func inputKeys(_ keys: String) {
+        for c in keys {
+            let (keyCode, modifiers) = KeyMapReversed["\(c)"]!
+            inputKey(keyCode, modifiers: modifiers)
+        }
+    }
 }
 
 class ModerateApp: VirtualApp {
@@ -52,8 +64,12 @@ class ModerateApp: VirtualApp {
         let processed = super.inputText(string, key: keyCode, modifiers: flags)
         let specialFlags = flags.intersection([.command, .control])
 
-        if !processed, specialFlags.isEmpty, string != nil {
-            client.insertText(string, replacementRange: client.markedRange())
+        if !processed {
+            if specialFlags.isEmpty, string ?? "" != "" {
+                client.insertText(string, replacementRange: client.markedRange())
+            } else if keyCode == .delete, !client.string.isEmpty {
+                client.string.removeLast()
+            }
         }
         return processed
     }

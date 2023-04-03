@@ -6,6 +6,8 @@
 //  Copyright © 2019 youknowone.org. All rights reserved.
 //
 
+import Cocoa
+
 /// 키보드 레이아웃과 독립적인 키에 대한 키 코드를 정의한 열거형.
 public enum KeyCode: Int {
     // MARK: ANSI-standard US keyboard
@@ -162,3 +164,41 @@ extension KeyCode: Comparable {
         return lhs.rawValue < rhs.rawValue
     }
 }
+
+let KeyMapLower = [
+    "a", "s", "d", "f", "h", "g", "z", "x",
+    "c", "v", nil, "b", "q", "w", "e", "r",
+    "y", "t", "1", "2", "3", "4", "6", "5",
+    "=", "9", "7", "-", "8", "0", "]", "o",
+    "u", "[", "i", "p", nil, "l", "j", "'",
+    "k", ";", "\\", ",", "/", "n", "m", ".",
+    nil, nil, "`",
+]
+// assert(keyMapLower.count == KeyMapSize)
+
+let KeyMapUpper = [
+    "A", "S", "D", "F", "H", "G", "Z", "X",
+    "C", "V", nil, "B", "Q", "W", "E", "R",
+    "Y", "T", "!", "@", "#", "$", "^", "%",
+    "+", "(", "&", "_", "*", ")", "}", "O",
+    "U", "{", "I", "P", nil, "L", "J", "\"",
+    "K", ":", "|", "<", "?", "N", "M", ">",
+    nil, nil, "~",
+]
+
+let KeyMapReversed = {
+    var map: [String: (KeyCode, NSEvent.ModifierFlags)] = [:]
+    for (rawValue, key) in KeyMapLower.enumerated() {
+        guard let key = key else {
+            continue
+        }
+        map[key] = (KeyCode(rawValue: rawValue)!, [])
+    }
+    for (rawValue, key) in KeyMapUpper.enumerated() {
+        guard let key = key else {
+            continue
+        }
+        map[key] = (KeyCode(rawValue: rawValue)!, [.shift])
+    }
+    return map
+}()
