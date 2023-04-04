@@ -729,88 +729,202 @@ class GureumTests: XCTestCase {
         }
     }
 
-//    func testSelection() {
-//        for app in apps {
-//            app.client.string = "한"
-//            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
-//            _ = app.inputKey(kVK_ANSI_D)
-//            XCTAssertEqual("한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-//            XCTAssertEqual("ㅇ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-//            app.client.setSelectedRange(NSRange(location: 0, length: 0))
-//            _ = app.inputKey(kVK_ANSI_R)
-//            XCTAssertEqual("ㄱ한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-//            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-//        }
-//    }
+    //    func testSelection() {
+    //        for app in apps {
+    //            app.client.string = "한"
+    //            app.controller.setValue(GureumInputSourceIdentifier.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+    //            _ = app.inputKey(kVK_ANSI_D)
+    //            XCTAssertEqual("한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+    //            XCTAssertEqual("ㅇ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+    //            app.client.setSelectedRange(NSRange(location: 0, length: 0))
+    //            _ = app.inputKey(kVK_ANSI_R)
+    //            XCTAssertEqual("ㄱ한ㅇ", app.client.string, "buffer: \(app.client.string) app: \(app)")
+    //            XCTAssertEqual("ㄱ", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+    //        }
+    //    }
+}
 
-    func testHan3FinalNoShift() {
-        for app in apps {
-            app.client.string = ""
-            app.controller.setValue(GureumInputSource.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+class Han3FinalNoShiftTests: XCTestCase {
+    let app = ModerateApp()
 
-            app.inputKey(.ansiQuote, modifiers: .shift)
-            XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+    override class func setUp() {
+        Configuration.shared = Configuration(suiteName: "org.youknowone.Gureum.test")!
+        super.setUp()
+    }
 
-            app.client.string = ""
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("[", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("[[", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+    override class func tearDown() {
+        super.tearDown()
+    }
 
-            app.client.string = ""
-            app.inputKey(.ansiF)
-            app.inputKey(.ansiD)
-            app.inputText("", key: .delete)
-            XCTAssertEqual("ㅏ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-            app.client.string = ""
-            app.inputKey(.ansi2)
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("ㄺ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+        Configuration.shared.removePersistentDomain(forName: GureumTests.domainName)
 
-            app.client.string = ""
-            app.inputKey(.ansiI)
-            app.inputKey(.ansiU)
-            app.inputKey(.ansiB)
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("뚜[", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiR)
-            XCTAssertEqual("뚫", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+        app.client.string = ""
+        app.controller.setValue(GureumInputSource.han3FinalNoShift.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+    }
 
-            app.client.string = ""
-            app.inputKey(.ansiI)
-            app.inputKey(.ansiF)
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("맒", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiS)
-            XCTAssertEqual("많", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("많[", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.inputKey(.space)
+        app.client.string = ""
+        super.tearDown()
+    }
 
-            app.client.string = ""
-            app.inputKey(.ansiF)
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("ㅏㄻ", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiN)
-            XCTAssertEqual("삶", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+    func testSymbol() {
+        app.inputKey(.ansiQuote, modifiers: .shift)
+        XCTAssertEqual("\"", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        app.client.string = ""
+    }
 
-            app.client.string = ""
-            app.inputKey(.ansiJ)
-            app.inputKey(.ansiT)
-            app.inputKey(.ansiLeftBracket)
-            XCTAssertEqual("엀", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.ansiE)
-            XCTAssertEqual("얹", app.client.string, "buffer: \(app.client.string) app: \(app)")
-            app.inputKey(.space)
+    func testModeKeyAsSymbol() {
+        app.inputKey(.ansiLeftBracket)
+        XCTAssertEqual("[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+        app.inputKey(.ansiLeftBracket)
+        XCTAssertEqual("[[", app.client.string, "buffer: \(app.client.string) app: \(app)")
+        XCTAssertEqual("[", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+    }
+
+    func testBufferedJung() {
+        app.test(input: "fd", expecteds: ["ㅏ", "ㅏㅣ"], markeds: ["ㅏ", "ㅏㅣ"])
+        app.test(input: "fds", expecteds: ["ㅏ", "ㅏㅣ", "ㅏㅣㄴ"], markeds: ["ㅏ", "ㅏㅣ", "ㅣㄴ"])
+        app.test(input: "fde", expecteds: ["ㅏ", "ㅏㅣ", "ㅏㅣㅕ"], markeds: ["ㅏ", "ㅏㅣ", "ㅣㅕ"])
+        app.test(input: "fdk", expecteds: ["ㅏ", "ㅏㅣ", "ㅏ기"], markeds: ["ㅏ", "ㅏㅣ", "기"])
+        app.test(input: "fdk", expecteds: ["ㅏ", "ㅏㅣ", "ㅏ기"], markeds: ["ㅏ", "ㅏㅣ", "기"])
+        app.test(input: "fdsk", expecteds: ["ㅏ", "ㅏㅣ", "ㅏㅣㄴ", "ㅏ긴"], markeds: ["ㅏ", "ㅏㅣ", "ㅣㄴ", "긴"])
+        app.test(input: "fsdk", expecteds: ["ㅏ", "ㅏㄴ", "ㅏㄴㅣ", "ㅏㄴ기"], markeds: ["ㅏ", "ㅏㄴ", "ㅣ", "기"], removeds: ["ㅏㄴㅣ", "ㅏㄴ"])
+    }
+
+    func test까() {
+        app.test(input: "jkf", expecteds: [nil, nil, "까"])
+        app.test(input: "kjf", expecteds: [nil, nil, "까"])
+        app.test(input: "fkj", expecteds: [nil, nil, "까"])
+        app.test(input: "fjk", expecteds: [nil, nil, "까"])
+        app.test(input: "fkji", expecteds: [nil, nil, "까", "까ㅁ"], removeds: ["까", ""])
+        app.test(input: "fjki", expecteds: [nil, nil, "까", "까ㅁ"], removeds: ["까", ""])
+        app.test(input: "jfk", expecteds: [nil, nil, "아ㄱ"], removeds: ["아"])
+        app.test(input: "kfj", expecteds: [nil, nil, "가ㅇ"], removeds: ["가"])
+        app.test(input: "sjkf", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "skjf", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "sfkj", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "sfjk", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "jksf", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "kjsf", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "fskj", expecteds: [nil, nil, nil, "깐"])
+        app.test(input: "fsjk", expecteds: [nil, nil, nil, "깐"])
+    }
+
+    func testㄺ() {
+        app.test(input: "2[", expecteds: ["ㅆ", "ㄺ"], markeds: ["ㅆ", "ㄺ"])
+        app.test(input: "[2", expecteds: ["[", "ㄺ"], markeds: ["[", "ㄺ"])
+    }
+
+    func test괜() {
+        app.test(input: "k/r", expecteds: [nil, nil, "괘"])
+        app.test(input: "k/rs", expecteds: [nil, nil, nil, "괜"])
+        app.test(input: "kr/s", expecteds: [nil, nil, nil, "괜"])
+        app.test(input: "krs/", expecteds: [nil, nil, nil, "괜"])
+        app.test(input: "k/sr", expecteds: [nil, nil, nil, "괜"])
+        app.test(input: "ks/r", expecteds: [nil, nil, nil, "괜"])
+        app.test(input: "ksr/", expecteds: [nil, nil, nil, "괜"])
+    }
+
+    func test뚫() {
+        app.test(input: "iub[r", expecteds: [nil, nil, nil, "뚜[", "뚫"])
+        app.test(input: "iu[br", expecteds: [nil, nil, nil, "뚜[", "뚫"])
+        app.test(input: "iubr[", expecteds: [nil, nil, nil, "뚜ㅐ", "뚫"])
+        app.test(input: "iubr[[", expecteds: [nil, nil, nil, "뚜ㅐ", "뚫", "뚫["], removeds: ["뚫", ""])
+        app.test(input: "bb[r", expecteds: [nil, nil, "ㅜㅜ[", "ㅜㅜㅀ"], markeds: [nil, nil, "ㅜ[", "ㅜㅀ"])
+    }
+
+    func test많() {
+        app.test(input: "if[s[", expecteds: [nil, nil, "맒", "많", "많["], markeds: [nil, nil, nil, nil, "["], removeds: ["많", ""])
+        app.test(input: "ifs[", expecteds: [nil, nil, nil, "많"])
+        app.test(input: "i[fs", expecteds: [nil, nil, nil, "많"])
+        app.test(input: "i[sf", expecteds: [nil, nil, nil, "많"])
+        app.test(input: "isf[", expecteds: [nil, nil, nil, "많"])
+        app.test(input: "is[f", expecteds: [nil, nil, nil, "많"])
+        app.test(input: "isf[f", expecteds: [nil, nil, nil, "많", "많ㅏ"], markeds: [nil, nil, nil, nil, "ㅏ"], removeds: ["많", ""])
+        app.test(input: "is[ff", expecteds: [nil, nil, nil, "많", "많ㅏ"], markeds: [nil, nil, nil, nil, "ㅏ"], removeds: ["많", ""])
+        app.test(input: "isff", expecteds: [nil, nil, "만", "만ㅏ"], markeds: [nil, nil, nil, "ㅏ"], removeds: ["만", ""])
+        app.test(input: "isf[s", expecteds: [nil, nil, nil, "많", "많ㄴ"], markeds: [nil, nil, nil, nil, "ㄴ"], removeds: ["많", ""])
+        app.test(input: "is[fs", expecteds: [nil, nil, nil, "많", "많ㄴ"], markeds: [nil, nil, nil, nil, "ㄴ"], removeds: ["많", ""])
+        app.test(input: "ifss", expecteds: [nil, nil, "만", "만ㄴ"], markeds: [nil, nil, nil, "ㄴ"], removeds: ["만", ""])
+    }
+
+    func test삶() {
+        app.test(input: "nf[f", expecteds: [nil, nil, "삶", "삶"])
+        app.test(input: "n[ff", expecteds: [nil, nil, "삶", "삶"])
+        app.test(input: "nff[", expecteds: [nil, "사", "사ㅏ", "삶"])
+        app.test(input: "f[n", expecteds: [nil, "ㅏㄻ", "삶"])
+        app.test(input: "[fn", expecteds: [nil, "ㅏㄻ", "삶"])
+        app.test(input: "[nf", expecteds: [nil, "ㅅ[", "삶"])
+        app.test(input: "n[[f", expecteds: [nil, "ㅅ[", "ㅅ[[", "ㅅ[ㅏㄻ"])
+        app.test(input: "f[[nf", expecteds: [nil, "ㅏㄻ", "ㅏㄻ[", "ㅏㄻㅅ[", "ㅏㄻ삶"], markeds: [nil, nil, "ㅏㄻ[", "ㅅ[", "삶"])
+    }
+
+    func test얹() {
+        app.test(input: "jt[e", expecteds: [nil, nil, "엀", "얹"])
+        app.test(input: "te[j", expecteds: [nil, "ㅓㅕ", "ㅓㄵ", "얹"])
+    }
+}
+
+extension VirtualApp {
+    func test(input: String, expecteds: [String?], markeds: [String?]? = nil, removeds: [String?]? = nil) {
+        var results: [(Character, String)] = []
+
+        func strokes() -> String {
+            String(Array(results.map { $0.0 }))
         }
+
+        XCTAssertEqual(client.string, "", "app.client.string is not cleared")
+        for (i, keyChar) in input.enumerated() {
+            let key = "\(keyChar)"
+            results.append((keyChar, client.string))
+            inputKeys(key)
+            if let expected = expecteds[i] {
+                XCTAssertEqual(expected, client.string, "strokes: \(strokes()) buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+            }
+            if let markeds = markeds {
+                if let marked = markeds[i] {
+                    XCTAssertEqual(marked, client.markedString(), "buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+                }
+            }
+        }
+        if var removeds = removeds {
+            while let removed = removeds.first {
+                removeds.remove(at: 0)
+                inputDelete()
+                XCTAssertEqual(removed, client.string, "buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+            }
+        } else {
+            while let (keyChar, result) = results.popLast() {
+                inputDelete()
+                XCTAssertEqual(result, client.string, "strokes: \(strokes())<BS(\(keyChar))> buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+            }
+        }
+
+        inputKey(.space)
+        client.string = ""
+
+        inputKeys(input)
+        let result = client.string
+        inputKey(.ansiK)
+        inputDelete()
+        XCTAssertEqual(result, client.string, "input: \(input) 'k' and delete fails buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+
+        inputKey(.ansiF)
+        inputDelete()
+        XCTAssertEqual(result, client.string, "input: \(input) 'f' and delete fails buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+
+        inputKey(.ansiS)
+        inputDelete()
+        XCTAssertEqual(result, client.string, "input: \(input) 's' and delete fails buffer: \(client.string) marked: \(client.markedString()) app: \(self)")
+
+        inputKey(.space)
+        client.string = ""
     }
 }
