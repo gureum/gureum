@@ -1,5 +1,5 @@
 //
-//  Preferences.swift
+//  PreferenceViewController.swift
 //  Preferences
 //
 //  Created by Jeong YunWon on 2017. 11. 29..
@@ -146,30 +146,48 @@ final class PreferenceViewController: NSViewController {
     }
 
     @IBAction private func openKeyboardShortcutsPreference(sender _: NSControl) {
-        runAppleScript("""
-            tell application "System Preferences"
-                activate
-                reveal anchor "ShortcutsTab" of pane id "com.apple.preference.keyboard"
-            end tell
-        """)
+        if #available(OSX 13, *) {
+            runAppleScript("""
+                do shell script "open -b com.apple.systempreferences /System/Library/PreferencePanes/Keyboard.prefPane"
+            """)
+        } else {
+            runAppleScript("""
+                tell application "System Preferences"
+                    activate
+                    reveal anchor "ShortcutsTab" of pane id "com.apple.preference.keyboard"
+                end tell
+            """)
+        }
     }
 
     @IBAction private func openKeyboardInputSourcesPreference(sender _: NSControl) {
-        runAppleScript("""
-            tell application "System Preferences"
-                activate
-                reveal anchor "InputSources" of pane id "com.apple.preference.keyboard"
-            end tell
-        """)
+        if #available(OSX 13, *) {
+            runAppleScript("""
+                do shell script "open -b com.apple.systempreferences /System/Library/PreferencePanes/Keyboard.prefPane"
+            """)
+        } else {
+            runAppleScript("""
+                tell application "System Preferences"
+                    activate
+                    reveal anchor "InputSources" of pane id "com.apple.preference.keyboard"
+                end tell
+            """)
+        }
     }
 
-    @IBAction private func openSecurityPreference(sender _: NSControl) {
-        runAppleScript("""
-            tell application "System Preferences"
-                activate
-                reveal anchor "Privacy" of pane id "com.apple.preference.security"
-            end tell
-        """)
+    @IBAction private func openInputMonitoringPreference(sender _: NSControl) {
+        if #available(OSX 13, *) {
+            runAppleScript("""
+                do shell script "open x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent"
+            """)
+        } else {
+            runAppleScript("""
+                tell application "System Preferences"
+                    activate
+                    reveal anchor "Privacy" of pane id "com.apple.preference.security"
+                end tell
+            """)
+        }
     }
 
     @IBAction private func updateCheck(sender _: NSControl) {

@@ -1,6 +1,6 @@
 //
-//  DelegatedComposer.swift
-//  OSX
+//  Composer.swift
+//  OSXCore
 //
 //  Created by Jeong YunWon on 20/10/2018.
 //  Copyright © 2018 youknowone.org. All rights reserved.
