@@ -283,7 +283,7 @@ PC처럼 오른쪽 커맨드 또는 옵션 키 등으로 언어 전환을 할 �
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="openSecurityPreferenceWithSender:" target="DMm-2g-KCR" id="aKW-4B-U2h"/>
+                                                                <action selector="openInputMonitoringPreferenceWithSender:" target="DMm-2g-KCR" id="1MP-NR-r0J"/>
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M08-TU-Mtg" userLabel="단축키 설정 설명">
