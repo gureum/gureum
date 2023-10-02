@@ -1,6 +1,6 @@
 //
-//  InputControllerGureum.swift
-//  Gureum
+//  GureumMenu.swift
+//  OSX
 //
 //  Created by KMLee on 2018. 8. 24..
 //  Copyright © 2018 youknowone.org. All rights reserved.
