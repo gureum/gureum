@@ -8,7 +8,6 @@ all:
 
 init: xcode-select brew-install gem-install
 	git submodule update --init --recursive
-	pod install --repo-update
 
 format:
 	swiftformat OSXCore/ OSX/ GureumTests/ Preferences/ OSXTestApp/
@@ -31,10 +30,6 @@ brew-install:
 	fi
 
 gem-install:
-	@if ! command -v pod >/dev/null; then \
-		echo 'gem install cocoapods'; \
-		gem install cocoapods || { echo 'Error: gem-install failed. Try sudo make gem-install.'; exit 1; }; \
-	fi
 	@if ! command -v xcpretty >/dev/null; then \
 		echo 'gem install xcpretty'; \
 		gem install xcpretty || { echo 'Error: gem-install failed. Try sudo make gem-install.'; exit 1; }; \
