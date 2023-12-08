@@ -175,7 +175,7 @@ def download(url, file_name):
 
 
 if __name__ == '__main__':
-    tag = 'release-44'
+    tag = 'release-44-1'
     ko_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotations/ko.xml"
     ko_d_url = f"https://raw.githubusercontent.com/unicode-org/cldr/{tag}/common/annotationsDerived/ko.xml"
 
