@@ -32,6 +32,8 @@
 				<string>org.youknowone.inputmethod.Gureum.system</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -53,6 +55,8 @@
 				<string>org.youknowone.inputmethod.Gureum.colemak</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -74,6 +78,8 @@
 				<string>org.youknowone.inputmethod.Gureum.dvorak</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>eng.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -97,6 +103,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han2</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han2.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -118,6 +126,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han2classic</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han2.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -139,6 +149,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3-2011</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -160,6 +172,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3-2012</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -181,6 +195,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han390</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -202,6 +218,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3classic</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -225,6 +243,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3final</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -248,6 +268,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3finalnoshift</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -271,6 +293,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3layout2</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -292,6 +316,8 @@
 				<string>org.youknowone.inputmethod.Gureum.han3noshift</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han3.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -313,6 +339,8 @@
 				<string>org.youknowone.inputmethod.Gureum.hanahnmatae</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>han.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -334,6 +362,8 @@
 				<string>org.youknowone.inputmethod.Gureum.hanroman</string>
 				<key>TISIntendedLanguage</key>
 				<string>ko</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>hanroman.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -357,6 +387,8 @@
 				<string>org.youknowone.inputmethod.Gureum.qwerty</string>
 				<key>TISIntendedLanguage</key>
 				<string>en</string>
+				<key>TICapsLockLanguageSwitchCapable</key>
+				<true/>
 				<key>tsInputModeAlternateMenuIconFileKey</key>
 				<string>qwerty.png</string>
 				<key>tsInputModeDefaultStateKey</key>
@@ -432,6 +464,8 @@
 	<string>org.youknowone.inputmethod.Korean</string>
 	<key>TISIntendedLanguage</key>
 	<string>ko</string>
+	<key>TICapsLockLanguageSwitchCapable</key>
+	<true/>
 	<key>tsInputMethodCharacterRepertoireKey</key>
 	<array>
 		<string>Latn</string>

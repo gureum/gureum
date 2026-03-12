@@ -96,6 +96,22 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testCapsLockLanguageSwitchCapableInfoPlist() {
+        let infoDictionary = Bundle.main.infoDictionary ?? [:]
+        XCTAssertEqual(infoDictionary["TICapsLockLanguageSwitchCapable"] as? Bool, true)
+
+        let componentInputModeDict = infoDictionary["ComponentInputModeDict"] as? [String: Any]
+        let inputModes = componentInputModeDict?["tsInputModeListKey"] as? [String: [String: Any]]
+        let missingCapableInputModes = inputModes?
+            .filter { $0.key.hasPrefix("org.youknowone.inputmethod.Gureum.") }
+            .compactMap { inputMode, properties in
+                (properties["TICapsLockLanguageSwitchCapable"] as? Bool) == true ? nil : inputMode
+            }
+            .sorted()
+
+        XCTAssertEqual(missingCapableInputModes, [])
+    }
+
     func testSearchEmoticonTable() {
         let bundle = Bundle(for: HGKeyboard.self)
         let path: String? = bundle.path(forResource: "emoji", ofType: "txt", inDirectory: "hanja")
