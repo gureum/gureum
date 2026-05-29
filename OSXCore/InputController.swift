@@ -214,6 +214,18 @@ public extension InputController { // IMKStateSetting
     override func activateServer(_ sender: Any!) {
         dlog(true, "server activated")
         super.activateServer(sender)
+
+        DistributedNotificationCenter.default().removeObserver(
+            self,
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
+        DistributedNotificationCenter.default().addObserver(
+            self,
+            selector: #selector(handleLayoutEventNotification(_:)),
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
     }
 
     override func deactivateServer(_ sender: Any!) {
@@ -221,7 +233,35 @@ public extension InputController { // IMKStateSetting
         if responds(to: #selector(commitComposition(_:))) {
             self.commitComposition(sender)
         }
+        DistributedNotificationCenter.default().removeObserver(
+            self,
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
         super.deactivateServer(sender)
+    }
+
+    @objc func handleLayoutEventNotification(_ notification: Notification) {
+        dlog(true, "handleLayoutEventNotification received: \(notification)")
+        guard let client = client() as? (IMKTextInput & IMKUnicodeTextInput) else {
+            dlog(true, "handleLayoutEventNotification: active client is nil or not matching protocol")
+            return
+        }
+
+        let action = notification.userInfo?["action"] as? String ?? "toggle"
+        let changeLayout: ChangeLayout
+        switch action {
+        case "hangul":
+            changeLayout = .hangul
+        case "roman":
+            changeLayout = .roman
+        case "hanja":
+            changeLayout = .search
+        default:
+            changeLayout = .toggle
+        }
+
+        _ = receiver.input(event: .changeLayout(changeLayout, true), client: client)
     }
 }
 

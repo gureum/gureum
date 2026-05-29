@@ -50,10 +50,6 @@ enum SearchSourceConst {
 struct SearchPool: SearchSource {
     let sources: [SearchSource]
 
-    init(sources: [SearchSource]) {
-        self.sources = sources
-    }
-
     func collect(_ keyword: String, workItem: DispatchWorkItem!) -> [ScoredCandidate] {
         var candidates: [Candidate: (Double, Int)] = [:]
         var results: [ScoredCandidate] = []

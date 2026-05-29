@@ -12,42 +12,42 @@ import Foundation
 /// 환경 설정 이름을 정의한 열거형.
 enum ConfigurationName {
     /// 마지막 한글 입력 모드.
-    public static let lastHangulInputMode = "LastHangulInputMode"
+    static let lastHangulInputMode = "LastHangulInputMode"
     /// 마지막 로마자 입력 모드.
-    public static let lastRomanInputMode = "LastRomanInputMode"
+    static let lastRomanInputMode = "LastRomanInputMode"
 
     /// 입력기 바꾸기 단축키.
-    public static let inputModeExchangeKey = "InputModeExchangeKey"
+    static let inputModeExchangeKey = "InputModeExchangeKey"
     /// 한자 및 이모지 검색 단축키.
-    public static let inputModeSearchKey = "InputModeHanjaKey"
+    static let inputModeSearchKey = "InputModeHanjaKey"
     /// 로마자로 바꾸기 단축키.
-    public static let inputModeEnglishKey = "InputModeEnglishKey"
+    static let inputModeEnglishKey = "InputModeEnglishKey"
     /// 한글로 바꾸기 단축키.
-    public static let inputModeKoreanKey = "InputModeKoreanKey"
+    static let inputModeKoreanKey = "InputModeKoreanKey"
     /// 옵션 키 동작.
-    public static let optionKeyBehavior = "OptionKeyBehavior"
+    static let optionKeyBehavior = "OptionKeyBehavior"
     /// 기본 키보드 레이아웃.
-    public static let overridingKeyboardName = "OverridingKeyboardName"
+    static let overridingKeyboardName = "OverridingKeyboardName"
 
     /// Esc 키로 로마자 자판으로 전환 (vi 모드).
-    public static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
+    static let romanModeByEscapeKey = "ExchangeToRomanModeByEscapeKey"
     /// 한글 입력기일 때 역따옴표(`)로 원화 기호(₩) 입력.
-    public static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
+    static let hangulWonCurrencySymbolForBackQuote = "HangulWonCurrencySymbolForBackQuote"
     /// 완성되지 않은 낱자 자동 교정 (모아치기).
-    public static let hangulAutoReorder = "HangulAutoReorder"
+    static let hangulAutoReorder = "HangulAutoReorder"
     /// 두벌식 초성 조합 중에도 종성 결합 허용 (MS윈도 호환).
-    public static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
+    static let hangulNonChoseongCombination = "HangulNonChoseongCombination"
     /// 모든 글자를 조합 중인 글자로 취급 (JDK 호환).
-    public static let hangulDeferredSymbolCommit = "HangulDeferredSymbolCommit"
+    static let hangulDeferredSymbolCommit = "HangulDeferredSymbolCommit"
     /// 세벌식 정석 강요.
-    public static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
+    static let hangulForceStrictCombinationRule = "HangulForceStrictCombinationRule"
     /// 우측 키로 언어 전환
-    public static let rightToggleKey = "RightToggleKey"
+    static let rightToggleKey = "RightToggleKey"
 
     /// 업데이트 알림 받기
-    public static let updateNotification = "UpdateNotification"
+    static let updateNotification = "UpdateNotification"
     /// 실험버전 업데이트 알림 받기
-    public static let updateNotificationExperimental = "UpdateNotificationExperimental"
+    static let updateNotificationExperimental = "UpdateNotificationExperimental"
 }
 
 // MARK: - Configuration 클래스
