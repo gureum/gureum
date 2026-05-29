@@ -715,6 +715,7 @@
 				38162DF0141263270077AA2D /* Frameworks */,
 				38162DF1141263270077AA2D /* Resources */,
 				387736EB1423561F00DE50D6 /* Copy Frameworks */,
+				388186D521EB3FFF004B7FDB /* Compile Gureum CLI */,
 				CE31CC0B281099D9004659B0 /* Run Crashlytics */,
 			);
 			buildRules = (
@@ -1018,6 +1019,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		388186D521EB3FFF004B7FDB /* Compile Gureum CLI */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/tools/gureum-cli.swift",
+			);
+			name = "Compile Gureum CLI";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).app/Contents/MacOS/gureum-cli",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftc -O \"${SRCROOT}/tools/gureum-cli.swift\" -o \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/MacOS/gureum-cli\"\n";
+		};
 		382AF2C12156269F00701F90 /* Generate Version.xcconfig */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
