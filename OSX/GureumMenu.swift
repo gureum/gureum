@@ -12,7 +12,7 @@ import GureumCore
 
 let preferencesWindow: NSWindowController = NSStoryboard(name: "Configuration", bundle: Bundle.main).instantiateInitialController() as! NSWindowController
 
-// 왜 App delegate가 아니라 여기 붙는건지 모르겠다
+/// 왜 App delegate가 아니라 여기 붙는건지 모르겠다
 extension InputController {
     @IBAction func showStandardAboutPanel(_ sender: Any) {
         NSApp.activate(ignoringOtherApps: true)

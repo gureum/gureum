@@ -132,7 +132,7 @@ class IOKitty {
     }
 }
 
-/*!
+/** !
  @brief  공통적인 OSX의 입력기 구조를 다룬다.
 
  InputManager는 @ref InputController 또는 테스트코드에 해당하는 외부에서 입력을 받아 입력기에서 처리 후 결과 값을 보관한다. 처리 후 그 결과를 확인하는 것은 사용자의 몫이다.
@@ -144,11 +144,11 @@ class IOKitty {
 // TODO: InputTextDelegate를 제거하고 서버만 관리하도록 한다
 public class InputMethodServer {
     public static let shared = InputMethodServer()
-    //! @brief  현재 입력중인 서버
+    /// ! @brief  현재 입력중인 서버
     let server: IMKServer
-    //! @property
+    /// ! @property
     let candidates: IMKCandidates
-    //! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
+    /// ! @brief  입력기가 inputText: 문맥에 있는지 여부를 저장
     let io: IOKitty
 
     convenience init() {

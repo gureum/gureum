@@ -38,7 +38,7 @@ final class SearchComposer: Composer {
 
     init() {}
 
-    // 검색할 소스
+    /// 검색할 소스
     var sourceType: SearchComposer.SourceType? {
         guard let delegate = delegate else {
             return nil
@@ -69,7 +69,7 @@ final class SearchComposer: Composer {
 
     public var delegate: Composer!
 
-    // 한자 합성의 경우 현재 진행 중인 조합 + 한글 입력기가 지금까지 완료한 조합.
+    /// 한자 합성의 경우 현재 진행 중인 조합 + 한글 입력기가 지금까지 완료한 조합.
     var originalString: String {
         _bufferedString + delegate.composedString
     }
