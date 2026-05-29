@@ -44,7 +44,7 @@ public class InputReceiver: InputTextDelegate {
 
     // MARK: InputTextDelegate 프로토콜 구현
 
-    // IMKServerInput 프로토콜에 대한 공용 핸들러
+    /// IMKServerInput 프로토콜에 대한 공용 핸들러
     func input(text string: String?,
                key keyCode: KeyCode,
                modifiers flags: NSEvent.ModifierFlags,
@@ -130,8 +130,8 @@ public class InputReceiver: InputTextDelegate {
 }
 
 extension InputReceiver { // IMKServerInput
-    // Committing a Composition
-    // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+    /// Committing a Composition
+    /// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     func commitComposition(_ sender: IMKTextInput & IMKUnicodeTextInput) {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-INTERNAL")
         commitCompositionEvent(sender)
@@ -147,8 +147,8 @@ extension InputReceiver { // IMKServerInput
         controller.cancelComposition()
     }
 
-    // Committing a Composition
-    // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+    /// Committing a Composition
+    /// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     @discardableResult
     func commitCompositionEvent(_ sender: IMKTextInput & IMKUnicodeTextInput) -> Bool {
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT")
@@ -196,8 +196,8 @@ extension InputReceiver { // IMKServerInput
         return composer.composedString
     }
 
-    // Getting Input Strings and Candidates
-    // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
+    /// Getting Input Strings and Candidates
+    /// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
     func composedString(_: IMKTextInput & IMKUnicodeTextInput) -> String {
         let string = _internalComposedString
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::COMPOSEDSTRING::(%@)", string)
@@ -233,14 +233,14 @@ extension InputReceiver { // IMKServerInput
 }
 
 extension InputReceiver { // IMKStateSetting
-    //! @brief  마우스 이벤트를 잡을 수 있게 한다.
+    /// ! @brief  마우스 이벤트를 잡을 수 있게 한다.
     func recognizedEvents(_: IMKTextInput & IMKUnicodeTextInput) -> NSEvent.EventTypeMask {
         dlog(DEBUG_LOGGING, "LOGGING::CHECK::RECOGNIZEDEVENTS")
         // NSFlagsChangeMask는 -handleEvent: 에서만 동작
         return NSEvent.EventTypeMask(arrayLiteral: .keyDown, .flagsChanged, .leftMouseUp, .rightMouseUp, .leftMouseDown, .rightMouseDown, .leftMouseDragged, .rightMouseDragged, .appKitDefined, .applicationDefined, .systemDefined)
     }
 
-    //! @brief 자판 전환을 감지한다.
+    /// ! @brief 자판 전환을 감지한다.
     func setValue(_ value: Any, forTag tag: Int, client sender: IMKTextInput & IMKUnicodeTextInput) {
         InputMethodServer.shared.io.capsLockDate = nil
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::CHANGE-%lu-%@", tag, value as? String ?? "(nonstring)")

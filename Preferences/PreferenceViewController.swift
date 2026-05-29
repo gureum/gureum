@@ -8,9 +8,8 @@
 
 import Cocoa
 import Foundation
-import SwiftIOKit
-
 import MASShortcut
+import SwiftIOKit
 #if !USE_PREFPANE
     import GureumCore
 #endif

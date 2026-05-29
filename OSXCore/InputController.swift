@@ -103,7 +103,7 @@ public class InputController: IMKInputController {
     #endif
 }
 
-// IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
+/// IMKServerInputTextData, IMKServerInputHandleEvent, IMKServerInputKeyBinding 중 하나를 구현하여 입력 구현
 public extension InputController { // IMKServerInputHandleEvent
     // Receiving Events Directly from the Text Services Manager
 
@@ -199,13 +199,13 @@ public extension InputController { // IMKServerInputHandleEvent
  */
 
 public extension InputController { // IMKStateSetting
-    //! @brief  마우스 이벤트를 잡을 수 있게 한다.
+    /// ! @brief  마우스 이벤트를 잡을 수 있게 한다.
     override func recognizedEvents(_ sender: Any!) -> Int {
         let client = asClient(sender)
         return Int(receiver.recognizedEvents(client).rawValue)
     }
 
-    //! @brief 자판 전환을 감지한다.
+    /// ! @brief 자판 전환을 감지한다.
     override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
         let client = asClient(sender)
         receiver.setValue(value, forTag: tag, client: client)
@@ -214,6 +214,18 @@ public extension InputController { // IMKStateSetting
     override func activateServer(_ sender: Any!) {
         dlog(true, "server activated")
         super.activateServer(sender)
+
+        DistributedNotificationCenter.default().removeObserver(
+            self,
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
+        DistributedNotificationCenter.default().addObserver(
+            self,
+            selector: #selector(handleLayoutEventNotification(_:)),
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
     }
 
     override func deactivateServer(_ sender: Any!) {
@@ -221,12 +233,40 @@ public extension InputController { // IMKStateSetting
         if responds(to: #selector(commitComposition(_:))) {
             self.commitComposition(sender)
         }
+        DistributedNotificationCenter.default().removeObserver(
+            self,
+            name: NSNotification.Name("org.youknowone.gureum.layoutEvent"),
+            object: nil
+        )
         super.deactivateServer(sender)
+    }
+
+    @objc func handleLayoutEventNotification(_ notification: Notification) {
+        dlog(true, "handleLayoutEventNotification received: \(notification)")
+        guard let client = client() as? (IMKTextInput & IMKUnicodeTextInput) else {
+            dlog(true, "handleLayoutEventNotification: active client is nil or not matching protocol")
+            return
+        }
+
+        let action = notification.userInfo?["action"] as? String ?? "toggle"
+        let changeLayout: ChangeLayout
+        switch action {
+        case "hangul":
+            changeLayout = .hangul
+        case "roman":
+            changeLayout = .roman
+        case "hanja":
+            changeLayout = .search
+        default:
+            changeLayout = .toggle
+        }
+
+        _ = receiver.input(event: .changeLayout(changeLayout, true), client: client)
     }
 }
 
 public extension InputController { // IMKMouseHandling
-    /*!
+    /** !
      @brief  마우스 입력 발생을 커서 옮기기로 간주하고 조합 중지. 만일 마우스 입력 발생을 감지하는 대신 커서 옮기기를 직접 알아낼 수 있으면 이 부분은 제거한다.
      */
     override func mouseDown(onCharacterIndex _: Int, coordinate _: NSPoint, withModifier _: Int, continueTracking _: UnsafeMutablePointer<ObjCBool>!, client sender: Any) -> Bool {
@@ -243,8 +283,8 @@ public extension InputController { // IMKCustomCommands
 }
 
 public extension InputController { // IMKServerInput
-    // Committing a Composition
-    // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+    /// Committing a Composition
+    /// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
     @objc override func commitComposition(_ sender: Any!) {
         let client = asClient(sender)
         dlog(DEBUG_LOGGING, "LOGGING::EVENT::COMMIT-RAW?")
@@ -266,8 +306,8 @@ public extension InputController { // IMKServerInput
         super.cancelComposition()
     }
 
-    // Getting Input Strings and Candidates
-    // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
+    /// Getting Input Strings and Candidates
+    /// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
     @objc override func composedString(_ sender: Any!) -> Any {
         let client = asClient(sender)
         return receiver.composedString(client)
@@ -341,8 +381,8 @@ public extension InputController { // IMKServerInput
             return result.processed
         }
 
-        // Committing a Composition
-        // 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
+        /// Committing a Composition
+        /// 조합을 중단하고 현재까지 조합된 글자를 커밋한다.
         @objc override func commitComposition(_ sender: Any) {
             let client = asClient(sender)
             receiver.commitCompositionEvent(client)
@@ -368,8 +408,8 @@ public extension InputController { // IMKServerInput
             view.setMarkedText("", selectedRange: NSRange(location: markedRange.location, length: 0), replacementRange: markedRange)
         }
 
-        // Getting Input Strings and Candidates
-        // 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
+        /// Getting Input Strings and Candidates
+        /// 현재 입력 중인 글자를 반환한다. -updateComposition: 이 사용
         override func composedString(_ sender: Any) -> Any {
             let client = asClient(sender)
             return receiver.composedString(client)
@@ -395,13 +435,13 @@ public extension InputController { // IMKServerInput
     }
 
     public extension MockInputController { // IMKStateSetting
-        //! @brief  마우스 이벤트를 잡을 수 있게 한다.
+        /// ! @brief  마우스 이벤트를 잡을 수 있게 한다.
         override func recognizedEvents(_ sender: Any) -> Int {
             let client = asClient(sender)
             return Int(receiver.recognizedEvents(client).rawValue)
         }
 
-        //! @brief 자판 전환을 감지한다.
+        /// ! @brief 자판 전환을 감지한다.
         override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
             let client = asClient(sender)
             receiver.setValue(value, forTag: tag, client: client)
