@@ -119,6 +119,7 @@
 		A34E20012168B21B00B12476 /* GureumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAAE062160C6970076C66D /* GureumTests.swift */; };
 		A34E2025216ADBEC00B12476 /* emoji.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A34E2024216ADBEC00B12476 /* emoji.txt */; };
 		A36A435B216F86780052BE12 /* emoji_ko.txt in Copy Hanja Files */ = {isa = PBXBuildFile; fileRef = A36A4358216F86780052BE12 /* emoji_ko.txt */; };
+		A44EEFC62FC9C23D003F6C74 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = A44EEFC52FC9C23D003F6C74 /* SwiftUp */; };
 		CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADE7280A03B500B54371 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADD8280A026300B54371 /* MASShortcut */; };
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
@@ -417,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */,
+				A44EEFC62FC9C23D003F6C74 /* SwiftUp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +752,7 @@
 			name = Preferences;
 			packageProductDependencies = (
 				CE21ADD8280A026300B54371 /* MASShortcut */,
+				A44EEFC52FC9C23D003F6C74 /* SwiftUp */,
 			);
 			productName = Preferences;
 			productReference = 382E68641A1314D900031D1D /* Preferences.prefPane */;
@@ -1760,6 +1763,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A44EEFC52FC9C23D003F6C74 /* SwiftUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE21AE0E280B0B2200B54371 /* XCRemoteSwiftPackageReference "SwiftUp" */;
+			productName = SwiftUp;
+		};
 		CE21ADD8280A026300B54371 /* MASShortcut */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE21ADD7280A026300B54371 /* XCRemoteSwiftPackageReference "MASShortcut" */;
