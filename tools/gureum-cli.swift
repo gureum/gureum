@@ -13,11 +13,27 @@ func printUsage() {
       roman    Force switch to Roman layout
       hanja    Switch to Hanja (Search) layout
       help     Show this help message
+      --silent Suppress success output
     """)
 }
 
 let args = CommandLine.arguments
-let command = args.count > 1 ? args[1].lowercased() : "toggle"
+var command = "toggle"
+var silent = false
+if args.count > 1 {
+    var idx = 1
+    while idx < args.count {
+        let arg = args[idx]
+        if arg == "--silent" {
+            silent = true
+        } else if arg.hasPrefix("-") {
+            // Ignore other flags for now
+        } else {
+            command = arg.lowercased()
+        }
+        idx += 1
+    }
+}
 
 let action: String
 switch command {
@@ -48,4 +64,6 @@ DistributedNotificationCenter.default().postNotificationName(
     deliverImmediately: true
 )
 
-print("Successfully sent '\(action)' event to Gureum.")
+if !silent {
+    print("Successfully sent '\(action)' event to Gureum.")
+}
