@@ -96,6 +96,34 @@ class GureumTests: XCTestCase {
         }
     }
 
+    func testComposerStartsWithLastInputMode() {
+        Configuration.shared.restoreLastInputModeOnActivate = true
+        Configuration.shared.lastInputMode = GureumInputSource.qwerty.rawValue
+        XCTAssertEqual(GureumInputSource.qwerty.rawValue, GureumComposer().inputMode)
+
+        Configuration.shared.lastInputMode = GureumInputSource.han3Final.rawValue
+        XCTAssertEqual(GureumInputSource.han3Final.rawValue, GureumComposer().inputMode)
+    }
+
+    func testComposerStartsWithLastRomanInputModeWhenRestoreLastInputModeDisabled() {
+        Configuration.shared.restoreLastInputModeOnActivate = false
+        Configuration.shared.lastInputMode = GureumInputSource.han3Final.rawValue
+        Configuration.shared.lastRomanInputMode = GureumInputSource.qwerty.rawValue
+
+        XCTAssertEqual(GureumInputSource.qwerty.rawValue, GureumComposer().inputMode)
+    }
+
+    func testSetValueDuringInitialRestoreKeepsPendingInputMode() {
+        Configuration.shared.restoreLastInputModeOnActivate = true
+        Configuration.shared.lastInputMode = GureumInputSource.qwerty.rawValue
+
+        let app = ModerateApp()
+        app.controller.setValue(GureumInputSource.han2.rawValue, forTag: kTextServiceInputModePropertyTag, client: app.client)
+
+        XCTAssertEqual(GureumInputSource.qwerty.rawValue, app.controller.receiver.composer.inputMode)
+        XCTAssertEqual(GureumInputSource.qwerty.rawValue, Configuration.shared.lastInputMode)
+    }
+
     func testCapsLockLanguageSwitchCapableInfoPlist() {
         let infoDictionary = Bundle.main.infoDictionary ?? [:]
         XCTAssertEqual(infoDictionary["TICapsLockLanguageSwitchCapable"] as? Bool, true)

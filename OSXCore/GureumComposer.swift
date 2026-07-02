@@ -82,8 +82,8 @@ final class GureumComposer: Composer {
 
     init() {
         romanComposer = systemRomanComposer
-        inputMode = Configuration.shared.lastRomanInputMode
-        delegate = romanComposer
+        let configuration = Configuration.shared
+        inputMode = configuration.restoreLastInputModeOnActivate ? configuration.lastInputMode : configuration.lastRomanInputMode
     }
 
     // MARK: Composer 프로토콜 구현
@@ -167,6 +167,7 @@ extension GureumComposer {
             }
 
             _inputMode = newValue
+            Configuration.shared.lastInputMode = newValue
         }
     }
 

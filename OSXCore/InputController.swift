@@ -52,6 +52,8 @@ public class InputController: IMKInputController {
     var receiver: InputReceiver!
     var lastFlags = NSEvent.ModifierFlags(rawValue: 0)
     var updating = false
+    var pendingRestoreInputMode: String?
+    var pendingRestoreInputModeExpiresAt: Date?
 
     override init!(server: IMKServer, delegate: Any!, client inputClient: Any) {
         super.init(server: server, delegate: delegate, client: inputClient)
@@ -61,10 +63,17 @@ public class InputController: IMKInputController {
         dlog(DEBUG_INPUTCONTROLLER, "**** NEW INPUT CONTROLLER INIT **** WITH SERVER: \(server) / DELEGATE: \(String(describing: delegate)) / CLIENT: \(inputClient) \(inputClient.bundleIdentifier() ?? "nil")")
         assert(InputMethodServer.shared.server === server)
         receiver = InputReceiver(server: server, delegate: delegate, client: inputClient, controller: self)
+        beginPendingRestoreInputMode()
     }
 
     override init() {
         super.init()
+    }
+
+    func beginPendingRestoreInputMode() {
+        guard Configuration.shared.restoreLastInputModeOnActivate else { return }
+        pendingRestoreInputMode = Configuration.shared.lastInputMode
+        pendingRestoreInputModeExpiresAt = Date().addingTimeInterval(0.7)
     }
 
     override public func inputControllerWillClose() {
@@ -208,12 +217,43 @@ public extension InputController { // IMKStateSetting
     //! @brief 자판 전환을 감지한다.
     override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
         let client = asClient(sender)
+        if tag == kTextServiceInputModePropertyTag,
+           let value = value as? String,
+           let pendingInputMode = pendingRestoreInputMode,
+           (pendingRestoreInputModeExpiresAt ?? .distantPast) > Date(),
+           value != pendingInputMode
+        {
+            receiver.setValue(pendingInputMode, forTag: tag, client: client)
+            Configuration.shared.lastInputMode = pendingInputMode
+            (client as IMKTextInput).selectMode(pendingInputMode)
+            return
+        }
         receiver.setValue(value, forTag: tag, client: client)
     }
 
     override func activateServer(_ sender: Any!) {
         dlog(true, "server activated")
         super.activateServer(sender)
+        guard Configuration.shared.restoreLastInputModeOnActivate else { return }
+        beginPendingRestoreInputMode()
+        for delay in [0.0, 0.05, 0.2, 0.5] {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                self?.restoreLastInputModeOnActivateIfNeeded(sender)
+            }
+        }
+    }
+
+    func restoreLastInputModeOnActivateIfNeeded(_ sender: Any!) {
+        guard Configuration.shared.restoreLastInputModeOnActivate else {
+            pendingRestoreInputMode = nil
+            pendingRestoreInputModeExpiresAt = nil
+            return
+        }
+        let inputMode = pendingRestoreInputMode ?? Configuration.shared.lastInputMode
+        guard let receiver = receiver else { return }
+        guard receiver.composer.inputMode != inputMode else { return }
+        receiver.composer.inputMode = inputMode
+        (asClient(sender) as IMKTextInput).selectMode(inputMode)
     }
 
     override func deactivateServer(_ sender: Any!) {
@@ -297,6 +337,7 @@ public extension InputController { // IMKServerInput
         override public init(server: IMKServer, delegate: Any!, client: Any) {
             super.init()
             receiver = InputReceiver(server: server, delegate: delegate, client: client as! (IMKTextInput & IMKUnicodeTextInput), controller: self)
+            beginPendingRestoreInputMode()
         }
 
         func repoduceTextLog(_ text: String) throws {
@@ -403,8 +444,7 @@ public extension InputController { // IMKServerInput
 
         //! @brief 자판 전환을 감지한다.
         override func setValue(_ value: Any, forTag tag: Int, client sender: Any) {
-            let client = asClient(sender)
-            receiver.setValue(value, forTag: tag, client: client)
+            super.setValue(value, forTag: tag, client: sender)
         }
     }
 #endif
