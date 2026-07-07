@@ -1,7 +1,7 @@
 all:
 	@echo 'Available commands:'
 	@echo '    init         -- setup a development environment'
-	@echo '    format       -- format code style with swiftformat'
+	@echo '    format       -- format code style with swift-format'
 	@echo '    xcode-select -- set the active developer directory to Xcode'
 	@echo '    brew-install -- install required Homebrew formulae'
 	@echo '    gem-install  -- install required gems'
@@ -10,7 +10,7 @@ init: xcode-select brew-install gem-install
 	git submodule update --init --recursive
 
 format:
-	swiftformat OSXCore/ OSX/ GureumTests/ Preferences/ OSXTestApp/
+	swift format --in-place --recursive OSXCore OSX GureumTests Preferences OSXTestApp
 
 xcode-select:
 	@if [ "$(shell xcode-select -p)" = '/Library/Developer/CommandLineTools' ]; then \
@@ -23,10 +23,6 @@ brew-install:
 	@if ! command -v shellcheck >/dev/null; then \
 		echo 'brew install shellcheck'; \
 		brew install shellcheck; \
-	fi
-	@if ! command -v swiftformat >/dev/null; then \
-		echo 'brew install swiftformat'; \
-		brew install swiftformat; \
 	fi
 
 gem-install:

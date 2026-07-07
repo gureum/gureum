@@ -115,11 +115,11 @@ sudo gem install xcpretty
 - Firefox.app : 단축키 입력을 선점하지 않습니다. Modifier를 수정했다면 테스트해 보아야 합니다.
 - MS 오피스 2011 : 화살표 키 등 일부 다른 프로그램에서는 전달하지 않는 키코드가 전달됩니다. (issue #3)
 
-### swiftformat 실행
+### swift-format 실행
 
-변경한 소스 코드에 대해 swiftformat을 실행하여 코드의 일관성을 유지해 주세요.
+변경한 소스 코드에 대해 swift-format을 실행하여 코드의 일관성을 유지해 주세요. swift-format은 Xcode(Swift 툴체인)에 기본 포함되어 있습니다.
 
-CI 과정에서 swiftformat으로 인한 변경 사항이 발견되면 빌드는 통과되지 않습니다.
+CI 과정에서 swift-format lint를 통과하지 못하는 변경 사항이 있으면 빌드는 통과되지 않습니다.
 
 ```sh
 make format

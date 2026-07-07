@@ -13,15 +13,11 @@ jobs:
         with:
           check_together: 'yes'
           scandir: 'tools'
-  swiftformat:
-    runs-on: ubuntu-latest
+  swift-format:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: Cyberbeni/install-swift-tool@v2
-        with:
-          url: https://github.com/nicklockwood/SwiftFormat
-          version: '*' # format: https://devhints.io/semver
-      - run: swiftformat --lint OSXCore/ OSX/ GureumTests/ Preferences/ OSXTestApp/
+      - run: swift format lint --strict --recursive OSXCore OSX GureumTests Preferences OSXTestApp
   build-and-test:
     runs-on: macos-latest
     steps:
