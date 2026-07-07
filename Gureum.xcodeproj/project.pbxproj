@@ -103,7 +103,6 @@
 		38B9547B229ED9BC00A9D6E1 /* AnswersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9547A229ED9BC00A9D6E1 /* AnswersHelper.swift */; };
 		38B9551022A833E900A9D6E1 /* SystemConfigurationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9550D22A833E900A9D6E1 /* SystemConfigurationWatcher.swift */; };
 		38BFE80218B45419004B2B2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38BFE80018B45419004B2B2E /* InfoPlist.strings */; };
-		38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BFE80318B45419004B2B2E /* GureumObjCTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38C4A39B24C21965001B5208 /* BundleVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4A39A24C21965001B5208 /* BundleVersion.swift */; };
 		38C4A39C24C21B0A001B5208 /* BundleVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4A39A24C21965001B5208 /* BundleVersion.swift */; };
 		38EE977619FFD65600AD19B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE977519FFD65600AD19B8 /* Carbon.framework */; };
@@ -362,7 +361,6 @@
 		38BFE7FA18B45419004B2B2E /* OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BFE7FF18B45419004B2B2E /* GureumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GureumTests-Info.plist"; sourceTree = "<group>"; };
 		38BFE80118B45419004B2B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38BFE80318B45419004B2B2E /* GureumObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GureumObjCTests.m; sourceTree = "<group>"; };
 		38BFE81F18B4F181004B2B2E /* NSPrefPaneBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPrefPaneBundle.h; sourceTree = "<group>"; };
 		38C253EA19F4EE320020FE92 /* Gureum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Gureum.entitlements; sourceTree = "<group>"; };
 		38C2AE4C208795E700FE211A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -668,7 +666,6 @@
 				388186B321EB4E4C004B7FDB /* MockApp.swift */,
 				3881866121EB239D004B7FDB /* MockInputClient.h */,
 				3881866221EB239E004B7FDB /* MockInputClient.m */,
-				38BFE80318B45419004B2B2E /* GureumObjCTests.m */,
 				38BFE7FE18B45419004B2B2E /* Supporting Files */,
 			);
 			path = GureumTests;
@@ -1140,7 +1137,6 @@
 				388186B521EB4E98004B7FDB /* MockApp.swift in Sources */,
 				3881866421EB23F3004B7FDB /* MockInputClient.m in Sources */,
 				80983E8022AE2A7000A69C08 /* UpdateManager.swift in Sources */,
-				38BFE80418B45419004B2B2E /* GureumObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
