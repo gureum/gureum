@@ -272,12 +272,10 @@ extension SearchComposer {
 
       self._searchLock.lock()
       self.candidates = newCandidates
-      if workItem.isCancelled {
-        self._searchLock.unlock()
-        return
-      }
+      self._searchLock.unlock()
+
+      guard !workItem.isCancelled else { return }
       DispatchQueue.main.async {
-        defer { self._searchLock.unlock() }
         guard self.delegate != nil else {
           return
         }
