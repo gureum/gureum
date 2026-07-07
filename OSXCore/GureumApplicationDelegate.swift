@@ -9,6 +9,6 @@
 import Cocoa
 
 @objc public protocol GureumApplicationDelegate: NSObjectProtocol {
-    //! @brief  언어 설정에 추가될 메뉴
-    @objc var menu: NSMenu! { get }
+  //! @brief  언어 설정에 추가될 메뉴
+  @objc var menu: NSMenu! { get }
 }

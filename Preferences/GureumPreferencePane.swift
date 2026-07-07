@@ -10,9 +10,9 @@ import Cocoa
 import PreferencePanes
 
 final class GureumPreferencePane: NSPreferencePane {
-    @IBOutlet private var viewController: NSViewController!
+  @IBOutlet private var viewController: NSViewController!
 
-    override func mainViewDidLoad() {
-        super.mainViewDidLoad()
-    }
+  override func mainViewDidLoad() {
+    super.mainViewDidLoad()
+  }
 }

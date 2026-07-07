@@ -9,7 +9,7 @@
 import Foundation
 
 extension TISInputSource {
-    override open var description: String {
-        "<(self.class.name)(((self.identifier)))>"
-    }
+  override open var description: String {
+    "<(self.class.name)(((self.identifier)))>"
+  }
 }

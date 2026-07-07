@@ -10,33 +10,38 @@ import Foundation
 import MASShortcut
 
 #if !USE_PREFPANE
-    import GureumCore
+  import GureumCore
 #endif
 
 final class GureumShortcutValidator: MASShortcutValidator {
-    override init() {
-        super.init()
-        allowAnyShortcutWithOptionModifier = true
-    }
+  override init() {
+    super.init()
+    allowAnyShortcutWithOptionModifier = true
+  }
 
-    override func isShortcutAlreadyTaken(bySystem _: MASShortcut!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
-        return false
-    }
+  override func isShortcutAlreadyTaken(
+    bySystem _: MASShortcut!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!
+  ) -> Bool {
+    return false
+  }
 
-    override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
-        if super.isShortcutValid(shortcut) {
-            return true
-        }
-        let modifiers = shortcut.modifierFlags
-        let keyCode = shortcut.keyCode
-        guard (modifiers.rawValue & NSEvent.ModifierFlags.shift.rawValue) > 0 else {
-            return false
-        }
-        guard let key = KeyCode(rawValue: keyCode) else { return false }
-        return !key.isKeyMappable || [.return, .tab, .space].contains(key)
+  override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
+    if super.isShortcutValid(shortcut) {
+      return true
     }
+    let modifiers = shortcut.modifierFlags
+    let keyCode = shortcut.keyCode
+    guard (modifiers.rawValue & NSEvent.ModifierFlags.shift.rawValue) > 0 else {
+      return false
+    }
+    guard let key = KeyCode(rawValue: keyCode) else { return false }
+    return !key.isKeyMappable || [.return, .tab, .space].contains(key)
+  }
 
-    override func isShortcut(_: MASShortcut!, alreadyTakenIn _: NSMenu!, explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
-        return false
-    }
+  override func isShortcut(
+    _: MASShortcut!, alreadyTakenIn _: NSMenu!,
+    explanation _: AutoreleasingUnsafeMutablePointer<NSString?>!
+  ) -> Bool {
+    return false
+  }
 }

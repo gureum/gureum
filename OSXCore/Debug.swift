@@ -9,15 +9,15 @@
 import Foundation
 
 #if DEBUG
-    func dlog(_ flag: Bool, _ format: String, _ args: CVarArg...) {
-        guard flag else {
-            return
-        }
-        NSLogv(format, getVaList(args))
+  func dlog(_ flag: Bool, _ format: String, _ args: CVarArg...) {
+    guard flag else {
+      return
     }
+    NSLogv(format, getVaList(args))
+  }
 
 #else
-    func dlog(_: CVarArg...) {
-        // do nothing in release mode
-    }
+  func dlog(_: CVarArg...) {
+    // do nothing in release mode
+  }
 #endif

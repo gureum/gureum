@@ -8,15 +8,15 @@
 
 import Foundation
 
-public extension Bundle {
-    var version: String? {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-    }
+extension Bundle {
+  public var version: String? {
+    Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+  }
 
-    var isExperimental: Bool {
-        guard let current = version else {
-            return false
-        }
-        return current.contains("-experimental") || current.contains("-rc")
+  public var isExperimental: Bool {
+    guard let current = version else {
+      return false
     }
+    return current.contains("-experimental") || current.contains("-rc")
+  }
 }

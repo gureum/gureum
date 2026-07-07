@@ -11,46 +11,55 @@ import Cocoa
 import Foundation
 import Hangul
 
-let CHO_FILLER = 0x115F
-let JUNG_FILLER = 0x1160
-let DEBUG_HANGULCOMPOSER = false
+let choFiller = 0x115F
+let jungFiller = 0x1160
+let debugHangulComposer = false
 
 private let table: [HGUCSChar: HGUCSChar] = [
-    // {'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'}
-    0x1161: 0x314F, 0x1162: 0x3150, 0x1163: 0x3151, 0x1164: 0x3152, 0x1165: 0x3153, 0x1166: 0x3154, 0x1167: 0x3155, 0x1168: 0x3156, 0x1169: 0x3157, 0x116A: 0x3158, 0x116B: 0x3159, 0x116C: 0x315A, 0x116D: 0x315B, 0x116E: 0x315C, 0x116F: 0x315D, 0x1170: 0x315E, 0x1171: 0x315F, 0x1172: 0x3160, 0x1173: 0x3161, 0x1174: 0x3162, 0x1175: 0x3163,
-    // {JONGSUNG ' ', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'}
-    0x0000: 0x0000, 0x11A8: 0x3131, 0x11A9: 0x3132, 0x11AA: 0x3133, 0x11AB: 0x3134, 0x11AC: 0x3135, 0x11AD: 0x3136, 0x11AE: 0x3137, 0x11AF: 0x3139, 0x11B0: 0x313A, 0x11B1: 0x313B, 0x11B2: 0x313C, 0x11B3: 0x313D, 0x11B4: 0x313E, 0x11B5: 0x313F, 0x11B6: 0x3140, 0x11B7: 0x3141, 0x11B8: 0x3142, 0x11B9: 0x3144, 0x11BA: 0x3145, 0x11BB: 0x3146, 0x11BC: 0x3147, 0x11BD: 0x3148, 0x11BE: 0x314A, 0x11BF: 0x314B, 0x11C0: 0x314C, 0x11C1: 0x314D, 0x11C2: 0x314E,
+  // {'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'}
+  0x1161: 0x314F, 0x1162: 0x3150, 0x1163: 0x3151, 0x1164: 0x3152, 0x1165: 0x3153, 0x1166: 0x3154,
+  0x1167: 0x3155, 0x1168: 0x3156, 0x1169: 0x3157, 0x116A: 0x3158, 0x116B: 0x3159, 0x116C: 0x315A,
+  0x116D: 0x315B, 0x116E: 0x315C, 0x116F: 0x315D, 0x1170: 0x315E, 0x1171: 0x315F, 0x1172: 0x3160,
+  0x1173: 0x3161, 0x1174: 0x3162, 0x1175: 0x3163,
+  // {JONGSUNG ' ', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'}
+  0x0000: 0x0000, 0x11A8: 0x3131, 0x11A9: 0x3132, 0x11AA: 0x3133, 0x11AB: 0x3134, 0x11AC: 0x3135,
+  0x11AD: 0x3136, 0x11AE: 0x3137, 0x11AF: 0x3139, 0x11B0: 0x313A, 0x11B1: 0x313B, 0x11B2: 0x313C,
+  0x11B3: 0x313D, 0x11B4: 0x313E, 0x11B5: 0x313F, 0x11B6: 0x3140, 0x11B7: 0x3141, 0x11B8: 0x3142,
+  0x11B9: 0x3144, 0x11BA: 0x3145, 0x11BB: 0x3146, 0x11BC: 0x3147, 0x11BD: 0x3148, 0x11BE: 0x314A,
+  0x11BF: 0x314B, 0x11C0: 0x314C, 0x11C1: 0x314D, 0x11C2: 0x314E,
 ]
 
 /// 한글호환 자모 유니코드로 바꿔주는 함수.
 func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> [HGUCSChar] {
-    var newUcsString = [HGUCSChar]()
-    var skipped = 0
-    while ucsString[skipped + newUcsString.count] != UInt32(0) {
-        let index = skipped + newUcsString.count
-        let newChr: HGUCSChar
-        if let chr = table[ucsString[index]] {
-            newChr = chr
-        } else {
-            newChr = ucsString[index]
-        }
-        if newChr == CHO_FILLER || newChr == JUNG_FILLER {
-            skipped += 1
-        } else {
-            newUcsString.append(newChr)
-        }
+  var newUcsString = [HGUCSChar]()
+  var skipped = 0
+  while ucsString[skipped + newUcsString.count] != UInt32(0) {
+    let index = skipped + newUcsString.count
+    let newChr: HGUCSChar
+    if let chr = table[ucsString[index]] {
+      newChr = chr
+    } else {
+      newChr = ucsString[index]
     }
-    newUcsString.append(0)
-    return newUcsString
+    if newChr == choFiller || newChr == jungFiller {
+      skipped += 1
+    } else {
+      newUcsString.append(newChr)
+    }
+  }
+  newUcsString.append(0)
+  return newUcsString
 }
 
 func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
-    let isCombinating = !HGCharacterIsChoseong(ucsString[0]) || ucsString[0] == CHO_FILLER || ucsString[1] == JUNG_FILLER
-    if isCombinating {
-        return NSString(ucsString: convertUnicode(ucsString)) as String
-    }
-    // 옛한글은 그대로
-    return NSString(ucsString: ucsString) as String
+  let isCombinating =
+    !HGCharacterIsChoseong(ucsString[0]) || ucsString[0] == choFiller
+    || ucsString[1] == jungFiller
+  if isCombinating {
+    return NSString(ucsString: convertUnicode(ucsString)) as String
+  }
+  // 옛한글은 그대로
+  return NSString(ucsString: ucsString) as String
 }
 
 // MARK: - HangulComposer 클래스
@@ -61,226 +70,243 @@ func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
 ///
 /// `HGInputContext` 클래스를 참고한다.
 final class HangulComposer: NSObject, Composer {
-    /// 한글 합성기의 종류를 정의한 열거형.
-    ///
-    /// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
-    enum ComposerType: String {
-        /// 두벌식 자판.
-        case han2 = "2-full"
-        /// 두벌식 옛글 자판.
-        case han2Classic = "2y-full"
-        /// 세벌식 최종 자판.
-        case han3Final = "3f"
-        /// 세벌식 390 자판.
-        case han390 = "39"
-        /// 세벌식 순아래 자판.
-        case han3NoShift = "3s"
-        /// 세벌식 옛글 자판.
-        case han3Classic = "3y"
-        /// 세벌식 두벌식 배치 자판.
-        case han3Layout2 = "32"
-        /// 세벌식 로마자 자판.
-        case hanRoman = "ro"
-        /// 안마태 자판.
-        case hanAhnmatae = "ahn"
-        /// 세벌식 최종 순아래 자판.
-        case han3FinalNoShift = "3gs"
-        /// 세벌식 2011 자판.
-        case han3_2011 = "3-2011"
-        /// 세벌식 2012 자판.
-        case han3_2012 = "3-2012"
+  /// 한글 합성기의 종류를 정의한 열거형.
+  ///
+  /// 각 케이스의 원시 값은 그에 대응하는 키보드 식별자를 나타낸다.
+  enum ComposerType: String {
+    /// 두벌식 자판.
+    case han2 = "2-full"
+    /// 두벌식 옛글 자판.
+    case han2Classic = "2y-full"
+    /// 세벌식 최종 자판.
+    case han3Final = "3f"
+    /// 세벌식 390 자판.
+    case han390 = "39"
+    /// 세벌식 순아래 자판.
+    case han3NoShift = "3s"
+    /// 세벌식 옛글 자판.
+    case han3Classic = "3y"
+    /// 세벌식 두벌식 배치 자판.
+    case han3Layout2 = "32"
+    /// 세벌식 로마자 자판.
+    case hanRoman = "ro"
+    /// 안마태 자판.
+    case hanAhnmatae = "ahn"
+    /// 세벌식 최종 순아래 자판.
+    case han3FinalNoShift = "3gs"
+    /// 세벌식 2011 자판.
+    case han32011 = "3-2011"
+    /// 세벌식 2012 자판.
+    case han32012 = "3-2012"
+  }
+
+  /// 합성을 완료한 문자열.
+  private var _commitString: String
+  /// 합성 중인 문자열. 현재는 JDK 호환 모드에만 사용된다.
+  private var _composedString: String
+
+  let inputContext: HGInputContext
+  let configuration = Configuration.shared
+
+  init(type: HangulComposer.ComposerType) {
+    _commitString = ""
+    _composedString = ""
+    let keyboardIdentifier = type.rawValue
+    let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
+    self.inputContext = inputContext
+    self.inputContext.setOption(
+      HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+    self.inputContext.setOption(
+      HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+    super.init()
+    configuration.addObserver(
+      self, forKeyPath: ConfigurationName.hangulAutoReorder, options: .new, context: nil)
+    configuration.addObserver(
+      self, forKeyPath: ConfigurationName.hangulNonChoseongCombination, options: .new, context: nil)
+    configuration.addObserver(
+      self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule, options: .new,
+      context: nil)
+  }
+
+  override func observeValue(
+    forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?,
+    context _: UnsafeMutableRawPointer?
+  ) {
+    if keyPath == ConfigurationName.hangulForceStrictCombinationRule {
+      let lastHangulInputMode = configuration.lastHangulInputMode
+      let inputSource = GureumInputSource(rawValue: lastHangulInputMode) ?? .han2
+      let keyboard = inputSource.keyboardIdentifier
+      setKeyboard(identifier: keyboard)
+    } else {
+      inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
+      inputContext.setOption(
+        HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
+    }
+  }
+
+  deinit {
+    configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder)
+    configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination)
+    configuration.removeObserver(
+      self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule)
+  }
+
+  // MARK: Composer 프로토콜 구현
+
+  var composedString: String {
+    let preedit = inputContext.preeditUCSString
+    return _composedString + representableString(ucsString: preedit)
+  }
+
+  var originalString: String {
+    let preedit = inputContext.preeditUCSString
+    return _composedString + representableString(ucsString: preedit)
+  }
+
+  var commitString: String {
+    return _commitString
+  }
+
+  var candidates: [NSAttributedString]? {
+    return nil
+  }
+
+  var hasCandidates: Bool {
+    return false
+  }
+
+  func clear() {
+    clearCompositionContext()
+  }
+
+  @discardableResult
+  func dequeueCommitString() -> String {
+    let queuedCommitString = _commitString
+    _commitString = ""
+    return queuedCommitString
+  }
+
+  func cancelComposition() {
+    let flushedString: String! = representableString(ucsString: inputContext.flushUCSString())
+    _commitString.append(_composedString)
+    _commitString.append(flushedString)
+    _composedString = ""
+  }
+
+  func clearCompositionContext() {
+    inputContext.reset()
+    _commitString = ""
+    _composedString = ""
+  }
+
+  func composerSelected() {
+    clear()
+  }
+
+  func candidateSelected(_: NSAttributedString) {
+    assertionFailure()
+  }
+
+  func candidateSelectionChanged(_: NSAttributedString) {
+    assertionFailure()
+  }
+
+  func input(
+    text string: String?,
+    key keyCode: KeyCode,
+    modifiers flags: NSEvent.ModifierFlags,
+    client _: IMKTextInput & IMKUnicodeTextInput
+  ) -> InputResult {
+    // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
+    if keyCode == .delete {
+      // JDK 호환 모드의 경우, _composedString가 있을 경우 그 문자를 우선적으로 지운다
+      if configuration.hangulDeferredSymbolCommit, !_composedString.isEmpty {
+        _composedString.removeLast()
+        return .processed
+      }
+      return inputContext.backspace() ? .processed : .notProcessed
     }
 
-    /// 합성을 완료한 문자열.
-    private var _commitString: String
-    /// 합성 중인 문자열. 현재는 JDK 호환 모드에만 사용된다.
-    private var _composedString: String
-
-    let inputContext: HGInputContext
-    let configuration = Configuration.shared
-
-    init(type: HangulComposer.ComposerType) {
-        _commitString = ""
-        _composedString = ""
-        let keyboardIdentifier = type.rawValue
-        let inputContext = HGInputContext(keyboardIdentifier: keyboardIdentifier)!
-        self.inputContext = inputContext
-        self.inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
-        self.inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
-        super.init()
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder, options: .new, context: nil)
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination, options: .new, context: nil)
-        configuration.addObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule, options: .new, context: nil)
+    if !keyCode.isKeyMappable || [.delete, .return, .tab, .space].contains(keyCode) {
+      dlog(debugHangulComposer, " ** ESCAPE from outbound keyCode: %lu", keyCode.rawValue)
+      return InputResult(processed: false, action: .commit)
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
-        if keyPath == ConfigurationName.hangulForceStrictCombinationRule {
-            let lastHangulInputMode = configuration.lastHangulInputMode
-            let inputSource = GureumInputSource(rawValue: lastHangulInputMode) ?? .han2
-            let keyboard = inputSource.keyboardIdentifier
-            setKeyboard(identifier: keyboard)
-        } else {
-            inputContext.setOption(HANGUL_IC_OPTION_AUTO_REORDER, value: configuration.hangulAutoReorder)
-            inputContext.setOption(HANGUL_IC_OPTION_NON_CHOSEONG_COMBI, value: configuration.hangulNonChoseongCombination)
-        }
+    var string = string!
+    // 한글 입력에서 캡스락 무시
+    if flags.contains(.shift) {
+      string = keyMapUpper[keyCode.rawValue] ?? string
+    } else {
+      string = keyMapLower[keyCode.rawValue] ?? string
     }
+    let handled = inputContext.process(string.unicodeScalars.first!.value)
+    let ucsString = inputContext.commitUCSString
+    let recentCommitString = representableString(ucsString: ucsString)
 
-    deinit {
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulAutoReorder)
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulNonChoseongCombination)
-        configuration.removeObserver(self, forKeyPath: ConfigurationName.hangulForceStrictCombinationRule)
-    }
-
-    // MARK: Composer 프로토콜 구현
-
-    var composedString: String {
-        let preedit = inputContext.preeditUCSString
-        return _composedString + representableString(ucsString: preedit)
-    }
-
-    var originalString: String {
-        let preedit = inputContext.preeditUCSString
-        return _composedString + representableString(ucsString: preedit)
-    }
-
-    var commitString: String {
-        return _commitString
-    }
-
-    var candidates: [NSAttributedString]? {
-        return nil
-    }
-
-    var hasCandidates: Bool {
-        return false
-    }
-
-    func clear() {
-        clearCompositionContext()
-    }
-
-    @discardableResult
-    func dequeueCommitString() -> String {
-        let queuedCommitString = _commitString
-        _commitString = ""
-        return queuedCommitString
-    }
-
-    func cancelComposition() {
-        let flushedString: String! = representableString(ucsString: inputContext.flushUCSString())
+    if configuration.hangulDeferredSymbolCommit {
+      if handled {
         _commitString.append(_composedString)
-        _commitString.append(flushedString)
         _composedString = ""
-    }
-
-    func clearCompositionContext() {
-        inputContext.reset()
-        _commitString = ""
-        _composedString = ""
-    }
-
-    func composerSelected() {
-        clear()
-    }
-
-    func candidateSelected(_: NSAttributedString) {
-        assertionFailure()
-    }
-
-    func candidateSelectionChanged(_: NSAttributedString) {
-        assertionFailure()
-    }
-
-    func input(text string: String?,
-               key keyCode: KeyCode,
-               modifiers flags: NSEvent.ModifierFlags,
-               client _: IMKTextInput & IMKUnicodeTextInput) -> InputResult
-    {
-        // libhangul은 backspace를 키로 받지 않고 별도로 처리한다.
-        if keyCode == .delete {
-            // JDK 호환 모드의 경우, _composedString가 있을 경우 그 문자를 우선적으로 지운다
-            if configuration.hangulDeferredSymbolCommit, !_composedString.isEmpty {
-                _composedString.removeLast()
-                return .processed
-            }
-            return inputContext.backspace() ? .processed : .notProcessed
-        }
-
-        if !keyCode.isKeyMappable || [.delete, .return, .tab, .space].contains(keyCode) {
-            dlog(DEBUG_HANGULCOMPOSER, " ** ESCAPE from outbound keyCode: %lu", keyCode.rawValue)
-            return InputResult(processed: false, action: .commit)
-        }
-
-        var string = string!
-        // 한글 입력에서 캡스락 무시
-        if flags.contains(.shift) {
-            string = KeyMapUpper[keyCode.rawValue] ?? string
+        if recentCommitString.isEmpty {
+          return .processed
         } else {
-            string = KeyMapLower[keyCode.rawValue] ?? string
-        }
-        let handled = inputContext.process(string.unicodeScalars.first!.value)
-        let ucsString = inputContext.commitUCSString
-        let recentCommitString = representableString(ucsString: ucsString)
-
-        if configuration.hangulDeferredSymbolCommit {
-            if handled {
-                _commitString.append(_composedString)
-                _composedString = ""
-                if recentCommitString.isEmpty {
-                    return .processed
-                } else {
-                    // 커밋 대상 문자열 중 마지막 문자가 한글이 아닌 경우 비조합 문자로 판단한다.
-                    let lastChar = String(recentCommitString.last!)
-                    if lastChar.range(of: "[ㄱ-ㅎㅏ-ㅣ가-힣]", options: .regularExpression) == nil {
-                        // 이 때, 마지막 문자가 입력기의 처리를 거치지 않은 것과 동일한 경우에는 deferred 모드를 사용하지 않는다.
-                        if lastChar == string {
-                            _commitString.append(recentCommitString)
-                            return .processed
-                        } else {
-                            _composedString = lastChar
-                            _commitString.append(String(recentCommitString.dropLast()))
-                        }
-                    } else {
-                        _commitString.append(recentCommitString)
-                    }
-                    return .processed
-                }
+          // 커밋 대상 문자열 중 마지막 문자가 한글이 아닌 경우 비조합 문자로 판단한다.
+          let lastChar = String(recentCommitString.last!)
+          if lastChar.range(of: "[ㄱ-ㅎㅏ-ㅣ가-힣]", options: .regularExpression) == nil {
+            // 이 때, 마지막 문자가 입력기의 처리를 거치지 않은 것과 동일한 경우에는 deferred 모드를 사용하지 않는다.
+            if lastChar == string {
+              _commitString.append(recentCommitString)
+              return .processed
             } else {
-                return InputResult(processed: false, action: .cancel)
+              _composedString = lastChar
+              _commitString.append(String(recentCommitString.dropLast()))
             }
+          } else {
+            _commitString.append(recentCommitString)
+          }
+          return .processed
         }
-
-        if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == .ansiGrave, flags.isSubset(of: .capsLock) {
-            if !handled {
-                _commitString.append(recentCommitString + "₩")
-                return .processed
-            } else if recentCommitString.last! == "`" {
-                _commitString.append(recentCommitString.dropLast() + "₩")
-                return .processed
-            }
-        }
-
-        _commitString.append(recentCommitString)
-        // dlog(DEBUG_HANGULCOMPOSER, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString)
-        return handled ? .processed : InputResult(processed: false, action: .cancel)
+      } else {
+        return InputResult(processed: false, action: .cancel)
+      }
     }
+
+    if configuration.hangulWonCurrencySymbolForBackQuote, keyCode == .ansiGrave,
+      flags.isSubset(of: .capsLock)
+    {
+      if !handled {
+        _commitString.append(recentCommitString + "₩")
+        return .processed
+      } else if recentCommitString.last! == "`" {
+        _commitString.append(recentCommitString.dropLast() + "₩")
+        return .processed
+      }
+    }
+
+    _commitString.append(recentCommitString)
+    // dlog(debugHangulComposer, @"HangulComposer -inputText: string %@ (%@ added)", self->_commitString, recentCommitString)
+    return handled ? .processed : InputResult(processed: false, action: .cancel)
+  }
 }
 
 extension HangulComposer {
-    /// 현재 context의 배열을 바꾼다.
-    ///
-    /// - Parameter identifier: `libhangul`의 `hangul_ic_select_keyboard`를 참고한다.
-    func setKeyboard(identifier: String) {
-        if configuration.hangulForceStrictCombinationRule, identifier == "39" || identifier == "3f" {
-            let strictCombinationIdentifier = "\(identifier)s"
-            inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
-        } else {
-            inputContext.setKeyboardWithIdentifier(identifier)
-        }
+  /// 현재 context의 배열을 바꾼다.
+  ///
+  /// - Parameter identifier: `libhangul`의 `hangul_ic_select_keyboard`를 참고한다.
+  func setKeyboard(identifier: String) {
+    if configuration.hangulForceStrictCombinationRule, identifier == "39" || identifier == "3f" {
+      let strictCombinationIdentifier = "\(identifier)s"
+      inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)
+    } else {
+      inputContext.setKeyboardWithIdentifier(identifier)
     }
+  }
 
-    private func input(controller _: InputController, command _: String?, key _: Int, modifiers _: NSEvent.ModifierFlags, client _: Any) -> InputResult {
-        assertionFailure()
-        return .notProcessed
-    }
+  private func input(
+    controller _: InputController, command _: String?, key _: Int,
+    modifiers _: NSEvent.ModifierFlags, client _: Any
+  ) -> InputResult {
+    assertionFailure()
+    return .notProcessed
+  }
 }
