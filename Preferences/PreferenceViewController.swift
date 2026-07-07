@@ -9,7 +9,6 @@
 import Cocoa
 import Foundation
 import MASShortcut
-import SwiftIOKit
 
 #if !USE_PREFPANE
   import GureumCore
