@@ -28,14 +28,14 @@ extension TISInputSource {
   }
 
   public var enabled: Bool {
-    return property(forKey: kTISPropertyInputSourceIsEnabled as String) as! Bool
+    return property(forKey: kTISPropertyInputSourceIsEnabled as String) as? Bool ?? false
   }
 
   public var identifier: String {
-    return property(forKey: kTISPropertyInputSourceID as String) as! String
+    return property(forKey: kTISPropertyInputSourceID as String) as? String ?? ""
   }
 
   public var localizedName: String {
-    return property(forKey: kTISPropertyLocalizedName as String) as! String
+    return property(forKey: kTISPropertyLocalizedName as String) as? String ?? identifier
   }
 }
