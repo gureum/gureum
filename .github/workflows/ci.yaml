@@ -32,6 +32,7 @@ jobs:
           sdk: macosx
           destination: platform=macOS
           action: build test
+          output-formatter: xcpretty --color
       #- uses: sersoft-gmbh/xcodebuild-action@v4
       #  with:
       #    workspace: Gureum.xcworkspace
@@ -39,3 +40,4 @@ jobs:
       #    sdk: iphonesimulator
       #    destination: platform=iOS Simulator,OS=11.3,name=iPhone X
       #    action: build test
+      #    output-formatter: xcpretty --color
