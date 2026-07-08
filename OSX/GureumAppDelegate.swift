@@ -31,8 +31,8 @@ class NotificationCenterDelegate: NSObject, NSUserNotificationCenterDelegate {
     default:
       break
     }
-    if updating {
-      NSWorkspace.shared.open(URL(string: download)!)
+    if updating, let url = URL(string: download) {
+      NSWorkspace.shared.open(url)
     }
     answers.logUpdateNotification(updating: updating)
   }
