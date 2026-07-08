@@ -62,16 +62,16 @@ public class InputReceiver: InputTextDelegate {
     modifiers flags: NSEvent.ModifierFlags,
     client sender: IMKTextInput & IMKUnicodeTextInput
   ) -> InputResult {
-    let selected = sender.selectedRange()
-    let marked = sender.markedRange()
-    if selected.location != marked.location {
-      //            dlog(debugLogging, "MISMATCHING: \(selected) \(marked)")
-      //            cancelComposition()
-      //            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
-      //
-      //            // commitComposition(sender)
-      //            marked = selected
-    }
+    //     let selected = sender.selectedRange()
+    //     let marked = sender.markedRange()
+    //     if selected.location != marked.location {
+    //       //            dlog(debugLogging, "MISMATCHING: \(selected) \(marked)")
+    //       //            cancelComposition()
+    //       //            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
+    //       //
+    //       //            // commitComposition(sender)
+    //       //            marked = selected
+    //     }
 
     // 입력기용 특수 커맨드 처리
     if let command = composer.filterCommand(keyCode: keyCode, modifiers: flags, client: sender) {
