@@ -109,9 +109,11 @@ final class SearchComposer: Composer {
     dlog(
       debugSearchComposer, "DEBUG 2, DelegatedComposer.candidateSelected(_:) value == %@",
       candidate)
+    // 검색 대상이 아닌 접두사(공백·문장부호 등)는 그대로 두고 뒤의 한글/로마자만 후보로 교체한다.
+    let (prefix, _) = splitSearchKeyword(originalString)
     _bufferedString = ""
     composedString = ""
-    commitString = candidate
+    commitString = prefix + candidate
     delegate.cancelComposition()
     delegate.dequeueCommitString()
 
@@ -120,6 +122,13 @@ final class SearchComposer: Composer {
 
   func candidateSelectionChanged(_: NSAttributedString) {
     // nothing to do
+  }
+
+  /// 입력값 앞에 붙은 검색 대상이 아닌 접두사(공백·문장부호 등)와 실제 검색 대상(한글/로마자)을 분리한다.
+  /// 접두사는 검색에서 제외하고, 후보를 커밋할 때 그대로 앞에 붙여 뒤의 한글/로마자만 교체한다.
+  private func splitSearchKeyword(_ string: String) -> (prefix: String, body: String) {
+    let bodyStart = string.firstIndex(where: { $0.isLetter }) ?? string.endIndex
+    return (String(string[..<bodyStart]), String(string[bodyStart...]))
   }
 
   func updateCandidates() {
@@ -310,7 +319,8 @@ extension SearchComposer {
     // step 3: 키가 없거나 검색 결과가 키 prefix와 일치하지 않으면 후보를 보여주지 않는다.
     dlog(debugSearchComposer, "SearchComposer.updateHanjaCandidates() step3")
 
-    let keyword = originalString.trimmingCharacters(in: .whitespaces)
+    let (_, body) = splitSearchKeyword(originalString)
+    let keyword = body.trimmingCharacters(in: .whitespaces)
     cancelSearch()
     candidates = [NSAttributedString(string: "검색 중...")]  // default candidates
 
@@ -342,7 +352,8 @@ extension SearchComposer {
     _bufferedString.append(delegate.composedString)
     let originalString = _bufferedString
     composedString = originalString
-    let keyword = originalString
+    let (_, body) = splitSearchKeyword(originalString)
+    let keyword = body
 
     dlog(debugSearchComposer, "Candidates before search, %@", candidates ?? "nil")
     cancelSearch()
