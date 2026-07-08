@@ -33,13 +33,19 @@ private let table: [HGUCSChar: HGUCSChar] = [
 func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> [HGUCSChar] {
   var newUcsString = [HGUCSChar]()
   var skipped = 0
-  while ucsString[skipped + newUcsString.count] != UInt32(0) {
+  // libhangul의 내부 버퍼 크기는 64로 고정되어 있으므로 그 범위 안에서만 읽는다.
+  for _ in 0..<64 {
     let index = skipped + newUcsString.count
+    let currentChar = ucsString[index]
+    // null terminator를 만나면 종료한다.
+    if currentChar == UInt32(0) {
+      break
+    }
     let newChr: HGUCSChar
-    if let chr = table[ucsString[index]] {
+    if let chr = table[currentChar] {
       newChr = chr
     } else {
-      newChr = ucsString[index]
+      newChr = currentChar
     }
     if newChr == choFiller || newChr == jungFiller {
       skipped += 1
@@ -52,9 +58,14 @@ func convertUnicode(_ ucsString: UnsafePointer<HGUCSChar>) -> [HGUCSChar] {
 }
 
 func representableString(ucsString: UnsafePointer<HGUCSChar>) -> String {
+  // 빈 문자열이면 두 번째 문자를 읽지 않고 즉시 반환한다.
+  let firstChar = ucsString[0]
+  guard firstChar != UInt32(0) else {
+    return ""
+  }
+  let secondChar = ucsString[1]
   let isCombinating =
-    !HGCharacterIsChoseong(ucsString[0]) || ucsString[0] == choFiller
-    || ucsString[1] == jungFiller
+    !HGCharacterIsChoseong(firstChar) || firstChar == choFiller || secondChar == jungFiller
   if isCombinating {
     return NSString(ucsString: convertUnicode(ucsString)) as String
   }
