@@ -203,6 +203,22 @@ extension InputReceiver {  // IMKServerInput
     return true
   }
 
+  func commitCompositionWithUnselect(_ sender: IMKTextInput & IMKUnicodeTextInput) {
+    let markedRange = sender.markedRange()
+    if markedRange.location == NSNotFound || markedRange.length == 0 {
+      return
+    }
+
+    let wasInputting = inputting
+    inputting = false
+    if commitCompositionEvent(sender) {
+      let caretRange = NSRange(location: markedRange.location + markedRange.length, length: 0)
+      sender.setMarkedText(
+        "", selectionRange: NSRange(location: 0, length: 0), replacementRange: caretRange)
+    }
+    inputting = wasInputting
+  }
+
   func updateCompositionEvent() {
     dlog(debugLogging, "LOGGING::EVENT::UPDATE")
     dlog(debugInputController, "** InputController -updateComposition")

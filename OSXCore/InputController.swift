@@ -159,6 +159,10 @@ extension InputController {  // IMKServerInputHandleEvent
       let changed = lastFlags.symmetricDifference(event.modifierFlags)
       lastFlags = event.modifierFlags
 
+      if changed.contains(.command), event.modifierFlags.contains(.command) {
+        receiver.commitCompositionWithUnselect(client)
+      }
+
       if changed.contains(.capsLock), Configuration.shared.enableCapslockToToggleInputMode {
         if InputMethodServer.shared.io.capsLockTriggered {
           dlog(debugIOKitEvent, "controller detected capslock to change layout")
