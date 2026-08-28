@@ -62,16 +62,16 @@ public class InputReceiver: InputTextDelegate {
     modifiers flags: NSEvent.ModifierFlags,
     client sender: IMKTextInput & IMKUnicodeTextInput
   ) -> InputResult {
-    let selected = sender.selectedRange()
-    let marked = sender.markedRange()
-    if selected.location != marked.location {
-      //            dlog(debugLogging, "MISMATCHING: \(selected) \(marked)")
-      //            cancelComposition()
-      //            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
-      //
-      //            // commitComposition(sender)
-      //            marked = selected
-    }
+    //     let selected = sender.selectedRange()
+    //     let marked = sender.markedRange()
+    //     if selected.location != marked.location {
+    //       //            dlog(debugLogging, "MISMATCHING: \(selected) \(marked)")
+    //       //            cancelComposition()
+    //       //            sender.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: selected.location, length: 0))
+    //       //
+    //       //            // commitComposition(sender)
+    //       //            marked = selected
+    //     }
 
     // 입력기용 특수 커맨드 처리
     if let command = composer.filterCommand(keyCode: keyCode, modifiers: flags, client: sender) {
@@ -201,6 +201,22 @@ extension InputReceiver {  // IMKServerInput
     InputMethodServer.shared.showOrHideCandidates(controller: controller)
 
     return true
+  }
+
+  func commitCompositionWithUnselect(_ sender: IMKTextInput & IMKUnicodeTextInput) {
+    let markedRange = sender.markedRange()
+    if markedRange.location == NSNotFound || markedRange.length == 0 {
+      return
+    }
+
+    let wasInputting = inputting
+    inputting = false
+    if commitCompositionEvent(sender) {
+      let caretRange = NSRange(location: markedRange.location + markedRange.length, length: 0)
+      sender.setMarkedText(
+        "", selectionRange: NSRange(location: 0, length: 0), replacementRange: caretRange)
+    }
+    inputting = wasInputting
   }
 
   func updateCompositionEvent() {
