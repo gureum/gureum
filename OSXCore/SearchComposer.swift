@@ -61,7 +61,6 @@ final class SearchComposer: Composer {
   // 검색을 위한 백그라운드 스레드
   private var _searchWorkItem = DispatchWorkItem {}
   private var _searchQueue = DispatchQueue.global(qos: .userInitiated)
-  private let _searchLock = NSLock()
 
   var showsCandidateWindow = true
 
@@ -250,9 +249,7 @@ extension SearchComposer {
     showsCandidateWindow = false
     // 2. 후보 취소
     cancelSearch()
-    _searchLock.lock()
     candidates = nil
-    _searchLock.unlock()
 
     InputMethodServer.shared.candidates.hide()
 
@@ -270,11 +267,7 @@ extension SearchComposer {
       let newCandidates = source.search(keyword, workItem: workItem)
       guard !workItem.isCancelled else { return }
 
-      self._searchLock.lock()
-      self.candidates = newCandidates
-      self._searchLock.unlock()
-
-      guard !workItem.isCancelled else { return }
+      // candidates는 메인 스레드에서만 접근하므로 결과 반영도 메인 큐에서 수행한다.
       DispatchQueue.main.async {
         guard self.delegate != nil else {
           return
@@ -282,6 +275,7 @@ extension SearchComposer {
         guard !workItem.isCancelled else {
           return
         }
+        self.candidates = newCandidates
         InputMethodServer.shared.showOrHideCandidates(composer: self)
       }
     }
@@ -316,9 +310,7 @@ extension SearchComposer {
 
     guard !keyword.isEmpty else {
       dlog(debugSearchComposer, "SearchComposer.updateHanjaCandidates() has no keywords")
-      _searchLock.lock()
       candidates = nil
-      _searchLock.unlock()
       return
     }
 
@@ -352,9 +344,7 @@ extension SearchComposer {
     _searchWorkItem = searchWorkItem(keyword: keyword, in: pool)
 
     if keyword.isEmpty {
-      _searchLock.lock()
       candidates = nil
-      _searchLock.unlock()
     } else {
       _searchQueue.async(execute: _searchWorkItem)
     }
