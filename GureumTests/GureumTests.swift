@@ -440,6 +440,22 @@ class GureumTests: XCTestCase {
     }
   }
 
+  func testBackQuoteHan3Classic() {
+    // 세벌식 옛글에서 역따옴표는 종성으로 매핑되어 있어 커밋 없이 조합만 진행된다.
+    Configuration.shared.hangulWonCurrencySymbolForBackQuote = true
+    for app in apps {
+      app.client.string = ""
+      app.controller.setValue(
+        GureumInputSource.han3Classic.rawValue, forTag: kTextServiceInputModePropertyTag,
+        client: app.client)
+
+      app.inputKey(.ansiGrave)
+      XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+      XCTAssertEqual(
+        "\u{11F9}", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+    }
+  }
+
   func testDvorak() {
     for app in apps {
       app.client.string = ""
