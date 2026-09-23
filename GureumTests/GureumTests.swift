@@ -450,7 +450,7 @@ class GureumTests: XCTestCase {
         client: app.client)
 
       app.inputKey(.ansiGrave)
-      XCTAssertEqual("", app.client.string, "buffer: \(app.client.string) app: \(app)")
+      XCTAssertEqual("\u{11F9}", app.client.string, "buffer: \(app.client.string) app: \(app)")
       XCTAssertEqual(
         "\u{11F9}", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
     }
