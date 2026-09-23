@@ -300,6 +300,27 @@ class GureumTests: XCTestCase {
     }
   }
 
+  func testHanjaSelectionWithPrefix() {
+    for app in apps {
+      if app == terminal {
+        continue  // 터미널은 한자 모드 진입이 불가능
+      }
+      // 검색 대상이 아닌 접두사(문장부호·공백)가 앞에 붙은 채로 한자 모드에 들어간다.
+      app.client.string = "(물 수"
+      app.controller.setValue(
+        GureumInputSource.han3Final.rawValue,
+        forTag: kTextServiceInputModePropertyTag, client: app.client)
+      app.client.setSelectedRange(NSMakeRange(0, 4))
+      XCTAssertEqual("(물 수", app.client.selectedString(), "")
+      app.inputText("\n", key: .return, modifiers: .option)
+      XCTAssertEqual("(물 수", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+      app.controller.candidateSelected(NSAttributedString(string: "水: 물 수, 고를 수"))
+      // 접두사 "("는 그대로 두고 뒤의 "물 수"만 선택한 한자로 교체한다.
+      XCTAssertEqual("(水", app.client.string, "buffer: \(app.client.string) app: \(app)")
+      XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
+    }
+  }
+
   func testHanjaEscapeSyllable() {
     for app in apps {
       if app == terminal {
