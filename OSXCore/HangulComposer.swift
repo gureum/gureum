@@ -243,14 +243,20 @@ final class HangulComposer: NSObject, Composer {
       return InputResult(processed: false, action: .commit)
     }
 
-    var string = string!
+    var string = string ?? ""
     // 한글 입력에서 캡스락 무시
     if flags.contains(.shift) {
       string = keyMapUpper[keyCode.rawValue] ?? string
     } else {
       string = keyMapLower[keyCode.rawValue] ?? string
     }
-    let handled = inputContext.process(string.unicodeScalars.first!.value)
+    guard let scalar = string.unicodeScalars.first else {
+      // mappable 키인데 이벤트에 문자가 없는 비정상 입력. 정상 입력에서는 도달하지 않으므로
+      // 디버그에서는 노출시키고, 릴리스에서는 크래시 대신 조합 없이 통과시킨다.
+      assertionFailure("mappable key \(keyCode) produced no character")
+      return InputResult(processed: false, action: .commit)
+    }
+    let handled = inputContext.process(scalar.value)
     let ucsString = inputContext.commitUCSString
     let recentCommitString = representableString(ucsString: ucsString)
 
@@ -288,7 +294,7 @@ final class HangulComposer: NSObject, Composer {
       if !handled {
         _commitString.append(recentCommitString + "₩")
         return .processed
-      } else if recentCommitString.last! == "`" {
+      } else if recentCommitString.hasSuffix("`") {
         _commitString.append(recentCommitString.dropLast() + "₩")
         return .processed
       }
